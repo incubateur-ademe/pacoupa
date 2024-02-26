@@ -1,0 +1,11 @@
+- [x] migration app dir
+- [x] sitemap.xml (kill scripts/prebuild.ts)
+- [x] robots.txt
+- [x] favicon.ico
+- [x] mdx
+- [x] deploy (vercel or scalingo)
+- [ ] sentry
+- [x] fin matomo
+- [ ] save base template
+- [x] content
+- [x] landing PACOUPA
