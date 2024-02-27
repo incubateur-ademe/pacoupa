@@ -3,9 +3,9 @@ import { type MDXProps } from "mdx/types";
 export interface MDXBlocProps {
   highlight: {
     component: (props: MDXProps) => JSX.Element;
-    metadata: CarteVerteMDXLandingHighlightMetadata;
+    metadata: PacoupaMDXLandingHighlightMetadata;
   } | null;
   id: string;
-  metadata: CarteVerteMDXLandingMetadata;
+  metadata: PacoupaMDXLandingMetadata;
   titleComponent: (props: MDXProps) => JSX.Element;
 }

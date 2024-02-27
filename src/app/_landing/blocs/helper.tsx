@@ -6,7 +6,7 @@ import { paragraphContentMDXComponents } from "@/mdx-components";
 import { type MDXBlocProps } from "./type";
 
 const BASE = 12;
-type ImageSize = NonNullable<NonNullable<CarteVerteMDXImage["mobile"]>["size"]>;
+type ImageSize = NonNullable<NonNullable<PacoupaMDXImage["mobile"]>["size"]>;
 const OFFSETS: Record<ImageSize, ColsNumberType> = {
   large: 0 as ColsNumberType,
   medium: 2,

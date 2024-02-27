@@ -1,7 +1,8 @@
 export const config = {
   host: process.env.NEXT_PUBLIC_SITE_URL!,
   name: "PACOUPA",
-  tagline: "La solution de paiement de l'ADEME qui récompense vos achats durables",
+  tagline:
+    "Conseiller les copropriétaires dans l'installation de systèmes de chauffage décarbonés adaptés à leur logement",
   env: (process.env.PACOUPA_ENV || "dev") as "dev" | "prod" | "staging",
   matomo: {
     siteId: process.env.NEXT_PUBLIC_MATOMO_SITE_ID!,

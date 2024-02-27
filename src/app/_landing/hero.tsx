@@ -8,22 +8,14 @@ const DEFAULT_CTA_SOURCE = "hero";
 
 export interface LandingHeroProps {
   blocComponent: MDXBlocProps["titleComponent"];
-  metadata: CarteVerteHeroMDXMetadata;
+  metadata: PacoupaHeroMDXMetadata;
   titleComponent: MDXBlocProps["titleComponent"];
 }
 
-export const LandingHero = ({
-  blocComponent: bloc,
-  titleComponent: title,
-  metadata,
-  mobile,
-}: LandingHeroProps & { mobile?: boolean }) => (
+export const LandingHero = ({ blocComponent: bloc, titleComponent: title, metadata }: LandingHeroProps) => (
   <>
-    {mobile ? (
-      <LandingHeroMobile metadata={metadata} blocComponent={bloc} titleComponent={title} />
-    ) : (
-      <LandingHeroDesktop metadata={metadata} blocComponent={bloc} titleComponent={title} />
-    )}
+    <LandingHeroMobile metadata={metadata} blocComponent={bloc} titleComponent={title} />
+    <LandingHeroDesktop metadata={metadata} blocComponent={bloc} titleComponent={title} />
   </>
 );
 
@@ -66,7 +58,7 @@ const LandingHeroMobile = ({
       </GridCol>
     </Grid>
     <CTA source={cta?.source ?? DEFAULT_CTA_SOURCE} title={cta?.title} href={cta?.href} asGroup>
-      {cta?.title}
+      {cta?.title} xxxxxx
     </CTA>
   </Container>
 );
