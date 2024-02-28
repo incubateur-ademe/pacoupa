@@ -1,12 +1,12 @@
 import "./global.css";
 
-import { Badge } from "@codegouvfr/react-dsfr/Badge";
 import { headerFooterDisplayItem } from "@codegouvfr/react-dsfr/Display";
 import { Footer } from "@codegouvfr/react-dsfr/Footer";
-import { Header, type HeaderProps } from "@codegouvfr/react-dsfr/Header";
+import { type HeaderProps } from "@codegouvfr/react-dsfr/Header";
 import { DsfrHead } from "@codegouvfr/react-dsfr/next-appdir/DsfrHead";
 import { DsfrProvider } from "@codegouvfr/react-dsfr/next-appdir/DsfrProvider";
 import { getHtmlAttributes } from "@codegouvfr/react-dsfr/next-appdir/getHtmlAttributes";
+import Notice from "@codegouvfr/react-dsfr/Notice";
 import { SkipLinks } from "@codegouvfr/react-dsfr/SkipLinks";
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import { GeistSans } from "geist/font/sans";
@@ -14,7 +14,7 @@ import { type Metadata } from "next";
 import Link from "next/link";
 import { type PropsWithChildren, Suspense } from "react";
 
-import { Brand } from "@/components/Brand";
+import { Navigation } from "@/components/Navigation";
 import { Matomo } from "@/components/utils/Matomo";
 import { config } from "@/config";
 import { Follow } from "@/dsfr/base/Follow";
@@ -93,8 +93,12 @@ const RootLayout = ({ children }: PropsWithChildren) => {
               },
             ]}
           />
+          <Notice
+            isClosable={false}
+            title="Le simulateur est en phase de construction. Inscrivez-vous et nous vous préviendrons lors de sa sortie."
+          />
           <div className={styles.app}>
-            <Header
+            {/* <Header
               brandTop={<Brand />}
               homeLinkProps={{
                 href: "/",
@@ -110,7 +114,8 @@ const RootLayout = ({ children }: PropsWithChildren) => {
               }
               // serviceTagline={config.tagline}
               operatorLogo={operatorLogo}
-            />
+            /> */}
+            <Navigation />
             <main role="main" id={contentId} className={styles.content}>
               {children}
             </main>
