@@ -22,12 +22,6 @@ export const LandingHero = () => (
 const LandingHeroDesktop = ({ metadata: { cta } = {} }: LandingHeroProps) => (
   <Container className="hidden md:flex">
     <Grid haveGutters>
-      <GridCol>
-        <span className="text-red-600">
-          L’ADEME se réserve le droit de modifier les présentes mentions légales à tout moment. L’utilisateur est lié
-          par les conditions en vigueur lors de sa visite.
-        </span>
-      </GridCol>
       <GridCol base={6} className="">
         <HeroTitleContent />
         {/* <HeroBlocContent /> */}
