@@ -50,29 +50,35 @@ declare type PacoupaFAQMDXMetadata = PacoupaHeroMDXMetadata & {
 
 declare type MDXContent = typeof import("*.mdx").default;
 
-declare module "@__content/landing/blocs/*/title.mdx" {
+declare module "@__content/*.mdx" {
   const MDXContent: MDXContent;
   export default MDXContent;
   export const metadata: PacoupaMDXLandingMetadata;
 }
 
-declare module "@__content/landing/blocs/*/highlight.mdx" {
-  const MDXContent: MDXContent;
-  export default MDXContent;
-  export const metadata: PacoupaMDXLandingHighlightMetadata;
-}
+// declare module "@__content/landing/blocs/*/highlight.mdx" {
+//   const MDXContent: MDXContent;
+//   export default MDXContent;
+//   export const metadata: PacoupaMDXLandingHighlightMetadata;
+// }
 
-declare module "@__content/landing/faq/*.mdx" {
-  const MDXContent: MDXContent;
-  export default MDXContent;
-  export const metadata: PacoupaFAQMDXMetadata;
-}
+// declare module "@__content/landing/faq/*.mdx" {
+//   const MDXContent: MDXContent;
+//   export default MDXContent;
+//   export const metadata: PacoupaFAQMDXMetadata;
+// }
 
-declare module "@__content/landing/hero_title.mdx" {
-  const MDXContent: MDXContent;
-  export default MDXContent;
-  export const metadata: PacoupaHeroMDXMetadata;
-}
+// declare module "@__content/landing/hero_title.mdx" {
+//   const MDXContent: MDXContent;
+//   export default MDXContent;
+//   export const metadata: PacoupaHeroMDXMetadata;
+// }
+
+// declare module "@__content/mentions-legales.mdx" {
+//   const MDXContent: MDXContent;
+//   export default MDXContent;
+//   export const metadata: PacoupaHeroMDXMetadata;
+// }
 
 declare module "@codegouvfr/react-dsfr/*.svg" {
   export interface SVG {
