@@ -1,5 +1,6 @@
 import "./global.css";
 
+import { fr } from "@codegouvfr/react-dsfr";
 import { headerFooterDisplayItem } from "@codegouvfr/react-dsfr/Display";
 import { Footer } from "@codegouvfr/react-dsfr/Footer";
 import { type HeaderProps } from "@codegouvfr/react-dsfr/Header";
@@ -116,7 +117,12 @@ const RootLayout = ({ children }: PropsWithChildren) => {
               operatorLogo={operatorLogo}
             /> */}
             <Navigation />
-            <main role="main" id={contentId} className={styles.content}>
+            <main
+              role="main"
+              id={contentId}
+              // className={styles.content}
+              className={cx(styles.content, fr.cx("fr-py-4w"))}
+            >
               {children}
             </main>
             <Follow />

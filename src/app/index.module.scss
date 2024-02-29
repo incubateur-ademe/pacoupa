@@ -1,16 +1,26 @@
-.hero {
-    background: var(--grey-1000-50-hover)
+.logos {
+    display: flex;
+    gap: var(--spacing-4v);
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
-@counter-style custom-arrow {
-    system: cyclic;
-    symbols: "⮕";
-    suffix: " ";
+.logos img {
+     max-width: 180px;
+     max-height: 100px;
 }
 
-.block,
-.hero {
-    & ul:not(:global(.fr-btns-group)) {
-        list-style: custom-arrow;
+@media (max-width: 768px) {
+    
+    .logos {
+        flex-direction: column;
+        // gap: var(--spacing-4v);
     }
+    
+    .logos img {
+         max-width: 110px;
+         max-height: 90px;
+    }
+       
 }
