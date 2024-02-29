@@ -50,7 +50,7 @@ const Home = () => {
       </Box>
 
       <Box as="section" className={fr.cx("fr-hr", "fr-mt-10w", "fr-pt-10w")}>
-        <Container>
+        <Container className={styles.hesitation}>
           <Grid className={fr.colors.decisions.text.actionHigh.redMarianne.default}>
             <GridCol base={6} className={"flex justify-center content-center"}>
               <HesitationImage width={350} />

@@ -11,6 +11,12 @@
      max-height: 100px;
 }
 
+.hesitation {
+    background-image: radial-gradient(circle at top left, #D2D4EE, #FFFFFF);
+    padding-bottom: 50px;
+    padding-top: 20px;
+}
+
 @media (max-width: 768px) {
     
     .logos {
