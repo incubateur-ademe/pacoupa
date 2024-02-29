@@ -1,4 +1,5 @@
 import { fr } from "@codegouvfr/react-dsfr";
+import Card from "@codegouvfr/react-dsfr/Card";
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import { type Metadata } from "next";
 
@@ -49,7 +50,54 @@ const Home = () => {
         <AccelerateurAdemeImage />
       </Box>
 
-      <Box as="section" className={fr.cx("fr-hr", "fr-mt-10w", "fr-pt-10w")}>
+      <h3 className={fr.cx("fr-mt-10w")}>On a tous une bonne raison</h3>
+
+      <Box as="section" className={cx(styles.cards)}>
+        <Card
+          border
+          shadow
+          desc="C’est le bon moment pour vous renseigner sur les solutions durables, spécifiquement adaptées à votre immeuble."
+          enlargeLink
+          imageAlt="texte alternatif de l’image"
+          // imageUrl="/img/chaudiere-cassee.svg"
+          linkProps={{
+            href: "#",
+          }}
+          size="small"
+          title="Chaudière en panne ?"
+          titleAs="h3"
+        />
+        <Card
+          border
+          shadow
+          desc="Les solutions “renouvelables” sont souvent moins gourmandes, et donc moins exposées aux augmentations de prix."
+          enlargeLink
+          imageAlt="texte alternatif de l’image"
+          // imageUrl="/img/chaudiere-cassee.svg"
+          linkProps={{
+            href: "#",
+          }}
+          size="small"
+          title="Facture trop élevée ?"
+          titleAs="h3"
+        />
+        <Card
+          border
+          shadow
+          desc="Réseau de chaleur ? pompe à chaleur ? solaire thermique ? biomasse ? Késako ? Les solutions sont nombreuses, laissez nous vous guider pas à pas."
+          enlargeLink
+          imageAlt="texte alternatif de l’image"
+          // imageUrl="/img/chaudiere-cassee.svg"
+          linkProps={{
+            href: "#",
+          }}
+          size="small"
+          title="Envie de passer au vert ?"
+          titleAs="h3"
+        />
+      </Box>
+
+      <Box as="section" className={fr.cx("fr-mt-8w")}>
         <Container className={styles.hesitation}>
           <Grid className={fr.colors.decisions.text.actionHigh.redMarianne.default}>
             <GridCol base={6} className={"flex justify-center content-center"}>
@@ -70,7 +118,7 @@ const Home = () => {
           </Grid>
         </Container>
       </Box>
-      <Box as="section" className={fr.cx("fr-hr", "fr-mt-10w", "fr-pt-10w")}>
+      <Box as="section" className={fr.cx("fr-mt-8w")}>
         <Container>
           <Grid className={fr.colors.decisions.text.actionHigh.redMarianne.default}>
             <GridCol base={6} className={"flex flex-col justify-center content-center"}>
@@ -91,6 +139,53 @@ const Home = () => {
             </GridCol>
           </Grid>
         </Container>
+      </Box>
+
+      <h3 className={fr.cx("fr-mt-10w")}>La solution qui vous correspond en moins de 5min</h3>
+
+      <Box as="section" className={cx(styles.cards)}>
+        <Card
+          border
+          shadow
+          desc="Répondez à seulement quelques questions."
+          enlargeLink
+          imageAlt="texte alternatif de l’image"
+          // imageUrl="/img/chaudiere-cassee.svg"
+          linkProps={{
+            href: "#",
+          }}
+          size="small"
+          title="Simple"
+          titleAs="h3"
+        />
+        <Card
+          border
+          shadow
+          desc="Déterminez la solution faites pour votre copropriété."
+          enlargeLink
+          imageAlt="texte alternatif de l’image"
+          // imageUrl="/img/chaudiere-cassee.svg"
+          linkProps={{
+            href: "#",
+          }}
+          size="small"
+          title="Personnalisée"
+          titleAs="h3"
+        />
+        <Card
+          border
+          shadow
+          desc="Bénéficiez de conseils d’experts accessibles pour tous."
+          enlargeLink
+          imageAlt="texte alternatif de l’image"
+          // imageUrl="/img/chaudiere-cassee.svg"
+          linkProps={{
+            href: "#",
+          }}
+          size="small"
+          title="Compréhensible"
+          titleAs="h3"
+        />
       </Box>
     </>
   );
