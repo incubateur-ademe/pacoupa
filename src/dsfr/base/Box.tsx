@@ -8,12 +8,12 @@ export type BoxProps = PropsWithChildren<
   React.HTMLAttributes<HTMLDivElement> &
     ResponsiveSpacingProps &
     SpacingProps & {
-      as?: "article" | "div" | "footer" | "p" | "section";
       className?: CxArg;
+      tag?: "article" | "div" | "footer" | "p" | "section";
     }
 >;
 
-const boxProps = ({
+export const boxProps = ({
   className,
   mt,
   mr,
@@ -84,8 +84,15 @@ const boxProps = ({
   ...rest,
 });
 
-export const Box = ({ as: HtmlTag = "div", ...rest }: BoxProps) => <HtmlTag {...boxProps(rest)} />;
-export const BoxRef = forwardRef<HTMLDivElement, BoxProps>(({ as: HtmlTag = "div", ...rest }, ref) => (
+export const Box = ({ tag: HtmlTag = "div", ...rest }: BoxProps) => <HtmlTag {...boxProps(rest)} />;
+
+export const Section = (props: Omit<BoxProps, "tag">) => <Box tag="section" {...boxProps(props)} />;
+export const P = (props: Omit<BoxProps, "tag">) => <Box tag="p" {...boxProps(props)} />;
+export const Article = (props: Omit<BoxProps, "tag">) => <Box tag="article" {...boxProps(props)} />;
+export const Div = (props: Omit<BoxProps, "tag">) => <Box tag="div" {...boxProps(props)} />;
+export const Footer = (props: Omit<BoxProps, "tag">) => <Box tag="footer" {...boxProps(props)} />;
+
+export const BoxRef = forwardRef<HTMLDivElement, BoxProps>(({ tag: HtmlTag = "div", ...rest }, ref) => (
   <HtmlTag ref={ref} {...boxProps(rest)} />
 ));
 

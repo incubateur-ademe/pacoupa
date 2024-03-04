@@ -6,11 +6,14 @@ import { type Metadata } from "next";
 import { AccelerateurAdemeImage } from "@/components/img/AccelerateurAdemeImage";
 import { AdemeImage } from "@/components/img/AdemeImage";
 import { BetaGouvImage } from "@/components/img/BetaGouvImage";
+import { Camembert1Image } from "@/components/img/Camembert1";
+import { Camembert2Image } from "@/components/img/Camembert2";
 import { HesitationImage } from "@/components/img/HesitationImage";
 import { MarianneImage } from "@/components/img/MarianneImage";
 import { PlanteImage } from "@/components/img/PlanteImage";
 import { config } from "@/config";
-import { Box, Container, Grid, GridCol } from "@/dsfr";
+import { Box, Container, Grid, GridCol, P, Section } from "@/dsfr";
+import { H1, H2, H3 } from "@/dsfr/base/typography";
 
 import { LandingHero } from "./_landing/hero";
 import { CTA } from "./CTA";
@@ -39,20 +42,22 @@ const Home = () => {
 
   return (
     <>
-      <Box as="section" pb="4w" className={fr.cx("fr-pt-md-9w", "fr-pt-2w", "fr-mb-0")}>
+      <Section pb="4w" ptmd="8w">
         <LandingHero />
-      </Box>
+      </Section>
 
-      <Box as="section" pb="4w" className={cx(styles.logos, fr.cx("fr-mt-md-4w", "fr-pt-2w", "fr-mb-0"))}>
+      <Section pb="4w" pt="2w" mtmd="4w" mb="0" className={cx(styles.logos)}>
         <MarianneImage />
         <AdemeImage />
         <BetaGouvImage />
         <AccelerateurAdemeImage />
-      </Box>
+      </Section>
 
-      <h3 className={fr.cx("fr-mt-10w")}>On a tous une bonne raison</h3>
+      <H1 as="h2" mt="1w">
+        On a tous une bonne raison
+      </H1>
 
-      <Box as="section" className={cx(styles.cards)}>
+      <Section className={cx(styles.cards)}>
         <Card
           border
           shadow
@@ -65,7 +70,7 @@ const Home = () => {
           }}
           size="small"
           title="Chaudière en panne ?"
-          titleAs="h3"
+          titleAs="h4"
         />
         <Card
           border
@@ -79,7 +84,7 @@ const Home = () => {
           }}
           size="small"
           title="Facture trop élevée ?"
-          titleAs="h3"
+          titleAs="h4"
         />
         <Card
           border
@@ -93,11 +98,11 @@ const Home = () => {
           }}
           size="small"
           title="Envie de passer au vert ?"
-          titleAs="h3"
+          titleAs="h4"
         />
-      </Box>
+      </Section>
 
-      <Box as="section" className={fr.cx("fr-mt-8w")}>
+      <Section className={fr.cx("fr-mt-8w")}>
         <Container className={styles.hesitation}>
           <Grid className={fr.colors.decisions.text.actionHigh.redMarianne.default}>
             <GridCol base={6} className={"flex justify-center content-center"}>
@@ -106,7 +111,7 @@ const Home = () => {
 
             <GridCol base={6} className={"flex flex-col justify-center content-center"}>
               <Box>
-                <h2>PAC, RCU: c'est quoi ?</h2>
+                <H2>PAC, RCU: c'est quoi ?</H2>
                 <p>Vous hésitez entre une chaudière à gaz ou des radiateurs électriques ?</p>
                 <p>
                   Et pourquoi pas une <u>Pompe À Chaleur</u>
@@ -117,13 +122,14 @@ const Home = () => {
             </GridCol>
           </Grid>
         </Container>
-      </Box>
-      <Box as="section" className={fr.cx("fr-mt-8w")}>
+      </Section>
+
+      <Section className={fr.cx("fr-mt-8w")}>
         <Container>
           <Grid className={fr.colors.decisions.text.actionHigh.redMarianne.default}>
             <GridCol base={6} className={"flex flex-col justify-center content-center"}>
               <Box>
-                <h2>Quelles solutions écologiques pour votre immeuble ?</h2>
+                <H2>Laissez-vous guider</H2>
                 <p>
                   Ce simulateur détermine, selon les caractéristiques de votre immeuble, les différents types de
                   chauffage et leur pertinence écologique et économique.
@@ -139,11 +145,11 @@ const Home = () => {
             </GridCol>
           </Grid>
         </Container>
-      </Box>
+      </Section>
 
-      <h3 className={fr.cx("fr-mt-10w")}>La solution qui vous correspond en moins de 5min</h3>
+      <H3 mt="10w">La solution qui vous correspond en moins de 5min</H3>
 
-      <Box as="section" className={cx(styles.cards)}>
+      <Section className={cx(styles.cards)}>
         <Card
           border
           shadow
@@ -156,7 +162,7 @@ const Home = () => {
           }}
           size="small"
           title="Simple"
-          titleAs="h3"
+          titleAs="h4"
         />
         <Card
           border
@@ -170,7 +176,7 @@ const Home = () => {
           }}
           size="small"
           title="Personnalisée"
-          titleAs="h3"
+          titleAs="h4"
         />
         <Card
           border
@@ -184,9 +190,75 @@ const Home = () => {
           }}
           size="small"
           title="Compréhensible"
-          titleAs="h3"
+          titleAs="h4"
         />
-      </Box>
+      </Section>
+
+      <H3 mt="10w">Décarbonons le bâtiment !</H3>
+
+      <P>
+        Nous devons décarboner les deux tiers de notre consommation d’énergie d’origine fossile et importée de l’autre
+        bout du monde.
+      </P>
+
+      <Section>
+        <Container>
+          <Grid haveGutters valign="top">
+            <GridCol base={4} className={"flex flex-col justify-center content-center"}>
+              <H3>Le secteur du batiment en 2 chiffres</H3>
+              <p className={fr.cx("fr-text--sm")}>
+                Ce simulateur détermine, selon les caractéristiques de votre immeuble, les différents types de chauffage
+                et leur pertinence écologique et économique.
+              </p>
+            </GridCol>
+
+            <GridCol base={4} className={"flex flex-col justify-center content-center"}>
+              <Camembert1Image width={150} />
+
+              <p className={fr.cx("fr-text--sm")}>part de la consommations énergétiques françaises </p>
+
+              <Camembert2Image width={150} />
+
+              <p className={fr.cx("fr-text--sm")}>part des émissions nationales de gaz à effet de serre (GES)</p>
+            </GridCol>
+
+            <GridCol base={4} className={"flex flex-col justify-center content-center"}>
+              <Card
+                border
+                shadow
+                desc="Ces émissions sont principalement dues au chauffage et aux besoins thermiques (eau chaude sanitaire, cuisson) qui reposent aujourd’hui encore à plus de 50% sur des énergies fossiles (fioul, gaz fossile)."
+                // imageUrl="/img/chaudiere-cassee.svg"
+                linkProps={{
+                  href: "#",
+                }}
+                size="small"
+                title=""
+                titleAs="h4"
+              />
+              <Card
+                border
+                shadow
+                desc={
+                  <>
+                    <p>
+                      "Passer d’une énergie fossile à un vecteur décarboné devrait permettre d’abaisser rapidement et
+                      très significativement les émissions de CO2. Toutefois, les solutions ne sont pas universelles,
+                      pas toutes matures, et ne peuvent s’envisager indépendamment de l’isolation et de la sobriété."
+                    </p>
+                  </>
+                }
+                // imageUrl="/img/chaudiere-cassee.svg"
+                linkProps={{
+                  href: "#",
+                }}
+                size="small"
+                title=""
+                titleAs="h4"
+              />
+            </GridCol>
+          </Grid>
+        </Container>
+      </Section>
     </>
   );
 };

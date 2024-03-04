@@ -40,12 +40,12 @@ const Home = async () => {
 
   return (
     <>
-      <Box as="section" pb="4w" className={cx(styles.hero, fr.cx("fr-pt-md-9w", "fr-pt-2w", "fr-mb-0"))}>
+      <Box tag="section" pb="4w" className={cx(styles.hero, fr.cx("fr-pt-md-9w", "fr-pt-2w", "fr-mb-0"))}>
         <LandingHero />
         {/* <LandingHero mobile metadata={heroMetadata} titleComponent={HeroTitleContent} blocComponent={HeroBlocContent} /> */}
       </Box>
       {blocs.map(({ titleComponent, metadata, id, highlight }) => (
-        <Container as="section" pt="4w" className={cx("fr-hr", styles.block)} key={id} fluid>
+        <Container tag="section" pt="4w" className={cx("fr-hr", styles.block)} key={id} fluid>
           {(() => {
             switch (metadata.type) {
               case "single-image":
@@ -92,7 +92,7 @@ const Home = async () => {
           })()}
         </Container>
       ))}
-      <Box as="section" className="fr-hr">
+      <Box tag="section" className="fr-hr">
         <CenteredContainer className="fr-pt-6w fr-pt-md-12w">
           <h2>FAQ</h2>
           <CollapsedSectionDynamicGroup
