@@ -18,6 +18,7 @@ import { type PropsWithChildren, Suspense } from "react";
 import { Navigation } from "@/components/Navigation";
 import { Matomo } from "@/components/utils/Matomo";
 import { config } from "@/config";
+import { Container } from "@/dsfr";
 import { Follow } from "@/dsfr/base/Follow";
 
 import { FooterPersonalDataPolicyItem } from "../consentManagement";
@@ -123,7 +124,7 @@ const RootLayout = ({ children }: PropsWithChildren) => {
               // className={styles.content}
               className={cx(styles.content, fr.cx("fr-py-4w"))}
             >
-              {children}
+              <Container>{children}</Container>
             </main>
             <Follow />
             <Footer

@@ -33,6 +33,13 @@ export const Navigation = () => {
         {
           isActive: true,
           linkProps: {
+            href: "/",
+            target: "_self",
+          },
+          text: "Accueil",
+        },
+        {
+          linkProps: {
             href: "#",
             target: "_self",
           },
