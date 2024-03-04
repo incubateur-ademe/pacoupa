@@ -58,48 +58,58 @@ const Home = () => {
         <H2 mt="10w">On a tous une bonne raison</H2>
 
         <Section className={cx(styles.cards)}>
-          <Card
-            border
-            shadow
-            desc="C’est le bon moment pour vous renseigner sur les solutions durables, spécifiquement adaptées à votre immeuble."
-            enlargeLink
-            imageAlt="texte alternatif de l’image"
-            // imageUrl="/img/chaudiere-cassee.svg"
-            linkProps={{
-              href: "#",
-            }}
-            size="small"
-            title="Chaudière en panne ?"
-            titleAs="h4"
-          />
-          <Card
-            border
-            shadow
-            desc="Les solutions “renouvelables” sont souvent moins gourmandes, et donc moins exposées aux augmentations de prix."
-            enlargeLink
-            imageAlt="texte alternatif de l’image"
-            // imageUrl="/img/chaudiere-cassee.svg"
-            linkProps={{
-              href: "#",
-            }}
-            size="small"
-            title="Facture trop élevée ?"
-            titleAs="h4"
-          />
-          <Card
-            border
-            shadow
-            desc="Réseau de chaleur ? pompe à chaleur ? solaire thermique ? biomasse ? Késako ? Les solutions sont nombreuses, laissez nous vous guider pas à pas."
-            enlargeLink
-            imageAlt="texte alternatif de l’image"
-            // imageUrl="/img/chaudiere-cassee.svg"
-            linkProps={{
-              href: "#",
-            }}
-            size="small"
-            title="Envie de passer au vert ?"
-            titleAs="h4"
-          />
+          <Grid haveGutters>
+            <GridCol base={4}>
+              <Card
+                border
+                shadow
+                desc="C’est le bon moment pour vous renseigner sur les solutions durables, spécifiquement adaptées à votre immeuble."
+                enlargeLink
+                imageAlt="texte alternatif de l’image"
+                // imageUrl="/img/chaudiere-cassee.svg"
+                linkProps={{
+                  href: "#",
+                }}
+                size="small"
+                title="Chaudière en panne&nbsp;?"
+                titleAs="h4"
+              />
+            </GridCol>
+
+            <GridCol base={4}>
+              <Card
+                border
+                shadow
+                desc="Les solutions “renouvelables” sont souvent moins gourmandes, et donc moins exposées aux augmentations de prix."
+                enlargeLink
+                imageAlt="texte alternatif de l’image"
+                // imageUrl="/img/chaudiere-cassee.svg"
+                linkProps={{
+                  href: "#",
+                }}
+                size="small"
+                title="Facture trop élevée&nbsp;?"
+                titleAs="h4"
+              />
+            </GridCol>
+
+            <GridCol base={4}>
+              <Card
+                border
+                shadow
+                desc="Réseau de chaleur ? pompe à chaleur ? solaire thermique ? biomasse ? Késako ? Les solutions sont nombreuses, laissez nous vous guider pas à pas."
+                enlargeLink
+                imageAlt="texte alternatif de l’image"
+                // imageUrl="/img/chaudiere-cassee.svg"
+                linkProps={{
+                  href: "#",
+                }}
+                size="small"
+                title="Envie de passer au vert&nbsp;?"
+                titleAs="h4"
+              />
+            </GridCol>
+          </Grid>
         </Section>
       </Container>
 
@@ -150,49 +160,60 @@ const Home = () => {
 
       <Container>
         <H3 mt="10w">La solution qui vous correspond en moins de 5min</H3>
+
         <Section className={cx(styles.cards)}>
-          <Card
-            border
-            shadow
-            desc="Répondez à seulement quelques questions."
-            enlargeLink
-            imageAlt="texte alternatif de l’image"
-            // imageUrl="/img/chaudiere-cassee.svg"
-            linkProps={{
-              href: "#",
-            }}
-            size="small"
-            title="Simple"
-            titleAs="h4"
-          />
-          <Card
-            border
-            shadow
-            desc="Déterminez la solution faites pour votre copropriété."
-            enlargeLink
-            imageAlt="texte alternatif de l’image"
-            // imageUrl="/img/chaudiere-cassee.svg"
-            linkProps={{
-              href: "#",
-            }}
-            size="small"
-            title="Personnalisée"
-            titleAs="h4"
-          />
-          <Card
-            border
-            shadow
-            desc="Bénéficiez de conseils d’experts accessibles pour tous."
-            enlargeLink
-            imageAlt="texte alternatif de l’image"
-            // imageUrl="/img/chaudiere-cassee.svg"
-            linkProps={{
-              href: "#",
-            }}
-            size="small"
-            title="Compréhensible"
-            titleAs="h4"
-          />
+          <Grid haveGutters>
+            <GridCol base={4}>
+              <Card
+                border
+                shadow
+                desc="Répondez à seulement quelques questions."
+                enlargeLink
+                imageAlt="texte alternatif de l’image"
+                // imageUrl="/img/chaudiere-cassee.svg"
+                linkProps={{
+                  href: "#",
+                }}
+                size="small"
+                title="Simple"
+                titleAs="h4"
+              />
+            </GridCol>
+
+            <GridCol base={4}>
+              <Card
+                border
+                shadow
+                desc="Déterminez la solution faites pour votre copropriété."
+                enlargeLink
+                imageAlt="texte alternatif de l’image"
+                // imageUrl="/img/chaudiere-cassee.svg"
+                linkProps={{
+                  href: "#",
+                }}
+                size="small"
+                title="Personnalisée"
+                titleAs="h4"
+              />
+            </GridCol>
+
+            <GridCol base={4}>
+              <Card
+                border
+                shadow
+                desc="Bénéficiez de conseils d’experts accessibles pour tous."
+                enlargeLink
+                imageAlt="texte alternatif de l’image"
+                // imageUrl="/img/chaudiere-cassee.svg"
+                linkProps={{
+                  href: "#",
+                }}
+                size="small"
+                title="Compréhensible"
+                titleAs="h4"
+              />
+            </GridCol>
+          </Grid>
         </Section>
       </Container>
 
