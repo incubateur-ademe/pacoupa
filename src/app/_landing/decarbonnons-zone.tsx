@@ -31,7 +31,7 @@ export const DecarbonnonsZone = () => {
             <GridCol base={4} className={"flex flex-col items-center"}>
               <Camembert1Image width={150} />
 
-              <p className={fr.cx("fr-text--sm")}>part de la consommations énergétiques françaises </p>
+              <p className={fr.cx("fr-text--sm")}>part de la consommation énergétique française</p>
 
               <Camembert2Image width={150} />
 
