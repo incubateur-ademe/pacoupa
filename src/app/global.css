@@ -78,4 +78,12 @@
     --spacing-30v:	7.5rem;
     --spacing-31v:	7.75rem;
     --spacing-32v:	8rem;
+
+    /* Custom colors */
+
+    --color-primary-background: #92E3A9;
+    --color-primary-text: #334337;
+    --color-primary-shadow: #183D2F;
+    --color-footer-background: #ebf7eb;
+
 }    
