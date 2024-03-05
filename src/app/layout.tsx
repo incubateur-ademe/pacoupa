@@ -1,12 +1,10 @@
 import "./global.css";
 
-import { Badge } from "@codegouvfr/react-dsfr/Badge";
-import { headerFooterDisplayItem } from "@codegouvfr/react-dsfr/Display";
-import { Footer } from "@codegouvfr/react-dsfr/Footer";
-import { Header, type HeaderProps } from "@codegouvfr/react-dsfr/Header";
+import { fr } from "@codegouvfr/react-dsfr";
 import { DsfrHead } from "@codegouvfr/react-dsfr/next-appdir/DsfrHead";
 import { DsfrProvider } from "@codegouvfr/react-dsfr/next-appdir/DsfrProvider";
 import { getHtmlAttributes } from "@codegouvfr/react-dsfr/next-appdir/getHtmlAttributes";
+import Notice from "@codegouvfr/react-dsfr/Notice";
 import { SkipLinks } from "@codegouvfr/react-dsfr/SkipLinks";
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import { GeistSans } from "geist/font/sans";
@@ -14,25 +12,19 @@ import { type Metadata } from "next";
 import Link from "next/link";
 import { type PropsWithChildren, Suspense } from "react";
 
-import { Brand } from "@/components/Brand";
+import { footerId, PacoupaFooter } from "@/components/PacoupaFooter";
+import { PacoupaHeader } from "@/components/PacoupaHeader";
 import { Matomo } from "@/components/utils/Matomo";
 import { config } from "@/config";
+import { Container } from "@/dsfr";
 import { Follow } from "@/dsfr/base/Follow";
 
-import { FooterPersonalDataPolicyItem } from "../consentManagement";
 import { defaultColorScheme } from "../defaultColorScheme";
 import { StartDsfr } from "../StartDsfr";
 import styles from "./root.module.scss";
 import { sharedMetadata } from "./shared-metadata";
 
 const contentId = "content";
-const footerId = "footer";
-
-const operatorLogo: HeaderProps["operatorLogo"] = {
-  imgUrl: "/img/ademe-logo-2022-1.svg",
-  alt: "ADEME",
-  orientation: "vertical",
-};
 
 export const metadata: Metadata = {
   metadataBase: new URL(config.host),
@@ -93,8 +85,12 @@ const RootLayout = ({ children }: PropsWithChildren) => {
               },
             ]}
           />
+          <Notice
+            isClosable={false}
+            title="Le simulateur est en phase de construction. Inscrivez-vous et nous vous préviendrons lors de sa sortie."
+          />
           <div className={styles.app}>
-            <Header
+            {/* <Header
               brandTop={<Brand />}
               homeLinkProps={{
                 href: "/",
@@ -110,52 +106,18 @@ const RootLayout = ({ children }: PropsWithChildren) => {
               }
               // serviceTagline={config.tagline}
               operatorLogo={operatorLogo}
-            />
-            <main role="main" id={contentId} className={styles.content}>
-              {children}
+            /> */}
+            <PacoupaHeader />
+            <main
+              role="main"
+              id={contentId}
+              // className={styles.content}
+              className={cx(styles.content, fr.cx("fr-py-4w"))}
+            >
+              <Container>{children}</Container>
             </main>
             <Follow />
-            <Footer
-              id={footerId}
-              accessibility="non compliant"
-              accessibilityLinkProps={{ href: "/accessibilite" }}
-              contentDescription={`${config.name} est un service développé par l'accélérateur de la transition écologique de l'ADEME.`}
-              operatorLogo={operatorLogo}
-              bottomItems={[
-                {
-                  text: "CGU",
-                  linkProps: { href: "/cgu" },
-                },
-                <FooterPersonalDataPolicyItem key="FooterPersonalDataPolicyItem" />,
-                {
-                  ...headerFooterDisplayItem,
-                  iconId: "fr-icon-theme-fill",
-                },
-                // <FooterConsentManagementItem key="FooterConsentManagementItem" />,
-                {
-                  text: <>▲&nbsp;Propulsé par Vercel</>,
-                  linkProps: {
-                    href: "https://vercel.com/?utm_source=ademe&utm_campaign=oss",
-                    className: "font-geist-sans",
-                  },
-                },
-                {
-                  text: `Version ${config.appVersion}.${config.appVersionCommit.slice(0, 7)}`,
-                  linkProps: {
-                    href: `${config.repositoryUrl}/commit/${config.appVersionCommit}` as never,
-                  },
-                },
-              ]}
-              termsLinkProps={{ href: "/mentions-legales" }}
-              license={
-                <>
-                  Sauf mention contraire, tous les contenus de ce site sont sous{" "}
-                  <a href={`${config.repositoryUrl}/main/LICENSE`} target="_blank" rel="noreferrer">
-                    licence Apache 2.0
-                  </a>
-                </>
-              }
-            />
+            <PacoupaFooter />
           </div>
         </DsfrProvider>
       </body>

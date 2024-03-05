@@ -1,6 +1,6 @@
 {
   "name": "pacoupa",
-  "description": "La solution de paiement de l'ADEME qui récompense vos achats durables",
+  "description": "Conseiller les copropriétaires dans l'installation de systèmes de chauffage décarbonés adaptés à leur logement.",
   "version": "1.0.0",
   "private": true,
   "engines": {

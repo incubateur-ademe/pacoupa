@@ -74,6 +74,12 @@ declare module "@__content/landing/hero_title.mdx" {
   export const metadata: PacoupaHeroMDXMetadata;
 }
 
+declare module "@__content/mentions-legales.mdx" {
+  const MDXContent: MDXContent;
+  export default MDXContent;
+  export const metadata: PacoupaHeroMDXMetadata;
+}
+
 declare module "@codegouvfr/react-dsfr/*.svg" {
   export interface SVG {
     height: number;

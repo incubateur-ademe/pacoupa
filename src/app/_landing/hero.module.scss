@@ -1,0 +1,41 @@
+.button-group {
+    display: flex;
+    margin-top: 2rem;
+    gap: 1rem;
+}
+
+
+.hero {
+    background: var(--grey-1000-50-hover);
+    display: "flex";
+    gap: var(--spacing-4v);
+}
+
+.hero {
+    & ul:not(:global(.fr-btns-group)) {
+        list-style: custom-arrow;
+    }
+}
+
+.cta {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: start;
+    margin-top: var(--spacing-14v)
+}
+
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: aqua;
+    }
+    
+    .hero img {
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
