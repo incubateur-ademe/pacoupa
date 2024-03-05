@@ -47,7 +47,7 @@ const Home = () => {
         <LandingHero />
       </Section>
 
-      <Section pb="4w" pt="2w" mtmd="4w" mb="0" className={cx(styles.logos)}>
+      <Section pt="2w" mtmd="4w" className={cx(styles.logos)}>
         <MarianneImage />
         <AdemeImage />
         <BetaGouvImage />
@@ -64,12 +64,7 @@ const Home = () => {
                 border
                 shadow
                 desc="C’est le bon moment pour vous renseigner sur les solutions durables, spécifiquement adaptées à votre immeuble."
-                enlargeLink
                 imageAlt="texte alternatif de l’image"
-                // imageUrl="/img/chaudiere-cassee.svg"
-                linkProps={{
-                  href: "#",
-                }}
                 size="small"
                 title="Chaudière en panne&nbsp;?"
                 titleAs="h4"
@@ -81,12 +76,8 @@ const Home = () => {
                 border
                 shadow
                 desc="Les solutions “renouvelables” sont souvent moins gourmandes, et donc moins exposées aux augmentations de prix."
-                enlargeLink
                 imageAlt="texte alternatif de l’image"
                 // imageUrl="/img/chaudiere-cassee.svg"
-                linkProps={{
-                  href: "#",
-                }}
                 size="small"
                 title="Facture trop élevée&nbsp;?"
                 titleAs="h4"
@@ -98,12 +89,8 @@ const Home = () => {
                 border
                 shadow
                 desc="Réseau de chaleur ? pompe à chaleur ? solaire thermique ? biomasse ? Késako ? Les solutions sont nombreuses, laissez nous vous guider pas à pas."
-                enlargeLink
                 imageAlt="texte alternatif de l’image"
                 // imageUrl="/img/chaudiere-cassee.svg"
-                linkProps={{
-                  href: "#",
-                }}
                 size="small"
                 title="Envie de passer au vert&nbsp;?"
                 titleAs="h4"
@@ -168,12 +155,8 @@ const Home = () => {
                 border
                 shadow
                 desc="Répondez à seulement quelques questions."
-                enlargeLink
                 imageAlt="texte alternatif de l’image"
                 // imageUrl="/img/chaudiere-cassee.svg"
-                linkProps={{
-                  href: "#",
-                }}
                 size="small"
                 title="Simple"
                 titleAs="h4"
@@ -185,12 +168,8 @@ const Home = () => {
                 border
                 shadow
                 desc="Déterminez la solution faites pour votre copropriété."
-                enlargeLink
                 imageAlt="texte alternatif de l’image"
                 // imageUrl="/img/chaudiere-cassee.svg"
-                linkProps={{
-                  href: "#",
-                }}
                 size="small"
                 title="Personnalisée"
                 titleAs="h4"
@@ -202,12 +181,8 @@ const Home = () => {
                 border
                 shadow
                 desc="Bénéficiez de conseils d’experts accessibles pour tous."
-                enlargeLink
                 imageAlt="texte alternatif de l’image"
                 // imageUrl="/img/chaudiere-cassee.svg"
-                linkProps={{
-                  href: "#",
-                }}
                 size="small"
                 title="Compréhensible"
                 titleAs="h4"
@@ -256,9 +231,6 @@ const Home = () => {
                     </P>
                   }
                   // imageUrl="/img/chaudiere-cassee.svg"
-                  linkProps={{
-                    href: "#",
-                  }}
                   size="small"
                   title=""
                   titleAs="h4"
@@ -283,9 +255,6 @@ const Home = () => {
                     </>
                   }
                   // imageUrl="/img/chaudiere-cassee.svg"
-                  linkProps={{
-                    href: "#",
-                  }}
                   size="small"
                   title=""
                   titleAs="h4"
