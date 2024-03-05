@@ -9,12 +9,12 @@ import { config } from "@/config";
 import { Box, CenteredContainer, Container } from "@/dsfr";
 import { CollapsedSectionDynamicGroup } from "@/dsfr/base/client/CollapsedSectionDynamicGroup";
 
-import { LandingAlternatedBloc } from "./_landing/blocs/alternated";
-import { loadBlocs } from "./_landing/blocs/blocLoader";
-import { LandingSingleImageBloc } from "./_landing/blocs/single-image";
-import { LandingTextOnlyBloc } from "./_landing/blocs/text-only";
-import { loadFaq } from "./_landing/faq/faqLoader";
-import { LandingHero } from "./_landing/hero";
+import { LandingAlternatedBloc } from "./_landing-old/blocs/alternated";
+import { loadBlocs } from "./_landing-old/blocs/blocLoader";
+import { LandingSingleImageBloc } from "./_landing-old/blocs/single-image";
+import { LandingTextOnlyBloc } from "./_landing-old/blocs/text-only";
+import { loadFaq } from "./_landing-old/faq/faqLoader";
+import { LandingHero } from "./_landing-old/hero";
 import styles from "./index.module.scss";
 import { sharedMetadata } from "./shared-metadata";
 
