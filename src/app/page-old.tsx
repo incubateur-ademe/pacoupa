@@ -3,6 +3,8 @@ import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import { type Metadata } from "next";
 import { Fragment } from "react";
 
+import { CTA } from "@/components/CTA";
+import { ErrorDisplay } from "@/components/ErrorDisplay";
 import { config } from "@/config";
 import { Box, CenteredContainer, Container } from "@/dsfr";
 import { CollapsedSectionDynamicGroup } from "@/dsfr/base/client/CollapsedSectionDynamicGroup";
@@ -13,8 +15,6 @@ import { LandingSingleImageBloc } from "./_landing/blocs/single-image";
 import { LandingTextOnlyBloc } from "./_landing/blocs/text-only";
 import { loadFaq } from "./_landing/faq/faqLoader";
 import { LandingHero } from "./_landing/hero";
-import { CTA } from "./CTA";
-import { ErrorDisplay } from "./ErrorDisplay";
 import styles from "./index.module.scss";
 import { sharedMetadata } from "./shared-metadata";
 

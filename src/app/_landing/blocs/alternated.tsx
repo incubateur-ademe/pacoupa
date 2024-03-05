@@ -1,6 +1,6 @@
 import Card from "@codegouvfr/react-dsfr/Card";
 
-import { CTA } from "@/app/CTA";
+import { CTA } from "@/components/CTA";
 import { Container, Grid, GridCol, type GridColProps } from "@/dsfr";
 import { paragraphContentMDXComponents } from "@/mdx-components";
 

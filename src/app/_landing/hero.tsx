@@ -1,7 +1,7 @@
 import HeroTitleContent, { metadata as heroMetadata } from "@__content/landing/hero_title.mdx";
 import Button from "@codegouvfr/react-dsfr/Button";
 
-import { CTA } from "@/app/CTA";
+import { CTA } from "@/components/CTA";
 import { Box, Container, Grid, GridCol } from "@/dsfr";
 
 import { HeroImage } from "../../components/img/HeroImage";
@@ -30,10 +30,11 @@ const LandingHeroDesktop = ({ metadata: { cta } = {} }: LandingHeroProps) => (
             {cta?.title}
           </CTA>
           <Button
-            priority="tertiary"
+            priority="secondary"
             linkProps={{
               href: "/solutions",
             }}
+            // style={{ borderBottom: "1px solid #183D2F" }}
           >
             Parcourir les solutions
           </Button>

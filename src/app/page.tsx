@@ -3,6 +3,8 @@ import Card from "@codegouvfr/react-dsfr/Card";
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import { type Metadata } from "next";
 
+import { CTA } from "@/components/CTA";
+import { ErrorDisplay } from "@/components/ErrorDisplay";
 import { AccelerateurAdemeImage } from "@/components/img/AccelerateurAdemeImage";
 import { AdemeImage } from "@/components/img/AdemeImage";
 import { BetaGouvImage } from "@/components/img/BetaGouvImage";
@@ -17,8 +19,6 @@ import { Box, Container, Grid, GridCol, P, Section } from "@/dsfr";
 import { H2, H3 } from "@/dsfr/base/typography";
 
 import { LandingHero } from "./_landing/hero";
-import { CTA } from "./CTA";
-import { ErrorDisplay } from "./ErrorDisplay";
 import styles from "./index.module.scss";
 import { sharedMetadata } from "./shared-metadata";
 

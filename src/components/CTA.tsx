@@ -1,11 +1,12 @@
 "use client";
 
-import Button from "@codegouvfr/react-dsfr/Button";
 import ButtonsGroup from "@codegouvfr/react-dsfr/ButtonsGroup";
 import { push } from "@socialgouv/matomo-next";
 import { type PropsWithChildren } from "react";
 
 import { config } from "@/config";
+
+import { Button } from "./Button";
 
 const DEFAULT_CTA_HREF = config.formUrl;
 const DEFAULT_CTA_TITLE = "Être alerté";

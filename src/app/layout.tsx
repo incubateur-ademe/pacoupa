@@ -1,9 +1,6 @@
 import "./global.css";
 
 import { fr } from "@codegouvfr/react-dsfr";
-import { headerFooterDisplayItem } from "@codegouvfr/react-dsfr/Display";
-import { Footer } from "@codegouvfr/react-dsfr/Footer";
-import { type HeaderProps } from "@codegouvfr/react-dsfr/Header";
 import { DsfrHead } from "@codegouvfr/react-dsfr/next-appdir/DsfrHead";
 import { DsfrProvider } from "@codegouvfr/react-dsfr/next-appdir/DsfrProvider";
 import { getHtmlAttributes } from "@codegouvfr/react-dsfr/next-appdir/getHtmlAttributes";
@@ -16,25 +13,18 @@ import Link from "next/link";
 import { type PropsWithChildren, Suspense } from "react";
 
 import { Navigation } from "@/components/Navigation";
+import { footerId, PacoupaFooter } from "@/components/PacoupaFooter";
 import { Matomo } from "@/components/utils/Matomo";
 import { config } from "@/config";
 import { Container } from "@/dsfr";
 import { Follow } from "@/dsfr/base/Follow";
 
-import { FooterPersonalDataPolicyItem } from "../consentManagement";
 import { defaultColorScheme } from "../defaultColorScheme";
 import { StartDsfr } from "../StartDsfr";
 import styles from "./root.module.scss";
 import { sharedMetadata } from "./shared-metadata";
 
 const contentId = "content";
-const footerId = "footer";
-
-const operatorLogo: HeaderProps["operatorLogo"] = {
-  imgUrl: "/img/ademe-logo-2022-1.svg",
-  alt: "ADEME",
-  orientation: "vertical",
-};
 
 export const metadata: Metadata = {
   metadataBase: new URL(config.host),
@@ -127,47 +117,7 @@ const RootLayout = ({ children }: PropsWithChildren) => {
               <Container>{children}</Container>
             </main>
             <Follow />
-            <Footer
-              id={footerId}
-              accessibility="non compliant"
-              accessibilityLinkProps={{ href: "/accessibilite" }}
-              contentDescription={`${config.name} est un service développé par l'accélérateur de la transition écologique de l'ADEME.`}
-              operatorLogo={operatorLogo}
-              bottomItems={[
-                {
-                  text: "CGU",
-                  linkProps: { href: "/cgu" },
-                },
-                <FooterPersonalDataPolicyItem key="FooterPersonalDataPolicyItem" />,
-                {
-                  ...headerFooterDisplayItem,
-                  iconId: "fr-icon-theme-fill",
-                },
-                // <FooterConsentManagementItem key="FooterConsentManagementItem" />,
-                {
-                  text: <>▲&nbsp;Propulsé par Vercel</>,
-                  linkProps: {
-                    href: "https://vercel.com/?utm_source=ademe&utm_campaign=oss",
-                    className: "font-geist-sans",
-                  },
-                },
-                {
-                  text: `Version ${config.appVersion}.${config.appVersionCommit.slice(0, 7)}`,
-                  linkProps: {
-                    href: `${config.repositoryUrl}/commit/${config.appVersionCommit}` as never,
-                  },
-                },
-              ]}
-              termsLinkProps={{ href: "/mentions-legales" }}
-              license={
-                <>
-                  Sauf mention contraire, tous les contenus de ce site sont sous{" "}
-                  <a href={`${config.repositoryUrl}/main/LICENSE`} target="_blank" rel="noreferrer">
-                    licence Apache 2.0
-                  </a>
-                </>
-              }
-            />
+            <PacoupaFooter />
           </div>
         </DsfrProvider>
       </body>

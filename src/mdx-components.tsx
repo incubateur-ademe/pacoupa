@@ -5,7 +5,7 @@ import { MdxLink } from "@/components/mdx/Link";
 import { getLabelFromChildren } from "@/utils/react";
 import { slugify } from "@/utils/string";
 
-import { CTA } from "./app/CTA";
+import { CTA } from "./components/CTA";
 import { AnchorLink } from "./dsfr/client";
 
 export const anchorHeadingMDXComponents: MDXComponents = {

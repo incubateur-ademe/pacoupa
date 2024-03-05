@@ -1,6 +1,5 @@
+import { ErrorDisplay } from "@/components/ErrorDisplay";
 import { MatomoPush } from "@/components/utils/MatomoPush";
-
-import { ErrorDisplay } from "./ErrorDisplay";
 
 const NotFound = () => (
   <>

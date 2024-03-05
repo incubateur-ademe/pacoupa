@@ -2,7 +2,7 @@ import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import Image from "next/image";
 import { type ReactNode } from "react";
 
-import { CTA } from "@/app/CTA";
+import { CTA } from "@/components/CTA";
 import { Box, Container, Grid, GridCol } from "@/dsfr";
 
 import { getGridImageOffset, getHighlight } from "./helper";

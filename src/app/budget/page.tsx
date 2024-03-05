@@ -1,6 +1,7 @@
 import { type Metadata } from "next";
 
-import { ErrorDisplay } from "../ErrorDisplay";
+import { ErrorDisplay } from "@/components/ErrorDisplay";
+
 import { sharedMetadata } from "../shared-metadata";
 
 const title = "Budget";

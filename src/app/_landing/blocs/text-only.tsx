@@ -1,4 +1,4 @@
-import { CTA } from "@/app/CTA";
+import { CTA } from "@/components/CTA";
 import { Container, Grid, GridCol } from "@/dsfr";
 
 import { getHighlight } from "./helper";
