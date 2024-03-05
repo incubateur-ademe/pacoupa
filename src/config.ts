@@ -12,4 +12,5 @@ export const config = {
   appVersionCommit: process.env.NEXT_PUBLIC_APP_VERSION_COMMIT!,
   repositoryUrl: process.env.NEXT_PUBLIC_REPOSITORY_URL!,
   formUrl: "https://tally.so/r/xxxx",
+  ctaTitle: "S'inscrire",
 };

@@ -11,7 +11,7 @@ const operatorLogo: HeaderProps["operatorLogo"] = {
   orientation: "vertical",
 };
 
-export const Navigation = () => {
+export const PacoupaHeader = () => {
   return (
     <Header
       brandTop={<Brand />}

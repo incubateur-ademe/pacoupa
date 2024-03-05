@@ -12,8 +12,8 @@ import { type Metadata } from "next";
 import Link from "next/link";
 import { type PropsWithChildren, Suspense } from "react";
 
-import { Navigation } from "@/components/Navigation";
 import { footerId, PacoupaFooter } from "@/components/PacoupaFooter";
+import { PacoupaHeader } from "@/components/PacoupaHeader";
 import { Matomo } from "@/components/utils/Matomo";
 import { config } from "@/config";
 import { Container } from "@/dsfr";
@@ -107,7 +107,7 @@ const RootLayout = ({ children }: PropsWithChildren) => {
               // serviceTagline={config.tagline}
               operatorLogo={operatorLogo}
             /> */}
-            <Navigation />
+            <PacoupaHeader />
             <main
               role="main"
               id={contentId}

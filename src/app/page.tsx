@@ -54,10 +54,10 @@ const Home = () => {
         <AccelerateurAdemeImage />
       </Section>
 
-      <Container>
-        <H2 mt="10w">On a tous une bonne raison</H2>
+      <Section className={cx(styles.cards)}>
+        <Container>
+          <H2 mt="10w">On a tous une bonne raison</H2>
 
-        <Section className={cx(styles.cards)}>
           <Grid haveGutters>
             <GridCol base={4}>
               <Card
@@ -97,8 +97,8 @@ const Home = () => {
               />
             </GridCol>
           </Grid>
-        </Section>
-      </Container>
+        </Container>
+      </Section>
 
       <Section className={fr.cx("fr-mt-8w")}>
         <Container className={styles.hesitation}>
@@ -132,8 +132,8 @@ const Home = () => {
                   Ce simulateur détermine, selon les caractéristiques de votre immeuble, les différents types de
                   chauffage et leur pertinence écologique et économique.
                 </p>
-                <CTA source={DEFAULT_CTA_SOURCE} title={"S'inscrire"} href="/mentions-legales">
-                  S'inscrire
+                <CTA source={DEFAULT_CTA_SOURCE} title={config.ctaTitle} href="/mentions-legales">
+                  {config.ctaTitle}
                 </CTA>
               </P>
             </GridCol>
@@ -249,8 +249,8 @@ const Home = () => {
                         indépendamment de l’isolation et de la sobriété.
                       </P>
 
-                      <CTA source={DEFAULT_CTA_SOURCE} title={"S'inscrire"} href="/mentions-legales">
-                        S'inscrire
+                      <CTA source={DEFAULT_CTA_SOURCE} title={config.ctaTitle} href="/mentions-legales">
+                        {config.ctaTitle}
                       </CTA>
                     </>
                   }
