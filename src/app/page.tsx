@@ -1,7 +1,5 @@
 import { type Metadata } from "next";
 
-import { ErrorDisplay } from "@/components/ErrorDisplay";
-import { config } from "@/config";
 import { Section } from "@/dsfr";
 
 import { DecarbonnonsZone } from "./_landing/decarbonnons-zone";
@@ -27,9 +25,9 @@ export const metadata: Metadata = {
 };
 
 const Home = () => {
-  if (config.env === "prod") {
-    return <ErrorDisplay code="construction" noRedirect />;
-  }
+  // if (config.env === "prod") {
+  //   return <ErrorDisplay code="construction" noRedirect />;
+  // }
 
   return (
     <>
