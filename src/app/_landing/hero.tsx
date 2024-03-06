@@ -1,6 +1,6 @@
 import HeroTitleContent, { metadata as heroMetadata } from "@__content/landing/hero_title.mdx";
-import Button from "@codegouvfr/react-dsfr/Button";
 
+import { Button } from "@/components/Button";
 import { CTA } from "@/components/CTA";
 import { Box, Container, Grid, GridCol } from "@/dsfr";
 
