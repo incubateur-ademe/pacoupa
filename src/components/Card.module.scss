@@ -5,9 +5,9 @@
     box-shadow: 4px 4px 0px 0px #183D2F;
 
     & img {
-        object-fit: unset !important;
-        max-width: 100px;
+        object-fit: contain !important; 
         margin-left: auto;
         margin-right: auto;
     }
+
 }
