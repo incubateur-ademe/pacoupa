@@ -13,4 +13,6 @@ export const config = {
   repositoryUrl: process.env.NEXT_PUBLIC_REPOSITORY_URL!,
   formUrl: "https://tally.so/r/xxxx",
   ctaTitle: "S'inscrire",
+  tallyButtonLabel: "S'inscrire",
+  tallyId: "wvybQ4",
 };

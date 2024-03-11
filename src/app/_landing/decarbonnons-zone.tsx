@@ -1,11 +1,10 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import Card from "@codegouvfr/react-dsfr/Card";
 
-import { CTA } from "@/components/CTA";
 import { Camembert1Image } from "@/components/img/Camembert1";
 import { Camembert2Image } from "@/components/img/Camembert2";
 import { Maison2Image } from "@/components/img/Maison2";
-import { config } from "@/config";
+import { TallyButton } from "@/components/TallyButton";
 import { Container, Grid, GridCol, P } from "@/dsfr";
 import { H3 } from "@/dsfr/base/typography";
 
@@ -68,9 +67,7 @@ export const DecarbonnonsZone = () => {
                       indépendamment de l’isolation et de la sobriété.
                     </P>
 
-                    <CTA source={"Décarbonnons"} title={config.ctaTitle} href="/mentions-legales">
-                      {config.ctaTitle}
-                    </CTA>
+                    <TallyButton />
                   </>
                 }
                 // imageUrl="/img/chaudiere-cassee.svg"
