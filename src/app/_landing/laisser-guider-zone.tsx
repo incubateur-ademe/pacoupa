@@ -1,8 +1,7 @@
 import { fr } from "@codegouvfr/react-dsfr";
 
-import { CTA } from "@/components/CTA";
 import { PlanteImage } from "@/components/img/PlanteImage";
-import { config } from "@/config";
+import { TallyButton } from "@/components/TallyButton";
 import { Container, Grid, GridCol, P } from "@/dsfr";
 import { H2 } from "@/dsfr/base/typography";
 
@@ -18,9 +17,8 @@ export const LaisserGuider = () => {
                 Ce simulateur détermine, selon les caractéristiques de votre immeuble, les différents types de chauffage
                 et leur pertinence écologique et économique.
               </p>
-              <CTA source={"Laissez-vous guider"} title={config.ctaTitle} href="/mentions-legales">
-                {config.ctaTitle}
-              </CTA>
+
+              <TallyButton />
             </P>
           </GridCol>
 

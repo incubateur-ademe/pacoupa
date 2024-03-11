@@ -1,15 +1,13 @@
 "use client";
 
-import HeroTitleContent, { metadata as heroMetadata } from "@__content/landing/hero_title.mdx";
+import HeroTitleContent from "@__content/landing/hero_title.mdx";
 
 import { Button } from "@/components/Button";
-import { CTA } from "@/components/CTA";
+import { TallyButton } from "@/components/TallyButton";
 import { Box, Container, Grid, GridCol } from "@/dsfr";
 
 import { HeroImage } from "../../components/img/HeroImage";
 import styles from "./hero.module.scss";
-
-const DEFAULT_CTA_SOURCE = "hero";
 
 export interface LandingHeroProps {
   metadata: PacoupaHeroMDXMetadata;
@@ -17,33 +15,18 @@ export interface LandingHeroProps {
 
 export const LandingHero = () => (
   <>
-    <LandingHeroMobile metadata={heroMetadata} />
-    <LandingHeroDesktop metadata={heroMetadata} />
+    <LandingHeroMobile />
+    <LandingHeroDesktop />
   </>
 );
 
-const LandingHeroDesktop = ({ metadata: { cta } = {} }: LandingHeroProps) => (
+const LandingHeroDesktop = () => (
   <Container className="hidden md:flex">
     <Grid haveGutters>
       <GridCol base={6}>
         <HeroTitleContent />
         <Box className={styles.cta}>
-          {/* <CTA
-            source={cta?.source ?? DEFAULT_CTA_SOURCE}
-            title={cta?.title}
-            // href={cta?.href}
-          >
-            {cta?.title}
-          </CTA> */}
-
-          <Button
-            data-tally-open="wvybQ4"
-            data-tally-emoji-text="👋"
-            data-tally-emoji-animation="wave"
-            // style={{ borderBottom: "1px solid #183D2F" }}
-          >
-            S'inscrire
-          </Button>
+          <TallyButton source="Premier bouton Tally" />
 
           <Button
             priority="secondary"
@@ -63,7 +46,7 @@ const LandingHeroDesktop = ({ metadata: { cta } = {} }: LandingHeroProps) => (
   </Container>
 );
 
-const LandingHeroMobile = ({ metadata: { cta } = {} }: LandingHeroProps) => (
+const LandingHeroMobile = () => (
   <Container className="md:hidden">
     <Grid haveGutters>
       <GridCol>
@@ -76,8 +59,7 @@ const LandingHeroMobile = ({ metadata: { cta } = {} }: LandingHeroProps) => (
       </GridCol>
       <GridCol>{/* <HeroBlocContent /> */}</GridCol>
     </Grid>
-    <CTA source={cta?.source ?? DEFAULT_CTA_SOURCE} title={cta?.title} href={cta?.href} asGroup>
-      {cta?.title}
-    </CTA>
+
+    <TallyButton source="Premier bouton Tally" />
   </Container>
 );
