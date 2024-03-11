@@ -1,3 +1,5 @@
+"use client";
+
 import HeroTitleContent, { metadata as heroMetadata } from "@__content/landing/hero_title.mdx";
 
 import { Button } from "@/components/Button";
@@ -26,9 +28,23 @@ const LandingHeroDesktop = ({ metadata: { cta } = {} }: LandingHeroProps) => (
       <GridCol base={6}>
         <HeroTitleContent />
         <Box className={styles.cta}>
-          <CTA source={cta?.source ?? DEFAULT_CTA_SOURCE} title={cta?.title} href={cta?.href}>
+          {/* <CTA
+            source={cta?.source ?? DEFAULT_CTA_SOURCE}
+            title={cta?.title}
+            // href={cta?.href}
+          >
             {cta?.title}
-          </CTA>
+          </CTA> */}
+
+          <Button
+            data-tally-open="wvybQ4"
+            data-tally-emoji-text="👋"
+            data-tally-emoji-animation="wave"
+            // style={{ borderBottom: "1px solid #183D2F" }}
+          >
+            S'inscrire
+          </Button>
+
           <Button
             priority="secondary"
             linkProps={{

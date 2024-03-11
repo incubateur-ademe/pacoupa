@@ -10,6 +10,7 @@ import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 import Link from "next/link";
+import Script from "next/script";
 import { type PropsWithChildren, Suspense } from "react";
 
 import { footerId, PacoupaFooter } from "@/components/PacoupaFooter";
@@ -66,6 +67,8 @@ const RootLayout = ({ children }: PropsWithChildren) => {
             //"Spectral-ExtraBold"
           ]}
         />
+        <Script src="https://tally.so/widgets/embed.js" />
+
         <Suspense>
           <Matomo env={config.env} />
         </Suspense>
