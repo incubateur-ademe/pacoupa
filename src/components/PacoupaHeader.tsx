@@ -29,37 +29,37 @@ export const PacoupaHeader = () => {
       }
       // serviceTagline={config.tagline}
       operatorLogo={operatorLogo}
-      navigation={[
-        {
-          isActive: true,
-          linkProps: {
-            href: "/",
-            target: "_self",
-          },
-          text: "Accueil",
-        },
-        {
-          linkProps: {
-            href: "#",
-            target: "_self",
-          },
-          text: "Simulateur",
-        },
-        {
-          linkProps: {
-            href: "#",
-            target: "_self",
-          },
-          text: "Solutions",
-        },
-        {
-          linkProps: {
-            href: "#",
-            target: "_self",
-          },
-          text: "À propos",
-        },
-      ]}
+      // navigation={[
+      //   {
+      //     isActive: true,
+      //     linkProps: {
+      //       href: "/",
+      //       target: "_self",
+      //     },
+      //     text: "Accueil",
+      //   },
+      //   {
+      //     linkProps: {
+      //       href: "#",
+      //       target: "_self",
+      //     },
+      //     text: "Simulateur",
+      //   },
+      //   {
+      //     linkProps: {
+      //       href: "#",
+      //       target: "_self",
+      //     },
+      //     text: "Solutions",
+      //   },
+      //   {
+      //     linkProps: {
+      //       href: "#",
+      //       target: "_self",
+      //     },
+      //     text: "À propos",
+      //   },
+      // ]}
     />
   );
 };
