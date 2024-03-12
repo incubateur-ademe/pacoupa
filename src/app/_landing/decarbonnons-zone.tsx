@@ -1,8 +1,8 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import Card from "@codegouvfr/react-dsfr/Card";
 
-import { Camembert1Image } from "@/components/img/Camembert1";
-import { Camembert2Image } from "@/components/img/Camembert2";
+import { Camembert18PourcentImage } from "@/components/img/Camembert18PourcentImage";
+import { Camembert47PourcentImage } from "@/components/img/Camembert47PourcentImage";
 import { Maison2Image } from "@/components/img/Maison2";
 import { TallyButton } from "@/components/TallyButton";
 import { Container, Grid, GridCol, P } from "@/dsfr";
@@ -28,11 +28,11 @@ export const DecarbonnonsZone = () => {
             </GridCol>
 
             <GridCol base={4} className={"flex flex-col items-center"}>
-              <Camembert1Image width={150} />
+              <Camembert47PourcentImage width={150} />
 
               <p className={fr.cx("fr-text--sm")}>part de la consommation énergétique française</p>
 
-              <Camembert2Image width={150} />
+              <Camembert18PourcentImage width={150} />
 
               <p className={fr.cx("fr-text--sm")}>part des émissions nationales de gaz à effet de serre (GES)</p>
             </GridCol>
