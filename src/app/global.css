@@ -46,68 +46,68 @@
     --spacing-0-5v: 0.125rem;
     --spacing-1v: 0.25rem;
     --spacing-1-5v: 0.375rem;
-    --spacing-2v: 0.5rem;
-    --spacing-1w: 0.5rem;
+    --spacing-2v: 0.5rem; /* 8 px */
+    --spacing-1w: 0.5rem; /* 8 px */
 
     --spacing-3v: 0.75rem;
-    --spacing-4v: 1rem;
-    --spacing-2w: 1rem;
+    --spacing-4v: 1rem; /* 16 px */
+    --spacing-2w: 1rem; /* 16 px */
 
     --spacing-5v: 1.25rem;
-    --spacing-6v: 1.5rem;
-    --spacing-3w: 1.5rem;
+    --spacing-6v: 1.5rem; /* 24 px */
+    --spacing-3w: 1.5rem; /* 24 px */
 
     --spacing-7v: 1.75rem;
-    --spacing-8v: 2rem;
-    --spacing-4w: 2rem;
+    --spacing-8v: 2rem; /* 32 px */
+    --spacing-4w: 2rem; /* 32 px */
 
     --spacing-9v: 2.25rem;
-    --spacing-10v: 2.5rem;
-    --spacing-5w: 2.5rem;
+    --spacing-10v: 2.5rem; /* 40 px */
+    --spacing-5w: 2.5rem; /* 40 px */
 
     --spacing-11v: 2.75rem;
-    --spacing-12v: 3rem;
-    --spacing-6w: 3rem;
+    --spacing-12v: 3rem; /* 48 px */
+    --spacing-6w: 3rem; /* 48 px */
 
     --spacing-13v: 3.25rem;
-    --spacing-14v: 3.5rem;
-    --spacing-7w: 3.5rem;
+    --spacing-14v: 3.5rem; /* 56 px */
+    --spacing-7w: 3.5rem; /* 56 px */
 
     --spacing-15v: 3.75rem;
-    --spacing-16v: 4rem;
-    --spacing-8w: 4rem;
+    --spacing-16v: 4rem; /* 64 px */
+    --spacing-8w: 4rem; /* 64 px */
 
     --spacing-17v: 4.25rem;
-    --spacing-18v: 4.5rem;
-    --spacing-9w: 4.5rem;
+    --spacing-18v: 4.5rem; /* 72 px */
+    --spacing-9w: 4.5rem; /* 72 px */
 
     --spacing-19v: 4.75rem;
-    --spacing-20v: 5rem;
-    --spacing-10w: 5rem;
+    --spacing-20v: 5rem; /* 80 px */
+    --spacing-10w: 5rem; /* 80 px */
 
     --spacing-21v: 5.25rem;
-    --spacing-22v: 5.5rem;
-    --spacing-11w: 5.5rem;
+    --spacing-22v: 5.5rem; /* 88 px */
+    --spacing-11w: 5.5rem; /* 88 px */
 
     --spacing-23v: 5.75rem;
-    --spacing-24v: 6rem;
-    --spacing-12w: 6rem;
+    --spacing-24v: 6rem; /* 96 px */
+    --spacing-12w: 6rem; /* 96 px */
 
     --spacing-25v: 6.25rem;
-    --spacing-26v: 6.5rem;
-    --spacing-13w: 6.5rem;
+    --spacing-26v: 6.5rem; /* 104 px */
+    --spacing-13w: 6.5rem; /* 104 px */
 
     --spacing-27v: 6.75rem;
-    --spacing-28v: 7rem;
-    --spacing-14w: 7rem;
+    --spacing-28v: 7rem; /* 112 px */
+    --spacing-14w: 7rem; /* 112 px */
 
     --spacing-29v: 7.25rem;
-    --spacing-30v: 7.5rem;
-    --spacing-15w: 7.5rem;
+    --spacing-30v: 7.5rem; /* 120 px */
+    --spacing-15w: 7.5rem; /* 120 px */
 
     --spacing-31v: 7.75rem;
-    --spacing-32v: 8rem;
-    --spacing-16w: 8rem;
+    --spacing-32v: 8rem; /* 128 px */
+    --spacing-16w: 8rem; /* 128 px */
 
     /* Custom colors */
 

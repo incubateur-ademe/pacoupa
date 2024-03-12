@@ -1,8 +1,9 @@
 import { fr } from "@codegouvfr/react-dsfr";
 
 import { Card } from "@/components/Card";
+import { ChaudiereCasseeImage } from "@/components/img/ChaudiereCasseeImage";
 import { Box, Container, Grid, GridCol } from "@/dsfr";
-import { H2 } from "@/dsfr/base/typography";
+import { H2, Text } from "@/dsfr/base/typography";
 
 import styles from "./raisons-zone.module.scss";
 
@@ -12,20 +13,20 @@ export const RaisonsZone = () => {
       <Container>
         <H2 mt="10w">On a tous une bonne raison</H2>
 
-        <Grid haveGutters>
+        <Grid>
           <GridCol base={9}>
-            <Card
-              border
-              shadow
-              desc="C’est le bon moment pour vous renseigner sur les solutions durables, spécifiquement adaptées à votre immeuble."
-              imageAlt="texte alternatif de l’image"
-              imageUrl="/img/chaudiere-cassee.svg"
-              horizontal
-              size="small"
-              title="Chaudière en panne&nbsp;?"
-              titleAs="h4"
-              className={fr.cx("fr-card--horizontal-tier")}
-            />
+            <Box className={styles.box}>
+              <Box className={styles.image}>
+                <ChaudiereCasseeImage width={100} />
+              </Box>
+              <Box className={styles.text}>
+                <H2>Chaudière en panne&nbsp;?</H2>
+                <Text>
+                  C’est le bon moment pour vous renseigner sur les solutions durables, spécifiquement adaptées à votre
+                  immeuble.
+                </Text>
+              </Box>
+            </Box>
           </GridCol>
         </Grid>
 

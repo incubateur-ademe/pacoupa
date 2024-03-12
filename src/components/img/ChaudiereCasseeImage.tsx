@@ -1,10 +1,16 @@
-import chaudiere from "../../../public/img/chaudiere-cassee.svg";
-import { ImageCard } from "./ImageCard";
+import Image from "next/image";
 
-export function ChaudiereCasseeImage() {
+import chaudiere from "../../../public/img/chaudiere-cassee.svg";
+
+type Props = {
+  height?: number;
+  width?: number;
+};
+
+export function ChaudiereCasseeImage({ height, width }: Props) {
   return (
     <>
-      <ImageCard src={chaudiere as string} alt="Chaudiere en panne" />
+      <Image src={chaudiere as string} alt="Chaudiere en panne" width={width} height={height} />
     </>
   );
 }

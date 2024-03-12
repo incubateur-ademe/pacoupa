@@ -39,7 +39,7 @@ const Home = () => {
         <LogosZone />
       </Section>
 
-      <Section mt="2w">
+      <Section mt="8w">
         <RaisonsZone />
       </Section>
 
