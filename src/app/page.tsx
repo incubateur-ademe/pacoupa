@@ -43,7 +43,7 @@ const Home = () => {
         <RaisonsZone />
       </Section>
 
-      <Section mt="6w">
+      <Section mt="15w">
         <ExplicationPacZone />
       </Section>
 
