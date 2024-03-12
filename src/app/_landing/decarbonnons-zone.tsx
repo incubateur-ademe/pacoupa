@@ -1,6 +1,6 @@
 import { fr } from "@codegouvfr/react-dsfr";
-import Card from "@codegouvfr/react-dsfr/Card";
 
+import { Card } from "@/components/Card";
 import { Camembert18PourcentImage } from "@/components/img/Camembert18PourcentImage";
 import { Camembert47PourcentImage } from "@/components/img/Camembert47PourcentImage";
 import { Maison2Image } from "@/components/img/Maison2";

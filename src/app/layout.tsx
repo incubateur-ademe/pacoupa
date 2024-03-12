@@ -18,7 +18,6 @@ import { PacoupaHeader } from "@/components/PacoupaHeader";
 import { Matomo } from "@/components/utils/Matomo";
 import { config } from "@/config";
 import { Container } from "@/dsfr";
-import { Follow } from "@/dsfr/base/Follow";
 
 import { defaultColorScheme } from "../defaultColorScheme";
 import { StartDsfr } from "../StartDsfr";
@@ -119,7 +118,7 @@ const RootLayout = ({ children }: PropsWithChildren) => {
             >
               <Container>{children}</Container>
             </main>
-            <Follow />
+            {/* <Follow /> */}
             <PacoupaFooter />
           </div>
         </DsfrProvider>
