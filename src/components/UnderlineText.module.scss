@@ -1,0 +1,17 @@
+.text {
+    text-decoration: none;
+    background: linear-gradient(
+            to top,
+            #B691E3 0%,
+            #B691E3 15%,
+            transparent 10.01%
+        )
+        no-repeat left bottom / 100% 80%;
+    
+}
+
+.text:hover {
+    background-size: 100% 100%;
+}
+
+
