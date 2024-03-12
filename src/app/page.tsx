@@ -31,31 +31,31 @@ const Home = () => {
 
   return (
     <>
-      <Section mt="8w">
+      <Section mt="6w">
         <LandingHero />
       </Section>
 
-      <Section mt="8w">
+      <Section mt="10w">
         <LogosZone />
       </Section>
 
-      <Section mt="8w">
+      <Section mt="2w">
         <RaisonsZone />
       </Section>
 
-      <Section mt="8w">
+      <Section mt="6w">
         <ExplicationPacZone />
       </Section>
 
-      <Section mt="8w">
+      <Section mt="6w">
         <LaisserGuider />
       </Section>
 
-      <Section mt="8w">
+      <Section mt="6w">
         <Solution5mnZone />
       </Section>
 
-      <Section mt="8w">
+      <Section mt="6w">
         <DecarbonnonsZone />
       </Section>
     </>
