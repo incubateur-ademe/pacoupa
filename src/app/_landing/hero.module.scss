@@ -4,7 +4,6 @@
     gap: 1rem;
 }
 
-
 .hero {
     background: var(--grey-1000-50-hover);
     display: "flex";
@@ -17,12 +16,6 @@
     }
 }
 
-.cta {
-    display: flex;
-    gap: var(--spacing-4w);
-    margin-top: var(--spacing-7w)
-}
-
 @media (max-width: 768px) {
     .hero {
         flex-direction: column;
@@ -30,7 +23,7 @@
         align-items: center;
         background-color: aqua;
     }
-    
+
     .hero img {
         max-width: 400px;
         margin-left: auto;

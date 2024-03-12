@@ -3,11 +3,11 @@
 import HeroTitleContent from "@__content/landing/hero_title.mdx";
 
 import { Button } from "@/components/Button";
+import { ButtonsWrapper } from "@/components/ButtonsWrapper";
 import { TallyButton } from "@/components/TallyButton";
-import { Box, Container, Grid, GridCol } from "@/dsfr";
+import { Container, Grid, GridCol } from "@/dsfr";
 
 import { HeroImage } from "../../components/img/HeroImage";
-import styles from "./hero.module.scss";
 
 export interface LandingHeroProps {
   metadata: PacoupaHeroMDXMetadata;
@@ -25,7 +25,7 @@ const LandingHeroDesktop = () => (
     <Grid haveGutters>
       <GridCol base={6}>
         <HeroTitleContent />
-        <Box className={styles.cta}>
+        <ButtonsWrapper>
           <TallyButton source="Premier bouton Tally" />
 
           <Button
@@ -36,7 +36,7 @@ const LandingHeroDesktop = () => (
           >
             Parcourir les solutions
           </Button>
-        </Box>
+        </ButtonsWrapper>
       </GridCol>
       <GridCol base={6} className="fr-mx-auto">
         <HeroImage />
