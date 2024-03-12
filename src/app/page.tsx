@@ -47,7 +47,7 @@ const Home = () => {
         <ExplicationPacZone />
       </Section>
 
-      <Section mt="6w">
+      <Section mt="16w">
         <LaisserGuider />
       </Section>
 

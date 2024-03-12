@@ -2,7 +2,7 @@ import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 
 import { Card } from "@/components/Card";
 import { Box, Container, Grid, GridCol } from "@/dsfr";
-import { H3 } from "@/dsfr/base/typography";
+import { H2 } from "@/dsfr/base/typography";
 
 import styles from "./solution-5mn-zone.module.scss";
 
@@ -10,7 +10,7 @@ export const Solution5mnZone = () => {
   return (
     <Box className={cx(styles.cards)}>
       <Container>
-        <H3 mt="10w">La solution qui vous correspond en moins de 5min</H3>
+        <H2 mt="16w">La solution qui vous correspond en moins de 5min</H2>
 
         <Grid haveGutters>
           <GridCol base={4}>
