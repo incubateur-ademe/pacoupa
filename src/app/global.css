@@ -80,6 +80,8 @@
 
     /* Custom colors */
 
+    --color-title: #304436;
+
     --color-primary-background: #92e3a9;
     --color-primary-background-hover: #b3ebc3;
     --color-primary-background-active: #80b990;
