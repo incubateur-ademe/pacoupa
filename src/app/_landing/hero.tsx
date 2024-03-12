@@ -33,7 +33,6 @@ const LandingHeroDesktop = () => (
             linkProps={{
               href: "/solutions",
             }}
-            // style={{ borderBottom: "1px solid #183D2F" }}
           >
             Parcourir les solutions
           </Button>
