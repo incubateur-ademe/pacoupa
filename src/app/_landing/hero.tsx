@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/Button";
 import { ButtonsWrapper } from "@/components/ButtonsWrapper";
 import { TallyButton } from "@/components/TallyButton";
 import { Container, Grid, GridCol } from "@/dsfr";
@@ -27,14 +26,14 @@ const LandingHeroDesktop = () => (
         <ButtonsWrapper>
           <TallyButton source="Premier bouton Tally" />
 
-          <Button
+          {/* <Button
             priority="secondary"
             linkProps={{
               href: "/solutions",
             }}
           >
             Parcourir les solutions
-          </Button>
+          </Button> */}
         </ButtonsWrapper>
       </GridCol>
       <GridCol base={6} className="fr-mx-auto">

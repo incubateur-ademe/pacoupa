@@ -19,6 +19,15 @@ export const PacoupaHeader = () => {
           <H1 className={styles.title}>{config.name}</H1>
         </>
       }
+      quickAccessItems={[
+        {
+          iconId: "fr-icon-send-plane-line",
+          linkProps: {
+            href: "#",
+          },
+          text: "S'inscrire",
+        },
+      ]}
     />
   );
 };

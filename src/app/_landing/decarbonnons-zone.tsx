@@ -11,7 +11,7 @@ import { H3 } from "@/dsfr/base/typography";
 export const DecarbonnonsZone = () => {
   return (
     <>
-      <Container>
+      <Container className="mb-16">
         <H3 mt="14w">Décarbonons le bâtiment !</H3>
         <Grid haveGutters valign="top">
           <GridCol base={8} className={"flex flex-col justify-center content-center"}>
