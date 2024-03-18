@@ -1,4 +1,5 @@
 import "./global.css";
+import "react-tooltip/dist/react-tooltip.css";
 
 import { fr } from "@codegouvfr/react-dsfr";
 import { DsfrHead } from "@codegouvfr/react-dsfr/next-appdir/DsfrHead";
