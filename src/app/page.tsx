@@ -31,7 +31,7 @@ const Home = () => {
 
   return (
     <>
-      <Section mt="6w">
+      <Section mt="8w">
         <LandingHero />
       </Section>
 
