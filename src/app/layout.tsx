@@ -4,20 +4,20 @@ import { fr } from "@codegouvfr/react-dsfr";
 import { DsfrHead } from "@codegouvfr/react-dsfr/next-appdir/DsfrHead";
 import { DsfrProvider } from "@codegouvfr/react-dsfr/next-appdir/DsfrProvider";
 import { getHtmlAttributes } from "@codegouvfr/react-dsfr/next-appdir/getHtmlAttributes";
-import Notice from "@codegouvfr/react-dsfr/Notice";
 import { SkipLinks } from "@codegouvfr/react-dsfr/SkipLinks";
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 import Link from "next/link";
+import Script from "next/script";
 import { type PropsWithChildren, Suspense } from "react";
 
+import { Banner } from "@/components/Banner";
 import { footerId, PacoupaFooter } from "@/components/PacoupaFooter";
 import { PacoupaHeader } from "@/components/PacoupaHeader";
 import { Matomo } from "@/components/utils/Matomo";
 import { config } from "@/config";
 import { Container } from "@/dsfr";
-import { Follow } from "@/dsfr/base/Follow";
 
 import { defaultColorScheme } from "../defaultColorScheme";
 import { StartDsfr } from "../StartDsfr";
@@ -66,6 +66,8 @@ const RootLayout = ({ children }: PropsWithChildren) => {
             //"Spectral-ExtraBold"
           ]}
         />
+        <Script src="https://tally.so/widgets/embed.js" />
+
         <Suspense>
           <Matomo env={config.env} />
         </Suspense>
@@ -85,10 +87,12 @@ const RootLayout = ({ children }: PropsWithChildren) => {
               },
             ]}
           />
-          <Notice
+          {/* <Notice
             isClosable={false}
             title="Le simulateur est en phase de construction. Inscrivez-vous et nous vous préviendrons lors de sa sortie."
-          />
+          /> */}
+
+          <Banner title="Le simulateur est en phase de construction. Inscrivez-vous et nous vous préviendrons lors de sa sortie." />
           <div className={styles.app}>
             {/* <Header
               brandTop={<Brand />}
@@ -116,7 +120,7 @@ const RootLayout = ({ children }: PropsWithChildren) => {
             >
               <Container>{children}</Container>
             </main>
-            <Follow />
+            {/* <Follow /> */}
             <PacoupaFooter />
           </div>
         </DsfrProvider>

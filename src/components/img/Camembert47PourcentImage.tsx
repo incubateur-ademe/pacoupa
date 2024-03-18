@@ -1,13 +1,13 @@
 import Image from "next/image";
 
-import camembert1 from "../../../public/img/camembert1.svg";
+import camembert1 from "../../../public/img/47-pourcent.svg";
 
 type Props = {
   height?: number;
   width?: number;
 };
 
-export function Camembert1Image({ height, width }: Props) {
+export function Camembert47PourcentImage({ height, width }: Props) {
   return (
     <>
       <Image

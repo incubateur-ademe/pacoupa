@@ -1,86 +1,64 @@
 import { fr } from "@codegouvfr/react-dsfr";
-import Card from "@codegouvfr/react-dsfr/Card";
+import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 
-import { CTA } from "@/components/CTA";
-import { Camembert1Image } from "@/components/img/Camembert1";
-import { Camembert2Image } from "@/components/img/Camembert2";
+import { Camembert18PourcentImage } from "@/components/img/Camembert18PourcentImage";
+import { Camembert47PourcentImage } from "@/components/img/Camembert47PourcentImage";
 import { Maison2Image } from "@/components/img/Maison2";
-import { config } from "@/config";
-import { Container, Grid, GridCol, P } from "@/dsfr";
+import { TallyButton } from "@/components/TallyButton";
+import { Box, Container, Grid, GridCol, P } from "@/dsfr";
 import { H3 } from "@/dsfr/base/typography";
 
 export const DecarbonnonsZone = () => {
   return (
     <>
-      <Container>
-        <H3 mt="10w">Décarbonons le bâtiment !</H3>
+      <Container className="mb-16">
+        <H3 mt="14w">Décarbonons le bâtiment !</H3>
+        <Grid haveGutters valign="top">
+          <GridCol base={8} className={"flex flex-col justify-center content-center"}>
+            <P>
+              Nous devons décarboner les deux tiers de notre consommation d’énergie d’origine fossile et importée de
+              l’autre bout du monde.
+            </P>
+            <H3 as="h5">Le secteur du batiment en 2 chiffres</H3>
 
-        <P>
-          Nous devons décarboner les deux tiers de notre consommation d’énergie d’origine fossile et importée de l’autre
-          bout du monde.
-        </P>
+            <Box className="flex">
+              <Box className="flex flex-col gap-4 items-center p-8">
+                <Camembert47PourcentImage width={150} />
+                <p className={cx(fr.cx("fr-text--sm"), "text-center")}>part de la consommation énergétique française</p>
+              </Box>
 
-        <Container>
-          <Grid haveGutters valign="top">
-            <GridCol base={4} className={"flex flex-col justify-center content-center"}>
-              <H3 as="h5">Le secteur du batiment en 2 chiffres</H3>
+              <Box className="flex flex-col gap-4 items-center p-8">
+                <Camembert18PourcentImage width={150} />
+                <p className={cx(fr.cx("fr-text--sm"), "text-center")}>
+                  part des émissions nationales de gaz à effet de serre (GES)
+                </p>
+              </Box>
+            </Box>
 
-              <Maison2Image width={300} />
-            </GridCol>
+            <P>
+              Ces émissions sont principalement dues au chauffage et aux besoins thermiques (eau chaude sanitaire,
+              cuisson) qui reposent aujourd’hui encore <strong>à plus de 50% sur des énergies fossiles</strong> (fioul,
+              gaz fossile).
+            </P>
 
-            <GridCol base={4} className={"flex flex-col items-center"}>
-              <Camembert1Image width={150} />
+            <P>
+              Passer d’une énergie fossile à un vecteur décarboné devrait permettre d’abaisser{" "}
+              <strong>rapidement</strong> et <strong>très significativement</strong> les émissions de CO2.
+            </P>
+            <P>
+              Toutefois, les solutions ne sont pas universelles, pas toutes matures, et ne peuvent s’envisager
+              indépendamment de l’isolation et de la sobriété.
+            </P>
 
-              <p className={fr.cx("fr-text--sm")}>part de la consommation énergétique française</p>
+            <H3>Pacoupa vous guide dans ce choix</H3>
 
-              <Camembert2Image width={150} />
+            <TallyButton />
+          </GridCol>
 
-              <p className={fr.cx("fr-text--sm")}>part des émissions nationales de gaz à effet de serre (GES)</p>
-            </GridCol>
-
-            <GridCol base={4} className={"flex flex-col justify-center content-center gap-6"}>
-              <Card
-                border
-                shadow
-                desc={
-                  <P>
-                    Ces émissions sont principalement dues au chauffage et aux besoins thermiques (eau chaude sanitaire,
-                    cuisson) qui reposent aujourd’hui encore <strong>à plus de 50% sur des énergies fossiles</strong>{" "}
-                    (fioul, gaz fossile).
-                  </P>
-                }
-                // imageUrl="/img/chaudiere-cassee.svg"
-                size="small"
-                title=""
-                titleAs="h4"
-              />
-              <Card
-                border
-                shadow
-                desc={
-                  <>
-                    <P>
-                      Passer d’une énergie fossile à un vecteur décarboné devrait permettre d’abaisser{" "}
-                      <strong>rapidement</strong> et <strong>très significativement</strong> les émissions de CO2.
-                    </P>
-                    <P>
-                      Toutefois, les solutions ne sont pas universelles, pas toutes matures, et ne peuvent s’envisager
-                      indépendamment de l’isolation et de la sobriété.
-                    </P>
-
-                    <CTA source={"Décarbonnons"} title={config.ctaTitle} href="/mentions-legales">
-                      {config.ctaTitle}
-                    </CTA>
-                  </>
-                }
-                // imageUrl="/img/chaudiere-cassee.svg"
-                size="small"
-                title=""
-                titleAs="h4"
-              />
-            </GridCol>
-          </Grid>
-        </Container>
+          <GridCol base={4} className="mt-8">
+            <Maison2Image width={300} />
+          </GridCol>
+        </Grid>
       </Container>
     </>
   );

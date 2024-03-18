@@ -10,7 +10,7 @@ const { version } = packageJson;
 const isDeployment = !!process.env.VERCEL_URL;
 
 const csp = {
-  "default-src": ["'none'"],
+  "default-src": ["https://tally.so"],
   "connect-src": [
     "'self'",
     "https://*.gouv.fr",
@@ -24,17 +24,18 @@ const csp = {
     "'self'",
     "'unsafe-inline'",
     "https://stats.beta.gouv.fr",
+    "https://tally.so",
     process.env.PACOUPA_ENV === "preprod" && "https://vercel.live",
     process.env.NODE_ENV === "development" && "'unsafe-eval' http://localhost",
   ],
   "style-src": ["'self'", "'unsafe-inline'"],
   "object-src": ["'self'", "data:"],
-  "frame-ancestors": ["'self'"],
+  "frame-ancestors": ["'self'", "https://tally.so"],
   "base-uri": ["'self'", "https://*.gouv.fr"],
   "form-action": ["'self'", "https://*.gouv.fr"],
   "block-all-mixed-content": [],
   "upgrade-insecure-requests": [],
-  "frame-src": [process.env.PACOUPA_ENV === "preprod" ? "https://vercel.live" : "'none'"],
+  "frame-src": ["https://tally.so"],
 };
 
 const ContentSecurityPolicy = Object.entries(csp)
@@ -100,10 +101,11 @@ const config = {
             key: "Permissions-Policy",
             value: "fullscreen=(), display-capture=(), camera=(), microphone=(), geolocation=()",
           },
-          {
-            key: "Cross-Origin-Embedder-Policy",
-            value: "credentialless",
-          },
+          // Note: Cross-Origin-Embedder-Policy cause issue with Tally, event with credentialless policy.
+          //   {
+          //     key: "Cross-Origin-Embedder-Policy",
+          //     value: "credentialless",
+          //   },
           {
             key: "Cross-Origin-Opener-Policy",
             value: "same-origin",

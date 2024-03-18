@@ -47,6 +47,7 @@ export type GridColProps = MarginPropsVertical &
   PropsWithChildren & {
     base?: ColsNumberType | `${ColsNumberType}`;
     className?: CxArg;
+    flex?: boolean;
     lg?: ColsNumberType | `${ColsNumberType}`;
     md?: ColsNumberType | `${ColsNumberType}`;
     offset?: ColsNumberType | `${ColsNumberType}`;
@@ -81,10 +82,12 @@ export const GridCol = ({
   offsetRightXl,
   className,
   children,
+  flex,
   ...rest
 }: GridColProps) => (
   <Box
     className={cx(
+      flex && "flex",
       fr.cx(
         base && `fr-col-${base}`,
         sm && `fr-col-sm-${sm}`,

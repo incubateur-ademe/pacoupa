@@ -1,15 +1,10 @@
-import { Badge } from "@codegouvfr/react-dsfr/Badge";
-import Header, { type HeaderProps } from "@codegouvfr/react-dsfr/Header";
+import Header from "@codegouvfr/react-dsfr/Header";
 
 import { config } from "@/config";
+import { H1 } from "@/dsfr/base/typography";
 
 import { Brand } from "./Brand";
-
-const operatorLogo: HeaderProps["operatorLogo"] = {
-  imgUrl: "/img/ademe-logo-2022-1.svg",
-  alt: "ADEME",
-  orientation: "vertical",
-};
+import styles from "./PacoupaHeader.module.scss";
 
 export const PacoupaHeader = () => {
   return (
@@ -21,45 +16,9 @@ export const PacoupaHeader = () => {
       }}
       serviceTitle={
         <>
-          {config.name}{" "}
-          <Badge as="span" noIcon severity="success">
-            Beta
-          </Badge>
+          <H1 className={styles.title}>{config.name}</H1>
         </>
       }
-      // serviceTagline={config.tagline}
-      operatorLogo={operatorLogo}
-      navigation={[
-        {
-          isActive: true,
-          linkProps: {
-            href: "/",
-            target: "_self",
-          },
-          text: "Accueil",
-        },
-        {
-          linkProps: {
-            href: "#",
-            target: "_self",
-          },
-          text: "Simulateur",
-        },
-        {
-          linkProps: {
-            href: "#",
-            target: "_self",
-          },
-          text: "Solutions",
-        },
-        {
-          linkProps: {
-            href: "#",
-            target: "_self",
-          },
-          text: "À propos",
-        },
-      ]}
     />
   );
 };
