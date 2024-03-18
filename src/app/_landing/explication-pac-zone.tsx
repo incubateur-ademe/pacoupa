@@ -42,15 +42,14 @@ export const ExplicationPacZone = () => {
       </Container>
 
       <Tooltip anchorSelect=".pac" place="top">
-        Une pompe à chaleur est un dispositif thermodynamique capable de transférer la chaleur <br />
-        d'un endroit à un autre, généralement utilisé pour chauffer ou refroidir un espace en exploitant <br />
-        les différences de température entre deux milieux.
+        Une PAC est un système qui prélève de la chaleur dans une source froide (sol, air, nappe), <br />
+        augmente son niveau de tempéraure et la restitue dans le bâtiment.
       </Tooltip>
 
       <Tooltip anchorSelect=".rcu" place="top">
-        Le réseau de chaleur urbain est un système de distribution centralisé de chaleur produite <br />
-        à partir de sources diverses telles que la biomasse, la géothermie, etc.. alimentant plusieurs <br />
-        bâtiments dans une zone urbaine pour le chauffage et parfois le refroidissement.
+        Un réseau de chaleur est un système de canalisations souterraines qui permettent d'acheminer <br />
+        vers des bâtiments de la chaleur produite localement, avec une part d'énergies renouvelables <br />
+        et de récupération (incinération des ordures ménagères, biomasse, géothermie...).
       </Tooltip>
     </>
   );
