@@ -1,13 +1,11 @@
 "use client";
 
-import HeroTitleContent from "@__content/landing/hero_title.mdx";
-
-import { Button } from "@/components/Button";
+import { ButtonsWrapper } from "@/components/ButtonsWrapper";
 import { TallyButton } from "@/components/TallyButton";
-import { Box, Container, Grid, GridCol } from "@/dsfr";
+import { Container, Grid, GridCol } from "@/dsfr";
+import { H1 } from "@/dsfr/base/typography";
 
 import { HeroImage } from "../../components/img/HeroImage";
-import styles from "./hero.module.scss";
 
 export interface LandingHeroProps {
   metadata: PacoupaHeroMDXMetadata;
@@ -24,20 +22,19 @@ const LandingHeroDesktop = () => (
   <Container className="hidden md:flex">
     <Grid haveGutters>
       <GridCol base={6}>
-        <HeroTitleContent />
-        <Box className={styles.cta}>
+        <H1>Trouvez la meilleure solution de chauffage écologique, adaptée à votre copropriété</H1>
+        <ButtonsWrapper>
           <TallyButton source="Premier bouton Tally" />
 
-          <Button
+          {/* <Button
             priority="secondary"
             linkProps={{
               href: "/solutions",
             }}
-            // style={{ borderBottom: "1px solid #183D2F" }}
           >
             Parcourir les solutions
-          </Button>
-        </Box>
+          </Button> */}
+        </ButtonsWrapper>
       </GridCol>
       <GridCol base={6} className="fr-mx-auto">
         <HeroImage />
@@ -50,7 +47,7 @@ const LandingHeroMobile = () => (
   <Container className="md:hidden">
     <Grid haveGutters>
       <GridCol>
-        <HeroTitleContent />
+        <H1>Trouvez la meilleure solution de chauffage écologique, adaptée à votre copropriété</H1>
       </GridCol>
     </Grid>
     <Grid haveGutters>

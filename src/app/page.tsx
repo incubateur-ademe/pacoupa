@@ -35,27 +35,27 @@ const Home = () => {
         <LandingHero />
       </Section>
 
-      <Section mt="8w">
+      <Section mt="14w">
         <LogosZone />
       </Section>
 
-      <Section mt="8w">
+      <Section mt="6w">
         <RaisonsZone />
       </Section>
 
-      <Section mt="8w">
+      <Section mt="15w">
         <ExplicationPacZone />
       </Section>
 
-      <Section mt="8w">
+      <Section mt="16w">
         <LaisserGuider />
       </Section>
 
-      <Section mt="8w">
+      <Section mt="6w">
         <Solution5mnZone />
       </Section>
 
-      <Section mt="8w">
+      <Section mt="6w">
         <DecarbonnonsZone />
       </Section>
     </>

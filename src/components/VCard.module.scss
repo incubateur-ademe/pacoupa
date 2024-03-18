@@ -1,0 +1,36 @@
+.box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 32px;
+    border: 2px solid var(--color-primary-border);
+    border-radius: 16px;
+    box-shadow: 4px 4px 0px 0px var(--color-primary-shadow);
+}
+
+.box .text {
+    display: flex;
+    padding: 32px;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.box .text {
+    text-align: center;
+    min-width: 300px;
+}
+
+.box .text h2 {
+    font-size: 22px !important;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.box .image {
+    display: flex;
+    padding: 0px 24px 16px 24px;
+    flex-direction: column;
+    align-items: center;
+    align-self: stretch;
+}
