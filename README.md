@@ -53,6 +53,8 @@ Regénérer le token et le mettre à jour sur Vercel.
 
 ### Schéma DB
 
+
+```mermaid
 classDiagram
 direction BT
 class caracteristiques {
@@ -116,4 +118,4 @@ class sqlite_master {
 
 solutions_par_cas  -->  caracteristiques : caracteristiques_id:id
 solutions_par_cas  -->  solutions : id_solution:id
-
+```
