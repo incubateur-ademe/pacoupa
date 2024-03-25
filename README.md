@@ -57,6 +57,7 @@ Regénérer le token et le mettre à jour sur Vercel.
 ```mermaid
 classDiagram
 direction BT
+
 class caracteristiques {
    text CH
    text ECS
@@ -108,15 +109,9 @@ class solutions_par_cas {
    text usage_FR
    integer alertes
 }
-class sqlite_master {
-   text type
-   text name
-   text tbl_name
-   int rootpage
-   text sql
-}
 
-solutions_par_cas  -->  caracteristiques : caracteristiques_id:id
 
-solutions_par_cas  -->  solutions : id_solution:id
+solutions_par_cas  -->  solutions : id_solution
+
+solutions_par_cas  -->  caracteristiques : caracteristiques_id
 ```
