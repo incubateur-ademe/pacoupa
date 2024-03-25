@@ -1,6 +1,7 @@
 import { turso } from "@/lib/turso";
 
 export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
 
 const sql =
   "select solution, espace_exterieur, environnement, toiture_terrasse, temperature, nb_lgts, niveau_renovation, difficulte, impact_travaux_coll, impact_travaux_indiv, cout, type_solution, usage_CH, usage_ECS, usage_FR, ordre_solution \

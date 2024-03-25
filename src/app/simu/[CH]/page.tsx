@@ -1,6 +1,7 @@
 import { turso } from "@/lib/turso";
 
 export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
 
 const sql = (
   CH: string = "IND",
