@@ -117,5 +117,6 @@ class sqlite_master {
 }
 
 solutions_par_cas  -->  caracteristiques : caracteristiques_id:id
+
 solutions_par_cas  -->  solutions : id_solution:id
 ```
