@@ -37,6 +37,83 @@ En cas de modification du fichier Google sheet original, il faut :
 ```
 - lancer la génération du schéma Drizzle
 ```shell
-❯ yarn drizzle-kit introspect:sqlite
+❯ yarn dk-introspect
 ```
+NB: Vérifier que son fichier `.env` contient bien les variables TURSO_DATABASE_URL et TURSO_AUTH_TOKEN.
+Cela va regénérer le fichier schema.ts qui permettra d'écrire ses requêtes SQL de manière typesafe.
+
+
+### FAQ
+
+*J'ai modifié la DB sur Turso et j'ai une erreur de déploiement sur Vercel?*
+
+Cela peut être dû au token d'accès qui a changé. 
+Regénérer le token et le mettre à jour sur Vercel.
+
+
+### Schéma DB
+
+classDiagram
+direction BT
+class caracteristiques {
+   text CH
+   text ECS
+   text emetteur
+   text espace_exterieur
+   text env_contraint
+   text toiture_terrasse
+   text temperature
+   text nb_lgts
+   text niveau_renovation
+   integer id
+}
+class solutions {
+   text name
+   text type
+   text usage_CH
+   text usage_ECS
+   text usage_FR
+   text num_AFPAC
+   text emprise_PAC_exterieur
+   text local_technique
+   text emprise_logement
+   text structure
+   text acoustique
+   text reseaux_hydrauliques
+   text PLU
+   text raccordement_electrique
+   text impact_visuel
+   text note_impact_visuel
+   text note_Impact_sonore
+   text note_impact_espace_exterieur
+   text note_environnemental
+   text note_maturite
+   text commentaire_app
+   text commentaire_pouget
+   text id
+}
+class solutions_par_cas {
+   integer caracteristiques_id
+   text id_solution
+   integer ordre_solution
+   text difficulte
+   text impact_travaux_coll
+   text impact_travaux_indiv
+   text cout
+   text type_solution
+   text usage_CH
+   text usage_ECS
+   text usage_FR
+   integer alertes
+}
+class sqlite_master {
+   text type
+   text name
+   text tbl_name
+   int rootpage
+   text sql
+}
+
+solutions_par_cas  -->  caracteristiques : caracteristiques_id:id
+solutions_par_cas  -->  solutions : id_solution:id
 
