@@ -18,15 +18,21 @@
     "export": "next export",
     "build:export": "npm run build && npm run export",
     "run-script": "ts-node --project scripts/tsconfig.json",
-    "generateEnvDeclaration": "yarn run-script scripts/generateEnvDeclaration.ts"
+    "generateEnvDeclaration": "yarn run-script scripts/generateEnvDeclaration.ts",
+    "dk-introspect": "drizzle-kit introspect:sqlite",
+    "dk-up": "yarn drizzle-kit up:sqlite",
+    "dk-check": "yarn drizzle-kit check:sqlite"
   },
   "dependencies": {
     "@codegouvfr/react-dsfr": "^1.0.1",
     "@formkit/auto-animate": "^0.8.1",
+    "@libsql/client": "^0.5.6",
     "@mdx-js/react": "^3.0.0",
     "@next/mdx": "^14.0.3",
     "@socialgouv/matomo-next": "^1.6.1",
     "@types/mdx": "^2.0.10",
+    "drizzle-orm": "^0.30.4",
+    "drizzle-zod": "^0.5.1",
     "geist": "^1.2.0",
     "next": "^14.0.3",
     "next-sitemap": "^4.2.3",
@@ -37,7 +43,8 @@
     "remark-gfm": "^4.0.0",
     "remark-mdx-frontmatter": "^4.0.0",
     "sass": "^1.69.5",
-    "sharp": "^0.33.0"
+    "sharp": "^0.33.0",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@mdx-js/loader": "^3.0.0",
@@ -53,6 +60,7 @@
     "@typescript-eslint/parser": "^6.13.1",
     "autoprefixer": "^10.4.16",
     "dotenv": "^16.3.1",
+    "drizzle-kit": "^0.20.14",
     "eslint": "^8.55.0",
     "eslint-config-next": "^14.0.3",
     "eslint-config-prettier": "^9.1.0",

@@ -23,4 +23,4 @@ jobs:
           yarn --frozen-lockfile
       - name: Build and export
         run: |
-          yarn build
+          TURSO_DATABASE_URL="http://127.0.0.1:8080" yarn build
