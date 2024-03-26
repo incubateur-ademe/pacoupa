@@ -22,6 +22,8 @@ const selectCriteresSchema = createSelectSchema(criteres, {
   temperature: z.enum(["< 40°C", "> 60°C", "< 60°C", "40-60°C", "NA"]).default("NA"), // si non renseigné, on considère que c'est NA pour avoir les lignes correspondantes.
 });
 
+// The NA fields are a special case. When the field as no value in the payload, it should be considered as NA only. Payload with 1 value should be considered as this value OR NA, SQL wise.
+// Think to NA as "in every case" or "no matter what".
 const NAFields = ["envContraint", "espaceExterieur", "toitureTerrasse", "nbLgts", "niveauRenovation", "temperature"];
 
 /**
