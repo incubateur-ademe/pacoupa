@@ -1,0 +1,399 @@
+{
+  "id": "00000000-0000-0000-0000-000000000000",
+  "prevId": "",
+  "version": "5",
+  "dialect": "sqlite",
+  "tables": {
+    "solutions": {
+      "name": "solutions",
+      "columns": {
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": false
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "type": {
+          "autoincrement": false,
+          "name": "type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "usage_CH": {
+          "autoincrement": false,
+          "name": "usage_CH",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "usage_ECS": {
+          "autoincrement": false,
+          "name": "usage_ECS",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "usage_FR": {
+          "autoincrement": false,
+          "name": "usage_FR",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "num_AFPAC": {
+          "autoincrement": false,
+          "name": "num_AFPAC",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "emprise_PAC_exterieur": {
+          "autoincrement": false,
+          "name": "emprise_PAC_exterieur",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "local_technique": {
+          "autoincrement": false,
+          "name": "local_technique",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "emprise_logement": {
+          "autoincrement": false,
+          "name": "emprise_logement",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "structure": {
+          "autoincrement": false,
+          "name": "structure",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "acoustique": {
+          "autoincrement": false,
+          "name": "acoustique",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "reseaux_hydrauliques": {
+          "autoincrement": false,
+          "name": "reseaux_hydrauliques",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "PLU": {
+          "autoincrement": false,
+          "name": "PLU",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "raccordement_electrique": {
+          "autoincrement": false,
+          "name": "raccordement_electrique",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "impact_visuel": {
+          "autoincrement": false,
+          "name": "impact_visuel",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "note_impact_visuel": {
+          "autoincrement": false,
+          "name": "note_impact_visuel",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "note_Impact_sonore": {
+          "autoincrement": false,
+          "name": "note_Impact_sonore",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "note_impact_espace_exterieur": {
+          "autoincrement": false,
+          "name": "note_impact_espace_exterieur",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "note_environnemental": {
+          "autoincrement": false,
+          "name": "note_environnemental",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "note_maturite": {
+          "autoincrement": false,
+          "name": "note_maturite",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "commentaire_app": {
+          "autoincrement": false,
+          "name": "commentaire_app",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "commentaire_pouget": {
+          "autoincrement": false,
+          "name": "commentaire_pouget",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "caracteristiques": {
+      "name": "caracteristiques",
+      "columns": {
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": false
+        },
+        "CH": {
+          "autoincrement": false,
+          "name": "CH",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ECS": {
+          "autoincrement": false,
+          "name": "ECS",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "emetteur": {
+          "autoincrement": false,
+          "name": "emetteur",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "espace_exterieur": {
+          "autoincrement": false,
+          "name": "espace_exterieur",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "env_contraint": {
+          "autoincrement": false,
+          "name": "env_contraint",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "toiture_terrasse": {
+          "autoincrement": false,
+          "name": "toiture_terrasse",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "temperature": {
+          "autoincrement": false,
+          "name": "temperature",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "nb_lgts": {
+          "autoincrement": false,
+          "name": "nb_lgts",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "niveau_renovation": {
+          "autoincrement": false,
+          "name": "niveau_renovation",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {
+        "idx_caracteristiques_CH_ECS_emetteur_espace_exterieur_env_contraint_toiture_terrasse_temperature_nb_lgts_niveau_renovation": {
+          "name": "idx_caracteristiques_CH_ECS_emetteur_espace_exterieur_env_contraint_toiture_terrasse_temperature_nb_lgts_niveau_renovation",
+          "columns": [
+            "CH",
+            "ECS",
+            "emetteur",
+            "espace_exterieur",
+            "env_contraint",
+            "toiture_terrasse",
+            "temperature",
+            "nb_lgts",
+            "niveau_renovation"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "uniqueConstraints": {}
+    },
+    "solutions_par_cas": {
+      "name": "solutions_par_cas",
+      "columns": {
+        "caracteristiques_id": {
+          "autoincrement": false,
+          "name": "caracteristiques_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "id_solution": {
+          "autoincrement": false,
+          "name": "id_solution",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ordre_solution": {
+          "autoincrement": false,
+          "name": "ordre_solution",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "difficulte": {
+          "autoincrement": false,
+          "name": "difficulte",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "impact_travaux_coll": {
+          "autoincrement": false,
+          "name": "impact_travaux_coll",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "impact_travaux_indiv": {
+          "autoincrement": false,
+          "name": "impact_travaux_indiv",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "cout": {
+          "autoincrement": false,
+          "name": "cout",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "type_solution": {
+          "autoincrement": false,
+          "name": "type_solution",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "usage_CH": {
+          "autoincrement": false,
+          "name": "usage_CH",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "usage_ECS": {
+          "autoincrement": false,
+          "name": "usage_ECS",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "usage_FR": {
+          "autoincrement": false,
+          "name": "usage_FR",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "alertes": {
+          "autoincrement": false,
+          "name": "alertes",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {},
+      "indexes": {},
+      "foreignKeys": {
+        "solutions_par_cas_id_solution_solutions_id_fk": {
+          "name": "solutions_par_cas_id_solution_solutions_id_fk",
+          "tableFrom": "solutions_par_cas",
+          "tableTo": "solutions",
+          "columnsFrom": [
+            "id_solution"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "solutions_par_cas_caracteristiques_id_caracteristiques_id_fk": {
+          "name": "solutions_par_cas_caracteristiques_id_caracteristiques_id_fk",
+          "tableFrom": "solutions_par_cas",
+          "tableTo": "caracteristiques",
+          "columnsFrom": [
+            "caracteristiques_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  }
+}

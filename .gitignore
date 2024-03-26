@@ -25,6 +25,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
+.env
 .env.local
 .env.development.local
 .env.test.local
@@ -58,3 +59,7 @@ robots.txt
 /public/sitemap*.xml
 
 certificates
+
+# SQLite
+*.db-shm
+*.db-wal
