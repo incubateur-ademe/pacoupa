@@ -59,3 +59,7 @@ robots.txt
 /public/sitemap*.xml
 
 certificates
+
+# SQLite
+*.db-shm
+*.db-wal

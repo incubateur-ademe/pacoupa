@@ -26,8 +26,8 @@ export const solutions = sqliteTable("solutions", {
   commentairePouget: text("commentaire_pouget"),
 });
 
-export const caracteristiques = sqliteTable(
-  "caracteristiques",
+export const criteres = sqliteTable(
+  "criteres",
   {
     id: integer("id").primaryKey(),
     ch: text("CH"),
@@ -42,26 +42,25 @@ export const caracteristiques = sqliteTable(
   },
   table => {
     return {
-      idxCaracteristiquesChEcsEmetteurEspaceExterieurEnvContraintToitureTerrasseTemperatureNbLgtsNiveauRenovation:
-        uniqueIndex(
-          "idx_caracteristiques_CH_ECS_emetteur_espace_exterieur_env_contraint_toiture_terrasse_temperature_nb_lgts_niveau_renovation",
-        ).on(
-          table.ch,
-          table.ecs,
-          table.emetteur,
-          table.espaceExterieur,
-          table.envContraint,
-          table.toitureTerrasse,
-          table.temperature,
-          table.nbLgts,
-          table.niveauRenovation,
-        ),
+      idxCriteresChEcsEmetteurEspaceExterieurEnvContraintToitureTerrasseTemperatureNbLgtsNiveauRenovation: uniqueIndex(
+        "idx_criteres_CH_ECS_emetteur_espace_exterieur_env_contraint_toiture_terrasse_temperature_nb_lgts_niveau_renovation",
+      ).on(
+        table.ch,
+        table.ecs,
+        table.emetteur,
+        table.espaceExterieur,
+        table.envContraint,
+        table.toitureTerrasse,
+        table.temperature,
+        table.nbLgts,
+        table.niveauRenovation,
+      ),
     };
   },
 );
 
 export const solutionsParCriteres = sqliteTable("solutions_par_criteres", {
-  caracteristiquesId: integer("caracteristiques_id").references(() => caracteristiques.id),
+  criteresId: integer("criteres_id").references(() => criteres.id),
   idSolution: text("id_solution").references(() => solutions.id),
   ordreSolution: integer("ordre_solution"),
   difficulte: text("difficulte"),

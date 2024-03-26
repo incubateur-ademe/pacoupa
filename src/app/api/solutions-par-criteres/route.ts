@@ -1,4 +1,4 @@
-import { caracteristiques, solutions, solutionsParCriteres } from "drizzle/schema";
+import { criteres, solutions, solutionsParCriteres } from "drizzle/schema";
 import { eq, or, sql } from "drizzle-orm";
 import { createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
@@ -9,7 +9,7 @@ export const dynamic = "force-dynamic"; // defaults to auto
 
 const OuiNonSchema = z.enum(["oui", "non"]);
 
-const selectCaracteristiquesSchema = createSelectSchema(caracteristiques, {
+const selectCriteresSchema = createSelectSchema(criteres, {
   id: schema => schema.id.optional(),
   ch: z.enum(["ind", "col"]),
   ecs: z.enum(["ind", "col"]),
@@ -27,21 +27,19 @@ const NAFields = ["envContraint", "espaceExterieur", "toitureTerrasse", "nbLgts"
 /**
  * Build a SQL condition from the filtersb
  */
-const buildConditions = (filters: z.infer<typeof selectCaracteristiquesSchema>) => {
+const buildConditions = (filters: z.infer<typeof selectCriteresSchema>) => {
   const keys = Object.keys(filters);
 
   const sqlChunks = keys.map(key => {
     if (NAFields.includes(key)) {
-      const firstPart = sql`upper(${caracteristiques[key as keyof typeof caracteristiques]}) = upper(${
+      const firstPart = sql`upper(${criteres[key as keyof typeof criteres]}) = upper(${
         filters[key as keyof typeof filters]
       })`;
-      const secondPart = sql`${caracteristiques[key as keyof typeof caracteristiques]} = 'NA'`;
+      const secondPart = sql`${criteres[key as keyof typeof criteres]} = 'NA'`;
 
       return sql`${or(firstPart, secondPart)}`;
     } else {
-      return sql`upper(${caracteristiques[key as keyof typeof caracteristiques]}) = upper(${
-        filters[key as keyof typeof filters]
-      })`;
+      return sql`upper(${criteres[key as keyof typeof criteres]}) = upper(${filters[key as keyof typeof filters]})`;
     }
   });
 
@@ -49,7 +47,7 @@ const buildConditions = (filters: z.infer<typeof selectCaracteristiquesSchema>) 
 };
 
 export async function POST(request: Request) {
-  const res = selectCaracteristiquesSchema.safeParse(await request.json());
+  const res = selectCriteresSchema.safeParse(await request.json());
 
   if (!res.success) {
     return Response.json({ error: res.error });
@@ -59,8 +57,8 @@ export async function POST(request: Request) {
 
   const rows = await db
     .select()
-    .from(caracteristiques)
-    .innerJoin(solutionsParCriteres, eq(caracteristiques.id, solutionsParCriteres.caracteristiquesId))
+    .from(criteres)
+    .innerJoin(solutionsParCriteres, eq(criteres.id, solutionsParCriteres.criteresId))
     .innerJoin(solutions, eq(solutionsParCriteres.idSolution, solutions.id))
     .where(buildConditions(res.data))
     .all();
