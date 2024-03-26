@@ -5,7 +5,12 @@
 A partir de quelques questions simples sur l’immeuble, l'outil permet de diriger les copropriétaires vers les solutions les plus pertinentes.
 
 ## Installation et lancement local
+
+Mettre à jour le fichier .env avec la variable TURSO_DATABASE_URL="http://127.0.0.1:8080".
+
 ```bash
+turso dev --db-file assets/pacoupa.db 
+
 yarn install
 yarn dev
 open http://localhost:3000
@@ -39,9 +44,9 @@ En cas de modification du fichier Google sheet original, il faut :
 ./scripts/db/build_db.sh
 ```
 
-2. Envoi sur Turso
+2. Push sur Turso
 
-Il faut auparavant s'authentifier avec `turso auth signup`.
+Il faut auparavant s'authentifier avec `turso auth login`.
 
 ```shell
 turso db destroy pacoupa
@@ -52,9 +57,9 @@ turso db tokens create pacoupa -r # création d'un token d'accès en lecture seu
 Recopier le token dans .env et .env.local.
 Il faudra aussi le  noter sur Vercel settings.
 
-3. Génération des types Drizzle
+3. Génération du schéma types Drizzle
 
-D'abord, vérifier que son fichier `.env` contient bien les variables TURSO_DATABASE_URL et TURSO_AUTH_TOKEN.
+D'abord, vérifier son fichier `.env` renseignant les variables TURSO_DATABASE_URL et TURSO_AUTH_TOKEN.
 
 ```shell
 yarn dk-introspect
