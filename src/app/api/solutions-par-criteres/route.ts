@@ -61,7 +61,7 @@ export async function POST(request: Request) {
     .select()
     .from(criteres)
     .innerJoin(solutionsParCriteres, eq(criteres.id, solutionsParCriteres.criteresId))
-    .innerJoin(solutions, eq(solutionsParCriteres.idSolution, solutions.id))
+    .innerJoin(solutions, eq(solutionsParCriteres.solutionsId, solutions.id))
     .where(buildConditions(res.data))
     .all();
 

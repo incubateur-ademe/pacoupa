@@ -29,11 +29,11 @@ sqlite-utils extract pacoupa.db solutions_par_criteres CH ECS emetteur espace_ex
 sqlite-utils convert pacoupa.db solutions_par_criteres solution \
 'bits = value.split("-")
 return {
-  "id_solution": bits[0].strip(),
+  "solutions_id": bits[0].strip(),
 }' --multi
 
 sqlite-utils transform pacoupa.db solutions_par_criteres \
 --drop solution \
--o criteres_id -o id_solution -o ordre_solution
+-o criteres_id -o solutions_id -o ordre_solution
 
-sqlite-utils add-foreign-key pacoupa.db solutions_par_criteres id_solution solutions id
+sqlite-utils add-foreign-key pacoupa.db solutions_par_criteres solutions_id solutions id
