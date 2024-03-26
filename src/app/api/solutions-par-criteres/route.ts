@@ -18,8 +18,8 @@ const selectCriteresSchema = createSelectSchema(criteres, {
   espaceExterieur: OuiNonSchema,
   toitureTerrasse: z.enum(["sans tt", "toiture t"]),
   nbLgts: z.enum(["< 15", "> 15"]),
-  niveauRenovation: z.enum(["recent ou renove"]).optional(), // non rempli si non récent et non rénové
-  temperature: z.enum(["< 40°C", "> 60°C", "< 60°C", "40-60°C"]).optional(), // non rempli si émetteur est électrique
+  niveauRenovation: z.enum(["recent ou renove", "NA"]).default("NA"), // si non renseigné, on considère que c'est NA pour avoir les lignes correspondantes.
+  temperature: z.enum(["< 40°C", "> 60°C", "< 60°C", "40-60°C", "NA"]).default("NA"), // si non renseigné, on considère que c'est NA pour avoir les lignes correspondantes.
 });
 
 const NAFields = ["envContraint", "espaceExterieur", "toitureTerrasse", "nbLgts", "niveauRenovation", "temperature"];
@@ -53,7 +53,7 @@ export async function POST(request: Request) {
     return Response.json({ error: res.error });
   }
 
-  // console.log("body", JSON.stringify(res, null, 2));
+  console.log("body", JSON.stringify(res, null, 2));
 
   const rows = await db
     .select()
