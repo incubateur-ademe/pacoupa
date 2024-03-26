@@ -60,7 +60,7 @@ export const caracteristiques = sqliteTable(
   },
 );
 
-export const solutionsParCas = sqliteTable("solutions_par_cas", {
+export const solutionsParCriteres = sqliteTable("solutions_par_criteres", {
   caracteristiquesId: integer("caracteristiques_id").references(() => caracteristiques.id),
   idSolution: text("id_solution").references(() => solutions.id),
   ordreSolution: integer("ordre_solution"),

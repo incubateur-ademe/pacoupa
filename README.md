@@ -26,22 +26,41 @@ yarn build
 
 Les données sont stockées dans une DB SQLite hébergée sur Turso.
 
+1. Création de la DB SQLite
+
 En cas de modification du fichier Google sheet original, il faut :
 - exporter en csv les données du simulateur
-    - le premier onglet, en le nommant solution_par_cas.csv
+    - le premier onglet, en le nommant solutions_par_criteres.csv
     - le second, en le nommant solutions.csv
 - stocker ces 2 fichiers dans le répertoire assets
 - lancer le script /scripts/db/build_db.sh 
+
 ```shell
 ./scripts/db/build_db.sh
 ```
-- lancer la génération du schéma Drizzle
-```shell
-❯ yarn dk-introspect
-```
-NB: Vérifier que son fichier `.env` contient bien les variables TURSO_DATABASE_URL et TURSO_AUTH_TOKEN.
-Cela va regénérer le fichier schema.ts qui permettra d'écrire ses requêtes SQL de manière typesafe.
 
+2. Envoi sur Turso
+
+Il faut auparavant s'authentifier avec `turso auth signup`.
+
+```shell
+turso db destroy pacoupa
+turso db create pacoupa --from-file assets/pacoupa.db
+turso db tokens create pacoupa -r # création d'un token d'accès en lecture seule
+```
+
+Recopier le token dans .env et .env.local.
+Il faudra aussi le  noter sur Vercel settings.
+
+3. Génération des types Drizzle
+
+D'abord, vérifier que son fichier `.env` contient bien les variables TURSO_DATABASE_URL et TURSO_AUTH_TOKEN.
+
+```shell
+yarn dk-introspect
+```
+
+Cette commande va regénérer le fichier schema.ts et les types Drizzle.
 
 ### FAQ
 
