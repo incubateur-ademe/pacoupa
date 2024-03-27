@@ -1,7 +1,7 @@
 "use client";
 
+import { Button } from "@/components/Button";
 import { ButtonsWrapper } from "@/components/ButtonsWrapper";
-import { TallyButton } from "@/components/TallyButton";
 import { Container, Grid, GridCol } from "@/dsfr";
 import { H1 } from "@/dsfr/base/typography";
 
@@ -24,7 +24,15 @@ const LandingHeroDesktop = () => (
       <GridCol base={6}>
         <H1>Trouvez la meilleure solution de chauffage écologique, adaptée à votre copropriété</H1>
         <ButtonsWrapper>
-          <TallyButton source="Premier bouton Tally" />
+          {/* <TallyButton source="Premier bouton Tally" /> */}
+
+          <Button
+            linkProps={{
+              href: "/simulation",
+            }}
+          >
+            Simulation
+          </Button>
 
           {/* <Button
             priority="secondary"
@@ -57,6 +65,14 @@ const LandingHeroMobile = () => (
       <GridCol>{/* <HeroBlocContent /> */}</GridCol>
     </Grid>
 
-    <TallyButton source="Premier bouton Tally" />
+    {/* <TallyButton source="Premier bouton Tally" /> */}
+
+    <Button
+      linkProps={{
+        href: "/simulation",
+      }}
+    >
+      Simulation
+    </Button>
   </Container>
 );
