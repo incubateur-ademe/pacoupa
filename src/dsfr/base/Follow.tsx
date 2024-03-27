@@ -25,6 +25,7 @@ export const Follow = () => (
         </GridCol> */}
         <GridCol base={6} offset={6}>
           <Card
+            imageUrl=""
             border
             shadow
             desc={
