@@ -8,15 +8,15 @@ export const HeaderFunnel = () => {
   const { activeStep } = useWizard();
 
   // NB: the DSFR doesn't allow to have more than 8 steps...
-  const displayStep = activeStep < 6 ? 1 : activeStep < 9 ? 2 : 3;
+  const displayStep = activeStep < 6 ? 0 : activeStep < 9 ? 1 : 2;
 
   return (
     <>
       <Stepper
-        currentStep={displayStep}
+        currentStep={displayStep + 1}
         stepCount={displayStepCount}
-        nextTitle={activeStep < displayStepCount ? titles[activeStep + 1] : ""}
-        title={titles[displayStep - 1]}
+        nextTitle={displayStep < displayStepCount ? titles[displayStep + 1] : ""}
+        title={titles[displayStep]}
       />
     </>
   );
