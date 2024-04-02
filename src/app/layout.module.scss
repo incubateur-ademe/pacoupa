@@ -13,6 +13,7 @@
     padding-right: 180px;
     margin-left: auto;
     margin-right: auto;
+    min-height: 100vh;
 
     @media (max-width: $breakpoint-lg) {
         padding-left: 90px;

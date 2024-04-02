@@ -1,8 +1,9 @@
 "use client";
 
+import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import { Wizard } from "react-use-wizard";
 
-import { Container } from "@/dsfr";
+import { Box } from "@/dsfr";
 
 import { FooterFunnel } from "./FooterFunnel";
 import { HeaderFunnel } from "./HeaderFunnel";
@@ -20,7 +21,7 @@ import { Step11 } from "./Step11";
 
 const SimulationPage = () => {
   return (
-    <Container>
+    <Box className={cx("flex flex-col justify-start h-full")}>
       <Wizard header={<HeaderFunnel />} footer={<FooterFunnel />}>
         <Step1 />
         <Step2 />
@@ -34,7 +35,7 @@ const SimulationPage = () => {
         <Step10 />
         <Step11 />
       </Wizard>
-    </Container>
+    </Box>
   );
 };
 

@@ -1,7 +1,6 @@
 import "./global.css";
 import "react-tooltip/dist/react-tooltip.css";
 
-import { fr } from "@codegouvfr/react-dsfr";
 import { DsfrHead } from "@codegouvfr/react-dsfr/next-appdir/DsfrHead";
 import { DsfrProvider } from "@codegouvfr/react-dsfr/next-appdir/DsfrProvider";
 import { getHtmlAttributes } from "@codegouvfr/react-dsfr/next-appdir/getHtmlAttributes";
@@ -17,7 +16,6 @@ import { footerId, PacoupaFooter } from "@/components/PacoupaFooter";
 import { PacoupaHeader } from "@/components/PacoupaHeader";
 import { Matomo } from "@/components/utils/Matomo";
 import { config } from "@/config";
-import { Container } from "@/dsfr";
 
 import { defaultColorScheme } from "../defaultColorScheme";
 import { StartDsfr } from "../StartDsfr";
@@ -119,9 +117,9 @@ const RootLayout = ({ children }: PropsWithChildren) => {
               role="main"
               id={contentId}
               // className={styles.content}
-              className={cx(styles.content, fr.cx("fr-py-4w"))}
+              className={cx(styles.content)}
             >
-              <Container>{children}</Container>
+              <>{children}</>
             </main>
             {/* <Follow /> */}
             <PacoupaFooter />

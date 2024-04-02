@@ -6,7 +6,7 @@ import { Box } from "@/dsfr";
 import styles from "./ButtonsWrapper.module.scss";
 
 type Props = {
-  align?: "left" | "right";
+  align?: "center" | "left" | "right";
 };
 
 /**
@@ -23,7 +23,14 @@ type Props = {
 export const ButtonsWrapper = (props: PropsWithChildren<Props>) => {
   return (
     <>
-      <Box className={cx(styles.buttons, props.align === "right" && "justify-end")}>{props.children}</Box>
+      <Box
+        className={cx(
+          styles.buttons,
+          props.align === "right" ? "justify-end" : props.align === "center" ? "justify-between" : "",
+        )}
+      >
+        {props.children}
+      </Box>
     </>
   );
 };

@@ -17,7 +17,7 @@
     }
 }
 
-.secondaryButton {
+.secondaryButton, .tertiaryButton {
     background-color: var(--color-secondary-background) !important;
     color: var(--color-secondary-text);
     border-bottom: 2px solid var(--color-secondary-text) !important;
@@ -36,4 +36,8 @@
         color: var(--color-secondary-text-active);
         border-bottom: 0 !important;
     }
+}
+
+.tertiaryButton {
+    border-bottom: 0 !important;
 }
