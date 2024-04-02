@@ -1,0 +1,16 @@
+@import "../../global.scss";
+
+.wizard {
+    min-width: 288px;
+   
+    
+    @media (max-width: $breakpoint-xl) {
+        width: 700px;
+    }
+    @media (max-width: $breakpoint-md) {
+        width: 400px;
+    }
+    @media (max-width: $breakpoint-sm) {
+        width: 288px;
+    }
+}

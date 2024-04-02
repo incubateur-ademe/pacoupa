@@ -7,6 +7,7 @@ import { Box } from "@/dsfr";
 
 import { FooterFunnel } from "./FooterFunnel";
 import { HeaderFunnel } from "./HeaderFunnel";
+import styles from "./page.module.scss";
 import { Step1 } from "./Step1";
 import { Step2 } from "./Step2";
 import { Step3 } from "./Step3";
@@ -21,7 +22,7 @@ import { Step11 } from "./Step11";
 
 const SimulationPage = () => {
   return (
-    <Box className={cx("flex flex-col justify-start h-full")}>
+    <Box className={cx(styles.wizard, "flex flex-col justify-start h-full")}>
       <Wizard header={<HeaderFunnel />} footer={<FooterFunnel />}>
         <Step1 />
         <Step2 />

@@ -1,3 +1,4 @@
+import { fr } from "@codegouvfr/react-dsfr";
 import { redirect } from "next/navigation";
 import { useWizard } from "react-use-wizard";
 
@@ -10,7 +11,7 @@ export const FooterFunnel = () => {
 
   return (
     <>
-      <Box>
+      <Box className={fr.cx("fr-mb-6w")}>
         <ButtonsWrapper align="center">
           {!isFirstStep && (
             <Button
