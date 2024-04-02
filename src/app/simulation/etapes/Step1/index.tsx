@@ -4,11 +4,15 @@ import { useWizard } from "react-use-wizard";
 
 import { Box, P } from "@/dsfr";
 
+import { HeaderFunnel } from "../HeaderFunnel";
+
 export const Step1 = () => {
   const { handleStep, previousStep, nextStep } = useWizard();
 
   return (
-    <>
+    <Box>
+      <HeaderFunnel />
+
       <P>Où se situe le bâtiment ?</P>
 
       <Box>
@@ -19,6 +23,6 @@ export const Step1 = () => {
         <i className={fr.cx("fr-icon-info-fill", "fr-mr-2v")} aria-hidden={true} />
         L’adresse nous permet d’avoir quelques renseignements sur le bâtiment.
       </P>
-    </>
+    </Box>
   );
 };

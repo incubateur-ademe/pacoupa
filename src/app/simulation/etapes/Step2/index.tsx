@@ -4,6 +4,7 @@ import { useWizard } from "react-use-wizard";
 import { Button } from "@/components/Button";
 import { Box, P } from "@/dsfr";
 
+import { HeaderFunnel } from "../HeaderFunnel";
 import { Batiment1946a1974Image } from "./Batiment1946a1974Image";
 import { Batiment1975a1989Image } from "./Batiment1975a1989Image";
 import { BatimentPost1990Image } from "./BatimentPost1990Image";
@@ -13,7 +14,8 @@ export const Step2 = () => {
   const { handleStep, previousStep, nextStep } = useWizard();
 
   return (
-    <>
+    <Box>
+      <HeaderFunnel />
       <P>
         Quelle est <strong>l’année</strong> de construction du bâtiment ?
       </P>
@@ -62,6 +64,6 @@ export const Step2 = () => {
       </Box>
 
       <Button priority="secondary">Je ne sais pas</Button>
-    </>
+    </Box>
   );
 };

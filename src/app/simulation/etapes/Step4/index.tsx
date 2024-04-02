@@ -4,11 +4,14 @@ import { useWizard } from "react-use-wizard";
 
 import { Box, P } from "@/dsfr";
 
+import { HeaderFunnel } from "../HeaderFunnel";
+
 export const Step4 = () => {
   const { handleStep, previousStep, nextStep } = useWizard();
 
   return (
-    <>
+    <Box>
+      <HeaderFunnel />
       <P>
         Combien y’a t-il de <strong>logements</strong> dans le bâtiment ?
       </P>
@@ -21,6 +24,6 @@ export const Step4 = () => {
         <i className={fr.cx("fr-icon-info-fill", "fr-mr-2v")} aria-hidden={true} />
         Plutôt autour de 10, 50, 100, 200 ?
       </P>
-    </>
+    </Box>
   );
 };

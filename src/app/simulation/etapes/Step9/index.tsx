@@ -3,11 +3,15 @@ import { useWizard } from "react-use-wizard";
 
 import { Box, P } from "@/dsfr";
 
+import { HeaderFunnel } from "../HeaderFunnel";
+
 export const Step9 = () => {
   const { handleStep, previousStep, nextStep } = useWizard();
 
   return (
-    <>
+    <Box>
+      <HeaderFunnel />
+
       <P>Vous vous chauffez grâce à...</P>
 
       <Box>
@@ -32,6 +36,6 @@ export const Step9 = () => {
           stateRelatedMessage=""
         />
       </Box>
-    </>
+    </Box>
   );
 };

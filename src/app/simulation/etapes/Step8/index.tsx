@@ -3,11 +3,14 @@ import { useWizard } from "react-use-wizard";
 
 import { Box, P } from "@/dsfr";
 
+import { HeaderFunnel } from "../HeaderFunnel";
+
 export const Step8 = () => {
   const { handleStep, previousStep, nextStep } = useWizard();
 
   return (
-    <>
+    <Box>
+      <HeaderFunnel />
       <P>
         Quelle <strong>énergie principale</strong> utilisez-vous pour vous chauffer ?
       </P>
@@ -40,6 +43,6 @@ export const Step8 = () => {
           stateRelatedMessage=""
         />
       </Box>
-    </>
+    </Box>
   );
 };

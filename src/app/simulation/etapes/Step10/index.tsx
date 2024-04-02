@@ -3,6 +3,7 @@ import { useWizard } from "react-use-wizard";
 
 import { Box, P } from "@/dsfr";
 
+import { HeaderFunnel } from "../HeaderFunnel";
 import { GroupeImage } from "./GroupeImage";
 import { PersonneImage } from "./PersonneImage";
 
@@ -10,7 +11,9 @@ export const Step10 = () => {
   const { handleStep, previousStep, nextStep } = useWizard();
 
   return (
-    <>
+    <Box>
+      <HeaderFunnel />
+
       <P>Pour l’eau, il s’agit d’un chauffage...</P>
 
       <Box>
@@ -38,6 +41,6 @@ export const Step10 = () => {
           stateRelatedMessage=""
         />
       </Box>
-    </>
+    </Box>
   );
 };

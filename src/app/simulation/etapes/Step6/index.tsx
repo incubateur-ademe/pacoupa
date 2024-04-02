@@ -2,13 +2,16 @@ import { fr } from "@codegouvfr/react-dsfr";
 import { Checkbox } from "@codegouvfr/react-dsfr/Checkbox";
 import { useWizard } from "react-use-wizard";
 
-import { P } from "@/dsfr";
+import { Box, P } from "@/dsfr";
+
+import { HeaderFunnel } from "../HeaderFunnel";
 
 export const Step6 = () => {
   const { handleStep, previousStep, nextStep } = useWizard();
 
   return (
-    <>
+    <Box>
+      <HeaderFunnel />
       <P>
         Votre appartement a-t-il des <strong>espaces extérieurs personnels</strong> ?
       </P>
@@ -55,6 +58,6 @@ export const Step6 = () => {
         state="default"
         stateRelatedMessage=""
       />
-    </>
+    </Box>
   );
 };

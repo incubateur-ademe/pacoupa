@@ -3,13 +3,16 @@ import { Checkbox } from "@codegouvfr/react-dsfr/Checkbox";
 import { SegmentedControl } from "@codegouvfr/react-dsfr/SegmentedControl";
 import { useWizard } from "react-use-wizard";
 
-import { P } from "@/dsfr";
+import { Box, P } from "@/dsfr";
+
+import { HeaderFunnel } from "../HeaderFunnel";
 
 export const Step5 = () => {
   const { handleStep, previousStep, nextStep } = useWizard();
 
   return (
-    <>
+    <Box>
+      <HeaderFunnel />
       <P>
         Votre bâtiment a-t-il des <strong>espaces extérieurs communs</strong> ?
       </P>
@@ -63,6 +66,6 @@ export const Step5 = () => {
         state="default"
         stateRelatedMessage=""
       />
-    </>
+    </Box>
   );
 };

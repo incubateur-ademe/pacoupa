@@ -3,6 +3,7 @@ import { useWizard } from "react-use-wizard";
 
 import { Box, P } from "@/dsfr";
 
+import { HeaderFunnel } from "../HeaderFunnel";
 import { AucuneRenovationImage } from "./AucuneRenovationImage";
 import { RenovationGlobaleImage } from "./RenovationGlobaleImage";
 import { RenovationsPartiellesImage } from "./RenovationsPartiellesImage";
@@ -11,7 +12,8 @@ export const Step3 = () => {
   const { handleStep, previousStep, nextStep } = useWizard();
 
   return (
-    <>
+    <Box>
+      <HeaderFunnel />
       <P>
         Quelles <strong>rénovations</strong> ont été effectuées sur votre bâtiment ?
       </P>
@@ -49,6 +51,6 @@ export const Step3 = () => {
           stateRelatedMessage=""
         />
       </Box>
-    </>
+    </Box>
   );
 };

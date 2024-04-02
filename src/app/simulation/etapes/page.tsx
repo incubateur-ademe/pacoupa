@@ -6,7 +6,6 @@ import { Wizard } from "react-use-wizard";
 import { Box } from "@/dsfr";
 
 import { FooterFunnel } from "./FooterFunnel";
-import { HeaderFunnel } from "./HeaderFunnel";
 import styles from "./page.module.scss";
 import { Step1 } from "./Step1";
 import { Step2 } from "./Step2";
@@ -22,8 +21,9 @@ import { Step11 } from "./Step11";
 
 const SimulationPage = () => {
   return (
-    <Box className={cx(styles.wizard, "flex flex-col justify-start h-full")}>
-      <Wizard header={<HeaderFunnel />} footer={<FooterFunnel />}>
+    // With flex, we can use justify-between to approximatively align the footer at the bottom of the page
+    <Box className={cx(styles.wizard, "flex flex-col justify-between")}>
+      <Wizard footer={<FooterFunnel />}>
         <Step1 />
         <Step2 />
         <Step3 />
