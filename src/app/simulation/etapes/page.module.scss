@@ -2,10 +2,11 @@
 
 .wizard {
     min-width: 288px;
+    width: 800px;
    
     
     @media (max-width: $breakpoint-xl) {
-        width: 700px;
+        width: 600px;
     }
     @media (max-width: $breakpoint-md) {
         width: 400px;
