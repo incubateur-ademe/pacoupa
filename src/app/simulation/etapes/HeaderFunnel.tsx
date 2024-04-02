@@ -1,26 +1,23 @@
-import { fr } from "@codegouvfr/react-dsfr";
 import { Stepper } from "@codegouvfr/react-dsfr/Stepper";
 import { useWizard } from "react-use-wizard";
 
-import { Box } from "@/dsfr";
+const titles = ["Le bâtiment", "Le chauffage", "L'eau chaude"];
+const displayStepCount = 3;
 
-type Props = {
-  titles: string[];
-};
+export const HeaderFunnel = () => {
+  const { activeStep } = useWizard();
 
-export const HeaderFunnel = ({ titles }: Props) => {
-  const { activeStep, stepCount } = useWizard();
+  // NB: the DSFR doesn't allow to have more than 8 steps...
+  const displayStep = activeStep < 6 ? 1 : activeStep < 9 ? 2 : 3;
 
   return (
     <>
-      <Box className={fr.cx("fr-mb-8w")}>
-        <Stepper
-          currentStep={activeStep + 1}
-          nextTitle={activeStep < stepCount ? titles[activeStep + 1] : ""}
-          stepCount={stepCount}
-          title={titles[activeStep]}
-        />
-      </Box>
+      <Stepper
+        currentStep={displayStep}
+        stepCount={displayStepCount}
+        nextTitle={activeStep < displayStepCount ? titles[activeStep + 1] : ""}
+        title={titles[displayStep - 1]}
+      />
     </>
   );
 };

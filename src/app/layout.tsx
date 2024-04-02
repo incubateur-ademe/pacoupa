@@ -114,6 +114,7 @@ const RootLayout = ({ children }: PropsWithChildren) => {
               operatorLogo={operatorLogo}
             /> */}
             <PacoupaHeader />
+
             <main
               role="main"
               id={contentId}

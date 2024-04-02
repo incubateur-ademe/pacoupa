@@ -3,14 +3,13 @@ import { Input } from "@codegouvfr/react-dsfr/Input";
 import { useWizard } from "react-use-wizard";
 
 import { Box, P } from "@/dsfr";
-import { H4 } from "@/dsfr/base/typography";
 
 export const Step1 = () => {
   const { handleStep, previousStep, nextStep } = useWizard();
 
   return (
     <>
-      <H4>Où se situe le bâtiment ?</H4>
+      <P>Où se situe le bâtiment ?</P>
 
       <Box>
         <Input iconId="fr-icon-map-pin-2-fill" label="" nativeInputProps={{ placeholder: "Adresse du bâtiment" }} />
