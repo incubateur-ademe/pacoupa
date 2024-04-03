@@ -18,9 +18,14 @@ const schema = z.object({
 });
 // .superRefine((data, context) => {
 //   if (data.possedeEspacesExterieursCommuns === "Oui") {
-//     return data.espacesExterieursCommuns;
+//     if (data.espacesExterieursCommuns.length === 0) {
+//       context.addIssue({
+//         code: "custom",
+//         path: ["espacesExterieursCommuns"],
+//         message: "Les espaces extérieurs communs sont obligatoires",
+//       });
+//     }
 //   }
-//   return (data.espacesExterieursCommuns = "");
 // });
 
 export const Step5 = () => {

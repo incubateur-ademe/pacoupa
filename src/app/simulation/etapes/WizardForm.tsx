@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { useWizard } from "react-use-wizard";
-import { type z, type ZodFormattedError } from "zod";
+import { z, type ZodFormattedError } from "zod";
 
 import { store } from "@/lib/store";
 
@@ -21,9 +21,19 @@ export const handleForm =
     event.preventDefault();
 
     const data = new FormData(event.currentTarget);
-    const values = Object.fromEntries(data);
+
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    const keys = Object.keys(schema.shape) as unknown as Array<keyof z.infer<typeof schema>>;
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    const arrayKeys = keys.filter(key => schema.shape[key] instanceof z.ZodArray);
+
+    // const values = Object.fromEntries(data);
+    const values = Object.fromEntries(
+      Array.from(data.keys()).map(key => [key, arrayKeys.includes(key) ? data.getAll(key) : data.get(key)]),
+    );
 
     console.debug("Debug values", JSON.stringify(values));
+    // console.debug("Debug keys which are arrays", arrayKeys); // Logs all keys of the schema that are arrays
 
     const validation = schema.safeParse(values);
 
