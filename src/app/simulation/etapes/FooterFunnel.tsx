@@ -8,7 +8,11 @@ import { Button } from "@/components/Button";
 import { ButtonsWrapper } from "@/components/ButtonsWrapper";
 import { Box } from "@/dsfr";
 
-export const FooterFunnel = () => {
+type Props = {
+  disabled?: boolean;
+};
+
+export const FooterFunnel = ({ disabled }: Props = { disabled: false }) => {
   const { isFirstStep, isLastStep, previousStep, nextStep } = useWizard();
 
   return (
@@ -37,14 +41,9 @@ export const FooterFunnel = () => {
               Voir les résultats
             </Button>
           ) : (
-            <Button
-              nativeButtonProps={{
-                // eslint-disable-next-line @typescript-eslint/no-misused-promises
-                onClick: () => nextStep(),
-              }}
-            >
-              Suivant
-            </Button>
+            <>
+              <Button nativeButtonProps={{ disabled }}>Suivant</Button>
+            </>
           )}
         </ButtonsWrapper>
       </Box>

@@ -3,7 +3,6 @@ import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import { Wizard } from "@/components/Wizard";
 import { Box } from "@/dsfr";
 
-import { FooterFunnel } from "./FooterFunnel";
 import styles from "./page.module.scss";
 import { Step1 } from "./Step1";
 import { Step2 } from "./Step2";
@@ -21,7 +20,7 @@ const SimulationPage = () => {
   return (
     // With flex, we can use justify-between to approximatively align the footer at the bottom of the page
     <Box className={cx(styles.wizard, "flex flex-col justify-between")}>
-      <Wizard footer={<FooterFunnel />}>
+      <Wizard>
         <Step1 />
         <Step2 />
         <Step3 />
