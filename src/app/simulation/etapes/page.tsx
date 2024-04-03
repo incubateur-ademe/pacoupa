@@ -1,8 +1,6 @@
-"use client";
-
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
-import { Wizard } from "react-use-wizard";
 
+import { Wizard } from "@/components/Wizard";
 import { Box } from "@/dsfr";
 
 import { FooterFunnel } from "./FooterFunnel";

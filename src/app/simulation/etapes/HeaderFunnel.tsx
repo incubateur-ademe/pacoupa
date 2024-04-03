@@ -1,3 +1,5 @@
+"use client";
+
 import { fr } from "@codegouvfr/react-dsfr";
 import { Stepper } from "@codegouvfr/react-dsfr/Stepper";
 import { useWizard } from "react-use-wizard";

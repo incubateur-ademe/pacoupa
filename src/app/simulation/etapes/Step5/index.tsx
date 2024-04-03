@@ -1,3 +1,5 @@
+"use client";
+
 import { fr } from "@codegouvfr/react-dsfr";
 import { Checkbox } from "@codegouvfr/react-dsfr/Checkbox";
 import { SegmentedControl } from "@codegouvfr/react-dsfr/SegmentedControl";

@@ -1,3 +1,5 @@
+"use client";
+
 import { fr } from "@codegouvfr/react-dsfr";
 import { Input } from "@codegouvfr/react-dsfr/Input";
 import { useWizard } from "react-use-wizard";

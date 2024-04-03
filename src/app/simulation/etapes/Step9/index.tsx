@@ -1,3 +1,5 @@
+"use client";
+
 import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
 import { useWizard } from "react-use-wizard";
 
