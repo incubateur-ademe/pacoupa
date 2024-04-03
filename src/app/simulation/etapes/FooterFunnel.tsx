@@ -12,7 +12,7 @@ type Props = {
   disabled?: boolean;
 };
 
-export const FooterFunnel = ({ disabled }: Props = { disabled: false }) => {
+export const ButtonsFunnel = ({ disabled }: Props = { disabled: false }) => {
   const { isFirstStep, isLastStep, previousStep, nextStep } = useWizard();
 
   return (

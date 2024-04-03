@@ -4,11 +4,12 @@ import { fr } from "@codegouvfr/react-dsfr";
 import { Input } from "@codegouvfr/react-dsfr/Input";
 import { useState } from "react";
 import { useWizard } from "react-use-wizard";
-import { z } from "zod";
+import { z, type ZodFormattedError } from "zod";
 
 import { Box, P } from "@/dsfr";
+import { handleForm, type HandleFormResult } from "@/lib/form";
 
-import { FooterFunnel } from "../FooterFunnel";
+import { ButtonsFunnel } from "../FooterFunnel";
 import { HeaderFunnel } from "../HeaderFunnel";
 
 const schema = z.object({
@@ -17,25 +18,16 @@ const schema = z.object({
 
 export const Step1 = () => {
   const { nextStep } = useWizard();
+  const [errors, setErrors] = useState<ZodFormattedError<{ [x: string]: unknown }, string>>();
 
-  const [errors, setErrors] = useState<Record<string, string>>({});
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const data = new FormData(event.currentTarget);
-    const values = Object.fromEntries(data);
-
-    const validation = schema.safeParse(values);
-
-    if (validation.success) {
-      sessionStorage.setItem("step1", JSON.stringify(validation.data));
+  const formAction = (result: HandleFormResult) => {
+    if (result.success) {
       nextStep().catch(() => {
-        console.log("error dans la navigation");
+        console.log("erreur dans la navigation");
       });
     } else {
-      console.log("error", validation.error);
-      setErrors({ adresse: validation.error.errors[0].message });
+      console.log("error", result.errors);
+      setErrors(result.errors);
     }
   };
 
@@ -45,18 +37,18 @@ export const Step1 = () => {
 
       <P>Où se situe le bâtiment ?</P>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleForm(schema, formAction)}>
         <Box>
           <Input
             iconId="fr-icon-map-pin-2-fill"
             label="Adresse"
             nativeInputProps={{ placeholder: "Adresse du bâtiment", name: "adresse" }}
-            state={errors.adresse ? "error" : "default"}
-            stateRelatedMessage={errors.adresse}
+            state={errors?.adresse?._errors ? "error" : "default"}
+            stateRelatedMessage={errors?.adresse?._errors}
           />
         </Box>
 
-        <FooterFunnel />
+        <ButtonsFunnel />
       </form>
 
       <P className={fr.cx("fr-mt-8v", "fr-text--sm")}>
