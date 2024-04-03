@@ -23,6 +23,8 @@ export const handleForm =
     const data = new FormData(event.currentTarget);
     const values = Object.fromEntries(data);
 
+    console.debug("Debug values", JSON.stringify(values));
+
     const validation = schema.safeParse(values);
 
     let result: HandleFormResult;
