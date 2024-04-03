@@ -12,7 +12,7 @@ export type HandleFormResult =
     };
 
 export const handleForm =
-  (schema: z.AnyZodObject, callback: (handleResult: HandleFormResult) => void) =>
+  (schema: z.AnyZodObject, formAction: (handleResult: HandleFormResult) => void) =>
   (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -33,5 +33,5 @@ export const handleForm =
       result = { success: false, errors: validation.error.format() };
     }
 
-    callback(result);
+    formAction(result);
   };
