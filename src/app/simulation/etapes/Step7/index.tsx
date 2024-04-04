@@ -1,12 +1,10 @@
 "use client";
 
 import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
-import { useEffect } from "react";
 import { z } from "zod";
 
-import { ClientOnly } from "@/components/ClientOnly";
 import { Box, P } from "@/dsfr";
-import { store } from "@/lib/store";
+import { useStore } from "@/lib/store";
 
 import { HeaderFunnel } from "../HeaderFunnel";
 import { WizardForm } from "../WizardForm";
@@ -24,51 +22,49 @@ const schema = z.object({
 });
 
 export const Step7 = () => {
-  let initialState: ReturnType<typeof store.get>;
-
-  useEffect(() => {
-    initialState = store.get();
-  }, []);
+  const [initialState, sessionStorageOK] = useStore();
 
   return (
-    <ClientOnly>
-      <Box>
-        <HeaderFunnel />
-        <P>S’agit-il d’un chauffage...</P>
+    <>
+      {sessionStorageOK && (
+        <Box>
+          <HeaderFunnel />
+          <P>S’agit-il d’un chauffage...</P>
 
-        <WizardForm
-          schema={schema}
-          render={({ errors }) => (
-            <>
-              <Box>
-                <RadioButtons
-                  name="chauffage"
-                  options={[
-                    {
-                      illustration: <PersonneImage />,
-                      label: "Individuel",
-                      nativeInputProps: {
-                        defaultChecked: initialState.chauffage === "individuel",
-                        value: "individuel",
+          <WizardForm
+            schema={schema}
+            render={({ errors }) => (
+              <>
+                <Box>
+                  <RadioButtons
+                    name="chauffage"
+                    options={[
+                      {
+                        illustration: <PersonneImage />,
+                        label: "Individuel",
+                        nativeInputProps: {
+                          defaultChecked: initialState?.chauffage === "individuel",
+                          value: "individuel",
+                        },
                       },
-                    },
-                    {
-                      illustration: <GroupeImage />,
-                      label: "Collectif",
-                      nativeInputProps: {
-                        defaultChecked: initialState.chauffage === "collectif",
-                        value: "collectif",
+                      {
+                        illustration: <GroupeImage />,
+                        label: "Collectif",
+                        nativeInputProps: {
+                          defaultChecked: initialState?.chauffage === "collectif",
+                          value: "collectif",
+                        },
                       },
-                    },
-                  ]}
-                  state={errors?.chauffage?._errors ? "error" : "default"}
-                  stateRelatedMessage={errors?.chauffage?._errors}
-                />
-              </Box>
-            </>
-          )}
-        />
-      </Box>
-    </ClientOnly>
+                    ]}
+                    state={errors?.chauffage?._errors ? "error" : "default"}
+                    stateRelatedMessage={errors?.chauffage?._errors}
+                  />
+                </Box>
+              </>
+            )}
+          />
+        </Box>
+      )}
+    </>
   );
 };

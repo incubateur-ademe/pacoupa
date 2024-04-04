@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 const storeKey = "pacoupa-simulation";
 
 export const store = {
@@ -18,4 +20,16 @@ export const store = {
     const currentData = store.get();
     store.set({ ...currentData, ...data });
   },
+};
+
+export const useStore = (): [ReturnType<typeof store.get> | undefined, boolean] => {
+  const [sessionStorageOK, setSessionStorageOK] = useState(false);
+  const [initialState, setInitialState] = useState<ReturnType<typeof store.get> | undefined>();
+
+  useEffect(() => {
+    setInitialState(store.get());
+    setSessionStorageOK(true);
+  }, []);
+
+  return [initialState, sessionStorageOK];
 };

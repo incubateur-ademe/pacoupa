@@ -6,9 +6,8 @@ import { SegmentedControl, type SegmentedControlProps } from "@codegouvfr/react-
 import { useEffect, useState } from "react";
 import { z } from "zod";
 
-import { ClientOnly } from "@/components/ClientOnly";
 import { Box, P } from "@/dsfr";
-import { store } from "@/lib/store";
+import { useStore } from "@/lib/store";
 import { OuiNonLabels } from "@/utils/zod";
 
 import { HeaderFunnel } from "../HeaderFunnel";
@@ -39,15 +38,14 @@ const schemaNon = z.object({
 });
 
 export const Step6 = () => {
-  let initialState: ReturnType<typeof store.get>;
-
+  const [initialState, sessionStorageOK] = useStore();
   const [radioState, setRadioState] = useState<(typeof OuiNonLabels)[number] | undefined>();
-  // initialState.possedeEspacesExterieursCommuns as (typeof OuiNonLabels)[number] | undefined,
 
   useEffect(() => {
-    initialState = store.get();
-    setRadioState(initialState.possedeEspacesExterieursCommuns as (typeof OuiNonLabels)[number]);
-  }, []);
+    if (sessionStorageOK) {
+      setRadioState(initialState?.possedeEspacesExterieursPersonnels as (typeof OuiNonLabels)[number]);
+    }
+  }, [sessionStorageOK, initialState]);
 
   useEffect(() => {
     if (radioState === "Non") {
@@ -60,76 +58,78 @@ export const Step6 = () => {
   }, [radioState]);
 
   return (
-    <ClientOnly>
-      <Box>
-        <HeaderFunnel />
-        <P>
-          Votre appartement a-t-il des <strong>espaces extérieurs personnels</strong> ?
-        </P>
+    <>
+      {sessionStorageOK && (
+        <Box>
+          <HeaderFunnel />
+          <P>
+            Votre appartement a-t-il des <strong>espaces extérieurs personnels</strong> ?
+          </P>
 
-        <WizardForm
-          schema={radioState === "Oui" ? schemaOui : schemaNon}
-          render={({ errors }) => (
-            <>
-              <SegmentedControl
-                legend=""
-                name="possedeEspacesExterieursPersonnels"
-                segments={
-                  OuiNonLabels.map(label => ({
-                    label,
-                    nativeInputProps: {
-                      value: label,
-                      checked: radioState === label,
-                      onChange: () => setRadioState(label),
-                    },
-                  })) as unknown as SegmentedControlProps.Segments
-                }
-              />
+          <WizardForm
+            schema={radioState === "Oui" ? schemaOui : schemaNon}
+            render={({ errors }) => (
+              <>
+                <SegmentedControl
+                  legend=""
+                  name="possedeEspacesExterieursPersonnels"
+                  segments={
+                    OuiNonLabels.map(label => ({
+                      label,
+                      nativeInputProps: {
+                        value: label,
+                        checked: radioState === label,
+                        onChange: () => setRadioState(label),
+                      },
+                    })) as unknown as SegmentedControlProps.Segments
+                  }
+                />
 
-              {errors?.possedeEspacesExterieursPersonnels?._errors && (
-                <p className={fr.cx("fr-message", "fr-message--error", "fr-mt-2w")}>
-                  {errors?.possedeEspacesExterieursPersonnels?._errors}
-                </p>
-              )}
+                {errors?.possedeEspacesExterieursPersonnels?._errors && (
+                  <p className={fr.cx("fr-message", "fr-message--error", "fr-mt-2w")}>
+                    {errors?.possedeEspacesExterieursPersonnels?._errors}
+                  </p>
+                )}
 
-              <P className={fr.cx("fr-mt-8v")}>Lesquels ?</P>
+                <P className={fr.cx("fr-mt-8v")}>Lesquels ?</P>
 
-              <Checkbox
-                legend="Légende pour l’ensemble de champs"
-                disabled={radioState === "Oui" ? false : true}
-                options={[
-                  {
-                    label: "Balcon",
-                    nativeInputProps: {
-                      defaultChecked: initialState?.espacesExterieursPersonnels?.includes("balcon"),
-                      name: "espacesExterieursPersonnels",
-                      value: "balcon",
+                <Checkbox
+                  legend="Légende pour l’ensemble de champs"
+                  disabled={radioState === "Oui" ? false : true}
+                  options={[
+                    {
+                      label: "Balcon",
+                      nativeInputProps: {
+                        defaultChecked: initialState?.espacesExterieursPersonnels?.includes("balcon"),
+                        name: "espacesExterieursPersonnels",
+                        value: "balcon",
+                      },
                     },
-                  },
-                  {
-                    label: "Toit terrasse",
-                    nativeInputProps: {
-                      defaultChecked: initialState?.espacesExterieursPersonnels?.includes("toit terrasse"),
-                      name: "espacesExterieursPersonnels",
-                      value: "toit terrasse",
+                    {
+                      label: "Toit terrasse",
+                      nativeInputProps: {
+                        defaultChecked: initialState?.espacesExterieursPersonnels?.includes("toit terrasse"),
+                        name: "espacesExterieursPersonnels",
+                        value: "toit terrasse",
+                      },
                     },
-                  },
-                  {
-                    label: "Autres",
-                    nativeInputProps: {
-                      defaultChecked: initialState?.espacesExterieursPersonnels?.includes("autres"),
-                      name: "espacesExterieursPersonnels",
-                      value: "autres",
+                    {
+                      label: "Autres",
+                      nativeInputProps: {
+                        defaultChecked: initialState?.espacesExterieursPersonnels?.includes("autres"),
+                        name: "espacesExterieursPersonnels",
+                        value: "autres",
+                      },
                     },
-                  },
-                ]}
-                state={errors?.espacesExterieursPersonnels?._errors ? "error" : "default"}
-                stateRelatedMessage={errors?.espacesExterieursPersonnels?._errors}
-              />
-            </>
-          )}
-        />
-      </Box>
-    </ClientOnly>
+                  ]}
+                  state={errors?.espacesExterieursPersonnels?._errors ? "error" : "default"}
+                  stateRelatedMessage={errors?.espacesExterieursPersonnels?._errors}
+                />
+              </>
+            )}
+          />
+        </Box>
+      )}
+    </>
   );
 };

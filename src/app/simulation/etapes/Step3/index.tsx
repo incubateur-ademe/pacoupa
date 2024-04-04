@@ -1,12 +1,10 @@
 "use client";
 
 import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
-import { useEffect } from "react";
 import { z } from "zod";
 
-import { ClientOnly } from "@/components/ClientOnly";
 import { Box, P } from "@/dsfr";
-import { store } from "@/lib/store";
+import { useStore } from "@/lib/store";
 
 import { HeaderFunnel } from "../HeaderFunnel";
 import { WizardForm } from "../WizardForm";
@@ -19,62 +17,60 @@ const schema = z.object({
 });
 
 export const Step3 = () => {
-  let initialState: ReturnType<typeof store.get>;
-
-  useEffect(() => {
-    initialState = store.get();
-  }, []);
+  const [initialState, sessionStorageOK] = useStore();
 
   return (
-    <ClientOnly>
-      <Box>
-        <HeaderFunnel />
-        <P>
-          Quelles <strong>rénovations</strong> ont été effectuées sur votre bâtiment ?
-        </P>
+    <>
+      {sessionStorageOK && (
+        <Box>
+          <HeaderFunnel />
+          <P>
+            Quelles <strong>rénovations</strong> ont été effectuées sur votre bâtiment ?
+          </P>
 
-        <WizardForm
-          schema={schema}
-          render={({ errors }) => (
-            <Box>
-              <RadioButtons
-                // legend="Légende pour l’ensemble de champs"
-                name="renovation"
-                options={[
-                  {
-                    illustration: <AucuneRenovationImage />,
-                    label: "Pas de rénovation",
-                    nativeInputProps: {
-                      defaultChecked: initialState.renovation === "aucune rénovation",
-                      value: "aucune rénovation",
+          <WizardForm
+            schema={schema}
+            render={({ errors }) => (
+              <Box>
+                <RadioButtons
+                  // legend="Légende pour l’ensemble de champs"
+                  name="renovation"
+                  options={[
+                    {
+                      illustration: <AucuneRenovationImage />,
+                      label: "Pas de rénovation",
+                      nativeInputProps: {
+                        defaultChecked: initialState?.renovation === "aucune rénovation",
+                        value: "aucune rénovation",
+                      },
                     },
-                  },
-                  {
-                    illustration: <RenovationsPartiellesImage />,
-                    label: "Partielles",
-                    hintText: "Toiture ou murs ou double vitrage, ...",
-                    nativeInputProps: {
-                      defaultChecked: initialState.renovation === "rénovations partielles",
-                      value: "rénovations partielles",
+                    {
+                      illustration: <RenovationsPartiellesImage />,
+                      label: "Partielles",
+                      hintText: "Toiture ou murs ou double vitrage, ...",
+                      nativeInputProps: {
+                        defaultChecked: initialState?.renovation === "rénovations partielles",
+                        value: "rénovations partielles",
+                      },
                     },
-                  },
-                  {
-                    illustration: <RenovationGlobaleImage />,
-                    label: "Globale",
-                    hintText: "Toiture, murs, double vitrage et plancher bas",
-                    nativeInputProps: {
-                      defaultChecked: initialState.renovation === "rénovation globale",
-                      value: "rénovation globale",
+                    {
+                      illustration: <RenovationGlobaleImage />,
+                      label: "Globale",
+                      hintText: "Toiture, murs, double vitrage et plancher bas",
+                      nativeInputProps: {
+                        defaultChecked: initialState?.renovation === "rénovation globale",
+                        value: "rénovation globale",
+                      },
                     },
-                  },
-                ]}
-                state={errors?.renovation?._errors ? "error" : "default"}
-                stateRelatedMessage={errors?.renovation?._errors}
-              />
-            </Box>
-          )}
-        />
-      </Box>
-    </ClientOnly>
+                  ]}
+                  state={errors?.renovation?._errors ? "error" : "default"}
+                  stateRelatedMessage={errors?.renovation?._errors}
+                />
+              </Box>
+            )}
+          />
+        </Box>
+      )}
+    </>
   );
 };
