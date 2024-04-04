@@ -7,14 +7,33 @@ import { useState } from "react";
 import { z } from "zod";
 
 import { Box, P } from "@/dsfr";
-import { OuiNonLabels, OuiNonSchema } from "@/utils/zod";
+import { OuiNonLabels } from "@/utils/zod";
 
 import { HeaderFunnel } from "../HeaderFunnel";
 import { WizardForm } from "../WizardForm";
 
-const schema = z.object({
-  possedeEspacesExterieursPersonnels: OuiNonSchema,
-  espacesExterieursPersonnels: z.string({ required_error: "Les espaces extérieurs personnels sont obligatoires" }),
+const schemaOui = z.object({
+  possedeEspacesExterieursPersonnels: z.literal("Oui"),
+  espacesExterieursPersonnels: z
+    .array(z.string({ required_error: "Les espaces extérieurs personnels sont obligatoires" }), {
+      errorMap: (issue, context) => {
+        if (issue.code === "invalid_type") {
+          return { message: "Les espaces extérieurs personnels sont obligatoires" };
+        }
+        return { message: context.defaultError };
+      },
+    })
+    .nonempty({ message: "Les espaces extérieurs personnels sont obligatoires" }),
+});
+const schemaNon = z.object({
+  possedeEspacesExterieursPersonnels: z.literal("Non", {
+    errorMap: (issue, context) => {
+      if (issue.code === "invalid_literal") {
+        return { message: "La question est obligatoire" };
+      }
+      return { message: context.defaultError };
+    },
+  }),
 });
 
 export const Step6 = () => {
@@ -28,7 +47,7 @@ export const Step6 = () => {
       </P>
 
       <WizardForm
-        schema={schema}
+        schema={radioState === "Oui" ? schemaOui : schemaNon}
         render={({ errors }) => (
           <>
             <SegmentedControl
@@ -46,10 +65,17 @@ export const Step6 = () => {
               }
             />
 
+            {errors?.possedeEspacesExterieursPersonnels?._errors && (
+              <p className={fr.cx("fr-message", "fr-message--error", "fr-mt-2w")}>
+                {errors?.possedeEspacesExterieursPersonnels?._errors}
+              </p>
+            )}
+
             <P className={fr.cx("fr-mt-8v")}>Lesquels ?</P>
 
             <Checkbox
               legend="Légende pour l’ensemble de champs"
+              disabled={radioState === "Oui" ? false : true}
               options={[
                 {
                   label: "Balcon",
