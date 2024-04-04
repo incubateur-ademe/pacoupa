@@ -10,8 +10,10 @@ import { WizardForm } from "../WizardForm";
 import { GroupeImage } from "./GroupeImage";
 import { PersonneImage } from "./PersonneImage";
 
+const required_error = "Le type de chauffage est obligatoire";
+
 const schema = z.object({
-  typeChauffage: z.string().min(1, "Le type de chauffage est obligatoire"),
+  typeChauffage: z.string({ required_error }).min(1, required_error),
 });
 
 export const Step10 = () => {

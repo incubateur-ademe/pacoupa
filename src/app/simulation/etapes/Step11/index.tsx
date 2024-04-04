@@ -8,8 +8,10 @@ import { Box, P } from "@/dsfr";
 import { HeaderFunnel } from "../HeaderFunnel";
 import { WizardForm } from "../WizardForm";
 
+const required_error = "Le type d'énergie pour chauffer l'eau est obligatoire";
+
 const schema = z.object({
-  energieECS: z.string().min(1, "Le type d'énergie pour chauffer l'eau est obligatoire"),
+  energieECS: z.string({ required_error }).min(1, required_error),
 });
 
 export const Step11 = () => {

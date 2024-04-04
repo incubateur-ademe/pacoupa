@@ -8,8 +8,10 @@ import { Box, P } from "@/dsfr";
 import { HeaderFunnel } from "../HeaderFunnel";
 import { WizardForm } from "../WizardForm";
 
+const required_error = "Le type d'émetteur est obligatoire";
+
 const schema = z.object({
-  emetteur: z.string().min(1, "Le type d'émetteur est obligatoire"),
+  emetteur: z.string({ required_error }).min(1, required_error),
 });
 
 export const Step9 = () => {
