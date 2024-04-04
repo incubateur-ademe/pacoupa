@@ -7,26 +7,34 @@ import { useEffect, useState } from "react";
 import { z } from "zod";
 
 import { Box, P } from "@/dsfr";
-import { OuiNonLabels, OuiNonSchema } from "@/utils/zod";
+import { OuiNonLabels } from "@/utils/zod";
 
 import { HeaderFunnel } from "../HeaderFunnel";
 import { WizardForm } from "../WizardForm";
 
-const schema = z.object({
-  possedeEspacesExterieursCommuns: OuiNonSchema,
-  espacesExterieursCommuns: z.array(z.string({ required_error: "Les espaces extérieurs communs sont obligatoires" })),
+const schemaOui = z.object({
+  possedeEspacesExterieursCommuns: z.literal("Oui"),
+  espacesExterieursCommuns: z
+    .array(z.string({ required_error: "Les espaces extérieurs communs sont obligatoires" }), {
+      errorMap: (issue, context) => {
+        if (issue.code === "invalid_type") {
+          return { message: "Les espaces extérieurs communs sont obligatoires" };
+        }
+        return { message: context.defaultError };
+      },
+    })
+    .nonempty({ message: "Les espaces extérieurs communs sont obligatoires" }),
 });
-// .superRefine((data, context) => {
-//   if (data.possedeEspacesExterieursCommuns === "Oui") {
-//     if (data.espacesExterieursCommuns.length === 0) {
-//       context.addIssue({
-//         code: "custom",
-//         path: ["espacesExterieursCommuns"],
-//         message: "Les espaces extérieurs communs sont obligatoires",
-//       });
-//     }
-//   }
-// });
+const schemaNon = z.object({
+  possedeEspacesExterieursCommuns: z.literal("Non", {
+    errorMap: (issue, context) => {
+      if (issue.code === "invalid_literal") {
+        return { message: "La question est obligatoire" };
+      }
+      return { message: context.defaultError };
+    },
+  }),
+});
 
 export const Step5 = () => {
   const [radioState, setRadioState] = useState<(typeof OuiNonLabels)[number]>();
@@ -49,7 +57,7 @@ export const Step5 = () => {
       </P>
 
       <WizardForm
-        schema={schema}
+        schema={radioState === "Oui" ? schemaOui : schemaNon}
         render={({ errors }) => (
           <>
             <SegmentedControl
@@ -66,6 +74,12 @@ export const Step5 = () => {
                 })) as unknown as SegmentedControlProps.Segments
               }
             />
+
+            {errors?.possedeEspacesExterieursCommuns?._errors && (
+              <p className={fr.cx("fr-message", "fr-message--error", "fr-mt-2w")}>
+                {errors?.possedeEspacesExterieursCommuns?._errors}
+              </p>
+            )}
 
             <P className={fr.cx("fr-mt-8v")}>Lesquels ?</P>
 
