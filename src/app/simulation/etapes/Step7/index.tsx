@@ -4,6 +4,7 @@ import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
 import { z } from "zod";
 
 import { Box, P } from "@/dsfr";
+import { store } from "@/lib/store";
 
 import { HeaderFunnel } from "../HeaderFunnel";
 import { WizardForm } from "../WizardForm";
@@ -21,6 +22,8 @@ const schema = z.object({
 });
 
 export const Step7 = () => {
+  const initialState = store.get();
+
   return (
     <Box>
       <HeaderFunnel />
@@ -38,6 +41,7 @@ export const Step7 = () => {
                     illustration: <PersonneImage />,
                     label: "Individuel",
                     nativeInputProps: {
+                      defaultChecked: initialState.chauffage === "individuel",
                       value: "individuel",
                     },
                   },
@@ -45,6 +49,7 @@ export const Step7 = () => {
                     illustration: <GroupeImage />,
                     label: "Collectif",
                     nativeInputProps: {
+                      defaultChecked: initialState.chauffage === "collectif",
                       value: "collectif",
                     },
                   },

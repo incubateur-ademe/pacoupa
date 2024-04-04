@@ -4,6 +4,7 @@ import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
 import { z } from "zod";
 
 import { Box, P } from "@/dsfr";
+import { store } from "@/lib/store";
 
 import { HeaderFunnel } from "../HeaderFunnel";
 import { WizardForm } from "../WizardForm";
@@ -15,6 +16,8 @@ const schema = z.object({
 });
 
 export const Step9 = () => {
+  const initialState = store.get();
+
   return (
     <Box>
       <HeaderFunnel />
@@ -33,12 +36,14 @@ export const Step9 = () => {
                   {
                     label: "Des radiateurs",
                     nativeInputProps: {
+                      defaultChecked: initialState.emetteur === "radiateurs",
                       value: "radiateurs",
                     },
                   },
                   {
                     label: "Un plancher chauffant",
                     nativeInputProps: {
+                      defaultChecked: initialState.emetteur === "plancher chauffant",
                       value: "plancher chauffant",
                     },
                   },

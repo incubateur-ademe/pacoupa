@@ -4,6 +4,7 @@ import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
 import { z } from "zod";
 
 import { Box, P } from "@/dsfr";
+import { store } from "@/lib/store";
 
 import { HeaderFunnel } from "../HeaderFunnel";
 import { WizardForm } from "../WizardForm";
@@ -16,6 +17,8 @@ const schema = z.object({
 });
 
 export const Step3 = () => {
+  const initialState = store.get();
+
   return (
     <Box>
       <HeaderFunnel />
@@ -35,6 +38,7 @@ export const Step3 = () => {
                   illustration: <AucuneRenovationImage />,
                   label: "Pas de rénovation",
                   nativeInputProps: {
+                    defaultChecked: initialState.renovation === "aucune rénovation",
                     value: "aucune rénovation",
                   },
                 },
@@ -43,6 +47,7 @@ export const Step3 = () => {
                   label: "Partielles",
                   hintText: "Toiture ou murs ou double vitrage, ...",
                   nativeInputProps: {
+                    defaultChecked: initialState.renovation === "rénovations partielles",
                     value: "rénovations partielles",
                   },
                 },
@@ -51,6 +56,7 @@ export const Step3 = () => {
                   label: "Globale",
                   hintText: "Toiture, murs, double vitrage et plancher bas",
                   nativeInputProps: {
+                    defaultChecked: initialState.renovation === "rénovation globale",
                     value: "rénovation globale",
                   },
                 },

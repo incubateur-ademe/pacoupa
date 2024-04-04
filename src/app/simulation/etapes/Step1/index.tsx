@@ -5,6 +5,7 @@ import { Input } from "@codegouvfr/react-dsfr/Input";
 import { z } from "zod";
 
 import { Box, P } from "@/dsfr";
+import { store } from "@/lib/store";
 
 import { HeaderFunnel } from "../HeaderFunnel";
 import { WizardForm } from "../WizardForm";
@@ -14,6 +15,8 @@ const schema = z.object({
 });
 
 export const Step1 = () => {
+  const initialState = store.get();
+
   return (
     <Box>
       <HeaderFunnel />
@@ -27,7 +30,11 @@ export const Step1 = () => {
             <Input
               iconId="fr-icon-map-pin-2-fill"
               label="Adresse"
-              nativeInputProps={{ placeholder: "Adresse du bâtiment", name: "adresse" }}
+              nativeInputProps={{
+                placeholder: "Adresse du bâtiment",
+                name: "adresse",
+                defaultValue: initialState.adresse,
+              }}
               state={errors?.adresse?._errors ? "error" : "default"}
               stateRelatedMessage={errors?.adresse?._errors}
             />

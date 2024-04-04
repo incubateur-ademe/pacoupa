@@ -5,6 +5,7 @@ import { Input } from "@codegouvfr/react-dsfr/Input";
 import { z } from "zod";
 
 import { Box, P } from "@/dsfr";
+import { store } from "@/lib/store";
 
 import { HeaderFunnel } from "../HeaderFunnel";
 import { WizardForm } from "../WizardForm";
@@ -18,6 +19,8 @@ const schema = z.object({
 });
 
 export const Step4 = () => {
+  const initialState = store.get();
+
   return (
     <Box>
       <HeaderFunnel />
@@ -31,7 +34,11 @@ export const Step4 = () => {
           <Box>
             <Input
               label=""
-              nativeInputProps={{ placeholder: "Nombre de logements", name: "nbLogements" }}
+              nativeInputProps={{
+                placeholder: "Nombre de logements",
+                name: "nbLogements",
+                defaultValue: initialState.nbLogements,
+              }}
               state={errors?.nbLogements?._errors ? "error" : "default"}
               stateRelatedMessage={errors?.nbLogements?._errors}
             />

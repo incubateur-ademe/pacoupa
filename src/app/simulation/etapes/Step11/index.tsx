@@ -4,6 +4,7 @@ import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
 import { z } from "zod";
 
 import { Box, P } from "@/dsfr";
+import { store } from "@/lib/store";
 
 import { HeaderFunnel } from "../HeaderFunnel";
 import { WizardForm } from "../WizardForm";
@@ -15,6 +16,8 @@ const schema = z.object({
 });
 
 export const Step11 = () => {
+  const initialState = store.get();
+
   return (
     <Box>
       <HeaderFunnel />
@@ -34,18 +37,21 @@ export const Step11 = () => {
                 {
                   label: "Fioul",
                   nativeInputProps: {
+                    defaultChecked: initialState.energieECS === "fioul",
                     value: "fioul",
                   },
                 },
                 {
                   label: "Gaz",
                   nativeInputProps: {
+                    defaultChecked: initialState.energieECS === "gaz",
                     value: "gaz",
                   },
                 },
                 {
                   label: "Ballon électrique",
                   nativeInputProps: {
+                    defaultChecked: initialState.energieECS === "ballon electrique",
                     value: "ballon electrique",
                   },
                 },

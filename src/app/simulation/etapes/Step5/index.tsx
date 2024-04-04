@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { z } from "zod";
 
 import { Box, P } from "@/dsfr";
+import { store } from "@/lib/store";
 import { OuiNonLabels } from "@/utils/zod";
 
 import { HeaderFunnel } from "../HeaderFunnel";
@@ -37,7 +38,10 @@ const schemaNon = z.object({
 });
 
 export const Step5 = () => {
-  const [radioState, setRadioState] = useState<(typeof OuiNonLabels)[number]>();
+  const initialState = store.get();
+  const [radioState, setRadioState] = useState<(typeof OuiNonLabels)[number] | undefined>(
+    initialState.possedeEspacesExterieursCommuns as (typeof OuiNonLabels)[number] | undefined,
+  );
 
   useEffect(() => {
     if (radioState === "Non") {
@@ -90,6 +94,7 @@ export const Step5 = () => {
                 {
                   label: "Jardin",
                   nativeInputProps: {
+                    defaultChecked: initialState.espacesExterieursCommuns?.includes("jardin"),
                     name: "espacesExterieursCommuns",
                     value: "jardin",
                   },
@@ -97,6 +102,7 @@ export const Step5 = () => {
                 {
                   label: "Parking extérieur",
                   nativeInputProps: {
+                    defaultChecked: initialState.espacesExterieursCommuns?.includes("parking exterieur"),
                     name: "espacesExterieursCommuns",
                     value: "parking exterieur",
                   },
@@ -104,6 +110,7 @@ export const Step5 = () => {
                 {
                   label: "Toit terrasse",
                   nativeInputProps: {
+                    defaultChecked: initialState.espacesExterieursCommuns?.includes("toit terrasse"),
                     name: "espacesExterieursCommuns",
                     value: "toit terrasse",
                   },
@@ -111,6 +118,7 @@ export const Step5 = () => {
                 {
                   label: "Autres",
                   nativeInputProps: {
+                    defaultChecked: initialState.espacesExterieursCommuns?.includes("autres"),
                     name: "espacesExterieursCommuns",
                     value: "autres",
                   },

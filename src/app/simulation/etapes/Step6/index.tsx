@@ -7,6 +7,7 @@ import { useState } from "react";
 import { z } from "zod";
 
 import { Box, P } from "@/dsfr";
+import { store } from "@/lib/store";
 import { OuiNonLabels } from "@/utils/zod";
 
 import { HeaderFunnel } from "../HeaderFunnel";
@@ -37,7 +38,10 @@ const schemaNon = z.object({
 });
 
 export const Step6 = () => {
-  const [radioState, setRadioState] = useState<(typeof OuiNonLabels)[number]>();
+  const initialState = store.get();
+  const [radioState, setRadioState] = useState<(typeof OuiNonLabels)[number] | undefined>(
+    initialState.possedeEspacesExterieursPersonnels as (typeof OuiNonLabels)[number] | undefined,
+  );
 
   return (
     <Box>
@@ -80,6 +84,7 @@ export const Step6 = () => {
                 {
                   label: "Balcon",
                   nativeInputProps: {
+                    defaultChecked: initialState.espacesExterieursPersonnels?.includes("balcon"),
                     name: "espacesExterieursPersonnels",
                     value: "balcon",
                   },
@@ -87,6 +92,7 @@ export const Step6 = () => {
                 {
                   label: "Toit terrasse",
                   nativeInputProps: {
+                    defaultChecked: initialState.espacesExterieursPersonnels?.includes("toit terrasse"),
                     name: "espacesExterieursPersonnels",
                     value: "toit terrasse",
                   },
@@ -94,6 +100,7 @@ export const Step6 = () => {
                 {
                   label: "Autres",
                   nativeInputProps: {
+                    defaultChecked: initialState.espacesExterieursPersonnels?.includes("autres"),
                     name: "espacesExterieursPersonnels",
                     value: "autres",
                   },
