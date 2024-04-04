@@ -1,8 +1,10 @@
 "use client";
 
 import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
+import { useEffect } from "react";
 import { z } from "zod";
 
+import { ClientOnly } from "@/components/ClientOnly";
 import { Box, P } from "@/dsfr";
 import { store } from "@/lib/store";
 
@@ -18,46 +20,52 @@ const schema = z.object({
 });
 
 export const Step10 = () => {
-  const initialState = store.get();
+  let initialState: ReturnType<typeof store.get>;
+
+  useEffect(() => {
+    initialState = store.get();
+  }, []);
 
   return (
-    <Box>
-      <HeaderFunnel />
+    <ClientOnly>
+      <Box>
+        <HeaderFunnel />
 
-      <P>Pour l’eau, il s’agit d’un chauffage...</P>
+        <P>Pour l’eau, il s’agit d’un chauffage...</P>
 
-      <WizardForm
-        schema={schema}
-        render={({ errors }) => (
-          <Box>
-            <RadioButtons
-              // legend="Légende pour l’ensemble de champs"
-              name="typeChauffage"
-              options={[
-                {
-                  illustration: <PersonneImage />,
+        <WizardForm
+          schema={schema}
+          render={({ errors }) => (
+            <Box>
+              <RadioButtons
+                // legend="Légende pour l’ensemble de champs"
+                name="typeChauffage"
+                options={[
+                  {
+                    illustration: <PersonneImage />,
 
-                  label: "Individuel",
-                  nativeInputProps: {
-                    defaultChecked: initialState.typeChauffage === "individuel",
-                    value: "individuel",
+                    label: "Individuel",
+                    nativeInputProps: {
+                      defaultChecked: initialState.typeChauffage === "individuel",
+                      value: "individuel",
+                    },
                   },
-                },
-                {
-                  illustration: <GroupeImage />,
-                  label: "Collectif",
-                  nativeInputProps: {
-                    defaultChecked: initialState.typeChauffage === "collectif",
-                    value: "collectif",
+                  {
+                    illustration: <GroupeImage />,
+                    label: "Collectif",
+                    nativeInputProps: {
+                      defaultChecked: initialState.typeChauffage === "collectif",
+                      value: "collectif",
+                    },
                   },
-                },
-              ]}
-              state={errors?.typeChauffage?._errors ? "error" : "default"}
-              stateRelatedMessage={errors?.typeChauffage?._errors}
-            />
-          </Box>
-        )}
-      />
-    </Box>
+                ]}
+                state={errors?.typeChauffage?._errors ? "error" : "default"}
+                stateRelatedMessage={errors?.typeChauffage?._errors}
+              />
+            </Box>
+          )}
+        />
+      </Box>
+    </ClientOnly>
   );
 };

@@ -1,8 +1,10 @@
 "use client";
 
 import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
+import { useEffect } from "react";
 import { z } from "zod";
 
+import { ClientOnly } from "@/components/ClientOnly";
 import { Box, P } from "@/dsfr";
 import { store } from "@/lib/store";
 
@@ -16,52 +18,58 @@ const schema = z.object({
 });
 
 export const Step11 = () => {
-  const initialState = store.get();
+  let initialState: ReturnType<typeof store.get>;
+
+  useEffect(() => {
+    initialState = store.get();
+  }, []);
 
   return (
-    <Box>
-      <HeaderFunnel />
+    <ClientOnly>
+      <Box>
+        <HeaderFunnel />
 
-      <P>
-        Quel <strong>énergie principale</strong> utilisez-vous pour chauffer l’eau ?
-      </P>
+        <P>
+          Quel <strong>énergie principale</strong> utilisez-vous pour chauffer l’eau ?
+        </P>
 
-      <WizardForm
-        schema={schema}
-        render={({ errors }) => (
-          <Box>
-            <RadioButtons
-              // legend="Légende pour l’ensemble de champs"
-              name="energieECS"
-              options={[
-                {
-                  label: "Fioul",
-                  nativeInputProps: {
-                    defaultChecked: initialState.energieECS === "fioul",
-                    value: "fioul",
+        <WizardForm
+          schema={schema}
+          render={({ errors }) => (
+            <Box>
+              <RadioButtons
+                // legend="Légende pour l’ensemble de champs"
+                name="energieECS"
+                options={[
+                  {
+                    label: "Fioul",
+                    nativeInputProps: {
+                      defaultChecked: initialState.energieECS === "fioul",
+                      value: "fioul",
+                    },
                   },
-                },
-                {
-                  label: "Gaz",
-                  nativeInputProps: {
-                    defaultChecked: initialState.energieECS === "gaz",
-                    value: "gaz",
+                  {
+                    label: "Gaz",
+                    nativeInputProps: {
+                      defaultChecked: initialState.energieECS === "gaz",
+                      value: "gaz",
+                    },
                   },
-                },
-                {
-                  label: "Ballon électrique",
-                  nativeInputProps: {
-                    defaultChecked: initialState.energieECS === "ballon electrique",
-                    value: "ballon electrique",
+                  {
+                    label: "Ballon électrique",
+                    nativeInputProps: {
+                      defaultChecked: initialState.energieECS === "ballon electrique",
+                      value: "ballon electrique",
+                    },
                   },
-                },
-              ]}
-              state={errors?.energieECS?._errors ? "error" : "default"}
-              stateRelatedMessage={errors?.energieECS?._errors}
-            />
-          </Box>
-        )}
-      />
-    </Box>
+                ]}
+                state={errors?.energieECS?._errors ? "error" : "default"}
+                stateRelatedMessage={errors?.energieECS?._errors}
+              />
+            </Box>
+          )}
+        />
+      </Box>
+    </ClientOnly>
   );
 };

@@ -1,9 +1,11 @@
 "use client";
 
 import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
+import { useEffect } from "react";
 import { z } from "zod";
 
 import { Button } from "@/components/Button";
+import { ClientOnly } from "@/components/ClientOnly";
 import { Box, P } from "@/dsfr";
 import { store } from "@/lib/store";
 
@@ -19,68 +21,74 @@ const schema = z.object({
 });
 
 export const Step2 = () => {
-  const initialState = store.get();
+  let initialState: ReturnType<typeof store.get>;
+
+  useEffect(() => {
+    initialState = store.get();
+  }, []);
 
   return (
-    <Box>
-      <HeaderFunnel />
-      <P>
-        Quelle est <strong>l’année</strong> de construction du bâtiment ?
-      </P>
+    <ClientOnly>
+      <Box>
+        <HeaderFunnel />
+        <P>
+          Quelle est <strong>l’année</strong> de construction du bâtiment ?
+        </P>
 
-      <WizardForm
-        schema={schema}
-        render={({ errors }) => (
-          <Box>
-            <RadioButtons
-              // legend="Légende pour l’ensemble de champs"
-              name="annee"
-              options={[
-                {
-                  illustration: <BatimentPre1945Image />,
-                  label: "Avant 1945",
-                  hintText: "Façade ornementée",
-                  nativeInputProps: {
-                    defaultChecked: initialState.annee === "pre-1945",
-                    value: "pre-1945",
+        <WizardForm
+          schema={schema}
+          render={({ errors }) => (
+            <Box>
+              <RadioButtons
+                // legend="Légende pour l’ensemble de champs"
+                name="annee"
+                options={[
+                  {
+                    illustration: <BatimentPre1945Image />,
+                    label: "Avant 1945",
+                    hintText: "Façade ornementée",
+                    nativeInputProps: {
+                      defaultChecked: initialState.annee === "pre-1945",
+                      value: "pre-1945",
+                    },
                   },
-                },
-                {
-                  illustration: <Batiment1946a1974Image />,
-                  label: "Entre 1946 et 1974",
-                  hintText: "Utilisation du béton",
-                  nativeInputProps: {
-                    defaultChecked: initialState.annee === "1946-1974",
-                    value: "1946-1974",
+                  {
+                    illustration: <Batiment1946a1974Image />,
+                    label: "Entre 1946 et 1974",
+                    hintText: "Utilisation du béton",
+                    nativeInputProps: {
+                      defaultChecked: initialState.annee === "1946-1974",
+                      value: "1946-1974",
+                    },
                   },
-                },
-                {
-                  illustration: <Batiment1975a1989Image />,
-                  label: "Entre 1975 et 1989",
-                  hintText: "Les années HLM",
-                  nativeInputProps: {
-                    defaultChecked: initialState.annee === "1975-1989",
-                    value: "1975-1989",
+                  {
+                    illustration: <Batiment1975a1989Image />,
+                    label: "Entre 1975 et 1989",
+                    hintText: "Les années HLM",
+                    nativeInputProps: {
+                      defaultChecked: initialState.annee === "1975-1989",
+                      value: "1975-1989",
+                    },
                   },
-                },
-                {
-                  illustration: <BatimentPost1990Image />,
-                  label: "Après 1990",
-                  hintText: "Bâtiments modernes",
-                  nativeInputProps: {
-                    defaultChecked: initialState.annee === "post-1990",
-                    value: "post-1990",
+                  {
+                    illustration: <BatimentPost1990Image />,
+                    label: "Après 1990",
+                    hintText: "Bâtiments modernes",
+                    nativeInputProps: {
+                      defaultChecked: initialState.annee === "post-1990",
+                      value: "post-1990",
+                    },
                   },
-                },
-              ]}
-              state={errors?.annee?._errors ? "error" : "default"}
-              stateRelatedMessage={errors?.annee?._errors}
-            />
-          </Box>
-        )}
-      />
+                ]}
+                state={errors?.annee?._errors ? "error" : "default"}
+                stateRelatedMessage={errors?.annee?._errors}
+              />
+            </Box>
+          )}
+        />
 
-      <Button priority="secondary">Je ne sais pas</Button>
-    </Box>
+        <Button priority="secondary">Je ne sais pas</Button>
+      </Box>
+    </ClientOnly>
   );
 };

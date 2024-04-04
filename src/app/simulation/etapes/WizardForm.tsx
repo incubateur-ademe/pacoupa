@@ -4,7 +4,7 @@ import { z, type ZodFormattedError } from "zod";
 
 import { store } from "@/lib/store";
 
-import { ButtonsFunnel } from "./FooterFunnel";
+import { ButtonsFunnel } from "./ButtonsFunnel";
 
 export type HandleFormResult =
   | {

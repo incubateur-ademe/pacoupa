@@ -2,8 +2,10 @@
 
 import { fr } from "@codegouvfr/react-dsfr";
 import { Input } from "@codegouvfr/react-dsfr/Input";
+import { useEffect } from "react";
 import { z } from "zod";
 
+import { ClientOnly } from "@/components/ClientOnly";
 import { Box, P } from "@/dsfr";
 import { store } from "@/lib/store";
 
@@ -15,37 +17,43 @@ const schema = z.object({
 });
 
 export const Step1 = () => {
-  const initialState = store.get();
+  let initialState: ReturnType<typeof store.get>;
+
+  useEffect(() => {
+    initialState = store.get();
+  }, []);
 
   return (
-    <Box>
-      <HeaderFunnel />
+    <ClientOnly>
+      <Box>
+        <HeaderFunnel />
 
-      <P>Où se situe le bâtiment ?</P>
+        <P>Où se situe le bâtiment ?</P>
 
-      <WizardForm
-        schema={schema}
-        render={({ errors }) => (
-          <Box>
-            <Input
-              iconId="fr-icon-map-pin-2-fill"
-              label="Adresse"
-              nativeInputProps={{
-                placeholder: "Adresse du bâtiment",
-                name: "adresse",
-                defaultValue: initialState.adresse,
-              }}
-              state={errors?.adresse?._errors ? "error" : "default"}
-              stateRelatedMessage={errors?.adresse?._errors}
-            />
-          </Box>
-        )}
-      />
+        <WizardForm
+          schema={schema}
+          render={({ errors }) => (
+            <Box>
+              <Input
+                iconId="fr-icon-map-pin-2-fill"
+                label="Adresse"
+                nativeInputProps={{
+                  placeholder: "Adresse du bâtiment",
+                  name: "adresse",
+                  defaultValue: initialState.adresse,
+                }}
+                state={errors?.adresse?._errors ? "error" : "default"}
+                stateRelatedMessage={errors?.adresse?._errors}
+              />
+            </Box>
+          )}
+        />
 
-      <P className={fr.cx("fr-mt-8v", "fr-text--sm")}>
-        <i className={fr.cx("fr-icon-info-fill", "fr-mr-2v")} aria-hidden={true} />
-        L’adresse nous permet d’avoir quelques renseignements sur le bâtiment.
-      </P>
-    </Box>
+        <P className={fr.cx("fr-mt-8v", "fr-text--sm")}>
+          <i className={fr.cx("fr-icon-info-fill", "fr-mr-2v")} aria-hidden={true} />
+          L’adresse nous permet d’avoir quelques renseignements sur le bâtiment.
+        </P>
+      </Box>
+    </ClientOnly>
   );
 };

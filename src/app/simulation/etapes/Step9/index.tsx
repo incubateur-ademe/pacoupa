@@ -1,8 +1,10 @@
 "use client";
 
 import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
+import { useEffect } from "react";
 import { z } from "zod";
 
+import { ClientOnly } from "@/components/ClientOnly";
 import { Box, P } from "@/dsfr";
 import { store } from "@/lib/store";
 
@@ -16,45 +18,51 @@ const schema = z.object({
 });
 
 export const Step9 = () => {
-  const initialState = store.get();
+  let initialState: ReturnType<typeof store.get>;
+
+  useEffect(() => {
+    initialState = store.get();
+  }, []);
 
   return (
-    <Box>
-      <HeaderFunnel />
+    <ClientOnly>
+      <Box>
+        <HeaderFunnel />
 
-      <P>Vous vous chauffez grâce à...</P>
+        <P>Vous vous chauffez grâce à...</P>
 
-      <WizardForm
-        schema={schema}
-        render={({ errors }) => (
-          <>
-            <Box>
-              <RadioButtons
-                // legend="Légende pour l’ensemble de champs"
-                name="emetteur"
-                options={[
-                  {
-                    label: "Des radiateurs",
-                    nativeInputProps: {
-                      defaultChecked: initialState.emetteur === "radiateurs",
-                      value: "radiateurs",
+        <WizardForm
+          schema={schema}
+          render={({ errors }) => (
+            <>
+              <Box>
+                <RadioButtons
+                  // legend="Légende pour l’ensemble de champs"
+                  name="emetteur"
+                  options={[
+                    {
+                      label: "Des radiateurs",
+                      nativeInputProps: {
+                        defaultChecked: initialState.emetteur === "radiateurs",
+                        value: "radiateurs",
+                      },
                     },
-                  },
-                  {
-                    label: "Un plancher chauffant",
-                    nativeInputProps: {
-                      defaultChecked: initialState.emetteur === "plancher chauffant",
-                      value: "plancher chauffant",
+                    {
+                      label: "Un plancher chauffant",
+                      nativeInputProps: {
+                        defaultChecked: initialState.emetteur === "plancher chauffant",
+                        value: "plancher chauffant",
+                      },
                     },
-                  },
-                ]}
-                state={errors?.emetteur?._errors ? "error" : "default"}
-                stateRelatedMessage={errors?.emetteur?._errors}
-              />
-            </Box>
-          </>
-        )}
-      />
-    </Box>
+                  ]}
+                  state={errors?.emetteur?._errors ? "error" : "default"}
+                  stateRelatedMessage={errors?.emetteur?._errors}
+                />
+              </Box>
+            </>
+          )}
+        />
+      </Box>
+    </ClientOnly>
   );
 };

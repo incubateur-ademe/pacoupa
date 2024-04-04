@@ -13,7 +13,7 @@ type Props = {
 };
 
 export const ButtonsFunnel = ({ disabled }: Props = { disabled: false }) => {
-  const { isFirstStep, isLastStep, previousStep, nextStep } = useWizard();
+  const { isFirstStep, isLastStep, previousStep } = useWizard();
 
   return (
     <>
