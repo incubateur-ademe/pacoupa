@@ -13,7 +13,14 @@ export const Button = (props: Props) => {
     <>
       <ButtonDsfr
         {...props}
-        className={cx(props.priority === "secondary" ? styles.secondaryButton : styles.primaryButton, props.className)}
+        className={cx(
+          props.priority === "secondary"
+            ? styles.secondaryButton
+            : props.priority === "tertiary"
+              ? styles.tertiaryButton
+              : styles.primaryButton,
+          props.className,
+        )}
       >
         {props.children}
       </ButtonDsfr>
