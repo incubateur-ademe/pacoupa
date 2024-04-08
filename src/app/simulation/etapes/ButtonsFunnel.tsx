@@ -1,7 +1,7 @@
 "use client";
 
 import { fr } from "@codegouvfr/react-dsfr";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useWizard } from "react-use-wizard";
 
 import { Button } from "@/components/Button";
@@ -14,6 +14,7 @@ type Props = {
 
 export const ButtonsFunnel = ({ disabled }: Props = { disabled: false }) => {
   const { isFirstStep, isLastStep, previousStep } = useWizard();
+  const router = useRouter();
 
   return (
     <>
@@ -34,8 +35,7 @@ export const ButtonsFunnel = ({ disabled }: Props = { disabled: false }) => {
           {isLastStep ? (
             <Button
               nativeButtonProps={{
-                // TODO: problème pour la redirection
-                onClick: () => redirect("/simulation/resultats"),
+                onClick: () => router.push("/simulation/resultat"),
               }}
             >
               Voir les résultats
