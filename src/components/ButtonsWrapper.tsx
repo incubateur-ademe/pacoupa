@@ -1,8 +1,13 @@
+import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import { type PropsWithChildren } from "react";
 
 import { Box } from "@/dsfr";
 
 import styles from "./ButtonsWrapper.module.scss";
+
+type Props = {
+  align?: "center" | "left" | "right";
+};
 
 /**
  * Wrapper for buttons to ensure invariant spaces.
@@ -15,11 +20,17 @@ import styles from "./ButtonsWrapper.module.scss";
  * </ButtonsWrapper>
  *
  */
-
-export const ButtonsWrapper = (props: PropsWithChildren) => {
+export const ButtonsWrapper = (props: PropsWithChildren<Props>) => {
   return (
     <>
-      <Box className={styles.buttons}>{props.children}</Box>
+      <Box
+        className={cx(
+          styles.buttons,
+          props.align === "right" ? "justify-end" : props.align === "center" ? "justify-between" : "",
+        )}
+      >
+        {props.children}
+      </Box>
     </>
   );
 };

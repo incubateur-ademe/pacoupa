@@ -47,11 +47,12 @@
     regenerator-runtime "^0.14.0"
 
 "@codegouvfr/react-dsfr@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@codegouvfr/react-dsfr/-/react-dsfr-1.0.1.tgz#75c6539211aa223c1f2b322cc80478a81001f3ab"
-  integrity sha512-TjiO/mAd0t6Qo53kfC5TUnd5FKDzlAr0bRPYW1kIhnUbsnFUTTtoVlWZnxlb7sn3QP3EyDDe+UGtUnUnK8rMkQ==
+  version "1.9.5"
+  resolved "https://registry.yarnpkg.com/@codegouvfr/react-dsfr/-/react-dsfr-1.9.5.tgz#7bc27f4951ef5a2a63eced3fcd8228ce77cf0b46"
+  integrity sha512-hyEIO7c4x9ACJlqEJ9NvM8wG88nMRP+yv1TDjI1oK/i9DWIUwELzb1VcGjVj7JT6mLlU62vn0t1LZH1t4M9YHQ==
   dependencies:
     tsafe "^1.6.3"
+    yargs-parser "^21.1.1"
 
 "@corex/deepmerge@^4.0.43":
   version "4.0.43"
@@ -4630,6 +4631,11 @@ react-tooltip@^5.26.3:
     "@floating-ui/dom" "^1.6.1"
     classnames "^2.3.0"
 
+react-use-wizard@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/react-use-wizard/-/react-use-wizard-2.3.0.tgz#ee6cd7e479d6732e359485a7ba6d33365e3f6f1a"
+  integrity sha512-z06pQNZ18FvoK+ZDW50hOf0uOySo0Hhd7H4y0MLyk/tBCwpUKGBeULosORBVhipUaWihNLpLJxwH5f+85Qt5XA==
+
 react@^18.2.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react/-/react-18.2.0.tgz#555bd98592883255fa00de14f1151a917b5d77d5"
@@ -5263,9 +5269,9 @@ ts-node@^10.9.1:
     yn "3.1.1"
 
 tsafe@^1.6.3:
-  version "1.6.5"
-  resolved "https://registry.yarnpkg.com/tsafe/-/tsafe-1.6.5.tgz#74943b69190069168a53d2accd6d07891cf1cce8"
-  integrity sha512-895zss8xqqHKTc28sHGIfZKnt3C5jrstB1DyPr/h3/flK0zojsZUMQL1/W4ytdDW6KI4Oth62nb9rrxmA3s3Iw==
+  version "1.6.6"
+  resolved "https://registry.yarnpkg.com/tsafe/-/tsafe-1.6.6.tgz#fd93e64d6eb13ef83ed1650669cc24bad4f5df9f"
+  integrity sha512-gzkapsdbMNwBnTIjgO758GujLCj031IgHK/PKr2mrmkCSJMhSOR5FeOuSxKLMUoYc0vAA4RGEYYbjt/v6afD3g==
 
 tsconfig-paths@^3.15.0:
   version "3.15.0"
@@ -5599,6 +5605,11 @@ yaml@^2.0.0, yaml@^2.3.4:
   version "2.3.4"
   resolved "https://registry.yarnpkg.com/yaml/-/yaml-2.3.4.tgz#53fc1d514be80aabf386dc6001eb29bf3b7523b2"
   integrity sha512-8aAvwVUSHpfEqTQ4w/KMlf3HcRdt50E5ODIQJBw1fQ5RL34xabzxtUlzTXVqc4rkZsPbvrXKWnABCD7kWSmocA==
+
+yargs-parser@^21.1.1:
+  version "21.1.1"
+  resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-21.1.1.tgz#9096bceebf990d21bb31fa9516e0ede294a77d35"
+  integrity sha512-tVpsJW7DdjecAiFpbIB1e3qxIQsE6NoPc5/eTdrbbIC4h0LVsWhnoa3g+m2HclBIujHzsxZ4VJVA+GUuc2/LBw==
 
 yn@3.1.1:
   version "3.1.1"

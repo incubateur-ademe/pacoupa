@@ -1,7 +1,6 @@
 import "./global.css";
 import "react-tooltip/dist/react-tooltip.css";
 
-import { fr } from "@codegouvfr/react-dsfr";
 import { DsfrHead } from "@codegouvfr/react-dsfr/next-appdir/DsfrHead";
 import { DsfrProvider } from "@codegouvfr/react-dsfr/next-appdir/DsfrProvider";
 import { getHtmlAttributes } from "@codegouvfr/react-dsfr/next-appdir/getHtmlAttributes";
@@ -13,7 +12,6 @@ import Link from "next/link";
 import Script from "next/script";
 import { type PropsWithChildren, Suspense } from "react";
 
-import { Banner } from "@/components/Banner";
 import { footerId, PacoupaFooter } from "@/components/PacoupaFooter";
 import { PacoupaHeader } from "@/components/PacoupaHeader";
 import { Matomo } from "@/components/utils/Matomo";
@@ -22,7 +20,7 @@ import { Container } from "@/dsfr";
 
 import { defaultColorScheme } from "../defaultColorScheme";
 import { StartDsfr } from "../StartDsfr";
-import styles from "./root.module.scss";
+import styles from "./layout.module.scss";
 import { sharedMetadata } from "./shared-metadata";
 
 const contentId = "content";
@@ -93,7 +91,9 @@ const RootLayout = ({ children }: PropsWithChildren) => {
             title="Le simulateur est en phase de construction. Inscrivez-vous et nous vous préviendrons lors de sa sortie."
           /> */}
 
-          <Banner title="Le simulateur est en phase de construction. Inscrivez-vous et nous vous préviendrons lors de sa sortie." />
+          {/* <Banner
+            title={<>Le simulateur est en construction. Inscrivez-vous et nous vous préviendrons lors de sa sortie.</>}
+          /> */}
           <div className={styles.app}>
             {/* <Header
               brandTop={<Brand />}
@@ -113,11 +113,12 @@ const RootLayout = ({ children }: PropsWithChildren) => {
               operatorLogo={operatorLogo}
             /> */}
             <PacoupaHeader />
+
             <main
               role="main"
               id={contentId}
               // className={styles.content}
-              className={cx(styles.content, fr.cx("fr-py-4w"))}
+              className={cx(styles.content)}
             >
               <Container>{children}</Container>
             </main>
