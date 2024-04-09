@@ -14,7 +14,7 @@ import { PersonneImage } from "./PersonneImage";
 const required_error = "Le type de chauffage est obligatoire";
 
 const schema = z.object({
-  chauffage: z
+  typeCH: z
     .string({
       required_error,
     })
@@ -37,13 +37,13 @@ export const Step7 = () => {
               <>
                 <Box>
                   <RadioButtons
-                    name="chauffage"
+                    name="typeCH"
                     options={[
                       {
                         illustration: <PersonneImage />,
                         label: "Individuel",
                         nativeInputProps: {
-                          defaultChecked: initialState?.chauffage === "individuel",
+                          defaultChecked: initialState?.typeCH === "individuel",
                           value: "individuel",
                         },
                       },
@@ -51,13 +51,13 @@ export const Step7 = () => {
                         illustration: <GroupeImage />,
                         label: "Collectif",
                         nativeInputProps: {
-                          defaultChecked: initialState?.chauffage === "collectif",
+                          defaultChecked: initialState?.typeCH === "collectif",
                           value: "collectif",
                         },
                       },
                     ]}
-                    state={errors?.chauffage?._errors ? "error" : "default"}
-                    stateRelatedMessage={errors?.chauffage?._errors}
+                    state={errors?.typeCH?._errors ? "error" : "default"}
+                    stateRelatedMessage={errors?.typeCH?._errors}
                   />
                 </Box>
               </>
