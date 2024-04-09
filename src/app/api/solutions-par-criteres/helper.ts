@@ -4,58 +4,65 @@ import { z } from "zod";
 
 import { type SimulationSchema } from "@/app/simulation/schema";
 
-export const CriteriaPayloadSchema = createSelectSchema(criteres, {
+const SelectCriteresSchema = createSelectSchema(criteres, {
   id: schema => schema.id.optional(),
   ch: z.enum(["ind", "col"]),
   ecs: z.enum(["ind", "col"]),
   emetteur: z.enum(["hydraulique", "electrique"]),
-  envContraint: z.enum(["terrain disponible", "contraint", "NA"]),
   espaceExterieur: z.enum(["oui", "non", "NA"]),
+  envContraint: z.enum(["terrain disponible", "contraint", "NA"]),
   toitureTerrasse: z.enum(["sans tt", "toiture t", "NA"]),
-  nbLgts: z.enum(["< 15", ">= 15"]),
+  nbLgts: z.enum(["< 15", ">= 15", "NA"]),
   niveauRenovation: z.enum(["recent ou renove", "NA"]),
-  temperature: z.enum(["< 40°C", "> 60°C", "< 60°C", "40-60°C", "NA"]).default("NA"), // si non renseigné, on considère que c'est NA pour avoir les lignes correspondantes.
+  temperature: z.enum(["< 40°C", "> 60°C", "< 60°C", "40-60°C", "NA"]),
 });
 
-type CriteriaPayload = z.infer<typeof CriteriaPayloadSchema>;
+export type SelectCriteresSchema = z.infer<typeof SelectCriteresSchema>;
 
 /**
  * Application des règles métiers pour transformer le payload de l'API en en données utilisable pour la clause where de la requête SQL.
  *
  * @param payload une simulation
  */
-const createCriteria = (payload: SimulationSchema): CriteriaPayload => {
-  const emetteur: CriteriaPayload["emetteur"] = payload.emetteur === "radiateurs" ? "electrique" : "hydraulique";
+export const createCriteria = (payload: SimulationSchema): SelectCriteresSchema => {
+  const emetteur: SelectCriteresSchema["emetteur"] = payload.emetteur === "radiateurs" ? "electrique" : "hydraulique";
 
-  const espaceExterieur: CriteriaPayload["espaceExterieur"] =
+  const espaceExterieur: SelectCriteresSchema["espaceExterieur"] =
     payload.typeCH === "individuel" && payload.typeECS === "individuel"
       ? payload.espacesExterieursPersonnels?.includes("balcon")
         ? "oui"
         : "non"
       : "NA";
 
-  const envContraint: CriteriaPayload["envContraint"] =
+  const estContraint =
+    !payload.espacesExterieursCommuns?.includes("jardin") &&
+    !payload.espacesExterieursCommuns?.includes("parking exterieur");
+
+  const envContraint: SelectCriteresSchema["envContraint"] =
     payload.typeCH === "collectif" || payload.typeECS === "collectif"
-      ? payload.espacesExterieursCommuns?.includes("jardin") ||
-        payload.espacesExterieursCommuns?.includes("parking exterieur")
+      ? !estContraint
         ? "terrain disponible"
         : "contraint"
       : "NA";
 
-  const toitureTerrasse: CriteriaPayload["toitureTerrasse"] =
-    envContraint === "contraint"
-      ? payload.espacesExterieursCommuns?.includes("toit terrasse") ||
-        payload.espacesExterieursPersonnels?.includes("toit terrasse")
-        ? "toiture t"
-        : "sans tt"
-      : "NA";
+  const toitureTerrasse: SelectCriteresSchema["toitureTerrasse"] = estContraint
+    ? payload.espacesExterieursCommuns?.includes("toit terrasse") ||
+      payload.espacesExterieursPersonnels?.includes("toit terrasse")
+      ? "toiture t"
+      : "sans tt"
+    : "NA";
 
-  const temperature: CriteriaPayload["temperature"] =
+  const temperature: SelectCriteresSchema["temperature"] =
     payload.emetteur === "plancher chauffant"
       ? "< 40°C"
       : payload.renovation === "rénovation globale"
         ? "40-60°C"
         : "> 60°C";
+
+  const nbLgts: SelectCriteresSchema["nbLgts"] = payload.nbLogements < 15 ? "< 15" : ">= 15";
+
+  const niveauRenovation: SelectCriteresSchema["niveauRenovation"] =
+    payload.annee === "post-1990" || payload.renovation === "rénovation globale" ? "recent ou renove" : "NA";
 
   return {
     ch: payload.typeECS === "collectif" ? "col" : "ind",
@@ -65,8 +72,7 @@ const createCriteria = (payload: SimulationSchema): CriteriaPayload => {
     espaceExterieur,
     toitureTerrasse,
     temperature,
-    nbLgts: payload.nbLogements < 15 ? "< 15" : ">= 15",
-    niveauRenovation:
-      payload.annee === "post-1990" || payload.renovation === "rénovation globale" ? "recent ou renove" : "NA",
+    nbLgts,
+    niveauRenovation,
   };
 };

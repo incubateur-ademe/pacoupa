@@ -12,7 +12,7 @@ import { WizardForm } from "../WizardForm";
 const required_error = "Le type d'énergie de chauffage est obligatoire";
 
 const schema = z.object({
-  energieChauffage: z.string({ required_error }).min(1, required_error),
+  energieCH: z.string({ required_error }).min(1, required_error),
 });
 
 export const Step8 = () => {
@@ -34,32 +34,32 @@ export const Step8 = () => {
                 <Box>
                   <RadioButtons
                     // legend="Légende pour l’ensemble de champs"
-                    name="energieChauffage"
+                    name="energieCH"
                     options={[
                       {
                         label: "Fioul",
                         nativeInputProps: {
-                          defaultChecked: initialState?.energieChauffage === "fioul",
+                          defaultChecked: initialState?.energieCH === "fioul",
                           value: "fioul",
                         },
                       },
                       {
                         label: "Gaz",
                         nativeInputProps: {
-                          defaultChecked: initialState?.energieChauffage === "gaz",
+                          defaultChecked: initialState?.energieCH === "gaz",
                           value: "gaz",
                         },
                       },
                       {
                         label: "Électricité",
                         nativeInputProps: {
-                          defaultChecked: initialState?.energieChauffage === "electricite",
+                          defaultChecked: initialState?.energieCH === "electricite",
                           value: "electricite",
                         },
                       },
                     ]}
-                    state={errors?.energieChauffage?._errors ? "error" : "default"}
-                    stateRelatedMessage={errors?.energieChauffage?._errors}
+                    state={errors?.energieCH?._errors ? "error" : "default"}
+                    stateRelatedMessage={errors?.energieCH?._errors}
                   />
                 </Box>
               </>
