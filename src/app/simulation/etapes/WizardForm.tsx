@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 import { useWizard } from "react-use-wizard";
 import { z, type ZodFormattedError } from "zod";
 
-import { store } from "@/lib/store";
+import { store } from "@/lib/client/store";
 
 import { ButtonsFunnel } from "./ButtonsFunnel";
 
@@ -15,6 +15,12 @@ export type HandleFormResult =
       success: true;
     };
 
+/**
+ * Store the FormData in the session storage or return an error if the form is invalid.
+ *
+ * @param schema zod schema for the current form
+ * @param formAction function to execute if the form is valid
+ */
 export const handleForm =
   (schema: z.AnyZodObject, formAction: (handleResult: HandleFormResult) => void) =>
   (event: React.FormEvent<HTMLFormElement>) => {
@@ -27,13 +33,11 @@ export const handleForm =
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     const arrayKeys = keys.filter(key => schema.shape[key] instanceof z.ZodArray);
 
-    // const values = Object.fromEntries(data);
     const values = Object.fromEntries(
       Array.from(data.keys()).map(key => [key, arrayKeys.includes(key) ? data.getAll(key) : data.get(key)]),
     );
 
     console.debug("Debug values", JSON.stringify(values));
-    // console.debug("Debug keys which are arrays", arrayKeys); // Logs all keys of the schema that are arrays
 
     const validation = schema.safeParse(values);
 
@@ -45,7 +49,6 @@ export const handleForm =
     } else {
       console.log("error", validation.error);
 
-      // result = { success: false, errors: { [validation.error.errors[0].path]: validation.error.errors[0].message } };
       result = { success: false, errors: validation.error.format() };
     }
 
@@ -53,7 +56,6 @@ export const handleForm =
   };
 
 type Props = {
-  // formAction: (handleResult: HandleFormResult) => void;
   render: ({
     errors,
   }: {
@@ -77,7 +79,7 @@ export const WizardForm = ({ schema, render }: Props) => {
     (result: HandleFormResult) => {
       if (result.success) {
         nextStep().catch(() => {
-          console.log("erreur dans la navigation");
+          console.error("erreur dans la navigation");
         });
       } else {
         console.log("error", result.errors);
