@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 
-import { getSolution, getSolutions } from "@/lib/solutions";
+import { getSolution, getSolutions } from "@/lib/server/solutions-mdx";
 
 const dynamicParams = false;
 

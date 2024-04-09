@@ -1,4 +1,4 @@
-import { getSolution, getSolutions } from "@/lib/solutions";
+import { getSolution, getSolutions } from "@/lib/server/solutions-mdx";
 
 const Component = async () => {
   const solutions = await getSolutions();

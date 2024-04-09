@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+import { OuiNonSchema } from "@/utils/zod";
+
 export const simulationSchema = z
   .object({
     adresse: z.string().min(1, "L'adresse est obligatoire"),
@@ -15,6 +17,8 @@ export const simulationSchema = z
     emetteur: z.enum(["radiateurs", "plancher chauffant"]),
     typeECS: z.enum(["individuel", "collectif"]),
     energieECS: z.enum(["fioul", "gaz", "ballon electrique"]),
+    possedeEspacesExterieursCommuns: OuiNonSchema,
+    possedeEspacesExterieursPersonnels: OuiNonSchema,
     espacesExterieursCommuns: z.array(z.enum(["jardin", "parking exterieur", "toit terrasse", "autres"])).optional(),
     espacesExterieursPersonnels: z.array(z.enum(["balcon", "toit terrasse", "autres"])).optional(),
   })
