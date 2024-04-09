@@ -7,29 +7,30 @@ import { db } from "@/lib/drizzle";
 
 export const dynamic = "force-dynamic"; // defaults to auto
 
-const OuiNonSchema = z.enum(["oui", "non"]);
-
-const selectCriteresSchema = createSelectSchema(criteres, {
+export const CriteriaPayloadSchema = createSelectSchema(criteres, {
   id: schema => schema.id.optional(),
   ch: z.enum(["ind", "col"]),
   ecs: z.enum(["ind", "col"]),
   emetteur: z.enum(["hydraulique", "electrique"]),
   envContraint: z.enum(["terrain disponible", "contraint"]),
-  espaceExterieur: OuiNonSchema,
-  toitureTerrasse: z.enum(["sans tt", "toiture t"]),
-  nbLgts: z.enum(["< 15", "> 15"]),
+  espaceExterieur: z.enum(["oui", "non", "NA"]),
+  toitureTerrasse: z.enum(["sans tt", "toiture t", "NA"]),
+  nbLgts: z.enum(["< 15", ">= 15"]),
   niveauRenovation: z.enum(["recent ou renove", "NA"]).default("NA"), // si non renseigné, on considère que c'est NA pour avoir les lignes correspondantes.
   temperature: z.enum(["< 40°C", "> 60°C", "< 60°C", "40-60°C", "NA"]).default("NA"), // si non renseigné, on considère que c'est NA pour avoir les lignes correspondantes.
 });
 
-// The NA fields are a special case. When the field as no value in the payload, it should be considered as NA only. Payload with 1 value should be considered as this value OR NA, SQL wise.
-// Think to NA as "in every case" or "no matter what".
+// TODO : some fields need to be ignored (set to NA) in certain cases
+// nbLgts : data.typeCH === "individuel" && data.typeECS === "individuel" && envContraint !== "contraint" => NA
+
+// The NA fields are a special case : when the field as no value in the payload, it should be considered as NA. Payload with one value should be considered as "this value OR NA", SQL wise.
+// Think of NA as "in every case" or "no matter what".
 const NAFields = ["envContraint", "espaceExterieur", "toitureTerrasse", "nbLgts", "niveauRenovation", "temperature"];
 
 /**
- * Build a SQL condition from the filtersb
+ * Build a SQL condition from the filters
  */
-const buildConditions = (filters: z.infer<typeof selectCriteresSchema>) => {
+const buildWhereClause = (filters: z.infer<typeof CriteriaPayloadSchema>) => {
   const keys = Object.keys(filters);
 
   const sqlChunks = keys.map(key => {
@@ -48,8 +49,13 @@ const buildConditions = (filters: z.infer<typeof selectCriteresSchema>) => {
   return sql`${sql.join(sqlChunks, sql.raw(" AND "))}`;
 };
 
+/**
+ * Get all solutions that match the criteres.
+ *
+ * NB: this is a POST request because the body is used to send the payload.
+ */
 export async function POST(request: Request) {
-  const res = selectCriteresSchema.safeParse(await request.json());
+  const res = CriteriaPayloadSchema.safeParse(await request.json());
 
   if (!res.success) {
     return Response.json({ error: res.error });
@@ -62,7 +68,7 @@ export async function POST(request: Request) {
     .from(criteres)
     .innerJoin(solutionsParCriteres, eq(criteres.id, solutionsParCriteres.criteresId))
     .innerJoin(solutions, eq(solutionsParCriteres.solutionsId, solutions.id))
-    .where(buildConditions(res.data))
+    .where(buildWhereClause(res.data))
     .all();
 
   return Response.json({ nbRows: rows.length, data: rows });
