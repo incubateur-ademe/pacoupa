@@ -65,7 +65,7 @@ export const createCriteria = (payload: SimulationSchema): SelectCriteresSchema 
     payload.annee === "post-1990" || payload.renovation === "rénovation globale" ? "recent ou renove" : "NA";
 
   return {
-    ch: payload.typeECS === "collectif" ? "col" : "ind",
+    ch: payload.typeCH === "collectif" ? "col" : "ind",
     ecs: payload.typeECS === "collectif" ? "col" : "ind",
     emetteur,
     envContraint,

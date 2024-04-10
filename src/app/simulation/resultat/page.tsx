@@ -3,11 +3,11 @@ import { Base64 } from "js-base64";
 import { H1 } from "@/dsfr/base/typography";
 import { getSolutionParTypologie } from "@/lib/server/useCases/getSolutionsParTypologie/getSolutionsParTypologie";
 
-const ResultatsPage = ({ searchParams }: { searchParams: { hash: string } }) => {
+const ResultatsPage = async ({ searchParams }: { searchParams: { hash: string } }) => {
   // const payload = createPayload();
 
   // const validation = simulationSchema.safeParse(JSON.parse(Base64.decode(searchParams.hash)));
-  const res = getSolutionParTypologie(JSON.parse(Base64.decode(searchParams.hash)));
+  const res = await getSolutionParTypologie(JSON.parse(Base64.decode(searchParams.hash)));
 
   // if (!validation.success) {
   //   const errors = validation.error.format();

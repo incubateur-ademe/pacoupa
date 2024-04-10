@@ -55,12 +55,26 @@ export async function getSolutionParTypologie(data: unknown) {
   console.log("criteresHelper", JSON.stringify(criteresHelper, null, 2));
 
   const rows = await db
-    .select()
+    .select({
+      id: solutions.id,
+      name: solutions.name,
+      type: solutions.type,
+      usageCH: solutions.usageCh,
+      usageECS: solutions.usageEcs,
+      usageFr: solutions.usageFr,
+      ordre: solutionsParCriteres.ordreSolution,
+      noteEnvironnemental: solutions.noteEnvironnemental,
+      noteCout: solutionsParCriteres.cout,
+      noteDifficulte: solutionsParCriteres.difficulte,
+      criteres,
+    })
     .from(criteres)
     .innerJoin(solutionsParCriteres, eq(criteres.id, solutionsParCriteres.criteresId))
     .innerJoin(solutions, eq(solutionsParCriteres.solutionsId, solutions.id))
     .where(buildWhereClause(criteresHelper))
     .all();
+
+  console.log("rows", rows);
 
   return { nbRows: rows.length, data: rows };
 }
