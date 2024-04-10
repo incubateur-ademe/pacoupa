@@ -3,7 +3,6 @@
 import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
 import { z } from "zod";
 
-import { Button } from "@/components/Button";
 import { Box, P } from "@/dsfr";
 import { useStore } from "@/lib/client/store";
 
@@ -81,8 +80,6 @@ export const Step2 = () => {
               </Box>
             )}
           />
-
-          <Button priority="secondary">Je ne sais pas</Button>
         </Box>
       )}
     </>
