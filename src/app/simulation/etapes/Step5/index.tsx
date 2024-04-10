@@ -63,7 +63,7 @@ export const Step5 = () => {
         <Box>
           <HeaderFunnel />
           <P>
-            Votre bâtiment a-t-il des <strong>espaces extérieurs communsxxx</strong> ?
+            Votre bâtiment a-t-il des <strong>espaces extérieurs communs</strong> ?
           </P>
 
           <WizardForm
