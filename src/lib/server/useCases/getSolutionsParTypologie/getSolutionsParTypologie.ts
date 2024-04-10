@@ -34,6 +34,8 @@ const buildWhereClause = (filters: SelectCriteresSchema) => {
   return sql`${sql.join(sqlChunks, sql.raw(" AND "))}`;
 };
 
+// type ActionReturn = { data: rows; nbRows: number };
+
 export async function getSolutionParTypologie(data: unknown) {
   // const res = CriteriaPayloadSchema.safeParse(await request.json());
 
@@ -45,7 +47,7 @@ export async function getSolutionParTypologie(data: unknown) {
 
   if (!res.success) {
     console.error("error", res.error.format());
-    return Response.json({ error: res.error });
+    throw new Error("Erreur de formatage du hash");
   }
 
   console.log("body", JSON.stringify(res, null, 2));
