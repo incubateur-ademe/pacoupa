@@ -19,8 +19,7 @@
     }
 }
 
-.secondaryButton,
-.tertiaryButton {
+.secondaryButton {
     background-color: var(--color-secondary-background) !important;
     color: var(--color-secondary-text);
     border-bottom: 2px solid var(--color-secondary-text) !important;
@@ -41,5 +40,5 @@
 }
 
 .tertiaryButton {
-    border-bottom: 0 !important;
+    border-radius: 4px;   
 }

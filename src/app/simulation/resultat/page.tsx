@@ -3,6 +3,7 @@ import { Badge } from "@codegouvfr/react-dsfr/Badge";
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import { Base64 } from "js-base64";
 
+import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
 import { Box, Container, Grid, GridCol } from "@/dsfr";
 import { H4, Text } from "@/dsfr/base/typography";
@@ -40,6 +41,7 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { hash: string } 
               // title="Intitulé de la carte (sur lequel se trouve le lien)"
               title=""
               titleAs="h3"
+              end={<>Modifier</>}
             />
           </GridCol>
         </Grid>
@@ -53,7 +55,7 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { hash: string } 
         </Text>
 
         <Box className={cx("flex gap-8 flex-col xl:flex-row")}>
-          {solutions.data.map(solution => (
+          {solutions.data.slice(0, 3).map(solution => (
             <Card
               key={solution.id}
               desc={
@@ -72,7 +74,8 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { hash: string } 
                       <Box className={fr.cx("fr-mt-6w")}>
                         <Text>{solution.descriptionSolution}</Text>
                       </Box>
-                      <Box className={fr.cx("fr-text--bold")}>Recommandé pour</Box>
+
+                      <span className={fr.cx("fr-text--bold")}>Recommandé pour</span>
                       <Box className={cx("flex", "justify-start", "gap-4", "fr-mt-1w")}>
                         {createRecommandations(solution).map((recommandation, index) => (
                           <Badge key={index} severity="info">
@@ -93,8 +96,15 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { hash: string } 
               // title="Intitulé de la carte (sur lequel se trouve le lien)"
               title={solution.name}
               titleAs="h3"
+              detail="jezlfj"
+              end={<>En savoir plus</>}
             />
           ))}
+        </Box>
+        <Box className={cx("flex", fr.cx("fr-mt-4w"))}>
+          <Button priority="tertiary" className={cx("grow", "md:grow-0", "justify-center")}>
+            Voir d’autres solutions
+          </Button>
         </Box>
       </Container>
     </>
