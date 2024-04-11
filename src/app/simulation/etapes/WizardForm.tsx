@@ -76,14 +76,13 @@ type Props = {
 export const WizardForm = ({ schema, render }: Props) => {
   const { nextStep, isLastStep } = useWizard();
   const [errors, setErrors] = useState<ZodFormattedError<{ [x: string]: unknown }, string>>();
-
-  // Serialization of the store to be send to the server page.
-  const encoded = Base64.encode(JSON.stringify(store.get()));
   const router = useRouter();
 
   const formAction = useCallback(
     (result: HandleFormResult) => {
       if (result.success) {
+        const encoded = Base64.encode(JSON.stringify(store.get()));
+
         if (isLastStep) {
           return router.push(`/simulation/resultat?hash=${encoded}`);
         }
@@ -96,7 +95,7 @@ export const WizardForm = ({ schema, render }: Props) => {
         setErrors(result.errors);
       }
     },
-    [nextStep, setErrors, isLastStep, router, encoded],
+    [nextStep, setErrors, isLastStep, router],
   );
 
   return (
