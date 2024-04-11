@@ -3,7 +3,7 @@
 import { criteres, solutions, solutionsParCriteres } from "drizzle/schema";
 import { eq, or, sql } from "drizzle-orm";
 
-import { simulationSchema } from "@/app/simulation/schema";
+import { type SimulationSchema } from "@/app/simulation/schema";
 import { db } from "@/lib/drizzle";
 
 import { createCriteria, type SelectCriteresSchema } from "./helper";
@@ -36,23 +36,12 @@ const buildWhereClause = (filters: SelectCriteresSchema) => {
 
 // type ActionReturn = { data: rows; nbRows: number };
 
-export async function getSolutionParTypologie(data: unknown) {
+export async function getSolutionsParCriteres(formData: SimulationSchema) {
   // const res = CriteriaPayloadSchema.safeParse(await request.json());
 
-  console.log("data", JSON.stringify(data, null, 2));
+  console.log("data", JSON.stringify(formData, null, 2));
 
-  const res = simulationSchema.safeParse(data);
-
-  console.log("res", res);
-
-  if (!res.success) {
-    console.error("error", res.error.format());
-    throw new Error("Erreur de formatage du hash");
-  }
-
-  console.log("body", JSON.stringify(res, null, 2));
-
-  const criteresHelper = createCriteria(res.data);
+  const criteresHelper = createCriteria(formData);
 
   console.log("criteresHelper", JSON.stringify(criteresHelper, null, 2));
 
@@ -68,15 +57,17 @@ export async function getSolutionParTypologie(data: unknown) {
       noteEnvironnemental: solutions.noteEnvironnemental,
       noteCout: solutionsParCriteres.cout,
       noteDifficulte: solutionsParCriteres.difficulte,
+      descriptionSolution: solutions.descriptionSolution,
       criteres,
     })
     .from(criteres)
     .innerJoin(solutionsParCriteres, eq(criteres.id, solutionsParCriteres.criteresId))
     .innerJoin(solutions, eq(solutionsParCriteres.solutionsId, solutions.id))
     .where(buildWhereClause(criteresHelper))
+    .orderBy(solutionsParCriteres.ordreSolution)
     .all();
 
   console.log("rows", rows);
 
-  return { nbRows: rows.length, data: rows };
+  return { data: rows };
 }

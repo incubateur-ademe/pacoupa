@@ -1,4 +1,5 @@
-import { getSolutionParTypologie } from "@/lib/server/useCases/getSolutionsParTypologie/getSolutionsParTypologie";
+import { simulationSchema } from "@/app/simulation/schema";
+import { getSolutionsParCriteres } from "@/lib/server/useCases/getSolutionsParCriteres";
 
 export const dynamic = "force-dynamic"; // defaults to auto
 
@@ -11,25 +12,15 @@ export async function POST(request: Request) {
   // const res = CriteriaPayloadSchema.safeParse(await request.json());
   // const res = simulationSchema.safeParse(await request.json());
 
-  const res = getSolutionParTypologie(await request.json());
+  const unparsedFormData: unknown = await request.json();
+  const formData = simulationSchema.safeParse(unparsedFormData);
 
-  // if (!res.success) {
-  //   return Response.json({ error: res.error });
-  // }
+  if (!formData.success) {
+    const errors = formData.error.format();
+    return Response.json({ error: `Erreur de formatage du hash`, detail: errors });
+  }
 
-  // console.log("body", JSON.stringify(res, null, 2));
-
-  // const criteresHelper = createCriteria(res.data);
-
-  // console.log("criteresHelper", JSON.stringify(criteresHelper, null, 2));
-
-  // const rows = await db
-  //   .select()
-  //   .from(criteres)
-  //   .innerJoin(solutionsParCriteres, eq(criteres.id, solutionsParCriteres.criteresId))
-  //   .innerJoin(solutions, eq(solutionsParCriteres.solutionsId, solutions.id))
-  //   .where(buildWhereClause(criteresHelper))
-  //   .all();
+  const res = await getSolutionsParCriteres(formData.data);
 
   return Response.json(res);
 }

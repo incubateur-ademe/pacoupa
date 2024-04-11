@@ -17,8 +17,8 @@ export const simulationSchema = z
     emetteur: z.enum(["radiateurs", "plancher chauffant"]),
     typeECS: z.enum(["individuel", "collectif"]),
     energieECS: z.enum(["fioul", "gaz", "ballon electrique"]),
-    possedeEspacesExterieursCommuns: OuiNonSchema,
-    possedeEspacesExterieursPersonnels: OuiNonSchema,
+    possedeEspacesExterieursCommuns: OuiNonSchema.optional(),
+    possedeEspacesExterieursPersonnels: OuiNonSchema.optional(),
     espacesExterieursCommuns: z.array(z.enum(["jardin", "parking exterieur", "toit terrasse", "autres"])).optional(),
     espacesExterieursPersonnels: z.array(z.enum(["balcon", "toit terrasse", "autres"])).optional(),
   })

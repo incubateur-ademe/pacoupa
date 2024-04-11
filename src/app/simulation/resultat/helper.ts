@@ -1,4 +1,6 @@
-export const typeLabel = (type: string = "") => {
+import { type getSolutionsParCriteres } from "@/lib/server/useCases/getSolutionsParCriteres";
+
+export const labelForType = (type: string = "") => {
   switch (type.toUpperCase()) {
     case "IND":
       return "Individuel";
@@ -8,3 +10,8 @@ export const typeLabel = (type: string = "") => {
       return "Mixte";
   }
 };
+
+type Foo = Awaited<ReturnType<typeof getSolutionsParCriteres>>["data"][number];
+
+export const createRecommandations = (solution: Foo) =>
+  [solution.usageCH && "Chauffage", solution.usageECS && "ECS", solution.usageFr && "Climatisation"].filter(Boolean);

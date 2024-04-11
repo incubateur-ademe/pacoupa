@@ -19,9 +19,9 @@
     "build:export": "npm run build && npm run export",
     "run-script": "ts-node --project scripts/tsconfig.json",
     "generateEnvDeclaration": "yarn run-script scripts/generateEnvDeclaration.ts",
-    "dk-introspect": "drizzle-kit introspect:sqlite",
-    "dk-up": "yarn drizzle-kit up:sqlite",
-    "dk-check": "yarn drizzle-kit check:sqlite"
+    "dk:introspect": "drizzle-kit introspect:sqlite",
+    "dk:up": "yarn drizzle-kit up:sqlite",
+    "dk:check": "yarn drizzle-kit check:sqlite"
   },
   "dependencies": {
     "@codegouvfr/react-dsfr": "^1.0.1",

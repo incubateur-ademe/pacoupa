@@ -51,7 +51,11 @@ Il faut auparavant s'authentifier avec `turso auth login`.
 ```shell
 turso db destroy pacoupa
 turso db create pacoupa --from-file assets/pacoupa.db
-turso db tokens create pacoupa -r # création d'un token d'accès en lecture seule
+```
+
+Pour créer un nouveau token d'accès en lecture seule
+```shell
+turso db tokens create pacoupa -r 
 ```
 
 Recopier le token dans .env et .env.local.
@@ -62,10 +66,16 @@ Il faudra aussi le noter sur Vercel settings.
 D'abord, vérifier son fichier `.env` renseignant les variables TURSO_DATABASE_URL et TURSO_AUTH_TOKEN.
 
 ```shell
-yarn dk-introspect
+yarn dk:introspect
 ```
 
 Cette commande va regénérer le fichier schema.ts et les types Drizzle.
+
+Vous pouvez lancer la compilation typescript pour vérifier que le code est resté typesafe.
+
+```shell
+yarn tsc
+```
 
 ### FAQ
 
