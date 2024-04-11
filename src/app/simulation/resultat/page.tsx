@@ -29,7 +29,7 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { hash: string } 
     <>
       <Container className={fr.cx("fr-mt-4w")}>
         <Grid>
-          <GridCol sm={4} lg={6}>
+          <GridCol sm={8} xl={6}>
             <Card
               desc={formData.data.adresse}
               enlargeLink
