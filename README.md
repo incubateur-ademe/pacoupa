@@ -55,7 +55,7 @@ turso db tokens create pacoupa -r # création d'un token d'accès en lecture seu
 ```
 
 Recopier le token dans .env et .env.local.
-Il faudra aussi le  noter sur Vercel settings.
+Il faudra aussi le noter sur Vercel settings.
 
 3. Génération du schéma types Drizzle
 
@@ -82,7 +82,7 @@ Regénérer le token et le mettre à jour sur Vercel.
 classDiagram
 direction BT
 
-class caracteristiques {
+class criteres {
    text CH
    text ECS
    text emetteur
@@ -119,8 +119,8 @@ class solutions {
    text commentaire_pouget
    text id
 }
-class solutions_par_cas {
-   integer caracteristiques_id
+class solutions_par_criteres {
+   integer criteres_id
    text id_solution
    integer ordre_solution
    text difficulte
@@ -135,7 +135,7 @@ class solutions_par_cas {
 }
 
 
-solutions_par_cas  -->  solutions : id_solution
+solutions_par_criteres  -->  solutions : id_solution
 
-solutions_par_cas  -->  caracteristiques : caracteristiques_id
+solutions_par_criteres  -->  criteres : criteres_id
 ```

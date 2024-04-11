@@ -59,7 +59,7 @@ export async function getSolutionParTypologie(data: unknown) {
   const rows = await db
     .select({
       id: solutions.id,
-      name: solutions.name,
+      name: solutions.nom,
       type: solutions.type,
       usageCH: solutions.usageCh,
       usageECS: solutions.usageEcs,
