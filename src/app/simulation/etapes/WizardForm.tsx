@@ -1,3 +1,5 @@
+import { Base64 } from "js-base64";
+import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 import { useWizard } from "react-use-wizard";
 import { z, type ZodFormattedError } from "zod";
@@ -72,12 +74,20 @@ type Props = {
 };
 
 export const WizardForm = ({ schema, render }: Props) => {
-  const { nextStep } = useWizard();
+  const { nextStep, isLastStep } = useWizard();
   const [errors, setErrors] = useState<ZodFormattedError<{ [x: string]: unknown }, string>>();
+
+  // Serialization of the store to be send to the server page.
+  const encoded = Base64.encode(JSON.stringify(store.get()));
+  const router = useRouter();
 
   const formAction = useCallback(
     (result: HandleFormResult) => {
       if (result.success) {
+        if (isLastStep) {
+          return router.push(`/simulation/resultat?hash=${encoded}`);
+        }
+
         nextStep().catch(() => {
           console.error("erreur dans la navigation");
         });
@@ -86,7 +96,7 @@ export const WizardForm = ({ schema, render }: Props) => {
         setErrors(result.errors);
       }
     },
-    [nextStep, setErrors],
+    [nextStep, setErrors, isLastStep, router, encoded],
   );
 
   return (

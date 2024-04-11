@@ -1,14 +1,11 @@
 "use client";
 
 import { fr } from "@codegouvfr/react-dsfr";
-import { Base64 } from "js-base64";
-import { useRouter } from "next/navigation";
 import { useWizard } from "react-use-wizard";
 
 import { Button } from "@/components/Button";
 import { ButtonsWrapper } from "@/components/ButtonsWrapper";
 import { Box } from "@/dsfr";
-import { store } from "@/lib/client/store";
 
 type Props = {
   disabled?: boolean;
@@ -16,9 +13,6 @@ type Props = {
 
 export const ButtonsFunnel = ({ disabled }: Props = { disabled: false }) => {
   const { isFirstStep, isLastStep, previousStep } = useWizard();
-  const router = useRouter();
-
-  const encoded = Base64.encode(JSON.stringify(store.get()));
 
   return (
     <>
@@ -36,19 +30,7 @@ export const ButtonsFunnel = ({ disabled }: Props = { disabled: false }) => {
             </Button>
           )}
 
-          {isLastStep ? (
-            <Button
-              nativeButtonProps={{
-                onClick: () => router.push(`/simulation/resultat?hash=${encoded}`),
-              }}
-            >
-              Voir les résultats
-            </Button>
-          ) : (
-            <>
-              <Button nativeButtonProps={{ disabled }}>Suivant</Button>
-            </>
-          )}
+          <Button nativeButtonProps={{ disabled }}>{isLastStep ? "Voir les résultats" : "Suivant"}</Button>
         </ButtonsWrapper>
       </Box>
     </>

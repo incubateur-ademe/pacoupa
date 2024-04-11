@@ -29,7 +29,7 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { hash: string } 
     <>
       <Container className={fr.cx("fr-mt-4w")}>
         <Grid>
-          <GridCol sm={4} lg={8}>
+          <GridCol sm={4} lg={6}>
             <Card
               desc={formData.data.adresse}
               enlargeLink
@@ -96,7 +96,6 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { hash: string } 
               // title="Intitulé de la carte (sur lequel se trouve le lien)"
               title={solution.name}
               titleAs="h3"
-              detail="jezlfj"
               end={<>En savoir plus</>}
             />
           ))}
