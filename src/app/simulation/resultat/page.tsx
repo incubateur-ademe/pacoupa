@@ -12,6 +12,8 @@ import { simulationSchema } from "../schema";
 import { createRecommandations, labelForType } from "./helper";
 
 const ResultatsPage = async ({ searchParams }: { searchParams: { hash: string } }) => {
+  if (!searchParams.hash) throw new Error("Le hash est manquant");
+
   const unparsedFormData: unknown = JSON.parse(Base64.decode(searchParams.hash));
   const formData = simulationSchema.safeParse(unparsedFormData);
 
