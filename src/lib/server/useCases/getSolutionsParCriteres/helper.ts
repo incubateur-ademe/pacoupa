@@ -25,7 +25,7 @@ export type SelectCriteresSchema = z.infer<typeof SelectCriteresSchema>;
  * @param payload une simulation
  */
 export const createCriteria = (payload: SimulationSchema): SelectCriteresSchema => {
-  const emetteur: SelectCriteresSchema["emetteur"] = payload.emetteur === "radiateurs" ? "electrique" : "hydraulique";
+  const emetteur: SelectCriteresSchema["emetteur"] = payload.energieCH === "electricite" ? "electrique" : "hydraulique";
 
   const espaceExterieur: SelectCriteresSchema["espaceExterieur"] =
     payload.typeCH === "individuel" && payload.typeECS === "individuel"
