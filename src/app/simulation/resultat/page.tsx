@@ -11,7 +11,16 @@ import { getSolutionsParCriteres } from "@/lib/server/useCases/getSolutionsParCr
 
 import { simulationSchema } from "../schema";
 import { DebugButton } from "./DebugButton";
-import { createRecommandations, labelForType } from "./helper";
+import {
+  createRecommandations,
+  labelForType,
+  noteCoutHelper,
+  noteDifficulteHelper,
+  noteEnvironmentHelper,
+} from "./helper";
+import { JaugeCoutlImage } from "./JaugeCoutlImage";
+import { JaugeDifficulteImage } from "./JaugeDifficulteImage";
+import { JaugeEnvironnementalImage } from "./JaugeEnvironnementalImage";
 
 const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" | "oui"; hash: string } }) => {
   if (!searchParams.hash) throw new Error("Le hash est manquant");
@@ -72,10 +81,48 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
                           <Badge>{labelForType(solution.type)}</Badge>
                         </Box>
                         <Box>
-                          <Box>Score env: {solution.noteEnvironnemental}</Box>
-                          <Box>Coût: {solution.noteCout}</Box>
-                          <Box>Difficulté: {solution.noteDifficulte}</Box>
-                          <Box>Order: {solution.ordre}</Box>
+                          <Box>
+                            <Box className={fr.cx("fr-mt-2w", "fr-mb-1v")}>Impact écologique 🌿 </Box>
+                            <Box className={cx("flex", "justify-between", "items-center")}>
+                              <strong>{noteEnvironmentHelper(solution.noteEnvironnemental).label}</strong>
+
+                              <Box className={cx("flex")}>
+                                {Array(noteEnvironmentHelper(solution.noteEnvironnemental).number)
+                                  .fill("")
+                                  .map((_elt, index) => (
+                                    <JaugeEnvironnementalImage key={index} height={16} width={16} />
+                                  ))}
+                              </Box>
+                            </Box>
+                          </Box>
+                          <Box>
+                            <Box className={fr.cx("fr-mt-2w", "fr-mb-1v")}>Coût d’investissement 💰</Box>
+                            <Box className={cx("flex", "justify-between", "items-center")}>
+                              <strong>{noteCoutHelper(solution.noteCout).label}</strong>
+
+                              <Box className={cx("flex")}>
+                                {Array(noteCoutHelper(solution.noteCout).number)
+                                  .fill("")
+                                  .map((_elt, index) => (
+                                    <JaugeCoutlImage key={index} height={16} width={16} />
+                                  ))}
+                              </Box>
+                            </Box>
+                          </Box>
+                          <Box>
+                            <Box className={fr.cx("fr-mt-2w", "fr-mb-1v")}>Difficulté mise en place 🚧</Box>
+                            <Box className={cx("flex", "justify-between", "items-center")}>
+                              <strong>{noteDifficulteHelper(solution.noteDifficulte).label}</strong>
+
+                              <Box className={cx("flex")}>
+                                {Array(noteDifficulteHelper(solution.noteDifficulte).number)
+                                  .fill("")
+                                  .map((_elt, index) => (
+                                    <JaugeDifficulteImage key={index} height={16} width={16} />
+                                  ))}
+                              </Box>
+                            </Box>
+                          </Box>
                         </Box>
                         <Box className={fr.cx("fr-mt-6w")}>
                           <Text>{solution.descriptionSolution}</Text>
