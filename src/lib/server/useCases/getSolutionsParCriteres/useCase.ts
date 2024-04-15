@@ -4,6 +4,7 @@ import { criteres, solutions, solutionsParCriteres } from "drizzle/schema";
 import { eq, or, sql } from "drizzle-orm";
 
 import { type SimulationSchema } from "@/app/simulation/schema";
+import { config } from "@/config";
 import { db } from "@/lib/drizzle";
 
 import { createCriteria, type SelectCriteresSchema } from "./helper";
@@ -13,7 +14,7 @@ import { createCriteria, type SelectCriteresSchema } from "./helper";
 const NAFields = ["envContraint", "espaceExterieur", "toitureTerrasse", "nbLgts", "niveauRenovation", "temperature"];
 
 /**
- * Build a SQL condition from the filtersb
+ * Build a SQL condition from the filters.
  */
 const buildWhereClause = (filters: SelectCriteresSchema) => {
   const keys = Object.keys(filters);
@@ -34,16 +35,12 @@ const buildWhereClause = (filters: SelectCriteresSchema) => {
   return sql`${sql.join(sqlChunks, sql.raw(" AND "))}`;
 };
 
-// type ActionReturn = { data: rows; nbRows: number };
+export type GetSolutionsParCriteresReturnType = Awaited<ReturnType<typeof getSolutionsParCriteres>>["data"];
 
 export async function getSolutionsParCriteres(formData: SimulationSchema) {
-  // const res = CriteriaPayloadSchema.safeParse(await request.json());
-
-  console.log("data", JSON.stringify(formData, null, 2));
-
   const criteresHelper = createCriteria(formData);
 
-  console.log("criteresHelper", JSON.stringify(criteresHelper, null, 2));
+  if (config.env !== "prod") console.debug("criteresHelper", JSON.stringify(criteresHelper, null, 2));
 
   const rows = await db
     .select({
@@ -66,8 +63,6 @@ export async function getSolutionsParCriteres(formData: SimulationSchema) {
     .where(buildWhereClause(criteresHelper))
     .orderBy(solutionsParCriteres.ordreSolution)
     .all();
-
-  console.log("rows", rows);
 
   return { data: rows };
 }

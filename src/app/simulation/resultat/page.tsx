@@ -10,6 +10,7 @@ import { H4, Text } from "@/dsfr/base/typography";
 import { getSolutionsParCriteres } from "@/lib/server/useCases/getSolutionsParCriteres";
 
 import { simulationSchema } from "../schema";
+import { DebugButton } from "./DebugButton";
 import { createRecommandations, labelForType } from "./helper";
 
 const ResultatsPage = async ({ searchParams }: { searchParams: { hash: string } }) => {
@@ -48,7 +49,10 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { hash: string } 
       </Container>
 
       <Container className={fr.cx("fr-mt-4w")}>
-        <H4>Solutions compatibles</H4>
+        <H4>
+          Solutions compatibles
+          <DebugButton formData={formData} solutions={solutions.data} />
+        </H4>
 
         <Text>
           Nous avons trouvé <strong>{solutions.data.length} solutions</strong> de chauffage adaptées à votre bâtiment.
