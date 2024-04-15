@@ -9,7 +9,7 @@ const SelectCriteresSchema = createSelectSchema(criteres, {
   ch: z.enum(["ind", "col"]),
   ecs: z.enum(["ind", "col"]),
   emetteur: z.enum(["hydraulique", "electrique"]),
-  espaceExterieur: z.enum(["oui", "non", "NA"]),
+  espaceExterieurPersonnel: z.enum(["oui", "non", "NA"]),
   envContraint: z.enum(["terrain disponible", "contraint", "NA"]),
   toitureTerrasse: z.enum(["sans tt", "toiture t", "NA"]),
   nbLgts: z.enum(["< 15", ">= 15", "NA"]),
@@ -27,7 +27,7 @@ export type SelectCriteresSchema = z.infer<typeof SelectCriteresSchema>;
 export const createCriteria = (payload: SimulationSchema): SelectCriteresSchema => {
   const emetteur: SelectCriteresSchema["emetteur"] = payload.energieCH === "electricite" ? "electrique" : "hydraulique";
 
-  const espaceExterieur: SelectCriteresSchema["espaceExterieur"] =
+  const espaceExterieurPersonnel: SelectCriteresSchema["espaceExterieurPersonnel"] =
     payload.typeCH === "individuel" && payload.typeECS === "individuel"
       ? payload.espacesExterieursPersonnels?.includes("balcon")
         ? "oui"
@@ -69,7 +69,7 @@ export const createCriteria = (payload: SimulationSchema): SelectCriteresSchema 
     ecs: payload.typeECS === "collectif" ? "col" : "ind",
     emetteur,
     envContraint,
-    espaceExterieur,
+    espaceExterieurPersonnel,
     toitureTerrasse,
     temperature,
     nbLgts,

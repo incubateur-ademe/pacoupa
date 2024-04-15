@@ -35,7 +35,7 @@ export const criteres = sqliteTable(
     ch: text("CH"),
     ecs: text("ECS"),
     emetteur: text("emetteur"),
-    espaceExterieur: text("espace_exterieur"),
+    espaceExterieurPersonnel: text("espace_exterieur_personnel"),
     envContraint: text("env_contraint"),
     toitureTerrasse: text("toiture_terrasse"),
     temperature: text("temperature"),
@@ -44,19 +44,20 @@ export const criteres = sqliteTable(
   },
   table => {
     return {
-      idxCriteresChEcsEmetteurEspaceExterieurEnvContraintToitureTerrasseTemperatureNbLgtsNiveauRenovation: uniqueIndex(
-        "idx_criteres_CH_ECS_emetteur_espace_exterieur_env_contraint_toiture_terrasse_temperature_nb_lgts_niveau_renovation",
-      ).on(
-        table.ch,
-        table.ecs,
-        table.emetteur,
-        table.espaceExterieur,
-        table.envContraint,
-        table.toitureTerrasse,
-        table.temperature,
-        table.nbLgts,
-        table.niveauRenovation,
-      ),
+      idxCriteresChEcsEmetteurEspaceExterieurPersonnelEnvContraintToitureTerrasseTemperatureNbLgtsNiveauRenovation:
+        uniqueIndex(
+          "idx_criteres_CH_ECS_emetteur_espace_exterieur_personnel_env_contraint_toiture_terrasse_temperature_nb_lgts_niveau_renovation",
+        ).on(
+          table.ch,
+          table.ecs,
+          table.emetteur,
+          table.espaceExterieurPersonnel,
+          table.envContraint,
+          table.toitureTerrasse,
+          table.temperature,
+          table.nbLgts,
+          table.niveauRenovation,
+        ),
     };
   },
 );
