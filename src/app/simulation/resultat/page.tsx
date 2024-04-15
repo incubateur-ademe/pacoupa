@@ -13,8 +13,10 @@ import { simulationSchema } from "../schema";
 import { DebugButton } from "./DebugButton";
 import { createRecommandations, labelForType } from "./helper";
 
-const ResultatsPage = async ({ searchParams }: { searchParams: { hash: string } }) => {
+const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" | "oui"; hash: string } }) => {
   if (!searchParams.hash) throw new Error("Le hash est manquant");
+
+  const complet = searchParams.complet === "oui";
 
   const unparsedFormData: unknown = JSON.parse(Base64.decode(searchParams.hash));
   const formData = simulationSchema.safeParse(unparsedFormData);
@@ -58,57 +60,66 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { hash: string } 
           Nous avons trouvé <strong>{solutions.data.length} solutions</strong> de chauffage adaptées à votre bâtiment.
         </Text>
 
-        <Box className={cx("flex gap-8 flex-col xl:flex-row")}>
-          {solutions.data.slice(0, 3).map(solution => (
-            <Card
-              key={solution.id}
-              desc={
-                <>
-                  {
-                    <>
-                      <Box>
-                        <Badge>{labelForType(solution.type)}</Badge>
-                      </Box>
-                      <Box>
-                        <Box>Score env: {solution.noteEnvironnemental}</Box>
-                        <Box>Coût: {solution.noteCout}</Box>
-                        <Box>Difficulté: {solution.noteDifficulte}</Box>
-                        <Box>Order: {solution.ordre}</Box>
-                      </Box>
-                      <Box className={fr.cx("fr-mt-6w")}>
-                        <Text>{solution.descriptionSolution}</Text>
-                      </Box>
+        <Grid haveGutters>
+          {solutions.data.slice(0, complet ? solutions.data.length : 3).map(solution => (
+            <GridCol key={solution.id} base={12} sm={6} xl={4}>
+              <Card
+                desc={
+                  <>
+                    {
+                      <>
+                        <Box>
+                          <Badge>{labelForType(solution.type)}</Badge>
+                        </Box>
+                        <Box>
+                          <Box>Score env: {solution.noteEnvironnemental}</Box>
+                          <Box>Coût: {solution.noteCout}</Box>
+                          <Box>Difficulté: {solution.noteDifficulte}</Box>
+                          <Box>Order: {solution.ordre}</Box>
+                        </Box>
+                        <Box className={fr.cx("fr-mt-6w")}>
+                          <Text>{solution.descriptionSolution}</Text>
+                        </Box>
 
-                      <span className={fr.cx("fr-text--bold")}>Recommandé pour</span>
-                      <Box className={cx("flex", "justify-start", "gap-4", "fr-mt-1w")}>
-                        {createRecommandations(solution).map((recommandation, index) => (
-                          <Badge key={index} severity="info">
-                            {recommandation}
-                          </Badge>
-                        ))}
-                      </Box>
-                    </>
-                  }
-                </>
-              }
-              enlargeLink
-              horizontal
-              linkProps={{
-                href: `/solutions/${solution.id}`,
-              }}
-              size="small"
-              // title="Intitulé de la carte (sur lequel se trouve le lien)"
-              title={solution.name}
-              titleAs="h3"
-              end={<>En savoir plus</>}
-            />
+                        <span className={fr.cx("fr-text--bold")}>Recommandé pour</span>
+                        <Box className={cx("flex", "flex-wrap", "justify-start", "gap-4", "fr-mt-1w")}>
+                          {createRecommandations(solution).map((recommandation, index) => (
+                            <Badge key={index} severity="info">
+                              {recommandation}
+                            </Badge>
+                          ))}
+                        </Box>
+                      </>
+                    }
+                  </>
+                }
+                enlargeLink
+                horizontal
+                linkProps={{
+                  href: `/solutions/${solution.id}`,
+                }}
+                size="small"
+                // title="Intitulé de la carte (sur lequel se trouve le lien)"
+                title={solution.name}
+                titleAs="h3"
+                end={<>En savoir plus</>}
+              />
+            </GridCol>
           ))}
-        </Box>
-        <Box className={cx("flex", fr.cx("fr-mt-4w"))}>
-          <Button priority="tertiary" className={cx("grow", "md:grow-0", "justify-center")}>
-            Voir d’autres solutions
-          </Button>
-        </Box>
+        </Grid>
+        {!complet && (
+          <Box className={cx("flex", fr.cx("fr-mt-4w"))}>
+            <Button
+              priority="tertiary"
+              className={cx("grow", "md:grow-0", "justify-center")}
+              linkProps={{
+                href: `/simulation/resultat?complet=oui&hash=${searchParams.hash}`,
+              }}
+            >
+              Voir d’autres solutions
+            </Button>
+          </Box>
+        )}
       </Container>
     </>
   );
