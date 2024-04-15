@@ -82,7 +82,8 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
                         </Box>
                         <Box>
                           <Box>
-                            <Box className={fr.cx("fr-mt-2w", "fr-mb-1v")}>Impact écologique 🌿 </Box>
+                            <Box className={fr.cx("fr-mt-3w", "fr-mb-1v")}>Impact écologique 🌿</Box>
+
                             <Box className={cx("flex", "justify-between", "items-center")}>
                               <strong>{noteEnvironmentHelper(solution.noteEnvironnemental).label}</strong>
 
@@ -96,10 +97,10 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
                             </Box>
                           </Box>
                           <Box>
-                            <Box className={fr.cx("fr-mt-2w", "fr-mb-1v")}>Coût d’investissement 💰</Box>
+                            <Box className={fr.cx("fr-mt-3w", "fr-mb-1v")}>Coût d’investissement 💰</Box>
+
                             <Box className={cx("flex", "justify-between", "items-center")}>
                               <strong>{noteCoutHelper(solution.noteCout).label}</strong>
-
                               <Box className={cx("flex")}>
                                 {Array(noteCoutHelper(solution.noteCout).number)
                                   .fill("")
@@ -110,7 +111,8 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
                             </Box>
                           </Box>
                           <Box>
-                            <Box className={fr.cx("fr-mt-2w", "fr-mb-1v")}>Difficulté mise en place 🚧</Box>
+                            <Box className={fr.cx("fr-mt-3w", "fr-mb-1v")}>Difficulté mise en place 🚧</Box>
+
                             <Box className={cx("flex", "justify-between", "items-center")}>
                               <strong>{noteDifficulteHelper(solution.noteDifficulte).label}</strong>
 

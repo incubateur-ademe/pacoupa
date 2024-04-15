@@ -52,8 +52,8 @@ export async function getSolutionsParCriteres(formData: SimulationSchema) {
       usageFr: solutions.usageFr,
       ordre: solutionsParCriteres.ordreSolution,
       noteEnvironnemental: solutions.noteEnvironnemental,
-      noteCout: solutionsParCriteres.cout,
-      noteDifficulte: solutionsParCriteres.difficulte,
+      noteCout: solutionsParCriteres.noteCout,
+      noteDifficulte: solutionsParCriteres.noteDifficulte,
       descriptionSolution: solutions.descriptionSolution,
       criteres,
     })
