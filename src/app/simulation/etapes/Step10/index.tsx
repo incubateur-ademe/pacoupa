@@ -11,7 +11,7 @@ import { WizardForm } from "../WizardForm";
 import { GroupeImage } from "./GroupeImage";
 import { PersonneImage } from "./PersonneImage";
 
-const required_error = "Le type de chauffage est obligatoire";
+const required_error = "Le sytème de production d'eau chaude est obligatoire";
 
 const schema = z.object({
   typeECS: z.string({ required_error }).min(1, required_error),
@@ -26,14 +26,13 @@ export const Step10 = () => {
         <Box>
           <HeaderFunnel />
 
-          <P>Pour l’eau, il s’agit d’un chauffage...</P>
+          <P>Le système de production d'eau chaude est ...</P>
 
           <WizardForm
             schema={schema}
             render={({ errors }) => (
               <Box>
                 <RadioButtons
-                  // legend="Légende pour l’ensemble de champs"
                   name="typeECS"
                   options={[
                     {

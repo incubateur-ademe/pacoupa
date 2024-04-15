@@ -94,7 +94,6 @@ export const Step5 = () => {
                 <P className={fr.cx("fr-mt-8v")}>Lesquels ?</P>
 
                 <Checkbox
-                  legend="Légende pour l’ensemble de champs"
                   disabled={radioState === "Oui" ? false : true}
                   options={[
                     {
@@ -119,14 +118,6 @@ export const Step5 = () => {
                         defaultChecked: initialState?.espacesExterieursCommuns?.includes("toit terrasse"),
                         name: "espacesExterieursCommuns",
                         value: "toit terrasse",
-                      },
-                    },
-                    {
-                      label: "Autres",
-                      nativeInputProps: {
-                        defaultChecked: initialState?.espacesExterieursCommuns?.includes("autres"),
-                        name: "espacesExterieursCommuns",
-                        value: "autres",
                       },
                     },
                   ]}

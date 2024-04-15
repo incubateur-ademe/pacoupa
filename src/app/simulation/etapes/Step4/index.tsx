@@ -27,7 +27,7 @@ export const Step4 = () => {
         <Box>
           <HeaderFunnel />
           <P>
-            Combien y’a t-il de <strong>logements</strong> dans le bâtiment ?
+            Combien y a t-il de <strong>logements</strong> dans le bâtiment ?
           </P>
 
           <WizardForm
