@@ -52,6 +52,7 @@ return {
 }' --multi
 
 sqlite-utils transform pacoupa.db solutions_par_criteres \
+--not-null note_difficulte --not-null note_impact_travaux_coll --not-null note_impact_travaux_indiv --not-null note_cout \
 --drop solution \
 --drop usage_CH \
 --drop usage_ECS \

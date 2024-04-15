@@ -66,9 +66,9 @@ export const solutionsParCriteres = sqliteTable("solutions_par_criteres", {
   criteresId: integer("criteres_id").references(() => criteres.id),
   solutionsId: text("solutions_id").references(() => solutions.id),
   ordreSolution: integer("ordre_solution"),
-  difficulte: text("difficulte"),
-  impactTravauxColl: text("impact_travaux_coll"),
-  impactTravauxIndiv: text("impact_travaux_indiv"),
-  cout: text("cout"),
+  noteDifficulte: text("note_difficulte").notNull(),
+  noteImpactTravauxColl: text("note_impact_travaux_coll").notNull(),
+  noteImpactTravauxIndiv: text("note_impact_travaux_indiv").notNull(),
+  noteCout: text("note_cout").notNull(),
   typeSolution: text("type_solution"),
 });

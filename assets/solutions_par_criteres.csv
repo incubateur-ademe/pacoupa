@@ -1,4 +1,4 @@
-CH,ECS,emetteur,espace_exterieur_personnel,env_contraint,toiture_terrasse,temperature,nb_lgts,niveau_renovation,difficulte,impact_travaux_coll,impact_travaux_indiv,cout,type_solution,usage_CH,usage_ECS,usage_FR,ordre_solution,solution,alertes
+CH,ECS,emetteur,espace_exterieur_personnel,env_contraint,toiture_terrasse,temperature,nb_lgts,niveau_renovation,note_difficulte,note_impact_travaux_coll,note_impact_travaux_indiv,note_cout,type_solution,usage_CH,usage_ECS,usage_FR,ordre_solution,solution,alertes
 IND,IND,Hydraulique,Oui,NA,NA,< 40°C,< 15,NA,C,A,C,A,IND,Non,Oui,Non,6,30 - CET Air extrait / Eau,
 IND,IND,Hydraulique,Oui,NA,NA,< 40°C,< 15,NA,B,A,C,A,IND,Non,Oui,Non,5,31 - CET Air / Eau (avec unité extérieure),
 IND,IND,Hydraulique,Oui,NA,NA,< 40°C,< 15,NA,C,A,C,A,IND,Non,Oui,Non,7,32 - CET Air / Eau (intérieur),
