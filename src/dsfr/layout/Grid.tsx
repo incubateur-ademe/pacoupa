@@ -18,6 +18,9 @@ export type GridProps = PropsWithChildren<
   }
 >;
 
+/**
+ * Ajoute des rows dans un Container.
+ */
 export const Grid = forwardRef<HTMLDivElement, GridProps>(
   ({ children, haveGutters, align, valign, className, ...rest }, ref) => (
     <BoxRef

@@ -51,21 +51,31 @@ Il faut auparavant s'authentifier avec `turso auth login`.
 ```shell
 turso db destroy pacoupa
 turso db create pacoupa --from-file assets/pacoupa.db
-turso db tokens create pacoupa -r # création d'un token d'accès en lecture seule
+```
+
+Pour créer un nouveau token d'accès en lecture seule
+```shell
+turso db tokens create pacoupa -r 
 ```
 
 Recopier le token dans .env et .env.local.
-Il faudra aussi le  noter sur Vercel settings.
+Il faudra aussi le noter sur Vercel settings.
 
 3. Génération du schéma types Drizzle
 
 D'abord, vérifier son fichier `.env` renseignant les variables TURSO_DATABASE_URL et TURSO_AUTH_TOKEN.
 
 ```shell
-yarn dk-introspect
+yarn dk:introspect
 ```
 
 Cette commande va regénérer le fichier schema.ts et les types Drizzle.
+
+Vous pouvez lancer la compilation typescript pour vérifier que le code est resté typesafe.
+
+```shell
+yarn tsc
+```
 
 ### FAQ
 
@@ -82,7 +92,7 @@ Regénérer le token et le mettre à jour sur Vercel.
 classDiagram
 direction BT
 
-class caracteristiques {
+class criteres {
    text CH
    text ECS
    text emetteur
@@ -119,8 +129,8 @@ class solutions {
    text commentaire_pouget
    text id
 }
-class solutions_par_cas {
-   integer caracteristiques_id
+class solutions_par_criteres {
+   integer criteres_id
    text id_solution
    integer ordre_solution
    text difficulte
@@ -135,7 +145,7 @@ class solutions_par_cas {
 }
 
 
-solutions_par_cas  -->  solutions : id_solution
+solutions_par_criteres  -->  solutions : id_solution
 
-solutions_par_cas  -->  caracteristiques : caracteristiques_id
+solutions_par_criteres  -->  criteres : criteres_id
 ```

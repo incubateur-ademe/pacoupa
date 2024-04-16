@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { z } from "zod";
 
 import { Box, P } from "@/dsfr";
-import { useStore } from "@/lib/store";
+import { useStore } from "@/lib/client/store";
 import { OuiNonLabels } from "@/utils/zod";
 
 import { HeaderFunnel } from "../HeaderFunnel";
@@ -63,7 +63,7 @@ export const Step5 = () => {
         <Box>
           <HeaderFunnel />
           <P>
-            Votre bâtiment a-t-il des <strong>espaces extérieurs communsxxx</strong> ?
+            Votre bâtiment a-t-il des <strong>espaces extérieurs communs</strong> ?
           </P>
 
           <WizardForm
@@ -94,7 +94,6 @@ export const Step5 = () => {
                 <P className={fr.cx("fr-mt-8v")}>Lesquels ?</P>
 
                 <Checkbox
-                  legend="Légende pour l’ensemble de champs"
                   disabled={radioState === "Oui" ? false : true}
                   options={[
                     {
@@ -119,14 +118,6 @@ export const Step5 = () => {
                         defaultChecked: initialState?.espacesExterieursCommuns?.includes("toit terrasse"),
                         name: "espacesExterieursCommuns",
                         value: "toit terrasse",
-                      },
-                    },
-                    {
-                      label: "Autres",
-                      nativeInputProps: {
-                        defaultChecked: initialState?.espacesExterieursCommuns?.includes("autres"),
-                        name: "espacesExterieursCommuns",
-                        value: "autres",
                       },
                     },
                   ]}

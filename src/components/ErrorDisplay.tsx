@@ -9,7 +9,7 @@ import { Container, Grid, GridCol, P } from "@/dsfr";
 const errors = {
   "404": {
     title: "Page non trouvée",
-    headline: "La page que vous cherchez est introuvable. Excusez-nous pour la gène occasionnée.",
+    headline: "La page que vous cherchez est introuvable. Excusez-nous pour la gêne occasionnée.",
     body: (
       <>
         Si vous avez tapé l'adresse web dans le navigateur, vérifiez qu'elle est correcte. La page n’est peut-être plus
@@ -21,7 +21,7 @@ const errors = {
     title: "Erreur inattendue",
     headline:
       "Désolé, le service rencontre un problème, nous travaillons pour le résoudre le plus rapidement possible.",
-    body: <>Essayez de rafraichir la page ou bien reessayez plus tard.</>,
+    body: <>Essayez de rafraichir la page ou bien réessayez plus tard.</>,
   },
   construction: {
     title: "En construction",

@@ -50,34 +50,21 @@ declare type PacoupaFAQMDXMetadata = PacoupaHeroMDXMetadata & {
 
 declare type MDXContent = typeof import("*.mdx").default;
 
-declare module "@__content/landing/blocs/*/title.mdx" {
-  const MDXContent: MDXContent;
-  export default MDXContent;
-  export const metadata: PacoupaMDXLandingMetadata;
-}
+declare type SolutionMDXMetadata = {
+  description: string;
+  label: string;
+  scoreEcologique: string;
+  titre: string;
+  titre: string;
+  type: "collectif" | "individuel";
+  usageChauffage: "non" | "oui" | "possible";
+  usageECS: "non" | "oui" | "possible";
+};
 
-declare module "@__content/landing/blocs/*/highlight.mdx" {
+declare module "content/solutions/*.mdx" {
   const MDXContent: MDXContent;
   export default MDXContent;
-  export const metadata: PacoupaMDXLandingHighlightMetadata;
-}
-
-declare module "@__content/landing/faq/*.mdx" {
-  const MDXContent: MDXContent;
-  export default MDXContent;
-  export const metadata: PacoupaFAQMDXMetadata;
-}
-
-declare module "@__content/landing/hero_title.mdx" {
-  const MDXContent: MDXContent;
-  export default MDXContent;
-  export const metadata: PacoupaHeroMDXMetadata;
-}
-
-declare module "@__content/mentions-legales.mdx" {
-  const MDXContent: MDXContent;
-  export default MDXContent;
-  export const metadata: PacoupaHeroMDXMetadata;
+  export const frontmatter: SolutionMDXMetadata;
 }
 
 declare module "@codegouvfr/react-dsfr/*.svg" {

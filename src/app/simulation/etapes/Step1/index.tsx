@@ -5,7 +5,7 @@ import { Input } from "@codegouvfr/react-dsfr/Input";
 import { z } from "zod";
 
 import { Box, P } from "@/dsfr";
-import { useStore } from "@/lib/store";
+import { useStore } from "@/lib/client/store";
 
 import { HeaderFunnel } from "../HeaderFunnel";
 import { WizardForm } from "../WizardForm";
@@ -13,7 +13,6 @@ import { WizardForm } from "../WizardForm";
 const schema = z.object({
   adresse: z.string().min(1, "L'adresse est obligatoire"),
 });
-
 export const Step1 = () => {
   const [initialState, sessionStorageOK] = useStore();
 

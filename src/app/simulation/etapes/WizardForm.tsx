@@ -1,8 +1,10 @@
+import { Base64 } from "js-base64";
+import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 import { useWizard } from "react-use-wizard";
 import { z, type ZodFormattedError } from "zod";
 
-import { store } from "@/lib/store";
+import { store } from "@/lib/client/store";
 
 import { ButtonsFunnel } from "./ButtonsFunnel";
 
@@ -15,6 +17,12 @@ export type HandleFormResult =
       success: true;
     };
 
+/**
+ * Store the FormData in the session storage or return an error if the form is invalid.
+ *
+ * @param schema zod schema for the current form
+ * @param formAction function to execute if the form is valid
+ */
 export const handleForm =
   (schema: z.AnyZodObject, formAction: (handleResult: HandleFormResult) => void) =>
   (event: React.FormEvent<HTMLFormElement>) => {
@@ -27,13 +35,11 @@ export const handleForm =
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     const arrayKeys = keys.filter(key => schema.shape[key] instanceof z.ZodArray);
 
-    // const values = Object.fromEntries(data);
     const values = Object.fromEntries(
       Array.from(data.keys()).map(key => [key, arrayKeys.includes(key) ? data.getAll(key) : data.get(key)]),
     );
 
     console.debug("Debug values", JSON.stringify(values));
-    // console.debug("Debug keys which are arrays", arrayKeys); // Logs all keys of the schema that are arrays
 
     const validation = schema.safeParse(values);
 
@@ -45,7 +51,6 @@ export const handleForm =
     } else {
       console.log("error", validation.error);
 
-      // result = { success: false, errors: { [validation.error.errors[0].path]: validation.error.errors[0].message } };
       result = { success: false, errors: validation.error.format() };
     }
 
@@ -53,7 +58,6 @@ export const handleForm =
   };
 
 type Props = {
-  // formAction: (handleResult: HandleFormResult) => void;
   render: ({
     errors,
   }: {
@@ -70,21 +74,28 @@ type Props = {
 };
 
 export const WizardForm = ({ schema, render }: Props) => {
-  const { nextStep } = useWizard();
+  const { nextStep, isLastStep } = useWizard();
   const [errors, setErrors] = useState<ZodFormattedError<{ [x: string]: unknown }, string>>();
+  const router = useRouter();
 
   const formAction = useCallback(
     (result: HandleFormResult) => {
       if (result.success) {
+        const encoded = Base64.encode(JSON.stringify(store.get()));
+
+        if (isLastStep) {
+          return router.push(`/simulation/resultat?hash=${encoded}`);
+        }
+
         nextStep().catch(() => {
-          console.log("erreur dans la navigation");
+          console.error("erreur dans la navigation");
         });
       } else {
         console.log("error", result.errors);
         setErrors(result.errors);
       }
     },
-    [nextStep, setErrors],
+    [nextStep, setErrors, isLastStep, router],
   );
 
   return (
