@@ -74,14 +74,17 @@ export const Step6 = () => {
                   legend=""
                   name="possedeEspacesExterieursPersonnels"
                   segments={
-                    OuiNonLabels.map(label => ({
-                      label,
-                      nativeInputProps: {
-                        value: label,
-                        checked: radioState === label,
-                        onChange: () => setRadioState(label),
-                      },
-                    })) as unknown as SegmentedControlProps.Segments
+                    OuiNonLabels.map(
+                      label =>
+                        ({
+                          label,
+                          nativeInputProps: {
+                            value: label,
+                            checked: radioState === label,
+                            onChange: () => setRadioState(label),
+                          },
+                        }) satisfies SegmentedControlProps.SegmentWithoutIcon,
+                    ) as unknown as SegmentedControlProps.Segments
                   }
                 />
 
