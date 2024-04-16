@@ -13,6 +13,7 @@ import { simulationSchema } from "../schema";
 import { DebugButton } from "./DebugButton";
 import {
   createRecommandations,
+  imageForFamille,
   labelForType,
   noteCoutHelper,
   noteDifficulteHelper,
@@ -50,7 +51,6 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
                 href: "/simulation/etapes",
               }}
               size="small"
-              // title="Intitulé de la carte (sur lequel se trouve le lien)"
               title=""
               titleAs="h3"
               end={<>Modifier</>}
@@ -77,9 +77,6 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
                   <>
                     {
                       <>
-                        <Box>
-                          <Badge>{labelForType(solution.type)}</Badge>
-                        </Box>
                         <Box>
                           <Box>
                             <Box className={fr.cx("fr-mt-3w", "fr-mb-1v")}>Impact écologique 🌿</Box>
@@ -148,8 +145,19 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
                   href: `/solutions/${solution.id}`,
                 }}
                 size="small"
-                // title="Intitulé de la carte (sur lequel se trouve le lien)"
-                title={solution.name}
+                title={
+                  <Box className={cx("flex items-start gap-4")}>
+                    <Box>
+                      {/* {solution.familleSolution} */}
+                      {imageForFamille(solution.familleSolution)}
+                    </Box>
+                    <Box>
+                      <span className={cx("mb-0", fr.cx("fr-text--lg"))}>{solution.name}</span>
+                      <br />
+                      <Badge>{labelForType(solution.type)}</Badge>
+                    </Box>
+                  </Box>
+                }
                 titleAs="h3"
                 end={<>En savoir plus</>}
               />

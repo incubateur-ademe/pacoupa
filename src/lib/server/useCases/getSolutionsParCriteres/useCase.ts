@@ -56,6 +56,7 @@ export async function getSolutionsParCriteres(formData: SimulationSchema) {
       noteDifficulte: solutionsParCriteres.noteDifficulte,
       descriptionSolution: solutions.descriptionSolution,
       criteres,
+      familleSolution: solutions.familleSolution,
     })
     .from(criteres)
     .innerJoin(solutionsParCriteres, eq(criteres.id, solutionsParCriteres.criteresId))

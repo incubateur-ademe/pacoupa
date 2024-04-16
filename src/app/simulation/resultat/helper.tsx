@@ -1,13 +1,48 @@
+import { FamilleCetAirEauImage } from "@/components/img/familles/FamilleCetAirEauImage";
+import { FamilleCetEauEauImage } from "@/components/img/familles/FamilleCetEauEauImage";
+import { FamilleGeothermieImage } from "@/components/img/familles/FamilleGeothermieImage";
+import { FamilleHybrideImage } from "@/components/img/familles/FamilleHybrideImage";
+import { FamillePacAirAirImage } from "@/components/img/familles/FamillePacAirAirImage";
+import { FamillePacAirEauImage } from "@/components/img/familles/FamillePacAirEauImage";
+import { FamillePacEauEauImage } from "@/components/img/familles/FamillePacEauEauImage";
+import { FamillePacEauxGrisesEau } from "@/components/img/familles/FamillePacEauxGrisesEau";
+import { FamillePacSolaireEauImage } from "@/components/img/familles/FamillePacSolaireEauImage";
+import { FamilleRcuImage } from "@/components/img/familles/FamilleRcuImage";
 import { type GetSolutionsParCriteresReturnType } from "@/lib/server/useCases/getSolutionsParCriteres";
 
 export const labelForType = (type: string = "") => {
   switch (type.toUpperCase()) {
     case "IND":
-      return "Individuel";
+      return "Solution individuelle";
     case "COL":
-      return "Collectif";
+      return "Solution collective";
     default:
-      return "Mixte";
+      return "Solution mixte";
+  }
+};
+
+export const imageForFamille = (famille: string) => {
+  switch (famille) {
+    case "RCU":
+      return <FamilleRcuImage />;
+    case "Geothermie":
+      return <FamilleGeothermieImage />;
+    case "PAC Air-Air":
+      return <FamillePacAirAirImage />;
+    case "PAC Air-Eau":
+      return <FamillePacAirEauImage />;
+    case "PAC Eau-Eau":
+      return <FamillePacEauEauImage />;
+    case "PAC Eaux grises-Eau":
+      return <FamillePacEauxGrisesEau />;
+    case "PAC Solaire-Eau":
+      return <FamillePacSolaireEauImage />;
+    case "Hybride PAC + Chaudière":
+      return <FamilleHybrideImage />;
+    case "CET Air-Eau":
+      return <FamilleCetAirEauImage />;
+    case "CET Eau-Eau":
+      return <FamilleCetEauEauImage />;
   }
 };
 
