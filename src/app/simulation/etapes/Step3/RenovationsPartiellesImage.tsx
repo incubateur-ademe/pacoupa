@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import renovation from "../../../../../public/img/simulation/renovation-globale.svg";
+import renovation from "../../../../../public/img/simulation/renovations-partielles.svg";
 
 type Props = {
   height?: number;

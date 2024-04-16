@@ -4,17 +4,17 @@ import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
 import { z } from "zod";
 
 import { Box, P } from "@/dsfr";
-import { useStore } from "@/lib/store";
+import { useStore } from "@/lib/client/store";
 
 import { HeaderFunnel } from "../HeaderFunnel";
 import { WizardForm } from "../WizardForm";
 import { GroupeImage } from "./GroupeImage";
 import { PersonneImage } from "./PersonneImage";
 
-const required_error = "Le type de chauffage est obligatoire";
+const required_error = "Le sytème de production d'eau chaude est obligatoire";
 
 const schema = z.object({
-  typeChauffage: z.string({ required_error }).min(1, required_error),
+  typeECS: z.string({ required_error }).min(1, required_error),
 });
 
 export const Step10 = () => {
@@ -26,22 +26,21 @@ export const Step10 = () => {
         <Box>
           <HeaderFunnel />
 
-          <P>Pour l’eau, il s’agit d’un chauffage...</P>
+          <P>Le système de production d'eau chaude est ...</P>
 
           <WizardForm
             schema={schema}
             render={({ errors }) => (
               <Box>
                 <RadioButtons
-                  // legend="Légende pour l’ensemble de champs"
-                  name="typeChauffage"
+                  name="typeECS"
                   options={[
                     {
                       illustration: <PersonneImage />,
 
                       label: "Individuel",
                       nativeInputProps: {
-                        defaultChecked: initialState?.typeChauffage === "individuel",
+                        defaultChecked: initialState?.typeECS === "individuel",
                         value: "individuel",
                       },
                     },
@@ -49,13 +48,13 @@ export const Step10 = () => {
                       illustration: <GroupeImage />,
                       label: "Collectif",
                       nativeInputProps: {
-                        defaultChecked: initialState?.typeChauffage === "collectif",
+                        defaultChecked: initialState?.typeECS === "collectif",
                         value: "collectif",
                       },
                     },
                   ]}
-                  state={errors?.typeChauffage?._errors ? "error" : "default"}
-                  stateRelatedMessage={errors?.typeChauffage?._errors}
+                  state={errors?.typeECS?._errors ? "error" : "default"}
+                  stateRelatedMessage={errors?.typeECS?._errors}
                 />
               </Box>
             )}

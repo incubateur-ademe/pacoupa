@@ -1,7 +1,6 @@
 "use client";
 
 import { fr } from "@codegouvfr/react-dsfr";
-import { redirect } from "next/navigation";
 import { useWizard } from "react-use-wizard";
 
 import { Button } from "@/components/Button";
@@ -31,20 +30,7 @@ export const ButtonsFunnel = ({ disabled }: Props = { disabled: false }) => {
             </Button>
           )}
 
-          {isLastStep ? (
-            <Button
-              nativeButtonProps={{
-                // TODO: problème pour la redirection
-                onClick: () => redirect("/simulation/resultats"),
-              }}
-            >
-              Voir les résultats
-            </Button>
-          ) : (
-            <>
-              <Button nativeButtonProps={{ disabled }}>Suivant</Button>
-            </>
-          )}
+          <Button nativeButtonProps={{ disabled }}>{isLastStep ? "Voir les résultats" : "Suivant"}</Button>
         </ButtonsWrapper>
       </Box>
     </>

@@ -30,7 +30,7 @@ const Page = async () => {
         ]}
         data={rows.map(row => [
           row.id,
-          row.name,
+          row.nom,
           row.usageCh,
           row.usageEcs,
           row.usageFr,

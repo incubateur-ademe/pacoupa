@@ -5,7 +5,7 @@ import { Input } from "@codegouvfr/react-dsfr/Input";
 import { z } from "zod";
 
 import { Box, P } from "@/dsfr";
-import { useStore } from "@/lib/store";
+import { useStore } from "@/lib/client/store";
 
 import { HeaderFunnel } from "../HeaderFunnel";
 import { WizardForm } from "../WizardForm";
@@ -27,7 +27,7 @@ export const Step4 = () => {
         <Box>
           <HeaderFunnel />
           <P>
-            Combien y’a t-il de <strong>logements</strong> dans le bâtiment ?
+            Combien y a t-il de <strong>logements</strong> dans le bâtiment ?
           </P>
 
           <WizardForm

@@ -16,7 +16,7 @@ export const Button = (props: Props) => {
         className={cx(
           props.priority === "secondary"
             ? styles.secondaryButton
-            : props.priority === "tertiary"
+            : props.priority === "tertiary" || props.priority === "tertiary no outline"
               ? styles.tertiaryButton
               : styles.primaryButton,
           props.className,
