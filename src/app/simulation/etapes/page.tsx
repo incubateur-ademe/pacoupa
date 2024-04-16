@@ -1,5 +1,9 @@
-import { cx } from "@codegouvfr/react-dsfr/tools/cx";
+"use client";
 
+import { cx } from "@codegouvfr/react-dsfr/tools/cx";
+import { useRef } from "react";
+
+import { AnimatedStep } from "@/components/AnimatedStep";
 import { Wizard } from "@/components/Wizard";
 import { Box } from "@/dsfr";
 
@@ -17,22 +21,46 @@ import { Step10 } from "./Step10";
 import { Step11 } from "./Step11";
 
 const SimulationPage = () => {
+  const previousStep = useRef<number>(0);
+
   return (
     // With flex, we can use justify-between to approximatively align the footer at the bottom of the page
     <Box className={cx(styles.wizard, "flex flex-col justify-between")}>
       {/* <Wizard startIndex={10}> */}
       <Wizard>
-        <Step1 />
-        <Step2 />
-        <Step3 />
-        <Step4 />
-        <Step5 />
-        <Step6 />
-        <Step7 />
-        <Step8 />
-        <Step9 />
-        <Step10 />
-        <Step11 />
+        <AnimatedStep previousStep={previousStep}>
+          <Step1 />
+        </AnimatedStep>
+        <AnimatedStep previousStep={previousStep}>
+          <Step2 />
+        </AnimatedStep>
+        <AnimatedStep previousStep={previousStep}>
+          <Step3 />
+        </AnimatedStep>
+        <AnimatedStep previousStep={previousStep}>
+          <Step4 />
+        </AnimatedStep>
+        <AnimatedStep previousStep={previousStep}>
+          <Step5 />
+        </AnimatedStep>
+        <AnimatedStep previousStep={previousStep}>
+          <Step6 />
+        </AnimatedStep>
+        <AnimatedStep previousStep={previousStep}>
+          <Step7 />
+        </AnimatedStep>
+        <AnimatedStep previousStep={previousStep}>
+          <Step8 />
+        </AnimatedStep>
+        <AnimatedStep previousStep={previousStep}>
+          <Step9 />
+        </AnimatedStep>
+        <AnimatedStep previousStep={previousStep}>
+          <Step10 />
+        </AnimatedStep>
+        <AnimatedStep previousStep={previousStep}>
+          <Step11 />
+        </AnimatedStep>
       </Wizard>
     </Box>
   );
