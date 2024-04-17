@@ -20,6 +20,7 @@ export const ButtonsFunnel = ({ disabled }: Props = { disabled: false }) => {
         <ButtonsWrapper align="center">
           {!isFirstStep && (
             <Button
+              type="button"
               priority="tertiary"
               iconId="fr-icon-arrow-left-line"
               nativeButtonProps={{

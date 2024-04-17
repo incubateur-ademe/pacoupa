@@ -1,6 +1,6 @@
 import { Base64 } from "js-base64";
 import { useRouter } from "next/navigation";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useWizard } from "react-use-wizard";
 import { z, type ZodFormattedError } from "zod";
 
@@ -78,6 +78,10 @@ export const WizardForm = ({ schema, render }: Props) => {
   const [errors, setErrors] = useState<ZodFormattedError<{ [x: string]: unknown }, string>>();
   const router = useRouter();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const formAction = useCallback(
     (result: HandleFormResult) => {
       if (result.success) {
@@ -100,7 +104,7 @@ export const WizardForm = ({ schema, render }: Props) => {
 
   return (
     <>
-      <form onSubmit={handleForm(schema, formAction)}>
+      <form onSubmit={handleForm(schema, formAction)} noValidate>
         {render({ errors })}
 
         <ButtonsFunnel />
