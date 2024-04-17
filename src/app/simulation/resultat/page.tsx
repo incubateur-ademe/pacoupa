@@ -22,6 +22,7 @@ import {
 import { JaugeCoutlImage } from "./JaugeCoutlImage";
 import { JaugeDifficulteImage } from "./JaugeDifficulteImage";
 import { JaugeEnvironnementalImage } from "./JaugeEnvironnementalImage";
+import { NouvelleSimulation } from "./NouvelleSimulation";
 
 const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" | "oui"; hash: string } }) => {
   if (!searchParams.hash) throw new Error("Le hash est manquant");
@@ -66,7 +67,17 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
         </H4>
 
         <Text>
-          Nous avons trouvé <strong>{solutions.data.length} solutions</strong> de chauffage adaptées à votre bâtiment.
+          {solutions.data.length === 0 ? (
+            <>Nous n'avons pas trouvé de solution de chauffage adaptée à votre bâtiment.</>
+          ) : (
+            <>
+              Nous avons trouvé{" "}
+              <strong>
+                {solutions.data.length} solution{solutions.data.length > 1 ? "s" : ""}
+              </strong>{" "}
+              de chauffage adaptées à votre bâtiment.
+            </>
+          )}
         </Text>
 
         <Grid haveGutters>
@@ -164,7 +175,7 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
             </GridCol>
           ))}
         </Grid>
-        {!complet && (
+        {!complet && solutions.data.length > 3 && (
           <Box className={cx("flex", fr.cx("fr-mt-4w"))}>
             <Button
               priority="tertiary"
@@ -177,6 +188,12 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
             </Button>
           </Box>
         )}
+
+        <Grid>
+          <GridCol className={fr.cx("fr-mt-6w")}>
+            <NouvelleSimulation />
+          </GridCol>
+        </Grid>
       </Container>
     </>
   );
