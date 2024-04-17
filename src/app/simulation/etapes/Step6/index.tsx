@@ -43,7 +43,7 @@ export const Step6 = () => {
 
   useEffect(() => {
     if (sessionStorageOK) {
-      setRadioState(initialState?.possedeEspacesExterieursPersonnels as (typeof OuiNonLabels)[number]);
+      setRadioState((initialState?.possedeEspacesExterieursCommuns as (typeof OuiNonLabels)[number]) ?? "Oui");
     }
   }, [sessionStorageOK, initialState]);
 
