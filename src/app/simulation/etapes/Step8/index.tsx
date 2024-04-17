@@ -4,7 +4,6 @@ import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
 import { z } from "zod";
 
 import { Box, P } from "@/dsfr";
-import { useStore } from "@/lib/client/store";
 
 import { HeaderFunnel } from "../HeaderFunnel";
 import { WizardForm } from "../WizardForm";
@@ -16,11 +15,9 @@ const schema = z.object({
 });
 
 export const Step8 = () => {
-  const [initialState, sessionStorageOK] = useStore();
-
   return (
     <>
-      {sessionStorageOK && (
+      {
         <Box>
           <HeaderFunnel />
           <P>
@@ -29,7 +26,7 @@ export const Step8 = () => {
 
           <WizardForm
             schema={schema}
-            render={({ errors }) => (
+            render={({ errors, store }) => (
               <>
                 <Box>
                   <RadioButtons
@@ -39,21 +36,21 @@ export const Step8 = () => {
                       {
                         label: "Fioul",
                         nativeInputProps: {
-                          defaultChecked: initialState?.energieCH === "fioul",
+                          defaultChecked: store.energieCH === "fioul",
                           value: "fioul",
                         },
                       },
                       {
                         label: "Gaz",
                         nativeInputProps: {
-                          defaultChecked: initialState?.energieCH === "gaz",
+                          defaultChecked: store.energieCH === "gaz",
                           value: "gaz",
                         },
                       },
                       {
                         label: "Électricité",
                         nativeInputProps: {
-                          defaultChecked: initialState?.energieCH === "electricite",
+                          defaultChecked: store.energieCH === "electricite",
                           value: "electricite",
                         },
                       },
@@ -66,7 +63,7 @@ export const Step8 = () => {
             )}
           />
         </Box>
-      )}
+      }
     </>
   );
 };

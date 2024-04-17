@@ -5,7 +5,6 @@ import { Input } from "@codegouvfr/react-dsfr/Input";
 import { z } from "zod";
 
 import { Box, P } from "@/dsfr";
-import { useStore } from "@/lib/client/store";
 
 import { HeaderFunnel } from "../HeaderFunnel";
 import { WizardForm } from "../WizardForm";
@@ -20,11 +19,9 @@ const schema = z.object({
 });
 
 export const Step4 = () => {
-  const [initialState, sessionStorageOK] = useStore();
-
   return (
     <>
-      {sessionStorageOK && (
+      {
         <Box>
           <HeaderFunnel />
           <P>
@@ -33,14 +30,14 @@ export const Step4 = () => {
 
           <WizardForm
             schema={schema}
-            render={({ errors }) => (
+            render={({ errors, store }) => (
               <Box>
                 <Input
                   label=""
                   nativeInputProps={{
                     placeholder: "Nombre de logements",
                     name: "nbLogements",
-                    defaultValue: initialState?.nbLogements,
+                    defaultValue: store.nbLogements,
                     type: "number",
                     onBlur: e => {
                       e.target.value = String(Math.round(Number(e.target.value)));
@@ -58,7 +55,7 @@ export const Step4 = () => {
             Plutôt autour de 10, 50, 100, 200 ?
           </P>
         </Box>
-      )}
+      }
     </>
   );
 };

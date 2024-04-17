@@ -3,13 +3,15 @@
 import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/Button";
-import { store } from "@/lib/client/store";
+import { usePacoupaSessionStorage } from "@/lib/client/usePacoupaSessionStorage";
 
 export const NouvelleSimulation = () => {
   const router = useRouter();
 
+  const { resetStore } = usePacoupaSessionStorage();
+
   const handleClick = () => {
-    store.clear();
+    resetStore();
     router.push("/simulation");
   };
 

@@ -4,7 +4,6 @@ import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
 import { z } from "zod";
 
 import { Box, P } from "@/dsfr";
-import { useStore } from "@/lib/client/store";
 
 import { HeaderFunnel } from "../HeaderFunnel";
 import { WizardForm } from "../WizardForm";
@@ -18,11 +17,9 @@ const schema = z.object({
 });
 
 export const Step2 = () => {
-  const [initialState, sessionStorageOK] = useStore();
-
   return (
     <>
-      {sessionStorageOK && (
+      {
         <Box>
           <HeaderFunnel />
           <P>
@@ -31,7 +28,7 @@ export const Step2 = () => {
 
           <WizardForm
             schema={schema}
-            render={({ errors }) => (
+            render={({ errors, store }) => (
               <Box>
                 <RadioButtons
                   // legend="Légende pour l’ensemble de champs"
@@ -42,7 +39,7 @@ export const Step2 = () => {
                       label: "Avant 1945",
                       hintText: "Façade ornementée",
                       nativeInputProps: {
-                        defaultChecked: initialState?.annee === "pre-1945",
+                        defaultChecked: store.annee === "pre-1945",
                         value: "pre-1945",
                       },
                     },
@@ -51,7 +48,7 @@ export const Step2 = () => {
                       label: "Entre 1946 et 1974",
                       hintText: "Utilisation du béton",
                       nativeInputProps: {
-                        defaultChecked: initialState?.annee === "1946-1974",
+                        defaultChecked: store.annee === "1946-1974",
                         value: "1946-1974",
                       },
                     },
@@ -60,7 +57,7 @@ export const Step2 = () => {
                       label: "Entre 1975 et 1989",
                       hintText: "Les années HLM",
                       nativeInputProps: {
-                        defaultChecked: initialState?.annee === "1975-1989",
+                        defaultChecked: store.annee === "1975-1989",
                         value: "1975-1989",
                       },
                     },
@@ -69,7 +66,7 @@ export const Step2 = () => {
                       label: "Après 1990",
                       hintText: "Bâtiments modernes",
                       nativeInputProps: {
-                        defaultChecked: initialState?.annee === "post-1990",
+                        defaultChecked: store.annee === "post-1990",
                         value: "post-1990",
                       },
                     },
@@ -81,7 +78,7 @@ export const Step2 = () => {
             )}
           />
         </Box>
-      )}
+      }
     </>
   );
 };

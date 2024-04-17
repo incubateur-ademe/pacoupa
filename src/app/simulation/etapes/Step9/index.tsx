@@ -4,7 +4,6 @@ import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
 import { z } from "zod";
 
 import { Box, P } from "@/dsfr";
-import { useStore } from "@/lib/client/store";
 
 import { HeaderFunnel } from "../HeaderFunnel";
 import { WizardForm } from "../WizardForm";
@@ -16,11 +15,9 @@ const schema = z.object({
 });
 
 export const Step9 = () => {
-  const [initialState, sessionStorageOK] = useStore();
-
   return (
     <>
-      {sessionStorageOK && (
+      {
         <Box>
           <HeaderFunnel />
 
@@ -28,7 +25,7 @@ export const Step9 = () => {
 
           <WizardForm
             schema={schema}
-            render={({ errors }) => (
+            render={({ errors, store }) => (
               <>
                 <Box>
                   <RadioButtons
@@ -38,14 +35,14 @@ export const Step9 = () => {
                       {
                         label: "Des radiateurs",
                         nativeInputProps: {
-                          defaultChecked: initialState?.emetteur === "radiateurs",
+                          defaultChecked: store.emetteur === "radiateurs",
                           value: "radiateurs",
                         },
                       },
                       {
                         label: "Un plancher chauffant",
                         nativeInputProps: {
-                          defaultChecked: initialState?.emetteur === "plancher chauffant",
+                          defaultChecked: store.emetteur === "plancher chauffant",
                           value: "plancher chauffant",
                         },
                       },
@@ -58,7 +55,7 @@ export const Step9 = () => {
             )}
           />
         </Box>
-      )}
+      }
     </>
   );
 };

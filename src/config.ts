@@ -15,4 +15,5 @@ export const config = {
   ctaTitle: "S'inscrire",
   tallyButtonLabel: "S'inscrire",
   tallyId: "wvybQ4",
+  storeKey: "pacoupa-simulation",
 };
