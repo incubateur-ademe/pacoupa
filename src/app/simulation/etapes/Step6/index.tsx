@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { z } from "zod";
 
 import { Box, P } from "@/dsfr";
-import { useStore } from "@/lib/client/store";
+import { usePacoupaSessionStorage } from "@/lib/client/usePacoupaSessionStorage";
 import { OuiNonLabels } from "@/utils/zod";
 
 import { HeaderFunnel } from "../HeaderFunnel";
@@ -38,14 +38,12 @@ const schemaNon = z.object({
 });
 
 export const Step6 = () => {
-  const [initialState, sessionStorageOK] = useStore();
   const [radioState, setRadioState] = useState<(typeof OuiNonLabels)[number] | undefined>();
+  const { store } = usePacoupaSessionStorage();
 
   useEffect(() => {
-    if (sessionStorageOK) {
-      setRadioState((initialState?.possedeEspacesExterieursCommuns as (typeof OuiNonLabels)[number]) ?? "Oui");
-    }
-  }, [sessionStorageOK, initialState]);
+    setRadioState((store.possedeEspacesExterieursPersonnels as (typeof OuiNonLabels)[number]) ?? "Oui");
+  }, [store]);
 
   useEffect(() => {
     if (radioState === "Non") {
@@ -59,7 +57,7 @@ export const Step6 = () => {
 
   return (
     <>
-      {sessionStorageOK && (
+      {
         <Box>
           <HeaderFunnel />
           <P>
@@ -68,7 +66,7 @@ export const Step6 = () => {
 
           <WizardForm
             schema={radioState === "Oui" ? schemaOui : schemaNon}
-            render={({ errors }) => (
+            render={({ errors, store }) => (
               <>
                 <SegmentedControl
                   legend=""
@@ -102,7 +100,7 @@ export const Step6 = () => {
                     {
                       label: "Balcon",
                       nativeInputProps: {
-                        defaultChecked: initialState?.espacesExterieursPersonnels?.includes("balcon"),
+                        defaultChecked: store.espacesExterieursPersonnels?.includes("balcon"),
                         name: "espacesExterieursPersonnels",
                         value: "balcon",
                       },
@@ -110,7 +108,7 @@ export const Step6 = () => {
                     {
                       label: "Toit terrasse",
                       nativeInputProps: {
-                        defaultChecked: initialState?.espacesExterieursPersonnels?.includes("toit terrasse"),
+                        defaultChecked: store.espacesExterieursPersonnels?.includes("toit terrasse"),
                         name: "espacesExterieursPersonnels",
                         value: "toit terrasse",
                       },
@@ -123,7 +121,7 @@ export const Step6 = () => {
             )}
           />
         </Box>
-      )}
+      }
     </>
   );
 };

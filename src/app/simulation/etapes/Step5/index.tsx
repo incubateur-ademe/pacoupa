@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { z } from "zod";
 
 import { Box, P } from "@/dsfr";
-import { useStore } from "@/lib/client/store";
+import { usePacoupaSessionStorage } from "@/lib/client/usePacoupaSessionStorage";
 import { OuiNonLabels } from "@/utils/zod";
 
 import { HeaderFunnel } from "../HeaderFunnel";
@@ -39,13 +39,11 @@ const schemaNon = z.object({
 
 export const Step5 = () => {
   const [radioState, setRadioState] = useState<(typeof OuiNonLabels)[number] | undefined>();
-  const [initialState, sessionStorageOK] = useStore();
+  const { store } = usePacoupaSessionStorage();
 
   useEffect(() => {
-    if (sessionStorageOK) {
-      setRadioState((initialState?.possedeEspacesExterieursCommuns as (typeof OuiNonLabels)[number]) ?? "Oui");
-    }
-  }, [sessionStorageOK, initialState]);
+    setRadioState((store.possedeEspacesExterieursCommuns as (typeof OuiNonLabels)[number]) ?? "Oui");
+  }, [store]);
 
   useEffect(() => {
     if (radioState === "Non") {
@@ -59,7 +57,7 @@ export const Step5 = () => {
 
   return (
     <>
-      {sessionStorageOK && (
+      {
         <Box>
           <HeaderFunnel />
           <P>
@@ -68,7 +66,7 @@ export const Step5 = () => {
 
           <WizardForm
             schema={radioState === "Oui" ? schemaOui : schemaNon}
-            render={({ errors }) => (
+            render={({ errors, store }) => (
               <>
                 <SegmentedControl
                   legend=""
@@ -99,7 +97,7 @@ export const Step5 = () => {
                     {
                       label: "Jardin",
                       nativeInputProps: {
-                        defaultChecked: initialState?.espacesExterieursCommuns?.includes("jardin"),
+                        defaultChecked: store.espacesExterieursCommuns?.includes("jardin"),
                         name: "espacesExterieursCommuns",
                         value: "jardin",
                       },
@@ -107,7 +105,7 @@ export const Step5 = () => {
                     {
                       label: "Parking extérieur",
                       nativeInputProps: {
-                        defaultChecked: initialState?.espacesExterieursCommuns?.includes("parking exterieur"),
+                        defaultChecked: store.espacesExterieursCommuns?.includes("parking exterieur"),
                         name: "espacesExterieursCommuns",
                         value: "parking exterieur",
                       },
@@ -115,7 +113,7 @@ export const Step5 = () => {
                     {
                       label: "Toit terrasse",
                       nativeInputProps: {
-                        defaultChecked: initialState?.espacesExterieursCommuns?.includes("toit terrasse"),
+                        defaultChecked: store.espacesExterieursCommuns?.includes("toit terrasse"),
                         name: "espacesExterieursCommuns",
                         value: "toit terrasse",
                       },
@@ -128,7 +126,7 @@ export const Step5 = () => {
             )}
           />
         </Box>
-      )}
+      }
     </>
   );
 };

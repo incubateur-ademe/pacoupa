@@ -4,7 +4,6 @@ import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
 import { z } from "zod";
 
 import { Box, P } from "@/dsfr";
-import { useStore } from "@/lib/client/store";
 
 import { HeaderFunnel } from "../HeaderFunnel";
 import { WizardForm } from "../WizardForm";
@@ -18,11 +17,9 @@ const schema = z.object({
 });
 
 export const Step10 = () => {
-  const [initialState, sessionStorageOK] = useStore();
-
   return (
     <>
-      {sessionStorageOK && (
+      {
         <Box>
           <HeaderFunnel />
 
@@ -30,7 +27,7 @@ export const Step10 = () => {
 
           <WizardForm
             schema={schema}
-            render={({ errors }) => (
+            render={({ errors, store }) => (
               <Box>
                 <RadioButtons
                   name="typeECS"
@@ -40,7 +37,7 @@ export const Step10 = () => {
 
                       label: "Individuel",
                       nativeInputProps: {
-                        defaultChecked: initialState?.typeECS === "individuel",
+                        defaultChecked: store.typeECS === "individuel",
                         value: "individuel",
                       },
                     },
@@ -48,7 +45,7 @@ export const Step10 = () => {
                       illustration: <GroupeImage />,
                       label: "Collectif",
                       nativeInputProps: {
-                        defaultChecked: initialState?.typeECS === "collectif",
+                        defaultChecked: store.typeECS === "collectif",
                         value: "collectif",
                       },
                     },
@@ -60,7 +57,7 @@ export const Step10 = () => {
             )}
           />
         </Box>
-      )}
+      }
     </>
   );
 };

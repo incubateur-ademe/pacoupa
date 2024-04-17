@@ -4,7 +4,6 @@ import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
 import { z } from "zod";
 
 import { Box, P } from "@/dsfr";
-import { useStore } from "@/lib/client/store";
 
 import { HeaderFunnel } from "../HeaderFunnel";
 import { WizardForm } from "../WizardForm";
@@ -16,11 +15,9 @@ const schema = z.object({
 });
 
 export const Step11 = () => {
-  const [initialState, sessionStorageOK] = useStore();
-
   return (
     <>
-      {sessionStorageOK && (
+      {
         <Box>
           <HeaderFunnel />
 
@@ -30,7 +27,7 @@ export const Step11 = () => {
 
           <WizardForm
             schema={schema}
-            render={({ errors }) => (
+            render={({ errors, store }) => (
               <Box>
                 <RadioButtons
                   // legend="Légende pour l’ensemble de champs"
@@ -39,21 +36,21 @@ export const Step11 = () => {
                     {
                       label: "Fioul",
                       nativeInputProps: {
-                        defaultChecked: initialState?.energieECS === "fioul",
+                        defaultChecked: store.energieECS === "fioul",
                         value: "fioul",
                       },
                     },
                     {
                       label: "Gaz",
                       nativeInputProps: {
-                        defaultChecked: initialState?.energieECS === "gaz",
+                        defaultChecked: store.energieECS === "gaz",
                         value: "gaz",
                       },
                     },
                     {
                       label: "Ballon électrique",
                       nativeInputProps: {
-                        defaultChecked: initialState?.energieECS === "ballon electrique",
+                        defaultChecked: store.energieECS === "ballon electrique",
                         value: "ballon electrique",
                       },
                     },
@@ -65,7 +62,7 @@ export const Step11 = () => {
             )}
           />
         </Box>
-      )}
+      }
     </>
   );
 };
