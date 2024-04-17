@@ -104,7 +104,7 @@ export const WizardForm = ({ schema, render }: Props) => {
 
   return (
     <>
-      <form onSubmit={handleForm(schema, formAction)}>
+      <form onSubmit={handleForm(schema, formAction)} noValidate>
         {render({ errors })}
 
         <ButtonsFunnel />

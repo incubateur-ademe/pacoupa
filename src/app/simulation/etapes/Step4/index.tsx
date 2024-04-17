@@ -13,8 +13,9 @@ import { WizardForm } from "../WizardForm";
 const schema = z.object({
   nbLogements: z.coerce
     .number({
-      invalid_type_error: "Le nombre de logements doit être un nombre",
+      invalid_type_error: "Le nombre de logements doit être un nombre entier",
     })
+    .int()
     .min(1, "Le nombre de logements est obligatoire et supérieur à zéro"),
 });
 
@@ -40,6 +41,10 @@ export const Step4 = () => {
                     placeholder: "Nombre de logements",
                     name: "nbLogements",
                     defaultValue: initialState?.nbLogements,
+                    type: "number",
+                    onBlur: e => {
+                      e.target.value = String(Math.round(Number(e.target.value)));
+                    },
                   }}
                   state={errors?.nbLogements?._errors ? "error" : "default"}
                   stateRelatedMessage={errors?.nbLogements?._errors}
