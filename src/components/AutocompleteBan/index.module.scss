@@ -1,0 +1,41 @@
+.banSearch {
+    width: 320 px;
+  }
+  
+  .banSearch input {
+    font-size:18px;
+    width: 478px;
+    padding: 6px;
+    border: 1px solid #666;
+  }
+  
+  ul.results {
+    padding-left: 0px;
+    margin-top: 0px
+  }
+  .banSearch li {
+    color: #666;
+    font-size: 14px;
+    list-style-position:inside;
+    list-style: none;
+    display: block;
+    width: 476px;
+    border: #ddd solid;
+    border-width: 0px 1px 1px 1px;
+    /*height: 28px;*/
+  }
+  
+  .banSearch li:hover, .banSearch li.active {
+    background-color: #ddd;
+  }
+  
+  .banSearch li:first-of-type {
+    border-top-width: 1px;
+  }
+  
+  .banSearch li a {
+    text-decoration: none;
+    display: block;
+    color:inherit;
+    padding: 6px;
+  }

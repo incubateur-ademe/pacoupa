@@ -4,6 +4,7 @@ import { fr } from "@codegouvfr/react-dsfr";
 import { Input } from "@codegouvfr/react-dsfr/Input";
 import { z } from "zod";
 
+import { AutocompleteBan } from "@/components/AutocompleteBan";
 import { Box, P } from "@/dsfr";
 
 import { HeaderFunnel } from "../HeaderFunnel";
@@ -36,6 +37,7 @@ export const Step1 = () => {
                   state={errors?.adresse?._errors ? "error" : "default"}
                   stateRelatedMessage={errors?.adresse?._errors}
                 />
+                <AutocompleteBan />
               </Box>
             )}
           />
