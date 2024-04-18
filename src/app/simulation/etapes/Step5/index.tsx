@@ -6,7 +6,7 @@ import { SegmentedControl, type SegmentedControlProps } from "@codegouvfr/react-
 import { useEffect, useState } from "react";
 import { z } from "zod";
 
-import { Box, P } from "@/dsfr";
+import { P } from "@/dsfr";
 import { usePacoupaSessionStorage } from "@/lib/client/usePacoupaSessionStorage";
 import { OuiNonLabels } from "@/utils/zod";
 
@@ -57,76 +57,72 @@ export const Step5 = () => {
 
   return (
     <>
-      {
-        <Box>
-          <HeaderFunnel />
-          <P>
-            Votre bâtiment a-t-il des <strong>espaces extérieurs communs</strong> ?
-          </P>
+      <HeaderFunnel />
+      <P>
+        Votre bâtiment a-t-il des <strong>espaces extérieurs communs</strong> ?
+      </P>
 
-          <WizardForm
-            schema={radioState === "Oui" ? schemaOui : schemaNon}
-            render={({ errors, store }) => (
-              <>
-                <SegmentedControl
-                  legend=""
-                  name="possedeEspacesExterieursCommuns"
-                  segments={
-                    OuiNonLabels.map(label => ({
-                      label,
-                      nativeInputProps: {
-                        value: label,
-                        checked: radioState === label,
-                        onChange: () => setRadioState(label),
-                      },
-                    })) as unknown as SegmentedControlProps.Segments
-                  }
-                />
+      <WizardForm
+        schema={radioState === "Oui" ? schemaOui : schemaNon}
+        render={({ errors, store }) => (
+          <>
+            <SegmentedControl
+              legend=""
+              name="possedeEspacesExterieursCommuns"
+              segments={
+                OuiNonLabels.map(label => ({
+                  label,
+                  nativeInputProps: {
+                    value: label,
+                    checked: radioState === label,
+                    onChange: () => setRadioState(label),
+                  },
+                })) as unknown as SegmentedControlProps.Segments
+              }
+            />
 
-                {errors?.possedeEspacesExterieursCommuns?._errors && (
-                  <p className={fr.cx("fr-message", "fr-message--error", "fr-mt-2w")}>
-                    {errors?.possedeEspacesExterieursCommuns?._errors}
-                  </p>
-                )}
-
-                <P className={fr.cx("fr-mt-8v")}>Lesquels ?</P>
-
-                <Checkbox
-                  disabled={radioState === "Oui" ? false : true}
-                  options={[
-                    {
-                      label: "Jardin",
-                      nativeInputProps: {
-                        defaultChecked: store.espacesExterieursCommuns?.includes("jardin"),
-                        name: "espacesExterieursCommuns",
-                        value: "jardin",
-                      },
-                    },
-                    {
-                      label: "Parking extérieur",
-                      nativeInputProps: {
-                        defaultChecked: store.espacesExterieursCommuns?.includes("parking exterieur"),
-                        name: "espacesExterieursCommuns",
-                        value: "parking exterieur",
-                      },
-                    },
-                    {
-                      label: "Toit terrasse",
-                      nativeInputProps: {
-                        defaultChecked: store.espacesExterieursCommuns?.includes("toit terrasse"),
-                        name: "espacesExterieursCommuns",
-                        value: "toit terrasse",
-                      },
-                    },
-                  ]}
-                  state={errors?.espacesExterieursCommuns?._errors ? "error" : "default"}
-                  stateRelatedMessage={errors?.espacesExterieursCommuns?._errors}
-                />
-              </>
+            {errors?.possedeEspacesExterieursCommuns?._errors && (
+              <p className={fr.cx("fr-message", "fr-message--error", "fr-mt-2w")}>
+                {errors?.possedeEspacesExterieursCommuns?._errors}
+              </p>
             )}
-          />
-        </Box>
-      }
+
+            <P className={fr.cx("fr-mt-8v")}>Lesquels ?</P>
+
+            <Checkbox
+              disabled={radioState === "Oui" ? false : true}
+              options={[
+                {
+                  label: "Jardin",
+                  nativeInputProps: {
+                    defaultChecked: store.espacesExterieursCommuns?.includes("jardin"),
+                    name: "espacesExterieursCommuns",
+                    value: "jardin",
+                  },
+                },
+                {
+                  label: "Parking extérieur",
+                  nativeInputProps: {
+                    defaultChecked: store.espacesExterieursCommuns?.includes("parking exterieur"),
+                    name: "espacesExterieursCommuns",
+                    value: "parking exterieur",
+                  },
+                },
+                {
+                  label: "Toit terrasse",
+                  nativeInputProps: {
+                    defaultChecked: store.espacesExterieursCommuns?.includes("toit terrasse"),
+                    name: "espacesExterieursCommuns",
+                    value: "toit terrasse",
+                  },
+                },
+              ]}
+              state={errors?.espacesExterieursCommuns?._errors ? "error" : "default"}
+              stateRelatedMessage={errors?.espacesExterieursCommuns?._errors}
+            />
+          </>
+        )}
+      />
     </>
   );
 };

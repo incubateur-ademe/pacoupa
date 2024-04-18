@@ -19,45 +19,41 @@ const schema = z.object({
 export const Step10 = () => {
   return (
     <>
-      {
-        <Box>
-          <HeaderFunnel />
+      <HeaderFunnel />
 
-          <P>Le système de production d'eau chaude est ...</P>
+      <P>Le système de production d'eau chaude est ...</P>
 
-          <WizardForm
-            schema={schema}
-            render={({ errors, store }) => (
-              <Box>
-                <RadioButtons
-                  name="typeECS"
-                  options={[
-                    {
-                      illustration: <PersonneImage />,
+      <WizardForm
+        schema={schema}
+        render={({ errors, store }) => (
+          <Box>
+            <RadioButtons
+              name="typeECS"
+              options={[
+                {
+                  illustration: <PersonneImage />,
 
-                      label: "Individuel",
-                      nativeInputProps: {
-                        defaultChecked: store.typeECS === "individuel",
-                        value: "individuel",
-                      },
-                    },
-                    {
-                      illustration: <GroupeImage />,
-                      label: "Collectif",
-                      nativeInputProps: {
-                        defaultChecked: store.typeECS === "collectif",
-                        value: "collectif",
-                      },
-                    },
-                  ]}
-                  state={errors?.typeECS?._errors ? "error" : "default"}
-                  stateRelatedMessage={errors?.typeECS?._errors}
-                />
-              </Box>
-            )}
-          />
-        </Box>
-      }
+                  label: "Individuel",
+                  nativeInputProps: {
+                    defaultChecked: store.typeECS === "individuel",
+                    value: "individuel",
+                  },
+                },
+                {
+                  illustration: <GroupeImage />,
+                  label: "Collectif",
+                  nativeInputProps: {
+                    defaultChecked: store.typeECS === "collectif",
+                    value: "collectif",
+                  },
+                },
+              ]}
+              state={errors?.typeECS?._errors ? "error" : "default"}
+              stateRelatedMessage={errors?.typeECS?._errors}
+            />
+          </Box>
+        )}
+      />
     </>
   );
 };

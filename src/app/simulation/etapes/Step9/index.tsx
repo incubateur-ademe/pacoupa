@@ -17,45 +17,40 @@ const schema = z.object({
 export const Step9 = () => {
   return (
     <>
-      {
-        <Box>
-          <HeaderFunnel />
+      <HeaderFunnel />
 
-          <P>Vous vous chauffez grâce à...</P>
+      <P>Vous vous chauffez grâce à...</P>
 
-          <WizardForm
-            schema={schema}
-            render={({ errors, store }) => (
-              <>
-                <Box>
-                  <RadioButtons
-                    // legend="Légende pour l’ensemble de champs"
-                    name="emetteur"
-                    options={[
-                      {
-                        label: "Des radiateurs",
-                        nativeInputProps: {
-                          defaultChecked: store.emetteur === "radiateurs",
-                          value: "radiateurs",
-                        },
-                      },
-                      {
-                        label: "Un plancher chauffant",
-                        nativeInputProps: {
-                          defaultChecked: store.emetteur === "plancher chauffant",
-                          value: "plancher chauffant",
-                        },
-                      },
-                    ]}
-                    state={errors?.emetteur?._errors ? "error" : "default"}
-                    stateRelatedMessage={errors?.emetteur?._errors}
-                  />
-                </Box>
-              </>
-            )}
-          />
-        </Box>
-      }
+      <WizardForm
+        schema={schema}
+        render={({ errors, store }) => (
+          <>
+            <Box>
+              <RadioButtons
+                name="emetteur"
+                options={[
+                  {
+                    label: "Des radiateurs",
+                    nativeInputProps: {
+                      defaultChecked: store.emetteur === "radiateurs",
+                      value: "radiateurs",
+                    },
+                  },
+                  {
+                    label: "Un plancher chauffant",
+                    nativeInputProps: {
+                      defaultChecked: store.emetteur === "plancher chauffant",
+                      value: "plancher chauffant",
+                    },
+                  },
+                ]}
+                state={errors?.emetteur?._errors ? "error" : "default"}
+                stateRelatedMessage={errors?.emetteur?._errors}
+              />
+            </Box>
+          </>
+        )}
+      />
     </>
   );
 };
