@@ -1,7 +1,6 @@
 "use client";
 
 import { fr } from "@codegouvfr/react-dsfr";
-import { Input } from "@codegouvfr/react-dsfr/Input";
 import { z } from "zod";
 
 import { AutocompleteBan } from "@/components/AutocompleteBan";
@@ -26,17 +25,6 @@ export const Step1 = () => {
             schema={schema}
             render={({ errors, store }) => (
               <Box>
-                <Input
-                  iconId="fr-icon-map-pin-2-fill"
-                  label="Adresse"
-                  nativeInputProps={{
-                    placeholder: "Adresse du bâtiment",
-                    name: "adresse",
-                    defaultValue: store.adresse,
-                  }}
-                  state={errors?.adresse?._errors ? "error" : "default"}
-                  stateRelatedMessage={errors?.adresse?._errors}
-                />
                 <AutocompleteBan defaultValue={store.adresse} error={errors?.adresse?._errors} />
               </Box>
             )}

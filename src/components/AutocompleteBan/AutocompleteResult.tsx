@@ -1,45 +1,30 @@
 import { type PropsWithChildren } from "react";
 
 type Props = {
-  results: ItemType[];
-  selectResult: (id: string) => void;
+  proposals: ItemType[];
+  selectProposal: (id: string) => void;
 };
 
-export type ItemType = {
-  properties: {
-    context: string;
-    id: string;
-    name: string;
-  };
-};
-
+import { displayItem, type ItemType } from "./helper";
 import styles from "./index.module.scss";
 
-export const AutocompleteResult = ({ selectResult, results }: PropsWithChildren<Props>) => {
-  const renderItem = (item: ItemType) => {
-    return (
-      <li>
-        <a
-          href="#"
-          onClick={e => {
-            selectResult(item.properties.id);
-          }}
-        >
-          {item.properties.name}, {item.properties.context}
-        </a>
-      </li>
-    );
-  };
-
-  // const selectOption = (id: number) => {
-  //   return () => {
-  //     selectResult();
-  //   };
-  // };
-
+export const AutocompleteResult = ({ selectProposal, proposals }: PropsWithChildren<Props>) => {
   return (
     <>
-      <ul className={styles.results}>{results.map(renderItem)}</ul>
+      <ul className={styles.results}>
+        {proposals.map(item => (
+          <li key={item.properties.id}>
+            <a
+              href="#"
+              onClick={() => {
+                selectProposal(item.properties.id);
+              }}
+            >
+              {displayItem(item)}
+            </a>
+          </li>
+        ))}
+      </ul>
     </>
   );
 };
