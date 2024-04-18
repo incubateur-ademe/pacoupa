@@ -1,15 +1,16 @@
-import { type ChangeEvent, type PropsWithChildren, useCallback, useEffect, useState } from "react";
+import { type ChangeEvent, type PropsWithChildren, type ReactNode, useCallback, useEffect, useState } from "react";
 
 import { AutocompleteResult, type ItemType } from "./AutocompleteResult";
 
 type Props = {
+  defaultValue?: string;
+  error?: ReactNode;
   maxResults?: number;
   minCharacters?: number;
 };
 
+import Input from "@codegouvfr/react-dsfr/Input";
 import { useDebounceValue } from "usehooks-ts";
-
-import styles from "./index.module.scss";
 
 const URL_BAN = "https://api-adresse.data.gouv.fr/search/";
 
@@ -72,8 +73,20 @@ export const AutocompleteBan = (props: PropsWithChildren<Props>) => {
 
   return (
     <>
-      <div className={styles.banSearch}>
-        <input className={styles.searchBox} type="text" value={state.query} onChange={handleChange} />
+      <div>
+        <Input
+          iconId="fr-icon-map-pin-2-fill"
+          label="Adresse"
+          nativeInputProps={{
+            value: state.query,
+            onChange: handleChange,
+            placeholder: "Adresse du bâtiment",
+            name: "adresse",
+            defaultValue: props.defaultValue,
+          }}
+          state={props.error ? "error" : "default"}
+          stateRelatedMessage={props.error}
+        />
         <AutocompleteResult results={state.results} selectResult={selectResult} />
       </div>
     </>

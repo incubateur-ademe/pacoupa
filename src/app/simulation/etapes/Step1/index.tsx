@@ -37,7 +37,7 @@ export const Step1 = () => {
                   state={errors?.adresse?._errors ? "error" : "default"}
                   stateRelatedMessage={errors?.adresse?._errors}
                 />
-                <AutocompleteBan />
+                <AutocompleteBan defaultValue={store.adresse} error={errors?.adresse?._errors} />
               </Box>
             )}
           />
