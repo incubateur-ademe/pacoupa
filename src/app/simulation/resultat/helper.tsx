@@ -46,8 +46,17 @@ export const imageForFamille = (famille: string) => {
   }
 };
 
-export const createRecommandations = (solution: GetSolutionsParCriteresReturnType[number]) =>
-  [solution.usageCH && "Chauffage", solution.usageECS && "ECS", solution.usageFr && "Climatisation"].filter(Boolean);
+export const createRecommandations = (solution: GetSolutionsParCriteresReturnType[number]) => {
+  const obj = {
+    Chauffage:
+      solution.usageCH !== "Non" ? (solution.usageCH === "Oui" ? ("success" as const) : ("info" as const)) : null,
+    ECS: solution.usageECS !== "Non" ? (solution.usageECS === "Oui" ? ("success" as const) : ("info" as const)) : null,
+    Climatisation:
+      solution.usageFr !== "Non" ? (solution.usageFr === "Oui" ? ("success" as const) : ("info" as const)) : null,
+  };
+
+  return Object.entries(obj).filter(([_, value]) => value !== null);
+};
 
 export const noteEnvironmentHelper = (note: string) => {
   switch (note) {
