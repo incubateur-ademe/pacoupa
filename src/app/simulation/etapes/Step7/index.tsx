@@ -23,45 +23,41 @@ const schema = z.object({
 export const Step7 = () => {
   return (
     <>
-      {
-        <Box>
-          <HeaderFunnel />
-          <P>S’agit-il d’un chauffage...</P>
+      <HeaderFunnel />
+      <P>S’agit-il d’un chauffage...</P>
 
-          <WizardForm
-            schema={schema}
-            render={({ errors, store }) => (
-              <>
-                <Box>
-                  <RadioButtons
-                    name="typeCH"
-                    options={[
-                      {
-                        illustration: <PersonneImage />,
-                        label: "Individuel",
-                        nativeInputProps: {
-                          defaultChecked: store.typeCH === "individuel",
-                          value: "individuel",
-                        },
-                      },
-                      {
-                        illustration: <GroupeImage />,
-                        label: "Collectif",
-                        nativeInputProps: {
-                          defaultChecked: store.typeCH === "collectif",
-                          value: "collectif",
-                        },
-                      },
-                    ]}
-                    state={errors?.typeCH?._errors ? "error" : "default"}
-                    stateRelatedMessage={errors?.typeCH?._errors}
-                  />
-                </Box>
-              </>
-            )}
-          />
-        </Box>
-      }
+      <WizardForm
+        schema={schema}
+        render={({ errors, store }) => (
+          <>
+            <Box>
+              <RadioButtons
+                name="typeCH"
+                options={[
+                  {
+                    illustration: <PersonneImage />,
+                    label: "Individuel",
+                    nativeInputProps: {
+                      defaultChecked: store.typeCH === "individuel",
+                      value: "individuel",
+                    },
+                  },
+                  {
+                    illustration: <GroupeImage />,
+                    label: "Collectif",
+                    nativeInputProps: {
+                      defaultChecked: store.typeCH === "collectif",
+                      value: "collectif",
+                    },
+                  },
+                ]}
+                state={errors?.typeCH?._errors ? "error" : "default"}
+                stateRelatedMessage={errors?.typeCH?._errors}
+              />
+            </Box>
+          </>
+        )}
+      />
     </>
   );
 };

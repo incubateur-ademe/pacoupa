@@ -19,66 +19,61 @@ const schema = z.object({
 export const Step2 = () => {
   return (
     <>
-      {
-        <Box>
-          <HeaderFunnel />
-          <P>
-            Quelle est <strong>l’année</strong> de construction du bâtiment ?
-          </P>
+      <HeaderFunnel />
+      <P>
+        Quelle est <strong>l’année</strong> de construction du bâtiment ?
+      </P>
 
-          <WizardForm
-            schema={schema}
-            render={({ errors, store }) => (
-              <Box>
-                <RadioButtons
-                  // legend="Légende pour l’ensemble de champs"
-                  name="annee"
-                  options={[
-                    {
-                      illustration: <BatimentPre1945Image />,
-                      label: "Avant 1945",
-                      hintText: "Façade ornementée",
-                      nativeInputProps: {
-                        defaultChecked: store.annee === "pre-1945",
-                        value: "pre-1945",
-                      },
-                    },
-                    {
-                      illustration: <Batiment1946a1974Image />,
-                      label: "Entre 1946 et 1974",
-                      hintText: "Utilisation du béton",
-                      nativeInputProps: {
-                        defaultChecked: store.annee === "1946-1974",
-                        value: "1946-1974",
-                      },
-                    },
-                    {
-                      illustration: <Batiment1975a1989Image />,
-                      label: "Entre 1975 et 1989",
-                      hintText: "Les années HLM",
-                      nativeInputProps: {
-                        defaultChecked: store.annee === "1975-1989",
-                        value: "1975-1989",
-                      },
-                    },
-                    {
-                      illustration: <BatimentPost1990Image />,
-                      label: "Après 1990",
-                      hintText: "Bâtiments modernes",
-                      nativeInputProps: {
-                        defaultChecked: store.annee === "post-1990",
-                        value: "post-1990",
-                      },
-                    },
-                  ]}
-                  state={errors?.annee?._errors ? "error" : "default"}
-                  stateRelatedMessage={errors?.annee?._errors}
-                />
-              </Box>
-            )}
-          />
-        </Box>
-      }
+      <WizardForm
+        schema={schema}
+        render={({ errors, store }) => (
+          <Box>
+            <RadioButtons
+              name="annee"
+              options={[
+                {
+                  illustration: <BatimentPre1945Image />,
+                  label: "Avant 1945",
+                  hintText: "Façade ornementée",
+                  nativeInputProps: {
+                    defaultChecked: store.annee === "pre-1945",
+                    value: "pre-1945",
+                  },
+                },
+                {
+                  illustration: <Batiment1946a1974Image />,
+                  label: "Entre 1946 et 1974",
+                  hintText: "Utilisation du béton",
+                  nativeInputProps: {
+                    defaultChecked: store.annee === "1946-1974",
+                    value: "1946-1974",
+                  },
+                },
+                {
+                  illustration: <Batiment1975a1989Image />,
+                  label: "Entre 1975 et 1989",
+                  hintText: "Les années HLM",
+                  nativeInputProps: {
+                    defaultChecked: store.annee === "1975-1989",
+                    value: "1975-1989",
+                  },
+                },
+                {
+                  illustration: <BatimentPost1990Image />,
+                  label: "Après 1990",
+                  hintText: "Bâtiments modernes",
+                  nativeInputProps: {
+                    defaultChecked: store.annee === "post-1990",
+                    value: "post-1990",
+                  },
+                },
+              ]}
+              state={errors?.annee?._errors ? "error" : "default"}
+              stateRelatedMessage={errors?.annee?._errors}
+            />
+          </Box>
+        )}
+      />
     </>
   );
 };

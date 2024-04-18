@@ -17,52 +17,47 @@ const schema = z.object({
 export const Step11 = () => {
   return (
     <>
-      {
-        <Box>
-          <HeaderFunnel />
+      <HeaderFunnel />
 
-          <P>
-            Quel <strong>énergie principale</strong> utilisez-vous pour chauffer l’eau ?
-          </P>
+      <P>
+        Quel <strong>énergie principale</strong> utilisez-vous pour chauffer l’eau ?
+      </P>
 
-          <WizardForm
-            schema={schema}
-            render={({ errors, store }) => (
-              <Box>
-                <RadioButtons
-                  // legend="Légende pour l’ensemble de champs"
-                  name="energieECS"
-                  options={[
-                    {
-                      label: "Fioul",
-                      nativeInputProps: {
-                        defaultChecked: store.energieECS === "fioul",
-                        value: "fioul",
-                      },
-                    },
-                    {
-                      label: "Gaz",
-                      nativeInputProps: {
-                        defaultChecked: store.energieECS === "gaz",
-                        value: "gaz",
-                      },
-                    },
-                    {
-                      label: "Ballon électrique",
-                      nativeInputProps: {
-                        defaultChecked: store.energieECS === "ballon electrique",
-                        value: "ballon electrique",
-                      },
-                    },
-                  ]}
-                  state={errors?.energieECS?._errors ? "error" : "default"}
-                  stateRelatedMessage={errors?.energieECS?._errors}
-                />
-              </Box>
-            )}
-          />
-        </Box>
-      }
+      <WizardForm
+        schema={schema}
+        render={({ errors, store }) => (
+          <Box>
+            <RadioButtons
+              name="energieECS"
+              options={[
+                {
+                  label: "Fioul",
+                  nativeInputProps: {
+                    defaultChecked: store.energieECS === "fioul",
+                    value: "fioul",
+                  },
+                },
+                {
+                  label: "Gaz",
+                  nativeInputProps: {
+                    defaultChecked: store.energieECS === "gaz",
+                    value: "gaz",
+                  },
+                },
+                {
+                  label: "Ballon électrique",
+                  nativeInputProps: {
+                    defaultChecked: store.energieECS === "ballon electrique",
+                    value: "ballon electrique",
+                  },
+                },
+              ]}
+              state={errors?.energieECS?._errors ? "error" : "default"}
+              stateRelatedMessage={errors?.energieECS?._errors}
+            />
+          </Box>
+        )}
+      />
     </>
   );
 };

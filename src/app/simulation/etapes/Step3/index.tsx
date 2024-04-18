@@ -18,56 +18,51 @@ const schema = z.object({
 export const Step3 = () => {
   return (
     <>
-      {
-        <Box>
-          <HeaderFunnel />
-          <P>
-            Quelles <strong>rénovations</strong> ont été effectuées sur votre bâtiment ?
-          </P>
+      <HeaderFunnel />
+      <P>
+        Quelles <strong>rénovations</strong> ont été effectuées sur votre bâtiment ?
+      </P>
 
-          <WizardForm
-            schema={schema}
-            render={({ errors, store }) => (
-              <Box>
-                <RadioButtons
-                  // legend="Légende pour l’ensemble de champs"
-                  name="renovation"
-                  options={[
-                    {
-                      illustration: <AucuneRenovationImage />,
-                      label: "Pas de rénovation",
-                      nativeInputProps: {
-                        defaultChecked: store.renovation === "aucune rénovation",
-                        value: "aucune rénovation",
-                      },
-                    },
-                    {
-                      illustration: <RenovationsPartiellesImage />,
-                      label: "Partielles",
-                      hintText: "Toiture ou murs ou double vitrage, ...",
-                      nativeInputProps: {
-                        defaultChecked: store.renovation === "rénovations partielles",
-                        value: "rénovations partielles",
-                      },
-                    },
-                    {
-                      illustration: <RenovationGlobaleImage />,
-                      label: "Globale",
-                      hintText: "Toiture, murs, double vitrage et plancher bas",
-                      nativeInputProps: {
-                        defaultChecked: store.renovation === "rénovation globale",
-                        value: "rénovation globale",
-                      },
-                    },
-                  ]}
-                  state={errors?.renovation?._errors ? "error" : "default"}
-                  stateRelatedMessage={errors?.renovation?._errors}
-                />
-              </Box>
-            )}
-          />
-        </Box>
-      }
+      <WizardForm
+        schema={schema}
+        render={({ errors, store }) => (
+          <Box>
+            <RadioButtons
+              name="renovation"
+              options={[
+                {
+                  illustration: <AucuneRenovationImage />,
+                  label: "Pas de rénovation",
+                  nativeInputProps: {
+                    defaultChecked: store.renovation === "aucune rénovation",
+                    value: "aucune rénovation",
+                  },
+                },
+                {
+                  illustration: <RenovationsPartiellesImage />,
+                  label: "Partielles",
+                  hintText: "Toiture ou murs ou double vitrage, ...",
+                  nativeInputProps: {
+                    defaultChecked: store.renovation === "rénovations partielles",
+                    value: "rénovations partielles",
+                  },
+                },
+                {
+                  illustration: <RenovationGlobaleImage />,
+                  label: "Globale",
+                  hintText: "Toiture, murs, double vitrage et plancher bas",
+                  nativeInputProps: {
+                    defaultChecked: store.renovation === "rénovation globale",
+                    value: "rénovation globale",
+                  },
+                },
+              ]}
+              state={errors?.renovation?._errors ? "error" : "default"}
+              stateRelatedMessage={errors?.renovation?._errors}
+            />
+          </Box>
+        )}
+      />
     </>
   );
 };

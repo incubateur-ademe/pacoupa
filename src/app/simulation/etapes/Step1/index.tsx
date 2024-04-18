@@ -15,27 +15,23 @@ const schema = z.object({
 export const Step1 = () => {
   return (
     <>
-      {
-        <Box>
-          <HeaderFunnel />
+      <HeaderFunnel />
 
-          <P>Où se situe le bâtiment ?</P>
+      <P>Où se situe le bâtiment ?</P>
 
-          <WizardForm
-            schema={schema}
-            render={({ errors, store }) => (
-              <Box>
-                <AutocompleteBan defaultValue={store.adresse} error={errors?.adresse?._errors} />
-              </Box>
-            )}
-          />
+      <WizardForm
+        schema={schema}
+        render={({ errors, store }) => (
+          <Box>
+            <AutocompleteBan defaultValue={store.adresse} error={errors?.adresse?._errors} />
+          </Box>
+        )}
+      />
 
-          <P className={fr.cx("fr-mt-8v", "fr-text--sm")}>
-            <i className={fr.cx("fr-icon-info-fill", "fr-mr-2v")} aria-hidden={true} />
-            L’adresse nous permet d’avoir quelques renseignements sur le bâtiment.
-          </P>
-        </Box>
-      }
+      <P className={fr.cx("fr-mt-8v", "fr-text--sm")}>
+        <i className={fr.cx("fr-icon-info-fill", "fr-mr-2v")} aria-hidden={true} />
+        L’adresse nous permet d’avoir quelques renseignements sur le bâtiment.
+      </P>
     </>
   );
 };
