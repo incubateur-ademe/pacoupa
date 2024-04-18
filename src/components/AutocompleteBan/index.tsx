@@ -7,23 +7,28 @@ type Props = {
   minCharacters?: number;
 };
 
+import { useDebounceValue } from "usehooks-ts";
+
 import styles from "./index.module.scss";
 
 const URL_BAN = "https://api-adresse.data.gouv.fr/search/";
 
 export const AutocompleteBan = (props: PropsWithChildren<Props>) => {
-  // const [query, setQuery] = useDebounceValue("", 1500);
   const [state, setState] = useState({ query: "", results: [] as ItemType[] });
+  const [debouncedQuery, setDebouncedQuery] = useDebounceValue("", 1500);
+
+  useEffect(() => {
+    setDebouncedQuery(state.query);
+  }, [setDebouncedQuery, state.query]);
 
   const maxResults = props.maxResults ?? 7;
   const minCharacters = props.minCharacters ?? 3;
 
   const getResults = useCallback(async () => {
-    const { query } = state;
-    if (query.length < minCharacters) return;
+    if (debouncedQuery.length < minCharacters) return;
 
     const searchParams = new URLSearchParams({
-      q: query,
+      q: debouncedQuery,
       limit: maxResults.toString(),
       type: "housenumber",
       autocomplete: "1",
@@ -42,7 +47,7 @@ export const AutocompleteBan = (props: PropsWithChildren<Props>) => {
         console.error("Erreur réseau lors de l'appel à la BAN", err);
         throw new Error("Erreur réseau lors de l'appel à la BAN");
       });
-  }, [maxResults, minCharacters, state]);
+  }, [maxResults, minCharacters, debouncedQuery]);
 
   useEffect(() => {
     void getResults();
