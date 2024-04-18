@@ -14,6 +14,7 @@ const csp = {
   "connect-src": [
     "'self'",
     "https://*.gouv.fr",
+    "https://api-adresse.data.gouv.fr",
     process.env.PACOUPA_ENV === "preprod" && "https://vercel.live",
     process.env.NODE_ENV === "development" && "http://localhost",
   ],
