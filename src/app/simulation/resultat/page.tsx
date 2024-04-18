@@ -141,8 +141,8 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
                         <span className={fr.cx("fr-text--bold")}>Recommandé pour</span>
                         <Box className={cx("flex", "flex-wrap", "justify-start", "gap-4", "fr-mt-1w")}>
                           {createRecommandations(solution).map((recommandation, index) => (
-                            <Badge key={index} severity="info">
-                              {recommandation}
+                            <Badge key={index} severity={recommandation[1] || "error"}>
+                              {recommandation[0]}
                             </Badge>
                           ))}
                         </Box>
