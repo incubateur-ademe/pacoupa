@@ -19,7 +19,7 @@ import { Step11 } from "./Step11";
 const SimulationPage = () => {
   return (
     // With flex, we can use justify-between to approximatively align the footer at the bottom of the page
-    <Box className={cx(styles.wizard, "flex flex-col justify-between")}>
+    <Box className={cx(styles.wizard, "flex flex-col justify-start")}>
       {/* <Wizard startIndex={10}> */}
       <Wizard>
         <Step1 />
