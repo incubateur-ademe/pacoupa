@@ -194,7 +194,7 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
 
         <Button
           linkProps={{
-            href: "https://france-renov.gouv.fr",
+            href: "https://france-renov.gouv.fr/preparer-projet/trouver-conseiller",
           }}
           className={fr.cx("fr-mt-2w")}
         >
