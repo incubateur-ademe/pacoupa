@@ -5,6 +5,7 @@ import { Base64 } from "js-base64";
 
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
+import { HighlightText } from "@/components/HighlightText";
 import { Box, Container, Grid, GridCol } from "@/dsfr";
 import { H4, Text } from "@/dsfr/base/typography";
 import { getSolutionsParCriteres } from "@/lib/server/useCases/getSolutionsParCriteres";
@@ -184,6 +185,21 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
             <NouvelleSimulation />
           </GridCol>
         </Grid>
+
+        <Grid>
+          <GridCol className={fr.cx("fr-mt-6w")}>
+            Préparez votre projet de rénovation sur <HighlightText>France Rénov’</HighlightText>
+          </GridCol>
+        </Grid>
+
+        <Button
+          linkProps={{
+            href: "https://france-renov.gouv.fr",
+          }}
+          className={fr.cx("fr-mt-2w")}
+        >
+          Préparer mon projet
+        </Button>
       </Container>
     </>
   );
