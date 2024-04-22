@@ -1,4 +1,3 @@
-import { headerFooterDisplayItem } from "@codegouvfr/react-dsfr/Display";
 import { Footer } from "@codegouvfr/react-dsfr/Footer";
 import { type HeaderProps } from "@codegouvfr/react-dsfr/Header";
 
@@ -32,10 +31,10 @@ export const PacoupaFooter = () => {
             linkProps: { href: "/cgu" },
           },
           <FooterPersonalDataPolicyItem key="FooterPersonalDataPolicyItem" />,
-          {
-            ...headerFooterDisplayItem,
-            iconId: "fr-icon-theme-fill",
-          },
+          // {
+          //   ...headerFooterDisplayItem,
+          //   iconId: "fr-icon-theme-fill",
+          // },
           // <FooterConsentManagementItem key="FooterConsentManagementItem" />,
           {
             text: <>▲&nbsp;Propulsé par Vercel</>,
