@@ -3,7 +3,7 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { z } from "zod";
 
-import { AutocompleteBanMui } from "@/components/AutocompleteBanMui";
+import { AutocompleteBan } from "@/components/AutocompleteBan";
 import { Box, P } from "@/dsfr";
 
 import { HeaderFunnel } from "../HeaderFunnel";
@@ -21,7 +21,7 @@ export const Step1 = () => {
         schema={schema}
         render={({ errors, store }) => (
           <Box>
-            <AutocompleteBanMui defaultValue={store.adresse} errors={errors?.adresse?._errors} />
+            <AutocompleteBan defaultValue={store.adresse} errors={errors?.adresse?._errors} />
           </Box>
         )}
       />

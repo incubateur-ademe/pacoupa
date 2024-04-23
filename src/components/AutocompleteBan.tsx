@@ -54,7 +54,7 @@ const fetchBAN = async (query: string): Promise<{ features: BanItemType[] }> => 
 
 type AutocompletBanMuiProps = { defaultValue?: string; errors: string[] | undefined };
 
-export function AutocompleteBanMui({ defaultValue, errors }: AutocompletBanMuiProps) {
+export function AutocompleteBan({ defaultValue, errors }: AutocompletBanMuiProps) {
   const [value, setValue] = useState<BanItemType | null>(null);
   const [inputValue, setInputValue] = useState(defaultValue || "");
   const [options, setOptions] = useState<readonly BanItemType[]>([]);
