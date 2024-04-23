@@ -17,13 +17,11 @@ export const Step1 = () => {
     <>
       <HeaderFunnel />
 
-      <P>Où se situe le bâtiment ?</P>
-
       <WizardForm
         schema={schema}
         render={({ errors, store }) => (
           <Box>
-            <AutocompleteBan defaultValue={store.adresse} error={errors?.adresse?._errors} />
+            <AutocompleteBan defaultValue={store.adresse} errors={errors?.adresse?._errors} />
           </Box>
         )}
       />
