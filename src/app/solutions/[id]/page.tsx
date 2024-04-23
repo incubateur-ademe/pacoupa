@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 
 import { getSolution, getSolutions } from "@/lib/server/solutions-mdx";
 
+// eslint-disable-next-line unused-imports/no-unused-vars
 const dynamicParams = false;
 
 export async function generateStaticParams() {
