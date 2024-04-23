@@ -1,6 +1,7 @@
 import "./global.css";
 import "react-tooltip/dist/react-tooltip.css";
 
+import MuiDsfrThemeProvider from "@codegouvfr/react-dsfr/mui";
 import { DsfrHead } from "@codegouvfr/react-dsfr/next-appdir/DsfrHead";
 import { DsfrProvider } from "@codegouvfr/react-dsfr/next-appdir/DsfrProvider";
 import { getHtmlAttributes } from "@codegouvfr/react-dsfr/next-appdir/getHtmlAttributes";
@@ -11,6 +12,7 @@ import { type Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 import { type PropsWithChildren, Suspense } from "react";
+import { NextAppDirEmotionCacheProvider } from "tss-react/next";
 
 import { footerId, PacoupaFooter } from "@/components/PacoupaFooter";
 import { PacoupaHeader } from "@/components/PacoupaHeader";
@@ -73,29 +75,31 @@ const RootLayout = ({ children }: PropsWithChildren) => {
       </head>
       <body>
         <DsfrProvider lang="fr">
-          {/* <ConsentBannerAndConsentManagement /> */}
-          <SkipLinks
-            links={[
-              {
-                anchor: `#${contentId}`,
-                label: "Contenu",
-              },
-              {
-                anchor: `#${footerId}`,
-                label: "Pied de page",
-              },
-            ]}
-          />
-          {/* <Notice
+          <NextAppDirEmotionCacheProvider options={{ key: "css" }}>
+            <MuiDsfrThemeProvider>
+              {/* <ConsentBannerAndConsentManagement /> */}
+              <SkipLinks
+                links={[
+                  {
+                    anchor: `#${contentId}`,
+                    label: "Contenu",
+                  },
+                  {
+                    anchor: `#${footerId}`,
+                    label: "Pied de page",
+                  },
+                ]}
+              />
+              {/* <Notice
             isClosable={false}
             title="Le simulateur est en phase de construction. Inscrivez-vous et nous vous préviendrons lors de sa sortie."
           /> */}
 
-          {/* <Banner
+              {/* <Banner
             title={<>Le simulateur est en construction. Inscrivez-vous et nous vous préviendrons lors de sa sortie.</>}
           /> */}
-          <div className={styles.app}>
-            {/* <Header
+              <div className={styles.app}>
+                {/* <Header
               brandTop={<Brand />}
               homeLinkProps={{
                 href: "/",
@@ -112,19 +116,21 @@ const RootLayout = ({ children }: PropsWithChildren) => {
               // serviceTagline={config.tagline}
               operatorLogo={operatorLogo}
             /> */}
-            <PacoupaHeader />
+                <PacoupaHeader />
 
-            <main
-              role="main"
-              id={contentId}
-              // className={styles.content}
-              className={cx(styles.content)}
-            >
-              <Container>{children}</Container>
-            </main>
-            {/* <Follow /> */}
-            <PacoupaFooter />
-          </div>
+                <main
+                  role="main"
+                  id={contentId}
+                  // className={styles.content}
+                  className={cx(styles.content)}
+                >
+                  <Container>{children}</Container>
+                </main>
+                {/* <Follow /> */}
+                <PacoupaFooter />
+              </div>
+            </MuiDsfrThemeProvider>
+          </NextAppDirEmotionCacheProvider>
         </DsfrProvider>
       </body>
     </html>
