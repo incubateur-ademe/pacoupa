@@ -3,7 +3,7 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { z } from "zod";
 
-import { AutocompleteBan } from "@/components/AutocompleteBan";
+import { AutocompleteBanMui } from "@/components/AutocompleteBanMui";
 import { Box, P } from "@/dsfr";
 
 import { HeaderFunnel } from "../HeaderFunnel";
@@ -17,13 +17,11 @@ export const Step1 = () => {
     <>
       <HeaderFunnel />
 
-      <P>Où se situe le bâtiment ?</P>
-
       <WizardForm
         schema={schema}
         render={({ errors, store }) => (
           <Box>
-            <AutocompleteBan defaultValue={store.adresse} error={errors?.adresse?._errors} />
+            <AutocompleteBanMui defaultValue={store.adresse} errors={errors?.adresse?._errors} />
           </Box>
         )}
       />
