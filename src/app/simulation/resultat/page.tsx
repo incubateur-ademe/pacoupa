@@ -8,7 +8,12 @@ import { Card } from "@/components/Card";
 import { HighlightText } from "@/components/HighlightText";
 import { Box, Container, Grid, GridCol } from "@/dsfr";
 import { H4, Text } from "@/dsfr/base/typography";
-import { getSolutionsParCriteres } from "@/lib/server/useCases/getSolutionsParCriteres";
+import {
+  getSolutionsParCriteres,
+  type GetSolutionsParCriteresReturnType,
+} from "@/lib/server/useCases/getSolutionsParCriteres";
+import { fetchBAN } from "@/lib/services/ban";
+import { fetchFcuEligibility } from "@/lib/services/fcu";
 
 import { simulationSchema } from "../schema";
 import { DebugButton } from "./DebugButton";
@@ -40,6 +45,52 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
   }
 
   const solutions = await getSolutionsParCriteres(formData.data);
+
+  const adresses = (await fetchBAN(formData.data.adresse)).features;
+
+  console.log("adresses", adresses);
+
+  const {
+    geometry: { coordinates },
+  } = adresses[0];
+
+  const [lon, lat] = coordinates;
+
+  const eligibility = await fetchFcuEligibility({ lon, lat });
+
+  console.log({ eligibility });
+
+  if (eligibility.isEligible) {
+    const rcu = {
+      id: "fcu",
+      name: "RCU",
+      descriptionSolution:
+        "Le réseau de chaleur fonctionne en acheminant de l'eau chaude à travers un réseau de canalisations souterraines.",
+      noteCout: "A",
+      noteDifficulte: "A",
+      noteEnvironnemental: "A",
+      type: "COL",
+      familleSolution: "RCU",
+      usageCH: "Oui",
+      usageECS: "Oui",
+      usageFr: "Non",
+      ordre: 1,
+      criteres: {
+        envContraint: "NA",
+        espaceExterieurPersonnel: "NA",
+        toitureTerrasse: "NA",
+        nbLgts: "NA",
+        niveauRenovation: "NA",
+        temperature: "NA",
+        emetteur: "NA",
+        id: 0,
+        ch: "NA",
+        ecs: "NA",
+      },
+    } satisfies GetSolutionsParCriteresReturnType[number];
+
+    solutions.data = [rcu, ...solutions.data];
+  }
 
   return (
     <>
