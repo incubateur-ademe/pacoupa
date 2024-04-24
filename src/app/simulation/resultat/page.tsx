@@ -8,7 +8,12 @@ import { Card } from "@/components/Card";
 import { HighlightText } from "@/components/HighlightText";
 import { Box, Container, Grid, GridCol } from "@/dsfr";
 import { H4, Text } from "@/dsfr/base/typography";
-import { getSolutionsParCriteres } from "@/lib/server/useCases/getSolutionsParCriteres";
+import {
+  getSolutionsParCriteres,
+  type GetSolutionsParCriteresReturnType,
+} from "@/lib/server/useCases/getSolutionsParCriteres";
+import { fetchBAN } from "@/lib/services/ban";
+import { fetchFcuEligibility } from "@/lib/services/fcu";
 
 import { simulationSchema } from "../schema";
 import { DebugButton } from "./DebugButton";
@@ -26,6 +31,21 @@ import { JaugeEnvironnementalImage } from "./JaugeEnvironnementalImage";
 import { NouvelleSimulation } from "./NouvelleSimulation";
 import { SyncStore } from "./SyncStore";
 
+const rcuSolution = {
+  id: "fcu",
+  name: "RCU",
+  familleSolution: "RCU",
+  type: "COL",
+  descriptionSolution:
+    "Le réseau de chaleur fonctionne en acheminant de l'eau chaude à travers un réseau de canalisations souterraines.",
+  noteCout: "A",
+  noteDifficulte: "A",
+  noteEnvironnemental: "A",
+  usageCH: "Oui",
+  usageECS: "Oui",
+  usageFr: "Non",
+} satisfies Partial<GetSolutionsParCriteresReturnType[number]>;
+
 const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" | "oui"; hash: string } }) => {
   if (!searchParams.hash) throw new Error("Le hash est manquant");
 
@@ -40,6 +60,22 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
   }
 
   const solutions = await getSolutionsParCriteres(formData.data);
+
+  const adresses = (await fetchBAN(formData.data.adresse)).features;
+
+  const {
+    geometry: { coordinates },
+  } = adresses[0];
+
+  const [lon, lat] = coordinates;
+
+  const rcuEligibility = await fetchFcuEligibility({ lon, lat });
+
+  console.log({ eligibility: rcuEligibility });
+
+  if (rcuEligibility.isEligible) {
+    solutions.data = [rcuSolution as GetSolutionsParCriteresReturnType[number], ...solutions.data];
+  }
 
   return (
     <>
@@ -76,7 +112,9 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
             <>
               Nous avons trouvé{" "}
               <strong>
-                {solutions.data.length} solution{solutions.data.length > 1 ? "s" : ""}
+                <HighlightText>
+                  {solutions.data.length} solution{solutions.data.length > 1 ? "s" : ""}
+                </HighlightText>
               </strong>{" "}
               de chauffage adaptées à votre bâtiment.
             </>
