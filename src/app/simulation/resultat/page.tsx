@@ -31,6 +31,21 @@ import { JaugeEnvironnementalImage } from "./JaugeEnvironnementalImage";
 import { NouvelleSimulation } from "./NouvelleSimulation";
 import { SyncStore } from "./SyncStore";
 
+const rcuSolution = {
+  id: "fcu",
+  name: "RCU",
+  familleSolution: "RCU",
+  type: "COL",
+  descriptionSolution:
+    "Le réseau de chaleur fonctionne en acheminant de l'eau chaude à travers un réseau de canalisations souterraines.",
+  noteCout: "A",
+  noteDifficulte: "A",
+  noteEnvironnemental: "A",
+  usageCH: "Oui",
+  usageECS: "Oui",
+  usageFr: "Non",
+} satisfies Partial<GetSolutionsParCriteresReturnType[number]>;
+
 const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" | "oui"; hash: string } }) => {
   if (!searchParams.hash) throw new Error("Le hash est manquant");
 
@@ -48,48 +63,18 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
 
   const adresses = (await fetchBAN(formData.data.adresse)).features;
 
-  console.log("adresses", adresses);
-
   const {
     geometry: { coordinates },
   } = adresses[0];
 
   const [lon, lat] = coordinates;
 
-  const eligibility = await fetchFcuEligibility({ lon, lat });
+  const rcuEligibility = await fetchFcuEligibility({ lon, lat });
 
-  console.log({ eligibility });
+  console.log({ eligibility: rcuEligibility });
 
-  if (eligibility.isEligible) {
-    const rcu = {
-      id: "fcu",
-      name: "RCU",
-      descriptionSolution:
-        "Le réseau de chaleur fonctionne en acheminant de l'eau chaude à travers un réseau de canalisations souterraines.",
-      noteCout: "A",
-      noteDifficulte: "A",
-      noteEnvironnemental: "A",
-      type: "COL",
-      familleSolution: "RCU",
-      usageCH: "Oui",
-      usageECS: "Oui",
-      usageFr: "Non",
-      ordre: 1,
-      criteres: {
-        envContraint: "NA",
-        espaceExterieurPersonnel: "NA",
-        toitureTerrasse: "NA",
-        nbLgts: "NA",
-        niveauRenovation: "NA",
-        temperature: "NA",
-        emetteur: "NA",
-        id: 0,
-        ch: "NA",
-        ecs: "NA",
-      },
-    } satisfies GetSolutionsParCriteresReturnType[number];
-
-    solutions.data = [rcu, ...solutions.data];
+  if (rcuEligibility.isEligible) {
+    solutions.data = [rcuSolution as GetSolutionsParCriteresReturnType[number], ...solutions.data];
   }
 
   return (
