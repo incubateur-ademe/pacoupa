@@ -112,7 +112,9 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
             <>
               Nous avons trouvé{" "}
               <strong>
-                {solutions.data.length} solution{solutions.data.length > 1 ? "s" : ""}
+                <HighlightText>
+                  {solutions.data.length} solution{solutions.data.length > 1 ? "s" : ""}
+                </HighlightText>
               </strong>{" "}
               de chauffage adaptées à votre bâtiment.
             </>
