@@ -33,6 +33,8 @@ export const Step4 = () => {
             <Input
               label=""
               nativeInputProps={{
+                "aria-required": true,
+                "aria-invalid": Boolean(errors?.nbLogements?._errors),
                 placeholder: "Nombre de logements",
                 name: "nbLogements",
                 defaultValue: store.nbLogements,
@@ -42,7 +44,7 @@ export const Step4 = () => {
                 },
               }}
               state={errors?.nbLogements?._errors ? "error" : "default"}
-              stateRelatedMessage={errors?.nbLogements?._errors}
+              stateRelatedMessage={<div aria-live="polite">{errors?.nbLogements?._errors}</div>}
             />
           </Box>
         )}

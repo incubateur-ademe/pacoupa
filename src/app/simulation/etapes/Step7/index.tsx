@@ -33,6 +33,8 @@ export const Step7 = () => {
             <Box>
               <RadioButtons
                 name="typeCH"
+                aria-required
+                aria-invalid={Boolean(errors?.typeCH?._errors)}
                 options={[
                   {
                     illustration: <PersonneImage />,
@@ -52,7 +54,7 @@ export const Step7 = () => {
                   },
                 ]}
                 state={errors?.typeCH?._errors ? "error" : "default"}
-                stateRelatedMessage={errors?.typeCH?._errors}
+                stateRelatedMessage={<div aria-live="polite">{errors?.typeCH?._errors}</div>}
               />
             </Box>
           </>
