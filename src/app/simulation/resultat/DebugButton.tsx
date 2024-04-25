@@ -15,7 +15,7 @@ type Props = {
 
 export const DebugButton = ({ formData, solutions }: PropsWithChildren<Props>) => {
   const debug = () => {
-    console.log("formData & solutions", { formData, solutions });
+    console.debug("formData & solutions", { formData, solutions });
   };
 
   return (

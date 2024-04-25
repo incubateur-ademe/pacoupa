@@ -69,6 +69,9 @@ export const Step5 = () => {
             <SegmentedControl
               legend=""
               name="possedeEspacesExterieursCommuns"
+              aria-required
+              aria-invalid={Boolean(errors?.possedeEspacesExterieursCommuns?._errors)}
+              aria-describedby="possedeEspacesExterieursCommuns-message"
               segments={
                 OuiNonLabels.map(label => ({
                   label,
@@ -81,16 +84,20 @@ export const Step5 = () => {
               }
             />
 
-            {errors?.possedeEspacesExterieursCommuns?._errors && (
-              <p className={fr.cx("fr-message", "fr-message--error", "fr-mt-2w")}>
-                {errors?.possedeEspacesExterieursCommuns?._errors}
-              </p>
-            )}
+            <p className={fr.cx("fr-mt-2w")} id="possedeEspacesExterieursCommuns-message" aria-live="polite">
+              {errors?.possedeEspacesExterieursCommuns?._errors && (
+                <span className={fr.cx("fr-message", "fr-message--error", "fr-mt-2w")}>
+                  {errors?.possedeEspacesExterieursCommuns?._errors}
+                </span>
+              )}
+            </p>
 
             <P className={fr.cx("fr-mt-8v")}>Lesquels ?</P>
 
             <Checkbox
-              disabled={radioState === "Oui" ? false : true}
+              disabled={radioState !== "Oui"}
+              aria-required={radioState === "Oui"}
+              aria-invalid={Boolean(errors?.espacesExterieursCommuns?._errors)}
               options={[
                 {
                   label: "Jardin",
@@ -118,7 +125,7 @@ export const Step5 = () => {
                 },
               ]}
               state={errors?.espacesExterieursCommuns?._errors ? "error" : "default"}
-              stateRelatedMessage={errors?.espacesExterieursCommuns?._errors}
+              stateRelatedMessage={<div aria-live="polite">{errors?.espacesExterieursCommuns?._errors}</div>}
             />
           </>
         )}

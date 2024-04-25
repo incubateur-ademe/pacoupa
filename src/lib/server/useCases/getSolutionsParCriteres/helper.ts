@@ -62,7 +62,7 @@ export const createCriteria = (payload: SimulationSchema): SelectCriteresSchema 
   const nbLgts: SelectCriteresSchema["nbLgts"] = payload.nbLogements < 15 ? "< 15" : ">= 15";
 
   const niveauRenovation: SelectCriteresSchema["niveauRenovation"] =
-    payload.annee === "post-1990" || payload.renovation === "rénovation globale" ? "recent ou renove" : "NA";
+    payload.annee >= 2000 || payload.renovation === "rénovation globale" ? "recent ou renove" : "NA";
 
   return {
     ch: payload.typeCH === "collectif" ? "col" : "ind",

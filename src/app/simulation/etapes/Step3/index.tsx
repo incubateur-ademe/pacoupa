@@ -29,6 +29,8 @@ export const Step3 = () => {
           <Box>
             <RadioButtons
               name="renovation"
+              aria-required
+              aria-invalid={Boolean(errors?.renovation?._errors)}
               options={[
                 {
                   illustration: <AucuneRenovationImage />,

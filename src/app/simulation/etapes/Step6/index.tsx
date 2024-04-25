@@ -69,6 +69,9 @@ export const Step6 = () => {
             <SegmentedControl
               legend=""
               name="possedeEspacesExterieursPersonnels"
+              aria-required
+              aria-invalid={Boolean(errors?.possedeEspacesExterieursPersonnels?._errors)}
+              aria-describedby="possedeEspacesExterieursPersonnels-message"
               segments={
                 OuiNonLabels.map(
                   label =>
@@ -84,16 +87,20 @@ export const Step6 = () => {
               }
             />
 
-            {errors?.possedeEspacesExterieursPersonnels?._errors && (
-              <p className={fr.cx("fr-message", "fr-message--error", "fr-mt-2w")}>
-                {errors?.possedeEspacesExterieursPersonnels?._errors}
-              </p>
-            )}
+            <p className={fr.cx("fr-mt-2w")} id="possedeEspacesExterieursPersonnels-message" aria-live="polite">
+              {errors?.possedeEspacesExterieursPersonnels?._errors && (
+                <span className={fr.cx("fr-message", "fr-message--error", "fr-mt-2w")}>
+                  {errors?.possedeEspacesExterieursPersonnels?._errors}
+                </span>
+              )}
+            </p>
 
             <P className={fr.cx("fr-mt-8v")}>Lesquels ?</P>
 
             <Checkbox
-              disabled={radioState === "Oui" ? false : true}
+              disabled={radioState !== "Oui"}
+              aria-required={radioState === "Oui"}
+              aria-invalid={Boolean(errors?.espacesExterieursPersonnels?._errors)}
               options={[
                 {
                   label: "Balcon",
@@ -113,7 +120,7 @@ export const Step6 = () => {
                 },
               ]}
               state={errors?.espacesExterieursPersonnels?._errors ? "error" : "default"}
-              stateRelatedMessage={errors?.espacesExterieursPersonnels?._errors}
+              stateRelatedMessage={<div aria-live="polite">{errors?.espacesExterieursPersonnels?._errors}</div>}
             />
           </>
         )}

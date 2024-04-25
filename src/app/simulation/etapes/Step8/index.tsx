@@ -29,6 +29,8 @@ export const Step8 = () => {
             <Box>
               <RadioButtons
                 name="energieCH"
+                aria-required
+                aria-invalid={Boolean(errors?.energieCH?._errors)}
                 options={[
                   {
                     label: "Fioul",
@@ -53,7 +55,7 @@ export const Step8 = () => {
                   },
                 ]}
                 state={errors?.energieCH?._errors ? "error" : "default"}
-                stateRelatedMessage={errors?.energieCH?._errors}
+                stateRelatedMessage={<div aria-live="polite">{errors?.energieCH?._errors}</div>}
               />
             </Box>
           </>
