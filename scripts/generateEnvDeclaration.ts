@@ -5,7 +5,7 @@ import path from "path";
 const ROOT = path.resolve(__dirname, "..");
 const envDistFileName = ".env.development";
 const envDistPath = path.resolve(ROOT, envDistFileName);
-console.log(`[generateEnvDeclaration] Reading ${envDistPath}`);
+console.debug(`[generateEnvDeclaration] Reading ${envDistPath}`);
 void (async () => {
   const envConfig = dotenvParse(await fs.promises.readFile(envDistPath, { encoding: "utf-8" }));
 
@@ -34,7 +34,7 @@ declare type ProcessEnvCustomKeys = ${envKeys
     .join("")};`;
 
   const outputPath = path.resolve(ROOT, "env.d.ts");
-  console.log(`[generateEnvDeclaration] Writing to ${outputPath}`);
+  console.debug(`[generateEnvDeclaration] Writing to ${outputPath}`);
   await fs.promises.writeFile(outputPath, declaration, { encoding: "utf-8" });
-  console.log(`[generateEnvDeclaration] Done!`);
+  console.debug(`[generateEnvDeclaration] Done!`);
 })();

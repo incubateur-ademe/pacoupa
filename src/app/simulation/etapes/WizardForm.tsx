@@ -74,7 +74,7 @@ export const WizardForm = ({ schema, render }: Props) => {
         console.error("erreur dans la navigation");
       });
     } else {
-      console.log("error", validation.error);
+      console.error("error", validation.error);
       setErrors(validation.error.format());
     }
   };
