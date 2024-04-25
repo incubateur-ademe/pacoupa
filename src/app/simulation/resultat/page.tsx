@@ -128,7 +128,7 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
           )}
         </Box>
 
-        <Grid haveGutters>
+        <Grid haveGutters className={fr.cx("fr-mt-3w")}>
           {solutions.data.slice(0, complet ? solutions.data.length : 3).map(solution => (
             <GridCol key={solution.id} base={12} sm={6} xl={4}>
               <Card
