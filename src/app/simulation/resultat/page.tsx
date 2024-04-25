@@ -6,6 +6,7 @@ import { Base64 } from "js-base64";
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
 import { HighlightText } from "@/components/HighlightText";
+import { NoDataImage } from "@/components/img/NoDataImage";
 import { Box, Container, Grid, GridCol } from "@/dsfr";
 import { H4, Text } from "@/dsfr/base/typography";
 import {
@@ -71,8 +72,6 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
 
   const rcuEligibility = await fetchFcuEligibility({ lon, lat });
 
-  console.log({ eligibility: rcuEligibility });
-
   if (rcuEligibility.isEligible) {
     solutions.data = [rcuSolution as GetSolutionsParCriteresReturnType[number], ...solutions.data];
   }
@@ -105,9 +104,17 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
           <DebugButton formData={formData} solutions={solutions.data} />
         </H4>
 
-        <Text>
+        <Box>
           {solutions.data.length === 0 ? (
-            <>Nous n'avons pas trouvé de solution de chauffage adaptée à votre bâtiment.</>
+            <Box>
+              <Box className={cx("text-center", fr.cx("fr-my-8w"))}>
+                <NoDataImage />
+              </Box>
+              <p>
+                Nous n’avons trouvé <strong>aucune solution</strong> ENR compatible pour votre bâtiment.
+              </p>
+              <p>Vous pouvez cependant contacter France Renov’ pour plus d'informations sur la rénovation.</p>
+            </Box>
           ) : (
             <>
               Nous avons trouvé{" "}
@@ -119,7 +126,7 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
               de chauffage adaptées à votre bâtiment.
             </>
           )}
-        </Text>
+        </Box>
 
         <Grid haveGutters>
           {solutions.data.slice(0, complet ? solutions.data.length : 3).map(solution => (
@@ -226,7 +233,7 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
 
         <Grid>
           <GridCol className={fr.cx("fr-mt-6w")}>
-            Préparez votre projet de rénovation sur <HighlightText>France Rénov’</HighlightText>
+            Préparez votre projet de rénovation sur <HighlightText>France Rénov’</HighlightText>.
           </GridCol>
         </Grid>
 
@@ -234,7 +241,7 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
           linkProps={{
             href: "https://france-renov.gouv.fr/preparer-projet/trouver-conseiller",
           }}
-          className={fr.cx("fr-mt-2w")}
+          className={fr.cx("fr-m-2w", "fr-mb-4w")}
         >
           Préparer mon projet
         </Button>
