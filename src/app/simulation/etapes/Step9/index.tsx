@@ -28,6 +28,8 @@ export const Step9 = () => {
             <Box>
               <RadioButtons
                 name="emetteur"
+                aria-required
+                aria-invalid={Boolean(errors?.emetteur?._errors)}
                 options={[
                   {
                     label: "Des radiateurs",
@@ -45,7 +47,7 @@ export const Step9 = () => {
                   },
                 ]}
                 state={errors?.emetteur?._errors ? "error" : "default"}
-                stateRelatedMessage={errors?.emetteur?._errors}
+                stateRelatedMessage={<div aria-live="polite">{errors?.emetteur?._errors}</div>}
               />
             </Box>
           </>

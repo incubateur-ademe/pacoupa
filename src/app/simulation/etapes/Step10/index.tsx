@@ -29,6 +29,8 @@ export const Step10 = () => {
           <Box>
             <RadioButtons
               name="typeECS"
+              aria-required
+              aria-invalid={Boolean(errors?.typeECS?._errors)}
               options={[
                 {
                   illustration: <PersonneImage />,
@@ -49,7 +51,7 @@ export const Step10 = () => {
                 },
               ]}
               state={errors?.typeECS?._errors ? "error" : "default"}
-              stateRelatedMessage={errors?.typeECS?._errors}
+              stateRelatedMessage={<div aria-live="polite">{errors?.typeECS?._errors}</div>}
             />
           </Box>
         )}

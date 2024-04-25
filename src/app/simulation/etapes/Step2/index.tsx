@@ -1,19 +1,24 @@
 "use client";
 
-import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
+import { fr } from "@codegouvfr/react-dsfr";
+import Input from "@codegouvfr/react-dsfr/Input";
 import { z } from "zod";
 
 import { Box, P } from "@/dsfr";
 
 import { HeaderFunnel } from "../HeaderFunnel";
 import { WizardForm } from "../WizardForm";
-import { Batiment1946a1974Image } from "./Batiment1946a1974Image";
-import { Batiment1975a1989Image } from "./Batiment1975a1989Image";
-import { BatimentPost1990Image } from "./BatimentPost1990Image";
-import { BatimentPre1945Image } from "./BatimentPre1945Image";
+
+const currentYear = new Date().getFullYear();
 
 const schema = z.object({
-  annee: z.string({ required_error: "L'année du bâtiment est obligatoire" }),
+  annee: z.coerce
+    .number({
+      invalid_type_error: "L'année doit être un nombre entier",
+    })
+    .int()
+    .min(1, "L'année doit être supérieure à zéro")
+    .max(currentYear, "L'année doit être inférieure ou égale à l'année en cours"),
 });
 
 export const Step2 = () => {
@@ -28,52 +33,30 @@ export const Step2 = () => {
         schema={schema}
         render={({ errors, store }) => (
           <Box>
-            <RadioButtons
-              name="annee"
-              options={[
-                {
-                  illustration: <BatimentPre1945Image />,
-                  label: "Avant 1945",
-                  hintText: "Façade ornementée",
-                  nativeInputProps: {
-                    defaultChecked: store.annee === "pre-1945",
-                    value: "pre-1945",
-                  },
+            <Input
+              label=""
+              nativeInputProps={{
+                "aria-required": true,
+                "aria-invalid": Boolean(errors?.annee?._errors),
+                placeholder: "Ex: 1983",
+                name: "annee",
+                defaultValue: store.annee,
+                type: "number",
+                onBlur: e => {
+                  e.target.value = String(Math.round(Number(e.target.value)));
                 },
-                {
-                  illustration: <Batiment1946a1974Image />,
-                  label: "Entre 1946 et 1974",
-                  hintText: "Utilisation du béton",
-                  nativeInputProps: {
-                    defaultChecked: store.annee === "1946-1974",
-                    value: "1946-1974",
-                  },
-                },
-                {
-                  illustration: <Batiment1975a1989Image />,
-                  label: "Entre 1975 et 1989",
-                  hintText: "Les années HLM",
-                  nativeInputProps: {
-                    defaultChecked: store.annee === "1975-1989",
-                    value: "1975-1989",
-                  },
-                },
-                {
-                  illustration: <BatimentPost1990Image />,
-                  label: "Après 1990",
-                  hintText: "Bâtiments modernes",
-                  nativeInputProps: {
-                    defaultChecked: store.annee === "post-1990",
-                    value: "post-1990",
-                  },
-                },
-              ]}
+              }}
               state={errors?.annee?._errors ? "error" : "default"}
-              stateRelatedMessage={errors?.annee?._errors}
+              stateRelatedMessage={<div aria-live="polite">{errors?.annee?._errors}</div>}
             />
           </Box>
         )}
       />
+
+      <P className={fr.cx("fr-mt-8v", "fr-text--sm")}>
+        <i className={fr.cx("fr-icon-info-fill", "fr-mr-2v")} aria-hidden={true} />
+        Cela va nous permettre d’avoir une première idée de l’isolation de base du bâtiment.
+      </P>
     </>
   );
 };

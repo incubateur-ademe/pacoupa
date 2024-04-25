@@ -85,14 +85,14 @@ export function AutocompleteBan({ defaultValue, errors }: AutocompletBanMuiProps
             aria-required="true"
             inputProps={{
               ...params.inputProps,
-              "aria-required": "true",
-              "aria-invalid": errors && errors.length ? "true" : "false",
+              "aria-required": true,
+              "aria-invalid": Boolean(errors && errors.length),
               "aria-describedby": "adresse-error",
             }}
           />
           {errors && (
             <>
-              <Box id="adresse-error" className={fr.cx("fr-error-text")}>
+              <Box id="adresse-error" className={fr.cx("fr-error-text")} aria-live="polite">
                 {errors[0]}
               </Box>
             </>

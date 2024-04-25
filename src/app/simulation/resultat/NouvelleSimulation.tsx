@@ -18,7 +18,7 @@ export const NouvelleSimulation = () => {
   return (
     <>
       <Button priority="tertiary no outline" iconId="ri-arrow-right-line" onClick={() => handleClick()}>
-        Je veux démarrer une nouvelle simulation
+        Je démarre une nouvelle simulation
       </Button>
     </>
   );
