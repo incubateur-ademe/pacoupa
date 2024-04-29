@@ -1,10 +1,10 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 
+import { CTA } from "@/components/CTA";
 import { Camembert18PourcentImage } from "@/components/img/Camembert18PourcentImage";
 import { Camembert47PourcentImage } from "@/components/img/Camembert47PourcentImage";
 import { Maison2Image } from "@/components/img/Maison2";
-import { TallyButton } from "@/components/TallyButton";
 import { Box, Container, Grid, GridCol, P } from "@/dsfr";
 import { H3 } from "@/dsfr/base/typography";
 
@@ -52,7 +52,7 @@ export const DecarbonnonsZone = () => {
 
             <H3>Pacoupa vous guide dans ce choix</H3>
 
-            <TallyButton />
+            <CTA source="landing" />
           </GridCol>
 
           <GridCol base={4} className="mt-8">

@@ -14,7 +14,6 @@ export const Banner = (props: PropsWithChildren<Props>) => {
     <Box className={styles.banner}>
       <i className={fr.cx("fr-icon-info-fill")} aria-hidden={true} />
       <P className={fr.cx("fr-text--sm")}>{props.title}</P>
-      {/* <TallyButton size="small" /> */}
     </Box>
   );
 };
