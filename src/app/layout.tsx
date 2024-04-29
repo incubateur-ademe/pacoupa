@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(config.host),
   ...sharedMetadata,
   title: {
-    template: `${config.name} - %s`,
+    template: `%s - ${config.name}`,
     default: config.name,
   },
   openGraph: {

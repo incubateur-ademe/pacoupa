@@ -2,6 +2,7 @@ import { fr } from "@codegouvfr/react-dsfr";
 import { Badge } from "@codegouvfr/react-dsfr/Badge";
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import { Base64 } from "js-base64";
+import { type Metadata } from "next";
 
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
@@ -16,6 +17,7 @@ import {
 import { fetchBAN } from "@/lib/services/ban";
 import { fetchFcuEligibility } from "@/lib/services/fcu";
 
+import { sharedMetadata } from "../../shared-metadata";
 import { simulationSchema } from "../schema";
 import { DebugButton } from "./DebugButton";
 import { FranceRenovBlock } from "./FranceRenovBlock";
@@ -32,6 +34,25 @@ import { JaugeDifficulteImage } from "./JaugeDifficulteImage";
 import { JaugeEnvironnementalImage } from "./JaugeEnvironnementalImage";
 import { NouvelleSimulation } from "./NouvelleSimulation";
 import { SyncStore } from "./SyncStore";
+
+const title = "Résultat simulation";
+const description = "Résultat simulation";
+const url = "/simulation/resultat";
+
+export const metadata: Metadata = {
+  ...sharedMetadata,
+  title,
+  description,
+  openGraph: {
+    ...sharedMetadata.openGraph,
+    title,
+    description,
+    url,
+  },
+  alternates: {
+    canonical: url,
+  },
+};
 
 const rcuSolution = {
   id: "fcu",

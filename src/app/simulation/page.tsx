@@ -1,8 +1,31 @@
+import { type Metadata } from "next";
+
 import { Button } from "@/components/Button";
 import { ButtonsWrapper } from "@/components/ButtonsWrapper";
 import { Maison2Image } from "@/components/img/Maison2";
 import { Grid, GridCol, P } from "@/dsfr";
 import { H1 } from "@/dsfr/base/typography";
+
+import { sharedMetadata } from "../shared-metadata";
+
+const title = "Simulation";
+const description = "Début de la simulation";
+const url = "/simulation";
+
+export const metadata: Metadata = {
+  ...sharedMetadata,
+  title,
+  description,
+  openGraph: {
+    ...sharedMetadata.openGraph,
+    title,
+    description,
+    url,
+  },
+  alternates: {
+    canonical: url,
+  },
+};
 
 const SimulationLandingPage = () => {
   return (
