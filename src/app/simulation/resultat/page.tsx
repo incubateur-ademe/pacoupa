@@ -18,6 +18,7 @@ import { fetchFcuEligibility } from "@/lib/services/fcu";
 
 import { simulationSchema } from "../schema";
 import { DebugButton } from "./DebugButton";
+import { FranceRenovBlock } from "./FranceRenovBlock";
 import {
   createRecommandations,
   imageForFamille,
@@ -113,7 +114,6 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
               <p>
                 Nous n’avons trouvé <strong>aucune solution</strong> ENR compatible pour votre bâtiment.
               </p>
-              <p>Vous pouvez cependant contacter France Renov’ pour plus d'informations sur la rénovation.</p>
             </Box>
           ) : (
             <>
@@ -231,20 +231,7 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
           </GridCol>
         </Grid>
 
-        <Grid>
-          <GridCol className={fr.cx("fr-mt-6w")}>
-            Préparez votre projet de rénovation sur <HighlightText>France Rénov’</HighlightText>.
-          </GridCol>
-        </Grid>
-
-        <Button
-          linkProps={{
-            href: "https://france-renov.gouv.fr/preparer-projet/trouver-conseiller",
-          }}
-          className={fr.cx("fr-m-2w", "fr-mb-4w")}
-        >
-          Préparer mon projet
-        </Button>
+        <FranceRenovBlock />
       </Container>
     </>
   );
