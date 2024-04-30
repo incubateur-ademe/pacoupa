@@ -21,17 +21,7 @@ import { sharedMetadata } from "../../shared-metadata";
 import { simulationSchema } from "../schema";
 import { DebugButton } from "./DebugButton";
 import { FranceRenovBlock } from "./FranceRenovBlock";
-import {
-  createRecommandations,
-  imageForFamille,
-  labelForType,
-  noteCoutHelper,
-  noteDifficulteHelper,
-  noteEnvironmentHelper,
-} from "./helper";
-import { JaugeCoutlImage } from "./JaugeCoutlImage";
-import { JaugeDifficulteImage } from "./JaugeDifficulteImage";
-import { JaugeEnvironnementalImage } from "./JaugeEnvironnementalImage";
+import { coutMap, createRecommandations, environnementMap, faciliteMap, familleImageMap, typeMap } from "./helper";
 import { NouvelleSimulation } from "./NouvelleSimulation";
 import { SyncStore } from "./SyncStore";
 
@@ -155,45 +145,22 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
               <Card
                 desc={
                   <>
-                    <Box className={fr.cx("fr-mt-3w", "fr-mb-1v")}>Impact écologique 🌿</Box>
+                    <Box className={fr.cx("fr-mt-3w", "fr-mb-1v")}>🌿 Bénéfice environnemental</Box>
 
                     <Box className={cx("flex", "justify-between", "items-center")}>
-                      <strong>{noteEnvironmentHelper(solution.noteEnvironnemental).label}</strong>
-
-                      <Box className={cx("flex")}>
-                        {Array(noteEnvironmentHelper(solution.noteEnvironnemental).number)
-                          .fill("")
-                          .map((_elt, index) => (
-                            <JaugeEnvironnementalImage key={index} height={16} width={16} />
-                          ))}
-                      </Box>
+                      <strong>{environnementMap[solution.noteEnvironnemental]}</strong>
                     </Box>
 
-                    <Box className={fr.cx("fr-mt-3w", "fr-mb-1v")}>Coût d’investissement 💰</Box>
+                    <Box className={fr.cx("fr-mt-3w", "fr-mb-1v")}>💰 Coût</Box>
 
                     <Box className={cx("flex", "justify-between", "items-center")}>
-                      <strong>{noteCoutHelper(solution.noteCout).label}</strong>
-                      <Box className={cx("flex")}>
-                        {Array(noteCoutHelper(solution.noteCout).number)
-                          .fill("")
-                          .map((_elt, index) => (
-                            <JaugeCoutlImage key={index} height={16} width={16} />
-                          ))}
-                      </Box>
+                      <strong>{coutMap[solution.noteCout]}</strong>
                     </Box>
 
-                    <Box className={fr.cx("fr-mt-3w", "fr-mb-1v")}>Difficulté mise en place 🚧</Box>
+                    <Box className={fr.cx("fr-mt-3w", "fr-mb-1v")}>📦 Facilité d’installation</Box>
 
                     <Box className={cx("flex", "justify-between", "items-center")}>
-                      <strong>{noteDifficulteHelper(solution.noteDifficulte).label}</strong>
-
-                      <Box className={cx("flex")}>
-                        {Array(noteDifficulteHelper(solution.noteDifficulte).number)
-                          .fill("")
-                          .map((_elt, index) => (
-                            <JaugeDifficulteImage key={index} height={16} width={16} />
-                          ))}
-                      </Box>
+                      <strong>{faciliteMap[solution.noteDifficulte]}</strong>
                     </Box>
 
                     <Box className={fr.cx("fr-mt-6w")}>
@@ -218,11 +185,11 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
                 size="small"
                 title={
                   <Box className={cx("flex items-start gap-4")}>
-                    <Box>{imageForFamille(solution.familleSolution)}</Box>
+                    <Box>{familleImageMap[solution.familleSolution]}</Box>
                     <Box>
                       <span className={cx("mb-0", fr.cx("fr-text--lg"))}>{solution.name}</span>
                       <br />
-                      <Badge>{labelForType(solution.type)}</Badge>
+                      <Badge>{typeMap[solution.type]}</Badge>
                     </Box>
                   </Box>
                 }

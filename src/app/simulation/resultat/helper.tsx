@@ -8,42 +8,27 @@ import { FamillePacEauEauImage } from "@/components/img/familles/FamillePacEauEa
 import { FamillePacEauxGrisesEau } from "@/components/img/familles/FamillePacEauxGrisesEau";
 import { FamillePacSolaireEauImage } from "@/components/img/familles/FamillePacSolaireEauImage";
 import { FamilleRcuImage } from "@/components/img/familles/FamilleRcuImage";
+import { type SolutionFamilles, type SolutionNote, type SolutionTypes } from "@/lib/enums";
 import { type GetSolutionsParCriteresReturnType } from "@/lib/server/useCases/getSolutionsParCriteres";
 
-export const labelForType = (type: string = "") => {
-  switch (type.toUpperCase()) {
-    case "IND":
-      return "Solution individuelle";
-    case "COL":
-      return "Solution collective";
-    default:
-      return "Solution mixte";
-  }
+export const typeMap: Record<SolutionTypes, string> = {
+  IND: "Solution individuelle",
+  COL: "Solution collective",
+  MIX: "Solution mixte",
 };
 
-export const imageForFamille = (famille: string) => {
-  switch (famille) {
-    case "RCU":
-      return <FamilleRcuImage />;
-    case "Geothermie":
-      return <FamilleGeothermieImage />;
-    case "PAC Air-Air":
-      return <FamillePacAirAirImage />;
-    case "PAC Air-Eau":
-      return <FamillePacAirEauImage />;
-    case "PAC Eau-Eau":
-      return <FamillePacEauEauImage />;
-    case "PAC Eaux grises-Eau":
-      return <FamillePacEauxGrisesEau />;
-    case "PAC Solaire-Eau":
-      return <FamillePacSolaireEauImage />;
-    case "Hybride PAC + Chaudière":
-      return <FamilleHybrideImage />;
-    case "CET Air-Eau":
-      return <FamilleCetAirEauImage />;
-    case "CET Eau-Eau":
-      return <FamilleCetEauEauImage />;
-  }
+export const familleImageMap: Record<SolutionFamilles, JSX.Element> = {
+  RCU: <FamilleRcuImage />,
+  Geothermie: <FamilleGeothermieImage />,
+  "PAC Air-Air": <FamillePacAirAirImage />,
+  "PAC Air-Eau": <FamillePacAirEauImage />,
+  "PAC Eau-Eau": <FamillePacEauEauImage />,
+  "PAC Eaux grises-Eau": <FamillePacEauxGrisesEau />,
+  "PAC Solaire-Eau": <FamillePacSolaireEauImage />,
+  "Hybride PAC + Chaudière": <FamilleHybrideImage />,
+  "CET Air-Eau": <FamilleCetAirEauImage />,
+  "CET Eau-Eau": <FamilleCetEauEauImage />,
+  "PAC Abs Gaz": <>No image</>,
 };
 
 export const createRecommandations = (solution: GetSolutionsParCriteresReturnType[number]) => {
@@ -58,53 +43,26 @@ export const createRecommandations = (solution: GetSolutionsParCriteresReturnTyp
   return Object.entries(obj).filter(([_, value]) => value !== null);
 };
 
-export const noteEnvironmentHelper = (note: string) => {
-  switch (note) {
-    case "A":
-      return { label: "Très positif", number: 5 };
-    case "B":
-      return { label: "Positif", number: 4 };
-    case "C":
-      return { label: "Modéré", number: 3 };
-    case "D":
-      return { label: "Léger", number: 2 };
-    case "E":
-      return { label: "Faible", number: 1 };
-    default:
-      return { label: "Non renseigné", number: 0 };
-  }
+export const environnementMap: Record<SolutionNote, string> = {
+  A: "Très positif",
+  B: "Très positif",
+  C: "Modéré",
+  D: "Modéré",
+  E: "Modéré",
 };
 
-export const noteCoutHelper = (note: string) => {
-  switch (note) {
-    case "A":
-      return { label: "Très faible", number: 1 };
-    case "B":
-      return { label: "Faible", number: 2 };
-    case "C":
-      return { label: "Modéré", number: 3 };
-    case "D":
-      return { label: "Important", number: 4 };
-    case "E":
-      return { label: "Très important", number: 5 };
-    default:
-      return { label: "Non renseigné", number: 0 };
-  }
+export const coutMap: Record<SolutionNote, string> = {
+  A: "Assez faible",
+  B: "Assez faible",
+  C: "Modéré",
+  D: "Élevé",
+  E: "Élevé",
 };
 
-export const noteDifficulteHelper = (note: string) => {
-  switch (note) {
-    case "A":
-      return { label: "Très facile", number: 1 };
-    case "B":
-      return { label: "Facile", number: 2 };
-    case "C":
-      return { label: "Modéré", number: 3 };
-    case "D":
-      return { label: "Difficile", number: 4 };
-    case "E":
-      return { label: "Très difficile", number: 5 };
-    default:
-      return { label: "Non renseigné", number: 0 };
-  }
+export const faciliteMap: Record<SolutionNote, string> = {
+  A: "Sans difficulté majeure",
+  B: "Sans difficulté majeure",
+  C: "Modéré",
+  D: "Difficile",
+  E: "Difficile",
 };
