@@ -20,6 +20,7 @@ import { fetchFcuEligibility } from "@/lib/services/fcu";
 import { sharedMetadata } from "../../shared-metadata";
 import { simulationSchema } from "../schema";
 import { DebugButton } from "./DebugButton";
+import { Evaluation } from "./Evaluation";
 import { FranceRenovBlock } from "./FranceRenovBlock";
 import { coutMap, createRecommandations, environnementMap, faciliteMap, familleImageMap, typeMap } from "./helper";
 import { NouvelleSimulation } from "./NouvelleSimulation";
@@ -145,41 +146,35 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
               <Card
                 desc={
                   <>
-                    <Box className={fr.cx("fr-mt-3w", "fr-mb-1v")}>🌿 Bénéfice environnemental</Box>
-
-                    <Box className={cx("flex", "justify-between", "items-center")}>
-                      <Badge noIcon severity={environnementMap[solution.noteEnvironnemental].severity}>
-                        {environnementMap[solution.noteEnvironnemental].label}
-                      </Badge>
-                    </Box>
-
-                    <Box className={fr.cx("fr-mt-3w", "fr-mb-1v")}>💰 Coût</Box>
-
-                    <Box className={cx("flex", "justify-between", "items-center")}>
-                      <Badge noIcon severity={coutMap[solution.noteCout].severity}>
-                        {coutMap[solution.noteCout].label}
-                      </Badge>
-                    </Box>
-
-                    <Box className={fr.cx("fr-mt-3w", "fr-mb-1v")}>📦 Facilité d’installation</Box>
-
-                    <Box className={cx("flex", "justify-between", "items-center")}>
-                      <Badge noIcon severity={faciliteMap[solution.noteDifficulte].severity}>
-                        {faciliteMap[solution.noteDifficulte].label}
-                      </Badge>
-                    </Box>
-
-                    <Box className={fr.cx("fr-mt-6w")}>
+                    <Box className={fr.cx("fr-mt-2w")}>
                       <Text>{solution.descriptionSolution}</Text>
                     </Box>
 
-                    <span className={fr.cx("fr-text--bold")}>Recommandé pour</span>
-                    <Box className={cx("flex", "flex-wrap", "justify-start", "gap-4", "fr-mt-1w")}>
-                      {createRecommandations(solution).map((recommandation, index) => (
-                        <Badge key={index} severity={recommandation[1] || "error"}>
-                          {recommandation[0]}
-                        </Badge>
-                      ))}
+                    <Box className={cx("flex", "flex-wrap", "justify-between", "gap-4", "fr-mt-4w")}>
+                      {createRecommandations(solution)}
+                    </Box>
+
+                    <Box className={cx("flex", "flex-col", "gap-2")}>
+                      <Evaluation
+                        emoji="🌿"
+                        titre="Bénéfice environnemental"
+                        contenu={environnementMap[solution.noteEnvironnemental].label}
+                        severity={environnementMap[solution.noteEnvironnemental].severity}
+                      />
+
+                      <Evaluation
+                        emoji="💰"
+                        titre="Coût"
+                        contenu={coutMap[solution.noteCout].label}
+                        severity={coutMap[solution.noteCout].severity}
+                      />
+
+                      <Evaluation
+                        emoji="📦"
+                        titre="Facilité d’installation"
+                        contenu={faciliteMap[solution.noteDifficulte].label}
+                        severity={faciliteMap[solution.noteDifficulte].severity}
+                      />
                     </Box>
                   </>
                 }
