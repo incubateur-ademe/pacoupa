@@ -22,8 +22,9 @@ import { simulationSchema } from "../schema";
 import { DebugButton } from "./DebugButton";
 import { Evaluation } from "./Evaluation";
 import { FranceRenovBlock } from "./FranceRenovBlock";
-import { coutMap, createRecommandations, environnementMap, faciliteMap, familleImageMap, typeMap } from "./helper";
+import { coutMap, environnementMap, faciliteMap, familleImageMap, typeMap } from "./helper";
 import { NouvelleSimulation } from "./NouvelleSimulation";
+import { Recommandation } from "./Recommandation";
 import { SyncStore } from "./SyncStore";
 
 const title = "Résultat simulation";
@@ -150,11 +151,9 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
                       <Text>{solution.descriptionSolution}</Text>
                     </Box>
 
-                    <Box className={cx("flex", "flex-wrap", "justify-between", "gap-4", "fr-mt-4w")}>
-                      {createRecommandations(solution)}
-                    </Box>
+                    <Recommandation solution={solution} />
 
-                    <Box className={cx("flex", "flex-col", "gap-2")}>
+                    <Box className={cx("flex", "flex-col", "gap-4")}>
                       <Evaluation
                         emoji="🌿"
                         titre="Bénéfice environnemental"
