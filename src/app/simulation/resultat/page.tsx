@@ -95,7 +95,7 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
         <Grid>
           <GridCol sm={8} xl={6}>
             <Card
-              desc={formData.data.adresse}
+              desc={<strong>{formData.data.adresse}</strong>}
               enlargeLink
               horizontal
               linkProps={{
@@ -148,19 +148,25 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
                     <Box className={fr.cx("fr-mt-3w", "fr-mb-1v")}>🌿 Bénéfice environnemental</Box>
 
                     <Box className={cx("flex", "justify-between", "items-center")}>
-                      <strong>{environnementMap[solution.noteEnvironnemental]}</strong>
+                      <Badge noIcon severity={environnementMap[solution.noteEnvironnemental].severity}>
+                        {environnementMap[solution.noteEnvironnemental].label}
+                      </Badge>
                     </Box>
 
                     <Box className={fr.cx("fr-mt-3w", "fr-mb-1v")}>💰 Coût</Box>
 
                     <Box className={cx("flex", "justify-between", "items-center")}>
-                      <strong>{coutMap[solution.noteCout]}</strong>
+                      <Badge noIcon severity={coutMap[solution.noteCout].severity}>
+                        {coutMap[solution.noteCout].label}
+                      </Badge>
                     </Box>
 
                     <Box className={fr.cx("fr-mt-3w", "fr-mb-1v")}>📦 Facilité d’installation</Box>
 
                     <Box className={cx("flex", "justify-between", "items-center")}>
-                      <strong>{faciliteMap[solution.noteDifficulte]}</strong>
+                      <Badge noIcon severity={faciliteMap[solution.noteDifficulte].severity}>
+                        {faciliteMap[solution.noteDifficulte].label}
+                      </Badge>
                     </Box>
 
                     <Box className={fr.cx("fr-mt-6w")}>

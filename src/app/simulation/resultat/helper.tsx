@@ -1,3 +1,5 @@
+import { type AlertProps } from "@codegouvfr/react-dsfr/Alert";
+
 import { FamilleCetAirEauImage } from "@/components/img/familles/FamilleCetAirEauImage";
 import { FamilleCetEauEauImage } from "@/components/img/familles/FamilleCetEauEauImage";
 import { FamilleGeothermieImage } from "@/components/img/familles/FamilleGeothermieImage";
@@ -43,26 +45,28 @@ export const createRecommandations = (solution: GetSolutionsParCriteresReturnTyp
   return Object.entries(obj).filter(([_, value]) => value !== null);
 };
 
-export const environnementMap: Record<SolutionNote, string> = {
-  A: "Très positif",
-  B: "Très positif",
-  C: "Modéré",
-  D: "Modéré",
-  E: "Modéré",
+type NoteMap = Record<SolutionNote, { label: string; severity: AlertProps.Severity }>;
+
+export const environnementMap: NoteMap = {
+  A: { label: "Très positif", severity: "success" },
+  B: { label: "Très positif", severity: "success" },
+  C: { label: "Modéré", severity: "warning" },
+  D: { label: "Modéré", severity: "error" },
+  E: { label: "Modéré", severity: "error" },
 };
 
-export const coutMap: Record<SolutionNote, string> = {
-  A: "Assez faible",
-  B: "Assez faible",
-  C: "Modéré",
-  D: "Élevé",
-  E: "Élevé",
+export const coutMap: NoteMap = {
+  A: { label: "Assez faible", severity: "success" },
+  B: { label: "Assez faible", severity: "success" },
+  C: { label: "Modéré", severity: "warning" },
+  D: { label: "Élevé", severity: "error" },
+  E: { label: "Élevé", severity: "error" },
 };
 
-export const faciliteMap: Record<SolutionNote, string> = {
-  A: "Sans difficulté majeure",
-  B: "Sans difficulté majeure",
-  C: "Modéré",
-  D: "Difficile",
-  E: "Difficile",
+export const faciliteMap: NoteMap = {
+  A: { label: "Sans difficulté majeure", severity: "success" },
+  B: { label: "Sans difficulté majeure", severity: "success" },
+  C: { label: "Modéré", severity: "warning" },
+  D: { label: "Difficile", severity: "error" },
+  E: { label: "Difficile", severity: "error" },
 };
