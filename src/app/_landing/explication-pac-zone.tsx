@@ -41,6 +41,7 @@ export const ExplicationPacZone = () => {
         </Grid>
       </Container>
 
+      {/* TODO: utiliser Material UI tooltip à la place */}
       <Tooltip anchorSelect=".pac" place="top">
         Une PAC est un système qui prélève de la chaleur dans une source froide (sol, air, nappe), <br />
         augmente son niveau de tempéraure et la restitue dans le bâtiment.

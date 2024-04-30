@@ -98,15 +98,21 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
           <GridCol sm={8} xl={6}>
             <Card
               desc={<strong>{formData.data.adresse}</strong>}
-              enlargeLink
               horizontal
-              linkProps={{
-                href: "/simulation/etapes",
-              }}
               size="small"
               title=""
               titleAs="h3"
-              end={<>Modifier</>}
+              end={
+                <Button
+                  linkProps={{
+                    href: "/simulation/etapes",
+                  }}
+                  priority="tertiary no outline"
+                  iconId="ri-arrow-right-line"
+                >
+                  Modifier
+                </Button>
+              }
             />
           </GridCol>
         </Grid>
@@ -177,11 +183,7 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
                     </Box>
                   </>
                 }
-                enlargeLink
                 horizontal
-                linkProps={{
-                  href: `/solutions/${solution.id}`,
-                }}
                 size="small"
                 title={
                   <Box className={cx("flex items-start gap-4")}>
@@ -194,7 +196,17 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
                   </Box>
                 }
                 titleAs="h3"
-                end={<>En savoir plus</>}
+                end={
+                  <Button
+                    priority="tertiary no outline"
+                    iconId="ri-arrow-right-line"
+                    linkProps={{
+                      href: `/solutions/${solution.id}`,
+                    }}
+                  >
+                    En savoir plus
+                  </Button>
+                }
               />
             </GridCol>
           ))}

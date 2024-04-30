@@ -65,7 +65,7 @@ export const Recommandation = ({ solution }: { solution: GetSolutionsParCriteres
                   ? "Solution permettant la climatisation"
                   : usageFr === "Non"
                     ? "Solution ne permettant pas la climatisation"
-                    : "Solution permettant potentiellement la climatisation"
+                    : "La climatisation ne sera pas possible avec des radiateurs à eau. Il faudra soit les remplacer par des ventilo-convecteurs, soit utiliser un plancher rafraichissant (si présent)."
               }
             />
           </Badge>

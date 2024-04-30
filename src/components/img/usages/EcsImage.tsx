@@ -1,13 +1,13 @@
+import { Tooltip } from "@mui/material";
+
 import { colors } from "@/colors";
 
 import { type UsageImageProps } from "./type";
 
 export function EcsImage({ alt, enabled }: UsageImageProps) {
   return (
-    <>
+    <Tooltip title={alt} arrow>
       <svg width="21" height="38" viewBox="0 0 21 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <title>{alt}</title>
-
         <path
           d="M10.8333 37.3334C8.18109 37.3334 5.63755 36.2798 3.76218 34.4044C1.88682 32.5291 0.833252 29.9855 0.833252 27.3334C0.833252 20.6667 10.8333 9.41669 10.8333 9.41669C10.8333 9.41669 20.8333 20.6667 20.8333 27.3334C20.8333 29.9855 19.7797 32.5291 17.9043 34.4044C16.029 36.2798 13.4854 37.3334 10.8333 37.3334Z"
           fill={enabled || enabled === undefined ? colors.evaluationEnabled : colors.evaluationDisabled}
@@ -25,6 +25,6 @@ export function EcsImage({ alt, enabled }: UsageImageProps) {
           fill={enabled || enabled === undefined ? colors.evaluationEnabled : colors.evaluationDisabled}
         />
       </svg>
-    </>
+    </Tooltip>
   );
 }
