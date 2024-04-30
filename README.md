@@ -71,6 +71,23 @@ yarn dk:introspect
 
 Cette commande va regénérer le fichier schema.ts et les types Drizzle.
 
+Modifier le fichier drizzle/schema.ts pour améliorer le typage des objets de persistence: 
+- pour solutions.type, ajouter `drizzleEnumTypes` (ex: `type: text("type", drizzleEnumTypes).notNull()`)
+- ajouter `drizzleEnumUsages` pour 
+    - solutions.usageCh
+    - solutions.usageEcs
+    - solutions.usageFr
+- ajouter `drizzlEnumNotes` pour
+    - solutions.noteImpactSonore
+    - solutions.noteImpactEspaceExterieur
+    - solutions.noteEnvironnemental
+    - solutions.noteMaturite
+- ajouter `drizzleEnumNotes` pour
+    - solutionsParCriteres.noteDifficulte
+    - solutionsParCriteres.noteImpactTravauxColl
+    - solutionsParCriteres.noteImpactTravauxIndiv
+    - solutionsParCriteres.noteCout
+
 Vous pouvez lancer la compilation typescript pour vérifier que le code est resté typesafe.
 
 ```shell
