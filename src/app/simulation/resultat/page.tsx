@@ -68,9 +68,9 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
 
   const [lon, lat] = coordinates;
 
-  const rcuEligibility = await fetchFcuEligibility({ lon, lat });
+  const { isEligible: isRcuEligible } = await fetchFcuEligibility({ lon, lat });
 
-  const nbSolutions = solutions.data.length + (rcuEligibility ? 1 : 0);
+  const nbSolutions = solutions.data.length + (isRcuEligible ? 1 : 0);
 
   return (
     <>
@@ -79,10 +79,10 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
         <Grid>
           <GridCol sm={8} xl={6}>
             <Card
-              desc={<strong>{formData.data.adresse}</strong>}
+              desc={<span className={fr.cx("fr-text--md")}>{formData.data.adresse}</span>}
               horizontal
               size="small"
-              title=""
+              title="Adresse"
               titleAs="h3"
               end={
                 <Button
@@ -130,10 +130,12 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
         </Box>
 
         <Grid haveGutters className={fr.cx("fr-mt-3w")}>
-          <GridCol key="rcu" base={12} sm={6} xl={4}>
-            {rcuEligibility && <CardRcu />}
-          </GridCol>
-          {solutions.data.slice(0, complet ? nbSolutions : 3).map(solution => (
+          {isRcuEligible && (
+            <GridCol key="rcu" base={12} sm={6} xl={4}>
+              <CardRcu />
+            </GridCol>
+          )}
+          {solutions.data.slice(0, complet ? nbSolutions : isRcuEligible ? 2 : 3).map(solution => (
             <GridCol key={solution.id} base={12} sm={6} xl={4}>
               <Card
                 desc={

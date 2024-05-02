@@ -56,7 +56,6 @@ export const CardRcu = () => {
         end={
           <Button
             priority="tertiary no outline"
-            iconId="ri-arrow-right-line"
             linkProps={{
               href: `https://france-chaleur-urbaine.beta.gouv.fr/`,
             }}
