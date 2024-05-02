@@ -47,7 +47,7 @@ const Heading = ({ as: As, tag: HtmlTag, children, ...rest }: HeadingProps & { t
   const as = As ?? HtmlTag;
 
   return (
-    <HtmlTag {...rest} className={cx(fr.cx(`fr-${as}`), rest.className)}>
+    <HtmlTag className={cx(fr.cx(`fr-${as}`), rest.className)} {...rest}>
       {children}
     </HtmlTag>
   );

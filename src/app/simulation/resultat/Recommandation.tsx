@@ -8,7 +8,11 @@ import { EcsImage } from "@/components/img/usages/EcsImage";
 import { Grid, GridCol } from "@/dsfr";
 import { type GetSolutionsParCriteresReturnType } from "@/lib/server/useCases/getSolutionsParCriteres";
 
-export const Recommandation = ({ solution }: { solution: GetSolutionsParCriteresReturnType[number] }) => {
+export const Recommandation = ({
+  solution,
+}: {
+  solution: Pick<GetSolutionsParCriteresReturnType[number], "usageCH" | "usageECS" | "usageFr">;
+}) => {
   const { usageCH, usageECS, usageFr } = solution;
 
   return (

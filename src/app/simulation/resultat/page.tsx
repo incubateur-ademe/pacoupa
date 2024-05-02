@@ -9,16 +9,14 @@ import { Card } from "@/components/Card";
 import { HighlightText } from "@/components/HighlightText";
 import { NoDataImage } from "@/components/img/NoDataImage";
 import { Box, Container, Grid, GridCol } from "@/dsfr";
-import { H4, Text } from "@/dsfr/base/typography";
-import {
-  getSolutionsParCriteres,
-  type GetSolutionsParCriteresReturnType,
-} from "@/lib/server/useCases/getSolutionsParCriteres";
+import { H2, Text } from "@/dsfr/base/typography";
+import { getSolutionsParCriteres } from "@/lib/server/useCases/getSolutionsParCriteres";
 import { fetchBAN } from "@/lib/services/ban";
 import { fetchFcuEligibility } from "@/lib/services/fcu";
 
 import { sharedMetadata } from "../../shared-metadata";
 import { simulationSchema } from "../schema";
+import { CardRcu } from "./CardRcu";
 import { DebugButton } from "./DebugButton";
 import { Evaluation } from "./Evaluation";
 import { FranceRenovBlock } from "./FranceRenovBlock";
@@ -46,21 +44,6 @@ export const metadata: Metadata = {
   },
 };
 
-const rcuSolution = {
-  id: "fcu",
-  name: "RCU",
-  familleSolution: "RCU",
-  type: "COL",
-  descriptionSolution:
-    "Le réseau de chaleur fonctionne en acheminant de l'eau chaude à travers un réseau de canalisations souterraines.",
-  noteCout: "A",
-  noteDifficulte: "A",
-  noteEnvironnemental: "A",
-  usageCH: "Oui",
-  usageECS: "Oui",
-  usageFr: "Non",
-} satisfies Partial<GetSolutionsParCriteresReturnType[number]>;
-
 const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" | "oui"; hash: string } }) => {
   if (!searchParams.hash) throw new Error("Le hash est manquant");
 
@@ -74,6 +57,7 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
     throw new Error(`Erreur de formatage du hash ${JSON.stringify(errors)}`);
   }
 
+  // TODO: fetch in parallel with Promise.all for getSolutionParCriteres and fetchBAN.
   const solutions = await getSolutionsParCriteres(formData.data);
 
   const adresses = (await fetchBAN(formData.data.adresse)).features;
@@ -86,9 +70,7 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
 
   const rcuEligibility = await fetchFcuEligibility({ lon, lat });
 
-  if (rcuEligibility.isEligible) {
-    solutions.data = [rcuSolution as GetSolutionsParCriteresReturnType[number], ...solutions.data];
-  }
+  const nbSolutions = solutions.data.length + (rcuEligibility ? 1 : 0);
 
   return (
     <>
@@ -119,13 +101,13 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
       </Container>
 
       <Container className={fr.cx("fr-mt-4w")}>
-        <H4>
+        <H2 as="h4">
           Solutions compatibles
           <DebugButton formData={formData} solutions={solutions.data} />
-        </H4>
+        </H2>
 
         <Box>
-          {solutions.data.length === 0 ? (
+          {nbSolutions === 0 ? (
             <Box>
               <Box className={cx("text-center", fr.cx("fr-my-8w"))}>
                 <NoDataImage />
@@ -139,7 +121,7 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
               Nous avons trouvé{" "}
               <strong>
                 <HighlightText>
-                  {solutions.data.length} solution{solutions.data.length > 1 ? "s" : ""}
+                  {nbSolutions} solution{nbSolutions > 1 ? "s" : ""}
                 </HighlightText>
               </strong>{" "}
               de chauffage adaptées à votre bâtiment.
@@ -148,7 +130,10 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
         </Box>
 
         <Grid haveGutters className={fr.cx("fr-mt-3w")}>
-          {solutions.data.slice(0, complet ? solutions.data.length : 3).map(solution => (
+          <GridCol key="rcu" base={12} sm={6} xl={4}>
+            {rcuEligibility && <CardRcu />}
+          </GridCol>
+          {solutions.data.slice(0, complet ? nbSolutions : 3).map(solution => (
             <GridCol key={solution.id} base={12} sm={6} xl={4}>
               <Card
                 desc={
@@ -211,7 +196,7 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
             </GridCol>
           ))}
         </Grid>
-        {!complet && solutions.data.length > 3 && (
+        {!complet && nbSolutions > 3 && (
           <Box className={cx("flex", fr.cx("fr-mt-4w"))}>
             <Button
               priority="tertiary"
