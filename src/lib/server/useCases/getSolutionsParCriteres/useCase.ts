@@ -35,8 +35,6 @@ const buildWhereClause = (filters: SelectCriteresSchema) => {
   return sql`${sql.join(sqlChunks, sql.raw(" AND "))}`;
 };
 
-export type GetSolutionsParCriteresReturnType = Awaited<ReturnType<typeof getSolutionsParCriteres>>["data"];
-
 export async function getSolutionsParCriteres(formData: SimulationSchema) {
   const criteresHelper = createCriteria(formData);
 

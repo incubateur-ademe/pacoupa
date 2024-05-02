@@ -6,13 +6,9 @@ import { ChauffageImage } from "@/components/img/usages/ChauffageImage";
 import { ClimatisationImage } from "@/components/img/usages/ClimatisationImage";
 import { EcsImage } from "@/components/img/usages/EcsImage";
 import { Grid, GridCol } from "@/dsfr";
-import { type GetSolutionsParCriteresReturnType } from "@/lib/server/useCases/getSolutionsParCriteres";
+import { type Solution } from "@/lib/enums";
 
-export const Recommandation = ({
-  solution,
-}: {
-  solution: Pick<GetSolutionsParCriteresReturnType[number], "usageCh" | "usageEcs" | "usageFr">;
-}) => {
+export const Recommandation = ({ solution }: { solution: Pick<Solution, "usageCh" | "usageEcs" | "usageFr"> }) => {
   const { usageCh, usageEcs, usageFr } = solution;
 
   return (
