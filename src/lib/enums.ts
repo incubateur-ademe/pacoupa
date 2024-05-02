@@ -25,3 +25,28 @@ export const enumFamilles = [
 ] as const;
 
 export type SolutionFamilles = (typeof enumFamilles)[number];
+
+type SolutionEvaluation = {
+  image?: string;
+  note: SolutionNote | "dynamic";
+  text?: Array<{ contenu: string; titre: string }>;
+};
+
+export type Solution = {
+  acoustique: SolutionEvaluation;
+  cout: SolutionEvaluation;
+  description?: string | null;
+  difficulte: SolutionEvaluation;
+  environnement: SolutionEvaluation;
+  espaceExterieur: SolutionEvaluation;
+  familleSolution: SolutionFamilles;
+  id: string;
+  maturite: SolutionEvaluation;
+  nom: string;
+  travauxCollectif: SolutionEvaluation;
+  travauxIndividuel: SolutionEvaluation;
+  type: SolutionTypes;
+  usageCh: SolutionUsage;
+  usageEcs: SolutionUsage;
+  usageFr: SolutionUsage;
+};

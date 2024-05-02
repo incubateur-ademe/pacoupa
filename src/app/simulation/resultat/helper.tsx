@@ -57,3 +57,27 @@ export const faciliteMap: NoteMap = {
   D: { label: "Difficile", severity: "error" },
   E: { label: "Difficile", severity: "error" },
 };
+
+export const travauxMap: NoteMap = {
+  A: { label: "Faible", severity: "success" },
+  B: { label: "Faible", severity: "success" },
+  C: { label: "Modéré", severity: "warning" },
+  D: { label: "Important", severity: "error" },
+  E: { label: "Important", severity: "error" },
+};
+
+export const acoustiqueMap: NoteMap = {
+  A: { label: "Silencieux", severity: "success" },
+  B: { label: "Silencieux", severity: "success" },
+  C: { label: "Modéré", severity: "warning" },
+  D: { label: "Bruyant", severity: "error" },
+  E: { label: "Bruyant", severity: "error" },
+};
+
+export const maturiteMap: NoteMap = {
+  A: { label: "Éprouvé", severity: "success" },
+  B: { label: "Éprouvé", severity: "success" },
+  C: { label: "Mature", severity: "warning" },
+  D: { label: "Récent", severity: "error" },
+  E: { label: "Récent", severity: "error" },
+};

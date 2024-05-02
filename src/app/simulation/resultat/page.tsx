@@ -20,7 +20,7 @@ import { CardRcu } from "./CardRcu";
 import { DebugButton } from "./DebugButton";
 import { Evaluation } from "./Evaluation";
 import { FranceRenovBlock } from "./FranceRenovBlock";
-import { coutMap, environnementMap, faciliteMap, familleImageMap, typeMap } from "./helper";
+import { familleImageMap, typeMap } from "./helper";
 import { NouvelleSimulation } from "./NouvelleSimulation";
 import { Recommandation } from "./Recommandation";
 import { SyncStore } from "./SyncStore";
@@ -141,32 +141,15 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
                 desc={
                   <>
                     <Box className={fr.cx("fr-mt-2w")}>
-                      <Text>{solution.descriptionSolution}</Text>
+                      <Text>{solution.description}</Text>
                     </Box>
 
                     <Recommandation solution={solution} />
 
                     <Box className={cx("flex", "flex-col", "gap-4")}>
-                      <Evaluation
-                        emoji="🌿"
-                        titre="Bénéfice environnemental"
-                        contenu={environnementMap[solution.noteEnvironnemental].label}
-                        severity={environnementMap[solution.noteEnvironnemental].severity}
-                      />
-
-                      <Evaluation
-                        emoji="💰"
-                        titre="Coût"
-                        contenu={coutMap[solution.noteCout].label}
-                        severity={coutMap[solution.noteCout].severity}
-                      />
-
-                      <Evaluation
-                        emoji="📦"
-                        titre="Facilité d’installation"
-                        contenu={faciliteMap[solution.noteDifficulte].label}
-                        severity={faciliteMap[solution.noteDifficulte].severity}
-                      />
+                      <Evaluation categorie="environnement" solution={solution} />
+                      <Evaluation categorie="cout" solution={solution} />
+                      <Evaluation categorie="difficulte" solution={solution} />
                     </Box>
                   </>
                 }

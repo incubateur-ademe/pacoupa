@@ -12,10 +12,10 @@ import { familleImageMap, typeMap } from "./helper";
 import { Recommandation } from "./Recommandation";
 
 const rcuSolution = {
-  usageCH: "Oui",
-  usageECS: "Oui",
+  usageCh: "Oui",
+  usageEcs: "Oui",
   usageFr: "Non",
-} satisfies Pick<GetSolutionsParCriteresReturnType[number], "usageCH" | "usageECS" | "usageFr">;
+} satisfies Pick<GetSolutionsParCriteresReturnType[number], "usageCh" | "usageEcs" | "usageFr">;
 
 export const CardRcu = () => {
   return (

@@ -11,9 +11,9 @@ import { type GetSolutionsParCriteresReturnType } from "@/lib/server/useCases/ge
 export const Recommandation = ({
   solution,
 }: {
-  solution: Pick<GetSolutionsParCriteresReturnType[number], "usageCH" | "usageECS" | "usageFr">;
+  solution: Pick<GetSolutionsParCriteresReturnType[number], "usageCh" | "usageEcs" | "usageFr">;
 }) => {
-  const { usageCH, usageECS, usageFr } = solution;
+  const { usageCh, usageEcs, usageFr } = solution;
 
   return (
     <>
@@ -21,15 +21,15 @@ export const Recommandation = ({
         <GridCol base={4} className={"flex justify-center items-center"}>
           <Badge
             variant="dot"
-            color={usageCH === "Oui" ? "success" : usageCH === "Non" ? "error" : "info"}
+            color={usageCh === "Oui" ? "success" : usageCh === "Non" ? "error" : "info"}
             anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
           >
             <ChauffageImage
-              enabled={usageCH === "Oui"}
+              enabled={usageCh === "Oui"}
               alt={
-                usageCH === "Oui"
+                usageCh === "Oui"
                   ? "Solution permettant le chauffage"
-                  : usageCH === "Non"
+                  : usageCh === "Non"
                     ? "Solution ne permettant pas le chauffage"
                     : "Solution permettant potentiellement le chauffage"
               }
@@ -40,15 +40,15 @@ export const Recommandation = ({
         <GridCol base={4} className={"flex justify-center items-center"}>
           <Badge
             variant="dot"
-            color={usageECS === "Oui" ? "success" : usageECS === "Non" ? "error" : "info"}
+            color={usageEcs === "Oui" ? "success" : usageEcs === "Non" ? "error" : "info"}
             anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
           >
             <EcsImage
-              enabled={usageECS === "Oui"}
+              enabled={usageEcs === "Oui"}
               alt={
-                usageECS === "Oui"
+                usageEcs === "Oui"
                   ? "Solution permettant l'eau chaude sanitaire"
-                  : usageECS === "Non"
+                  : usageEcs === "Non"
                     ? "Solution ne permettant pas l'eau chaude sanitaire"
                     : "Solution permettant potentiellement l'eau chaude sanitaire"
               }
