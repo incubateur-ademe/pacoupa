@@ -57,14 +57,14 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
     throw new Error(`Erreur de formatage du hash ${JSON.stringify(errors)}`);
   }
 
-  // TODO: fetch in parallel with Promise.all for getSolutionParCriteres and fetchBAN.
-  const solutions = await getSolutionsParCriteres(formData.data);
-
-  const adresses = (await fetchBAN(formData.data.adresse)).features;
+  const [solutions, adresses] = await Promise.all([
+    getSolutionsParCriteres(formData.data),
+    fetchBAN(formData.data.adresse),
+  ]);
 
   const {
     geometry: { coordinates },
-  } = adresses[0];
+  } = adresses.features[0];
 
   const [lon, lat] = coordinates;
 
