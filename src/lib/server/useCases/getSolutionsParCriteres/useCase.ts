@@ -35,8 +35,6 @@ const buildWhereClause = (filters: SelectCriteresSchema) => {
   return sql`${sql.join(sqlChunks, sql.raw(" AND "))}`;
 };
 
-export type GetSolutionsParCriteresReturnType = Awaited<ReturnType<typeof getSolutionsParCriteres>>["data"];
-
 export async function getSolutionsParCriteres(formData: SimulationSchema) {
   const criteresHelper = createCriteria(formData);
 
@@ -45,18 +43,12 @@ export async function getSolutionsParCriteres(formData: SimulationSchema) {
   const rows = await db
     .select({
       id: solutions.id,
-      name: solutions.nom,
-      type: solutions.type,
-      usageCH: solutions.usageCh,
-      usageECS: solutions.usageEcs,
-      usageFr: solutions.usageFr,
       ordre: solutionsParCriteres.ordreSolution,
-      noteEnvironnemental: solutions.noteEnvironnemental,
-      noteCout: solutionsParCriteres.noteCout,
-      noteDifficulte: solutionsParCriteres.noteDifficulte,
-      descriptionSolution: solutions.descriptionSolution,
+      cout: { note: solutionsParCriteres.noteCout },
+      difficulte: { note: solutionsParCriteres.noteDifficulte },
+      travauxCollectif: { note: solutionsParCriteres.noteImpactTravauxColl },
+      travauxIndividuel: { note: solutionsParCriteres.noteImpactTravauxIndiv },
       criteres,
-      familleSolution: solutions.familleSolution,
     })
     .from(criteres)
     .innerJoin(solutionsParCriteres, eq(criteres.id, solutionsParCriteres.criteresId))

@@ -57,7 +57,6 @@ export function AutocompleteBan({ defaultValue, errors }: AutocompletBanMuiProps
   return (
     <Autocomplete
       id="ban-autocomplete"
-      sx={{ width: 800 }}
       getOptionLabel={option => (typeof option === "string" ? option : option.properties.label)}
       filterOptions={x => x}
       options={options}

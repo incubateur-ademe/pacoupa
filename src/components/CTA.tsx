@@ -8,7 +8,7 @@ import { config } from "@/config";
 import { Button } from "./Button";
 
 const DEFAULT_CTA_HREF = config.formUrl;
-const DEFAULT_CTA_TITLE = "S'inscrire";
+const DEFAULT_CTA_TITLE = "Lancez une simulation";
 
 export interface CTAProps {
   href?: string;

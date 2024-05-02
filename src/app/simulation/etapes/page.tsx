@@ -1,8 +1,10 @@
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
+import { type Metadata } from "next";
 
 import { Wizard } from "@/components/Wizard";
 import { Box } from "@/dsfr";
 
+import { sharedMetadata } from "../../shared-metadata";
 import styles from "./page.module.scss";
 import { Step1 } from "./Step1";
 import { Step2 } from "./Step2";
@@ -15,6 +17,25 @@ import { Step8 } from "./Step8";
 import { Step9 } from "./Step9";
 import { Step10 } from "./Step10";
 import { Step11 } from "./Step11";
+
+const title = "Étapes simulation";
+const description = "Étapes simulation";
+const url = "/simulation/etapes";
+
+export const metadata: Metadata = {
+  ...sharedMetadata,
+  title,
+  description,
+  openGraph: {
+    ...sharedMetadata.openGraph,
+    title,
+    description,
+    url,
+  },
+  alternates: {
+    canonical: url,
+  },
+};
 
 const SimulationPage = () => {
   return (

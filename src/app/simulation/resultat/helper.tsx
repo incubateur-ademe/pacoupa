@@ -1,3 +1,5 @@
+import { type AlertProps } from "@codegouvfr/react-dsfr/Alert";
+
 import { FamilleCetAirEauImage } from "@/components/img/familles/FamilleCetAirEauImage";
 import { FamilleCetEauEauImage } from "@/components/img/familles/FamilleCetEauEauImage";
 import { FamilleGeothermieImage } from "@/components/img/familles/FamilleGeothermieImage";
@@ -8,103 +10,74 @@ import { FamillePacEauEauImage } from "@/components/img/familles/FamillePacEauEa
 import { FamillePacEauxGrisesEau } from "@/components/img/familles/FamillePacEauxGrisesEau";
 import { FamillePacSolaireEauImage } from "@/components/img/familles/FamillePacSolaireEauImage";
 import { FamilleRcuImage } from "@/components/img/familles/FamilleRcuImage";
-import { type GetSolutionsParCriteresReturnType } from "@/lib/server/useCases/getSolutionsParCriteres";
+import { type SolutionFamilles, type SolutionNote, type SolutionTypes } from "@/lib/enums";
 
-export const labelForType = (type: string = "") => {
-  switch (type.toUpperCase()) {
-    case "IND":
-      return "Solution individuelle";
-    case "COL":
-      return "Solution collective";
-    default:
-      return "Solution mixte";
-  }
+export const typeMap: Record<SolutionTypes, string> = {
+  IND: "Solution individuelle",
+  COL: "Solution collective",
+  MIX: "Solution mixte",
 };
 
-export const imageForFamille = (famille: string) => {
-  switch (famille) {
-    case "RCU":
-      return <FamilleRcuImage />;
-    case "Geothermie":
-      return <FamilleGeothermieImage />;
-    case "PAC Air-Air":
-      return <FamillePacAirAirImage />;
-    case "PAC Air-Eau":
-      return <FamillePacAirEauImage />;
-    case "PAC Eau-Eau":
-      return <FamillePacEauEauImage />;
-    case "PAC Eaux grises-Eau":
-      return <FamillePacEauxGrisesEau />;
-    case "PAC Solaire-Eau":
-      return <FamillePacSolaireEauImage />;
-    case "Hybride PAC + Chaudière":
-      return <FamilleHybrideImage />;
-    case "CET Air-Eau":
-      return <FamilleCetAirEauImage />;
-    case "CET Eau-Eau":
-      return <FamilleCetEauEauImage />;
-  }
+export const familleImageMap: Record<SolutionFamilles, JSX.Element> = {
+  RCU: <FamilleRcuImage />,
+  Geothermie: <FamilleGeothermieImage />,
+  "PAC Air-Air": <FamillePacAirAirImage />,
+  "PAC Air-Eau": <FamillePacAirEauImage />,
+  "PAC Eau-Eau": <FamillePacEauEauImage />,
+  "PAC Eaux grises-Eau": <FamillePacEauxGrisesEau />,
+  "PAC Solaire-Eau": <FamillePacSolaireEauImage />,
+  "Hybride PAC + Chaudière": <FamilleHybrideImage />,
+  "CET Air-Eau": <FamilleCetAirEauImage />,
+  "CET Eau-Eau": <FamilleCetEauEauImage />,
+  "PAC Abs Gaz": <>No image</>,
 };
 
-export const createRecommandations = (solution: GetSolutionsParCriteresReturnType[number]) => {
-  const obj = {
-    Chauffage:
-      solution.usageCH !== "Non" ? (solution.usageCH === "Oui" ? ("success" as const) : ("info" as const)) : null,
-    ECS: solution.usageECS !== "Non" ? (solution.usageECS === "Oui" ? ("success" as const) : ("info" as const)) : null,
-    Climatisation:
-      solution.usageFr !== "Non" ? (solution.usageFr === "Oui" ? ("success" as const) : ("info" as const)) : null,
-  };
+type NoteMap = Record<SolutionNote, { label: string; severity: AlertProps.Severity }>;
 
-  return Object.entries(obj).filter(([_, value]) => value !== null);
+export const environnementMap: NoteMap = {
+  A: { label: "Très positif", severity: "success" },
+  B: { label: "Très positif", severity: "success" },
+  C: { label: "Modéré", severity: "warning" },
+  D: { label: "Modéré", severity: "error" },
+  E: { label: "Modéré", severity: "error" },
 };
 
-export const noteEnvironmentHelper = (note: string) => {
-  switch (note) {
-    case "A":
-      return { label: "Très positif", number: 5 };
-    case "B":
-      return { label: "Positif", number: 4 };
-    case "C":
-      return { label: "Modéré", number: 3 };
-    case "D":
-      return { label: "Léger", number: 2 };
-    case "E":
-      return { label: "Faible", number: 1 };
-    default:
-      return { label: "Non renseigné", number: 0 };
-  }
+export const coutMap: NoteMap = {
+  A: { label: "Assez faible", severity: "success" },
+  B: { label: "Assez faible", severity: "success" },
+  C: { label: "Modéré", severity: "warning" },
+  D: { label: "Élevé", severity: "error" },
+  E: { label: "Élevé", severity: "error" },
 };
 
-export const noteCoutHelper = (note: string) => {
-  switch (note) {
-    case "A":
-      return { label: "Très faible", number: 1 };
-    case "B":
-      return { label: "Faible", number: 2 };
-    case "C":
-      return { label: "Modéré", number: 3 };
-    case "D":
-      return { label: "Important", number: 4 };
-    case "E":
-      return { label: "Très important", number: 5 };
-    default:
-      return { label: "Non renseigné", number: 0 };
-  }
+export const faciliteMap: NoteMap = {
+  A: { label: "Sans difficulté majeure", severity: "success" },
+  B: { label: "Sans difficulté majeure", severity: "success" },
+  C: { label: "Modéré", severity: "warning" },
+  D: { label: "Difficile", severity: "error" },
+  E: { label: "Difficile", severity: "error" },
 };
 
-export const noteDifficulteHelper = (note: string) => {
-  switch (note) {
-    case "A":
-      return { label: "Très facile", number: 1 };
-    case "B":
-      return { label: "Facile", number: 2 };
-    case "C":
-      return { label: "Modéré", number: 3 };
-    case "D":
-      return { label: "Difficile", number: 4 };
-    case "E":
-      return { label: "Très difficile", number: 5 };
-    default:
-      return { label: "Non renseigné", number: 0 };
-  }
+export const travauxMap: NoteMap = {
+  A: { label: "Faible", severity: "success" },
+  B: { label: "Faible", severity: "success" },
+  C: { label: "Modéré", severity: "warning" },
+  D: { label: "Important", severity: "error" },
+  E: { label: "Important", severity: "error" },
+};
+
+export const acoustiqueMap: NoteMap = {
+  A: { label: "Silencieux", severity: "success" },
+  B: { label: "Silencieux", severity: "success" },
+  C: { label: "Modéré", severity: "warning" },
+  D: { label: "Bruyant", severity: "error" },
+  E: { label: "Bruyant", severity: "error" },
+};
+
+export const maturiteMap: NoteMap = {
+  A: { label: "Éprouvé", severity: "success" },
+  B: { label: "Éprouvé", severity: "success" },
+  C: { label: "Mature", severity: "warning" },
+  D: { label: "Récent", severity: "error" },
+  E: { label: "Récent", severity: "error" },
 };
