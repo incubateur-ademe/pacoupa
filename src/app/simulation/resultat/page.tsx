@@ -176,7 +176,7 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
                     priority="tertiary no outline"
                     iconId="ri-arrow-right-line"
                     linkProps={{
-                      href: `/solutions/${solution.id}?noteCout=${solution.cout.note}&noteDifficulte=${solution.difficulte.note}&noteTravauxCollectif=${solution.travauxCollectif.note}&noteTravauxIndividuel=${solution.travauxIndividuel.note}`,
+                      href: `/solutions/${solution.id}?noteCout=${solution.cout.note}&noteDifficulte=${solution.difficulte.note}&noteTravauxCollectif=${solution.travauxCollectif.note}&noteTravauxIndividuel=${solution.travauxIndividuel.note}&hash=${searchParams.hash}`,
                     }}
                   >
                     En savoir plus

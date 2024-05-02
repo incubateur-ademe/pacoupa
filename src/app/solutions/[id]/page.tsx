@@ -9,8 +9,27 @@ import { Evaluation } from "@/app/simulation/resultat/Evaluation";
 import { FranceRenovBlock } from "@/app/simulation/resultat/FranceRenovBlock";
 import { familleImageMap, typeMap } from "@/app/simulation/resultat/helper";
 import { Recommandation } from "@/app/simulation/resultat/Recommandation";
+import { Button } from "@/components/Button";
 import { Box } from "@/dsfr";
 import { H2, H3, Text } from "@/dsfr/base/typography";
+
+// import { sharedMetadata } from "./shared-metadata";
+
+// const title = `Détail d'une solution - ${config.name}`;
+// const url = "/solution/[id]";
+
+// export const metadata: Metadata = {
+//   ...sharedMetadata,
+//   title,
+//   openGraph: {
+//     ...sharedMetadata.openGraph,
+//     title,
+//     url,
+//   },
+//   alternates: {
+//     canonical: url,
+//   },
+// };
 
 const noteSchema = z.enum(["A", "B", "C", "D", "E"]);
 
@@ -27,6 +46,7 @@ const SolutionPage = ({
 }: {
   params: { id: string };
   searchParams: {
+    hash: string;
     noteCout: string;
     noteDifficulte: string;
     noteTravauxCollectif: string;
@@ -50,6 +70,16 @@ const SolutionPage = ({
 
   return (
     <>
+      <Box className={fr.cx("fr-mt-4w")}>
+        <Button
+          priority="tertiary"
+          iconId="ri-arrow-go-back-line"
+          linkProps={{ href: `/simulation/resultat?hash=${searchParams.hash}` }}
+        >
+          Retour à la liste
+        </Button>
+      </Box>
+
       <Box className={cx("flex items-start gap-4", fr.cx("fr-mt-4w"))}>
         <Box>{familleImageMap[solution.familleSolution]}</Box>
         <Box>
