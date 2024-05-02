@@ -45,25 +45,12 @@ export async function getSolutionsParCriteres(formData: SimulationSchema) {
   const rows = await db
     .select({
       id: solutions.id,
-      name: solutions.nom,
-      description: solutions.descriptionSolution,
-      type: solutions.type,
-      usageCh: solutions.usageCh,
-      usageEcs: solutions.usageEcs,
-      usageFr: solutions.usageFr,
       ordre: solutionsParCriteres.ordreSolution,
       cout: { note: solutionsParCriteres.noteCout },
       difficulte: { note: solutionsParCriteres.noteDifficulte },
       travauxCollectif: { note: solutionsParCriteres.noteImpactTravauxColl },
       travauxIndividuel: { note: solutionsParCriteres.noteImpactTravauxIndiv },
-      environnement: {
-        note: solutions.noteEnvironnemental,
-      },
-      acoustique: { note: solutions.noteImpactSonore },
-      espaceExterieur: { note: solutions.noteImpactEspaceExterieur },
-      maturite: { note: solutions.noteMaturite },
       criteres,
-      familleSolution: solutions.familleSolution,
     })
     .from(criteres)
     .innerJoin(solutionsParCriteres, eq(criteres.id, solutionsParCriteres.criteresId))

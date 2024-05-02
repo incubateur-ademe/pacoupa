@@ -1,3 +1,4 @@
+import { catalogueSolutions } from "@__content/solutions";
 import { fr } from "@codegouvfr/react-dsfr";
 import { Badge } from "@codegouvfr/react-dsfr/Badge";
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
@@ -57,7 +58,7 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
     throw new Error(`Erreur de formatage du hash ${JSON.stringify(errors)}`);
   }
 
-  const [solutions, adresses] = await Promise.all([
+  const [baseSolutions, adresses] = await Promise.all([
     getSolutionsParCriteres(formData.data),
     fetchBAN(formData.data.adresse),
   ]);
@@ -70,7 +71,11 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
 
   const { isEligible: isRcuEligible } = await fetchFcuEligibility({ lon, lat });
 
-  const nbSolutions = solutions.data.length + (isRcuEligible ? 1 : 0);
+  const solutions = baseSolutions.data.map(solution => {
+    return { ...catalogueSolutions[solution.id], ...solution };
+  });
+
+  const nbSolutions = solutions.length + (isRcuEligible ? 1 : 0);
 
   return (
     <>
@@ -103,7 +108,7 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
       <Container className={fr.cx("fr-mt-4w")}>
         <H2 as="h4">
           Solutions compatibles
-          <DebugButton formData={formData} solutions={solutions.data} />
+          <DebugButton formData={formData} solutions={solutions} />
         </H2>
 
         <Box>
@@ -135,7 +140,7 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
               <CardRcu />
             </GridCol>
           )}
-          {solutions.data.slice(0, complet ? nbSolutions : isRcuEligible ? 2 : 3).map(solution => (
+          {solutions.slice(0, complet ? nbSolutions : isRcuEligible ? 2 : 3).map(solution => (
             <GridCol key={solution.id} base={12} sm={6} xl={4}>
               <Card
                 desc={
@@ -159,7 +164,7 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
                   <Box className={cx("flex items-start gap-4")}>
                     <Box>{familleImageMap[solution.familleSolution]}</Box>
                     <Box>
-                      <span className={cx("mb-0", fr.cx("fr-text--lg"))}>{solution.name}</span>
+                      <span className={cx("mb-0", fr.cx("fr-text--lg"))}>{solution.nom}</span>
                       <br />
                       <Badge>{typeMap[solution.type]}</Badge>
                     </Box>
@@ -171,7 +176,7 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
                     priority="tertiary no outline"
                     iconId="ri-arrow-right-line"
                     linkProps={{
-                      href: `/solutions/${solution.id}`,
+                      href: `/solutions/${solution.id}?noteCout=${solution.cout.note}&noteDifficulte=${solution.difficulte.note}&noteTravauxCollectif=${solution.travauxCollectif.note}&noteTravauxIndividuel=${solution.travauxIndividuel.note}`,
                     }}
                   >
                     En savoir plus

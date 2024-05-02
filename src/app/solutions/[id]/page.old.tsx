@@ -31,4 +31,4 @@ const SolutionPage = async ({ params }: { params: { id: string } }) => {
   );
 };
 
-export default SolutionPage;
+// export default SolutionPage;
