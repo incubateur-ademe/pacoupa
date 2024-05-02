@@ -1,17 +1,17 @@
 import { type Solution } from "@/lib/enums";
 
 export const solution = {
-  id: "51",
-  nom: "Pompe à chaleur air / eau (intérieure)",
+  id: "02",
+  nom: "Pompe à chaleur air / eau (gainée)",
   familleSolution: "PAC Air-Eau",
-  type: "IND",
+  type: "COL",
   description:
-    "La pompe à chaleur (PAC) air / eau prélève de la chaleur dans l'air extérieur, augmente son niveau de température et la transfère à un circuit d'eau.",
-  usageCh: "Oui",
+    "La pompe à chaleur (PAC) air/eau prélève de la chaleur dans l'air extérieur, augmente son niveau de température et la transfère à un circuit d'eau.",
+  usageCh: "Non",
   usageEcs: "Oui",
-  usageFr: "Possible",
+  usageFr: "Non",
   environnement: {
-    note: "A",
+    note: "B",
     text: [],
   },
   cout: {

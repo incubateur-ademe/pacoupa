@@ -69,7 +69,7 @@ export const solution = {
     ],
   },
   acoustique: {
-    note: "C",
+    note: "A",
     text: [
       {
         titre: "Volume sonore",
@@ -83,7 +83,7 @@ export const solution = {
     ],
   },
   espaceExterieur: {
-    note: "C",
+    note: "A",
     text: [
       {
         titre: "Unité extérieure",

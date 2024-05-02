@@ -1,17 +1,17 @@
 import { type Solution } from "@/lib/enums";
 
 export const solution = {
-  id: "51",
-  nom: "Pompe à chaleur air / eau (intérieure)",
-  familleSolution: "PAC Air-Eau",
-  type: "IND",
+  id: "04",
+  nom: "Pompe à chaleur sur capteur solaire atmosphérique",
+  familleSolution: "PAC Solaire-Eau",
+  type: "COL",
   description:
-    "La pompe à chaleur (PAC) air / eau prélève de la chaleur dans l'air extérieur, augmente son niveau de température et la transfère à un circuit d'eau.",
-  usageCh: "Oui",
+    "La pompe à chaleur (PAC) sur capteur solaire atmosphérique utilise l'énergie solaire pour chauffer un fluide caloporteur, qui est ensuite utilisé pour produire de la chaleur.",
+  usageCh: "Non",
   usageEcs: "Oui",
-  usageFr: "Possible",
+  usageFr: "Non",
   environnement: {
-    note: "A",
+    note: "B",
     text: [],
   },
   cout: {
@@ -30,15 +30,15 @@ export const solution = {
     text: [],
   },
   acoustique: {
-    note: "C",
-    text: [],
-  },
-  espaceExterieur: {
     note: "A",
     text: [],
   },
-  maturite: {
+  espaceExterieur: {
     note: "C",
+    text: [],
+  },
+  maturite: {
+    note: "A",
     text: [],
   },
 } satisfies Solution;

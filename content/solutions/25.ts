@@ -1,17 +1,16 @@
 import { type Solution } from "@/lib/enums";
 
 export const solution = {
-  id: "51",
-  nom: "Pompe à chaleur air / eau (intérieure)",
-  familleSolution: "PAC Air-Eau",
-  type: "IND",
-  description:
-    "La pompe à chaleur (PAC) air / eau prélève de la chaleur dans l'air extérieur, augmente son niveau de température et la transfère à un circuit d'eau.",
+  id: "25",
+  nom: "Hybride pompe à chaleur + chaudière",
+  familleSolution: "Hybride PAC + Chaudière",
+  type: "COL",
+  description: "La solution hybride combine une pompe à chaleur (PAC) avec une chaudière pour assurer l'appoint.",
   usageCh: "Oui",
-  usageEcs: "Oui",
+  usageEcs: "Non",
   usageFr: "Possible",
   environnement: {
-    note: "A",
+    note: "C",
     text: [],
   },
   cout: {
@@ -34,11 +33,11 @@ export const solution = {
     text: [],
   },
   espaceExterieur: {
-    note: "A",
+    note: "C",
     text: [],
   },
   maturite: {
-    note: "C",
+    note: "B",
     text: [],
   },
 } satisfies Solution;

@@ -1,12 +1,12 @@
 import { type Solution } from "@/lib/enums";
 
 export const solution = {
-  id: "51",
-  nom: "Pompe à chaleur air / eau (intérieure)",
-  familleSolution: "PAC Air-Eau",
-  type: "IND",
+  id: "61",
+  nom: "Chauffe-eau thermodynamique individuel sur retour de chauffage collectif",
+  familleSolution: "CET Eau-Eau",
+  type: "MIX",
   description:
-    "La pompe à chaleur (PAC) air / eau prélève de la chaleur dans l'air extérieur, augmente son niveau de température et la transfère à un circuit d'eau.",
+    "Le chauffe-eau thermodynamique (CET) récupère la chaleur dans l'eau de retour du réseau de chauffage collectif pour chauffer l'eau sanitaire.",
   usageCh: "Oui",
   usageEcs: "Oui",
   usageFr: "Possible",
@@ -34,11 +34,11 @@ export const solution = {
     text: [],
   },
   espaceExterieur: {
-    note: "A",
+    note: "C",
     text: [],
   },
   maturite: {
-    note: "C",
+    note: "E",
     text: [],
   },
 } satisfies Solution;

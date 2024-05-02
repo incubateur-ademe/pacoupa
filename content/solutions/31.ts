@@ -1,17 +1,17 @@
 import { type Solution } from "@/lib/enums";
 
 export const solution = {
-  id: "51",
-  nom: "Pompe à chaleur air / eau (intérieure)",
-  familleSolution: "PAC Air-Eau",
+  id: "31",
+  nom: "Chauffe-eau thermodynamique air / eau (avec unité extérieure)",
+  familleSolution: "CET Air-Eau",
   type: "IND",
   description:
-    "La pompe à chaleur (PAC) air / eau prélève de la chaleur dans l'air extérieur, augmente son niveau de température et la transfère à un circuit d'eau.",
-  usageCh: "Oui",
+    "Le chauffe-eau thermodynamique (CET) capte de la chaleur sur l'air extérieur, et produit de l'eau chaude.",
+  usageCh: "Non",
   usageEcs: "Oui",
-  usageFr: "Possible",
+  usageFr: "Non",
   environnement: {
-    note: "A",
+    note: "B",
     text: [],
   },
   cout: {
@@ -34,11 +34,11 @@ export const solution = {
     text: [],
   },
   espaceExterieur: {
-    note: "A",
+    note: "D",
     text: [],
   },
   maturite: {
-    note: "C",
+    note: "A",
     text: [],
   },
 } satisfies Solution;

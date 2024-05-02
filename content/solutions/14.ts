@@ -1,17 +1,17 @@
 import { type Solution } from "@/lib/enums";
 
 export const solution = {
-  id: "51",
-  nom: "Pompe à chaleur air / eau (intérieure)",
-  familleSolution: "PAC Air-Eau",
-  type: "IND",
+  id: "14",
+  nom: "Pompe à chaleur absorption gaz",
+  familleSolution: "PAC Abs Gaz",
+  type: "COL",
   description:
-    "La pompe à chaleur (PAC) air / eau prélève de la chaleur dans l'air extérieur, augmente son niveau de température et la transfère à un circuit d'eau.",
+    "La pompe à chaleur (PAC) absorption gaz utilise une réaction chimique entre un gaz réfrigérant et un absorbeur pour absorber et libérer de la chaleur.",
   usageCh: "Oui",
   usageEcs: "Oui",
   usageFr: "Possible",
   environnement: {
-    note: "A",
+    note: "D",
     text: [],
   },
   cout: {
@@ -34,7 +34,7 @@ export const solution = {
     text: [],
   },
   espaceExterieur: {
-    note: "A",
+    note: "C",
     text: [],
   },
   maturite: {
