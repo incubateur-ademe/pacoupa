@@ -1,7 +1,7 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import Card from "@codegouvfr/react-dsfr/Card";
 
-import { TallyButton } from "@/components/TallyButton";
+import { CTA } from "@/components/CTA";
 
 import { Container, Grid, GridCol } from "../layout";
 import { Box, P } from "./Box";
@@ -34,7 +34,7 @@ export const Follow = () => (
                   <strong>Tenez vous informé des nouveautés.</strong>
                 </P>
 
-                <TallyButton />
+                <CTA source="landing" />
               </>
             }
             imageAlt=""

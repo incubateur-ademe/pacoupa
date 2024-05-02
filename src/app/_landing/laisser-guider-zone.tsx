@@ -1,7 +1,7 @@
 import { fr } from "@codegouvfr/react-dsfr";
 
+import { CTA } from "@/components/CTA";
 import { PlanteImage } from "@/components/img/PlanteImage";
-import { TallyButton } from "@/components/TallyButton";
 import { Container, Grid, GridCol } from "@/dsfr";
 import { H2 } from "@/dsfr/base/typography";
 
@@ -17,7 +17,7 @@ export const LaisserGuider = () => {
               et leur pertinence écologique et économique.
             </p>
 
-            <TallyButton />
+            <CTA source="landing" />
           </GridCol>
 
           <GridCol base={6} className={"flex justify-center items-center"}>

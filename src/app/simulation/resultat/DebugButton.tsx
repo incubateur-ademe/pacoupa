@@ -4,13 +4,13 @@ import { type PropsWithChildren } from "react";
 
 import { Button } from "@/components/Button";
 import { config } from "@/config";
-import { type GetSolutionsParCriteresReturnType } from "@/lib/server/useCases/getSolutionsParCriteres";
+import { type Solution } from "@/lib/enums";
 
 import { type simulationSchema } from "../schema";
 
 type Props = {
   formData: ReturnType<typeof simulationSchema.safeParse>;
-  solutions: GetSolutionsParCriteresReturnType;
+  solutions: Solution[];
 };
 
 export const DebugButton = ({ formData, solutions }: PropsWithChildren<Props>) => {
