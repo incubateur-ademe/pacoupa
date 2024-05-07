@@ -37,6 +37,7 @@ export const solution = {
   },
   espaceExterieur: {
     note: "A",
+    image: "12-22 - PAC air air DRV (impact extérieur).png",
     text: [],
   },
   maturite: {

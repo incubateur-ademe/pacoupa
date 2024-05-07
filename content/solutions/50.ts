@@ -88,6 +88,7 @@ export const solution = {
   },
   espaceExterieur: {
     note: "D",
+    image: "50 - PAC air eau (impact extérieur).png",
     text: [
       {
         titre: "Unité extérieure",

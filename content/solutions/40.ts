@@ -29,6 +29,7 @@ export const solution = {
   },
   travauxIndividuel: {
     note: "dynamic",
+    image: "40 - PAC air air (impact appartement).png",
     text: [],
   },
   acoustique: {
@@ -37,6 +38,7 @@ export const solution = {
   },
   espaceExterieur: {
     note: "A",
+    image: "40 - PAC air air - (impact extérieur).png",
     text: [],
   },
   maturite: {

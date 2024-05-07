@@ -27,6 +27,7 @@ export const solution = {
   },
   travauxIndividuel: {
     note: "dynamic",
+    image: "61 - CET indiv sur retour chauffage - CET (impact appartement).png",
     text: [],
   },
   acoustique: {

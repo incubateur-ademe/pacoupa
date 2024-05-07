@@ -94,6 +94,8 @@ export const Evaluation = ({ categorie, solution, withDetails }: EvaluationProps
   const text = solution[categorie].text || [];
   const image = solution[categorie].image;
 
+  console.log({ image });
+
   if (note === "dynamic") return null;
 
   return (
@@ -112,7 +114,7 @@ export const Evaluation = ({ categorie, solution, withDetails }: EvaluationProps
             {mapper[note].label}
           </Badge>
         </Box>
-        {withDetails && text.length !== 0 && (
+        {withDetails && (text.length !== 0 || image) && (
           <Box>
             <Tooltip title={"En savoir +"} arrow>
               <Button
@@ -156,13 +158,7 @@ export const Evaluation = ({ categorie, solution, withDetails }: EvaluationProps
                 <DialogContentText id="alert-dialog-description">
                   {image && (
                     <Box className={fr.cx("fr-mb-4w")}>
-                      <Image
-                        src="/img/solutions/PAC air eau.jpg"
-                        alt="test"
-                        width={1200}
-                        height={900}
-                        layout="responsive"
-                      />
+                      <Image src={`/img/solutions/${image}`} alt="test" width={1200} height={900} layout="responsive" />
                     </Box>
                   )}
 

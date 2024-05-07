@@ -33,6 +33,7 @@ export const solution = {
   },
   travauxCollectif: {
     note: "dynamic",
+    image: "08-13-23 - PAC géothermique (parties communes).png",
     text: [],
   },
   travauxIndividuel: {

@@ -22,6 +22,7 @@ export const solution = {
   },
   travauxCollectif: {
     note: "dynamic",
+    image: "05-15-25 - Hybride PAC + chaudière (parties communes).png",
     text: [],
   },
   travauxIndividuel: {
@@ -34,6 +35,7 @@ export const solution = {
   },
   espaceExterieur: {
     note: "C",
+    image: "05-15-25 - Hybride PAC + chaudière (impact extérieur).png",
     text: [],
   },
   maturite: {

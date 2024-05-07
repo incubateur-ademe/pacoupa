@@ -35,6 +35,7 @@ export const solution = {
   },
   espaceExterieur: {
     note: "D",
+    image: "31 - CET Air Eau (impact extérieur).png",
     text: [],
   },
   maturite: {

@@ -48,6 +48,7 @@ export const solution = {
   },
   travauxCollectif: {
     note: "dynamic",
+    image: "03 - PAC Eaux grises eau - (parties communes1).png",
     text: [
       {
         titre: "Réseaux hydrauliques",

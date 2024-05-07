@@ -37,6 +37,7 @@ export const solution = {
   },
   travauxIndividuel: {
     note: "dynamic",
+    image: "53 - PAC sur air extrait - NIBE (impact appartement).png",
     text: [],
   },
   acoustique: {
