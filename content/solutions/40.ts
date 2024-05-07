@@ -3,17 +3,17 @@ import { type Solution } from "@/lib/enums";
 // TODO: solution à supprimer ??
 
 export const solution = {
-  id: "14",
-  nom: "Pompe à chaleur absorption gaz",
-  familleSolution: "PAC Abs Gaz",
+  id: "40",
+  nom: "PAC Air / Air",
+  familleSolution: "PAC Air-Air",
   type: "COL",
   description:
-    "La pompe à chaleur (PAC) absorption gaz utilise une réaction chimique entre un gaz réfrigérant et un absorbeur pour absorber et libérer de la chaleur.",
+    "La pompe à chaleur (PAC) air / air utilise l'air extérieur comme source d'énergie pour chauffer (ou refroidir) l'air à l'intérieur.",
   usageCh: "Oui",
-  usageEcs: "Oui",
-  usageFr: "Possible",
+  usageEcs: "Non",
+  usageFr: "Oui",
   environnement: {
-    note: "D",
+    note: "A",
     text: [],
   },
   cout: {
@@ -36,7 +36,7 @@ export const solution = {
     text: [],
   },
   espaceExterieur: {
-    note: "C",
+    note: "A",
     text: [],
   },
   maturite: {
