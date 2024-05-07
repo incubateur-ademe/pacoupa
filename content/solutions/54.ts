@@ -33,7 +33,7 @@ export const solution = {
   },
   travauxCollectif: {
     note: "dynamic",
-    image: "54 - CET air eau avec chauffage par air (parties communes).png",
+    image: "54 - CET air eau avec chauffage par air - parties communes.png",
     text: [],
   },
   travauxIndividuel: {

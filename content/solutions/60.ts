@@ -37,7 +37,7 @@ export const solution = {
   },
   travauxIndividuel: {
     note: "dynamic",
-    image: "60 - PAC indiv sur BET - PAC indiv (impact appartement).png",
+    image: "60 - PAC indiv sur BET - PAC indiv - appartement.png",
     text: [],
   },
   acoustique: {
@@ -46,7 +46,7 @@ export const solution = {
   },
   espaceExterieur: {
     note: "C",
-    image: "60 - PAC indiv sur BET - PAC coll (impact extérieur).png",
+    image: "60 - PAC indiv sur BET - PAC coll - impact exterieur.png",
     text: [],
   },
   maturite: {

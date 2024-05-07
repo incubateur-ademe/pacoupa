@@ -37,7 +37,7 @@ export const solution = {
   },
   espaceExterieur: {
     note: "A",
-    image: "52 - PAC air air avec ECS - T One (impact extérieur).png",
+    image: "52 - PAC air air avec ECS - T One - impact exterieur.png",
     text: [],
   },
   maturite: {

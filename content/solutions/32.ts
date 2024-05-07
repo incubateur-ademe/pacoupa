@@ -23,12 +23,12 @@ export const solution = {
   },
   travauxCollectif: {
     note: "dynamic",
-    image: "32 - CET Air  Eau (parties communes).png",
+    image: "32 - CET Air  Eau - parties communes.png",
     text: [],
   },
   travauxIndividuel: {
     note: "dynamic",
-    image: "32 - CET Air  Eau (impact appartement).png",
+    image: "32 - CET Air  Eau - appartement.png",
     text: [],
   },
   acoustique: {

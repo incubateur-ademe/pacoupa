@@ -22,7 +22,7 @@ export const solution = {
   },
   travauxCollectif: {
     note: "dynamic",
-    image: "06-16-26 - Hybride PAC gainée + chaudière (parties communes).png",
+    image: "06-16-26 - Hybride PAC gainée + chaudiere - parties communes.png",
     text: [],
   },
   travauxIndividuel: {

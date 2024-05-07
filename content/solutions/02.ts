@@ -48,7 +48,7 @@ export const solution = {
   },
   travauxCollectif: {
     note: "dynamic",
-    image: "02-11-21 - PAC air eau gainée (parties communes).png",
+    image: "02-11-21 - PAC air eau gainee - parties communes.png",
     text: [
       {
         titre: "Déroulement des travaux",

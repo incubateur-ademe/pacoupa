@@ -23,7 +23,7 @@ export const solution = {
   },
   travauxCollectif: {
     note: "dynamic",
-    image: "04 - PAC sur capteur solaire (parties communes).png",
+    image: "04 - PAC sur capteur solaire - parties communes.png",
     text: [],
   },
   travauxIndividuel: {
@@ -36,7 +36,7 @@ export const solution = {
   },
   espaceExterieur: {
     note: "C",
-    image: "04 - PAC sur capteur solaire (impact extérieur).png",
+    image: "04 - PAC sur capteur solaire - impact exterieur.png",
     text: [],
   },
   maturite: {

@@ -45,7 +45,7 @@ export const solution = {
   },
   espaceExterieur: {
     note: "B",
-    image: "07 - PAC sur air extrait (impact extérieur).png",
+    image: "07 - PAC sur air extrait - impact exterieur.png",
     text: [],
   },
   maturite: {

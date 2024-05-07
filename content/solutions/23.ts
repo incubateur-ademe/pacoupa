@@ -29,11 +29,12 @@ export const solution = {
   },
   difficulte: {
     note: "dynamic",
+    image: "08-13-23 - PAC geothermique - facilite installation.png",
     text: [],
   },
   travauxCollectif: {
     note: "dynamic",
-    image: "08-13-23 - PAC géothermique (parties communes).png",
+    image: "08-13-23 - PAC geothermique - parties communes.png",
     text: [],
   },
   travauxIndividuel: {

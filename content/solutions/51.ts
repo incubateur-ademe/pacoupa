@@ -45,7 +45,7 @@ export const solution = {
   },
   espaceExterieur: {
     note: "A",
-    image: "51 - PAC air eau sans unité ext (impact extérieur).png",
+    image: "51 - PAC air eau sans unite ext - impact exterieur.png",
     text: [],
   },
   maturite: {

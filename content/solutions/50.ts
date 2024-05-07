@@ -56,6 +56,7 @@ export const solution = {
   },
   travauxIndividuel: {
     note: "dynamic",
+    image: "50 - PAC air eau avec unite ext - appartement.png",
     text: [
       {
         titre: "Emprise logement",
@@ -88,7 +89,7 @@ export const solution = {
   },
   espaceExterieur: {
     note: "D",
-    image: "50 - PAC air eau (impact extérieur).png",
+    image: "50 - PAC air eau - impact exterieur.png",
     text: [
       {
         titre: "Unité extérieure",
