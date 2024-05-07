@@ -8,6 +8,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import InfoIcon from "@mui/icons-material/Info";
 import { Dialog, DialogContent, DialogContentText, DialogTitle, Tooltip } from "@mui/material";
 import MuiButton from "@mui/material/Button";
+import Image from "next/image";
 import { useState } from "react";
 
 import { Box } from "@/dsfr";
@@ -91,6 +92,7 @@ export const Evaluation = ({ categorie, solution, withDetails }: EvaluationProps
 
   const note = solution[categorie].note;
   const text = solution[categorie].text || [];
+  const image = solution[categorie].image;
 
   if (note === "dynamic") return null;
 
@@ -152,6 +154,18 @@ export const Evaluation = ({ categorie, solution, withDetails }: EvaluationProps
 
               <DialogContent>
                 <DialogContentText id="alert-dialog-description">
+                  {image && (
+                    <Box className={fr.cx("fr-mb-4w")}>
+                      <Image
+                        src="/img/solutions/PAC air eau.jpg"
+                        alt="test"
+                        width={1200}
+                        height={900}
+                        layout="responsive"
+                      />
+                    </Box>
+                  )}
+
                   {text.map(chunk => (
                     <>
                       <Box className={cx("flex")}>
