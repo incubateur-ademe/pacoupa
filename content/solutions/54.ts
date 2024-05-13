@@ -12,7 +12,17 @@ export const solution = {
   usageFr: "Possible",
   environnement: {
     note: "A",
-    text: [],
+    text: [
+      {
+        titre: "Consommation d’énergie",
+        contenu:
+          "La pompe à chaleur utilise une énergie décarbonée (l’électricité). Son rendement est, en moyenne, trois fois supérieur à celui d’un radiateur électrique ou d’une chaudière.",
+      },
+      {
+        titre: "Entretien",
+        contenu: "Au même titre qu’une chaudière, il est important de prévoir une maintenance régulière des appareils.",
+      },
+    ],
   },
   cout: {
     note: "dynamic",
@@ -23,6 +33,7 @@ export const solution = {
   },
   travauxCollectif: {
     note: "dynamic",
+    image: "54 - CET air eau avec chauffage par air - parties communes.png",
     text: [],
   },
   travauxIndividuel: {
@@ -39,6 +50,12 @@ export const solution = {
   },
   maturite: {
     note: "D",
-    text: [],
+    text: [
+      {
+        titre: "Maturité",
+        contenu:
+          "La maturité de l’appareil dépend du nombre d’installations et de l’ancienneté de la commercialisation.",
+      },
+    ],
   },
 } satisfies Solution;

@@ -26,8 +26,38 @@ export const enumFamilles = [
 
 export type SolutionFamilles = (typeof enumFamilles)[number];
 
+type ImageEvaluation =
+  | "01 - PAC air eau - impact exterieur.png"
+  | "02-11-21 - PAC air eau gainee - parties communes.png"
+  | "03 - PAC Eaux grises eau - parties communes1.png"
+  | "03 - PAC Eaux grises eau - parties communes2.png"
+  | "04 - PAC sur capteur solaire - impact exterieur.png"
+  | "04 - PAC sur capteur solaire - parties communes.png"
+  | "05-15-25 - Hybride PAC + chaudiere - impact exterieur.png"
+  | "05-15-25 - Hybride PAC + chaudiere - parties communes.png"
+  | "06-16-26 - Hybride PAC gainée + chaudiere - parties communes.png"
+  | "07 - PAC sur air extrait - impact exterieur.png"
+  | "08-13-23 - PAC geothermique - facilite installation.png"
+  | "08-13-23 - PAC geothermique - parties communes.png"
+  | "10-20 - PAC air eau - impact exterieur.png"
+  | "12-22 - PAC air air DRV - impact exterieur.png"
+  | "31 - CET Air Eau - impact exterieur.png"
+  | "32 - CET Air  Eau - appartement.png"
+  | "32 - CET Air  Eau - parties communes.png"
+  | "40 - PAC air air - appartement.png"
+  | "40 - PAC air air - impact exterieur.png"
+  | "50 - PAC air eau - impact exterieur.png"
+  | "50 - PAC air eau avec unite ext - appartement.png"
+  | "51 - PAC air eau sans unite ext - impact exterieur.png"
+  | "52 - PAC air air avec ECS - T One - impact exterieur.png"
+  | "53 - PAC sur air extrait - NIBE - appartement.png"
+  | "54 - CET air eau avec chauffage par air - parties communes.png"
+  | "60 - PAC indiv sur BET - PAC coll - impact exterieur.png"
+  | "60 - PAC indiv sur BET - PAC indiv - appartement.png"
+  | "61 - CET indiv sur retour chauffage - CET - appartement.png";
+
 type SolutionEvaluation = {
-  image?: string;
+  image?: ImageEvaluation;
   note: SolutionNote | "dynamic";
   text?: Array<{ contenu: string; titre: string }>;
 };

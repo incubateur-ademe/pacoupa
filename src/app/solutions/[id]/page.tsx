@@ -53,7 +53,11 @@ const SolutionPage = ({
     noteTravauxIndividuel: string;
   };
 }) => {
+  if (!params.id) throw new Error("Erreur lors de l'appel de la page de solution");
+
   const baseSolution = catalogueSolutions[params.id];
+
+  if (!baseSolution) throw new Error(`Erreur : aucune solution trouvée pour l'id ${params.id}`);
 
   const { usageCh, usageEcs, usageFr } = baseSolution;
 
@@ -61,6 +65,7 @@ const SolutionPage = ({
 
   if (!validation.success) throw new Error("Erreur lors de l'appel de la page de solution");
 
+  // We enrich the solution with notes found from the context of the simulation.
   const solution = produce(baseSolution, draft => {
     draft.cout.note = validation.data.noteCout;
     draft.difficulte.note = validation.data.noteDifficulte;
@@ -69,7 +74,7 @@ const SolutionPage = ({
   });
 
   return (
-    <>
+    <Box className={cx("max-w-[800px]")}>
       <Box className={fr.cx("fr-mt-4w")}>
         <Button
           priority="tertiary"
@@ -99,26 +104,26 @@ const SolutionPage = ({
       <H3 className={fr.cx("fr-text--lg")}>Toutes les évaluations</H3>
 
       <Box className={cx("flex", "flex-col", "gap-4")}>
-        <Evaluation categorie="environnement" solution={solution} />
+        <Evaluation categorie="environnement" solution={solution} withDetails />
         <hr />
-        <Evaluation categorie="cout" solution={solution} />
+        <Evaluation categorie="cout" solution={solution} withDetails />
         <hr />
-        <Evaluation categorie="difficulte" solution={solution} />
+        <Evaluation categorie="difficulte" solution={solution} withDetails />
         <hr />
-        <Evaluation categorie="travauxCollectif" solution={solution} />
+        <Evaluation categorie="travauxCollectif" solution={solution} withDetails />
         <hr />
-        <Evaluation categorie="travauxIndividuel" solution={solution} />
+        <Evaluation categorie="travauxIndividuel" solution={solution} withDetails />
         <hr />
-        <Evaluation categorie="acoustique" solution={solution} />
+        <Evaluation categorie="acoustique" solution={solution} withDetails />
         <hr />
-        <Evaluation categorie="espaceExterieur" solution={solution} />
+        <Evaluation categorie="espaceExterieur" solution={solution} withDetails />
         <hr />
-        <Evaluation categorie="maturite" solution={solution} />
+        <Evaluation categorie="maturite" solution={solution} withDetails />
         <hr />
       </Box>
 
       <FranceRenovBlock />
-    </>
+    </Box>
   );
 };
 

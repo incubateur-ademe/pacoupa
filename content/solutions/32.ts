@@ -23,10 +23,12 @@ export const solution = {
   },
   travauxCollectif: {
     note: "dynamic",
+    image: "32 - CET Air  Eau - parties communes.png",
     text: [],
   },
   travauxIndividuel: {
     note: "dynamic",
+    image: "32 - CET Air  Eau - appartement.png",
     text: [],
   },
   acoustique: {
@@ -39,6 +41,12 @@ export const solution = {
   },
   maturite: {
     note: "B",
-    text: [],
+    text: [
+      {
+        titre: "Maturité",
+        contenu:
+          "La maturité de l’appareil dépend du nombre d’installations et de l’ancienneté de la commercialisation.",
+      },
+    ],
   },
 } satisfies Solution;

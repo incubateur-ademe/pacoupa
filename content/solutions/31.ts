@@ -35,10 +35,17 @@ export const solution = {
   },
   espaceExterieur: {
     note: "D",
+    image: "31 - CET Air Eau - impact exterieur.png",
     text: [],
   },
   maturite: {
     note: "A",
-    text: [],
+    text: [
+      {
+        titre: "Maturité",
+        contenu:
+          "La maturité de l’appareil dépend du nombre d’installations et de l’ancienneté de la commercialisation.",
+      },
+    ],
   },
 } satisfies Solution;

@@ -12,18 +12,50 @@ export const solution = {
   usageFr: "Non",
   environnement: {
     note: "B",
-    text: [],
+    text: [
+      {
+        titre: "Consommation d’énergie",
+        contenu:
+          "La pompe à chaleur utilise une énergie décarbonée (l’électricité). Son rendement est, en moyenne, trois fois supérieur à celui d’un radiateur électrique ou d’une chaudière.",
+      },
+      {
+        titre: "Entretien",
+        contenu: "Au même titre qu’une chaudière, il est important de prévoir une maintenance régulière des appareils.",
+      },
+    ],
   },
   cout: {
     note: "dynamic",
   },
   difficulte: {
     note: "dynamic",
-    text: [],
+    text: [
+      {
+        titre: "Local technique",
+        contenu:
+          "S’assurer que la place est suffisante dans la chaufferie existante, ou pour implanter un local technique (surface estimée : xx m²).",
+      },
+      {
+        titre: "Raccordement électrique",
+        contenu: "Anticiper l’impact sur la puissance de raccordement électrique.",
+      },
+      {
+        titre: "Réseaux hydrauliques",
+        contenu:
+          "Prévoir une éventuelle rénovation des réseaux ECS. Prévoir un double réseau d’évacuation des eaux grises et eaux vannes.",
+      },
+    ],
   },
   travauxCollectif: {
     note: "dynamic",
-    text: [],
+    image: "03 - PAC Eaux grises eau - parties communes1.png",
+    text: [
+      {
+        titre: "Réseaux hydrauliques",
+        contenu:
+          "Les eaux grises (douches, baignoires, machines à laver…) sont collectées dans une cuve. Il faut donc prévoir un double réseau d’évacuation des eaux grises et eaux vannes.",
+      },
+    ],
   },
   travauxIndividuel: {
     note: "dynamic",
@@ -39,6 +71,12 @@ export const solution = {
   },
   maturite: {
     note: "B",
-    text: [],
+    text: [
+      {
+        titre: "Maturité",
+        contenu:
+          "La maturité de l’appareil dépend du nombre d’installations et de l’ancienneté de la commercialisation.",
+      },
+    ],
   },
 } satisfies Solution;

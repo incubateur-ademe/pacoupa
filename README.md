@@ -58,6 +58,8 @@ Pour créer un nouveau token d'accès en lecture seule
 turso db tokens create pacoupa -r 
 ```
 
+
+
 Recopier le token dans .env et .env.local.
 Il faudra aussi le noter sur Vercel settings.
 
