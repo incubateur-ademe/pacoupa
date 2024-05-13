@@ -47,7 +47,8 @@ export const Matomo = ({ env, nonce }: MatomoProps) => {
       setInited(true);
     }
 
-    if (matomoConsent) {
+    // if (matomoConsent) {
+    if (!matomoConsent) {
       console.debug("Activation des cookies Matomo.");
       push(["forgetUserOptOut"]);
       push(["rememberCookieConsentGiven"]);
