@@ -22,6 +22,7 @@ export const solution = {
   },
   travauxCollectif: {
     note: "dynamic",
+    image: "05-15-25 - Hybride PAC + chaudiere - parties communes.png",
     text: [],
   },
   travauxIndividuel: {
@@ -34,10 +35,17 @@ export const solution = {
   },
   espaceExterieur: {
     note: "C",
+    image: "05-15-25 - Hybride PAC + chaudiere - impact exterieur.png",
     text: [],
   },
   maturite: {
     note: "B",
-    text: [],
+    text: [
+      {
+        titre: "Maturité",
+        contenu:
+          "La maturité de l’appareil dépend du nombre d’installations et de l’ancienneté de la commercialisation.",
+      },
+    ],
   },
 } satisfies Solution;

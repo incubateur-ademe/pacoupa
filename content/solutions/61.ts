@@ -27,6 +27,7 @@ export const solution = {
   },
   travauxIndividuel: {
     note: "dynamic",
+    image: "61 - CET indiv sur retour chauffage - CET - appartement.png",
     text: [],
   },
   acoustique: {
@@ -39,6 +40,12 @@ export const solution = {
   },
   maturite: {
     note: "E",
-    text: [],
+    text: [
+      {
+        titre: "Maturité",
+        contenu:
+          "La maturité de l’appareil dépend du nombre d’installations et de l’ancienneté de la commercialisation.",
+      },
+    ],
   },
 } satisfies Solution;

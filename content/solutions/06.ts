@@ -22,6 +22,7 @@ export const solution = {
   },
   travauxCollectif: {
     note: "dynamic",
+    image: "06-16-26 - Hybride PAC gainée + chaudiere - parties communes.png",
     text: [],
   },
   travauxIndividuel: {
@@ -38,6 +39,12 @@ export const solution = {
   },
   maturite: {
     note: "D",
-    text: [],
+    text: [
+      {
+        titre: "Maturité",
+        contenu:
+          "La maturité de l’appareil dépend du nombre d’installations et de l’ancienneté de la commercialisation.",
+      },
+    ],
   },
 } satisfies Solution;

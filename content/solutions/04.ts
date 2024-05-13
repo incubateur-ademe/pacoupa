@@ -23,6 +23,7 @@ export const solution = {
   },
   travauxCollectif: {
     note: "dynamic",
+    image: "04 - PAC sur capteur solaire - parties communes.png",
     text: [],
   },
   travauxIndividuel: {
@@ -35,10 +36,17 @@ export const solution = {
   },
   espaceExterieur: {
     note: "C",
+    image: "04 - PAC sur capteur solaire - impact exterieur.png",
     text: [],
   },
   maturite: {
     note: "A",
-    text: [],
+    text: [
+      {
+        titre: "Maturité",
+        contenu:
+          "La maturité de l’appareil dépend du nombre d’installations et de l’ancienneté de la commercialisation.",
+      },
+    ],
   },
 } satisfies Solution;

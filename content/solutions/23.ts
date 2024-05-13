@@ -12,17 +12,29 @@ export const solution = {
   usageFr: "Possible",
   environnement: {
     note: "B",
-    text: [],
+    text: [
+      {
+        titre: "Consommation d’énergie",
+        contenu:
+          "La pompe à chaleur utilise une énergie décarbonée (l’électricité). Son rendement est, en moyenne, trois fois supérieur à celui d’un radiateur électrique ou d’une chaudière.",
+      },
+      {
+        titre: "Entretien",
+        contenu: "Au même titre qu’une chaudière, il est important de prévoir une maintenance régulière des appareils.",
+      },
+    ],
   },
   cout: {
     note: "dynamic",
   },
   difficulte: {
     note: "dynamic",
+    image: "08-13-23 - PAC geothermique - facilite installation.png",
     text: [],
   },
   travauxCollectif: {
     note: "dynamic",
+    image: "08-13-23 - PAC geothermique - parties communes.png",
     text: [],
   },
   travauxIndividuel: {
@@ -39,6 +51,12 @@ export const solution = {
   },
   maturite: {
     note: "A",
-    text: [],
+    text: [
+      {
+        titre: "Maturité",
+        contenu:
+          "La maturité de l’appareil dépend du nombre d’installations et de l’ancienneté de la commercialisation.",
+      },
+    ],
   },
 } satisfies Solution;

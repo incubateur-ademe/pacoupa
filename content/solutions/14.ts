@@ -1,5 +1,7 @@
 import { type Solution } from "@/lib/enums";
 
+// TODO: solution à supprimer ??
+
 export const solution = {
   id: "14",
   nom: "Pompe à chaleur absorption gaz",
