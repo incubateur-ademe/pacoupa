@@ -107,6 +107,7 @@ Regénérer le token et le mettre à jour sur Vercel.
 ### Schéma DB
 
 
+
 ```mermaid
 classDiagram
 direction BT
