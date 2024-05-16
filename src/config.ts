@@ -3,7 +3,7 @@ export const config = {
   name: "PACOUPA",
   tagline:
     "Conseiller les copropriétaires dans l'installation de systèmes de chauffage décarbonés adaptés à leur logement",
-  env: (process.env.PACOUPA_ENV || "dev") as "dev" | "prod" | "staging",
+  env: (process.env.PACOUPA_ENV || "dev") as "dev" | "preprod" | "prod",
   matomo: {
     siteId: process.env.NEXT_PUBLIC_MATOMO_SITE_ID!,
     url: process.env.NEXT_PUBLIC_MATOMO_URL!,

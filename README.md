@@ -168,3 +168,14 @@ solutions_par_criteres  -->  solutions : id_solution
 
 solutions_par_criteres  -->  criteres : criteres_id
 ```
+
+
+## Déploiement
+
+Le produit est déployé sur Vercel.
+
+| PACOUPA_ENV | Terminologie Vercel | Branche Git | Fonction | URL |
+| --- | --- | --- | --- | --- |
+| prod | Production | main | Site de production | https://pacoupa.ademe.fr/ |
+| preprod | Preview | dev | Site de préproduction | https://pacoupa.ademe.vercel.app/ |
+| dev (défaut) | Development | (feature branch) | Recette par PR |  |
