@@ -14,13 +14,9 @@ export const solution = {
     note: "B",
     text: [
       {
-        titre: "Consommation d’énergie",
+        titre: "Eau chaude sanitaire uniquement",
         contenu:
-          "La pompe à chaleur utilise une énergie décarbonée (l’électricité). Son rendement est, en moyenne, trois fois supérieur à celui d’un radiateur électrique ou d’une chaudière.",
-      },
-      {
-        titre: "Entretien",
-        contenu: "Au même titre qu’une chaudière, il est important de prévoir une maintenance régulière des appareils.",
+          "Un chauffe-eau thermodynamique (CET) est une solution renouvelable (ENR) pour produire de l’eau chaude sanitaire, mais pas de chauffage. Cela représente environ 30% des besoins globaux de l’appartement.",
       },
     ],
   },
@@ -31,19 +27,17 @@ export const solution = {
     note: "dynamic",
     text: [
       {
-        titre: "Structure",
-        contenu:
-          "En cas de pose en toiture-terrasse, anticipez l’impact des PAC sur la capacité structurelle de la toiture.",
+        titre: "Aucun travaux sur parties communes",
+        contenu: "Un chauffe-eau thermodynamique est présent dans chaque logement et produit de l’Eau Chaude Sanitaire (ECS). Il est composé d’un seul bloc, intégrant une petite pompe à chaleur et un ballon de stockage ECS. La PAC prélève les calories sur l’air extrait par la ventilation mécanique."
       },
       {
         titre: "Raccordement électrique",
-        contenu: "Anticipez l’impact sur la puissance de raccordement électrique.",
+        contenu: "Anticipez l’impact sur la puissance de raccordement électrique."
       },
       {
         titre: "Réseaux hydrauliques",
-        contenu:
-          "Nettoyage et isolation des réseaux chauffage et ECS à prévoir pour optimiser la performance de l’installation.",
-      },
+        contenu: "Nettoyage et isolation des réseaux chauffage et ECS à prévoir pour optimiser la performance de l’installation."
+      }
     ],
   },
   travauxCollectif: {
@@ -51,7 +45,7 @@ export const solution = {
     text: [
       {
         titre: "Déroulement des travaux",
-        contenu: "Travaux rapides dans des parties communes peu fréquentées.",
+        contenu: "Aucun.",
       },
     ],
   },
@@ -60,11 +54,13 @@ export const solution = {
     text: [
       {
         titre: "Emprise logement",
-        contenu: "Aucune.",
+        contenu:
+          "Il faut prévoir un encombrement d'environ 70x70x250 cm (placard acoustique).",
       },
       {
         titre: "Déroulement des travaux",
-        contenu: "Pas de travaux dans les appartements.",
+        contenu:
+          "Le chauffe-eau thermodynamique est composé d’un seul bloc, intégrant une petite pompe à chaleur et un ballon de stockage ECS. La PAC prélève les calories sur l’air extrait par la ventilation mécanique.",
       },
     ],
   },
@@ -73,12 +69,12 @@ export const solution = {
     text: [
       {
         titre: "Volume sonore",
-        contenu: "de 45 à 65dB (unité extérieure) / de 50 à 65dB (unité intérieure)",
+        contenu: "De 30 à 50dB.",
       },
       {
         titre: "Acoustique",
         contenu:
-          "Le bruit d’une PAC est couvert par les bruits ambiants la journée mais peut être gênant la nuit si l’unité est trop proche des chambres. Il existe des solutions pour diminuer l’impact sonore des unités extérieures.",
+          "Il est préconisé de mettre le CET dans un placard acoustique pour éviter toute gêne, et de ne pas le positionner sur des cloisons mitoyennes de chambre.",
       },
     ],
   },
@@ -86,22 +82,14 @@ export const solution = {
     note: "A",
     text: [
       {
-        titre: "Unité extérieure",
-        contenu: "Les PAC air/eau disposent d’une unité extérieure (sol, toiture, jardin ou terrasse).",
-      },
-      {
-        titre: "Emprise des PAC",
-        contenu: "Assurez-vous que la place est suffisante en extérieur (voir la surface estimée).",
-      },
-      {
-        titre: "Structure",
+        titre: "Impact extérieur",
         contenu:
-          "En cas de pose en toiture-terrasse, anticipez l’impact des PAC sur la capacité structurelle de la toiture.",
+          "Il n’y a pas d’unité extérieure, simplement une bouche en façade. La pompe à chaleur est reliée à l’air extrait par la ventilation mécanique. Il faut anticiper l’intégration architecturale des bouches en façade.",
       },
       {
         titre: "PLU",
         contenu:
-          "Vérifiez que l'installation de PAC est compatible avec le PLU (notamment la hauteur si la PAC est en toiture).",
+          "Vérifiez que l’intégration architecturales des bouches en façade est compatible avec le PLU.",
       },
     ],
   },
