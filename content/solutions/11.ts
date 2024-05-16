@@ -33,7 +33,7 @@ export const solution = {
       {
         titre: "Local technique",
         contenu:
-          "S’assurer que la place est suffisante dans la chaufferie existante, ou pour implanter un local technique (surface estimée : xx m²). S’assurer que la PAC pourra être installée proche de la façade (max 3 m).",
+          "Assurez-vous que la place est suffisante dans la chaufferie existante ou pour implanter un local technique (voir surface estimée). Il faut également que la PAC soit installée proche de la façade (max 3 m).",
       },
       {
         titre: "Raccordement électrique",
