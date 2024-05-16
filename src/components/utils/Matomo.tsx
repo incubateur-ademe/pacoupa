@@ -5,12 +5,9 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { config } from "@/config";
+import { useConsent } from "@/consentManagement";
 
 export type MatomoProps = Pick<typeof config, "env"> & { nonce?: string };
-
-// Set optin tracking. This seemms reasonable since Matomo is configured with no cookies and it stores no personnal data.
-// If some privacy issues are found, we'll use useConsent as commented below and add a consent banner.
-const matomoConsent = true;
 
 /**
  * Handle Matomo init and consent.
@@ -20,31 +17,25 @@ const matomoConsent = true;
 export const Matomo = ({ env, nonce }: MatomoProps) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  // const { finalityConsent } = useConsent();
-  // const matomoConsent = finalityConsent?.matomo;
+  const { finalityConsent } = useConsent();
+  const matomoConsent = finalityConsent?.matomo;
   const [initialized, setInitialized] = useState(false);
   const [previousPath, setPreviousPath] = useState("");
 
   useEffect(() => {
-    // if (env === "dev") {
-    //   return;
-    // }
+    if (env === "dev") {
+      return;
+    }
 
     if (!initialized) {
       init({
         ...config.matomo,
-        disableCookies: true,
         nonce,
         onInitialization: () => {
-          // Tracking by default.
-          // push(["optUserOut"]);
-
-          // Tracking without cookies.
-          push(["disableCookies"]);
-          // push(["requireCookieConsent"]);
-
-          // People may have configured their browser with DoNotTrack feature. Their preferences will be respected.
-          push(["setDoNotTrack", "true"]);
+          // Don't track by default.
+          push(["optUserOut"]);
+          // User has to give consent to be tracked.
+          push(["requireCookieConsent"]);
 
           // Time on page tracking enabled.
           push(["enableHeartBeatTimer"]);
@@ -54,23 +45,27 @@ export const Matomo = ({ env, nonce }: MatomoProps) => {
       });
       setInitialized(true);
     }
+  }, [env, initialized, nonce]);
 
-    // if (matomoConsent) {
-    //   console.debug("Activation des cookies Matomo.");
-    //   push(["forgetUserOptOut"]);
-    //   push(["rememberCookieConsentGiven"]);
-    // } else {
-    //   console.debug("Désactivation des cookies Matomo.");
-    //   push(["optUserOut"]);
-    //   push(["forgetCookieConsentGiven"]);
-    // }
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- don't listen on inited
-  }, [env]);
+  useEffect(() => {
+    if (!initialized || env === "dev") {
+      return;
+    }
+
+    if (matomoConsent) {
+      console.debug("Activation des cookies Matomo.");
+      push(["forgetUserOptOut"]);
+      push(["rememberCookieConsentGiven"]);
+    } else {
+      console.debug("Désactivation des cookies Matomo.");
+      push(["optUserOut"]);
+      push(["forgetCookieConsentGiven"]);
+    }
+  }, [env, initialized, matomoConsent]);
 
   /* The @socialgouv/matomo-next does not work with next 13, so we need to handle by ourselves */
   useEffect(() => {
-    // if (!pathname || !matomoConsent || env === "dev") {
-    if (!pathname || !matomoConsent) {
+    if (!initialized || !matomoConsent || !pathname || env === "dev") {
       return;
     }
 
@@ -80,6 +75,7 @@ export const Matomo = ({ env, nonce }: MatomoProps) => {
 
     push(["setReferrerUrl", `${previousPath}`]);
     setPreviousPath(pathname);
+
     // In order to ensure that the page title had been updated,
     // we delayed pushing the tracking to the next tick.
     setTimeout(() => {
@@ -90,7 +86,7 @@ export const Matomo = ({ env, nonce }: MatomoProps) => {
         push(["trackPageView"]);
       }
     });
-  }, [env, pathname, previousPath, searchParams]);
+  }, [env, initialized, matomoConsent, pathname, previousPath, searchParams]);
 
   return <></>;
 };

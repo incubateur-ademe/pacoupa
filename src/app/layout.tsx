@@ -18,6 +18,7 @@ import { footerId, PacoupaFooter } from "@/components/PacoupaFooter";
 import { PacoupaHeader } from "@/components/PacoupaHeader";
 import { Matomo } from "@/components/utils/Matomo";
 import { config } from "@/config";
+import { ConsentBannerAndConsentManagement } from "@/consentManagement";
 import { Container } from "@/dsfr";
 
 import { defaultColorScheme } from "../defaultColorScheme";
@@ -77,7 +78,7 @@ const RootLayout = ({ children }: PropsWithChildren) => {
         <DsfrProvider lang="fr">
           <NextAppDirEmotionCacheProvider options={{ key: "css" }}>
             <MuiDsfrThemeProvider>
-              {/* <ConsentBannerAndConsentManagement /> */}
+              <ConsentBannerAndConsentManagement />
               <SkipLinks
                 links={[
                   {
