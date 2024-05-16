@@ -31,16 +31,16 @@ export const solution = {
     note: "dynamic",
     text: [
       {
-        "titre": "Structure",
-        "contenu": "En cas de pose en toiture-terrasse, anticipez l’impact des PAC sur la capacité structurelle de la toiture."
+        titre: "Structure",
+        contenu: "En cas de pose en toiture-terrasse, anticipez l’impact des PAC sur la capacité structurelle de la toiture."
       },
       {
-        "titre": "Raccordement électrique",
-        "contenu": "Anticipez l’impact sur la puissance de raccordement électrique."
+        titre: "Raccordement électrique",
+        contenu: "Anticipez l’impact sur la puissance de raccordement électrique."
       },
       {
-        "titre": "Réseaux hydrauliques",
-        "contenu": "Nettoyage et isolation des réseaux chauffage à prévoir pour optimiser la performance de l’installation."
+        titre: "Réseaux hydrauliques",
+        contenu: "Nettoyage et isolation des réseaux chauffage à prévoir pour optimiser la performance de l’installation."
       }
     ],
   },
