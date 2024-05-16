@@ -11,16 +11,17 @@ export const solution = {
   usageEcs: "Non",
   usageFr: "Possible",
   environnement: {
-    note: "B",
+    note: "A",
     text: [
       {
         titre: "Consommation d’énergie",
         contenu:
-          "La pompe à chaleur utilise une énergie décarbonée (l’électricité). Son rendement est, en moyenne, trois fois supérieur à celui d’un radiateur électrique ou d’une chaudière.",
+          "La pompe à chaleur utilise une énergie décarbonée (l’électricité). Le rendement d'une pompe à chaleur géothermique est, en moyenne, cinq fois supérieur à celui d’un radiateur électrique ou d’une chaudière.",
       },
       {
         titre: "Entretien",
-        contenu: "Au même titre qu’une chaudière, il est important de prévoir une maintenance régulière des appareils.",
+        contenu:
+          "Au même titre qu’une chaudière, il est important de prévoir une maintenance régulière des appareils.",
       },
     ],
   },
@@ -35,19 +36,45 @@ export const solution = {
   travauxCollectif: {
     note: "dynamic",
     image: "08-13-23 - PAC geothermique - parties communes.png",
-    text: [],
+    text: [
+      {
+        titre: "Déroulement des travaux",
+        contenu:
+          "Travaux importants dans les parties extérieures comme le jardin et/ou le parking le temps de l’installation.",
+      },
+    ],
   },
   travauxIndividuel: {
     note: "dynamic",
-    text: [],
+    text: [
+      {
+        titre: "Emprise logement",
+        contenu: "Aucune.",
+      },
+      {
+        titre: "Déroulement des travaux",
+        contenu: "Pas de travaux dans les appartements.",
+      },
+    ],
   },
   acoustique: {
     note: "A",
-    text: [],
+    text: [
+      {
+        titre: "Acoustique",
+        contenu: "Aucune nuisance sonore.",
+      },
+    ],
   },
   espaceExterieur: {
     note: "B",
-    text: [],
+    text: [
+      {
+        titre: "Sonde géothermique",
+        contenu:
+          "Une PAC eau-eau capte des calories sur des sondes géothermiques verticales ou sur l’eau d’une nappe phréatique. Une fois l’installation faite, il n’y a plus d’impact visuel.",
+      },
+    ],
   },
   maturite: {
     note: "A",
