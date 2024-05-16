@@ -22,8 +22,7 @@ export const solution = {
       },
       {
         titre: "Entretien",
-        contenu:
-          "Au même titre qu’une chaudière, il est important de prévoir une maintenance régulière des appareils.",
+        contenu: "Au même titre qu’une chaudière, il est important de prévoir une maintenance régulière des appareils.",
       },
     ],
   },
@@ -49,8 +48,7 @@ export const solution = {
       },
       {
         titre: "Réseaux hydrauliques",
-        contenu:
-          "Prévoir une éventuelle rénovation des réseaux ECS et création d’un réseau de fluide frigorigène.",
+        contenu: "Prévoir une éventuelle rénovation des réseaux ECS et création d’un réseau de fluide frigorigène.",
       },
     ],
   },
@@ -87,8 +85,7 @@ export const solution = {
     text: [
       {
         titre: "Volume sonore",
-        contenu:
-          "de 45 à 65dB (unité extérieure) / de 50 à 65dB (unité intérieure)",
+        contenu: "de 45 à 65dB (unité extérieure) / de 50 à 65dB (unité intérieure)",
       },
       {
         titre: "Acoustique",
@@ -103,13 +100,11 @@ export const solution = {
     text: [
       {
         titre: "Unité extérieure",
-        contenu:
-          "Les PAC air / air disposent d’une unité extérieure (sol, toiture, jardin ou terrasse).",
+        contenu: "Les PAC air / air disposent d’une unité extérieure (sol, toiture, jardin ou terrasse).",
       },
       {
         titre: "Emprise des PAC",
-        contenu:
-          "Assurez-vous que la place est suffisante en extérieur (voir la surface estimée).",
+        contenu: "Assurez-vous que la place est suffisante en extérieur (voir la surface estimée).",
       },
       {
         titre: "Structure",
@@ -126,10 +121,11 @@ export const solution = {
   maturite: {
     note: "C",
     text: [
-    {
-        "titre": "Maturité",
-        "contenu": "La maturité de l’appareil dépend du nombre d’installations et de l’ancienneté de la commercialisation."
-    }
-],
+      {
+        titre: "Maturité",
+        contenu:
+          "La maturité de l’appareil dépend du nombre d’installations et de l’ancienneté de la commercialisation.",
+      },
+    ],
   },
 } satisfies Solution;

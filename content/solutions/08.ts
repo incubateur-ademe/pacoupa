@@ -20,8 +20,7 @@ export const solution = {
       },
       {
         titre: "Entretien",
-        contenu:
-          "Au même titre qu’une chaudière, il est important de prévoir une maintenance régulière des appareils.",
+        contenu: "Au même titre qu’une chaudière, il est important de prévoir une maintenance régulière des appareils.",
       },
     ],
   },

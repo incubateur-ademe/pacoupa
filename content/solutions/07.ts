@@ -20,8 +20,7 @@ export const solution = {
       },
       {
         titre: "Entretien",
-        contenu:
-          "Au même titre qu’une chaudière, il est important de prévoir une maintenance régulière des appareils.",
+        contenu: "Au même titre qu’une chaudière, il est important de prévoir une maintenance régulière des appareils.",
       },
     ],
   },
@@ -78,7 +77,8 @@ export const solution = {
       },
       {
         titre: "Acoustique",
-        contenu: "Le bruit d’une PAC est couvert par les bruits ambiants la journée mais peut être gênant la nuit si l’unité est trop proche des chambres. Il existe des solutions pour diminuer l’impact sonore des unités extérieures.",
+        contenu:
+          "Le bruit d’une PAC est couvert par les bruits ambiants la journée mais peut être gênant la nuit si l’unité est trop proche des chambres. Il existe des solutions pour diminuer l’impact sonore des unités extérieures.",
       },
     ],
   },
@@ -96,11 +96,13 @@ export const solution = {
       },
       {
         titre: "Structure",
-        contenu: "La pose étant en toiture-terrasse, anticipez l’impact des PAC sur la capacité structurelle de la toiture.",
+        contenu:
+          "La pose étant en toiture-terrasse, anticipez l’impact des PAC sur la capacité structurelle de la toiture.",
       },
       {
         titre: "PLU",
-        contenu: "Vérifiez que l'installation de PAC est compatible avec le PLU (notamment la hauteur si la PAC est en toiture).",
+        contenu:
+          "Vérifiez que l'installation de PAC est compatible avec le PLU (notamment la hauteur si la PAC est en toiture).",
       },
     ],
   },

@@ -50,7 +50,7 @@ export const solution = {
   travauxCollectif: {
     note: "dynamic",
     image: "08-13-23 - PAC geothermique - parties communes.png",
-   text: [
+    text: [
       {
         titre: "Déroulement des travaux",
         contenu:

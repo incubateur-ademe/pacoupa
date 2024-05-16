@@ -30,19 +30,20 @@ export const solution = {
   difficulte: {
     note: "dynamic",
     text: [
-      { 
-        titre: "Structure", 
-        contenu: "En cas de pose en toiture-terrasse, anticipez l’impact des PAC sur la capacité structurelle de la toiture." 
+      {
+        titre: "Structure",
+        contenu:
+          "En cas de pose en toiture-terrasse, anticipez l’impact des PAC sur la capacité structurelle de la toiture.",
       },
-      { 
-        titre: "Raccordement électrique", 
-        contenu: "Anticipez l’impact sur la puissance de raccordement électrique." 
+      {
+        titre: "Raccordement électrique",
+        contenu: "Anticipez l’impact sur la puissance de raccordement électrique.",
       },
-      { 
-        titre: "Réseaux hydrauliques", 
-        contenu: "Nettoyage et isolation des réseaux chauffage et ECS à prévoir pour optimiser la performance de l’installation." 
+      {
+        titre: "Réseaux hydrauliques",
+        contenu:
+          "Nettoyage et isolation des réseaux chauffage et ECS à prévoir pour optimiser la performance de l’installation.",
       },
-];
     ],
   },
   travauxCollectif: {
@@ -51,13 +52,12 @@ export const solution = {
     text: [
       {
         titre: "Déroulement des travaux",
-        contenu:
-          "Travaux rapides dans des parties communes peu fréquentées.",
+        contenu: "Travaux rapides dans des parties communes peu fréquentées.",
       },
     ],
   },
   travauxIndividuel: {
-    note: "cf. tableau notes par critères",
+    note: "dynamic",
     text: [
       {
         titre: "Emprise logement",
@@ -74,8 +74,7 @@ export const solution = {
     text: [
       {
         titre: "Volume sonore",
-        contenu:
-          "De 45 à 65dB (unité extérieure) / de 50 à 65dB (unité intérieure)",
+        contenu: "De 45 à 65dB (unité extérieure) / de 50 à 65dB (unité intérieure)",
       },
       {
         titre: "Acoustique",
@@ -90,13 +89,11 @@ export const solution = {
     text: [
       {
         titre: "Unité extérieure",
-        contenu:
-          "Les PAC air / eau disposent d’une unité extérieure (sol, toiture, jardin ou terrasse).",
+        contenu: "Les PAC air / eau disposent d’une unité extérieure (sol, toiture, jardin ou terrasse).",
       },
       {
         titre: "Emprise des PAC",
-        contenu:
-          "Assurez-vous que la place est suffisante en extérieur (voir la surface estimée).",
+        contenu: "Assurez-vous que la place est suffisante en extérieur (voir la surface estimée).",
       },
       {
         titre: "Structure",

@@ -78,19 +78,19 @@ export const solution = {
       },
       {
         titre: "Acoustique",
-        contenu: "Le bruit d’une PAC est couvert par les bruits ambiants la journée mais peut être gênant la nuit si les bouches en façade sont trop proches des chambres. Il existe des solutions pour diminuer l’impact sonore des bouches en façade.",
+        contenu:
+          "Le bruit d’une PAC est couvert par les bruits ambiants la journée mais peut être gênant la nuit si les bouches en façade sont trop proches des chambres. Il existe des solutions pour diminuer l’impact sonore des bouches en façade.",
       },
     ],
   },
   espaceExterieur: {
     note: "C",
-    images: [
-      "10-20 - PAC air eau (impact extérieur).png",
-    ],
+    image: "10-20 - PAC air eau - impact exterieur.png",
     text: [
       {
         titre: "Impact extérieur",
-        contenu: "Il n’y a pas d’unité extérieure, simplement une bouche en façade. La pompe à chaleur est située dans le local technique et est connectée à l’air extérieur par des gaines. Il faut anticiper l’intégration architecturale des bouches en façade.",
+        contenu:
+          "Il n’y a pas d’unité extérieure, simplement une bouche en façade. La pompe à chaleur est située dans le local technique et est connectée à l’air extérieur par des gaines. Il faut anticiper l’intégration architecturale des bouches en façade.",
       },
       {
         titre: "PLU",
@@ -103,7 +103,8 @@ export const solution = {
     text: [
       {
         titre: "Maturité",
-        contenu: "La maturité de l’appareil dépend du nombre d’installations et de l’ancienneté de la commercialisation.",
+        contenu:
+          "La maturité de l’appareil dépend du nombre d’installations et de l’ancienneté de la commercialisation.",
       },
     ],
   },
