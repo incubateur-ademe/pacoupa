@@ -33,16 +33,16 @@ export const solution = {
       {
         titre: "Local technique",
         contenu:
-          "S’assurer que la place est suffisante dans la chaufferie existante, ou pour implanter un local technique (surface estimée : xx m²).",
+          "Assurez-vous que la place est suffisante dans la chaufferie existante ou pour implanter un local technique (voir la surface estimée).",
       },
       {
         titre: "Raccordement électrique",
-        contenu: "Anticiper l’impact sur la puissance de raccordement électrique.",
+        contenu: "Anticipez l’impact sur la puissance de raccordement électrique.",
       },
       {
         titre: "Réseaux hydrauliques",
         contenu:
-          "Prévoir une éventuelle rénovation des réseaux ECS. Prévoir un double réseau d’évacuation des eaux grises et eaux vannes.",
+          "Il faudra prévoir une éventuelle rénovation des réseaux ECS. Prévoyez également un double réseau d’évacuation des eaux grises et eaux vannes.",
       },
     ],
   },
