@@ -28,19 +28,22 @@ export const solution = {
     text: [
       {
         titre: "Solution individuelle avec unité extérieure",
-        contenu: "Un chauffe-eau thermodynamique (CET) est présent dans chaque logement et produit de l’Eau Chaude Sanitaire (ECS). Il est composé d’une unité extérieure (comme une PAC) et d’une unité intérieure (ballon de stockage ECS)."
+        contenu:
+          "Un chauffe-eau thermodynamique (CET) est présent dans chaque logement et produit de l’Eau Chaude Sanitaire (ECS). Il est composé d’une unité extérieure (comme une PAC) et d’une unité intérieure (ballon de stockage ECS).",
       },
       {
         titre: "Emprise des PAC",
-        contenu: "Assurez-vous que la place est suffisante en toiture, sur les balcons ou dans le jardin : 0,3 à 0,6 m² pour une PAC (3 à 4 m² en comprenant la surface libre)."
+        contenu:
+          "Assurez-vous que la place est suffisante en toiture, sur les balcons ou dans le jardin : 0,3 à 0,6 m² pour une PAC (3 à 4 m² en comprenant la surface libre).",
       },
       {
         titre: "Raccordement électrique",
-        contenu: "Anticipez l’impact sur la puissance de raccordement électrique."
+        contenu: "Anticipez l’impact sur la puissance de raccordement électrique.",
       },
       {
         titre: "Réseaux hydrauliques",
-        contenu: "Nettoyage et isolation des réseaux chauffage et ECS à prévoir pour optimiser la performance de l’installation."
+        contenu:
+          "Nettoyage et isolation des réseaux chauffage et ECS à prévoir pour optimiser la performance de l’installation.",
       },
     ],
   },
@@ -58,8 +61,7 @@ export const solution = {
     text: [
       {
         titre: "Emprise logement",
-        contenu:
-          "Il faut prévoir un encombrement d'environ 60x60x250 cm.",
+        contenu: "Il faut prévoir un encombrement d'environ 60x60x250 cm.",
       },
       {
         titre: "Déroulement des travaux",
@@ -82,8 +84,7 @@ export const solution = {
       },
       {
         titre: "Acoustique unité intérieure",
-        contenu:
-          "Le module intérieur a une puissance acoustique faible, il peut être intégré en cuisine.",
+        contenu: "Le module intérieur a une puissance acoustique faible, il peut être intégré en cuisine.",
       },
     ],
   },
@@ -97,7 +98,8 @@ export const solution = {
       },
       {
         titre: "Emprise des PAC",
-        contenu: "Assurez-vous que la place est suffisante en toiture, sur les balcons ou dans le jardin : 0,3 à 0,6 m² pour une PAC (3 à 4 m² en comprenant la surface libre).",
+        contenu:
+          "Assurez-vous que la place est suffisante en toiture, sur les balcons ou dans le jardin : 0,3 à 0,6 m² pour une PAC (3 à 4 m² en comprenant la surface libre).",
       },
       {
         titre: "Structure",

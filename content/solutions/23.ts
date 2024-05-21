@@ -20,8 +20,7 @@ export const solution = {
       },
       {
         titre: "Entretien",
-        contenu:
-          "Au même titre qu’une chaudière, il est important de prévoir une maintenance régulière des appareils.",
+        contenu: "Au même titre qu’une chaudière, il est important de prévoir une maintenance régulière des appareils.",
       },
     ],
   },
@@ -33,17 +32,19 @@ export const solution = {
     image: "08-13-23 - PAC geothermique - facilite installation.png",
     text: [
       {
-        "titre": "Sonde géothermique",
-        "contenu": "Une PAC eau-eau capte des calories sur des sondes géothermiques verticales ou sur l’eau d’une nappe phréatique. Il faut donc prévoir le forage pour la sonde et/ou l’installation d’une pompe pour la nappe phréatique."
+        titre: "Sonde géothermique",
+        contenu:
+          "Une PAC eau-eau capte des calories sur des sondes géothermiques verticales ou sur l’eau d’une nappe phréatique. Il faut donc prévoir le forage pour la sonde et/ou l’installation d’une pompe pour la nappe phréatique.",
       },
       {
-        "titre": "Raccordement électrique",
-        "contenu": "Anticipez l’impact sur la puissance de raccordement électrique."
+        titre: "Raccordement électrique",
+        contenu: "Anticipez l’impact sur la puissance de raccordement électrique.",
       },
       {
-        "titre": "Réseaux hydrauliques",
-        "contenu": "Nettoyage et isolation des réseaux chauffage à prévoir pour optimiser la performance de l’installation."
-      }
+        titre: "Réseaux hydrauliques",
+        contenu:
+          "Nettoyage et isolation des réseaux chauffage à prévoir pour optimiser la performance de l’installation.",
+      },
     ],
   },
   travauxCollectif: {

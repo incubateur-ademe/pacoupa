@@ -20,8 +20,7 @@ export const solution = {
       },
       {
         titre: "Entretien",
-        contenu:
-          "Au même titre qu’une chaudière, il est important de prévoir une maintenance régulière des appareils.",
+        contenu: "Au même titre qu’une chaudière, il est important de prévoir une maintenance régulière des appareils.",
       },
     ],
   },
@@ -89,7 +88,8 @@ export const solution = {
       },
       {
         titre: "Structure",
-        contenu: "En cas de pose en toiture terrasse, anticipez l’impact des capteurs solaires sur la capacité structurelle de la toiture.",
+        contenu:
+          "En cas de pose en toiture terrasse, anticipez l’impact des capteurs solaires sur la capacité structurelle de la toiture.",
       },
       {
         titre: "PLU",
@@ -102,7 +102,8 @@ export const solution = {
     text: [
       {
         titre: "Maturité",
-        contenu: "La maturité de l’appareil dépend du nombre d’installations et de l’ancienneté de la commercialisation.",
+        contenu:
+          "La maturité de l’appareil dépend du nombre d’installations et de l’ancienneté de la commercialisation.",
       },
     ],
   },

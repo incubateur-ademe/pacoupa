@@ -13,11 +13,12 @@ export const solution = {
   environnement: {
     note: "B",
     text: [
-        {
-          titre: "Eau chaude sanitaire uniquement",
-          contenu: "Un chauffe-eau thermodynamique (CET) est une solution renouvelable (ENR) pour produire de l’eau chaude sanitaire, mais pas de chauffage. Cela représente environ 30% des besoins globaux de l’appartement."
-        },
-      ],
+      {
+        titre: "Eau chaude sanitaire uniquement",
+        contenu:
+          "Un chauffe-eau thermodynamique (CET) est une solution renouvelable (ENR) pour produire de l’eau chaude sanitaire, mais pas de chauffage. Cela représente environ 30% des besoins globaux de l’appartement.",
+      },
+    ],
   },
   cout: {
     note: "dynamic",
@@ -25,30 +26,32 @@ export const solution = {
   difficulte: {
     note: "dynamic",
     text: [
-    {
+      {
         titre: "Aucun travaux sur parties communes",
-        contenu: "Un chauffe-eau thermodynamique (CET) est présent dans chaque logement et produit de l’eau chaude sanitaire (ECS). Il est composé d’un seul bloc, intégrant une petite pompe à chaleur et un ballon de stockage ECS. Ce bloc doit être raccordé à l’air extérieur par des bouches en façade ou un conduit collectif."
-    },
-    {
+        contenu:
+          "Un chauffe-eau thermodynamique (CET) est présent dans chaque logement et produit de l’eau chaude sanitaire (ECS). Il est composé d’un seul bloc, intégrant une petite pompe à chaleur et un ballon de stockage ECS. Ce bloc doit être raccordé à l’air extérieur par des bouches en façade ou un conduit collectif.",
+      },
+      {
         titre: "Raccordement électrique",
-        contenu: "Anticipez l’impact sur la puissance de raccordement électrique."
-    },
-    {
+        contenu: "Anticipez l’impact sur la puissance de raccordement électrique.",
+      },
+      {
         titre: "Réseaux hydrauliques",
-        contenu: "Nettoyage et isolation des réseaux chauffage et ECS à prévoir pour optimiser la performance de l’installation."
-    },
-],
+        contenu:
+          "Nettoyage et isolation des réseaux chauffage et ECS à prévoir pour optimiser la performance de l’installation.",
+      },
+    ],
   },
   travauxCollectif: {
     note: "dynamic",
     image: "32 - CET Air  Eau - parties communes.png",
-    text: 
-      [
-        {
-          titre: "Travaux à prévoir",
-          contenu: "Aucun si le raccordement à l’air extérieur se fait via des bouches en façade. Sinon, il faut prévoir le raccordement à un conduit collectif."
-        }
-      ],
+    text: [
+      {
+        titre: "Travaux à prévoir",
+        contenu:
+          "Aucun si le raccordement à l’air extérieur se fait via des bouches en façade. Sinon, il faut prévoir le raccordement à un conduit collectif.",
+      },
+    ],
   },
   travauxIndividuel: {
     note: "dynamic",
@@ -57,31 +60,31 @@ export const solution = {
   },
   acoustique: {
     note: "C",
-    text: 
-      [
-        {
-          titre: "Volume sonore",
-          contenu: "De 30 à 50dB"
-        },
-        {
-          titre: "Acoustique",
-          contenu: "Il est préconisé de mettre la PAC dans un placard acoustique pour éviter toute gêne, et de ne pas le positionner sur des cloisons mitoyennes de chambre."
-        },
-      ],
+    text: [
+      {
+        titre: "Volume sonore",
+        contenu: "De 30 à 50dB",
+      },
+      {
+        titre: "Acoustique",
+        contenu:
+          "Il est préconisé de mettre la PAC dans un placard acoustique pour éviter toute gêne, et de ne pas le positionner sur des cloisons mitoyennes de chambre.",
+      },
+    ],
   },
   espaceExterieur: {
     note: "A",
-    text: 
-      [
-        {
-          titre: "Impact extérieur",
-          contenu: "Il n’y a pas d’unité extérieure, simplement une bouche en façade (si le raccordement est ainsi fait). Dans ce cas, il faut anticiper l’intégration architecturale des bouches en façade."
-        },
-        {
-          titre: "PLU",
-          contenu: "Vérifiez que l’intégration architecturales des bouches en façade est compatible avec le PLU."
-        },
-      ],
+    text: [
+      {
+        titre: "Impact extérieur",
+        contenu:
+          "Il n’y a pas d’unité extérieure, simplement une bouche en façade (si le raccordement est ainsi fait). Dans ce cas, il faut anticiper l’intégration architecturale des bouches en façade.",
+      },
+      {
+        titre: "PLU",
+        contenu: "Vérifiez que l’intégration architecturales des bouches en façade est compatible avec le PLU.",
+      },
+    ],
   },
   maturite: {
     note: "B",

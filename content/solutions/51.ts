@@ -30,53 +30,57 @@ export const solution = {
   difficulte: {
     note: "dynamic",
     text: [
-        {
-          titre: "Aucun travaux sur parties communes",
-          contenu: "Une PAC est présente dans chaque logement, étant composée d’un seul bloc intégrant une pompe à chaleur et un ballon de stockage ECS. Ce bloc doit être raccordé à l’air exterieur via une bouche en façade."
-        },
-        {
-          titre: "Raccordement électrique",
-          contenu: "Anticipez l’impact sur la puissance de raccordement électrique."
-        },
-        {
-          titre: "Réseaux hydrauliques",
-          contenu: "Nettoyage et isolation des réseaux chauffage et ECS à prévoir pour optimiser la performance de l’installation."
-        },
-      ],
+      {
+        titre: "Aucun travaux sur parties communes",
+        contenu:
+          "Une PAC est présente dans chaque logement, étant composée d’un seul bloc intégrant une pompe à chaleur et un ballon de stockage ECS. Ce bloc doit être raccordé à l’air exterieur via une bouche en façade.",
+      },
+      {
+        titre: "Raccordement électrique",
+        contenu: "Anticipez l’impact sur la puissance de raccordement électrique.",
+      },
+      {
+        titre: "Réseaux hydrauliques",
+        contenu:
+          "Nettoyage et isolation des réseaux chauffage et ECS à prévoir pour optimiser la performance de l’installation.",
+      },
+    ],
   },
   travauxCollectif: {
     note: "dynamic",
     text: [
       {
-          titre: "Travaux à prévoir",
-          contenu: "Aucun."
-        },
+        titre: "Travaux à prévoir",
+        contenu: "Aucun.",
+      },
     ],
   },
   travauxIndividuel: {
     note: "dynamic",
     text: [
       {
-          titre: "Emprise logement",
-          contenu: "Il faut prévoir un encombrement d'environ 70x70x250 cm.",
-        },
-        {
-          titre: "Déroulement des travaux",
-          contenu: "Il est nécessaire d’installer une unité intérieure et de la raccorder à l’air extérieur via une bouche en façade.",
-        },
+        titre: "Emprise logement",
+        contenu: "Il faut prévoir un encombrement d'environ 70x70x250 cm.",
+      },
+      {
+        titre: "Déroulement des travaux",
+        contenu:
+          "Il est nécessaire d’installer une unité intérieure et de la raccorder à l’air extérieur via une bouche en façade.",
+      },
     ],
   },
   acoustique: {
     note: "C",
     text: [
       {
-          titre: "Volume sonore",
-          contenu: "de 45 à 65dB",
-        },
-        {
-          titre: "Acoustique unité intérieure",
-          contenu: "Il est préconisé de mettre la PAC dans un placard acoustique pour éviter toute gêne, et de ne pas le positionner sur des cloisons mitoyennes de chambre, et idéalement loin des fenêtres et balcons.",
-        },
+        titre: "Volume sonore",
+        contenu: "de 45 à 65dB",
+      },
+      {
+        titre: "Acoustique unité intérieure",
+        contenu:
+          "Il est préconisé de mettre la PAC dans un placard acoustique pour éviter toute gêne, et de ne pas le positionner sur des cloisons mitoyennes de chambre, et idéalement loin des fenêtres et balcons.",
+      },
     ],
   },
   espaceExterieur: {
@@ -84,13 +88,14 @@ export const solution = {
     image: "51 - PAC air eau sans unite ext - impact exterieur.png",
     text: [
       {
-          titre: "Impact extérieur",
-          contenu: "Il n’y a pas d’unité extérieure, simplement une bouche en façade. La pompe à chaleur est constitué d’un seul bloc, relié à l’air extérieur par une bouche en façade.",
-        },
-        {
-          titre: "PLU",
-          contenu: "Vérifiez que l’intégration architecturales des bouches en façade est compatible avec le PLU.",
-        },
+        titre: "Impact extérieur",
+        contenu:
+          "Il n’y a pas d’unité extérieure, simplement une bouche en façade. La pompe à chaleur est constitué d’un seul bloc, relié à l’air extérieur par une bouche en façade.",
+      },
+      {
+        titre: "PLU",
+        contenu: "Vérifiez que l’intégration architecturales des bouches en façade est compatible avec le PLU.",
+      },
     ],
   },
   maturite: {

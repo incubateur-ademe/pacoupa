@@ -28,16 +28,18 @@ export const solution = {
     text: [
       {
         titre: "Aucun travaux sur parties communes",
-        contenu: "Un chauffe-eau thermodynamique est présent dans chaque logement et produit de l’Eau Chaude Sanitaire (ECS). Il est composé d’un seul bloc, intégrant une petite pompe à chaleur et un ballon de stockage ECS. La PAC prélève les calories sur l’air extrait par la ventilation mécanique."
+        contenu:
+          "Un chauffe-eau thermodynamique est présent dans chaque logement et produit de l’Eau Chaude Sanitaire (ECS). Il est composé d’un seul bloc, intégrant une petite pompe à chaleur et un ballon de stockage ECS. La PAC prélève les calories sur l’air extrait par la ventilation mécanique.",
       },
       {
         titre: "Raccordement électrique",
-        contenu: "Anticipez l’impact sur la puissance de raccordement électrique."
+        contenu: "Anticipez l’impact sur la puissance de raccordement électrique.",
       },
       {
         titre: "Réseaux hydrauliques",
-        contenu: "Nettoyage et isolation des réseaux chauffage et ECS à prévoir pour optimiser la performance de l’installation."
-      }
+        contenu:
+          "Nettoyage et isolation des réseaux chauffage et ECS à prévoir pour optimiser la performance de l’installation.",
+      },
     ],
   },
   travauxCollectif: {
@@ -54,8 +56,7 @@ export const solution = {
     text: [
       {
         titre: "Emprise logement",
-        contenu:
-          "Il faut prévoir un encombrement d'environ 70x70x250 cm (placard acoustique).",
+        contenu: "Il faut prévoir un encombrement d'environ 70x70x250 cm (placard acoustique).",
       },
       {
         titre: "Déroulement des travaux",
@@ -88,8 +89,7 @@ export const solution = {
       },
       {
         titre: "PLU",
-        contenu:
-          "Vérifiez que l’intégration architecturales des bouches en façade est compatible avec le PLU.",
+        contenu: "Vérifiez que l’intégration architecturales des bouches en façade est compatible avec le PLU.",
       },
     ],
   },

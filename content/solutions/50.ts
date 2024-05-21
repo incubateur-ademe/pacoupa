@@ -30,18 +30,20 @@ export const solution = {
   difficulte: {
     note: "dynamic",
     text: [
-       {
+      {
         titre: "Emprise des PAC",
-        contenu: "Assurez-vous que la place est suffisante en toiture, sur les balcons ou dans le jardin : 0,3 à 0,6 m² pour une PAC (3 à 4 m² en comprenant la surface libre)."
-       },
-       {
+        contenu:
+          "Assurez-vous que la place est suffisante en toiture, sur les balcons ou dans le jardin : 0,3 à 0,6 m² pour une PAC (3 à 4 m² en comprenant la surface libre).",
+      },
+      {
         titre: "Raccordement électrique",
-        contenu: "Anticipez l’impact sur la puissance de raccordement électrique."
-       },
-       {
+        contenu: "Anticipez l’impact sur la puissance de raccordement électrique.",
+      },
+      {
         titre: "Réseaux hydrauliques",
-        contenu: "Nettoyage et isolation des réseaux chauffage et ECS à prévoir pour optimiser la performance de l’installation."
-       },
+        contenu:
+          "Nettoyage et isolation des réseaux chauffage et ECS à prévoir pour optimiser la performance de l’installation.",
+      },
     ],
   },
   travauxCollectif: {

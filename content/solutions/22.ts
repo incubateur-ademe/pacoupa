@@ -20,8 +20,7 @@ export const solution = {
       },
       {
         titre: "Entretien",
-        contenu:
-          "Au même titre qu’une chaudière, il est important de prévoir une maintenance régulière des appareils.",
+        contenu: "Au même titre qu’une chaudière, il est important de prévoir une maintenance régulière des appareils.",
       },
     ],
   },
@@ -32,17 +31,18 @@ export const solution = {
     note: "dynamic",
     text: [
       {
-        "titre": "Structure",
-        "contenu": "En cas de pose en toiture-terrasse, anticipez l’impact des PAC sur la capacité structurelle de la toiture."
+        titre: "Structure",
+        contenu:
+          "En cas de pose en toiture-terrasse, anticipez l’impact des PAC sur la capacité structurelle de la toiture.",
       },
       {
-        "titre": "Raccordement électrique",
-        "contenu": "Anticipez l’impact sur la puissance de raccordement électrique."
+        titre: "Raccordement électrique",
+        contenu: "Anticipez l’impact sur la puissance de raccordement électrique.",
       },
       {
-        "titre": "Réseaux hydrauliques",
-        "contenu": "Prévoir une éventuelle rénovation des réseaux ECS et création d’un réseau de fluide frigorigène."
-      }
+        titre: "Réseaux hydrauliques",
+        contenu: "Prévoir une éventuelle rénovation des réseaux ECS et création d’un réseau de fluide frigorigène.",
+      },
     ],
   },
   travauxCollectif: {
@@ -78,8 +78,7 @@ export const solution = {
     text: [
       {
         titre: "Volume sonore",
-        contenu:
-          "De 45 à 65dB (unité extérieure) / de 50 à 65dB (unité intérieure)",
+        contenu: "De 45 à 65dB (unité extérieure) / de 50 à 65dB (unité intérieure)",
       },
       {
         titre: "Acoustique",
@@ -94,13 +93,11 @@ export const solution = {
     text: [
       {
         titre: "Unité extérieure",
-        contenu:
-          "Les PAC air / air disposent d’une unité extérieure (sol, toiture, jardin ou terrasse).",
+        contenu: "Les PAC air / air disposent d’une unité extérieure (sol, toiture, jardin ou terrasse).",
       },
       {
         titre: "Emprise des PAC",
-        contenu:
-          "Assurez-vous que la place est suffisante en extérieur (voir la surface estimée).",
+        contenu: "Assurez-vous que la place est suffisante en extérieur (voir la surface estimée).",
       },
       {
         titre: "Structure",

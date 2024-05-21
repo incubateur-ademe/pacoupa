@@ -32,16 +32,18 @@ export const solution = {
     text: [
       {
         titre: "Structure",
-        contenu: "En cas de pose en toiture-terrasse, anticipez l’impact des PAC sur la capacité structurelle de la toiture."
+        contenu:
+          "En cas de pose en toiture-terrasse, anticipez l’impact des PAC sur la capacité structurelle de la toiture.",
       },
       {
         titre: "Raccordement électrique",
-        contenu: "Anticipez l’impact sur la puissance de raccordement électrique."
+        contenu: "Anticipez l’impact sur la puissance de raccordement électrique.",
       },
       {
         titre: "Réseaux hydrauliques",
-        contenu: "Nettoyage et isolation des réseaux chauffage à prévoir pour optimiser la performance de l’installation."
-      }
+        contenu:
+          "Nettoyage et isolation des réseaux chauffage à prévoir pour optimiser la performance de l’installation.",
+      },
     ],
   },
   travauxCollectif: {
@@ -50,8 +52,7 @@ export const solution = {
     text: [
       {
         titre: "Déroulement des travaux",
-        contenu:
-          "Travaux rapides dans des parties communes peu fréquentées.",
+        contenu: "Travaux rapides dans des parties communes peu fréquentées.",
       },
     ],
   },
@@ -73,8 +74,7 @@ export const solution = {
     text: [
       {
         titre: "Volume sonore",
-        contenu:
-          "De 45 à 65dB (bouche en façade) / de 50 à 65dB (unité intérieure)",
+        contenu: "De 45 à 65dB (bouche en façade) / de 50 à 65dB (unité intérieure)",
       },
       {
         titre: "Acoustique",
@@ -93,8 +93,7 @@ export const solution = {
       },
       {
         titre: "PLU",
-        contenu:
-          "Vérifiez que l’intégration architecturales des bouches en façade est compatible avec le PLU.",
+        contenu: "Vérifiez que l’intégration architecturales des bouches en façade est compatible avec le PLU.",
       },
     ],
   },

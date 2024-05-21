@@ -32,15 +32,17 @@ export const solution = {
     text: [
       {
         titre: "Aucun travaux sur parties communes",
-        contenu: "Une PAC est présente dans chaque logement, étant composée d’un seul bloc intégrant une pompe à chaleur et un ballon de stockage ECS. Ce bloc doit être raccordé à l’air extérieur via la ventilation mécanique."
+        contenu:
+          "Une PAC est présente dans chaque logement, étant composée d’un seul bloc intégrant une pompe à chaleur et un ballon de stockage ECS. Ce bloc doit être raccordé à l’air extérieur via la ventilation mécanique.",
       },
       {
         titre: "Raccordement électrique",
-        contenu: "Anticipez l’impact sur la puissance de raccordement électrique."
+        contenu: "Anticipez l’impact sur la puissance de raccordement électrique.",
       },
       {
         titre: "Réseaux hydrauliques",
-        contenu: "Nettoyage et isolation des réseaux chauffage et ECS à prévoir pour optimiser la performance de l’installation."
+        contenu:
+          "Nettoyage et isolation des réseaux chauffage et ECS à prévoir pour optimiser la performance de l’installation.",
       },
     ],
   },
@@ -49,7 +51,7 @@ export const solution = {
     text: [
       {
         titre: "Travaux à prévoir",
-        contenu: "Aucun."
+        contenu: "Aucun.",
       },
     ],
   },
@@ -59,11 +61,12 @@ export const solution = {
     text: [
       {
         titre: "Emprise logement",
-        contenu: "Il faut prévoir un encombrement d'environ 70x70x250 cm (placard acoustique)."
+        contenu: "Il faut prévoir un encombrement d'environ 70x70x250 cm (placard acoustique).",
       },
       {
         titre: "Déroulement des travaux",
-        contenu: "Il est nécessaire d’installer une unité intérieure composée d’un seul bloc, intégrant une pompe à chaleur et un ballon de stockage ECS. La PAC est raccordée et prélève les calories sur l’air extrait par la ventilation mécanique."
+        contenu:
+          "Il est nécessaire d’installer une unité intérieure composée d’un seul bloc, intégrant une pompe à chaleur et un ballon de stockage ECS. La PAC est raccordée et prélève les calories sur l’air extrait par la ventilation mécanique.",
       },
     ],
   },
@@ -72,11 +75,12 @@ export const solution = {
     text: [
       {
         titre: "Volume sonore",
-        contenu: "de 45 à 65dB"
+        contenu: "de 45 à 65dB",
       },
       {
         titre: "Acoustique",
-        contenu: "Il est préconisé de mettre la PAC dans un placard acoustique pour éviter toute gêne, et de ne pas le positionner sur des cloisons mitoyennes de chambre."
+        contenu:
+          "Il est préconisé de mettre la PAC dans un placard acoustique pour éviter toute gêne, et de ne pas le positionner sur des cloisons mitoyennes de chambre.",
       },
     ],
   },
@@ -85,11 +89,12 @@ export const solution = {
     text: [
       {
         titre: "Impact extérieur",
-        contenu: "Il n’y a pas d’unité extérieure, simplement une bouche en façade. La pompe à chaleur est reliée à l’air extrait par la ventilation mécanique. Il faut anticiper l’intégration architecturale des bouches en façade."
+        contenu:
+          "Il n’y a pas d’unité extérieure, simplement une bouche en façade. La pompe à chaleur est reliée à l’air extrait par la ventilation mécanique. Il faut anticiper l’intégration architecturale des bouches en façade.",
       },
       {
         titre: "PLU",
-        contenu: "Vérifiez que l’intégration architecturales des bouches en façade est compatible avec le PLU."
+        contenu: "Vérifiez que l’intégration architecturales des bouches en façade est compatible avec le PLU.",
       },
     ],
   },
