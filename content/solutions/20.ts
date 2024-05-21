@@ -47,6 +47,7 @@ export const solution = {
     ],
   },
   travauxCollectif: {
+    image: "01-10-20 - PAC air eau - parties communes.png",
     note: "dynamic",
     text: [
       {

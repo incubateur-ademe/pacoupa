@@ -96,7 +96,6 @@ export const solution = {
   },
   espaceExterieur: {
     note: "D",
-    image: "52 - PAC air air avec ECS - T One - impact exterieur.png",
     text: [
       {
         titre: "Unité extérieure",

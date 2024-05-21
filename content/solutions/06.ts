@@ -48,7 +48,7 @@ export const solution = {
   },
   travauxCollectif: {
     note: "dynamic",
-    image: "06-16-26 - Hybride PAC gainée + chaudiere - parties communes.png",
+    image: "06-16-26 - Hybride PAC gainee + chaudiere - parties communes.png",
     text: [
       {
         titre: "Déroulement des travaux",
@@ -85,7 +85,6 @@ export const solution = {
   },
   espaceExterieur: {
     note: "C",
-    image: "10-20 - PAC air eau - impact exterieur.png",
     text: [
       {
         titre: "Impact extérieur",

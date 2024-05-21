@@ -44,7 +44,7 @@ export const solution = {
   },
   travauxCollectif: {
     note: "dynamic",
-    image: "32 - CET Air  Eau - parties communes.png",
+    image: "32 - CET air eau - parties communes.png",
     text: [
       {
         titre: "Travaux à prévoir",
@@ -55,7 +55,7 @@ export const solution = {
   },
   travauxIndividuel: {
     note: "dynamic",
-    image: "32 - CET Air  Eau - appartement.png",
+    image: "32 - CET air eau - appartement.png",
     text: [],
   },
   acoustique: {

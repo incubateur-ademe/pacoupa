@@ -85,7 +85,7 @@ export const solution = {
   },
   espaceExterieur: {
     note: "C",
-    image: "05-15-25 - Hybride PAC + chaudiere - impact exterieur.png",
+    image: "10-20 - PAC air eau - impact exterieur.png",
     text: [
       {
         titre: "Unité extérieure",

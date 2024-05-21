@@ -43,6 +43,7 @@ export const solution = {
     ],
   },
   travauxCollectif: {
+    image: "30 - CET air extrait eau - impact exterieur.png",
     note: "dynamic",
     text: [
       {
@@ -52,6 +53,7 @@ export const solution = {
     ],
   },
   travauxIndividuel: {
+    image: "30 - CET air extrait eau - appartement.png",
     note: "dynamic",
     text: [
       {

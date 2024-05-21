@@ -47,6 +47,7 @@ export const solution = {
     ],
   },
   travauxCollectif: {
+    image: "07 - PAC sur air extrait - impact exterieur.png",
     note: "dynamic",
     text: [
       {
