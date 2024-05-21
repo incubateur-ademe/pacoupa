@@ -21,7 +21,7 @@ export const ButtonsFunnel = ({ disabled }: Props = { disabled: false }) => {
           {!isFirstStep && (
             <Button
               type="button"
-              priority="tertiary"
+              priority="tertiary no outline"
               iconId="fr-icon-arrow-left-line"
               nativeButtonProps={{
                 onClick: () => previousStep(),
