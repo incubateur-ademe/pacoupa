@@ -33,7 +33,7 @@ export const solution = {
       {
         titre: "Local technique",
         contenu:
-          "S’assurer que la place est suffisante dans la chaufferie existante, ou pour implanter un local technique (surface estimée : xx m²). S’assurer que la PAC pourra être installée proche de la façade (max 3 m).",
+          "Assurez-vous que la place est suffisante dans la chaufferie existante ou pour implanter un local technique (voir surface estimée). Il faut également que la PAC soit installée proche de la façade (max 3 m).",
       },
       {
         titre: "Raccordement électrique",
@@ -75,16 +75,12 @@ export const solution = {
     text: [
       {
         titre: "Volume sonore",
-        contenu: "de 45 à 65dB (unité extérieure) / de 50 à 65dB (unité intérieure)",
+        contenu: "de 45 à 65dB (bouche en façade) / de 50 à 65dB (unité intérieure)",
       },
       {
         titre: "Acoustique",
         contenu:
           "Le bruit d’une PAC est couvert par les bruits ambiants la journée mais peut être gênant la nuit si les bouches en façade sont trop proches des chambres. Il existe des solutions pour diminuer l’impact sonore des bouches en façade.",
-      },
-      {
-        titre: "",
-        contenu: "",
       },
     ],
   },

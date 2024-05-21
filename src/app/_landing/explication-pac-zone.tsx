@@ -24,15 +24,13 @@ export const ExplicationPacZone = () => {
               <H2>PAC, RCU: c'est quoi ?</H2>
               <p>Vous hésitez entre une chaudière à gaz ou des radiateurs électriques ?</p>
               <p className={styles.questions}>
-                Et pourquoi pas une{" "}
                 <strong className="pac">
-                  <UnderlineText>pompe à chaleur</UnderlineText>{" "}
-                  <span className={fr.cx("fr-icon--sm", "ri-information-line")} aria-hidden="true"></span> ?
+                  Et pourquoi pas une <UnderlineText>pompe à chaleur</UnderlineText> (PAC){" "}
+                  <span className={fr.cx("fr-icon--sm", "ri-information-line")} aria-hidden="true"></span>
                 </strong>
                 <br />
-                Ou un raccordement au{" "}
                 <strong className="rcu">
-                  <UnderlineText>réseau de chaleur urbain</UnderlineText>{" "}
+                  ou un raccordement au <UnderlineText>réseau de chaleur urbain</UnderlineText> (RCU){" "}
                   <span className={fr.cx("fr-icon--sm", "ri-information-line")} aria-hidden="true"></span> ?
                 </strong>
               </p>

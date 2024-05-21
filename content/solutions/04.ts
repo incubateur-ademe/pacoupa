@@ -12,32 +12,90 @@ export const solution = {
   usageFr: "Non",
   environnement: {
     note: "B",
-    text: [],
+    text: [
+      {
+        titre: "Consommation d’énergie",
+        contenu:
+          "La pompe à chaleur utilise une énergie décarbonée (l’électricité). Son rendement est, en moyenne, trois fois supérieur à celui d’un radiateur électrique ou d’une chaudière.",
+      },
+      {
+        titre: "Entretien",
+        contenu: "Au même titre qu’une chaudière, il est important de prévoir une maintenance régulière des appareils.",
+      },
+    ],
   },
   cout: {
     note: "dynamic",
   },
   difficulte: {
     note: "dynamic",
-    text: [],
+    text: [
+      {
+        titre: "Structure",
+        contenu:
+          "En cas de pose en toiture terrasse, anticipez l’impact des capteurs solaires sur la capacité structurelle de la toiture.",
+      },
+      {
+        titre: "Raccordement électrique",
+        contenu: "Anticipez l’impact sur la puissance de raccordement électrique.",
+      },
+      {
+        titre: "Réseaux hydrauliques",
+        contenu:
+          "Nettoyage et isolation des réseaux chauffage et ECS à prévoir pour optimiser la performance de l’installation.",
+      },
+    ],
   },
   travauxCollectif: {
     note: "dynamic",
     image: "04 - PAC sur capteur solaire - parties communes.png",
-    text: [],
+    text: [
+      {
+        titre: "Déroulement des travaux",
+        contenu: "Travaux rapides dans des parties communes peu fréquentées.",
+      },
+    ],
   },
   travauxIndividuel: {
     note: "dynamic",
-    text: [],
+    text: [
+      {
+        titre: "Emprise logement",
+        contenu: "Aucune.",
+      },
+      {
+        titre: "Déroulement des travaux",
+        contenu: "Pas de travaux dans les appartements.",
+      },
+    ],
   },
   acoustique: {
     note: "A",
-    text: [],
+    text: [
+      {
+        titre: "Acoustique",
+        contenu: "Aucune nuisance sonore.",
+      },
+    ],
   },
   espaceExterieur: {
     note: "C",
     image: "04 - PAC sur capteur solaire - impact exterieur.png",
-    text: [],
+    text: [
+      {
+        titre: "Capteurs solaires",
+        contenu: "Assurez-vous que la place pour les capteurs solaires est suffisante (généralement en toiture).",
+      },
+      {
+        titre: "Structure",
+        contenu:
+          "En cas de pose en toiture terrasse, anticipez l’impact des capteurs solaires sur la capacité structurelle de la toiture.",
+      },
+      {
+        titre: "PLU",
+        contenu: "Vérifiez que l'installation est compatible avec le PLU (notamment l'impact visuel des capteurs).",
+      },
+    ],
   },
   maturite: {
     note: "A",

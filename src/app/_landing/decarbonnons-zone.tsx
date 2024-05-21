@@ -16,10 +16,10 @@ export const DecarbonnonsZone = () => {
         <Grid haveGutters valign="top">
           <GridCol base={8} className={"flex flex-col justify-center content-center"}>
             <P>
-              Nous devons décarboner les deux tiers de notre consommation d’énergie d’origine fossile et importée de
-              l’autre bout du monde.
+              Nous devons décarboner les <strong>deux tiers</strong> de notre consommation d’énergie d’origine fossile
+              et importée de l’autre bout du monde.
             </P>
-            <H3 as="h5">Le secteur du batiment en 2 chiffres</H3>
+            <H3 as="h5">Le secteur du bâtiment en 2 chiffres</H3>
 
             <Box className="flex">
               <Box className="flex flex-col gap-4 items-center p-8">

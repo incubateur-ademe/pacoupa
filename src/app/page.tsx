@@ -7,7 +7,6 @@ import { DecarbonnonsZone } from "./_landing/decarbonnons-zone";
 import { ExplicationPacZone } from "./_landing/explication-pac-zone";
 import { LandingHero } from "./_landing/hero";
 import { LaisserGuider } from "./_landing/laisser-guider-zone";
-import { LogosZone } from "./_landing/logos-zone";
 import { RaisonsZone } from "./_landing/raisons-zone";
 import { Solution5mnZone } from "./_landing/solution-5mn-zone";
 import { sharedMetadata } from "./shared-metadata";
@@ -39,9 +38,9 @@ const Home = () => {
         <LandingHero />
       </Section>
 
-      <Section mt="14w">
+      {/* <Section mt="14w">
         <LogosZone />
-      </Section>
+      </Section> */}
 
       <Section mt="6w">
         <RaisonsZone />

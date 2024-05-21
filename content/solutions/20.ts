@@ -42,11 +42,12 @@ export const solution = {
       {
         titre: "Réseaux hydrauliques",
         contenu:
-          "Nettoyage et isolation des réseaux chauffage et ECS à prévoir pour optimiser la performance de l’installation.",
+          "Nettoyage et isolation des réseaux chauffage à prévoir pour optimiser la performance de l’installation.",
       },
     ],
   },
   travauxCollectif: {
+    image: "01-10-20 - PAC air eau - parties communes.png",
     note: "dynamic",
     text: [
       {
