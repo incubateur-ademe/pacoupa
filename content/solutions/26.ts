@@ -52,7 +52,7 @@ export const solution = {
     text: [
       {
         titre: "Déroulement des travaux",
-        contenu: "Travaux rapides dans des parties communes peu fréquentées.",
+        contenu: "Travaux rapides dans des parties communes peu fréquentées. La pose d’une PAC gainée nécessite un local commun donnant sur l’extérieur.",
       },
     ],
   },
@@ -79,7 +79,7 @@ export const solution = {
       {
         titre: "Acoustique",
         contenu:
-          "Le bruit d’une PAC est couvert par les bruits ambiants la journée mais peut être gênant la nuit si les bouches en façade sont trop proches des chambres. Il existe des solutions pour diminuer l’impact sonore des bouches en façade.",
+          "Le bruit d’une PAC est couvert par les bruits ambiants la journée mais peut être gênant la nuit si les bouches en façade sont trop proches des chambres. Il existe des solutions pour diminuer l’impact sonore des bouches en façade. La pose d’une PAC en intérieur permet de réduire ce volume sonore.",
       },
     ],
   },

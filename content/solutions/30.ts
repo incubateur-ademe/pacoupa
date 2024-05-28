@@ -43,12 +43,11 @@ export const solution = {
     ],
   },
   travauxCollectif: {
-    image: "30 - CET air extrait eau - impact exterieur.png",
     note: "dynamic",
     text: [
       {
         titre: "Déroulement des travaux",
-        contenu: "Aucun.",
+        contenu: "Aucun, cela fonctionne avec la VMC déjà existante.",
       },
     ],
   },
