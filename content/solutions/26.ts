@@ -52,7 +52,7 @@ export const solution = {
     text: [
       {
         titre: "Déroulement des travaux",
-        contenu: "Travaux rapides dans des parties communes peu fréquentées.",
+        contenu: "Travaux rapides dans des parties communes peu fréquentées. La pose d’une PAC gainée nécessite un local commun donnant sur l’extérieur.",
       },
     ],
   },
