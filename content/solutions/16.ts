@@ -79,7 +79,7 @@ export const solution = {
       {
         titre: "Acoustique",
         contenu:
-          "Le bruit d’une PAC est couvert par les bruits ambiants la journée mais peut être gênant la nuit si l’unité est trop proche des chambres. Il existe des solutions pour diminuer l’impact sonore des unités extérieures.",
+          "Le bruit d’une PAC est couvert par les bruits ambiants la journée mais peut être gênant la nuit si l’unité est trop proche des chambres. Il existe des solutions pour diminuer l’impact sonore des unités extérieures. La pose d’une PAC en intérieur permet de réduire ce volume sonore.",
       },
     ],
   },
