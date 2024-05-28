@@ -2,8 +2,8 @@ import { type Solution } from "@/lib/enums";
 
 export const solution = {
   id: "50",
-  nom: "Pompe à chaleur eau / eau (avec unité extérieure)",
-  familleSolution: "CET Air-Eau",
+  nom: "Pompe à chaleur air / eau (avec unité extérieure)",
+  familleSolution: "PAC Air-Eau",
   type: "IND",
   description:
     "La pompe à chaleur (PAC) air / eau prélève de la chaleur dans l'air extérieur, augmente son niveau de température et la transfère à un circuit d'eau.",
