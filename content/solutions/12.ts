@@ -4,7 +4,7 @@ import { type Solution } from "@/lib/enums";
 
 export const solution = {
   id: "12",
-  nom: "PAC Air / Air (DRV)",
+  nom: "Pompe à chaleur air / air (DRV)",
   familleSolution: "PAC Air-Air",
   type: "COL",
   description:
