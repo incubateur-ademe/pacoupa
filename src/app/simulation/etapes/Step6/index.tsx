@@ -35,11 +35,17 @@ const schemaNon = z.object({
       return { message: context.defaultError };
     },
   }),
+  espacesExterieursPersonnels: z.never(),
 });
 
 export const Step6 = () => {
   const [radioState, setRadioState] = useState<(typeof OuiNonLabels)[number] | undefined>();
-  const { store } = usePacoupaSessionStorage();
+  const { store, setStore } = usePacoupaSessionStorage();
+
+  useEffect(() => {
+    setStore({ ...store, espacesExterieursPersonnels: undefined });
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- cleaning the potential precedent values is mandatory. It will be submitted back if needed.
+  }, []);
 
   useEffect(() => {
     setRadioState((store.possedeEspacesExterieursPersonnels as (typeof OuiNonLabels)[number]) ?? "Oui");
