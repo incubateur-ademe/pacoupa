@@ -35,16 +35,16 @@ const schemaNon = z.object({
       return { message: context.defaultError };
     },
   }),
+  espacesExterieursPersonnels: z.undefined(),
 });
 
 export const Step6 = () => {
   const [radioState, setRadioState] = useState<(typeof OuiNonLabels)[number] | undefined>();
-  const { store } = usePacoupaSessionStorage();
+  const { store, setStore } = usePacoupaSessionStorage();
 
   useEffect(() => {
-    setRadioState((store.possedeEspacesExterieursPersonnels as (typeof OuiNonLabels)[number]) ?? "Oui");
+    setRadioState((store.possedeEspacesExterieursCommuns as (typeof OuiNonLabels)[number]) ?? "Oui");
   }, [store]);
-
   useEffect(() => {
     if (radioState === "Non") {
       (document.getElementsByName("espacesExterieursPersonnels") as NodeListOf<HTMLInputElement>).forEach(
@@ -52,8 +52,11 @@ export const Step6 = () => {
           el.checked = false;
         },
       );
+      setStore({ ...store, espacesExterieursPersonnels: undefined });
     }
-  }, [radioState]);
+    // Doesn't depend on store and make a recursive call if present.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [radioState, setStore]);
 
   return (
     <>
