@@ -53,7 +53,7 @@ export const solution = {
       {
         titre: "Déroulement des travaux",
         contenu:
-          "Travaux rapides dans des parties communes peu fréquentées.  La pompe à chaleur est située dans le local technique et est connectée à l’air extérieur par des gaines.",
+          "Travaux rapides dans des parties communes peu fréquentées. La pose d’une PAC gainée nécessite un local commun donnant sur l’extérieur.",
       },
     ],
   },
