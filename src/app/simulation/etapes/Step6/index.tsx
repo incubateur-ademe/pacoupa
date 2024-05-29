@@ -43,9 +43,13 @@ export const Step6 = () => {
   const { store, setStore } = usePacoupaSessionStorage();
 
   useEffect(() => {
-    setRadioState((store.possedeEspacesExterieursCommuns as (typeof OuiNonLabels)[number]) ?? "Oui");
-  }, [store]);
+    // On mount, load the value from the store or set it to the Oui value, to display the Oui options.
+    setRadioState((store.possedeEspacesExterieursPersonnels as (typeof OuiNonLabels)[number]) ?? "Oui");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   useEffect(() => {
+    // Clean the checkboxes and the store if the user selects Non.
     if (radioState === "Non") {
       (document.getElementsByName("espacesExterieursPersonnels") as NodeListOf<HTMLInputElement>).forEach(
         (el: HTMLInputElement) => {
