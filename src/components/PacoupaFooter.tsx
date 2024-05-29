@@ -31,6 +31,10 @@ export const PacoupaFooter = () => {
             linkProps: { href: "/cgu" },
           },
           <FooterPersonalDataPolicyItem key="FooterPersonalDataPolicyItem" />,
+          {
+            text: "Politique des cookies",
+            linkProps: { href: "/politique-des-cookies" },
+          },
           // {
           //   ...headerFooterDisplayItem,
           //   iconId: "fr-icon-theme-fill",
@@ -54,7 +58,7 @@ export const PacoupaFooter = () => {
         license={
           <>
             Sauf mention contraire, tous les contenus de ce site sont sous{" "}
-            <a href={`${config.repositoryUrl}/main/LICENSE`} target="_blank" rel="noreferrer">
+            <a href={`${config.repositoryUrl}/blob/main/LICENSE`} target="_blank" rel="noreferrer">
               licence Apache 2.0
             </a>
           </>
