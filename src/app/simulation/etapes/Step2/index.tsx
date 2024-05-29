@@ -25,16 +25,17 @@ export const Step2 = () => {
   return (
     <>
       <HeaderFunnel />
-      <P>
-        Quelle est <strong>l’année</strong> de construction du bâtiment ?
-      </P>
 
       <WizardForm
         schema={schema}
         render={({ errors, store }) => (
           <Box>
             <Input
-              label=""
+              label={
+                <>
+                  Quelle est <strong>l’année</strong> de construction du bâtiment ?
+                </>
+              }
               nativeInputProps={{
                 "aria-required": true,
                 "aria-invalid": Boolean(errors?.annee?._errors),

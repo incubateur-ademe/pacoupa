@@ -2,6 +2,7 @@
 
 import { fr } from "@codegouvfr/react-dsfr";
 import { Stepper } from "@codegouvfr/react-dsfr/Stepper";
+import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import { useWizard } from "react-use-wizard";
 
 import { Box } from "@/dsfr";
@@ -14,19 +15,20 @@ const phases = [
 ] as const;
 
 const findPhase = (step: number) => {
-  let phase = 0;
+  let numPhase = 0;
 
   let currentStep = step;
 
   for (let i = 0; i < phases.length; i++) {
     if (currentStep >= phases[i][1]) {
       currentStep = currentStep - phases[i][1];
-      phase++;
+      numPhase++;
     } else {
       return {
-        phase: phases[phase],
+        numPhase: numPhase + 1,
+        phase: phases[numPhase],
         currentStep,
-        nextTitle: phases[phase + 1]?.[0] ?? "",
+        nextTitle: phases[numPhase + 1]?.[0] ?? "",
       };
     }
   }
@@ -45,12 +47,20 @@ const findPhase = (step: number) => {
 export const HeaderFunnel = () => {
   const { activeStep } = useWizard();
 
-  const { phase, currentStep } = findPhase(activeStep);
+  const { phase, currentStep, numPhase } = findPhase(activeStep);
 
   return (
     <Box className={fr.cx("fr-mt-4w")}>
       {/* We can't use nextTitle because it is not shown when it is the last step of a phase... */}
-      <Stepper currentStep={currentStep + 1} stepCount={phase[1]} title={phase[0]} />
+      <Stepper
+        currentStep={currentStep + 1}
+        stepCount={phase[1]}
+        title={
+          <div>
+            {phase[0]} <span className={cx("font-normal")}>{numPhase}/3</span>
+          </div>
+        }
+      />
     </Box>
   );
 };
