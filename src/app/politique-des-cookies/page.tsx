@@ -1,6 +1,6 @@
 import { CookiesPolicy } from "@incubateur-ademe/legal-pages-react";
-import { config } from "dotenv";
 
+import { config } from "@/config";
 import { FooterConsentManagementItem } from "@/consentManagement";
 import { Container } from "@/dsfr";
 
