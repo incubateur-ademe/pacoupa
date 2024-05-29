@@ -11,7 +11,7 @@ export const solutions = sqliteTable("solutions", {
   usageEcs: text("usage_ECS", drizzleEnumUsages).notNull(),
   usageFr: text("usage_FR", drizzleEnumUsages).notNull(),
   noteImpactVisuel: text("note_impact_visuel", drizzleEnumNotes).notNull(),
-  noteImpactSonore: text("note_Impact_sonore", drizzleEnumNotes).notNull(),
+  noteImpactSonore: text("note_impact_sonore", drizzleEnumNotes).notNull(),
   noteImpactEspaceExterieur: text("note_impact_espace_exterieur", drizzleEnumNotes).notNull(),
   noteEnvironnemental: text("note_environnemental", drizzleEnumNotes).notNull(),
   noteMaturite: text("note_maturite", drizzleEnumNotes).notNull(),
@@ -26,6 +26,7 @@ export const solutions = sqliteTable("solutions", {
   raccordementElectrique: text("raccordement_electrique"),
   impactVisuel: text("impact_visuel"),
   descriptionSolution: text("description_solution"),
+  descriptionSolutionPropositionPouget: text("description_solution_proposition Pouget"),
   commentaireApp: text("commentaire_app"),
   commentairePouget: text("commentaire_pouget"),
 });

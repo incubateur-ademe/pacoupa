@@ -24,9 +24,9 @@ sqlite-utils transform pacoupa.db solutions \
 --pk id \
 --drop num_solution \
 -o id -o nom -o famille_solution -o type -o usage_CH -o usage_ECS -o usage_FR \
--o note_impact_visuel -o note_Impact_sonore -o note_impact_espace_exterieur -o note_environnemental -o note_maturite \
+-o note_impact_visuel -o note_impact_sonore -o note_impact_espace_exterieur -o note_environnemental -o note_maturite \
 --not-null nom --not-null famille_solution --not-null type --not-null usage_CH --not-null usage_ECS --not-null usage_FR \
---not-null note_impact_visuel --not-null note_Impact_sonore --not-null note_impact_espace_exterieur --not-null note_environnemental --not-null note_maturite \
+--not-null note_impact_visuel --not-null note_impact_sonore --not-null note_impact_espace_exterieur --not-null note_environnemental --not-null note_maturite \
 # --drop commentaire_app \
 # --drop commentaire_pouget \
 # --drop num_AFPAC \

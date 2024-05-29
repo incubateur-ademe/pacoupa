@@ -49,23 +49,23 @@ En cas de modification du fichier Google sheet original, il faut :
 Il faut auparavant s'authentifier avec `turso auth login`.
 
 ```shell
-turso db destroy pacoupa
-turso db create pacoupa --from-file assets/pacoupa.db
+# si besoin de supprimer une base `turso db destroy pacoupa`
+
+# création d'une db suffixée avec le jour d'aujourd'hui
+turso db create pacoupa-20240528 --from-file assets/pacoupa.db
 ```
 
 Pour créer un nouveau token d'accès en lecture seule
 ```shell
-turso db tokens create pacoupa -r 
+turso db tokens create pacoupa-20240528 -r 
 ```
 
-
-
-Recopier le token dans .env et .env.local.
+Recopier le token dans .env et .env.local (TURSO_DATABASE_URL et TURSO_AUTH_TOKEN).
 Il faudra aussi le noter sur Vercel settings.
 
 3. Génération du schéma types Drizzle
 
-D'abord, vérifier son fichier `.env` renseignant les variables TURSO_DATABASE_URL et TURSO_AUTH_TOKEN.
+D'abord, vérifier que le fichier `.env` renseigne bien les variables TURSO_DATABASE_URL et TURSO_AUTH_TOKEN.
 
 ```shell
 yarn dk:introspect
