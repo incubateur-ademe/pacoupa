@@ -3,7 +3,7 @@
 import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
 import { z } from "zod";
 
-import { Box, P } from "@/dsfr";
+import { Box } from "@/dsfr";
 
 import { HeaderFunnel } from "../HeaderFunnel";
 import { WizardForm } from "../WizardForm";
@@ -19,9 +19,6 @@ export const Step3 = () => {
   return (
     <>
       <HeaderFunnel />
-      <P>
-        Quelles <strong>rénovations</strong> ont été effectuées sur votre bâtiment ?
-      </P>
 
       <WizardForm
         schema={schema}
@@ -31,6 +28,11 @@ export const Step3 = () => {
               name="renovation"
               aria-required
               aria-invalid={Boolean(errors?.renovation?._errors)}
+              legend={
+                <>
+                  Quelles <strong>rénovations</strong> ont été effectuées sur votre bâtiment ?
+                </>
+              }
               options={[
                 {
                   illustration: <AucuneRenovationImage />,

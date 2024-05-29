@@ -22,16 +22,17 @@ export const Step4 = () => {
   return (
     <>
       <HeaderFunnel />
-      <P>
-        Combien y a t-il de <strong>logements</strong> dans le bâtiment ?
-      </P>
 
       <WizardForm
         schema={schema}
         render={({ errors, store }) => (
           <Box>
             <Input
-              label=""
+              label={
+                <>
+                  Combien y a t-il de <strong>logements</strong> dans le bâtiment ?
+                </>
+              }
               nativeInputProps={{
                 "aria-required": true,
                 "aria-invalid": Boolean(errors?.nbLogements?._errors),
