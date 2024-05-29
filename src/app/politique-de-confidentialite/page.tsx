@@ -1,7 +1,7 @@
 import { PrivacyPolicy } from "@incubateur-ademe/legal-pages-react";
-import { config } from "dotenv";
 import { type Metadata } from "next";
 
+import { config } from "@/config";
 import { FooterConsentManagementItem } from "@/consentManagement";
 import { Container } from "@/dsfr";
 
