@@ -680,6 +680,19 @@
   resolved "https://registry.yarnpkg.com/@img/sharp-win32-x64/-/sharp-win32-x64-0.33.0.tgz#bfae1b82608a0d420e4b0b836ddb7dd58eaffa8e"
   integrity sha512-i3DtP/2ce1yKFj4OzOnOYltOEL/+dp4dc4dJXJBv6god1AFTcmkaA99H/7SwOmkCOBQkbVvA3lCGm3/5nDtf9Q==
 
+"@incubateur-ademe/legal-pages-markdown@0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@incubateur-ademe/legal-pages-markdown/-/legal-pages-markdown-0.2.0.tgz#70deffb1683dc7e39b1961791bdeb2307060644f"
+  integrity sha512-t9rmsPagsDIVkalapaQ33C2W4omi1SPa9pfzoommH2lKjagbK+TkMRlKT+ZNaEJXJzG4SKZHm8g0FqkEYxtzvA==
+
+"@incubateur-ademe/legal-pages-react@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@incubateur-ademe/legal-pages-react/-/legal-pages-react-0.2.0.tgz#215d95728c2a12548c12e84416564fa1cedc5f87"
+  integrity sha512-wlM2MZakPycdfxFDJse1NYrnyrdMpmmCS0eahGGWOkyyqfLcDED26s32Wv2iUqLYFeuKAfHU9cQrjpoA+SvN5A==
+  dependencies:
+    "@incubateur-ademe/legal-pages-markdown" "0.2.0"
+    mustache "^4.2.0"
+
 "@jridgewell/gen-mapping@^0.3.2":
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/@jridgewell/gen-mapping/-/gen-mapping-0.3.3.tgz#7e02e6eb5df901aaedb08514203b096614024098"
@@ -4577,6 +4590,11 @@ multipipe@^1.0.2:
   dependencies:
     duplexer2 "^0.1.2"
     object-assign "^4.1.0"
+
+mustache@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/mustache/-/mustache-4.2.0.tgz#e5892324d60a12ec9c2a73359edca52972bf6f64"
+  integrity sha512-71ippSywq5Yb7/tVYyGbkBggbU8H3u5Rz56fH60jGFgr8uHwxs+aSKeqmluIVzM0m0kB7xQjKS6qPfd0b2ZoqQ==
 
 mz@^2.7.0:
   version "2.7.0"
