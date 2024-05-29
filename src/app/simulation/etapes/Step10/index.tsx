@@ -3,7 +3,7 @@
 import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
 import { z } from "zod";
 
-import { Box, P } from "@/dsfr";
+import { Box } from "@/dsfr";
 
 import { HeaderFunnel } from "../HeaderFunnel";
 import { WizardForm } from "../WizardForm";
@@ -21,14 +21,13 @@ export const Step10 = () => {
     <>
       <HeaderFunnel />
 
-      <P>Le système de production d'eau chaude est ...</P>
-
       <WizardForm
         schema={schema}
         render={({ errors, store }) => (
           <Box>
             <RadioButtons
               name="typeECS"
+              legend={<>Le système de production d'eau chaude est ...</>}
               aria-required
               aria-invalid={Boolean(errors?.typeECS?._errors)}
               options={[

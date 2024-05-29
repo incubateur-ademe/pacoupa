@@ -3,7 +3,7 @@
 import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
 import { z } from "zod";
 
-import { Box, P } from "@/dsfr";
+import { Box } from "@/dsfr";
 
 import { HeaderFunnel } from "../HeaderFunnel";
 import { WizardForm } from "../WizardForm";
@@ -24,7 +24,6 @@ export const Step7 = () => {
   return (
     <>
       <HeaderFunnel />
-      <P>S’agit-il d’un chauffage...</P>
 
       <WizardForm
         schema={schema}
@@ -32,6 +31,7 @@ export const Step7 = () => {
           <>
             <Box>
               <RadioButtons
+                legend={<>S’agit-il d’un chauffage...</>}
                 name="typeCH"
                 aria-required
                 aria-invalid={Boolean(errors?.typeCH?._errors)}

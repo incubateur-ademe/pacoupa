@@ -65,16 +65,17 @@ export const Step6 = () => {
   return (
     <>
       <HeaderFunnel />
-      <P>
-        Votre appartement a-t-il des <strong>espaces extérieurs personnels</strong> ?
-      </P>
 
       <WizardForm
         schema={radioState === "Oui" ? schemaOui : schemaNon}
         render={({ errors, store }) => (
           <>
             <SegmentedControl
-              legend=""
+              legend={
+                <>
+                  Votre appartement a-t-il des <strong>espaces extérieurs personnels</strong> ?
+                </>
+              }
               name="possedeEspacesExterieursPersonnels"
               aria-required
               aria-invalid={Boolean(errors?.possedeEspacesExterieursPersonnels?._errors)}

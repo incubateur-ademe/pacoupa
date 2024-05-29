@@ -3,7 +3,7 @@
 import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
 import { z } from "zod";
 
-import { Box, P } from "@/dsfr";
+import { Box } from "@/dsfr";
 
 import { HeaderFunnel } from "../HeaderFunnel";
 import { WizardForm } from "../WizardForm";
@@ -19,16 +19,17 @@ export const Step11 = () => {
     <>
       <HeaderFunnel />
 
-      <P>
-        Quel <strong>énergie principale</strong> utilisez-vous pour chauffer l’eau ?
-      </P>
-
       <WizardForm
         schema={schema}
         render={({ errors, store }) => (
           <Box>
             <RadioButtons
               name="energieECS"
+              legend={
+                <>
+                  Quel <strong>énergie principale</strong> utilisez-vous pour chauffer l’eau ?
+                </>
+              }
               aria-required
               aria-invalid={Boolean(errors?.energieECS?._errors)}
               options={[
