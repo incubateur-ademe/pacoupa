@@ -3,6 +3,7 @@
   "description": "Conseiller les copropriétaires dans l'installation de systèmes de chauffage décarbonés adaptés à leur logement.",
   "version": "1.2.0",
   "private": true,
+  "license": "Apache-2.0",
   "engines": {
     "node": "18.x"
   },
