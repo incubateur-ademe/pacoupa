@@ -1,10 +1,6 @@
-cd $ASSETS_DIR
+sqlite-utils insert $ASSETS_DIR/pacoupa.db solutions $ASSETS_DIR/solutions_clean.csv --csv -d
 
-# Build solutions table
-
-sqlite-utils insert pacoupa.db solutions solutions_clean.csv --csv -d
-
-sqlite-utils convert pacoupa.db solutions num_solution \
+sqlite-utils convert $ASSETS_DIR/pacoupa.db solutions num_solution \
 'bits = value.split("-")
 return {
   "id": bits[0].strip(),
@@ -12,7 +8,7 @@ return {
 }' --multi
 
 # réordonne les colonnes importantes en premier
-sqlite-utils transform pacoupa.db solutions \
+sqlite-utils transform $ASSETS_DIR/pacoupa.db solutions \
 --pk id \
 --drop num_solution \
 -o id -o nom -o famille_solution -o type -o usage_CH -o usage_ECS -o usage_FR \
