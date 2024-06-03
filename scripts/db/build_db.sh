@@ -17,12 +17,11 @@ iconv -f utf-8 -t utf-8 -c  $ASSETS_DIR/solutions_par_criteres.csv > $ASSETS_DIR
 iconv -f utf-8 -t utf-8 -c  $ASSETS_DIR/bdd_energie.csv > $ASSETS_DIR/bdd_energie_clean.csv
 
 # check ---------------------------------------------------------------------------------------
-#ASSETS_DIR=$ASSETS_DIR check_solutions.mts
-
+ASSETS_DIR=$ASSETS_DIR node --loader ts-node/esm ./validate_bdd_energie.mts
 
 # run scripts ---------------------------------------------------------------------------------
-ASSETS_DIR=$ASSETS_DIR ./build_solutions.sh
-ASSETS_DIR=$ASSETS_DIR ./build_solutions_par_criteres.sh
+# ASSETS_DIR=$ASSETS_DIR ./build_solutions.sh
+# ASSETS_DIR=$ASSETS_DIR ./build_solutions_par_criteres.sh
 ASSETS_DIR=$ASSETS_DIR ./build_bdd_energie.sh
 
 # post ----------------------------------------------------------------------------------------
