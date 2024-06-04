@@ -1,4 +1,7 @@
 import { integer, sqliteTable, text, uniqueIndex } from "drizzle-orm/sqlite-core";
+import { createSelectSchema } from "drizzle-zod";
+
+import { enumIsolation, enumNiveauxRenovation, enumTypologies } from "@/lib/enums";
 
 import { drizzleEnumFamilles, drizzleEnumNotes, drizzleEnumTypes, drizzleEnumUsages } from "./helper";
 
@@ -75,3 +78,58 @@ export const solutionsParCriteres = sqliteTable("solutions_par_criteres", {
   noteCout: text("note_cout", drizzleEnumNotes).notNull(),
   typeSolution: text("type_solution"),
 });
+
+export const bddEnergie = sqliteTable("bdd_energie", {
+  id: integer("id").primaryKey(),
+  zoneClimatique: text("zone_climatique"),
+  typologie: text("typologie"),
+  etatIsolationMenuiseries: text("etat_isolation_menuiseries"),
+  etatIsolationPlancherBas: text("etat_isolation_plancher_bas"),
+  etatIsolationPlancherHaut: text("etat_isolation_plancher_haut"),
+  etatIsolationMurs: text("etat_isolation_murs"),
+  scenarioRenovationEnveloppe: text("scenario_renovation_enveloppe"),
+  etatIsolationMenuiseriesApresScénarioRenovationEnveloppe: text(
+    "etat_isolation_menuiseries_apres_scénario_renovation_enveloppe",
+  ),
+  etatIsolationPlancherBasApresScénarioRenovationEnveloppe: text(
+    "etat_isolation_plancher_bas_apres_scénario_renovation_enveloppe",
+  ),
+  etatIsolationPlancherHautApresScénarioRenovationEnveloppe: text(
+    "etat_isolation_plancher_haut_apres_scénario_renovation_enveloppe",
+  ),
+  etatIsolationMursApresScénarioRenovationEnveloppe: text("etat_isolation_murs_apres_scénario_renovation_enveloppe"),
+  typeCh: text("type_CH"),
+  typeEcs: text("type_ECS"),
+  ch: text("CH"),
+  ecs: text("ECS"),
+  emetteur: text("emetteur"),
+  scenarioRenovationSysteme: text("scenario_renovation_systeme"),
+  usageCh: text("usage_CH", drizzleEnumUsages).notNull(),
+  usageEcs: text("usage_ECS", drizzleEnumUsages).notNull(),
+  cep: integer("CEP"),
+  ges: integer("GES"),
+  dpe: text("DPE"),
+  gainCep: text("gain_CEP"),
+});
+
+export const typologies = sqliteTable("typologies", {
+  id: integer("id").primaryKey(),
+  typologie: text("typologie", enumTypologies).notNull(),
+  minPeriode: integer("min_periode"),
+  maxPeriode: integer("max_periode"),
+  minLogements: integer("min_logements"),
+  maxLogements: integer("max_logements"),
+  niveauRenovation: text("niveau_renovation", enumNiveauxRenovation),
+  surfaceHabitable: integer("surface_habitable").notNull(),
+  nbLogements: integer("nb_logements"),
+  etatIsolationMenuiseries: text("etat_isolation_menuiseries", enumIsolation).notNull(),
+  surfaceMenuiseries: integer("surface_menuiseries").notNull(),
+  etatIsolationPlancherBas: text("etat_isolation_plancher_bas", enumIsolation).notNull(),
+  surfacePlancherBas: integer("surface_plancher_bas").notNull(),
+  etatIsolationPlancherHaut: text("etat_isolation_plancher_haut", enumIsolation).notNull(),
+  surfacePlancherHaut: integer("surface_plancher_haut").notNull(),
+  etatIsolationMurs: text("etat_isolation_murs", enumIsolation).notNull(),
+  surfaceMurs: integer("surface_murs").notNull(),
+});
+
+export const typologiesZodSchema = createSelectSchema(typologies);
