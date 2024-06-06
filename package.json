@@ -10,7 +10,7 @@
   "scripts": {
     "postinstall": "copy-dsfr-to-public",
     "predev": "only-include-used-icons",
-    "dev": "next dev",
+    "dev": "next dev --turbo",
     "prebuild": "only-include-used-icons",
     "build": "next build",
     "postbuild": "next-sitemap",
