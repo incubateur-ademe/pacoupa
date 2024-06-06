@@ -128,7 +128,7 @@ const config = {
   },
   overrides: [
     {
-      files: ["**/*.ts?(x)"],
+      files: ["**/*.ts?(x)", "**/*.mts?(x)"],
       extends: ["plugin:@typescript-eslint/recommended-type-checked"],
       parserOptions: {
         project: "./tsconfig.json",
@@ -203,7 +203,7 @@ const config = {
       },
     },
     {
-      files: ["scripts/**/*.ts"],
+      files: ["scripts/**/*.ts", "scripts/**/*.mts"],
       parserOptions: {
         project: "./scripts/tsconfig.json",
         tsconfigRootDir: __dirname,
