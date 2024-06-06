@@ -19,7 +19,7 @@ iconv -f utf-8 -t utf-8 -c  $ASSETS_DIR/typologies.csv > $ASSETS_DIR/typologies_
 
 # check ---------------------------------------------------------------------------------------
 ASSETS_DIR=$ASSETS_DIR node --loader ts-node/esm ./validate_bdd_energie.mts
-# ASSETS_DIR=$ASSETS_DIR node --loader ts-node/esm ./validate_typologies.mts
+#ASSETS_DIR=$ASSETS_DIR node --loader ts-node/esm ./validate_typologies.mts
 
 # run scripts ---------------------------------------------------------------------------------
 ASSETS_DIR=$ASSETS_DIR ./build_solutions.sh

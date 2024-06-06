@@ -1,0 +1,22 @@
+typologie,min_periode,max_periode,min_logements,max_logements,niveau_renovation,surface_habitable,nb_logements,etat_isolation_menuiseries,surface_menuiseries,etat_isolation_plancher_bas,surface_plancher_bas,etat_isolation_plancher_haut,surface_plancher_haut,etat_isolation_murs,surface_murs
+Petit collectif - Avant 1948,,1947,,14,,516,6,Pas isolé,60,Pas isolé,95,Pas isolé,130,Pas isolé,606
+Moyen collectif - Avant 1948,,1947,15,25,,624,20,Pas isolé,89,Pas isolé,150,Pas isolé,158,Pas isolé,563
+Grand collectif - Avant 1948,,1947,26,,,3204,52,Pas isolé,464,Pas isolé,510,Pas isolé,485,Pas isolé,2584
+Petit collectif (1948-1974),1948,1974,,19,,947,13,Pas isolé,110,Pas isolé,145,Pas isolé,135,Pas isolé,770
+Moyen-grand collectif (1948 -1974),1948,1974,20,70,,1981,30,Pas isolé,408,Pas isolé,240,Pas isolé,240,Pas isolé,1299
+Grand collectif (1948-1974),1948,1974,71,,,10516,128,Pas isolé,1169,Pas isolé,2337,Pas isolé,2337,Pas isolé,7465
+Petit collectif (1975-1981),1975,1981,,19,,179,4,Isolé,40,Pas isolé,126,Pas isolé,126,Pas isolé,145
+Moyen-grand collectif (1975-1981),1975,1981,20,70,,1227,34,Pas isolé,260,Pas isolé,298,Pas isolé,298,Pas isolé,1215
+Grand collectif (1975-1981),1975,1981,71,,,11433,188,Pas isolé,1310,Pas isolé,1594,Pas isolé,1621,Pas isolé,5782
+Petit collectif (1982-1989),1982,1989,,19,,851,12,Pas isolé,149,Pas isolé,246,Pas isolé,246,Pas isolé,658
+Moyen-grand collectif (1982-1989),1982,1989,20,70,,3348,34,Isolé,306,Pas isolé,725,Pas isolé,724,Pas isolé,2018
+Grand collectif (1982-1989),1982,1989,71,,,10516,128,Pas isolé,1169,Pas isolé,2337,Pas isolé,2337,Pas isolé,7465
+Petit collectif (1990-2000),1990,2000,,19,,682,8,Isolé,82,Isolé,303,Pas isolé,268,Isolé,570
+Moyen-grand collectif (1990-2000),1990,2000,20,70,,4890,69,Pas isolé,725,Isolé,654,Pas isolé,654,Isolé,2915
+Grand collectif (1990-2000),1990,2000,71,,,11433,188,Isolé,1310,Pas isolé,1594,Pas isolé,1621,Isolé,5782
+Petit collectif (2001-2005),2001,2005,,19,recent,497,8,Isolé,81,Isolé,150,Pas isolé,151,Isolé,436
+Moyen-grand collectif (2001- 2005),2001,2005,20,,recent,2344,31,Isolé,225,Isolé,565,Isolé,741,Isolé,1764
+Petit collectif (2006-2012),2006,2012,,19,recent,594,9,Isolé,119,Isolé,207,Isolé,207,Isolé,559
+Moyen-grand collectif (2006- 2012),2006,2012,20,,recent,4660,86,Isolé,798,Isolé,1320,Isolé,1301,Isolé,2604
+Petit collectif (après 2012),2013,,,19,recent,539,9,Isolé,92,Isolé,228,Isolé,228,Isolé,427
+Moyen-grand collectif (après 2012),2013,,20,,recent,2210,29,Isolé,340,Isolé,446,Isolé,446,Isolé,1318

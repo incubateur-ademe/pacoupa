@@ -14,6 +14,10 @@ export const enumTypes = ["COL", "IND", "MIX"] as const;
 
 export type SolutionTypes = (typeof enumTypes)[number];
 
+export const enumTypesWithoutMix = ["COL", "IND"] as const;
+
+export type SolutionTypesWithoutMix = (typeof enumTypesWithoutMix)[number];
+
 export const enumFamilles = [
   "RCU",
   "Geothermie",
@@ -56,9 +60,46 @@ export const enumTypologies = [
   "Moyen-grand collectif (2006- 2012)",
   "Petit collectif (après 2012)",
   "Moyen-grand collectif (après 2012)",
-];
+] as const;
 
 export type Typologies = (typeof enumTypologies)[number];
+
+export const enumZonesClimatiques = ["75 - Paris"] as const;
+
+export type ZonesClimatiques = (typeof enumZonesClimatiques)[number];
+
+export const enumScenarioRenovationEnveloppe = ["INIT", "INTER", "GLOB"] as const;
+
+export type ScenarioRenovationEnveloppe = (typeof enumScenarioRenovationEnveloppe)[number];
+
+export const enumTypeCH = ["ELEC", "FIOUL", "GAZ"] as const;
+
+export type TypeCH = (typeof enumTypeCH)[number];
+
+export const enumTypeECS = enumTypeCH;
+
+export type TypeECS = TypeCH;
+
+export const enumEmetteurs = ["Hydraulique", "Electrique"] as const;
+
+export type Emetteurs = (typeof enumEmetteurs)[number];
+
+export const enumScenarioRenovationSysteme = [
+  "S0",
+  "Chaudière gaz à condensation",
+  "ECS seule : PAC Air / Eau",
+  "ECS seule Hybride : PAC + chaudière",
+  "CH + ECS : PAC Air / Eau",
+  "CH + ECS Hybride : PAC + Chaudière",
+  "CH seul : PAC Air / Eau",
+  "CH seul Hybride : PAC + Chaudière",
+] as const;
+
+export type ScenarioRenovationSysteme = (typeof enumScenarioRenovationSysteme)[number];
+
+export const enumDPE = ["A", "B", "C", "D", "E", "F", "G"] as const;
+
+export type DPE = (typeof enumDPE)[number];
 
 type ImageEvaluation =
   | "01 - PAC air eau - impact exterieur.png"

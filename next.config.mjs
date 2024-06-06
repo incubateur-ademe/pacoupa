@@ -55,9 +55,9 @@ const config = {
 
     return config;
   },
-  //   experimental: {
-  //     typedRoutes: true,
-  //   },
+  experimental: {
+    typedRoutes: true,
+  },
   eslint: {
     ignoreDuringBuilds: true,
   },
