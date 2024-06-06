@@ -14,7 +14,7 @@ export const simulationSchema = z
       .int()
       .min(1, "L'année doit être supérieure à zéro")
       .max(currentYear, "L'année doit être inférieure ou égale à l'année en cours"),
-    renovation: z.enum(["aucune rénovation", "rénovations partielles", "rénovation globale"]),
+    renovation: z.array(z.enum(["toiture", "murs", "sol", "fenetres"])).optional(),
     nbLogements: z.coerce
       .number({
         invalid_type_error: "Le nombre de logements doit être un nombre",
