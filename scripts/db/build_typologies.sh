@@ -3,7 +3,8 @@ sqlite-utils insert --empty-null $ASSETS_DIR/pacoupa.db typologies $ASSETS_DIR/t
 # réordonne les colonnes importantes en premier
 sqlite-utils transform $ASSETS_DIR/pacoupa.db typologies \
 --pk id \
---not-null typologie \
+--rename typologie nom \
+--not-null nom \
 --not-null surface_habitable \
 --not-null etat_isolation_menuiseries \
 --not-null surface_menuiseries \

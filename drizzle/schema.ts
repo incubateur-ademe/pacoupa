@@ -135,7 +135,7 @@ export const bddEnergie = sqliteTable("bdd_energie", {
 
 export const typologies = sqliteTable("typologies", {
   id: integer("id").primaryKey(),
-  typologie: text("typologie", { enum: enumTypologies }).notNull(),
+  nom: text("nom", { enum: enumTypologies }).notNull(),
   minPeriode: integer("min_periode"),
   maxPeriode: integer("max_periode"),
   minLogements: integer("min_logements"),

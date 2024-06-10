@@ -31,3 +31,4 @@ ASSETS_DIR=$ASSETS_DIR ./build_typologies.sh
 rm $ASSETS_DIR/solutions_clean.csv
 rm $ASSETS_DIR/solutions_par_criteres_clean.csv
 rm $ASSETS_DIR/bdd_energie_clean.csv
+rm $ASSETS_DIR/typologies_clean.csv
