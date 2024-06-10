@@ -10,8 +10,8 @@ type CriteriaProps = {
   nbLogements: number;
 };
 
-export async function getTypologies(criteria: CriteriaProps) {
-  const rows = await db
+export async function getTypologie(criteria: CriteriaProps) {
+  const [row] = await db
     .select()
     .from(typologies)
     .where(
@@ -20,7 +20,7 @@ export async function getTypologies(criteria: CriteriaProps) {
         sql`(${typologies.minLogements} <= ${criteria.nbLogements} or ${typologies.minLogements} is null) and (${typologies.maxLogements} >= ${criteria.nbLogements} or ${typologies.maxLogements} is null)`,
       )}`,
     )
-    .all();
+    .limit(1);
 
-  return { data: rows };
+  return { data: row };
 }

@@ -1,7 +1,7 @@
 import { type NextRequest } from "next/server";
 import { z } from "zod";
 
-import { getTypologies } from "@/lib/server/useCases/getTypologies";
+import { getTypologie } from "@/lib/server/useCases/getTypologie";
 
 export const dynamic = "force-dynamic"; // defaults to auto
 
@@ -23,10 +23,10 @@ export async function GET(request: NextRequest) {
 
   if (!result.success) {
     const errors = result.error.format();
-    return Response.json({ error: `Erreur payload`, detail: errors });
+    return Response.json({ error: `Données invalides`, detail: errors });
   }
 
-  const res = await getTypologies({ annee: result.data.annee, nbLogements: result.data.nbLogements });
+  const res = await getTypologie({ annee: result.data.annee, nbLogements: result.data.nbLogements });
 
   return Response.json(res);
 }

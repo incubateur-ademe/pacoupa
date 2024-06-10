@@ -17,7 +17,7 @@ export async function POST(request: Request) {
 
   if (!formData.success) {
     const errors = formData.error.format();
-    return Response.json({ error: `Erreur de formatage du hash`, detail: errors });
+    return Response.json({ error: `Données invalides`, detail: errors });
   }
 
   const res = await getSolutionsParCriteres(formData.data);
