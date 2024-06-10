@@ -19,6 +19,8 @@ const SelectCriteresSchema = createSelectSchema(criteres, {
 
 export type SelectCriteresSchema = z.infer<typeof SelectCriteresSchema>;
 
+const estRenovationGlobale = (simulation: SimulationSchema) => simulation.renovation?.length === 4;
+
 /**
  * Application des règles métiers pour transformer le payload de l'API en en données utilisable pour la clause where de la requête SQL.
  *
@@ -53,16 +55,12 @@ export const createCriteria = (payload: SimulationSchema): SelectCriteresSchema 
     : "NA";
 
   const temperature: SelectCriteresSchema["temperature"] =
-    payload.emetteur === "plancher chauffant"
-      ? "< 40°C"
-      : payload.renovation === "rénovation globale"
-        ? "40-60°C"
-        : "> 60°C";
+    payload.emetteur === "plancher chauffant" ? "< 40°C" : estRenovationGlobale(payload) ? "40-60°C" : "> 60°C";
 
   const nbLgts: SelectCriteresSchema["nbLgts"] = payload.nbLogements < 15 ? "< 15" : ">= 15";
 
   const niveauRenovation: SelectCriteresSchema["niveauRenovation"] =
-    payload.annee >= 2000 || payload.renovation === "rénovation globale" ? "recent ou renove" : "NA";
+    payload.annee >= 2000 || estRenovationGlobale(payload) ? "recent ou renove" : "NA";
 
   return {
     ch: payload.typeCH === "collectif" ? "col" : "ind",
