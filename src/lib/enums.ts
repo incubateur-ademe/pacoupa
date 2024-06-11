@@ -146,7 +146,8 @@ type TypeSysteme =
   | "CH seul : PAC Air / Eau"
   | "CH seul Hybride : PAC + Chaudière"
   | "ECS seule : PAC Air / Eau"
-  | "ECS seule Hybride : PAC + chaudière";
+  | "ECS seule Hybride : PAC + chaudière"
+  | "RCU";
 
 export type Solution = {
   acoustique: SolutionEvaluation;
