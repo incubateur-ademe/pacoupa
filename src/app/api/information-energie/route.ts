@@ -1,10 +1,11 @@
-import { getInformationsEnergie } from "@/lib/server/useCases/getInformationEnergie";
+import { getInformationEnergie } from "@/lib/server/useCases/getInformationEnergie";
 import { GetInformationEnergieDTOSchema } from "@/lib/server/useCases/getInformationEnergie/dto";
 
 export const dynamic = "force-dynamic"; // defaults to auto
 
 /**
- * Get energy data for a user's simulation.
+ * Retourne les informations énergétiques suivant les caractéristiques d'un bâtiment.
+ *
  */
 export async function POST(request: Request) {
   const unparsedBody: unknown = await request.json();
@@ -15,7 +16,7 @@ export async function POST(request: Request) {
     return Response.json({ error: `Données invalides`, detail: errors }, { status: 400 });
   }
 
-  const res = await getInformationsEnergie(dto.data);
+  const res = await getInformationEnergie(dto.data);
 
   return Response.json(res, { status: 200 });
 }

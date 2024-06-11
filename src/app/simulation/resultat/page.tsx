@@ -12,7 +12,7 @@ import { NoDataImage } from "@/components/img/NoDataImage";
 import { Box, Container, Grid, GridCol } from "@/dsfr";
 import { H2, Text } from "@/dsfr/base/typography";
 import { informationBatimentSchema } from "@/lib/common/domain/InformationBatiment";
-import { getSolutionsParCriteres } from "@/lib/server/useCases/getSolutionsApplicables";
+import { getSolutionsApplicables } from "@/lib/server/useCases/getSolutionsApplicables";
 import { fetchBAN } from "@/lib/services/ban";
 import { fetchFcuEligibility } from "@/lib/services/fcu";
 
@@ -59,7 +59,7 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
   }
 
   const [baseSolutions, adresses] = await Promise.all([
-    getSolutionsParCriteres(formData.data),
+    getSolutionsApplicables(formData.data),
     fetchBAN(formData.data.adresse),
   ]);
 

@@ -9,10 +9,7 @@ import { db } from "@/lib/drizzle";
 import { type GetInformationEnergieDTO } from "./dto";
 import { creerCriteresBddEnergie, type CriteresBddEnergie } from "./helper";
 
-/**
- * Build a SQL condition from the filters.
- */
-const buildWhereClause = (filters: CriteresBddEnergie) => {
+const creerClauseWhere = (filters: CriteresBddEnergie) => {
   const keys = Object.keys(filters);
 
   const sqlChunks = keys.map(key => {
@@ -22,7 +19,7 @@ const buildWhereClause = (filters: CriteresBddEnergie) => {
   return sql`${sql.join(sqlChunks, sql` and `)}`;
 };
 
-export async function getInformationsEnergie(dto: GetInformationEnergieDTO) {
+export async function getInformationEnergie(dto: GetInformationEnergieDTO) {
   const criteres = await creerCriteresBddEnergie(dto);
 
   if (config.env !== "prod") console.debug("criteres", JSON.stringify(criteres, null, 2));
@@ -47,7 +44,7 @@ export async function getInformationsEnergie(dto: GetInformationEnergieDTO) {
       gainCep: bddEnergie.gainCep,
     })
     .from(bddEnergie)
-    .where(buildWhereClause(criteres))
+    .where(creerClauseWhere(criteres))
     .limit(1);
 
   return { data: row };

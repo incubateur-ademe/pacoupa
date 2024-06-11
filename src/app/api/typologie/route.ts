@@ -6,7 +6,8 @@ import { GetTypologieDTOSchema } from "@/lib/server/useCases/getTypologie/dto";
 export const dynamic = "force-dynamic"; // defaults to auto
 
 /**
- * Retourne toutes les typologies suivant les critères année de construction et nombre de logements.
+ * Retourne la typologie suivant les critères année de construction et nombre de logements.
+ *
  */
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;

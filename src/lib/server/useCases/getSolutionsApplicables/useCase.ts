@@ -9,14 +9,11 @@ import { db } from "@/lib/drizzle";
 import { type GetSolutionsApplicablesDTO } from "./dto";
 import { creerCriteresSolutionsApplicables, type SelectCriteresSchema } from "./helper";
 
-// The NA fields are a special case. When the field as no value in the payload, it should be considered as NA only. Payload with 1 value should be considered as this value OR NA, SQL wise.
-// Think to NA as "in every case" or "no matter what".
+// Les champs NA fields sont un cas spécial. Quand les champs n'ont pas de valeur dans le DTO, il faut le prendre comme NA. Les champs avec 1 valeur doivent être considérés comme cette valeur OU NA, côté SQL.
+// NA doit être vu comme "dans tous les cas", ou "peu importe".
 const NAFields = ["envContraint", "espaceExterieur", "toitureTerrasse", "nbLgts", "niveauRenovation", "temperature"];
 
-/**
- * Build a SQL condition from the filters.
- */
-const buildWhereClause = (filters: SelectCriteresSchema) => {
+const creerClauseWhere = (filters: SelectCriteresSchema) => {
   const keys = Object.keys(filters);
 
   const sqlChunks = keys.map(key => {
@@ -35,7 +32,7 @@ const buildWhereClause = (filters: SelectCriteresSchema) => {
   return sql`${sql.join(sqlChunks, sql.raw(" AND "))}`;
 };
 
-export async function getSolutionsParCriteres(dto: GetSolutionsApplicablesDTO) {
+export async function getSolutionsApplicables(dto: GetSolutionsApplicablesDTO) {
   const criteresSolutionsApplicables = creerCriteresSolutionsApplicables(dto);
 
   if (config.env !== "prod") console.debug("criteresHelper", JSON.stringify(criteresSolutionsApplicables, null, 2));
@@ -59,7 +56,7 @@ export async function getSolutionsParCriteres(dto: GetSolutionsApplicablesDTO) {
     .from(criteres)
     .innerJoin(solutionsParCriteres, eq(criteres.id, solutionsParCriteres.criteresId))
     .innerJoin(solutions, eq(solutionsParCriteres.solutionsId, solutions.id))
-    .where(buildWhereClause(criteresSolutionsApplicables))
+    .where(creerClauseWhere(criteresSolutionsApplicables))
     .orderBy(solutionsParCriteres.ordreSolution)
     .all();
 
