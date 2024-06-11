@@ -1,5 +1,6 @@
 import { integer, sqliteTable, text, uniqueIndex } from "drizzle-orm/sqlite-core";
 import { createSelectSchema } from "drizzle-zod";
+import { type z } from "zod";
 
 import { enumDPE } from "@/lib/common/domain/values/DPE";
 import { enumEmetteur } from "@/lib/common/domain/values/Emetteur";
@@ -131,6 +132,10 @@ export const bddEnergie = sqliteTable("bdd_energie", {
   dpe: text("DPE", { enum: enumDPE }).notNull(),
   gainCep: text("gain_CEP"),
 });
+
+export const bddEnergieSchema = createSelectSchema(bddEnergie);
+
+export type BddEnergie = z.infer<typeof bddEnergieSchema>;
 
 export const typologies = sqliteTable("typologies", {
   id: integer("id").primaryKey(),

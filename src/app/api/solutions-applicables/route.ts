@@ -1,5 +1,5 @@
-import { informationsBatimentSchema } from "@/lib/common/domain/InformationsBatiment";
-import { getSolutionsParCriteres } from "@/lib/server/useCases/getSolutionsParCriteres";
+import { getSolutionsParCriteres } from "@/lib/server/useCases/getSolutionsApplicables";
+import { GetSolutionsApplicablesDTOSchema } from "@/lib/server/useCases/getSolutionsApplicables/dto";
 
 export const dynamic = "force-dynamic"; // defaults to auto
 
@@ -13,14 +13,14 @@ export async function POST(request: Request) {
   // const res = simulationSchema.safeParse(await request.json());
 
   const unparsedFormData: unknown = await request.json();
-  const formData = informationsBatimentSchema.safeParse(unparsedFormData);
+  const dto = GetSolutionsApplicablesDTOSchema.safeParse(unparsedFormData);
 
-  if (!formData.success) {
-    const errors = formData.error.format();
+  if (!dto.success) {
+    const errors = dto.error.format();
     return Response.json({ error: `Données invalides`, detail: errors });
   }
 
-  const res = await getSolutionsParCriteres(formData.data);
+  const res = await getSolutionsParCriteres(dto.data);
 
   return Response.json(res);
 }

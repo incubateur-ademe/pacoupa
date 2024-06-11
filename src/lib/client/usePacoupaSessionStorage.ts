@@ -3,10 +3,10 @@ import { useSessionStorage } from "usehooks-ts";
 
 import { config } from "@/config";
 
-import { type InformationsBatiment } from "../common/domain/InformationsBatiment";
+import { type InformationBatiment } from "../common/domain/InformationBatiment";
 
 export const usePacoupaSessionStorage = () => {
-  const [store, setStore, resetStore] = useSessionStorage(config.storeKey, id<Partial<InformationsBatiment>>({}));
+  const [store, setStore, resetStore] = useSessionStorage(config.storeKey, id<Partial<InformationBatiment>>({}));
 
   return { store, setStore, resetStore };
 };

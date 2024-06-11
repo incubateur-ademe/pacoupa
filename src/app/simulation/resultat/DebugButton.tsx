@@ -4,11 +4,11 @@ import { type PropsWithChildren } from "react";
 
 import { Button } from "@/components/Button";
 import { config } from "@/config";
-import { type informationsBatimentSchema } from "@/lib/common/domain/InformationsBatiment";
+import { type informationBatimentSchema } from "@/lib/common/domain/InformationBatiment";
 import { type Solution } from "@/lib/common/domain/values/Solution";
 
 type Props = {
-  formData: ReturnType<typeof informationsBatimentSchema.safeParse>;
+  formData: ReturnType<typeof informationBatimentSchema.safeParse>;
   solutions: Solution[];
 };
 

@@ -4,10 +4,10 @@ import { criteres, solutions, solutionsParCriteres } from "drizzle/schema";
 import { eq, or, sql } from "drizzle-orm";
 
 import { config } from "@/config";
-import { type InformationsBatiment } from "@/lib/common/domain/InformationsBatiment";
 import { db } from "@/lib/drizzle";
 
-import { createCriteria, type SelectCriteresSchema } from "./helper";
+import { type GetSolutionsApplicablesDTO } from "./dto";
+import { creerCriteresSolutionsApplicables, type SelectCriteresSchema } from "./helper";
 
 // The NA fields are a special case. When the field as no value in the payload, it should be considered as NA only. Payload with 1 value should be considered as this value OR NA, SQL wise.
 // Think to NA as "in every case" or "no matter what".
@@ -35,10 +35,10 @@ const buildWhereClause = (filters: SelectCriteresSchema) => {
   return sql`${sql.join(sqlChunks, sql.raw(" AND "))}`;
 };
 
-export async function getSolutionsParCriteres(formData: InformationsBatiment) {
-  const criteresHelper = createCriteria(formData);
+export async function getSolutionsParCriteres(dto: GetSolutionsApplicablesDTO) {
+  const criteresSolutionsApplicables = creerCriteresSolutionsApplicables(dto);
 
-  if (config.env !== "prod") console.debug("criteresHelper", JSON.stringify(criteresHelper, null, 2));
+  if (config.env !== "prod") console.debug("criteresHelper", JSON.stringify(criteresSolutionsApplicables, null, 2));
 
   const rows = await db
     .select({
@@ -59,7 +59,7 @@ export async function getSolutionsParCriteres(formData: InformationsBatiment) {
     .from(criteres)
     .innerJoin(solutionsParCriteres, eq(criteres.id, solutionsParCriteres.criteresId))
     .innerJoin(solutions, eq(solutionsParCriteres.solutionsId, solutions.id))
-    .where(buildWhereClause(criteresHelper))
+    .where(buildWhereClause(criteresSolutionsApplicables))
     .orderBy(solutionsParCriteres.ordreSolution)
     .all();
 

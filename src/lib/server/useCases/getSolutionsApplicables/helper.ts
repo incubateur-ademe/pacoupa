@@ -2,7 +2,7 @@ import { criteres } from "drizzle/schema";
 import { createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 
-import { type InformationsBatiment } from "@/lib/common/domain/InformationsBatiment";
+import { type GetSolutionsApplicablesDTO } from "./dto";
 
 const SelectCriteresSchema = createSelectSchema(criteres, {
   id: schema => schema.id.optional(),
@@ -19,52 +19,51 @@ const SelectCriteresSchema = createSelectSchema(criteres, {
 
 export type SelectCriteresSchema = z.infer<typeof SelectCriteresSchema>;
 
-const estRenovationGlobale = (simulation: InformationsBatiment) => simulation.renovation?.length === 4;
+const estRenovationGlobale = (dto: GetSolutionsApplicablesDTO) => dto.renovation?.length === 4;
 
 /**
  * Application des règles métiers pour transformer le payload de l'API en en données utilisable pour la clause where de la requête SQL.
  *
- * @param payload une simulation
+ * @param dto une simulation
  */
-export const createCriteria = (payload: InformationsBatiment): SelectCriteresSchema => {
-  const emetteur: SelectCriteresSchema["emetteur"] = payload.energieCH === "electricite" ? "electrique" : "hydraulique";
+export const creerCriteresSolutionsApplicables = (dto: GetSolutionsApplicablesDTO): SelectCriteresSchema => {
+  const emetteur: SelectCriteresSchema["emetteur"] = dto.energieCH === "electricite" ? "electrique" : "hydraulique";
 
   const espaceExterieurPersonnel: SelectCriteresSchema["espaceExterieurPersonnel"] =
-    payload.typeCH === "individuel" && payload.typeECS === "individuel"
-      ? payload.espacesExterieursPersonnels?.includes("balcon")
+    dto.typeCH === "individuel" && dto.typeECS === "individuel"
+      ? dto.espacesExterieursPersonnels?.includes("balcon")
         ? "oui"
         : "non"
       : "NA";
 
   const estContraint =
-    !payload.espacesExterieursCommuns?.includes("jardin") &&
-    !payload.espacesExterieursCommuns?.includes("parking exterieur");
+    !dto.espacesExterieursCommuns?.includes("jardin") && !dto.espacesExterieursCommuns?.includes("parking exterieur");
 
   const envContraint: SelectCriteresSchema["envContraint"] =
-    payload.typeCH === "collectif" || payload.typeECS === "collectif"
+    dto.typeCH === "collectif" || dto.typeECS === "collectif"
       ? !estContraint
         ? "terrain disponible"
         : "contraint"
       : "NA";
 
   const toitureTerrasse: SelectCriteresSchema["toitureTerrasse"] = estContraint
-    ? payload.espacesExterieursCommuns?.includes("toit terrasse") ||
-      payload.espacesExterieursPersonnels?.includes("toit terrasse")
+    ? dto.espacesExterieursCommuns?.includes("toit terrasse") ||
+      dto.espacesExterieursPersonnels?.includes("toit terrasse")
       ? "toiture t"
       : "sans tt"
     : "NA";
 
   const temperature: SelectCriteresSchema["temperature"] =
-    payload.emetteur === "plancher chauffant" ? "< 40°C" : estRenovationGlobale(payload) ? "40-60°C" : "> 60°C";
+    dto.emetteur === "plancher chauffant" ? "< 40°C" : estRenovationGlobale(dto) ? "40-60°C" : "> 60°C";
 
-  const nbLgts: SelectCriteresSchema["nbLgts"] = payload.nbLogements < 15 ? "< 15" : ">= 15";
+  const nbLgts: SelectCriteresSchema["nbLgts"] = dto.nbLogements < 15 ? "< 15" : ">= 15";
 
   const niveauRenovation: SelectCriteresSchema["niveauRenovation"] =
-    payload.annee >= 2000 || estRenovationGlobale(payload) ? "recent ou renove" : "NA";
+    dto.annee >= 2000 || estRenovationGlobale(dto) ? "recent ou renove" : "NA";
 
   return {
-    ch: payload.typeCH === "collectif" ? "col" : "ind",
-    ecs: payload.typeECS === "collectif" ? "col" : "ind",
+    ch: dto.typeCH === "collectif" ? "col" : "ind",
+    ecs: dto.typeECS === "collectif" ? "col" : "ind",
     emetteur,
     envContraint,
     espaceExterieurPersonnel,

@@ -11,8 +11,8 @@ import { HighlightText } from "@/components/HighlightText";
 import { NoDataImage } from "@/components/img/NoDataImage";
 import { Box, Container, Grid, GridCol } from "@/dsfr";
 import { H2, Text } from "@/dsfr/base/typography";
-import { informationsBatimentSchema } from "@/lib/common/domain/InformationsBatiment";
-import { getSolutionsParCriteres } from "@/lib/server/useCases/getSolutionsParCriteres";
+import { informationBatimentSchema } from "@/lib/common/domain/InformationBatiment";
+import { getSolutionsParCriteres } from "@/lib/server/useCases/getSolutionsApplicables";
 import { fetchBAN } from "@/lib/services/ban";
 import { fetchFcuEligibility } from "@/lib/services/fcu";
 
@@ -51,7 +51,7 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
   const complet = searchParams.complet === "oui";
 
   const unparsedFormData: unknown = JSON.parse(Base64.decode(searchParams.hash));
-  const formData = informationsBatimentSchema.safeParse(unparsedFormData);
+  const formData = informationBatimentSchema.safeParse(unparsedFormData);
 
   if (!formData.success) {
     const errors = formData.error.format();

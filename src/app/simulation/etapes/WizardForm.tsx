@@ -5,7 +5,7 @@ import { useWizard } from "react-use-wizard";
 import { type z, type ZodFormattedError } from "zod";
 
 import { usePacoupaSessionStorage } from "@/lib/client/usePacoupaSessionStorage";
-import { type InformationsBatiment } from "@/lib/common/domain/InformationsBatiment";
+import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 import { createObjectFromFormData } from "@/lib/form-data";
 
 import { ButtonsFunnel } from "./ButtonsFunnel";
@@ -34,7 +34,7 @@ type Props = {
         >
       | undefined;
     resetStore: () => void;
-    store: Partial<InformationsBatiment>;
+    store: Partial<InformationBatiment>;
   }) => JSX.Element;
   schema: z.AnyZodObject;
 };
@@ -62,7 +62,7 @@ export const WizardForm = ({ schema, render }: Props) => {
     const validation = schema.safeParse(createObjectFromFormData(schema)(formData));
 
     if (validation.success) {
-      const nextStore = { ...store, ...validation.data } as InformationsBatiment;
+      const nextStore = { ...store, ...validation.data } as InformationBatiment;
       setStore(nextStore);
 
       if (isLastStep) {
