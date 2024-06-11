@@ -9,8 +9,8 @@ import { db } from "@/lib/drizzle";
 import { type GetSolutionsApplicablesDTO } from "./dto";
 import { creerCriteresSolutionsApplicables, type SelectCriteresSchema } from "./helper";
 
-// Les champs NA fields sont un cas spécial. Quand les champs n'ont pas de valeur dans le DTO, il faut le prendre comme NA. Les champs avec 1 valeur doivent être considérés comme cette valeur OU NA, côté SQL.
-// NA doit être vu comme "dans tous les cas", ou "peu importe".
+// Les champs NA sont spéciaux. Quand les champs n'ont pas de valeur dans le DTO, il faut le considérer comme NA. Les champs avec 1 valeur doivent être considérés comme cette valeur OU bien NA, côté SQL.
+// En résumé, NA veut dire "dans tous les cas" ou "peu importe".
 const NAFields = ["envContraint", "espaceExterieur", "toitureTerrasse", "nbLgts", "niveauRenovation", "temperature"];
 
 const creerClauseWhere = (filters: SelectCriteresSchema) => {
