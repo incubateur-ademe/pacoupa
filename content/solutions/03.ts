@@ -1,4 +1,4 @@
-import { type Solution } from "@/lib/enums";
+import { type Solution } from "@/lib/common/domain/values/Solution";
 
 export const solution = {
   id: "03",
@@ -13,7 +13,7 @@ export const solution = {
   usageFr: "Non",
   environnement: {
     note: "B",
-    text: [
+    texte: [
       {
         titre: "Consommation d’énergie",
         contenu:
@@ -30,7 +30,7 @@ export const solution = {
   },
   difficulte: {
     note: "dynamic",
-    text: [
+    texte: [
       {
         titre: "Local technique",
         contenu:
@@ -50,7 +50,7 @@ export const solution = {
   travauxCollectif: {
     note: "dynamic",
     image: "03 - PAC eaux grises eau - parties communes1.png",
-    text: [
+    texte: [
       {
         titre: "Réseaux hydrauliques",
         contenu:
@@ -60,19 +60,19 @@ export const solution = {
   },
   travauxIndividuel: {
     note: "dynamic",
-    text: [],
+    texte: [],
   },
   acoustique: {
     note: "A",
-    text: [],
+    texte: [],
   },
   espaceExterieur: {
     note: "A",
-    text: [],
+    texte: [],
   },
   maturite: {
     note: "B",
-    text: [
+    texte: [
       {
         titre: "Maturité",
         contenu:

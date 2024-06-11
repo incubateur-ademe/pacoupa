@@ -1,39 +1,36 @@
 import { integer, sqliteTable, text, uniqueIndex } from "drizzle-orm/sqlite-core";
 import { createSelectSchema } from "drizzle-zod";
 
-import {
-  enumDPE,
-  enumEmetteurs,
-  enumFamilles,
-  enumIsolation,
-  enumNiveauxRenovation,
-  enumNotes,
-  enumScenarioRenovationEnveloppe,
-  enumScenarioRenovationSysteme,
-  enumTypeCH,
-  enumTypeECS,
-  enumTypes,
-  enumTypesWithoutMix,
-  enumTypeSystemes,
-  enumTypologies,
-  enumUsages,
-  enumZonesClimatiques,
-} from "@/lib/enums";
+import { enumDPE } from "@/lib/common/domain/values/DPE";
+import { enumEmetteur } from "@/lib/common/domain/values/Emetteur";
+import { enumScenarioRenovationEnveloppe } from "@/lib/common/domain/values/ScenarioRenovationEnveloppe";
+import { enumScenarioRenovationSysteme } from "@/lib/common/domain/values/ScenarioRenovationSysteme";
+import { enumFamille } from "@/lib/common/domain/values/SolutionFamille";
+import { enumIsolation } from "@/lib/common/domain/values/SolutionIsolation";
+import { enumNiveauRenovation } from "@/lib/common/domain/values/SolutionNiveauRenovation";
+import { enumNote } from "@/lib/common/domain/values/SolutionNote";
+import { enumType, enumTypeWithoutMix } from "@/lib/common/domain/values/SolutionTypes";
+import { enumUsage } from "@/lib/common/domain/values/SolutionUsage";
+import { enumTypeCH } from "@/lib/common/domain/values/TypeCH";
+import { enumTypeECS } from "@/lib/common/domain/values/TypeECS";
+import { enumTypeSysteme } from "@/lib/common/domain/values/TypeSysteme";
+import { enumTypologie } from "@/lib/common/domain/values/Typologie";
+import { enumZoneClimatique } from "@/lib/common/domain/values/ZoneClimatique";
 
 export const solutions = sqliteTable("solutions", {
   id: text("id").primaryKey(),
   nom: text("nom").notNull(),
-  familleSolution: text("famille_solution", { enum: enumFamilles }).notNull(),
-  type: text("type", { enum: enumTypes }).notNull(),
-  typeSysteme: text("type_systeme", { enum: enumTypeSystemes }).notNull(),
-  usageCh: text("usage_CH", { enum: enumUsages }).notNull(),
-  usageEcs: text("usage_ECS", { enum: enumUsages }).notNull(),
-  usageFr: text("usage_FR", { enum: enumUsages }).notNull(),
-  noteImpactVisuel: text("note_impact_visuel", { enum: enumNotes }).notNull(),
-  noteImpactSonore: text("note_impact_sonore", { enum: enumNotes }).notNull(),
-  noteImpactEspaceExterieur: text("note_impact_espace_exterieur", { enum: enumNotes }).notNull(),
-  noteEnvironnemental: text("note_environnemental", { enum: enumNotes }).notNull(),
-  noteMaturite: text("note_maturite", { enum: enumNotes }).notNull(),
+  familleSolution: text("famille_solution", { enum: enumFamille }).notNull(),
+  type: text("type", { enum: enumType }).notNull(),
+  typeSysteme: text("type_systeme", { enum: enumTypeSysteme }).notNull(),
+  usageCh: text("usage_CH", { enum: enumUsage }).notNull(),
+  usageEcs: text("usage_ECS", { enum: enumUsage }).notNull(),
+  usageFr: text("usage_FR", { enum: enumUsage }).notNull(),
+  noteImpactVisuel: text("note_impact_visuel", { enum: enumNote }).notNull(),
+  noteImpactSonore: text("note_impact_sonore", { enum: enumNote }).notNull(),
+  noteImpactEspaceExterieur: text("note_impact_espace_exterieur", { enum: enumNote }).notNull(),
+  noteEnvironnemental: text("note_environnemental", { enum: enumNote }).notNull(),
+  noteMaturite: text("note_maturite", { enum: enumNote }).notNull(),
   numAfpac: text("num_AFPAC"),
   emprisePacExterieur: text("emprise_PAC_exterieur"),
   localTechnique: text("local_technique"),
@@ -88,17 +85,17 @@ export const solutionsParCriteres = sqliteTable("solutions_par_criteres", {
   criteresId: integer("criteres_id").references(() => criteres.id),
   solutionsId: text("solutions_id").references(() => solutions.id),
   ordreSolution: integer("ordre_solution"),
-  noteDifficulte: text("note_difficulte", { enum: enumNotes }).notNull(),
-  noteImpactTravauxColl: text("note_impact_travaux_coll", { enum: enumNotes }).notNull(),
-  noteImpactTravauxIndiv: text("note_impact_travaux_indiv", { enum: enumNotes }).notNull(),
-  noteCout: text("note_cout", { enum: enumNotes }).notNull(),
+  noteDifficulte: text("note_difficulte", { enum: enumNote }).notNull(),
+  noteImpactTravauxColl: text("note_impact_travaux_coll", { enum: enumNote }).notNull(),
+  noteImpactTravauxIndiv: text("note_impact_travaux_indiv", { enum: enumNote }).notNull(),
+  noteCout: text("note_cout", { enum: enumNote }).notNull(),
   typeSolution: text("type_solution"),
 });
 
 export const bddEnergie = sqliteTable("bdd_energie", {
   id: integer("id").primaryKey(),
-  zoneClimatique: text("zone_climatique", { enum: enumZonesClimatiques }).notNull(),
-  typologie: text("typologie", { enum: enumTypologies }).notNull(),
+  zoneClimatique: text("zone_climatique", { enum: enumZoneClimatique }).notNull(),
+  typologie: text("typologie", { enum: enumTypologie }).notNull(),
   etatIsolationMenuiseries: text("etat_isolation_menuiseries", { enum: enumIsolation }).notNull(),
   etatIsolationPlancherBas: text("etat_isolation_plancher_bas", { enum: enumIsolation }).notNull(),
   etatIsolationPlancherHaut: text("etat_isolation_plancher_haut", { enum: enumIsolation }).notNull(),
@@ -123,12 +120,12 @@ export const bddEnergie = sqliteTable("bdd_energie", {
   }).notNull(),
   typeCh: text("type_CH", { enum: enumTypeCH }),
   typeEcs: text("type_ECS", { enum: enumTypeECS }),
-  ch: text("CH", { enum: enumTypesWithoutMix }),
-  ecs: text("ECS", { enum: enumTypesWithoutMix }),
-  emetteur: text("emetteur", { enum: enumEmetteurs }).notNull(),
+  ch: text("CH", { enum: enumTypeWithoutMix }),
+  ecs: text("ECS", { enum: enumTypeWithoutMix }),
+  emetteur: text("emetteur", { enum: enumEmetteur }).notNull(),
   scenarioRenovationSysteme: text("scenario_renovation_systeme", { enum: enumScenarioRenovationSysteme }).notNull(),
-  usageCh: text("usage_CH", { enum: enumUsages }).notNull(),
-  usageEcs: text("usage_ECS", { enum: enumUsages }).notNull(),
+  usageCh: text("usage_CH", { enum: enumUsage }).notNull(),
+  usageEcs: text("usage_ECS", { enum: enumUsage }).notNull(),
   cep: integer("CEP"),
   ges: integer("GES"),
   dpe: text("DPE", { enum: enumDPE }).notNull(),
@@ -137,12 +134,12 @@ export const bddEnergie = sqliteTable("bdd_energie", {
 
 export const typologies = sqliteTable("typologies", {
   id: integer("id").primaryKey(),
-  nom: text("nom", { enum: enumTypologies }).notNull(),
+  nom: text("nom", { enum: enumTypologie }).notNull(),
   minPeriode: integer("min_periode"),
   maxPeriode: integer("max_periode"),
   minLogements: integer("min_logements"),
   maxLogements: integer("max_logements"),
-  niveauRenovation: text("niveau_renovation", { enum: enumNiveauxRenovation }),
+  niveauRenovation: text("niveau_renovation", { enum: enumNiveauRenovation }),
   surfaceHabitable: integer("surface_habitable").notNull(),
   nbLogements: integer("nb_logements").notNull(),
   etatIsolationMenuiseries: text("etat_isolation_menuiseries", { enum: enumIsolation }).notNull(),

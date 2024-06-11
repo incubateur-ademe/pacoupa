@@ -3,8 +3,8 @@
 import { criteres, solutions, solutionsParCriteres } from "drizzle/schema";
 import { eq, or, sql } from "drizzle-orm";
 
-import { type SimulationSchema } from "@/app/simulation/schema";
 import { config } from "@/config";
+import { type InformationsBatiment } from "@/lib/common/domain/InformationsBatiment";
 import { db } from "@/lib/drizzle";
 
 import { createCriteria, type SelectCriteresSchema } from "./helper";
@@ -35,7 +35,7 @@ const buildWhereClause = (filters: SelectCriteresSchema) => {
   return sql`${sql.join(sqlChunks, sql.raw(" AND "))}`;
 };
 
-export async function getSolutionsParCriteres(formData: SimulationSchema) {
+export async function getSolutionsParCriteres(formData: InformationsBatiment) {
   const criteresHelper = createCriteria(formData);
 
   if (config.env !== "prod") console.debug("criteresHelper", JSON.stringify(criteresHelper, null, 2));

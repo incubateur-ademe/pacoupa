@@ -1,4 +1,4 @@
-import { type Solution } from "@/lib/enums";
+import { type Solution } from "@/lib/common/domain/values/Solution";
 
 export const solution = {
   id: "04",
@@ -13,7 +13,7 @@ export const solution = {
   usageFr: "Non",
   environnement: {
     note: "B",
-    text: [
+    texte: [
       {
         titre: "Consommation d’énergie",
         contenu:
@@ -30,7 +30,7 @@ export const solution = {
   },
   difficulte: {
     note: "dynamic",
-    text: [
+    texte: [
       {
         titre: "Structure",
         contenu:
@@ -50,7 +50,7 @@ export const solution = {
   travauxCollectif: {
     note: "dynamic",
     image: "04 - PAC sur capteur solaire - parties communes.png",
-    text: [
+    texte: [
       {
         titre: "Déroulement des travaux",
         contenu: "Travaux rapides dans des parties communes peu fréquentées.",
@@ -59,7 +59,7 @@ export const solution = {
   },
   travauxIndividuel: {
     note: "dynamic",
-    text: [
+    texte: [
       {
         titre: "Emprise logement",
         contenu: "Aucune.",
@@ -72,7 +72,7 @@ export const solution = {
   },
   acoustique: {
     note: "A",
-    text: [
+    texte: [
       {
         titre: "Acoustique",
         contenu: "Aucune nuisance sonore.",
@@ -82,7 +82,7 @@ export const solution = {
   espaceExterieur: {
     note: "C",
     image: "04 - PAC sur capteur solaire - impact exterieur.png",
-    text: [
+    texte: [
       {
         titre: "Capteurs solaires",
         contenu: "Assurez-vous que la place pour les capteurs solaires est suffisante (généralement en toiture).",
@@ -100,7 +100,7 @@ export const solution = {
   },
   maturite: {
     note: "A",
-    text: [
+    texte: [
       {
         titre: "Maturité",
         contenu:

@@ -1,12 +1,13 @@
 import { z } from "zod";
 
-import { simulationSchema } from "@/app/simulation/schema";
-import { enumScenarioRenovationEnveloppe, enumScenarioRenovationSysteme } from "@/lib/enums";
+import { informationsBatimentSchema } from "@/lib/common/domain/InformationsBatiment";
+import { enumScenarioRenovationEnveloppe } from "@/lib/common/domain/values/ScenarioRenovationEnveloppe";
+import { enumScenarioRenovationSysteme } from "@/lib/common/domain/values/ScenarioRenovationSysteme";
 import { getInformationsEnergie } from "@/lib/server/useCases/getInformationsEnergie";
 
 export const dynamic = "force-dynamic"; // defaults to auto
 
-const schema = simulationSchema.extend({
+const schema = informationsBatimentSchema.extend({
   scenarioRenovationEnveloppe: z.enum(enumScenarioRenovationEnveloppe),
   scenarioRenovationSysteme: z.enum(enumScenarioRenovationSysteme),
 });

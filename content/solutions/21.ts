@@ -1,4 +1,4 @@
-import { type Solution } from "@/lib/enums";
+import { type Solution } from "@/lib/common/domain/values/Solution";
 
 export const solution = {
   id: "21",
@@ -13,7 +13,7 @@ export const solution = {
   usageFr: "Possible",
   environnement: {
     note: "B",
-    text: [
+    texte: [
       {
         titre: "Consommation d’énergie",
         contenu:
@@ -30,7 +30,7 @@ export const solution = {
   },
   difficulte: {
     note: "dynamic",
-    text: [
+    texte: [
       {
         titre: "Local technique",
         contenu:
@@ -50,7 +50,7 @@ export const solution = {
   travauxCollectif: {
     note: "dynamic",
     image: "02-11-21 - PAC air eau gainee - parties communes.png",
-    text: [
+    texte: [
       {
         titre: "Déroulement des travaux",
         contenu:
@@ -60,7 +60,7 @@ export const solution = {
   },
   travauxIndividuel: {
     note: "dynamic",
-    text: [
+    texte: [
       {
         titre: "Emprise logement",
         contenu: "Aucune.",
@@ -73,7 +73,7 @@ export const solution = {
   },
   acoustique: {
     note: "C",
-    text: [
+    texte: [
       {
         titre: "Volume sonore",
         contenu: "de 45 à 65dB (unité extérieure) / de 50 à 65dB (unité intérieure)",
@@ -87,7 +87,7 @@ export const solution = {
   },
   espaceExterieur: {
     note: "A",
-    text: [
+    texte: [
       {
         titre: "Impact extérieur",
         contenu:
@@ -101,7 +101,7 @@ export const solution = {
   },
   maturite: {
     note: "C",
-    text: [
+    texte: [
       {
         titre: "Maturité",
         contenu:

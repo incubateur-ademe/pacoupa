@@ -1,4 +1,4 @@
-import { type Solution } from "@/lib/enums";
+import { type Solution } from "@/lib/common/domain/values/Solution";
 
 export const solution = {
   id: "31",
@@ -13,7 +13,7 @@ export const solution = {
   usageFr: "Non",
   environnement: {
     note: "B",
-    text: [
+    texte: [
       {
         titre: "Eau chaude sanitaire uniquement",
         contenu:
@@ -26,7 +26,7 @@ export const solution = {
   },
   difficulte: {
     note: "dynamic",
-    text: [
+    texte: [
       {
         titre: "Solution individuelle avec unité extérieure",
         contenu:
@@ -50,7 +50,7 @@ export const solution = {
   },
   travauxCollectif: {
     note: "dynamic",
-    text: [
+    texte: [
       {
         titre: "Travaux à prévoir",
         contenu: "Aucun.",
@@ -59,7 +59,7 @@ export const solution = {
   },
   travauxIndividuel: {
     note: "dynamic",
-    text: [
+    texte: [
       {
         titre: "Emprise logement",
         contenu: "Il faut prévoir un encombrement d'environ 60x60x250 cm.",
@@ -73,7 +73,7 @@ export const solution = {
   },
   acoustique: {
     note: "C",
-    text: [
+    texte: [
       {
         titre: "Volume sonore",
         contenu: "De 45 à 65dB (unité extérieure) / de 30 à 50dB (unité intérieure).",
@@ -92,7 +92,7 @@ export const solution = {
   espaceExterieur: {
     note: "D",
     image: "31 - CET air eau - impact exterieur.png",
-    text: [
+    texte: [
       {
         titre: "Unité extérieure",
         contenu: "Le chauffe-eau thermodynamique est composé d’une unité extérieure et d’une unité intérieure.",
@@ -116,7 +116,7 @@ export const solution = {
   },
   maturite: {
     note: "A",
-    text: [
+    texte: [
       {
         titre: "Maturité",
         contenu:

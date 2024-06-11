@@ -1,4 +1,4 @@
-import { type Solution } from "@/lib/enums";
+import { type Solution } from "@/lib/common/domain/values/Solution";
 
 export const solution = {
   id: "16",
@@ -12,7 +12,7 @@ export const solution = {
   usageFr: "Possible",
   environnement: {
     note: "C",
-    text: [
+    texte: [
       {
         titre: "Combiner PAC et chaudière",
         contenu:
@@ -30,7 +30,7 @@ export const solution = {
   },
   difficulte: {
     note: "dynamic",
-    text: [
+    texte: [
       {
         titre: "Structure",
         contenu:
@@ -50,7 +50,7 @@ export const solution = {
   travauxCollectif: {
     note: "dynamic",
     image: "06-16-26 - Hybride PAC gainee + chaudiere - parties communes.png",
-    text: [
+    texte: [
       {
         titre: "Déroulement des travaux",
         contenu:
@@ -60,7 +60,7 @@ export const solution = {
   },
   travauxIndividuel: {
     note: "dynamic",
-    text: [
+    texte: [
       {
         titre: "Emprise logement",
         contenu: "Aucune.",
@@ -73,7 +73,7 @@ export const solution = {
   },
   acoustique: {
     note: "C",
-    text: [
+    texte: [
       {
         titre: "Volume sonore",
         contenu: "De 45 à 65dB (unité extérieure) / de 50 à 65dB (unité intérieure)",
@@ -87,7 +87,7 @@ export const solution = {
   },
   espaceExterieur: {
     note: "A",
-    text: [
+    texte: [
       {
         titre: "Impact extérieur",
         contenu:
@@ -101,7 +101,7 @@ export const solution = {
   },
   maturite: {
     note: "D",
-    text: [
+    texte: [
       {
         titre: "Maturité",
         contenu:

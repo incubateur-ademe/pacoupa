@@ -4,7 +4,7 @@ import { OuiNonSchema } from "@/utils/zod";
 
 const currentYear = new Date().getFullYear();
 
-export const simulationSchema = z
+export const informationsBatimentSchema = z
   .object({
     adresse: z.string().min(1, "L'adresse est obligatoire"),
     annee: z.coerce
@@ -32,4 +32,4 @@ export const simulationSchema = z
   })
   .strict();
 
-export type SimulationSchema = z.infer<typeof simulationSchema>;
+export type InformationsBatiment = z.infer<typeof informationsBatimentSchema>;

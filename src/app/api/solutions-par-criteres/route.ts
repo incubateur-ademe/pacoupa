@@ -1,4 +1,4 @@
-import { simulationSchema } from "@/app/simulation/schema";
+import { informationsBatimentSchema } from "@/lib/common/domain/InformationsBatiment";
 import { getSolutionsParCriteres } from "@/lib/server/useCases/getSolutionsParCriteres";
 
 export const dynamic = "force-dynamic"; // defaults to auto
@@ -13,7 +13,7 @@ export async function POST(request: Request) {
   // const res = simulationSchema.safeParse(await request.json());
 
   const unparsedFormData: unknown = await request.json();
-  const formData = simulationSchema.safeParse(unparsedFormData);
+  const formData = informationsBatimentSchema.safeParse(unparsedFormData);
 
   if (!formData.success) {
     const errors = formData.error.format();

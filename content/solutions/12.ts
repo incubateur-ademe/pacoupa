@@ -1,4 +1,4 @@
-import { type Solution } from "@/lib/enums";
+import { type Solution } from "@/lib/common/domain/values/Solution";
 
 // TODO: solution à supprimer ??
 
@@ -15,7 +15,7 @@ export const solution = {
   usageFr: "Oui",
   environnement: {
     note: "C",
-    text: [
+    texte: [
       {
         titre: "Consommation d’énergie",
         contenu:
@@ -32,7 +32,7 @@ export const solution = {
   },
   difficulte: {
     note: "dynamic",
-    text: [
+    texte: [
       {
         titre: "Local technique",
         contenu:
@@ -55,7 +55,7 @@ export const solution = {
   },
   travauxCollectif: {
     note: "dynamic",
-    text: [
+    texte: [
       {
         titre: "Réseau de fluide frigorigène",
         contenu:
@@ -70,7 +70,7 @@ export const solution = {
   },
   travauxIndividuel: {
     note: "dynamic",
-    text: [
+    texte: [
       {
         titre: "Déroulement des travaux",
         contenu: "Des unités intérieures sont installées dans chaque logement.",
@@ -83,7 +83,7 @@ export const solution = {
   },
   acoustique: {
     note: "C",
-    text: [
+    texte: [
       {
         titre: "Volume sonore",
         contenu: "de 45 à 65dB (unité extérieure) / de 50 à 65dB (unité intérieure)",
@@ -98,7 +98,7 @@ export const solution = {
   espaceExterieur: {
     note: "A",
     image: "12-22 - PAC air air DRV - impact exterieur.png",
-    text: [
+    texte: [
       {
         titre: "Unité extérieure",
         contenu: "Les PAC air / air disposent d’une unité extérieure (sol, toiture, jardin ou terrasse).",
@@ -121,7 +121,7 @@ export const solution = {
   },
   maturite: {
     note: "C",
-    text: [
+    texte: [
       {
         titre: "Maturité",
         contenu:

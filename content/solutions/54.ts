@@ -1,4 +1,4 @@
-import { type Solution } from "@/lib/enums";
+import { type Solution } from "@/lib/common/domain/values/Solution";
 
 export const solution = {
   id: "54",
@@ -13,7 +13,7 @@ export const solution = {
   usageFr: "Possible",
   environnement: {
     note: "A",
-    text: [
+    texte: [
       {
         titre: "Consommation d’énergie",
         contenu:
@@ -30,7 +30,7 @@ export const solution = {
   },
   difficulte: {
     note: "dynamic",
-    text: [
+    texte: [
       {
         titre: "Aucun travaux sur parties communes",
         contenu:
@@ -50,7 +50,7 @@ export const solution = {
   travauxCollectif: {
     note: "dynamic",
     image: "54 - CET air eau avec chauffage par air - parties communes.png",
-    text: [
+    texte: [
       {
         titre: "Travaux à prévoir",
         contenu:
@@ -60,7 +60,7 @@ export const solution = {
   },
   travauxIndividuel: {
     note: "dynamic",
-    text: [
+    texte: [
       {
         titre: "Emprise logement",
         contenu: "Il faut prévoir un encombrement d'environ 70x70x250 cm (placard acoustique).",
@@ -74,7 +74,7 @@ export const solution = {
   },
   acoustique: {
     note: "C",
-    text: [
+    texte: [
       {
         titre: "Volume sonore",
         contenu: "de 45 à 65dB",
@@ -88,7 +88,7 @@ export const solution = {
   },
   espaceExterieur: {
     note: "B",
-    text: [
+    texte: [
       {
         titre: "Impact extérieur",
         contenu:
@@ -102,7 +102,7 @@ export const solution = {
   },
   maturite: {
     note: "D",
-    text: [
+    texte: [
       {
         titre: "Maturité",
         contenu:

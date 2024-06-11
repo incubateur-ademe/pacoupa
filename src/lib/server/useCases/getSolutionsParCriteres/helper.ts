@@ -2,7 +2,7 @@ import { criteres } from "drizzle/schema";
 import { createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 
-import { type SimulationSchema } from "@/app/simulation/schema";
+import { type InformationsBatiment } from "@/lib/common/domain/InformationsBatiment";
 
 const SelectCriteresSchema = createSelectSchema(criteres, {
   id: schema => schema.id.optional(),
@@ -19,14 +19,14 @@ const SelectCriteresSchema = createSelectSchema(criteres, {
 
 export type SelectCriteresSchema = z.infer<typeof SelectCriteresSchema>;
 
-const estRenovationGlobale = (simulation: SimulationSchema) => simulation.renovation?.length === 4;
+const estRenovationGlobale = (simulation: InformationsBatiment) => simulation.renovation?.length === 4;
 
 /**
  * Application des règles métiers pour transformer le payload de l'API en en données utilisable pour la clause where de la requête SQL.
  *
  * @param payload une simulation
  */
-export const createCriteria = (payload: SimulationSchema): SelectCriteresSchema => {
+export const createCriteria = (payload: InformationsBatiment): SelectCriteresSchema => {
   const emetteur: SelectCriteresSchema["emetteur"] = payload.energieCH === "electricite" ? "electrique" : "hydraulique";
 
   const espaceExterieurPersonnel: SelectCriteresSchema["espaceExterieurPersonnel"] =

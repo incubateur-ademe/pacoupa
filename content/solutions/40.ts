@@ -1,4 +1,4 @@
-import { type Solution } from "@/lib/enums";
+import { type Solution } from "@/lib/common/domain/values/Solution";
 
 export const solution = {
   id: "40",
@@ -13,7 +13,7 @@ export const solution = {
   usageFr: "Oui",
   environnement: {
     note: "C",
-    text: [
+    texte: [
       {
         titre: "Consommation d’énergie",
         contenu:
@@ -30,7 +30,7 @@ export const solution = {
   },
   difficulte: {
     note: "dynamic",
-    text: [
+    texte: [
       {
         titre: "Unités extérieures et intérieures",
         contenu:
@@ -53,7 +53,7 @@ export const solution = {
   },
   travauxCollectif: {
     note: "dynamic",
-    text: [
+    texte: [
       {
         titre: "Réseau de fluide frigorigène",
         contenu:
@@ -68,7 +68,7 @@ export const solution = {
   travauxIndividuel: {
     note: "dynamic",
     image: "40 - PAC air air - appartement.png",
-    text: [
+    texte: [
       {
         titre: "Déroulement des travaux",
         contenu: "Des unités intérieures sont installées dans chaque logement.",
@@ -81,7 +81,7 @@ export const solution = {
   },
   acoustique: {
     note: "C",
-    text: [
+    texte: [
       {
         titre: "Volume sonore",
         contenu: "De 45 à 65dB (unité extérieure) / de 50 à 65dB (unité intérieure)",
@@ -96,7 +96,7 @@ export const solution = {
   espaceExterieur: {
     note: "A",
     image: "40 - PAC air air - impact exterieur.png",
-    text: [
+    texte: [
       {
         titre: "Unités extérieures et intérieures",
         contenu:
@@ -119,7 +119,7 @@ export const solution = {
   },
   maturite: {
     note: "C",
-    text: [
+    texte: [
       {
         titre: "Maturité",
         contenu:

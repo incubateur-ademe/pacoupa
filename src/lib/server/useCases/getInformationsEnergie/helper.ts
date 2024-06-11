@@ -3,7 +3,9 @@ import { createSelectSchema } from "drizzle-zod";
 import { type z } from "zod";
 
 import { type InformationsEnergieDTO } from "@/app/api/informations-energie/route";
-import { type SolutionIsolation, type TypeCH, type TypeECS } from "@/lib/enums";
+import { type SolutionIsolation } from "@/lib/common/domain/values/SolutionIsolation";
+import { type TypeCH } from "@/lib/common/domain/values/TypeCH";
+import { type TypeECS } from "@/lib/common/domain/values/TypeECS";
 
 import { getTypologie } from "../getTypologie";
 

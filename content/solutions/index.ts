@@ -1,4 +1,4 @@
-import { type Solution } from "@/lib/enums";
+import { type Solution } from "@/lib/common/domain/values/Solution";
 
 import { solution as solution01 } from "./01";
 import { solution as solution02 } from "./02";

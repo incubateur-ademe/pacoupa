@@ -1,4 +1,4 @@
-import { type Solution } from "@/lib/enums";
+import { type Solution } from "@/lib/common/domain/values/Solution";
 
 export const solution = {
   id: "32",
@@ -13,7 +13,7 @@ export const solution = {
   usageFr: "Non",
   environnement: {
     note: "B",
-    text: [
+    texte: [
       {
         titre: "Eau chaude sanitaire uniquement",
         contenu:
@@ -26,7 +26,7 @@ export const solution = {
   },
   difficulte: {
     note: "dynamic",
-    text: [
+    texte: [
       {
         titre: "Aucun travaux sur parties communes",
         contenu:
@@ -46,7 +46,7 @@ export const solution = {
   travauxCollectif: {
     note: "dynamic",
     image: "32 - CET air eau - parties communes.png",
-    text: [
+    texte: [
       {
         titre: "Travaux à prévoir",
         contenu:
@@ -57,11 +57,11 @@ export const solution = {
   travauxIndividuel: {
     note: "dynamic",
     image: "32 - CET air eau - appartement.png",
-    text: [],
+    texte: [],
   },
   acoustique: {
     note: "C",
-    text: [
+    texte: [
       {
         titre: "Volume sonore",
         contenu: "De 30 à 50dB",
@@ -75,7 +75,7 @@ export const solution = {
   },
   espaceExterieur: {
     note: "A",
-    text: [
+    texte: [
       {
         titre: "Impact extérieur",
         contenu:
@@ -89,7 +89,7 @@ export const solution = {
   },
   maturite: {
     note: "B",
-    text: [
+    texte: [
       {
         titre: "Maturité",
         contenu:
