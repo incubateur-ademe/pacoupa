@@ -27,7 +27,7 @@ export async function getInformationsEnergie(dto: GetInformationEnergieDTO) {
 
   if (config.env !== "prod") console.debug("criteres", JSON.stringify(criteres, null, 2));
 
-  const rows = await db
+  const [row] = await db
     .select({
       id: bddEnergie.id,
       etatIsolationPlancherBas: bddEnergie.etatIsolationPlancherBas,
@@ -48,7 +48,7 @@ export async function getInformationsEnergie(dto: GetInformationEnergieDTO) {
     })
     .from(bddEnergie)
     .where(buildWhereClause(criteres))
-    .all();
+    .limit(1);
 
-  return { data: rows };
+  return { data: row };
 }
