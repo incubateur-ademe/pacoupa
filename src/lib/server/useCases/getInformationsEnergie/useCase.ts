@@ -37,6 +37,17 @@ export async function getInformationsEnergie(formData: InformationsEnergieDTO) {
   const rows = await db
     .select({
       id: bddEnergie.id,
+      etatIsolationPlancherBas: bddEnergie.etatIsolationPlancherBas,
+      etatIsolationPlancherBasApresScénarioRenovationEnveloppe:
+        bddEnergie.etatIsolationPlancherBasApresScénarioRenovationEnveloppe,
+      etatIsolationPlancherHaut: bddEnergie.etatIsolationPlancherHaut,
+      etatIsolationPlancherHautApresScénarioRenovationEnveloppe:
+        bddEnergie.etatIsolationPlancherHautApresScénarioRenovationEnveloppe,
+      etatIsolationMenuiseries: bddEnergie.etatIsolationMenuiseries,
+      etatIsolationMenuiseriesApresScénarioRenovationEnveloppe:
+        bddEnergie.etatIsolationMenuiseriesApresScénarioRenovationEnveloppe,
+      etatIsolationMurs: bddEnergie.etatIsolationMurs,
+      etatIsolationMursApresScénarioRenovationEnveloppe: bddEnergie.etatIsolationMursApresScénarioRenovationEnveloppe,
       cep: bddEnergie.cep,
       ges: bddEnergie.ges,
       dpe: bddEnergie.dpe,
