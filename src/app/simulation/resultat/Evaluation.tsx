@@ -94,8 +94,6 @@ export const Evaluation = ({ categorie, solution, withDetails }: EvaluationProps
   const text = solution[categorie].texte || [];
   const image = solution[categorie].image;
 
-  console.log({ image });
-
   if (note === "dynamic") return null;
 
   return (
