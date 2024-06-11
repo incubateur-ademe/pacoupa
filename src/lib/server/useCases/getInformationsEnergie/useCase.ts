@@ -7,13 +7,12 @@ import { type InformationsEnergieDTO } from "@/app/api/informations-energie/rout
 import { config } from "@/config";
 import { db } from "@/lib/drizzle";
 
-import { getTypologie } from "../getTypologie";
-import { createCriteria, type SelectBddEnergieSchema } from "./helper";
+import { type BddEnergieFilters, createBddEnergieFilters } from "./helper";
 
 /**
  * Build a SQL condition from the filters.
  */
-const buildWhereClause = (filters: Partial<SelectBddEnergieSchema>) => {
+const buildWhereClause = (filters: BddEnergieFilters) => {
   const keys = Object.keys(filters);
 
   const sqlChunks = keys.map(key => {
@@ -24,13 +23,7 @@ const buildWhereClause = (filters: Partial<SelectBddEnergieSchema>) => {
 };
 
 export async function getInformationsEnergie(formData: InformationsEnergieDTO) {
-  const typologie = await getTypologie({ annee: formData.annee, nbLogements: formData.nbLogements });
-
-  if (!typologie.data) {
-    throw new Error("Typologie not found");
-  }
-
-  const criteres = createCriteria(formData);
+  const criteres = await createBddEnergieFilters(formData);
 
   if (config.env !== "prod") console.debug("criteres", JSON.stringify(criteres, null, 2));
 
@@ -54,14 +47,7 @@ export async function getInformationsEnergie(formData: InformationsEnergieDTO) {
       gainCep: bddEnergie.gainCep,
     })
     .from(bddEnergie)
-    .where(
-      buildWhereClause({
-        ...criteres,
-        typologie: typologie.data.nom,
-        scenarioRenovationEnveloppe: formData.scenarioRenovationEnveloppe,
-        scenarioRenovationSysteme: formData.scenarioRenovationSysteme,
-      }),
-    )
+    .where(buildWhereClause(criteres))
     .all();
 
   return { data: rows };

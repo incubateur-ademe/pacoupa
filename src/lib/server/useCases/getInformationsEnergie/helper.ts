@@ -5,16 +5,40 @@ import { type z } from "zod";
 import { type InformationsEnergieDTO } from "@/app/api/informations-energie/route";
 import { type SolutionIsolation, type TypeCH, type TypeECS } from "@/lib/enums";
 
+import { getTypologie } from "../getTypologie";
+
 const SelectBddEnergieSchema = createSelectSchema(bddEnergie);
 
 export type SelectBddEnergieSchema = z.infer<typeof SelectBddEnergieSchema>;
+
+type GesteIsolation = "Menuiseries" | "Murs" | "PlancherBas" | "PlancherHaut";
+
+export type BddEnergieFilters = Pick<
+  SelectBddEnergieSchema,
+  | "ch"
+  | "ecs"
+  | "emetteur"
+  | "scenarioRenovationEnveloppe"
+  | "scenarioRenovationSysteme"
+  | "typeCh"
+  | "typeEcs"
+  | "typologie"
+  | "zoneClimatique"
+  | `etatIsolation${GesteIsolation}`
+>;
 
 /**
  * Application des règles métiers pour transformer le payload de l'API en en données utilisable pour la clause where de la requête SQL.
  *
  * @param payload une simulation
  */
-export const createCriteria = (payload: InformationsEnergieDTO): Partial<SelectBddEnergieSchema> => {
+export const createBddEnergieFilters = async (payload: InformationsEnergieDTO): Promise<BddEnergieFilters> => {
+  const typologie = await getTypologie({ annee: payload.annee, nbLogements: payload.nbLogements });
+
+  if (!typologie.data) {
+    throw new Error("Typologie not found");
+  }
+
   const zoneClimatique: SelectBddEnergieSchema["zoneClimatique"] = "75 - Paris";
 
   const etatIsolationMenuiseries: SolutionIsolation = payload.renovation?.includes("fenetres") ? "Isolé" : "Pas isolé";
@@ -30,6 +54,7 @@ export const createCriteria = (payload: InformationsEnergieDTO): Partial<SelectB
   const ecs = payload.typeECS === "collectif" ? "COL" : "IND";
 
   return {
+    typologie: typologie.data.nom,
     zoneClimatique,
     etatIsolationMenuiseries,
     etatIsolationPlancherBas,
@@ -40,5 +65,7 @@ export const createCriteria = (payload: InformationsEnergieDTO): Partial<SelectB
     emetteur,
     ch,
     ecs,
+    scenarioRenovationEnveloppe: payload.scenarioRenovationEnveloppe,
+    scenarioRenovationSysteme: payload.scenarioRenovationSysteme,
   };
 };

@@ -27,5 +27,5 @@ export async function POST(request: Request) {
 
   const res = await getInformationsEnergie(formData.data);
 
-  return Response.json(res);
+  return Response.json(res, { status: 200 });
 }
