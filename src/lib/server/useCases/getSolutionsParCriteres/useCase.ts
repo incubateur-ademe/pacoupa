@@ -43,6 +43,12 @@ export async function getSolutionsParCriteres(formData: SimulationSchema) {
   const rows = await db
     .select({
       id: solutions.id,
+      type: solutions.type,
+      familleSolution: solutions.familleSolution,
+      usageCh: solutions.usageCh,
+      usageEcs: solutions.usageEcs,
+      usageFr: solutions.usageFr,
+      typeSystem: solutions.typeSysteme,
       ordre: solutionsParCriteres.ordreSolution,
       cout: { note: solutionsParCriteres.noteCout },
       difficulte: { note: solutionsParCriteres.noteDifficulte },

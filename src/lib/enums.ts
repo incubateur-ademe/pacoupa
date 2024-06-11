@@ -84,16 +84,20 @@ export const enumEmetteurs = ["Hydraulique", "Electrique"] as const;
 
 export type Emetteurs = (typeof enumEmetteurs)[number];
 
-export const enumScenarioRenovationSysteme = [
-  "S0",
-  "Chaudière gaz à condensation",
-  "ECS seule : PAC Air / Eau",
-  "ECS seule Hybride : PAC + chaudière",
+const enumTypeSystemesWithoutRCU = [
   "CH + ECS : PAC Air / Eau",
   "CH + ECS Hybride : PAC + Chaudière",
   "CH seul : PAC Air / Eau",
   "CH seul Hybride : PAC + Chaudière",
+  "ECS seule : PAC Air / Eau",
+  "ECS seule Hybride : PAC + chaudière",
 ] as const;
+
+export const enumTypeSystemes = ["RCU", ...enumTypeSystemesWithoutRCU] as const;
+
+export type TypeSysteme = (typeof enumTypeSystemes)[number];
+
+export const enumScenarioRenovationSysteme = ["S0", ...enumTypeSystemesWithoutRCU] as const;
 
 export type ScenarioRenovationSysteme = (typeof enumScenarioRenovationSysteme)[number];
 
@@ -139,15 +143,6 @@ type SolutionEvaluation = {
   note: SolutionNote | "dynamic";
   text?: Array<{ contenu: string; titre: string }>;
 };
-
-type TypeSysteme =
-  | "CH + ECS : PAC Air / Eau"
-  | "CH + ECS Hybride : PAC + Chaudière"
-  | "CH seul : PAC Air / Eau"
-  | "CH seul Hybride : PAC + Chaudière"
-  | "ECS seule : PAC Air / Eau"
-  | "ECS seule Hybride : PAC + chaudière"
-  | "RCU";
 
 export type Solution = {
   acoustique: SolutionEvaluation;
