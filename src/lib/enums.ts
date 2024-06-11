@@ -140,6 +140,14 @@ type SolutionEvaluation = {
   text?: Array<{ contenu: string; titre: string }>;
 };
 
+type TypeSysteme =
+  | "CH + ECS : PAC Air / Eau"
+  | "CH + ECS Hybride : PAC + Chaudière"
+  | "CH seul : PAC Air / Eau"
+  | "CH seul Hybride : PAC + Chaudière"
+  | "ECS seule : PAC Air / Eau"
+  | "ECS seule Hybride : PAC + chaudière";
+
 export type Solution = {
   acoustique: SolutionEvaluation;
   cout: SolutionEvaluation;
@@ -154,6 +162,7 @@ export type Solution = {
   travauxCollectif: SolutionEvaluation;
   travauxIndividuel: SolutionEvaluation;
   type: SolutionTypes;
+  typeSysteme: TypeSysteme;
   usageCh: SolutionUsage;
   usageEcs: SolutionUsage;
   usageFr: SolutionUsage;

@@ -5,6 +5,7 @@ export const solution = {
   nom: "Pompe à chaleur eaux grises / eau",
   familleSolution: "PAC Eaux grises-Eau",
   type: "COL",
+  typeSysteme: "ECS seule : PAC Air / Eau",
   description:
     "La pompe à chaleur (PAC) eaux grises-eau prélève de la chaleur dans les eaux grises (douches, vaisselle), augmente son niveau de température et la transfère à un circuit d'eau.",
   usageCh: "Non",

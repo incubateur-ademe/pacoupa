@@ -5,6 +5,7 @@ export const solution = {
   nom: "Hybride pompe à chaleur (gainée) + chaudière",
   familleSolution: "Hybride PAC + Chaudière",
   type: "COL",
+  typeSysteme: "CH + ECS Hybride : PAC + Chaudière",
   description: "La solution hybride combine une pompe à chaleur (PAC) avec une chaudière pour assurer l'appoint.",
   usageCh: "Oui",
   usageEcs: "Oui",
@@ -52,7 +53,8 @@ export const solution = {
     text: [
       {
         titre: "Déroulement des travaux",
-        contenu: "Travaux rapides dans des parties communes peu fréquentées. La pose d’une PAC gainée nécessite un local commun donnant sur l’extérieur.",
+        contenu:
+          "Travaux rapides dans des parties communes peu fréquentées. La pose d’une PAC gainée nécessite un local commun donnant sur l’extérieur.",
       },
     ],
   },

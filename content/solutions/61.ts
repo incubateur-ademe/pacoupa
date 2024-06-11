@@ -5,6 +5,7 @@ export const solution = {
   nom: "Chauffe-eau thermodynamique individuel sur retour de chauffage collectif",
   familleSolution: "CET Eau-Eau",
   type: "MIX",
+  typeSysteme: "CH + ECS : PAC Air / Eau",
   description:
     "Le chauffe-eau thermodynamique (CET) récupère la chaleur dans l'eau de retour du réseau de chauffage collectif pour chauffer l'eau sanitaire.",
   usageCh: "Oui",

@@ -5,6 +5,7 @@ export const solution = {
   nom: "Chauffe-eau thermodynamique air / eau (avec unité extérieure)",
   familleSolution: "CET Air-Eau",
   type: "IND",
+  typeSysteme: "ECS seule : PAC Air / Eau",
   description:
     "Le chauffe-eau thermodynamique (CET) capte de la chaleur sur l'air extérieur, et produit de l'eau chaude.",
   usageCh: "Non",

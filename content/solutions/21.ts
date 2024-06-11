@@ -5,6 +5,7 @@ export const solution = {
   nom: "Pompe à chaleur air / eau (gainée)",
   familleSolution: "PAC Air-Eau",
   type: "COL",
+  typeSysteme: "CH seul : PAC Air / Eau",
   description:
     "La pompe à chaleur (PAC) air / eau prélève de la chaleur dans l'air extérieur, augmente son niveau de température et la transfère à un circuit d'eau.",
   usageCh: "Oui",

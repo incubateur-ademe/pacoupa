@@ -7,6 +7,7 @@ export const solution = {
   nom: "Pompe à chaleur air / air avec ECS",
   familleSolution: "PAC Air-Air",
   type: "COL",
+  typeSysteme: "CH seul : PAC Air / Eau",
   description:
     "La pompe à chaleur (PAC) air / air utilise l'air extérieur comme source d'énergie pour chauffer (ou refroidir) l'air à l'intérieur.",
   usageCh: "Oui",

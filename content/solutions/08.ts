@@ -5,6 +5,7 @@ export const solution = {
   nom: "Pompe à chaleur eau / eau géothermie",
   familleSolution: "PAC Eau-Eau",
   type: "COL",
+  typeSysteme: "ECS seule : PAC Air / Eau",
   description:
     "La pompe à chaleur (PAC) eau / eau prélève de la chaleur dans le sol, augmente son niveau de température et la transfère à un circuit d'eau.",
   usageCh: "Non",

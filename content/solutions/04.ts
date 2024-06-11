@@ -5,6 +5,7 @@ export const solution = {
   nom: "Pompe à chaleur sur capteur solaire atmosphérique",
   familleSolution: "PAC Solaire-Eau",
   type: "COL",
+  typeSysteme: "ECS seule : PAC Air / Eau",
   description:
     "La pompe à chaleur (PAC) sur capteur solaire atmosphérique utilise l'énergie solaire pour chauffer un fluide caloporteur, qui est ensuite utilisé pour produire de la chaleur.",
   usageCh: "Non",

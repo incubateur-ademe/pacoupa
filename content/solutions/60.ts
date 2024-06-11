@@ -5,6 +5,7 @@ export const solution = {
   nom: "Pompe à chaleur sur boucle d’eau",
   familleSolution: "PAC Eau-Eau",
   type: "MIX",
+  typeSysteme: "CH + ECS : PAC Air / Eau",
   description:
     "La pompe à chaleur (PAC) eau / eau individuelle capte de la chaleur dans la boucle d'eau collective, et produit de l'eau chaude.",
   usageCh: "Oui",

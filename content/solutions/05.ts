@@ -5,6 +5,7 @@ export const solution = {
   nom: "Hybride pompe à chaleur + chaudière",
   familleSolution: "Hybride PAC + Chaudière",
   type: "COL",
+  typeSysteme: "ECS seule Hybride : PAC + chaudière",
   description: "La solution hybride combine une pompe à chaleur (PAC) avec une chaudière pour assurer l'appoint.",
   usageCh: "Non",
   usageEcs: "Oui",

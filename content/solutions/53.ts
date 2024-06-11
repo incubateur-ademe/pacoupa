@@ -5,6 +5,7 @@ export const solution = {
   nom: "Pompe à chaleur air extrait / eau",
   familleSolution: "PAC Air-Eau",
   type: "IND",
+  typeSysteme: "CH + ECS : PAC Air / Eau",
   description:
     "La pompe à chaleur (PAC) air extrait / eau capte de la chaleur sur l'air extrait de ventilation, et produit de l'eau chaude.",
   usageCh: "Oui",
