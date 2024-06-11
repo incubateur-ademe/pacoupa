@@ -9,15 +9,12 @@ export const dynamic = "force-dynamic"; // defaults to auto
  * NB: this is a POST request because the body is used to send the payload.
  */
 export async function POST(request: Request) {
-  // const res = CriteriaPayloadSchema.safeParse(await request.json());
-  // const res = simulationSchema.safeParse(await request.json());
-
-  const unparsedFormData: unknown = await request.json();
-  const dto = GetSolutionsApplicablesDTOSchema.safeParse(unparsedFormData);
+  const unparsedBody: unknown = await request.json();
+  const dto = GetSolutionsApplicablesDTOSchema.safeParse(unparsedBody);
 
   if (!dto.success) {
     const errors = dto.error.format();
-    return Response.json({ error: `Données invalides`, detail: errors });
+    return Response.json({ error: `Données invalides`, detail: errors }, { status: 400 });
   }
 
   const res = await getSolutionsParCriteres(dto.data);

@@ -7,15 +7,15 @@ export const dynamic = "force-dynamic"; // defaults to auto
  * Get energy data for a user's simulation.
  */
 export async function POST(request: Request) {
-  const unparsedFormData: unknown = await request.json();
-  const formData = GetInformationEnergieDTOSchema.safeParse(unparsedFormData);
+  const unparsedBody: unknown = await request.json();
+  const dto = GetInformationEnergieDTOSchema.safeParse(unparsedBody);
 
-  if (!formData.success) {
-    const errors = formData.error.format();
-    return Response.json({ error: `Données invalides`, detail: errors });
+  if (!dto.success) {
+    const errors = dto.error.format();
+    return Response.json({ error: `Données invalides`, detail: errors }, { status: 400 });
   }
 
-  const res = await getInformationsEnergie(formData.data);
+  const res = await getInformationsEnergie(dto.data);
 
   return Response.json(res, { status: 200 });
 }
