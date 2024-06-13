@@ -1,10 +1,11 @@
-import { type Solution } from "@/lib/enums";
+import { type Solution } from "@/lib/common/domain/values/Solution";
 
 export const solution = {
   id: "61",
   nom: "Chauffe-eau thermodynamique individuel sur retour de chauffage collectif",
   familleSolution: "CET Eau-Eau",
   type: "MIX",
+  typeSysteme: "CH + ECS : PAC Air / Eau",
   description:
     "Le chauffe-eau thermodynamique (CET) récupère la chaleur dans l'eau de retour du réseau de chauffage collectif pour chauffer l'eau sanitaire.",
   usageCh: "Oui",
@@ -12,7 +13,7 @@ export const solution = {
   usageFr: "Possible",
   environnement: {
     note: "A",
-    text: [
+    texte: [
       {
         titre: "Eau chaude sanitaire uniquement",
         contenu:
@@ -25,7 +26,7 @@ export const solution = {
   },
   difficulte: {
     note: "dynamic",
-    text: [
+    texte: [
       {
         titre: "Solution individuelle couplée à une solution collective",
         contenu:
@@ -49,7 +50,7 @@ export const solution = {
   },
   travauxCollectif: {
     note: "dynamic",
-    text: [
+    texte: [
       {
         titre: "Déroulement des travaux",
         contenu:
@@ -60,7 +61,7 @@ export const solution = {
   travauxIndividuel: {
     note: "dynamic",
     image: "61 - CET indiv sur retour chauffage - CET - appartement.png",
-    text: [
+    texte: [
       {
         titre: "Emprise logement",
         contenu: "Il faut prévoir un encombrement d'environ 60x60x250 cm.",
@@ -74,7 +75,7 @@ export const solution = {
   },
   acoustique: {
     note: "C",
-    text: [
+    texte: [
       {
         titre: "Volume sonore",
         contenu: "de 45 à 65dB (unité extérieure) / de 30 à 50dB (unité intérieure)",
@@ -93,7 +94,7 @@ export const solution = {
   espaceExterieur: {
     image: "10-20 - PAC air eau - impact exterieur.png",
     note: "C",
-    text: [
+    texte: [
       {
         titre: "Unité extérieure",
         contenu:
@@ -118,7 +119,7 @@ export const solution = {
   },
   maturite: {
     note: "E",
-    text: [
+    texte: [
       {
         titre: "Maturité",
         contenu:

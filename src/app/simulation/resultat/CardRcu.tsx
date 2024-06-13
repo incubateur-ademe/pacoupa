@@ -6,7 +6,7 @@ import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
 import { Box, P } from "@/dsfr";
 import { H4, Text } from "@/dsfr/base/typography";
-import { type Solution } from "@/lib/enums";
+import { type Solution } from "@/lib/common/domain/values/Solution";
 
 import { familleImageMap, typeMap } from "./helper";
 import { Recommandation } from "./Recommandation";

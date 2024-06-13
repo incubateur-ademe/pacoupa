@@ -6,7 +6,7 @@ import { ChauffageImage } from "@/components/img/usages/ChauffageImage";
 import { ClimatisationImage } from "@/components/img/usages/ClimatisationImage";
 import { EcsImage } from "@/components/img/usages/EcsImage";
 import { Grid, GridCol } from "@/dsfr";
-import { type Solution } from "@/lib/enums";
+import { type Solution } from "@/lib/common/domain/values/Solution";
 
 export const Recommandation = ({ solution }: { solution: Pick<Solution, "usageCh" | "usageEcs" | "usageFr"> }) => {
   const { usageCh, usageEcs, usageFr } = solution;

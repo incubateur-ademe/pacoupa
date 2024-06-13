@@ -1,17 +1,18 @@
-import { type Solution } from "@/lib/enums";
+import { type Solution } from "@/lib/common/domain/values/Solution";
 
 export const solution = {
   id: "05",
   nom: "Hybride pompe à chaleur + chaudière",
   familleSolution: "Hybride PAC + Chaudière",
   type: "COL",
+  typeSysteme: "ECS seule Hybride : PAC + chaudière",
   description: "La solution hybride combine une pompe à chaleur (PAC) avec une chaudière pour assurer l'appoint.",
   usageCh: "Non",
   usageEcs: "Oui",
   usageFr: "Non",
   environnement: {
     note: "C",
-    text: [
+    texte: [
       {
         titre: "Combiner PAC et chaudière",
         contenu:
@@ -29,7 +30,7 @@ export const solution = {
   },
   difficulte: {
     note: "dynamic",
-    text: [
+    texte: [
       {
         titre: "Structure",
         contenu:
@@ -49,7 +50,7 @@ export const solution = {
   travauxCollectif: {
     note: "dynamic",
     image: "05-15-25 - Hybride PAC + chaudiere - parties communes.png",
-    text: [
+    texte: [
       {
         titre: "Déroulement des travaux",
         contenu: "Travaux rapides dans des parties communes peu fréquentées.",
@@ -58,7 +59,7 @@ export const solution = {
   },
   travauxIndividuel: {
     note: "dynamic",
-    text: [
+    texte: [
       {
         titre: "Emprise logement",
         contenu: "Aucune.",
@@ -71,7 +72,7 @@ export const solution = {
   },
   acoustique: {
     note: "C",
-    text: [
+    texte: [
       {
         titre: "Volume sonore",
         contenu: "de 45 à 65dB (unité extérieure) / de 50 à 65dB (unité intérieure)",
@@ -86,7 +87,7 @@ export const solution = {
   espaceExterieur: {
     note: "C",
     image: "05-15-25 - Hybride PAC + chaudiere - impact exterieur.png",
-    text: [
+    texte: [
       {
         titre: "Unité extérieure",
         contenu: "Les PAC air / eau disposent d’une unité extérieure (sol, toiture, jardin ou terrasse).",
@@ -109,7 +110,7 @@ export const solution = {
   },
   maturite: {
     note: "B",
-    text: [
+    texte: [
       {
         titre: "Maturité",
         contenu:

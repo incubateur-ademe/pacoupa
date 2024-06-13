@@ -1,17 +1,18 @@
-import { type Solution } from "@/lib/enums";
+import { type Solution } from "@/lib/common/domain/values/Solution";
 
 export const solution = {
   id: "16",
   nom: "Hybride pompe à chaleur (gainée) + chaudière",
   familleSolution: "Hybride PAC + Chaudière",
   type: "COL",
+  typeSysteme: "CH + ECS Hybride : PAC + Chaudière",
   description: "La solution hybride combine une pompe à chaleur (PAC) avec une chaudière pour assurer l'appoint.",
   usageCh: "Oui",
   usageEcs: "Oui",
   usageFr: "Possible",
   environnement: {
     note: "C",
-    text: [
+    texte: [
       {
         titre: "Combiner PAC et chaudière",
         contenu:
@@ -29,7 +30,7 @@ export const solution = {
   },
   difficulte: {
     note: "dynamic",
-    text: [
+    texte: [
       {
         titre: "Structure",
         contenu:
@@ -49,16 +50,17 @@ export const solution = {
   travauxCollectif: {
     note: "dynamic",
     image: "06-16-26 - Hybride PAC gainee + chaudiere - parties communes.png",
-    text: [
+    texte: [
       {
         titre: "Déroulement des travaux",
-        contenu: "Travaux rapides dans des parties communes peu fréquentées. La pose d’une PAC gainée nécessite un local commun donnant sur l’extérieur.",
+        contenu:
+          "Travaux rapides dans des parties communes peu fréquentées. La pose d’une PAC gainée nécessite un local commun donnant sur l’extérieur.",
       },
     ],
   },
   travauxIndividuel: {
     note: "dynamic",
-    text: [
+    texte: [
       {
         titre: "Emprise logement",
         contenu: "Aucune.",
@@ -71,7 +73,7 @@ export const solution = {
   },
   acoustique: {
     note: "C",
-    text: [
+    texte: [
       {
         titre: "Volume sonore",
         contenu: "De 45 à 65dB (unité extérieure) / de 50 à 65dB (unité intérieure)",
@@ -85,7 +87,7 @@ export const solution = {
   },
   espaceExterieur: {
     note: "A",
-    text: [
+    texte: [
       {
         titre: "Impact extérieur",
         contenu:
@@ -99,7 +101,7 @@ export const solution = {
   },
   maturite: {
     note: "D",
-    text: [
+    texte: [
       {
         titre: "Maturité",
         contenu:

@@ -11,12 +11,12 @@ import { HighlightText } from "@/components/HighlightText";
 import { NoDataImage } from "@/components/img/NoDataImage";
 import { Box, Container, Grid, GridCol } from "@/dsfr";
 import { H2, Text } from "@/dsfr/base/typography";
-import { getSolutionsParCriteres } from "@/lib/server/useCases/getSolutionsParCriteres";
+import { informationBatimentSchema } from "@/lib/common/domain/InformationBatiment";
+import { getSolutionsApplicables } from "@/lib/server/useCases/getSolutionsApplicables";
 import { fetchBAN } from "@/lib/services/ban";
 import { fetchFcuEligibility } from "@/lib/services/fcu";
 
 import { sharedMetadata } from "../../shared-metadata";
-import { simulationSchema } from "../schema";
 import { CardRcu } from "./CardRcu";
 import { DebugButton } from "./DebugButton";
 import { Evaluation } from "./Evaluation";
@@ -51,7 +51,7 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
   const complet = searchParams.complet === "oui";
 
   const unparsedFormData: unknown = JSON.parse(Base64.decode(searchParams.hash));
-  const formData = simulationSchema.safeParse(unparsedFormData);
+  const formData = informationBatimentSchema.safeParse(unparsedFormData);
 
   if (!formData.success) {
     const errors = formData.error.format();
@@ -59,7 +59,7 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
   }
 
   const [baseSolutions, adresses] = await Promise.all([
-    getSolutionsParCriteres(formData.data),
+    getSolutionsApplicables(formData.data),
     fetchBAN(formData.data.adresse),
   ]);
 

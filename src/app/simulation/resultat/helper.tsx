@@ -10,15 +10,17 @@ import { FamillePacEauEauImage } from "@/components/img/familles/FamillePacEauEa
 import { FamillePacEauxGrisesEau } from "@/components/img/familles/FamillePacEauxGrisesEau";
 import { FamillePacSolaireEauImage } from "@/components/img/familles/FamillePacSolaireEauImage";
 import { FamilleRcuImage } from "@/components/img/familles/FamilleRcuImage";
-import { type SolutionFamilles, type SolutionNote, type SolutionTypes } from "@/lib/enums";
+import { type SolutionFamille } from "@/lib/common/domain/values/SolutionFamille";
+import { type SolutionNote } from "@/lib/common/domain/values/SolutionNote";
+import { type SolutionType } from "@/lib/common/domain/values/SolutionTypes";
 
-export const typeMap: Record<SolutionTypes, string> = {
+export const typeMap: Record<SolutionType, string> = {
   IND: "Solution individuelle",
   COL: "Solution collective",
   MIX: "Solution mixte",
 };
 
-export const familleImageMap: Record<SolutionFamilles, JSX.Element> = {
+export const familleImageMap: Record<SolutionFamille, JSX.Element> = {
   RCU: <FamilleRcuImage />,
   Geothermie: <FamilleGeothermieImage />,
   "PAC Air-Air": <FamillePacAirAirImage />,

@@ -4,7 +4,7 @@ import { OuiNonSchema } from "@/utils/zod";
 
 const currentYear = new Date().getFullYear();
 
-export const simulationSchema = z
+export const informationBatimentSchema = z
   .object({
     adresse: z.string().min(1, "L'adresse est obligatoire"),
     annee: z.coerce
@@ -14,7 +14,7 @@ export const simulationSchema = z
       .int()
       .min(1, "L'année doit être supérieure à zéro")
       .max(currentYear, "L'année doit être inférieure ou égale à l'année en cours"),
-    renovation: z.enum(["aucune rénovation", "rénovations partielles", "rénovation globale"]),
+    renovation: z.array(z.enum(["fenetres", "sol", "toiture", "murs"])).optional(),
     nbLogements: z.coerce
       .number({
         invalid_type_error: "Le nombre de logements doit être un nombre",
@@ -32,4 +32,4 @@ export const simulationSchema = z
   })
   .strict();
 
-export type SimulationSchema = z.infer<typeof simulationSchema>;
+export type InformationBatiment = z.infer<typeof informationBatimentSchema>;

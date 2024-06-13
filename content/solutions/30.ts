@@ -1,10 +1,11 @@
-import { type Solution } from "@/lib/enums";
+import { type Solution } from "@/lib/common/domain/values/Solution";
 
 export const solution = {
   id: "30",
   nom: "Chauffe-eau thermodynamique air extrait / eau",
   familleSolution: "CET Air-Eau",
   type: "IND",
+  typeSysteme: "ECS seule : PAC Air / Eau",
   description:
     "Le chauffe-eau thermodynamique (CET) capte de la chaleur sur l'air extrait de ventilation, et produit de l'eau chaude.",
   usageCh: "Non",
@@ -12,7 +13,7 @@ export const solution = {
   usageFr: "Non",
   environnement: {
     note: "B",
-    text: [
+    texte: [
       {
         titre: "Eau chaude sanitaire uniquement",
         contenu:
@@ -25,7 +26,7 @@ export const solution = {
   },
   difficulte: {
     note: "dynamic",
-    text: [
+    texte: [
       {
         titre: "Aucun travaux sur parties communes",
         contenu:
@@ -44,7 +45,7 @@ export const solution = {
   },
   travauxCollectif: {
     note: "dynamic",
-    text: [
+    texte: [
       {
         titre: "Déroulement des travaux",
         contenu: "Aucun, cela fonctionne avec la VMC déjà existante.",
@@ -54,7 +55,7 @@ export const solution = {
   travauxIndividuel: {
     image: "30 - CET air extrait eau - appartement.png",
     note: "dynamic",
-    text: [
+    texte: [
       {
         titre: "Emprise logement",
         contenu: "Il faut prévoir un encombrement d'environ 70x70x250 cm (placard acoustique).",
@@ -68,7 +69,7 @@ export const solution = {
   },
   acoustique: {
     note: "A",
-    text: [
+    texte: [
       {
         titre: "Volume sonore",
         contenu: "De 30 à 50dB.",
@@ -82,7 +83,7 @@ export const solution = {
   },
   espaceExterieur: {
     note: "A",
-    text: [
+    texte: [
       {
         titre: "Impact extérieur",
         contenu:
@@ -96,7 +97,7 @@ export const solution = {
   },
   maturite: {
     note: "A",
-    text: [
+    texte: [
       {
         titre: "Maturité",
         contenu:

@@ -21,6 +21,11 @@
       ],
     }
   },
+  // "include": [
+  //   "../src/**/*.ts",
+  //   "../drizzle/**/*.ts",
+  //   "./**/*.mts",
+  // ],
   "ts-node": {
     "transpileOnly": true,
     "require": [
