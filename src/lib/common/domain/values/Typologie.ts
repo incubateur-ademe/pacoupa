@@ -1,0 +1,25 @@
+export const enumTypologie = [
+  "Petit collectif - Avant 1948",
+  "Moyen collectif - Avant 1948",
+  "Grand collectif - Avant 1948",
+  "Petit collectif (1948-1974)",
+  "Moyen-grand collectif (1948 -1974)",
+  "Grand collectif (1948-1974)",
+  "Petit collectif (1975-1981)",
+  "Moyen-grand collectif (1975-1981)",
+  "Grand collectif (1975-1981)",
+  "Petit collectif (1982-1989)",
+  "Moyen-grand collectif (1982-1989)",
+  "Grand collectif (1982-1989)",
+  "Petit collectif (1990-2000)",
+  "Moyen-grand collectif (1990-2000)",
+  "Grand collectif (1990-2000)",
+  "Petit collectif (2001-2005)",
+  "Moyen-grand collectif (2001- 2005)",
+  "Petit collectif (2006-2012)",
+  "Moyen-grand collectif (2006- 2012)",
+  "Petit collectif (après 2012)",
+  "Moyen-grand collectif (après 2012)",
+] as const;
+
+export type Typologie = (typeof enumTypologie)[number];

@@ -1,10 +1,11 @@
-import { type Solution } from "@/lib/enums";
+import { type Solution } from "@/lib/common/domain/values/Solution";
 
 export const solution = {
   id: "07",
   nom: "Pompe à chaleur sur air extrait",
   familleSolution: "PAC Air-Eau",
   type: "COL",
+  typeSysteme: "ECS seule : PAC Air / Eau",
   description:
     "La pompe à chaleur (PAC) air extrait / eau capte de la chaleur sur l'air extrait de ventilation, et produit de l’eau chaude.",
   usageCh: "Non",
@@ -12,7 +13,7 @@ export const solution = {
   usageFr: "Non",
   environnement: {
     note: "B",
-    text: [
+    texte: [
       {
         titre: "Consommation d’énergie",
         contenu:
@@ -29,7 +30,7 @@ export const solution = {
   },
   difficulte: {
     note: "dynamic",
-    text: [
+    texte: [
       {
         titre: "Structure",
         contenu:
@@ -49,7 +50,7 @@ export const solution = {
   travauxCollectif: {
     image: "07 - PAC sur air extrait - impact exterieur.png",
     note: "dynamic",
-    text: [
+    texte: [
       {
         titre: "Déroulement des travaux",
         contenu: "Travaux rapides dans des parties communes peu fréquentées.",
@@ -58,7 +59,7 @@ export const solution = {
   },
   travauxIndividuel: {
     note: "dynamic",
-    text: [
+    texte: [
       {
         titre: "Emprise logement",
         contenu: "Aucune.",
@@ -71,7 +72,7 @@ export const solution = {
   },
   acoustique: {
     note: "B",
-    text: [
+    texte: [
       {
         titre: "Volume sonore",
         contenu: "de 45 à 65dB (unité extérieure) / de 50 à 65dB (unité intérieure)",
@@ -86,7 +87,7 @@ export const solution = {
   espaceExterieur: {
     note: "B",
     image: "07 - PAC sur air extrait - impact exterieur.png",
-    text: [
+    texte: [
       {
         titre: "Unité extérieure",
         contenu: "Les PAC air / eau disposent d’une unité extérieure (toiture ou terrasse).",
@@ -109,7 +110,7 @@ export const solution = {
   },
   maturite: {
     note: "E",
-    text: [
+    texte: [
       {
         titre: "Maturité",
         contenu:

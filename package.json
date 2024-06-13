@@ -3,6 +3,7 @@
   "description": "Conseiller les copropriétaires dans l'installation de systèmes de chauffage décarbonés adaptés à leur logement.",
   "version": "1.2.0",
   "private": true,
+  "license": "Apache-2.0",
   "engines": {
     "node": "18.x"
   },
@@ -21,7 +22,8 @@
     "generateEnvDeclaration": "yarn run-script scripts/generateEnvDeclaration.ts",
     "dk:introspect": "drizzle-kit introspect:sqlite",
     "dk:up": "yarn drizzle-kit up:sqlite",
-    "dk:check": "yarn drizzle-kit check:sqlite"
+    "dk:check": "yarn drizzle-kit check:sqlite",
+    "db:build": "./scripts/db/build_db.sh"
   },
   "dependencies": {
     "@codegouvfr/react-dsfr": "^1.0.1",
@@ -90,6 +92,7 @@
     "tailwindcss": "^3.3.5",
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.3.2"
+    "typescript": "^5.3.2",
+    "zx": "^8.1.2"
   }
 }

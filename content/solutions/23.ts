@@ -1,10 +1,11 @@
-import { type Solution } from "@/lib/enums";
+import { type Solution } from "@/lib/common/domain/values/Solution";
 
 export const solution = {
   id: "23",
   nom: "Pompe à chaleur eau / eau géothermie",
   familleSolution: "PAC Eau-Eau",
   type: "COL",
+  typeSysteme: "CH seul : PAC Air / Eau",
   description:
     "La pompe à chaleur (PAC) eau / eau prélève de la chaleur dans le sol, augmente son niveau de température et la transfère à un circuit d'eau.",
   usageCh: "Oui",
@@ -12,7 +13,7 @@ export const solution = {
   usageFr: "Possible",
   environnement: {
     note: "A",
-    text: [
+    texte: [
       {
         titre: "Consommation d’énergie",
         contenu:
@@ -30,7 +31,7 @@ export const solution = {
   difficulte: {
     note: "dynamic",
     image: "08-13-23 - PAC geothermique - facilite installation.png",
-    text: [
+    texte: [
       {
         titre: "Sonde géothermique",
         contenu:
@@ -50,7 +51,7 @@ export const solution = {
   travauxCollectif: {
     note: "dynamic",
     image: "08-13-23 - PAC geothermique - parties communes.png",
-    text: [
+    texte: [
       {
         titre: "Déroulement des travaux",
         contenu:
@@ -60,7 +61,7 @@ export const solution = {
   },
   travauxIndividuel: {
     note: "dynamic",
-    text: [
+    texte: [
       {
         titre: "Emprise logement",
         contenu: "Aucune.",
@@ -73,7 +74,7 @@ export const solution = {
   },
   acoustique: {
     note: "A",
-    text: [
+    texte: [
       {
         titre: "Acoustique",
         contenu: "Aucune nuisance sonore.",
@@ -82,7 +83,7 @@ export const solution = {
   },
   espaceExterieur: {
     note: "B",
-    text: [
+    texte: [
       {
         titre: "Sonde géothermique",
         contenu:
@@ -92,7 +93,7 @@ export const solution = {
   },
   maturite: {
     note: "A",
-    text: [
+    texte: [
       {
         titre: "Maturité",
         contenu:

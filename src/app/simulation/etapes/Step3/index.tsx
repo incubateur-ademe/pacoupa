@@ -1,18 +1,17 @@
 "use client";
 
-import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
+import { fr } from "@codegouvfr/react-dsfr";
+import Checkbox from "@codegouvfr/react-dsfr/Checkbox";
 import { z } from "zod";
 
 import { Box } from "@/dsfr";
+import { Text } from "@/dsfr/base/typography";
 
 import { HeaderFunnel } from "../HeaderFunnel";
 import { WizardForm } from "../WizardForm";
-import { AucuneRenovationImage } from "./AucuneRenovationImage";
-import { RenovationGlobaleImage } from "./RenovationGlobaleImage";
-import { RenovationsPartiellesImage } from "./RenovationsPartiellesImage";
 
 const schema = z.object({
-  renovation: z.string({ required_error: "Le niveau de rénovation du bâtiment est obligatoire" }),
+  renovation: z.array(z.string()),
 });
 
 export const Step3 = () => {
@@ -24,45 +23,50 @@ export const Step3 = () => {
         schema={schema}
         render={({ errors, store }) => (
           <Box>
-            <RadioButtons
-              name="renovation"
-              aria-required
-              aria-invalid={Boolean(errors?.renovation?._errors)}
+            <Checkbox
               legend={
-                <>
-                  Quelles <strong>rénovations</strong> ont été effectuées sur votre bâtiment ?
-                </>
+                <p>
+                  Sélectionnez les isolations qui ont été faites il y a moins de 15ans.
+                  <br />
+                  <Text className={fr.cx("fr-text--xs")}>Si vous avez un doute, ne cochez pas la case.</Text>
+                </p>
               }
               options={[
                 {
-                  illustration: <AucuneRenovationImage />,
-                  label: "Pas de rénovation",
+                  label: "Toiture",
                   nativeInputProps: {
-                    defaultChecked: store.renovation === "aucune rénovation",
-                    value: "aucune rénovation",
+                    defaultChecked: store.renovation?.includes("toiture"),
+                    name: "renovation",
+                    value: "toiture",
                   },
                 },
                 {
-                  illustration: <RenovationsPartiellesImage />,
-                  label: "Partielles",
-                  hintText: "Toiture ou murs ou double vitrage, ...",
+                  label: "Murs",
                   nativeInputProps: {
-                    defaultChecked: store.renovation === "rénovations partielles",
-                    value: "rénovations partielles",
+                    defaultChecked: store.renovation?.includes("murs"),
+                    name: "renovation",
+                    value: "murs",
                   },
                 },
                 {
-                  illustration: <RenovationGlobaleImage />,
-                  label: "Globale",
-                  hintText: "Toiture, murs, double vitrage et plancher bas",
+                  label: "Sol",
                   nativeInputProps: {
-                    defaultChecked: store.renovation === "rénovation globale",
-                    value: "rénovation globale",
+                    defaultChecked: store.renovation?.includes("sol"),
+                    name: "renovation",
+                    value: "sol",
+                  },
+                },
+                {
+                  label: "Fenêtres",
+                  nativeInputProps: {
+                    defaultChecked: store.renovation?.includes("fenetres"),
+                    name: "renovation",
+                    value: "fenetres",
                   },
                 },
               ]}
               state={errors?.renovation?._errors ? "error" : "default"}
-              stateRelatedMessage={errors?.renovation?._errors}
+              stateRelatedMessage={<div aria-live="polite">{errors?.renovation?._errors}</div>}
             />
           </Box>
         )}

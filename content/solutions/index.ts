@@ -1,4 +1,4 @@
-import { type Solution } from "@/lib/enums";
+import { type Solution } from "@/lib/common/domain/values/Solution";
 
 import { solution as solution01 } from "./01";
 import { solution as solution02 } from "./02";
@@ -12,14 +12,12 @@ import { solution as solution10 } from "./10";
 import { solution as solution11 } from "./11";
 import { solution as solution12 } from "./12";
 import { solution as solution13 } from "./13";
-import { solution as solution14 } from "./14";
 import { solution as solution15 } from "./15";
 import { solution as solution16 } from "./16";
 import { solution as solution20 } from "./20";
 import { solution as solution21 } from "./21";
 import { solution as solution22 } from "./22";
 import { solution as solution23 } from "./23";
-import { solution as solution24 } from "./24";
 import { solution as solution25 } from "./25";
 import { solution as solution26 } from "./26";
 import { solution as solution30 } from "./30";
@@ -47,14 +45,12 @@ export const catalogueSolutions: Record<string, Solution> = {
   "11": solution11,
   "12": solution12,
   "13": solution13,
-  "14": solution14,
   "15": solution15,
   "16": solution16,
   "20": solution20,
   "21": solution21,
   "22": solution22,
   "23": solution23,
-  "24": solution24,
   "25": solution25,
   "26": solution26,
   "30": solution30,

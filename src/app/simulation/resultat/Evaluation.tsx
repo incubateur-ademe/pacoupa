@@ -13,7 +13,7 @@ import { useState } from "react";
 
 import { Box } from "@/dsfr";
 import { Text } from "@/dsfr/base/typography";
-import { type Solution } from "@/lib/enums";
+import { type Solution } from "@/lib/common/domain/values/Solution";
 
 import { acoustiqueMap, coutMap, environnementMap, faciliteMap, maturiteMap, travauxMap } from "./helper";
 
@@ -91,10 +91,8 @@ export const Evaluation = ({ categorie, solution, withDetails }: EvaluationProps
   const { emoji, titre, mapper } = config[categorie];
 
   const note = solution[categorie].note;
-  const text = solution[categorie].text || [];
+  const text = solution[categorie].texte || [];
   const image = solution[categorie].image;
-
-  console.log({ image });
 
   if (note === "dynamic") return null;
 
