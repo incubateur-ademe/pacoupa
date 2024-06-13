@@ -13,7 +13,6 @@ export type CriteresBddEnergie = Pick<
   BddEnergie,
   | "ch"
   | "ecs"
-  | "emetteur"
   | "scenarioRenovationEnveloppe"
   | "scenarioRenovationSysteme"
   | "typeCh"
@@ -44,8 +43,6 @@ export const creerCriteresBddEnergie = async (dto: GetInformationEnergieDTO): Pr
 
   const typeCh = dto.energieCH === "electricite" ? "ELEC" : (dto.energieCH.toUpperCase() as TypeCH);
   const typeEcs = dto.energieECS === "ballon electrique" ? "ELEC" : (dto.energieCH.toUpperCase() as TypeECS);
-  const emetteur: CriteresBddEnergie["emetteur"] =
-    dto.energieCH === "fioul" || dto.energieCH === "gaz" ? "Hydraulique" : "Electrique";
 
   const ch: CriteresBddEnergie["ch"] = dto.typeCH === "collectif" ? "COL" : "IND";
   const ecs: CriteresBddEnergie["ecs"] = dto.typeECS === "collectif" ? "COL" : "IND";
@@ -59,7 +56,6 @@ export const creerCriteresBddEnergie = async (dto: GetInformationEnergieDTO): Pr
     etatIsolationMurs,
     typeCh,
     typeEcs,
-    emetteur,
     ch,
     ecs,
     scenarioRenovationEnveloppe: dto.scenarioRenovationEnveloppe,

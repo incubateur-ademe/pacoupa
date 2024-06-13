@@ -4,4 +4,7 @@ sqlite-utils insert $ASSETS_DIR/pacoupa.db bdd_energie $ASSETS_DIR/bdd_energie_c
 sqlite-utils transform $ASSETS_DIR/pacoupa.db bdd_energie \
 --pk id \
 --drop Annexe \
+--drop usage_CH \
+--drop usage_ECS \
+--drop emetteur
 

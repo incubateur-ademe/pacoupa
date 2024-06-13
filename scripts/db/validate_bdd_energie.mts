@@ -57,8 +57,6 @@ const schema = z.array(
       "CH seul : PAC Air / Eau",
       "CH seul Hybride : PAC + Chaudière",
     ]),
-    usage_CH: z.enum(["OUI", "NON", ""]),
-    usage_ECS: z.enum(["OUI", "NON", ""]),
     Annexe: z.string().optional(),
     CEP: z.number().int().positive(),
     GES: z.number().int().positive(),

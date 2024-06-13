@@ -3,7 +3,6 @@ import { createSelectSchema } from "drizzle-zod";
 import { type z } from "zod";
 
 import { enumDPE } from "@/lib/common/domain/values/DPE";
-import { enumEmetteur } from "@/lib/common/domain/values/Emetteur";
 import { enumScenarioRenovationEnveloppe } from "@/lib/common/domain/values/ScenarioRenovationEnveloppe";
 import { enumScenarioRenovationSysteme } from "@/lib/common/domain/values/ScenarioRenovationSysteme";
 import { enumFamille } from "@/lib/common/domain/values/SolutionFamille";
@@ -123,10 +122,7 @@ export const bddEnergie = sqliteTable("bdd_energie", {
   typeEcs: text("type_ECS", { enum: enumTypeECS }),
   ch: text("CH", { enum: enumTypeWithoutMix }),
   ecs: text("ECS", { enum: enumTypeWithoutMix }),
-  emetteur: text("emetteur", { enum: enumEmetteur }).notNull(),
   scenarioRenovationSysteme: text("scenario_renovation_systeme", { enum: enumScenarioRenovationSysteme }).notNull(),
-  usageCh: text("usage_CH", { enum: enumUsage }).notNull(),
-  usageEcs: text("usage_ECS", { enum: enumUsage }).notNull(),
   cep: integer("CEP"),
   ges: integer("GES"),
   dpe: text("DPE", { enum: enumDPE }).notNull(),

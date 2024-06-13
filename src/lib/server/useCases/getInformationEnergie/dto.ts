@@ -14,7 +14,6 @@ export const GetInformationEnergieDTOSchema = informationBatimentSchema
     typeECS: true,
     energieCH: true,
     energieECS: true,
-    emetteur: true,
     espacesExterieursCommuns: true,
     espacesExterieursPersonnels: true,
   })
