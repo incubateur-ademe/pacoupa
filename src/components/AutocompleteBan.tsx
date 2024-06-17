@@ -82,6 +82,7 @@ export function AutocompleteBan({ defaultValue, errors }: AutocompletBanMuiProps
             name="adresse"
             fullWidth
             aria-required="true"
+            placeholder="Ex: 8 Boulevard de la Libération, 93200 Saint-Denis"
             inputProps={{
               ...params.inputProps,
               "aria-required": true,
