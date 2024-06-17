@@ -1,8 +1,10 @@
 import Header from "@codegouvfr/react-dsfr/Header";
+import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 
 import { config } from "@/config";
 
 import { Brand } from "./Brand";
+import { Logo } from "./img/Logo";
 import styles from "./PacoupaHeader.module.scss";
 
 export const PacoupaHeader = () => {
@@ -19,9 +21,10 @@ export const PacoupaHeader = () => {
         orientation: "vertical",
       }}
       serviceTitle={
-        <>
-          <span className={styles.title}>{config.name}</span>
-        </>
+        <div className={cx("flex", "items-center")}>
+          <Logo />
+          <span className={cx(styles.title, "ml-1")}>{config.name}</span>
+        </div>
       }
     />
   );
