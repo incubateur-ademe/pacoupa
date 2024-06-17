@@ -33,16 +33,25 @@ Les données sont stockées dans une DB SQLite hébergée sur Turso.
 
 1. Création de la DB SQLite
 
-En cas de modification du fichier Google sheet original, il faut :
-- exporter en csv les données du simulateur
-    - le premier onglet, en le nommant solutions_par_criteres.csv
-    - le second, en le nommant solutions.csv
-- stocker ces 2 fichiers dans le répertoire assets
+Le fichier pacoupa.db peut être reconstruit à partir des fichiers tableurs stockés sur Google Drive.
+
+Ouvrir le fichier `Simulateur 1 - PACOUPA`
+- exporter en csv le premier onglet en le nommant solutions_par_criteres.csv
+- exporter le second en le nommant solutions.csv
+
+Ouvrir le fichier Simulateur 2 le plus récent. 
+- exporter l'onglet Bdd_energie en bdd_energie.csv
+
+Ouvrir le fichier `typologies PACOUPA`.
+- exporter l'onglet principal en typologies.csv.
+
+- stocker tous ces fichiers dans le répertoire assets
 - lancer le script /scripts/db/build_db.sh 
 
 ```shell
 ./scripts/db/build_db.sh
 ```
+
 
 2. Push sur Turso
 
