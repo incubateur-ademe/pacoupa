@@ -110,24 +110,38 @@
     --spacing-16w: 8rem; /* 128 px */
 
     /* Custom colors */
-
-    --color-title: #304436;
-
-    --color-primary-background: #92e3a9;
-    --color-primary-background-hover: #b3ebc3;
-    --color-primary-background-active: #80b990;
-
-    --color-primary-text: #334337;
+    /* --color-primary-shadow: #183d2f; */
+    --color-green-900: #183d2f;
+    /* --color-primary-border: #274430; */
+    --color-green-800: #274430;
+    
+    /* 
+    --color-title: #304436; 
     --color-primary-text-hover: #304436;
+    --color-secondary-text: #304436; 
+    --color-primary-text: #334337;
+    */
+    --color-green-700: #304436;
 
-    --color-primary-shadow: #183d2f;
-    --color-primary-border: #274430;
-    --color-footer-background: #ebf7eb;
+    /* 
+    --color-primary-background-active: #80b990;
+    */
+    --color-green-500: #80b990; 
+    
+    /* 
+    --color-primary-background: #92e3a9;
+    --color-secondary-text-active: #92e3a9; 
+    */
+    --color-green-200: #92e3a9; 
 
-    --color-secondary-background: #fff;
+    /* --color-primary-background-hover: #b3ebc3; */
+    --color-green-100: #b3ebc3;
 
-    --color-secondary-text: #304436;
-    --color-secondary-text-hover: #80b990;
-    --color-secondary-text-active: #92e3a9;
+
+    /* --color-footer-background: #ebf7eb; */
+    --color-green-50: #ebf7eb;
+
+    /* --color-secondary-background: #fff; */
+    --color-white: #fff;
 
 }
