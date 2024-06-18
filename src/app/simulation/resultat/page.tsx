@@ -119,8 +119,6 @@ const ResultatsPage = async ({
 
         <p>Dépendent des travaux d’isolations</p>
 
-        <p>Travaux d’isolation de la copropriété</p>
-
         <TravauxNiveauIsolationSegmentedControl />
 
         <Box>
