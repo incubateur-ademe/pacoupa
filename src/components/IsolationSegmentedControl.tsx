@@ -1,11 +1,13 @@
 "use client";
 
+import { fr } from "@codegouvfr/react-dsfr";
 import { SegmentedControl, type SegmentedControlProps } from "@codegouvfr/react-dsfr/SegmentedControl";
-import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
 import { createSearchParams } from "@/utils/searchParams";
+
+import { Callout } from "./Callout";
 
 const wordings: Record<TravauxNiveauIsolation, string> = {
   Global: "En plus du système de chauffage, vous projetez d’isoler la toiture, les murs, le sol et les fenêtres.",
@@ -18,7 +20,7 @@ export const TravauxNiveauIsolationSegmentedControl = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const travauxNiveauIsolation = searchParams.get("travauxNiveauIsolation") as TravauxNiveauIsolation | null;
+  const travauxNiveauIsolation = (searchParams.get("travauxNiveauIsolation") as TravauxNiveauIsolation) ?? "Global";
 
   return (
     <>
@@ -47,7 +49,9 @@ export const TravauxNiveauIsolationSegmentedControl = () => {
         }
       />
 
-      {travauxNiveauIsolation && <p className={cx("mt-4")}>{wordings[travauxNiveauIsolation]}</p>}
+      {travauxNiveauIsolation && (
+        <Callout content={wordings[travauxNiveauIsolation]} icon={<i className={fr.cx("ri-information-fill")} />} />
+      )}
     </>
   );
 };
