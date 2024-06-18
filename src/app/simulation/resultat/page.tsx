@@ -9,9 +9,11 @@ import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
 import { HighlightText } from "@/components/HighlightText";
 import { NoDataImage } from "@/components/img/NoDataImage";
+import { TravauxNiveauIsolationSegmentedControl } from "@/components/IsolationSegmentedControl";
 import { Box, Container, Grid, GridCol } from "@/dsfr";
 import { H2, Text } from "@/dsfr/base/typography";
 import { informationBatimentSchema } from "@/lib/common/domain/InformationBatiment";
+import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
 import { getSolutionsApplicables } from "@/lib/server/useCases/getSolutionsApplicables";
 import { fetchBAN } from "@/lib/services/ban";
 import { fetchFcuEligibility } from "@/lib/services/fcu";
@@ -45,7 +47,11 @@ export const metadata: Metadata = {
   },
 };
 
-const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" | "oui"; hash: string } }) => {
+const ResultatsPage = async ({
+  searchParams,
+}: {
+  searchParams: { complet: "non" | "oui"; hash: string; travauxNiveauIsolation: TravauxNiveauIsolation };
+}) => {
   if (!searchParams.hash) throw new Error("Le hash est manquant");
 
   const complet = searchParams.complet === "oui";
@@ -107,9 +113,15 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
 
       <Container className={fr.cx("fr-mt-4w")}>
         <H2 as="h4">
-          Solutions compatibles
+          Chauffages compatibles
           <DebugButton formData={formData} solutions={solutions} />
         </H2>
+
+        <p>Dépendent des travaux d’isolations</p>
+
+        <p>Travaux d’isolation de la copropriété</p>
+
+        <TravauxNiveauIsolationSegmentedControl />
 
         <Box>
           {nbSolutions === 0 ? (
