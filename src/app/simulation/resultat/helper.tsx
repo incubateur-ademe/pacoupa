@@ -16,6 +16,7 @@ import { type Solution } from "@/lib/common/domain/values/Solution";
 import { type SolutionFamille } from "@/lib/common/domain/values/SolutionFamille";
 import { type SolutionNote } from "@/lib/common/domain/values/SolutionNote";
 import { type SolutionType } from "@/lib/common/domain/values/SolutionTypes";
+import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
 import { getSolutionsApplicables } from "@/lib/server/useCases/getSolutionsApplicables";
 import { fetchBAN } from "@/lib/services/ban";
 import { fetchFcuEligibility } from "@/lib/services/fcu";
@@ -26,7 +27,14 @@ type FetchSolutionsReturnType = {
   solutions: Solution[];
 };
 
-export const fetchSolutions = async (data: InformationBatiment): Promise<FetchSolutionsReturnType> => {
+export const fetchSolutions = async (
+  data: InformationBatiment,
+  travauxNiveauIsolation: TravauxNiveauIsolation,
+): Promise<FetchSolutionsReturnType> => {
+  if (travauxNiveauIsolation === "Global") {
+    data = { ...data, renovation: ["fenetres", "murs", "sol", "toiture"] };
+  }
+
   const [baseSolutions, adresses] = await Promise.all([getSolutionsApplicables(data), fetchBAN(data.adresse)]);
 
   const {

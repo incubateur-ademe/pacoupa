@@ -16,11 +16,13 @@ const wordings: Record<TravauxNiveauIsolation, string> = {
   Aucun: "Vous projetez de remplacer uniquement votre système de chauffage.",
 };
 
-export const TravauxNiveauIsolationSegmentedControl = () => {
+type Props = {
+  travauxNiveauIsolation: TravauxNiveauIsolation;
+};
+
+export const TravauxNiveauIsolationSegmentedControl = ({ travauxNiveauIsolation }: Props) => {
   const router = useRouter();
   const searchParams = useSearchParams();
-
-  const travauxNiveauIsolation = (searchParams.get("travauxNiveauIsolation") as TravauxNiveauIsolation) ?? "Global";
 
   return (
     <>

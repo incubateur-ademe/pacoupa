@@ -52,6 +52,8 @@ const ResultatsPage = async ({
 
   const complet = searchParams.complet === "oui";
 
+  const travauxNiveauIsolation = searchParams.travauxNiveauIsolation ?? "Global";
+
   const unparsedFormData: unknown = JSON.parse(Base64.decode(searchParams.hash));
   const formData = informationBatimentSchema.safeParse(unparsedFormData);
 
@@ -60,7 +62,7 @@ const ResultatsPage = async ({
     throw new Error(`Erreur de formatage du hash ${JSON.stringify(errors)}`);
   }
 
-  const { solutions, nbSolutions, isRcuEligible } = await fetchSolutions(formData.data);
+  const { solutions, nbSolutions, isRcuEligible } = await fetchSolutions(formData.data, travauxNiveauIsolation);
 
   return (
     <>
@@ -98,7 +100,7 @@ const ResultatsPage = async ({
 
         <p>Dépendent des travaux d’isolations</p>
 
-        <TravauxNiveauIsolationSegmentedControl />
+        <TravauxNiveauIsolationSegmentedControl travauxNiveauIsolation={travauxNiveauIsolation} />
 
         <Box>
           {nbSolutions === 0 ? (
