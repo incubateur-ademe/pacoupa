@@ -11,7 +11,7 @@ import { HeaderFunnel } from "../HeaderFunnel";
 import { WizardForm } from "../WizardForm";
 
 const schema = z.object({
-  renovation: z.array(z.string()),
+  renovation: z.array(z.string()).optional(),
 });
 
 export const Step3 = () => {
