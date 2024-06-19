@@ -7,6 +7,7 @@ import { type Metadata } from "next";
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
 import { HighlightText } from "@/components/HighlightText";
+import { DPEImage } from "@/components/img/DPEImage";
 import { NoDataImage } from "@/components/img/NoDataImage";
 import { TravauxNiveauIsolationSegmentedControl } from "@/components/IsolationSegmentedControl";
 import { Box, Container, Grid, GridCol } from "@/dsfr";
@@ -17,7 +18,6 @@ import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxN
 import { sharedMetadata } from "../../shared-metadata";
 import { CardRcu } from "./CardRcu";
 import { DebugButton } from "./DebugButton";
-import { Evaluation } from "./Evaluation";
 import { FranceRenovBlock } from "./FranceRenovBlock";
 import { familleImageMap, fetchSolutions, typeMap } from "./helper";
 import { NouvelleSimulation } from "./NouvelleSimulation";
@@ -142,10 +142,22 @@ const ResultatsPage = async ({
 
                     <Recommandation solution={solution} />
 
-                    <Box className={cx("flex", "flex-col", "gap-4")}>
+                    {/* <Box className={cx("flex", "flex-col", "gap-4")}>
                       <Evaluation categorie="environnement" solution={solution} />
                       <Evaluation categorie="cout" solution={solution} />
                       <Evaluation categorie="difficulte" solution={solution} />
+                    </Box> */}
+
+                    <Box>
+                      Estimation des gains
+                      <br />
+                      (Isolations comprises)
+                      <br />
+                      Gains énergétiques
+                      <br />
+                      Avant : <DPEImage lettre={solution.dpeAvant} />
+                      <br />
+                      Après : <DPEImage lettre={solution.dpeApres} />
                     </Box>
                   </>
                 }

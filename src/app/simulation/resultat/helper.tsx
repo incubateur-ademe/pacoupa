@@ -13,29 +13,34 @@ import { FamillePacSolaireEauImage } from "@/components/img/familles/FamillePacS
 import { FamilleRcuImage } from "@/components/img/familles/FamilleRcuImage";
 import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 import { type Solution } from "@/lib/common/domain/values/Solution";
+import { type SolutionEnergie } from "@/lib/common/domain/values/SolutionEnergie";
 import { type SolutionFamille } from "@/lib/common/domain/values/SolutionFamille";
 import { type SolutionNote } from "@/lib/common/domain/values/SolutionNote";
 import { type SolutionType } from "@/lib/common/domain/values/SolutionTypes";
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
+import { type TypeSystemeWithoutRCU } from "@/lib/common/domain/values/TypeSysteme";
+import { getInformationEnergie } from "@/lib/server/useCases/getInformationEnergie";
 import { getSolutionsApplicables } from "@/lib/server/useCases/getSolutionsApplicables";
+import { type GetSolutionsApplicablesDTO } from "@/lib/server/useCases/getSolutionsApplicables/dto";
 import { fetchBAN } from "@/lib/services/ban";
 import { fetchFcuEligibility } from "@/lib/services/fcu";
 
 type FetchSolutionsReturnType = {
   isRcuEligible: boolean;
   nbSolutions: number;
-  solutions: Solution[];
+  solutions: Array<Solution & SolutionEnergie>;
 };
 
 export const fetchSolutions = async (
   data: InformationBatiment,
   travauxNiveauIsolation: TravauxNiveauIsolation,
 ): Promise<FetchSolutionsReturnType> => {
-  if (travauxNiveauIsolation === "Global") {
-    data = { ...data, renovation: ["fenetres", "murs", "sol", "toiture"] };
-  }
+  const dataSimu1 =
+    travauxNiveauIsolation === "Global"
+      ? ({ ...data, renovation: ["fenetres", "murs", "sol", "toiture"] } as GetSolutionsApplicablesDTO)
+      : data;
 
-  const [baseSolutions, adresses] = await Promise.all([getSolutionsApplicables(data), fetchBAN(data.adresse)]);
+  const [baseSolutions, adresses] = await Promise.all([getSolutionsApplicables(dataSimu1), fetchBAN(data.adresse)]);
 
   const {
     geometry: { coordinates },
@@ -49,11 +54,55 @@ export const fetchSolutions = async (
     return { ...catalogueSolutions[solution.id], ...solution };
   });
 
+  // Just in case the Simulateur 2 is not exhaustive.
+  const testSimulateur2 = await getInformationEnergie({
+    ...data,
+    scenarioRenovationEnveloppe: "INIT",
+    scenarioRenovationSysteme: "S0",
+  });
+
+  if (!testSimulateur2.data) throw new Error("Erreur récupération données énergétiques manquantes");
+
+  const solutionsAvecEnergie = await Promise.all(
+    solutions.map(async solution => {
+      const baseEnergie = await getInformationEnergie({
+        ...data,
+        scenarioRenovationEnveloppe: "INIT",
+        scenarioRenovationSysteme: "S0",
+      });
+
+      const futurEnergie = await getInformationEnergie({
+        ...data,
+        scenarioRenovationEnveloppe:
+          travauxNiveauIsolation === "Global" ? "GLOB" : travauxNiveauIsolation === "Partiel" ? "INTER" : "INIT",
+        scenarioRenovationSysteme: solution.typeSystem as TypeSystemeWithoutRCU,
+      });
+
+      return {
+        ...solution,
+        dpeAvant: baseEnergie.data.dpe,
+        dpeApres: futurEnergie.data.dpe,
+        cepAvant: baseEnergie.data.cep,
+        cepApres: futurEnergie.data.cep,
+        gesAvant: baseEnergie.data.ges,
+        gesApres: futurEnergie.data.ges,
+        etaIsolationMenuiseriesAvant: baseEnergie.data.etatIsolationMenuiseries,
+        etaIsolationMenuiseriesApres: futurEnergie.data.etatIsolationMenuiseriesApresScénarioRenovationEnveloppe,
+        etaIsolationMursAvant: baseEnergie.data.etatIsolationMurs,
+        etaIsolationMursApres: futurEnergie.data.etatIsolationMursApresScénarioRenovationEnveloppe,
+        etaIsolationPlancherBasAvant: baseEnergie.data.etatIsolationPlancherBas,
+        etaIsolationPlancherBasApres: futurEnergie.data.etatIsolationPlancherBasApresScénarioRenovationEnveloppe,
+        etaIsolationPlancherHautAvant: baseEnergie.data.etatIsolationPlancherHaut,
+        etaIsolationPlancherHautApres: futurEnergie.data.etatIsolationPlancherHautApresScénarioRenovationEnveloppe,
+      };
+    }),
+  );
+
   const nbSolutions = solutions.length + (isRcuEligible ? 1 : 0);
 
   return {
     nbSolutions,
-    solutions,
+    solutions: solutionsAvecEnergie,
     isRcuEligible,
   };
 };
