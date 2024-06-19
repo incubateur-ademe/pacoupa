@@ -1,3 +1,4 @@
+import { catalogueSolutions } from "@__content/solutions";
 import { type AlertProps } from "@codegouvfr/react-dsfr/Alert";
 
 import { FamilleCetAirEauImage } from "@/components/img/familles/FamilleCetAirEauImage";
@@ -10,9 +11,44 @@ import { FamillePacEauEauImage } from "@/components/img/familles/FamillePacEauEa
 import { FamillePacEauxGrisesEau } from "@/components/img/familles/FamillePacEauxGrisesEau";
 import { FamillePacSolaireEauImage } from "@/components/img/familles/FamillePacSolaireEauImage";
 import { FamilleRcuImage } from "@/components/img/familles/FamilleRcuImage";
+import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
+import { type Solution } from "@/lib/common/domain/values/Solution";
 import { type SolutionFamille } from "@/lib/common/domain/values/SolutionFamille";
 import { type SolutionNote } from "@/lib/common/domain/values/SolutionNote";
 import { type SolutionType } from "@/lib/common/domain/values/SolutionTypes";
+import { getSolutionsApplicables } from "@/lib/server/useCases/getSolutionsApplicables";
+import { fetchBAN } from "@/lib/services/ban";
+import { fetchFcuEligibility } from "@/lib/services/fcu";
+
+type FetchSolutionsReturnType = {
+  isRcuEligible: boolean;
+  nbSolutions: number;
+  solutions: Solution[];
+};
+
+export const fetchSolutions = async (data: InformationBatiment): Promise<FetchSolutionsReturnType> => {
+  const [baseSolutions, adresses] = await Promise.all([getSolutionsApplicables(data), fetchBAN(data.adresse)]);
+
+  const {
+    geometry: { coordinates },
+  } = adresses.features[0];
+
+  const [lon, lat] = coordinates;
+
+  const { isEligible: isRcuEligible } = await fetchFcuEligibility({ lon, lat });
+
+  const solutions = baseSolutions.data.map(solution => {
+    return { ...catalogueSolutions[solution.id], ...solution };
+  });
+
+  const nbSolutions = solutions.length + (isRcuEligible ? 1 : 0);
+
+  return {
+    nbSolutions,
+    solutions,
+    isRcuEligible,
+  };
+};
 
 export const typeMap: Record<SolutionType, string> = {
   IND: "Solution individuelle",

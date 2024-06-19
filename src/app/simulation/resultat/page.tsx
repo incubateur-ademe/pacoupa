@@ -1,4 +1,3 @@
-import { catalogueSolutions } from "@__content/solutions";
 import { fr } from "@codegouvfr/react-dsfr";
 import { Badge } from "@codegouvfr/react-dsfr/Badge";
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
@@ -11,19 +10,16 @@ import { HighlightText } from "@/components/HighlightText";
 import { NoDataImage } from "@/components/img/NoDataImage";
 import { TravauxNiveauIsolationSegmentedControl } from "@/components/IsolationSegmentedControl";
 import { Box, Container, Grid, GridCol } from "@/dsfr";
-import { H2, Text } from "@/dsfr/base/typography";
+import { H2 } from "@/dsfr/base/typography";
 import { informationBatimentSchema } from "@/lib/common/domain/InformationBatiment";
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
-import { getSolutionsApplicables } from "@/lib/server/useCases/getSolutionsApplicables";
-import { fetchBAN } from "@/lib/services/ban";
-import { fetchFcuEligibility } from "@/lib/services/fcu";
 
 import { sharedMetadata } from "../../shared-metadata";
 import { CardRcu } from "./CardRcu";
 import { DebugButton } from "./DebugButton";
 import { Evaluation } from "./Evaluation";
 import { FranceRenovBlock } from "./FranceRenovBlock";
-import { familleImageMap, typeMap } from "./helper";
+import { familleImageMap, fetchSolutions, typeMap } from "./helper";
 import { NouvelleSimulation } from "./NouvelleSimulation";
 import { Recommandation } from "./Recommandation";
 import { SyncStore } from "./SyncStore";
@@ -64,24 +60,7 @@ const ResultatsPage = async ({
     throw new Error(`Erreur de formatage du hash ${JSON.stringify(errors)}`);
   }
 
-  const [baseSolutions, adresses] = await Promise.all([
-    getSolutionsApplicables(formData.data),
-    fetchBAN(formData.data.adresse),
-  ]);
-
-  const {
-    geometry: { coordinates },
-  } = adresses.features[0];
-
-  const [lon, lat] = coordinates;
-
-  const { isEligible: isRcuEligible } = await fetchFcuEligibility({ lon, lat });
-
-  const solutions = baseSolutions.data.map(solution => {
-    return { ...catalogueSolutions[solution.id], ...solution };
-  });
-
-  const nbSolutions = solutions.length + (isRcuEligible ? 1 : 0);
+  const { solutions, nbSolutions, isRcuEligible } = await fetchSolutions(formData.data);
 
   return (
     <>
@@ -155,9 +134,9 @@ const ResultatsPage = async ({
               <Card
                 desc={
                   <>
-                    <Box className={fr.cx("fr-mt-2w")}>
+                    {/* <Box className={fr.cx("fr-mt-2w")}>
                       <Text>{solution.description}</Text>
-                    </Box>
+                    </Box> */}
 
                     <Recommandation solution={solution} />
 
