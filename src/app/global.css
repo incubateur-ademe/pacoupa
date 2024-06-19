@@ -2,9 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom color for stepper's progress bar - needs to be outside Tailwind's @layer  */
+/* Custom color for stepper's - needs to be outside Tailwind's @layer  */
+
+.fr-stepper__title {
+    color: var(--color-green-700);
+}
+
 .fr-stepper__steps {
-   background-image: repeating-linear-gradient(to right, var(--color-green-500) 0, var(--color-green-500) var(--active-inner), transparent var(--active-inner), transparent var(--active-outer)), repeating-linear-gradient(to right, var(--color-green-50) 0, var(--color-green-50) var(--default-inner), transparent var(--default-inner), transparent var(--default-outer)) !important;
+    background-image: repeating-linear-gradient(to right, var(--color-green-500) 0, var(--color-green-500) var(--active-inner), transparent var(--active-inner), transparent var(--active-outer)), repeating-linear-gradient(to right, var(--color-green-50) 0, var(--color-green-50) var(--default-inner), transparent var(--default-inner), transparent var(--default-outer)) !important;
 }
 
 
@@ -157,7 +162,7 @@
         --color-green-100: #b3ebc3;
         /* --color-footer-background: #ebf7eb; */
         --color-green-50: #ebf7eb;
-        
+
         /* --color-secondary-background: #fff; */
         --color-white: #fff;
 
