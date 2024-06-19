@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+.fr-stepper__steps {
+   background-image: repeating-linear-gradient(to right, var(--color-green-500) 0, var(--color-green-500) var(--active-inner), transparent var(--active-inner), transparent var(--active-outer)), repeating-linear-gradient(to right, var(--color-green-50) 0, var(--color-green-50) var(--default-inner), transparent var(--default-inner), transparent var(--default-outer)) !important;
+}
+
+
 @layer base {
 
     /* Customization upon the DSFR */
@@ -151,14 +156,12 @@
         --color-green-100: #b3ebc3;
         /* --color-footer-background: #ebf7eb; */
         --color-green-50: #ebf7eb;
-
+        
         /* --color-secondary-background: #fff; */
         --color-white: #fff;
 
     }
 
     /* Custom color for stepper's progress bar */
-    .fr-stepper__steps {
-        background-image: repeating-linear-gradient(to right, var(--color-green-500) 0, var(--color-green-500) var(--active-inner), transparent var(--active-inner), transparent var(--active-outer)), repeating-linear-gradient(to right, var(--background-contrast-grey) 0, var(--background-contrast-grey) var(--default-inner), transparent var(--default-inner), transparent var(--default-outer));
-    }
+
 }
