@@ -154,6 +154,11 @@
 
         /* --color-secondary-background: #fff; */
         --color-white: #fff;
-        
+
+    }
+
+    /* Custom color for stepper's progress bar */
+    .fr-stepper__steps {
+        background-image: repeating-linear-gradient(to right, var(--color-green-500) 0, var(--color-green-500) var(--active-inner), transparent var(--active-inner), transparent var(--active-outer)), repeating-linear-gradient(to right, var(--background-contrast-grey) 0, var(--background-contrast-grey) var(--default-inner), transparent var(--default-inner), transparent var(--default-outer));
     }
 }
