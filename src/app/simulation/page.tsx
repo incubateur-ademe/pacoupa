@@ -1,3 +1,4 @@
+import { fr } from "@codegouvfr/react-dsfr";
 import { type Metadata } from "next";
 
 import { Button } from "@/components/Button";
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
 const SimulationLandingPage = () => {
   return (
     <>
-      <H1>👋 Bienvenue</H1>
+      <H1 className={fr.cx("fr-mt-4w")}>👋 Bienvenue</H1>
 
       <P>
         Découvrez les systèmes de chauffage <strong>compatibles</strong> avec votre logement en seulement{" "}

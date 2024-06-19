@@ -2,146 +2,158 @@
 @tailwind components;
 @tailwind utilities;
 
-/* background */
+@layer base {
 
-/* -- custom */
-.no-bg {
-    background: none;
-}
+    /* Customization upon the DSFR */
 
-/* === */
+    body {
+        color: var(--color-green-700);
+    }
 
-/* === based on dsfr === */
-/* typo */
-.text-dsfr-neutral {
-    color: var(--text-default-grey);
-}
+    h6,
+    h5,
+    h4,
+    h3,
+    h2,
+    h1 {
+        color: var(--color-green-700);
+    }
 
-.text-dsfr-success {
-    color: var(--text-default-success);
-}
+    h1 {
+        font-size: 2rem;
+    }
 
-.text-dsfr-warning {
-    color: var(--text-default-warning);
-}
+    :root {
+        /* Spacings from DSFR  ------------------------------------------------*/
+        /* NB: DSFR have css variables for colors but not for spacings. */
 
-.text-dsfr-error {
-    color: var(--text-default-error);
-}
+        --spacing-0-5v: 0.125rem;
+        --spacing-1v: 0.25rem;
+        --spacing-1-5v: 0.375rem;
+        --spacing-2v: 0.5rem;
+        /* 8 px */
+        --spacing-1w: 0.5rem;
+        /* 8 px */
 
-.text-dsfr-action-high-blue-france {
-    color: var(--text-action-high-blue-france);
-}
+        --spacing-3v: 0.75rem;
+        --spacing-4v: 1rem;
+        /* 16 px */
+        --spacing-2w: 1rem;
+        /* 16 px */
 
-/* background */
-.bg-dsfr-alt-grey {
-    background-color: var(--background-alt-grey);
-}
+        --spacing-5v: 1.25rem;
+        --spacing-6v: 1.5rem;
+        /* 24 px */
+        --spacing-3w: 1.5rem;
+        /* 24 px */
 
-/* === */
+        --spacing-7v: 1.75rem;
+        --spacing-8v: 2rem;
+        /* 32 px */
+        --spacing-4w: 2rem;
+        /* 32 px */
 
-:root {
-    /* spacing from DSFR */
-    /* Why using it ? Because DSFR makes declaration (e.g. for margin-top) but how to use this spacing for flex's gap ? */
-    --spacing-0-5v: 0.125rem;
-    --spacing-1v: 0.25rem;
-    --spacing-1-5v: 0.375rem;
-    --spacing-2v: 0.5rem; /* 8 px */
-    --spacing-1w: 0.5rem; /* 8 px */
+        --spacing-9v: 2.25rem;
+        --spacing-10v: 2.5rem;
+        /* 40 px */
+        --spacing-5w: 2.5rem;
+        /* 40 px */
 
-    --spacing-3v: 0.75rem;
-    --spacing-4v: 1rem; /* 16 px */
-    --spacing-2w: 1rem; /* 16 px */
+        --spacing-11v: 2.75rem;
+        --spacing-12v: 3rem;
+        /* 48 px */
+        --spacing-6w: 3rem;
+        /* 48 px */
 
-    --spacing-5v: 1.25rem;
-    --spacing-6v: 1.5rem; /* 24 px */
-    --spacing-3w: 1.5rem; /* 24 px */
+        --spacing-13v: 3.25rem;
+        --spacing-14v: 3.5rem;
+        /* 56 px */
+        --spacing-7w: 3.5rem;
+        /* 56 px */
 
-    --spacing-7v: 1.75rem;
-    --spacing-8v: 2rem; /* 32 px */
-    --spacing-4w: 2rem; /* 32 px */
+        --spacing-15v: 3.75rem;
+        --spacing-16v: 4rem;
+        /* 64 px */
+        --spacing-8w: 4rem;
+        /* 64 px */
 
-    --spacing-9v: 2.25rem;
-    --spacing-10v: 2.5rem; /* 40 px */
-    --spacing-5w: 2.5rem; /* 40 px */
+        --spacing-17v: 4.25rem;
+        --spacing-18v: 4.5rem;
+        /* 72 px */
+        --spacing-9w: 4.5rem;
+        /* 72 px */
 
-    --spacing-11v: 2.75rem;
-    --spacing-12v: 3rem; /* 48 px */
-    --spacing-6w: 3rem; /* 48 px */
+        --spacing-19v: 4.75rem;
+        --spacing-20v: 5rem;
+        /* 80 px */
+        --spacing-10w: 5rem;
+        /* 80 px */
 
-    --spacing-13v: 3.25rem;
-    --spacing-14v: 3.5rem; /* 56 px */
-    --spacing-7w: 3.5rem; /* 56 px */
+        --spacing-21v: 5.25rem;
+        --spacing-22v: 5.5rem;
+        /* 88 px */
+        --spacing-11w: 5.5rem;
+        /* 88 px */
 
-    --spacing-15v: 3.75rem;
-    --spacing-16v: 4rem; /* 64 px */
-    --spacing-8w: 4rem; /* 64 px */
+        --spacing-23v: 5.75rem;
+        --spacing-24v: 6rem;
+        /* 96 px */
+        --spacing-12w: 6rem;
+        /* 96 px */
 
-    --spacing-17v: 4.25rem;
-    --spacing-18v: 4.5rem; /* 72 px */
-    --spacing-9w: 4.5rem; /* 72 px */
+        --spacing-25v: 6.25rem;
+        --spacing-26v: 6.5rem;
+        /* 104 px */
+        --spacing-13w: 6.5rem;
+        /* 104 px */
 
-    --spacing-19v: 4.75rem;
-    --spacing-20v: 5rem; /* 80 px */
-    --spacing-10w: 5rem; /* 80 px */
+        --spacing-27v: 6.75rem;
+        --spacing-28v: 7rem;
+        /* 112 px */
+        --spacing-14w: 7rem;
+        /* 112 px */
 
-    --spacing-21v: 5.25rem;
-    --spacing-22v: 5.5rem; /* 88 px */
-    --spacing-11w: 5.5rem; /* 88 px */
+        --spacing-29v: 7.25rem;
+        --spacing-30v: 7.5rem;
+        /* 120 px */
+        --spacing-15w: 7.5rem;
+        /* 120 px */
 
-    --spacing-23v: 5.75rem;
-    --spacing-24v: 6rem; /* 96 px */
-    --spacing-12w: 6rem; /* 96 px */
+        --spacing-31v: 7.75rem;
+        --spacing-32v: 8rem;
+        /* 128 px */
+        --spacing-16w: 8rem;
+        /* 128 px */
 
-    --spacing-25v: 6.25rem;
-    --spacing-26v: 6.5rem; /* 104 px */
-    --spacing-13w: 6.5rem; /* 104 px */
+        /* Custom colors ------------------------------------------------------- */
 
-    --spacing-27v: 6.75rem;
-    --spacing-28v: 7rem; /* 112 px */
-    --spacing-14w: 7rem; /* 112 px */
+        /* --color-primary-shadow: #183d2f; */
+        --color-green-900: #183d2f;
+        /* --color-primary-border: #274430; */
+        --color-green-800: #274430;
+        /* 
+        --color-title: #304436; 
+        --color-primary-text-hover: #304436;
+        --color-secondary-text: #304436; 
+        --color-primary-text: #334337;
+        */
+        --color-green-700: #304436;
+        /* 
+        --color-primary-background-active: #80b990;
+        */
+        --color-green-500: #80b990;
+        /* 
+        --color-primary-background: #92e3a9;
+        --color-secondary-text-active: #92e3a9; 
+        */
+        --color-green-200: #92e3a9;
+        /* --color-primary-background-hover: #b3ebc3; */
+        --color-green-100: #b3ebc3;
+        /* --color-footer-background: #ebf7eb; */
+        --color-green-50: #ebf7eb;
 
-    --spacing-29v: 7.25rem;
-    --spacing-30v: 7.5rem; /* 120 px */
-    --spacing-15w: 7.5rem; /* 120 px */
-
-    --spacing-31v: 7.75rem;
-    --spacing-32v: 8rem; /* 128 px */
-    --spacing-16w: 8rem; /* 128 px */
-
-    /* Custom colors */
-    /* --color-primary-shadow: #183d2f; */
-    --color-green-900: #183d2f;
-    /* --color-primary-border: #274430; */
-    --color-green-800: #274430;
-    
-    /* 
-    --color-title: #304436; 
-    --color-primary-text-hover: #304436;
-    --color-secondary-text: #304436; 
-    --color-primary-text: #334337;
-    */
-    --color-green-700: #304436;
-
-    /* 
-    --color-primary-background-active: #80b990;
-    */
-    --color-green-500: #80b990; 
-    
-    /* 
-    --color-primary-background: #92e3a9;
-    --color-secondary-text-active: #92e3a9; 
-    */
-    --color-green-200: #92e3a9; 
-
-    /* --color-primary-background-hover: #b3ebc3; */
-    --color-green-100: #b3ebc3;
-
-
-    /* --color-footer-background: #ebf7eb; */
-    --color-green-50: #ebf7eb;
-
-    /* --color-secondary-background: #fff; */
-    --color-white: #fff;
-
+        /* --color-secondary-background: #fff; */
+        --color-white: #fff;
+        
+    }
 }
