@@ -12,7 +12,6 @@
     background-image: repeating-linear-gradient(to right, var(--color-green-500) 0, var(--color-green-500) var(--active-inner), transparent var(--active-inner), transparent var(--active-outer)), repeating-linear-gradient(to right, var(--color-green-50) 0, var(--color-green-50) var(--default-inner), transparent var(--default-inner), transparent var(--default-outer)) !important;
 }
 
-
 @layer base {
 
     /* Customization upon the DSFR */
@@ -167,6 +166,5 @@
         --color-white: #fff;
 
     }
-
 
 }
