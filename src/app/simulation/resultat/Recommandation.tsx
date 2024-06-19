@@ -17,7 +17,7 @@ export const Recommandation = ({ solution }: { solution: Pick<Solution, "usageCh
         <GridCol base={4} className={"flex justify-center items-center"}>
           <Badge
             variant="dot"
-            color={usageCh === "Oui" ? "success" : usageCh === "Non" ? "error" : "info"}
+            // color={usageCh === "Oui" ? "success" : usageCh === "Non" ? "error" : "info"}
             anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
           >
             <ChauffageImage
@@ -36,7 +36,7 @@ export const Recommandation = ({ solution }: { solution: Pick<Solution, "usageCh
         <GridCol base={4} className={"flex justify-center items-center"}>
           <Badge
             variant="dot"
-            color={usageEcs === "Oui" ? "success" : usageEcs === "Non" ? "error" : "info"}
+            // color={usageEcs === "Oui" ? "success" : usageEcs === "Non" ? "error" : "info"}
             anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
           >
             <EcsImage
@@ -55,7 +55,7 @@ export const Recommandation = ({ solution }: { solution: Pick<Solution, "usageCh
         <GridCol base={4} className={"flex justify-center items-center"}>
           <Badge
             variant="dot"
-            color={usageFr === "Oui" ? "success" : usageFr === "Non" ? "error" : "info"}
+            // color={usageFr === "Oui" ? "success" : usageFr === "Non" ? "error" : "info"}
             anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
           >
             <ClimatisationImage
