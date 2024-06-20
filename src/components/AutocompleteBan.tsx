@@ -66,7 +66,7 @@ export function AutocompleteBan({ defaultValue, errors }: AutocompletBanMuiProps
       value={value}
       aria-required="true"
       noOptionsText="Pas de résultat"
-      isOptionEqualToValue={(option, value) => option.properties.label === value.properties.label}
+      isOptionEqualToValue={(option, value) => option.properties.label === value?.properties?.label}
       onChange={(_event: unknown, newValue: FeatureCollection | null) => {
         setOptions(newValue ? [newValue, ...options] : options);
         setValue(newValue);
