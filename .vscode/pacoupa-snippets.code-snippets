@@ -22,8 +22,17 @@
 			"  ${2:otherProp}: ${3:string};",
 			"};",
 			"",
-			"export const ${1:ComponentName} = ({ children, ${2:otherProp} }: PropsWithChildren<Props>) => {",
+			"export const ${1:$CLIPBOARD} = ({ children, ${2:otherProp} }: PropsWithChildren<Props>) => {",
 			"  return <>{${0:children}}</>;",
+			"};",
+		],
+	},
+	"React tsx Component with no prop": {
+		"prefix": "rcx-noprop",
+        "scope": "typescriptreact",
+		"body": [
+			"export const ${1:$CLIPBOARD} = () => {",
+			"  return <>$0</>;",
 			"};",
 		],
 	},
