@@ -25,6 +25,7 @@ import { FranceRenovBlock } from "./FranceRenovBlock";
 import { familleImageMap, fetchSolutions, typeMap } from "./helper";
 import { NouvelleSimulation } from "./NouvelleSimulation";
 import { Recommandation } from "./Recommandation";
+import { ShowIsolationImages } from "./ShowIsolationImages";
 import { SyncStore } from "./SyncStore";
 
 const title = "Résultat simulation";
@@ -147,22 +148,37 @@ const ResultatsPage = async ({
                       {/* <Box className={fr.cx("fr-mt-2w")}>
                         <Text>{solution.description}</Text>
                       </Box> */}
-
-                      <Recommandation solution={solution} />
-
+                      <Box className="mt-4">
+                        <Recommandation solution={solution} />
+                      </Box>
                       {/* <Box className={cx("flex", "flex-col", "gap-4")}>
                         <Evaluation categorie="environnement" solution={solution} />
                         <Evaluation categorie="cout" solution={solution} />
                         <Evaluation categorie="difficulte" solution={solution} />
-                      </Box> */}
-
+                        </Box> */}
+                      <hr />
+                      <p className="mb-2">Isolations à prévoir</p>
                       <Box>
-                        Estimation des gains
+                        <BadgePacoupa
+                          label={
+                            travauxNiveauIsolation === "Global"
+                              ? "Isolation globale"
+                              : travauxNiveauIsolation === "Partiel"
+                                ? "Isolation partielle"
+                                : "Aucune"
+                          }
+                        />
+                      </Box>
+                      <Box className="mt-4">
+                        <ShowIsolationImages solution={solution} />
+                      </Box>
+                      <Box className="mt-8">
+                        <hr />
+                        <p className="mb-0">Estimation des gains</p>
+                        <span className={fr.cx("fr-text--xs")}>(isolations comprises)</span>
                         <br />
-                        <span className={fr.cx("fr-text--xs")}>(Isolations comprises)</span>
-                        <br />
-                        Gains énergétiques
-                        <br />
+                        <p className="mt-4 mb-2">Gains énergétiques</p>
+
                         <span className={fr.cx("fr-text--xs")}>Actuel</span>
                         <br />
                         <div className="flex">
