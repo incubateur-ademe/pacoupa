@@ -21,10 +21,12 @@ export const PacoupaHeader = () => {
         orientation: "vertical",
       }}
       serviceTitle={
-        <div className={cx("flex", "items-center")}>
-          <Logo />
-          <span className={cx(styles.title, "ml-1")}>{config.name}</span>
-        </div>
+        <>
+          <span className="inline-block align-middle">
+            <Logo />
+          </span>
+          <span className={cx(styles.title, "ml-2")}>{config.name}</span>
+        </>
       }
     />
   );
