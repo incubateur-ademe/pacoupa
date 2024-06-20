@@ -26,7 +26,7 @@ export const Step3 = () => {
             <Checkbox
               legend={
                 <p>
-                  Sélectionnez les isolations qui ont été faites il y a moins de 15ans.
+                  Sélectionnez les isolations qui ont été faites il y a moins de 15 ans.
                   <br />
                   <Text className={fr.cx("fr-text--xs")}>Si vous avez un doute, ne cochez pas la case.</Text>
                 </p>
