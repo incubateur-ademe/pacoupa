@@ -6,7 +6,8 @@ import { SegmentedControl, type SegmentedControlProps } from "@codegouvfr/react-
 import { useEffect, useState } from "react";
 import { z } from "zod";
 
-import { P } from "@/dsfr";
+import { CalloutPacoupa } from "@/components/CalloutPacoupa";
+import { Box, P } from "@/dsfr";
 import { usePacoupaSessionStorage } from "@/lib/client/usePacoupaSessionStorage";
 import { OuiNonLabels } from "@/utils/zod";
 
@@ -73,7 +74,7 @@ export const Step6 = () => {
             <SegmentedControl
               legend={
                 <>
-                  Votre appartement a-t-il des <strong>espaces extérieurs personnels</strong> ?
+                  En règle générale, les appartements ont-ils des <strong>espaces extérieurs privés</strong> ?
                 </>
               }
               name="possedeEspacesExterieursPersonnels"
@@ -130,6 +131,10 @@ export const Step6 = () => {
               state={errors?.espacesExterieursPersonnels?._errors ? "error" : "default"}
               stateRelatedMessage={<div aria-live="polite">{errors?.espacesExterieursPersonnels?._errors}</div>}
             />
+
+            <Box>
+              <CalloutPacoupa>Certains systèmes de chaleur nécessitent des unités extérieures.</CalloutPacoupa>
+            </Box>
           </>
         )}
       />

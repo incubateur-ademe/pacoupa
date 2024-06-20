@@ -1,10 +1,10 @@
 "use client";
 
-import { fr } from "@codegouvfr/react-dsfr";
 import { z } from "zod";
 
 import { AutocompleteBan } from "@/components/AutocompleteBan";
-import { Box, P } from "@/dsfr";
+import { CalloutPacoupa } from "@/components/CalloutPacoupa";
+import { Box } from "@/dsfr";
 
 import { HeaderFunnel } from "../HeaderFunnel";
 import { WizardForm } from "../WizardForm";
@@ -20,16 +20,19 @@ export const Step1 = () => {
       <WizardForm
         schema={schema}
         render={({ errors, store }) => (
-          <Box>
-            <AutocompleteBan defaultValue={store.adresse} errors={errors?.adresse?._errors} />
-          </Box>
+          <>
+            <Box>
+              <AutocompleteBan defaultValue={store.adresse} errors={errors?.adresse?._errors} />
+            </Box>
+            <Box className="mt-8">
+              <CalloutPacoupa>
+                L’adresse nous permet de connaître votre éligibilité à un réseau de chaleur ainsi que votre zone
+                climatique.
+              </CalloutPacoupa>
+            </Box>
+          </>
         )}
       />
-
-      <P className={fr.cx("fr-mt-8v", "fr-text--sm")}>
-        <i className={fr.cx("fr-icon-info-fill", "fr-mr-2v")} aria-hidden={true} />
-        L’adresse nous permet d’avoir quelques renseignements sur le bâtiment.
-      </P>
     </>
   );
 };

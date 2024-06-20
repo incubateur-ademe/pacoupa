@@ -3,6 +3,7 @@ import { type Metadata } from "next";
 
 import { Button } from "@/components/Button";
 import { ButtonsWrapper } from "@/components/ButtonsWrapper";
+import { CalloutPacoupa } from "@/components/CalloutPacoupa";
 import { Maison2Image } from "@/components/img/Maison2";
 import { Grid, GridCol, P } from "@/dsfr";
 import { H1 } from "@/dsfr/base/typography";
@@ -33,16 +34,25 @@ const SimulationLandingPage = () => {
     <>
       <H1 className={fr.cx("fr-mt-4w")}>👋 Bienvenue</H1>
 
-      <P>
-        Découvrez les systèmes de chauffage <strong>compatibles</strong> avec votre logement en seulement{" "}
-        <strong>10 questions</strong>.
-      </P>
-
       <Grid>
         <GridCol base={4} className="">
           <Maison2Image width={300} />
         </GridCol>
       </Grid>
+
+      <P>
+        L’objectif de ce simulateur est de vous proposer <strong>la meilleure solution</strong> de chauffage{" "}
+        <strong>adaptée</strong> à votre copropriété.
+      </P>
+
+      <P>
+        En moins de <strong>3 minutes</strong>, découvrez les systèmes de chauffage compatibles avec votre logement.
+      </P>
+
+      <CalloutPacoupa>
+        Les informations que nous allons vous demander sont <strong>anonymes</strong> et ne sont{" "}
+        <strong>pas stockées</strong>.
+      </CalloutPacoupa>
 
       <ButtonsWrapper align="right">
         <Button

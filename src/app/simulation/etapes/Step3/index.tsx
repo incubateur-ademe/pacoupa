@@ -4,6 +4,7 @@ import { fr } from "@codegouvfr/react-dsfr";
 import Checkbox from "@codegouvfr/react-dsfr/Checkbox";
 import { z } from "zod";
 
+import { CalloutPacoupa } from "@/components/CalloutPacoupa";
 import { Box } from "@/dsfr";
 import { Text } from "@/dsfr/base/typography";
 
@@ -22,53 +23,61 @@ export const Step3 = () => {
       <WizardForm
         schema={schema}
         render={({ errors, store }) => (
-          <Box>
-            <Checkbox
-              legend={
-                <p>
-                  Sélectionnez les isolations qui ont été faites il y a moins de 15 ans.
-                  <br />
-                  <Text className={fr.cx("fr-text--xs")}>Si vous avez un doute, ne cochez pas la case.</Text>
-                </p>
-              }
-              options={[
-                {
-                  label: "Toiture",
-                  nativeInputProps: {
-                    defaultChecked: store.renovation?.includes("toiture"),
-                    name: "renovation",
-                    value: "toiture",
+          <>
+            <Box>
+              <Checkbox
+                legend={
+                  <p>
+                    Quels ont été les travaux d’isolation réalisés il y a moins de 15 ans ? <br />
+                    <Text className={fr.cx("fr-text--xs")}>Si vous avez un doute, ne cochez pas la case.</Text>
+                  </p>
+                }
+                options={[
+                  {
+                    label: "Toiture",
+                    nativeInputProps: {
+                      defaultChecked: store.renovation?.includes("toiture"),
+                      name: "renovation",
+                      value: "toiture",
+                    },
                   },
-                },
-                {
-                  label: "Murs",
-                  nativeInputProps: {
-                    defaultChecked: store.renovation?.includes("murs"),
-                    name: "renovation",
-                    value: "murs",
+                  {
+                    label: "Murs",
+                    nativeInputProps: {
+                      defaultChecked: store.renovation?.includes("murs"),
+                      name: "renovation",
+                      value: "murs",
+                    },
                   },
-                },
-                {
-                  label: "Sol",
-                  nativeInputProps: {
-                    defaultChecked: store.renovation?.includes("sol"),
-                    name: "renovation",
-                    value: "sol",
+                  {
+                    label: "Sol",
+                    nativeInputProps: {
+                      defaultChecked: store.renovation?.includes("sol"),
+                      name: "renovation",
+                      value: "sol",
+                    },
                   },
-                },
-                {
-                  label: "Fenêtres",
-                  nativeInputProps: {
-                    defaultChecked: store.renovation?.includes("fenetres"),
-                    name: "renovation",
-                    value: "fenetres",
+                  {
+                    label: "Fenêtres",
+                    nativeInputProps: {
+                      defaultChecked: store.renovation?.includes("fenetres"),
+                      name: "renovation",
+                      value: "fenetres",
+                    },
                   },
-                },
-              ]}
-              state={errors?.renovation?._errors ? "error" : "default"}
-              stateRelatedMessage={<div aria-live="polite">{errors?.renovation?._errors}</div>}
-            />
-          </Box>
+                ]}
+                state={errors?.renovation?._errors ? "error" : "default"}
+                stateRelatedMessage={<div aria-live="polite">{errors?.renovation?._errors}</div>}
+              />
+            </Box>
+
+            <Box>
+              <CalloutPacoupa>
+                Pour vous recommander des chauffages plus écologiques et économiques, nous vous proposerons également
+                des gestes d'isolation adaptés.
+              </CalloutPacoupa>
+            </Box>
+          </>
         )}
       />
     </>
