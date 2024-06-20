@@ -1,13 +1,16 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { Badge } from "@codegouvfr/react-dsfr/Badge";
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
+import assert from "assert";
 import { Base64 } from "js-base64";
 import { type Metadata } from "next";
 
+import { BadgePacoupa } from "@/components/BadgePacoupa";
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
 import { HighlightText } from "@/components/HighlightText";
 import { DPEImage } from "@/components/img/DPEImage";
+import { FlecheImage } from "@/components/img/FlecheImage";
 import { NoDataImage } from "@/components/img/NoDataImage";
 import { TravauxNiveauIsolationSegmentedControl } from "@/components/IsolationSegmentedControl";
 import { Box, Container, Grid, GridCol } from "@/dsfr";
@@ -74,7 +77,7 @@ const ResultatsPage = async ({
               desc={<span className={fr.cx("fr-text--md")}>{formData.data.adresse}</span>}
               horizontal
               size="small"
-              title="Adresse"
+              title="Copropriété"
               titleAs="h3"
               end={
                 <Button
@@ -131,63 +134,82 @@ const ResultatsPage = async ({
               <CardRcu />
             </GridCol>
           )}
-          {solutions.slice(0, complet ? nbSolutions : isRcuEligible ? 2 : 3).map(solution => (
-            <GridCol key={solution.id} base={12} sm={6} xl={4}>
-              <Card
-                desc={
-                  <>
-                    {/* <Box className={fr.cx("fr-mt-2w")}>
-                      <Text>{solution.description}</Text>
-                    </Box> */}
+          {solutions.slice(0, complet ? nbSolutions : isRcuEligible ? 2 : 3).map(solution => {
+            assert(solution.cepAvant && solution.cepApres, "cepAvant and cepApres should be defined");
 
-                    <Recommandation solution={solution} />
+            const pourcentageGain = Math.round(((solution.cepAvant - solution.cepApres) / solution.cepAvant) * 100);
 
-                    {/* <Box className={cx("flex", "flex-col", "gap-4")}>
-                      <Evaluation categorie="environnement" solution={solution} />
-                      <Evaluation categorie="cout" solution={solution} />
-                      <Evaluation categorie="difficulte" solution={solution} />
-                    </Box> */}
+            return (
+              <GridCol key={solution.id} base={12} sm={6} xl={4}>
+                <Card
+                  desc={
+                    <>
+                      {/* <Box className={fr.cx("fr-mt-2w")}>
+                        <Text>{solution.description}</Text>
+                      </Box> */}
 
-                    <Box>
-                      Estimation des gains
-                      <br />
-                      (Isolations comprises)
-                      <br />
-                      Gains énergétiques
-                      <br />
-                      Avant : <DPEImage lettre={solution.dpeAvant} />
-                      <br />
-                      Après : <DPEImage lettre={solution.dpeApres} />
+                      <Recommandation solution={solution} />
+
+                      {/* <Box className={cx("flex", "flex-col", "gap-4")}>
+                        <Evaluation categorie="environnement" solution={solution} />
+                        <Evaluation categorie="cout" solution={solution} />
+                        <Evaluation categorie="difficulte" solution={solution} />
+                      </Box> */}
+
+                      <Box>
+                        Estimation des gains
+                        <br />
+                        <span className={fr.cx("fr-text--xs")}>(Isolations comprises)</span>
+                        <br />
+                        Gains énergétiques
+                        <br />
+                        <span className={fr.cx("fr-text--xs")}>Actuel</span>
+                        <br />
+                        <div className="flex">
+                          <DPEImage lettre={solution.dpeAvant} />
+
+                          <p className="text-center">
+                            <span className="ml-4 mr-4">
+                              <FlecheImage />
+                            </span>
+                            <br />
+                            <BadgePacoupa label={`- ${pourcentageGain}%`} />
+
+                            <br />
+                            <span className={fr.cx("fr-text--xs")}>Gain d'énergie</span>
+                          </p>
+                          <DPEImage lettre={solution.dpeApres} />
+                        </div>
+                      </Box>
+                    </>
+                  }
+                  horizontal
+                  size="small"
+                  title={
+                    <Box className={cx("flex items-start gap-4")}>
+                      <Box>{familleImageMap[solution.familleSolution]}</Box>
+                      <Box>
+                        <span className={cx("mb-0", fr.cx("fr-text--lg"))}>{solution.nom}</span>
+                        <br />
+                        <Badge>{typeMap[solution.type]}</Badge>
+                      </Box>
                     </Box>
-                  </>
-                }
-                horizontal
-                size="small"
-                title={
-                  <Box className={cx("flex items-start gap-4")}>
-                    <Box>{familleImageMap[solution.familleSolution]}</Box>
-                    <Box>
-                      <span className={cx("mb-0", fr.cx("fr-text--lg"))}>{solution.nom}</span>
-                      <br />
-                      <Badge>{typeMap[solution.type]}</Badge>
-                    </Box>
-                  </Box>
-                }
-                titleAs="h3"
-                end={
-                  <Button
-                    priority="tertiary no outline"
-                    iconId="ri-arrow-right-line"
-                    linkProps={{
-                      href: `/solutions/${solution.id}?noteCout=${solution.cout.note}&noteDifficulte=${solution.difficulte.note}&noteTravauxCollectif=${solution.travauxCollectif.note}&noteTravauxIndividuel=${solution.travauxIndividuel.note}&hash=${searchParams.hash}`,
-                    }}
-                  >
-                    En savoir plus
-                  </Button>
-                }
-              />
-            </GridCol>
-          ))}
+                  }
+                  titleAs="h3"
+                  end={
+                    <Button
+                      priority="primary"
+                      linkProps={{
+                        href: `/solutions/${solution.id}?noteCout=${solution.cout.note}&noteDifficulte=${solution.difficulte.note}&noteTravauxCollectif=${solution.travauxCollectif.note}&noteTravauxIndividuel=${solution.travauxIndividuel.note}&hash=${searchParams.hash}`,
+                      }}
+                    >
+                      Découvrir
+                    </Button>
+                  }
+                />
+              </GridCol>
+            );
+          })}
         </Grid>
         {!complet && nbSolutions > 3 && (
           <Box className={cx("flex", fr.cx("fr-mt-4w"))}>
