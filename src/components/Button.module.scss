@@ -1,28 +1,28 @@
 .primaryButton {
-    background-color: var(--color-primary-background);
-    color: var(--color-primary-text);
-    box-shadow: 4px 4px 0px 0px var(--color-primary-shadow);
+    background-color: var(--color-green-200);
+    color: var(--color-green-700);
+    box-shadow: 4px 4px 0px 0px var(--color-green-900);
     border-radius: 4px;
     transition:
         background-color 0.1s,
         transform 0.1s;
 
     &:hover {
-        background-color: var(--color-primary-background-hover) !important;
-        color: var(--color-primary-text-hover);
+        background-color: var(--color-green-100) !important;
+        color: var(--color-green-700);
     }
 
     &:active {
-        background-color: var(--color-primary-background-active) !important;
+        background-color: var(--color-green-500) !important;
         transform: translateY(2px);
-        box-shadow: 2px 2px 0px 0px var(--color-primary-shadow);
+        box-shadow: 2px 2px 0px 0px var(--color-green-900);
     }
 }
 
 .secondaryButton {
-    background-color: var(--color-secondary-background) !important;
-    color: var(--color-secondary-text);
-    border-bottom: 2px solid var(--color-secondary-text) !important;
+    background-color: var(--color-white) !important;
+    color: var(--color-green-700);
+    border-bottom: 2px solid var(--color-green-700) !important;
     box-shadow: unset !important;
     transition:
         background-color 0.1s,
@@ -30,8 +30,8 @@
     padding: 0;
 
     &:hover {
-        background-color: var(--color-secondary-background) !important;
-        border-bottom: 2px solid var(--color-secondary-text-hover) !important;
+        background-color: var(--color-white) !important;
+        border-bottom: 2px solid var(--color-green-500) !important;
     }
 
     &:active {

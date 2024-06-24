@@ -1,5 +1,5 @@
 import { fr } from "@codegouvfr/react-dsfr";
-import { Box, TextField } from "@mui/material";
+import { Box, CircularProgress, TextField } from "@mui/material";
 import Autocomplete from "@mui/material/Autocomplete";
 import Grid from "@mui/material/Grid";
 import match from "autosuggest-highlight/match";
@@ -17,6 +17,7 @@ export function AutocompleteBan({ defaultValue, errors }: AutocompletBanMuiProps
   const [value, setValue] = useState<FeatureCollection | null>(null);
   const [inputValue, setInputValue] = useState(defaultValue || "");
   const [options, setOptions] = useState<readonly FeatureCollection[]>([]);
+  const [loading, setLoading] = useState(false);
 
   const [debouncedInputValue, setDebouncedInputValue] = useDebounceValue("", 300);
 
@@ -44,10 +45,12 @@ export function AutocompleteBan({ defaultValue, errors }: AutocompletBanMuiProps
       console.debug({ debouncedInputValue });
 
       if (debouncedInputValue.length > minCharactersBeforeFetching) {
+        setLoading(true);
         const proposals = (await fetchBAN(debouncedInputValue)).features;
 
         console.debug({ proposals });
         setOptions(proposals);
+        setLoading(false);
       }
     };
 
@@ -66,7 +69,7 @@ export function AutocompleteBan({ defaultValue, errors }: AutocompletBanMuiProps
       value={value}
       aria-required="true"
       noOptionsText="Pas de résultat"
-      isOptionEqualToValue={(option, value) => option.properties.label === value.properties.label}
+      isOptionEqualToValue={(option, value) => option.properties.label === value?.properties?.label}
       onChange={(_event: unknown, newValue: FeatureCollection | null) => {
         setOptions(newValue ? [newValue, ...options] : options);
         setValue(newValue);
@@ -78,15 +81,22 @@ export function AutocompleteBan({ defaultValue, errors }: AutocompletBanMuiProps
         <>
           <TextField
             {...params}
-            label="Où se situe le bâtiment ?"
+            label="Quelle est votre adresse ?"
             name="adresse"
             fullWidth
             aria-required="true"
-            inputProps={{
-              ...params.inputProps,
+            placeholder="Ex: 8 Boulevard de la Libération, 93200 Saint-Denis"
+            InputProps={{
+              ...params.InputProps,
               "aria-required": true,
               "aria-invalid": Boolean(errors && errors.length),
               "aria-describedby": "adresse-error",
+              endAdornment: (
+                <>
+                  {loading ? <CircularProgress color="inherit" size={20} /> : null}
+                  {params.InputProps.endAdornment}
+                </>
+              ),
             }}
           />
           {errors && (

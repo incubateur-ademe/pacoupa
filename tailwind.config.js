@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+
+const colors = require("tailwindcss/colors");
+
 module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
@@ -11,6 +14,22 @@ module.exports = {
       md: "48em",
       lg: "62em",
       xl: "78em",
+    },
+    colors: {
+      transparent: "transparent",
+      current: "currentColor",
+      black: colors.black,
+      white: colors.white,
+      green: {
+        900: "var(--color-green-900)",
+        800: "var(--color-green-900)",
+        700: "var(--color-green-700)",
+        DEFAULT: "var(--color-green-700)",
+        500: "var(--color-green-500)",
+        200: "var(--color-green-200)",
+        100: "var(--color-green-100)",
+        50: "var(--color-green-50)",
+      },
     },
   },
   plugins: [],
