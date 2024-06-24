@@ -49,3 +49,5 @@ export async function getInformationEnergie(dto: GetInformationEnergieDTO) {
 
   return { data: row };
 }
+
+export type GetInformationEnergieReturnDTO = ReturnType<typeof getInformationEnergie>;

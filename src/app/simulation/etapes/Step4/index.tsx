@@ -4,6 +4,7 @@ import { fr } from "@codegouvfr/react-dsfr";
 import { Input } from "@codegouvfr/react-dsfr/Input";
 import { z } from "zod";
 
+import { CalloutPacoupa } from "@/components/CalloutPacoupa";
 import { Box, P } from "@/dsfr";
 
 import { HeaderFunnel } from "../HeaderFunnel";
@@ -26,28 +27,33 @@ export const Step4 = () => {
       <WizardForm
         schema={schema}
         render={({ errors, store }) => (
-          <Box>
-            <Input
-              label={
-                <>
-                  Combien y a t-il de <strong>logements</strong> dans le bâtiment ?
-                </>
-              }
-              nativeInputProps={{
-                "aria-required": true,
-                "aria-invalid": Boolean(errors?.nbLogements?._errors),
-                placeholder: "Nombre de logements",
-                name: "nbLogements",
-                defaultValue: store.nbLogements,
-                type: "number",
-                onBlur: e => {
-                  e.target.value = String(Math.round(Number(e.target.value)));
-                },
-              }}
-              state={errors?.nbLogements?._errors ? "error" : "default"}
-              stateRelatedMessage={<div aria-live="polite">{errors?.nbLogements?._errors}</div>}
-            />
-          </Box>
+          <>
+            <Box>
+              <Input
+                label={
+                  <>
+                    Combien y a-t-il de <strong>logements</strong> dans le bâtiment ?
+                  </>
+                }
+                nativeInputProps={{
+                  "aria-required": true,
+                  "aria-invalid": Boolean(errors?.nbLogements?._errors),
+                  placeholder: "Nombre de logements",
+                  name: "nbLogements",
+                  defaultValue: store.nbLogements,
+                  type: "number",
+                  onBlur: e => {
+                    e.target.value = String(Math.round(Number(e.target.value)));
+                  },
+                }}
+                state={errors?.nbLogements?._errors ? "error" : "default"}
+                stateRelatedMessage={<div aria-live="polite">{errors?.nbLogements?._errors}</div>}
+              />
+            </Box>
+            <Box className="mt-8">
+              <CalloutPacoupa>Cela nous permettra de mieux estimer les coûts et les gains moyens.</CalloutPacoupa>
+            </Box>
+          </>
         )}
       />
 

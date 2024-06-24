@@ -1,29 +1,31 @@
-import { catalogueSolutions } from "@__content/solutions";
 import { fr } from "@codegouvfr/react-dsfr";
 import { Badge } from "@codegouvfr/react-dsfr/Badge";
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
+import assert from "assert";
 import { Base64 } from "js-base64";
 import { type Metadata } from "next";
 
+import { BadgePacoupa } from "@/components/BadgePacoupa";
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
 import { HighlightText } from "@/components/HighlightText";
+import { DPEImage } from "@/components/img/DPEImage";
+import { FlecheImage } from "@/components/img/FlecheImage";
 import { NoDataImage } from "@/components/img/NoDataImage";
+import { TravauxNiveauIsolationSegmentedControl } from "@/components/IsolationSegmentedControl";
 import { Box, Container, Grid, GridCol } from "@/dsfr";
-import { H2, Text } from "@/dsfr/base/typography";
+import { H2 } from "@/dsfr/base/typography";
 import { informationBatimentSchema } from "@/lib/common/domain/InformationBatiment";
-import { getSolutionsApplicables } from "@/lib/server/useCases/getSolutionsApplicables";
-import { fetchBAN } from "@/lib/services/ban";
-import { fetchFcuEligibility } from "@/lib/services/fcu";
+import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
 
 import { sharedMetadata } from "../../shared-metadata";
 import { CardRcu } from "./CardRcu";
 import { DebugButton } from "./DebugButton";
-import { Evaluation } from "./Evaluation";
 import { FranceRenovBlock } from "./FranceRenovBlock";
-import { familleImageMap, typeMap } from "./helper";
+import { familleImageMap, fetchSolutions, typeMap } from "./helper";
 import { NouvelleSimulation } from "./NouvelleSimulation";
 import { Recommandation } from "./Recommandation";
+import { ShowIsolationImages } from "./ShowIsolationImages";
 import { SyncStore } from "./SyncStore";
 
 const title = "Résultat simulation";
@@ -45,10 +47,16 @@ export const metadata: Metadata = {
   },
 };
 
-const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" | "oui"; hash: string } }) => {
+const ResultatsPage = async ({
+  searchParams,
+}: {
+  searchParams: { complet: "non" | "oui"; hash: string; travauxNiveauIsolation: TravauxNiveauIsolation };
+}) => {
   if (!searchParams.hash) throw new Error("Le hash est manquant");
 
   const complet = searchParams.complet === "oui";
+
+  const travauxNiveauIsolation = searchParams.travauxNiveauIsolation ?? "Global";
 
   const unparsedFormData: unknown = JSON.parse(Base64.decode(searchParams.hash));
   const formData = informationBatimentSchema.safeParse(unparsedFormData);
@@ -58,24 +66,7 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
     throw new Error(`Erreur de formatage du hash ${JSON.stringify(errors)}`);
   }
 
-  const [baseSolutions, adresses] = await Promise.all([
-    getSolutionsApplicables(formData.data),
-    fetchBAN(formData.data.adresse),
-  ]);
-
-  const {
-    geometry: { coordinates },
-  } = adresses.features[0];
-
-  const [lon, lat] = coordinates;
-
-  const { isEligible: isRcuEligible } = await fetchFcuEligibility({ lon, lat });
-
-  const solutions = baseSolutions.data.map(solution => {
-    return { ...catalogueSolutions[solution.id], ...solution };
-  });
-
-  const nbSolutions = solutions.length + (isRcuEligible ? 1 : 0);
+  const { solutions, nbSolutions, isRcuEligible } = await fetchSolutions(formData.data, travauxNiveauIsolation);
 
   return (
     <>
@@ -87,7 +78,7 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
               desc={<span className={fr.cx("fr-text--md")}>{formData.data.adresse}</span>}
               horizontal
               size="small"
-              title="Adresse"
+              title="Copropriété"
               titleAs="h3"
               end={
                 <Button
@@ -107,9 +98,13 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
 
       <Container className={fr.cx("fr-mt-4w")}>
         <H2 as="h4">
-          Solutions compatibles
+          Chauffages compatibles
           <DebugButton formData={formData} solutions={solutions} />
         </H2>
+
+        <p>Dépendent des travaux d’isolations</p>
+
+        <TravauxNiveauIsolationSegmentedControl travauxNiveauIsolation={travauxNiveauIsolation} />
 
         <Box>
           {nbSolutions === 0 ? (
@@ -140,51 +135,97 @@ const ResultatsPage = async ({ searchParams }: { searchParams: { complet: "non" 
               <CardRcu />
             </GridCol>
           )}
-          {solutions.slice(0, complet ? nbSolutions : isRcuEligible ? 2 : 3).map(solution => (
-            <GridCol key={solution.id} base={12} sm={6} xl={4}>
-              <Card
-                desc={
-                  <>
-                    <Box className={fr.cx("fr-mt-2w")}>
-                      <Text>{solution.description}</Text>
-                    </Box>
+          {solutions.slice(0, complet ? nbSolutions : isRcuEligible ? 2 : 3).map(solution => {
+            assert(solution.cepAvant && solution.cepApres, "cepAvant and cepApres should be defined");
 
-                    <Recommandation solution={solution} />
+            const pourcentageGain = Math.round(((solution.cepAvant - solution.cepApres) / solution.cepAvant) * 100);
 
-                    <Box className={cx("flex", "flex-col", "gap-4")}>
-                      <Evaluation categorie="environnement" solution={solution} />
-                      <Evaluation categorie="cout" solution={solution} />
-                      <Evaluation categorie="difficulte" solution={solution} />
+            return (
+              <GridCol key={solution.id} base={12} sm={6} xl={4}>
+                <Card
+                  desc={
+                    <>
+                      {/* <Box className={fr.cx("fr-mt-2w")}>
+                        <Text>{solution.description}</Text>
+                      </Box> */}
+                      <Box className="mt-4">
+                        <Recommandation solution={solution} />
+                      </Box>
+                      {/* <Box className={cx("flex", "flex-col", "gap-4")}>
+                        <Evaluation categorie="environnement" solution={solution} />
+                        <Evaluation categorie="cout" solution={solution} />
+                        <Evaluation categorie="difficulte" solution={solution} />
+                        </Box> */}
+                      <hr />
+                      <p className="mb-2">Isolations à prévoir</p>
+                      <Box>
+                        <BadgePacoupa
+                          label={
+                            travauxNiveauIsolation === "Global"
+                              ? "Isolation globale"
+                              : travauxNiveauIsolation === "Partiel"
+                                ? "Isolation partielle"
+                                : "Aucune"
+                          }
+                        />
+                      </Box>
+                      <Box className="mt-4">
+                        <ShowIsolationImages solution={solution} />
+                      </Box>
+                      <Box className="mt-8">
+                        <hr />
+                        <p className="mb-0">Estimation des gains</p>
+                        <span className={fr.cx("fr-text--xs")}>(isolations comprises)</span>
+                        <br />
+                        <p className="mt-4 mb-2">Gains énergétiques</p>
+
+                        <span className={fr.cx("fr-text--xs")}>Actuel</span>
+                        <br />
+                        <div className="flex">
+                          <DPEImage lettre={solution.dpeAvant} />
+
+                          <p className="text-center">
+                            <span className="ml-4 mr-4">
+                              <FlecheImage />
+                            </span>
+                            <br />
+                            <BadgePacoupa label={`- ${pourcentageGain}%`} />
+
+                            <br />
+                            <span className={fr.cx("fr-text--xs")}>Gain d'énergie</span>
+                          </p>
+                          <DPEImage lettre={solution.dpeApres} />
+                        </div>
+                      </Box>
+                    </>
+                  }
+                  horizontal
+                  size="small"
+                  title={
+                    <Box className={cx("flex items-start gap-4")}>
+                      <Box>{familleImageMap[solution.familleSolution]}</Box>
+                      <Box>
+                        <span className={cx("mb-0", fr.cx("fr-text--lg"))}>{solution.nom}</span>
+                        <br />
+                        <Badge>{typeMap[solution.type]}</Badge>
+                      </Box>
                     </Box>
-                  </>
-                }
-                horizontal
-                size="small"
-                title={
-                  <Box className={cx("flex items-start gap-4")}>
-                    <Box>{familleImageMap[solution.familleSolution]}</Box>
-                    <Box>
-                      <span className={cx("mb-0", fr.cx("fr-text--lg"))}>{solution.nom}</span>
-                      <br />
-                      <Badge>{typeMap[solution.type]}</Badge>
-                    </Box>
-                  </Box>
-                }
-                titleAs="h3"
-                end={
-                  <Button
-                    priority="tertiary no outline"
-                    iconId="ri-arrow-right-line"
-                    linkProps={{
-                      href: `/solutions/${solution.id}?noteCout=${solution.cout.note}&noteDifficulte=${solution.difficulte.note}&noteTravauxCollectif=${solution.travauxCollectif.note}&noteTravauxIndividuel=${solution.travauxIndividuel.note}&hash=${searchParams.hash}`,
-                    }}
-                  >
-                    En savoir plus
-                  </Button>
-                }
-              />
-            </GridCol>
-          ))}
+                  }
+                  titleAs="h3"
+                  end={
+                    <Button
+                      priority="primary"
+                      linkProps={{
+                        href: `/solutions/${solution.id}?noteCout=${solution.cout.note}&noteDifficulte=${solution.difficulte.note}&noteTravauxCollectif=${solution.travauxCollectif.note}&noteTravauxIndividuel=${solution.travauxIndividuel.note}&hash=${searchParams.hash}`,
+                      }}
+                    >
+                      Découvrir
+                    </Button>
+                  }
+                />
+              </GridCol>
+            );
+          })}
         </Grid>
         {!complet && nbSolutions > 3 && (
           <Box className={cx("flex", fr.cx("fr-mt-4w"))}>

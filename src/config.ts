@@ -1,6 +1,6 @@
 export const config = {
   host: process.env.NEXT_PUBLIC_SITE_URL!,
-  name: "PACOUPA",
+  name: "Pacoupa",
   tagline:
     "Conseiller les copropriétaires dans l'installation de systèmes de chauffage décarbonés adaptés à leur logement",
   env: (process.env.PACOUPA_ENV || "dev") as "dev" | "preprod" | "prod",

@@ -1,10 +1,10 @@
 "use client";
 
-import { fr } from "@codegouvfr/react-dsfr";
 import Input from "@codegouvfr/react-dsfr/Input";
 import { z } from "zod";
 
-import { Box, P } from "@/dsfr";
+import { CalloutPacoupa } from "@/components/CalloutPacoupa";
+import { Box } from "@/dsfr";
 
 import { HeaderFunnel } from "../HeaderFunnel";
 import { WizardForm } from "../WizardForm";
@@ -29,35 +29,37 @@ export const Step2 = () => {
       <WizardForm
         schema={schema}
         render={({ errors, store }) => (
-          <Box>
-            <Input
-              label={
-                <>
-                  Quelle est <strong>l’année</strong> de construction du bâtiment ?
-                </>
-              }
-              nativeInputProps={{
-                "aria-required": true,
-                "aria-invalid": Boolean(errors?.annee?._errors),
-                placeholder: "Ex: 1983",
-                name: "annee",
-                defaultValue: store.annee,
-                type: "number",
-                onBlur: e => {
-                  e.target.value = String(Math.round(Number(e.target.value)));
-                },
-              }}
-              state={errors?.annee?._errors ? "error" : "default"}
-              stateRelatedMessage={<div aria-live="polite">{errors?.annee?._errors}</div>}
-            />
-          </Box>
+          <>
+            <Box>
+              <Input
+                label={
+                  <>
+                    Quelle est <strong>l’année</strong> de construction du bâtiment ?
+                  </>
+                }
+                nativeInputProps={{
+                  "aria-required": true,
+                  "aria-invalid": Boolean(errors?.annee?._errors),
+                  placeholder: "Ex: 1983",
+                  name: "annee",
+                  defaultValue: store.annee,
+                  type: "number",
+                  onBlur: e => {
+                    e.target.value = String(Math.round(Number(e.target.value)));
+                  },
+                }}
+                state={errors?.annee?._errors ? "error" : "default"}
+                stateRelatedMessage={<div aria-live="polite">{errors?.annee?._errors}</div>}
+              />
+            </Box>
+            <Box className="mt-8">
+              <CalloutPacoupa>
+                Tous les bâtiments construits avant 1945 sont identiques au niveau de leur isolation d’origine.
+              </CalloutPacoupa>
+            </Box>
+          </>
         )}
       />
-
-      <P className={fr.cx("fr-mt-8v", "fr-text--sm")}>
-        <i className={fr.cx("fr-icon-info-fill", "fr-mr-2v")} aria-hidden={true} />
-        Cela va nous permettre d’avoir une première idée de l’isolation de base du bâtiment.
-      </P>
     </>
   );
 };
