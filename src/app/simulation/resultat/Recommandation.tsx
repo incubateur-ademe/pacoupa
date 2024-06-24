@@ -14,77 +14,79 @@ export const Recommandation = ({ solution }: { solution: Pick<Solution, "usageCh
   return (
     <>
       <Grid haveGutters valign="top">
-        <GridCol base={4} className={"flex justify-center items-center"}>
-          <Badge
-            variant="dot"
-            // color={usageCh === "Oui" ? "success" : usageCh === "Non" ? "error" : "info"}
-            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-          >
-            <ChauffageImage
-              enabled={usageCh === "Oui"}
-              alt={
-                usageCh === "Oui"
-                  ? "Solution permettant le chauffage"
-                  : usageCh === "Non"
-                    ? "Solution ne permettant pas le chauffage"
+        {usageCh !== "Non" && (
+          <GridCol base={4} className={"flex justify-center items-center"}>
+            <Badge
+              variant="dot"
+              // color={usageCh === "Oui" ? "success" : usageCh === "Non" ? "error" : "info"}
+              anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+            >
+              <ChauffageImage
+                enabled={true}
+                alt={
+                  usageCh === "Oui"
+                    ? "Solution permettant le chauffage"
                     : "Solution permettant potentiellement le chauffage"
-              }
-            />
-          </Badge>
-        </GridCol>
+                }
+              />
+            </Badge>
+          </GridCol>
+        )}
 
-        <GridCol base={4} className={"flex justify-center items-center"}>
-          <Badge
-            variant="dot"
-            // color={usageEcs === "Oui" ? "success" : usageEcs === "Non" ? "error" : "info"}
-            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-          >
-            <EcsImage
-              enabled={usageEcs === "Oui"}
-              alt={
-                usageEcs === "Oui"
-                  ? "Solution permettant l'eau chaude sanitaire"
-                  : usageEcs === "Non"
-                    ? "Solution ne permettant pas l'eau chaude sanitaire"
+        {usageEcs !== "Non" && (
+          <GridCol base={4} className={"flex justify-center items-center"}>
+            <Badge
+              variant="dot"
+              // color={usageEcs === "Oui" ? "success" : usageEcs === "Non" ? "error" : "info"}
+              anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+            >
+              <EcsImage
+                enabled={true}
+                alt={
+                  usageEcs === "Oui"
+                    ? "Solution permettant l'eau chaude sanitaire"
                     : "Solution permettant potentiellement l'eau chaude sanitaire"
-              }
-            />
-          </Badge>
-        </GridCol>
+                }
+              />
+            </Badge>
+          </GridCol>
+        )}
 
-        <GridCol base={4} className={"flex justify-center items-center"}>
-          <Badge
-            variant="dot"
-            // color={usageFr === "Oui" ? "success" : usageFr === "Non" ? "error" : "info"}
-            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-          >
-            <ClimatisationImage
-              enabled={usageFr === "Oui"}
-              alt={
-                usageFr === "Oui"
-                  ? "Solution permettant la climatisation"
-                  : usageFr === "Non"
-                    ? "Solution ne permettant pas la climatisation"
+        {usageFr !== "Non" && (
+          <GridCol base={4} className={"flex justify-center items-center"}>
+            <Badge variant="dot" color={usageFr === "Oui" ? "success" : "info"}>
+              <ClimatisationImage
+                enabled={true}
+                alt={
+                  usageFr === "Oui"
+                    ? "Solution permettant la climatisation"
                     : "La climatisation ne sera pas possible avec des radiateurs à eau. Il faudra soit les remplacer par des ventilo-convecteurs, soit utiliser un plancher rafraichissant (si présent)."
-              }
-            />
-          </Badge>
-        </GridCol>
+                }
+              />
+            </Badge>
+          </GridCol>
+        )}
       </Grid>
 
       <Grid>
-        <GridCol base={4} className={"flex justify-center items-start"}>
-          <span className={fr.cx("fr-text--xs", "fr-mt-1w")}>Chauffage</span>
-        </GridCol>
-        <GridCol base={4} className={"flex justify-center items-start"}>
-          <span className={cx(fr.cx("fr-text--xs", "fr-mt-1w"), "text-center")}>
-            Eau chaude
-            <br /> sanitaire
-          </span>
-        </GridCol>
-        <GridCol base={4} className={"flex justify-center items-start"}>
-          <span className={fr.cx("fr-text--xs", "fr-mt-1w")}>Climatisation</span>
-        </GridCol>
+        {usageCh !== "Non" && (
+          <GridCol base={4} className={"flex justify-center items-start"}>
+            <span className={fr.cx("fr-text--xs", "fr-mt-1w")}>Chauffage</span>
+          </GridCol>
+        )}
+        {usageEcs !== "Non" && (
+          <GridCol base={4} className={"flex justify-center items-start"}>
+            <span className={cx(fr.cx("fr-text--xs", "fr-mt-1w"), "text-center")}>
+              Eau chaude
+              <br /> sanitaire
+            </span>
+          </GridCol>
+        )}
+        {usageFr !== "Non" && (
+          <GridCol base={4} className={"flex justify-center items-start"}>
+            <span className={fr.cx("fr-text--xs", "fr-mt-1w")}>Climatisation</span>
+          </GridCol>
+        )}
       </Grid>
     </>
   );
