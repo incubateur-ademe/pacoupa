@@ -3,6 +3,11 @@ import { createSelectSchema } from "drizzle-zod";
 import { type z } from "zod";
 
 import { enumDPE } from "@/lib/common/domain/values/DPE";
+import { enumEmetteur } from "@/lib/common/domain/values/Emetteur";
+import { enumEnvironnementContraint } from "@/lib/common/domain/values/EnvironnementContraint";
+import { enumNbLogement } from "@/lib/common/domain/values/NbLogement";
+import { enumNiveauRenovationSimu1 } from "@/lib/common/domain/values/NiveauRenovation";
+import { enumOuiNonNa } from "@/lib/common/domain/values/OuiNonNa";
 import { enumScenarioRenovationEnveloppe } from "@/lib/common/domain/values/ScenarioRenovationEnveloppe";
 import { enumScenarioRenovationSysteme } from "@/lib/common/domain/values/ScenarioRenovationSysteme";
 import { enumFamille } from "@/lib/common/domain/values/SolutionFamille";
@@ -11,6 +16,8 @@ import { enumNiveauRenovation } from "@/lib/common/domain/values/SolutionNiveauR
 import { enumNote } from "@/lib/common/domain/values/SolutionNote";
 import { enumType, enumTypeWithoutMix } from "@/lib/common/domain/values/SolutionTypes";
 import { enumUsage } from "@/lib/common/domain/values/SolutionUsage";
+import { enumTemperature } from "@/lib/common/domain/values/Temperature";
+import { enumToitureTerrasse } from "@/lib/common/domain/values/ToitureTerrasse";
 import { enumTypeCH } from "@/lib/common/domain/values/TypeCH";
 import { enumTypeECS } from "@/lib/common/domain/values/TypeECS";
 import { enumTypeSysteme } from "@/lib/common/domain/values/TypeSysteme";
@@ -51,15 +58,15 @@ export const criteres = sqliteTable(
   "criteres",
   {
     id: integer("id").primaryKey(),
-    ch: text("CH"),
-    ecs: text("ECS"),
-    emetteur: text("emetteur"),
-    espaceExterieurPersonnel: text("espace_exterieur_personnel"),
-    envContraint: text("env_contraint"),
-    toitureTerrasse: text("toiture_terrasse"),
-    temperature: text("temperature"),
-    nbLgts: text("nb_lgts"),
-    niveauRenovation: text("niveau_renovation"),
+    ch: text("CH", { enum: enumTypeWithoutMix }),
+    ecs: text("ECS", { enum: enumTypeWithoutMix }),
+    emetteur: text("emetteur", { enum: enumEmetteur }),
+    espaceExterieurPersonnel: text("espace_exterieur_personnel", { enum: enumOuiNonNa }),
+    envContraint: text("env_contraint", { enum: enumEnvironnementContraint }),
+    toitureTerrasse: text("toiture_terrasse", { enum: enumToitureTerrasse }),
+    temperature: text("temperature", { enum: enumTemperature }),
+    nbLgts: text("nb_lgts", { enum: enumNbLogement }),
+    niveauRenovation: text("niveau_renovation", { enum: enumNiveauRenovationSimu1 }),
   },
   table => {
     return {
@@ -80,6 +87,10 @@ export const criteres = sqliteTable(
     };
   },
 );
+
+export const criteresBatimentSchema = createSelectSchema(criteres);
+
+export type CriteresBatiment = z.infer<typeof criteresBatimentSchema>;
 
 export const solutionsParCriteres = sqliteTable("solutions_par_criteres", {
   criteresId: integer("criteres_id").references(() => criteres.id),

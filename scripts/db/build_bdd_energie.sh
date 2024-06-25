@@ -8,3 +8,9 @@ sqlite-utils transform $ASSETS_DIR/pacoupa.db bdd_energie \
 --drop usage_ECS \
 --drop emetteur
 
+sqlite-utils create-index pacoupa.db bdd_energie typologie
+sqlite-utils create-index pacoupa.db bdd_energie zone_climatique
+sqlite-utils create-index pacoupa.db bdd_energie scenario_renovation_systeme
+sqlite-utils create-index pacoupa.db bdd_energie scenario_renovation_enveloppe
+sqlite-utils create-index pacoupa.db bdd_energie ECS
+sqlite-utils create-index pacoupa.db bdd_energie CH
