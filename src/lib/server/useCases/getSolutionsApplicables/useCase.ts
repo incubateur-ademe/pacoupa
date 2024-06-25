@@ -46,7 +46,7 @@ export async function getSolutionsApplicables(dto: GetSolutionsApplicablesDTO) {
       usageCh: solutions.usageCh,
       usageEcs: solutions.usageEcs,
       usageFr: solutions.usageFr,
-      typeSystem: solutions.typeSysteme,
+      typeSysteme: solutions.typeSysteme,
       ordre: solutionsParCriteres.ordreSolution,
       cout: { note: solutionsParCriteres.noteCout },
       difficulte: { note: solutionsParCriteres.noteDifficulte },

@@ -75,7 +75,7 @@ export const fetchSolutions = async (
         ...data,
         scenarioRenovationEnveloppe:
           travauxNiveauIsolation === "Global" ? "GLOB" : travauxNiveauIsolation === "Partiel" ? "INTER" : "INIT",
-        scenarioRenovationSysteme: solution.typeSystem as TypeSystemeWithoutRCU,
+        scenarioRenovationSysteme: solution.typeSysteme as TypeSystemeWithoutRCU,
       });
 
       return {

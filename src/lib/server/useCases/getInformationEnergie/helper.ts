@@ -42,7 +42,7 @@ export const creerCriteresBddEnergie = async (dto: GetInformationEnergieDTO): Pr
   const etatIsolationMurs: SolutionIsolation = dto.renovation?.includes("murs") ? "Isolé" : "Pas isolé";
 
   const typeCh = dto.energieCH === "electricite" ? "ELEC" : (dto.energieCH.toUpperCase() as TypeCH);
-  const typeEcs = dto.energieECS === "ballon electrique" ? "ELEC" : (dto.energieCH.toUpperCase() as TypeECS);
+  const typeEcs = dto.energieECS === "ballon electrique" ? "ELEC" : (dto.energieECS.toUpperCase() as TypeECS);
 
   const ch: CriteresBddEnergie["ch"] = dto.typeCH === "collectif" ? "COL" : "IND";
   const ecs: CriteresBddEnergie["ecs"] = dto.typeECS === "collectif" ? "COL" : "IND";

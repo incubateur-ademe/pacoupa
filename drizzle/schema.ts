@@ -126,7 +126,6 @@ export const bddEnergie = sqliteTable("bdd_energie", {
   cep: integer("CEP"),
   ges: integer("GES"),
   dpe: text("DPE", { enum: enumDPE }).notNull(),
-  gainCep: text("gain_CEP"),
 });
 
 export const bddEnergieSchema = createSelectSchema(bddEnergie);

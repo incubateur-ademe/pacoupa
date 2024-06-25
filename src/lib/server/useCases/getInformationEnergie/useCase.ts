@@ -41,7 +41,6 @@ export async function getInformationEnergie(dto: GetInformationEnergieDTO) {
       cep: bddEnergie.cep,
       ges: bddEnergie.ges,
       dpe: bddEnergie.dpe,
-      gainCep: bddEnergie.gainCep,
     })
     .from(bddEnergie)
     .where(creerClauseWhere(criteresBddEnergie))
