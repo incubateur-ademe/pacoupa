@@ -7,25 +7,24 @@ import { config } from "@/config";
 import { db } from "@/lib/drizzle";
 
 import { type GetSolutionsApplicablesDTO } from "./dto";
-import { creerCriteresSolutionsApplicables, type SelectCriteresSchema } from "./helper";
+import { creerCriteresSolutionsApplicables, type CriteresBatimentWithoutId } from "./helper";
 
-// Les champs NA sont spéciaux. Quand les champs n'ont pas de valeur dans le DTO, il faut le considérer comme NA. Les champs avec 1 valeur doivent être considérés comme cette valeur OU bien NA, côté SQL.
+// Les champs NA sont spéciaux. Quand les champs n'ont pas de valeur dans le DTO, il faut le considérer comme NA.
+// Les champs avec 1 valeur doivent être considérés comme cette valeur OU bien NA, côté SQL.
 // En résumé, NA veut dire "dans tous les cas" ou "peu importe".
 const NAFields = ["envContraint", "espaceExterieur", "toitureTerrasse", "nbLgts", "niveauRenovation", "temperature"];
 
-const creerClauseWhere = (filters: SelectCriteresSchema) => {
+const creerClauseWhere = (filters: CriteresBatimentWithoutId) => {
   const keys = Object.keys(filters);
 
   const sqlChunks = keys.map(key => {
     if (NAFields.includes(key)) {
-      const firstPart = sql`upper(${criteres[key as keyof typeof criteres]}) = upper(${
-        filters[key as keyof typeof filters]
-      })`;
+      const firstPart = sql`${criteres[key as keyof typeof criteres]} = ${filters[key as keyof typeof filters]}`;
       const secondPart = sql`${criteres[key as keyof typeof criteres]} = 'NA'`;
 
       return sql`${or(firstPart, secondPart)}`;
     } else {
-      return sql`upper(${criteres[key as keyof typeof criteres]}) = upper(${filters[key as keyof typeof filters]})`;
+      return sql`${criteres[key as keyof typeof criteres]} = ${filters[key as keyof typeof filters]}`;
     }
   });
 
@@ -46,7 +45,7 @@ export async function getSolutionsApplicables(dto: GetSolutionsApplicablesDTO) {
       usageCh: solutions.usageCh,
       usageEcs: solutions.usageEcs,
       usageFr: solutions.usageFr,
-      typeSystem: solutions.typeSysteme,
+      typeSysteme: solutions.typeSysteme,
       ordre: solutionsParCriteres.ordreSolution,
       cout: { note: solutionsParCriteres.noteCout },
       difficulte: { note: solutionsParCriteres.noteDifficulte },

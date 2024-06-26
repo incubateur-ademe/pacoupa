@@ -1,5 +1,8 @@
 sqlite-utils insert $ASSETS_DIR/pacoupa.db solutions_par_criteres $ASSETS_DIR/solutions_par_criteres_clean.csv --csv -d
+
+# extract some columns to make a joined table criteres
 sqlite-utils extract $ASSETS_DIR/pacoupa.db solutions_par_criteres CH ECS emetteur espace_exterieur_personnel env_contraint toiture_terrasse temperature nb_lgts niveau_renovation --table criteres
+
 sqlite-utils convert $ASSETS_DIR/pacoupa.db solutions_par_criteres solution \
 'bits = value.split("-")
 return {
@@ -16,3 +19,7 @@ sqlite-utils transform $ASSETS_DIR/pacoupa.db solutions_par_criteres \
 -o criteres_id -o solutions_id -o ordre_solution
 
 sqlite-utils add-foreign-key $ASSETS_DIR/pacoupa.db solutions_par_criteres solutions_id solutions id
+
+sqlite-utils create-index pacoupa.db solutions_par_criteres solutions_id
+sqlite-utils create-index pacoupa.db solutions_par_criteres criteres_id
+

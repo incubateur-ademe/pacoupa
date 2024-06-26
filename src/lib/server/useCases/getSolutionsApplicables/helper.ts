@@ -1,23 +1,8 @@
-import { criteres } from "drizzle/schema";
-import { createSelectSchema } from "drizzle-zod";
-import { z } from "zod";
+import { type CriteresBatiment } from "drizzle/schema";
 
 import { type GetSolutionsApplicablesDTO } from "./dto";
 
-const SelectCriteresSchema = createSelectSchema(criteres, {
-  id: schema => schema.id.optional(),
-  ch: z.enum(["ind", "col"]),
-  ecs: z.enum(["ind", "col"]),
-  emetteur: z.enum(["hydraulique", "electrique"]),
-  espaceExterieurPersonnel: z.enum(["oui", "non", "NA"]),
-  envContraint: z.enum(["terrain disponible", "contraint", "NA"]),
-  toitureTerrasse: z.enum(["sans tt", "toiture t", "NA"]),
-  nbLgts: z.enum(["< 15", ">= 15", "NA"]),
-  niveauRenovation: z.enum(["recent ou renove", "NA"]),
-  temperature: z.enum(["< 40°C", "> 60°C", "< 60°C", "40-60°C", "NA"]),
-});
-
-export type SelectCriteresSchema = z.infer<typeof SelectCriteresSchema>;
+export type CriteresBatimentWithoutId = Omit<CriteresBatiment, "id">;
 
 const estRenovationGlobale = (dto: GetSolutionsApplicablesDTO) => dto.renovation?.length === 4;
 
@@ -26,44 +11,48 @@ const estRenovationGlobale = (dto: GetSolutionsApplicablesDTO) => dto.renovation
  *
  * @param dto une simulation
  */
-export const creerCriteresSolutionsApplicables = (dto: GetSolutionsApplicablesDTO): SelectCriteresSchema => {
-  const emetteur: SelectCriteresSchema["emetteur"] = dto.energieCH === "electricite" ? "electrique" : "hydraulique";
+export const creerCriteresSolutionsApplicables = (dto: GetSolutionsApplicablesDTO): CriteresBatimentWithoutId => {
+  const emetteur: CriteresBatimentWithoutId["emetteur"] =
+    dto.energieCH === "electricite" ? "Electrique" : "Hydraulique";
 
-  const espaceExterieurPersonnel: SelectCriteresSchema["espaceExterieurPersonnel"] =
+  const espaceExterieurPersonnel: CriteresBatimentWithoutId["espaceExterieurPersonnel"] =
     dto.typeCH === "individuel" && dto.typeECS === "individuel"
       ? dto.espacesExterieursPersonnels?.includes("balcon")
-        ? "oui"
-        : "non"
+        ? "Oui"
+        : "Non"
       : "NA";
 
   const estContraint =
     !dto.espacesExterieursCommuns?.includes("jardin") && !dto.espacesExterieursCommuns?.includes("parking exterieur");
 
-  const envContraint: SelectCriteresSchema["envContraint"] =
+  const envContraint: CriteresBatimentWithoutId["envContraint"] =
     dto.typeCH === "collectif" || dto.typeECS === "collectif"
       ? !estContraint
-        ? "terrain disponible"
-        : "contraint"
+        ? "Terrain disponible"
+        : "Contraint"
       : "NA";
 
-  const toitureTerrasse: SelectCriteresSchema["toitureTerrasse"] = estContraint
+  const toitureTerrasse: CriteresBatimentWithoutId["toitureTerrasse"] = estContraint
     ? dto.espacesExterieursCommuns?.includes("toit terrasse") ||
       dto.espacesExterieursPersonnels?.includes("toit terrasse")
-      ? "toiture t"
-      : "sans tt"
+      ? "Toiture T"
+      : "Sans TT"
     : "NA";
 
-  const temperature: SelectCriteresSchema["temperature"] =
+  const temperature: CriteresBatimentWithoutId["temperature"] =
     dto.emetteur === "plancher chauffant" ? "< 40°C" : estRenovationGlobale(dto) ? "40-60°C" : "> 60°C";
 
-  const nbLgts: SelectCriteresSchema["nbLgts"] = dto.nbLogements < 15 ? "< 15" : ">= 15";
+  const nbLgts: CriteresBatimentWithoutId["nbLgts"] = dto.nbLogements < 15 ? "< 15" : ">= 15";
 
-  const niveauRenovation: SelectCriteresSchema["niveauRenovation"] =
-    dto.annee >= 2000 || estRenovationGlobale(dto) ? "recent ou renove" : "NA";
+  const niveauRenovation: CriteresBatimentWithoutId["niveauRenovation"] =
+    dto.annee >= 2000 || estRenovationGlobale(dto) ? "Recent ou renove" : "NA";
+
+  const ch: CriteresBatimentWithoutId["ch"] = dto.typeCH === "collectif" ? "COL" : "IND";
+  const ecs: CriteresBatimentWithoutId["ecs"] = dto.typeECS === "collectif" ? "COL" : "IND";
 
   return {
-    ch: dto.typeCH === "collectif" ? "col" : "ind",
-    ecs: dto.typeECS === "collectif" ? "col" : "ind",
+    ch,
+    ecs,
     emetteur,
     envContraint,
     espaceExterieurPersonnel,

@@ -13,7 +13,7 @@ const creerClauseWhere = (filters: CriteresBddEnergie) => {
   const keys = Object.keys(filters);
 
   const sqlChunks = keys.map(key => {
-    return sql`upper(${bddEnergie[key as keyof typeof bddEnergie]}) = upper(${filters[key as keyof typeof filters]})`;
+    return sql`${bddEnergie[key as keyof typeof bddEnergie]} = ${filters[key as keyof typeof filters]}`;
   });
 
   return sql`${sql.join(sqlChunks, sql` and `)}`;
@@ -41,7 +41,6 @@ export async function getInformationEnergie(dto: GetInformationEnergieDTO) {
       cep: bddEnergie.cep,
       ges: bddEnergie.ges,
       dpe: bddEnergie.dpe,
-      gainCep: bddEnergie.gainCep,
     })
     .from(bddEnergie)
     .where(creerClauseWhere(criteresBddEnergie))
