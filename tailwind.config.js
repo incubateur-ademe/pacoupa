@@ -20,6 +20,9 @@ module.exports = {
       current: "currentColor",
       black: colors.black,
       white: colors.white,
+      yellow: colors.yellow,
+      blue: colors.blue,
+      red: colors.red,
       green: {
         900: "var(--color-green-900)",
         800: "var(--color-green-900)",

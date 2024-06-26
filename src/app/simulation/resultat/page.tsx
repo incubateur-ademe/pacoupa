@@ -7,6 +7,7 @@ import { type Metadata } from "next";
 
 import { BadgePacoupa } from "@/components/BadgePacoupa";
 import { Button } from "@/components/Button";
+import { Callout } from "@/components/Callout";
 import { Card } from "@/components/Card";
 import { HighlightText } from "@/components/HighlightText";
 import { DPEImage } from "@/components/img/DPEImage";
@@ -25,7 +26,7 @@ import { FranceRenovBlock } from "./FranceRenovBlock";
 import { familleImageMap, fetchSolutions, typeMap } from "./helper";
 import { NouvelleSimulation } from "./NouvelleSimulation";
 import { Recommandation } from "./Recommandation";
-import { ShowIsolationImages } from "./ShowIsolationImages";
+import { computeIsolations, ShowIsolationImages } from "./ShowIsolationImages";
 import { SyncStore } from "./SyncStore";
 
 const title = "Résultat simulation";
@@ -139,6 +140,7 @@ const ResultatsPage = async ({
             assert(solution.cepAvant && solution.cepApres, "cepAvant and cepApres should be defined");
 
             const pourcentageGain = Math.round(((solution.cepAvant - solution.cepApres) / solution.cepAvant) * 100);
+            const gestes = computeIsolations(solution);
 
             return (
               <GridCol key={solution.id} base={12} sm={6} xl={4}>
@@ -170,8 +172,17 @@ const ResultatsPage = async ({
                         />
                       </Box>
                       <Box className="mt-4">
-                        <ShowIsolationImages solution={solution} />
+                        <ShowIsolationImages gestes={gestes} />
                       </Box>
+                      {gestes.length > 0 && (
+                        <Box className="my-3">
+                          <Callout
+                            type="warning"
+                            content={<>Ces isolations sont indispensables pour la mise en place de ce système.</>}
+                          />
+                        </Box>
+                      )}
+
                       <Box className="mt-8">
                         <hr />
                         <p className="mb-0">Estimation des gains</p>

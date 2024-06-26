@@ -1,9 +1,9 @@
 "use client";
 
-import { fr } from "@codegouvfr/react-dsfr";
 import { SegmentedControl, type SegmentedControlProps } from "@codegouvfr/react-dsfr/SegmentedControl";
 import { useRouter, useSearchParams } from "next/navigation";
 
+import { Box } from "@/dsfr";
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
 import { createSearchParams } from "@/utils/searchParams";
 
@@ -52,7 +52,9 @@ export const TravauxNiveauIsolationSegmentedControl = ({ travauxNiveauIsolation 
       />
 
       {travauxNiveauIsolation && (
-        <Callout content={wordings[travauxNiveauIsolation]} icon={<i className={fr.cx("ri-information-fill")} />} />
+        <Box className="mt-1 mb-4 -ml-2">
+          <Callout content={wordings[travauxNiveauIsolation]} type="neutral" />
+        </Box>
       )}
     </>
   );
