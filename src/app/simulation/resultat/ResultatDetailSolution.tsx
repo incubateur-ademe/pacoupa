@@ -3,7 +3,7 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import Badge from "@codegouvfr/react-dsfr/Badge";
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
-import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 import { BadgePacoupa } from "@/components/BadgePacoupa";
 import { Button } from "@/components/Button";
@@ -19,17 +19,19 @@ import { type InformationBatiment } from "@/lib/common/domain/InformationBatimen
 import { type Solution } from "@/lib/common/domain/values/Solution";
 import { type SolutionEnergie } from "@/lib/common/domain/values/SolutionEnergie";
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
+import { createSearchParams } from "@/utils/searchParams";
 
 import { CardRcu } from "./CardRcu";
 import { DebugButton } from "./DebugButton";
 import { FranceRenovBlock } from "./FranceRenovBlock";
 import { familleImageMap, typeMap } from "./helper";
 import { NouvelleSimulation } from "./NouvelleSimulation";
+import { type ResultatsPageSearchParamsProps } from "./page";
 import { Recommandation } from "./Recommandation";
 import { computeIsolations, ShowIsolationImages } from "./ShowIsolationImages";
 
 type Props = {
-  hash: string;
+  complet: boolean;
   informationBatiment: InformationBatiment;
   isRcuEligible: boolean;
   solutions: Array<Solution & SolutionEnergie>;
@@ -41,11 +43,10 @@ export const ResultatDetailSolution = ({
   solutions,
   isRcuEligible,
   travauxNiveauIsolation,
-  hash,
+  complet,
 }: Props) => {
+  const searchParams = useSearchParams();
   const nbSolutions = solutions.length;
-
-  const [complet, setComplet] = useState(false);
 
   return (
     <>
@@ -194,7 +195,11 @@ export const ResultatDetailSolution = ({
               priority="tertiary"
               className={cx("grow", "md:grow-0", "justify-center")}
               linkProps={{
-                href: `/simulation/resultat?complet=oui&hash=${hash}`,
+                href: `/simulation/resultat?${createSearchParams<ResultatsPageSearchParamsProps["complet"]>({
+                  searchParams,
+                  name: "complet",
+                  value: "oui",
+                })}`,
               }}
             >
               Voir d’autres solutions

@@ -28,11 +28,13 @@ export const metadata: Metadata = {
   },
 };
 
-const ResultatsPage = async ({
-  searchParams,
-}: {
-  searchParams: { complet: "non" | "oui"; hash: string; travauxNiveauIsolation: TravauxNiveauIsolation };
-}) => {
+export type ResultatsPageSearchParamsProps = {
+  complet: "non" | "oui";
+  hash: string;
+  travauxNiveauIsolation: TravauxNiveauIsolation;
+};
+
+const ResultatsPage = async ({ searchParams }: { searchParams: ResultatsPageSearchParamsProps }) => {
   if (!searchParams.hash) throw new Error("Le hash est manquant");
 
   const complet = searchParams.complet === "oui";
@@ -57,7 +59,7 @@ const ResultatsPage = async ({
         informationBatiment={formData.data}
         solutions={solutions}
         isRcuEligible={isRcuEligible}
-        hash={searchParams.hash}
+        complet={complet}
         travauxNiveauIsolation={travauxNiveauIsolation}
       />
     </>

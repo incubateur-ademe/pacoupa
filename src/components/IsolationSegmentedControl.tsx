@@ -40,7 +40,7 @@ export const TravauxNiveauIsolationSegmentedControl = ({ travauxNiveauIsolation 
               onChange: () => {
                 router.push(
                   `/simulation/resultat?${createSearchParams<TravauxNiveauIsolation>({
-                    baseSearchParams: searchParams,
+                    searchParams,
                     name: "travauxNiveauIsolation",
                     value: label,
                   })}`,
