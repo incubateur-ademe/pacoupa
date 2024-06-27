@@ -6,8 +6,8 @@ import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxN
 
 import { sharedMetadata } from "../../shared-metadata";
 import { fetchSolutions } from "./helper";
-import { ResultatDetailSolution } from "./ResultatDetailSolution";
 import { SyncStore } from "./SyncStore";
+import { WrapperResultatDetail } from "./WrapperResultatDetail";
 
 const title = "Résultat simulation";
 const description = "Résultat simulation";
@@ -51,11 +51,13 @@ const ResultatsPage = async ({ searchParams }: { searchParams: ResultatsPageSear
 
   const { solutions, isRcuEligible } = await fetchSolutions(formData.data, travauxNiveauIsolation);
 
+  console.log(JSON.stringify(solutions, null, 2));
+
   return (
     <>
       <SyncStore hash={searchParams.hash} />
 
-      <ResultatDetailSolution
+      <WrapperResultatDetail
         informationBatiment={formData.data}
         solutions={solutions}
         isRcuEligible={isRcuEligible}

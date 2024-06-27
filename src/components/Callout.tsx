@@ -52,8 +52,6 @@ export const Callout = ({ content, iconId, title, type }: PropsWithChildren<Prop
 
   const { bgColor, titleColor, contentColor } = config[type];
 
-  console.log({ bgColor, titleColor, contentColor });
-
   return (
     <div className={`rounded-md p-2 ${bgColor}`}>
       <div className="flex">

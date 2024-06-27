@@ -4,6 +4,7 @@ import { fr } from "@codegouvfr/react-dsfr";
 import Badge from "@codegouvfr/react-dsfr/Badge";
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import { useSearchParams } from "next/navigation";
+import { useState } from "react";
 
 import { BadgePacoupa } from "@/components/BadgePacoupa";
 import { Button } from "@/components/Button";
@@ -23,6 +24,7 @@ import { createSearchParams } from "@/utils/searchParams";
 
 import { CardRcu } from "./CardRcu";
 import { DebugButton } from "./DebugButton";
+import { DetailSolution } from "./DetailSolution";
 import { FranceRenovBlock } from "./FranceRenovBlock";
 import { familleImageMap, typeMap } from "./helper";
 import { NouvelleSimulation } from "./NouvelleSimulation";
@@ -37,8 +39,12 @@ type Props = {
   solutions: Array<Solution & SolutionEnergie>;
   travauxNiveauIsolation: TravauxNiveauIsolation;
 };
-
-export const ResultatDetailSolution = ({
+/**
+ * Composant qui affiche le résultat des solutions par défaut ou bien une solution détaillée.
+ *
+ * Composant client pour alterner entre les 2 affichages.
+ */
+export const WrapperResultatDetail = ({
   informationBatiment,
   solutions,
   isRcuEligible,
@@ -46,7 +52,11 @@ export const ResultatDetailSolution = ({
   complet,
 }: Props) => {
   const searchParams = useSearchParams();
+  const [detailSolution, setDetailSolution] = useState<(Solution & SolutionEnergie) | null>(null);
+
   const nbSolutions = solutions.length;
+
+  if (detailSolution) return <DetailSolution solution={detailSolution} back={() => setDetailSolution(null)} />;
 
   return (
     <>
@@ -122,17 +132,9 @@ export const ResultatDetailSolution = ({
                 <Card
                   desc={
                     <>
-                      {/* <Box className={fr.cx("fr-mt-2w")}>
-                  <Text>{solution.description}</Text>
-                </Box> */}
                       <Box className="mt-4">
                         <Recommandation solution={solution} />
                       </Box>
-                      {/* <Box className={cx("flex", "flex-col", "gap-4")}>
-                  <Evaluation categorie="environnement" solution={solution} />
-                  <Evaluation categorie="cout" solution={solution} />
-                  <Evaluation categorie="difficulte" solution={solution} />
-                  </Box> */}
                       <hr />
                       <p className="mb-2">Isolations à prévoir</p>
                       <Box>
@@ -174,16 +176,11 @@ export const ResultatDetailSolution = ({
                     </Box>
                   }
                   titleAs="h3"
-                  // end={
-                  //   <Button
-                  //     priority="primary"
-                  //     linkProps={{
-                  //       href: `/solutions/${solution.id}?noteCout=${solution.cout.note}&noteDifficulte=${solution.difficulte.note}&noteTravauxCollectif=${solution.travauxCollectif.note}&noteTravauxIndividuel=${solution.travauxIndividuel.note}&hash=${searchParams.hash}`,
-                  //     }}
-                  //   >
-                  //     Découvrir
-                  //   </Button>
-                  // }
+                  end={
+                    <Button priority="primary" onClick={() => setDetailSolution(solution)}>
+                      Découvrir
+                    </Button>
+                  }
                 />
               </GridCol>
             );
