@@ -101,7 +101,10 @@ const SolutionPage = ({
         <Recommandation solution={{ usageCh, usageEcs, usageFr }} />
       </Box>
 
-      <H3 className={fr.cx("fr-text--lg")}>Toutes les évaluations</H3>
+      <H3 className={fr.cx("fr-text--lg")}>Autres estimations</H3>
+      <span className={fr.cx("fr-text--xs")}>(isolations comprises)</span>
+
+      {/* <EstimationGains solution={solution} /> */}
 
       <Box className={cx("flex", "flex-col", "gap-4")}>
         <Evaluation categorie="environnement" solution={solution} withDetails />

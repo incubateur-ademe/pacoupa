@@ -1,7 +1,6 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { Badge } from "@codegouvfr/react-dsfr/Badge";
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
-import assert from "assert";
 import { Base64 } from "js-base64";
 import { type Metadata } from "next";
 
@@ -9,9 +8,8 @@ import { BadgePacoupa } from "@/components/BadgePacoupa";
 import { Button } from "@/components/Button";
 import { Callout } from "@/components/Callout";
 import { Card } from "@/components/Card";
+import { EstimationGains } from "@/components/EstimationGains";
 import { HighlightText } from "@/components/HighlightText";
-import { DPEImage } from "@/components/img/DPEImage";
-import { FlecheImage } from "@/components/img/FlecheImage";
 import { NoDataImage } from "@/components/img/NoDataImage";
 import { TravauxNiveauIsolationSegmentedControl } from "@/components/IsolationSegmentedControl";
 import { Box, Container, Grid, GridCol } from "@/dsfr";
@@ -137,9 +135,6 @@ const ResultatsPage = async ({
             </GridCol>
           )}
           {solutions.slice(0, complet ? nbSolutions : isRcuEligible ? 2 : 3).map(solution => {
-            assert(solution.cepAvant && solution.cepApres, "cepAvant and cepApres should be defined");
-
-            const pourcentageGain = Math.round(((solution.cepAvant - solution.cepApres) / solution.cepAvant) * 100);
             const gestes = computeIsolations(solution);
 
             return (
@@ -183,31 +178,7 @@ const ResultatsPage = async ({
                         </Box>
                       )}
 
-                      <Box className="mt-8">
-                        <hr />
-                        <p className="mb-0">Estimation des gains</p>
-                        <span className={fr.cx("fr-text--xs")}>(isolations comprises)</span>
-                        <br />
-                        <p className="mt-4 mb-2">Gains énergétiques</p>
-
-                        <span className={fr.cx("fr-text--xs")}>Actuel</span>
-                        <br />
-                        <div className="flex">
-                          <DPEImage lettre={solution.dpeAvant} />
-
-                          <p className="text-center">
-                            <span className="ml-4 mr-4">
-                              <FlecheImage />
-                            </span>
-                            <br />
-                            <BadgePacoupa label={`- ${pourcentageGain}%`} />
-
-                            <br />
-                            <span className={fr.cx("fr-text--xs")}>Gain d'énergie</span>
-                          </p>
-                          <DPEImage lettre={solution.dpeApres} />
-                        </div>
-                      </Box>
+                      <EstimationGains solution={solution} />
                     </>
                   }
                   horizontal
