@@ -1,14 +1,11 @@
 "use client";
 
 import { fr } from "@codegouvfr/react-dsfr";
-import Badge from "@codegouvfr/react-dsfr/Badge";
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 
-import { BadgePacoupa } from "@/components/BadgePacoupa";
 import { Button } from "@/components/Button";
-import { Callout } from "@/components/Callout";
 import { Card } from "@/components/Card";
 import { EstimationGains } from "@/components/EstimationGains";
 import { HighlightText } from "@/components/HighlightText";
@@ -26,11 +23,12 @@ import { CardRcu } from "./CardRcu";
 import { DebugButton } from "./DebugButton";
 import { DetailSolution } from "./DetailSolution";
 import { FranceRenovBlock } from "./FranceRenovBlock";
-import { familleImageMap, typeMap } from "./helper";
+import { familleImageMap } from "./helper";
+import { Isolation } from "./Isolation";
 import { NouvelleSimulation } from "./NouvelleSimulation";
 import { type ResultatsPageSearchParamsProps } from "./page";
-import { Recommandation } from "./Recommandation";
-import { computeIsolations, ShowIsolationImages } from "./ShowIsolationImages";
+import { computeIsolations } from "./ShowIsolationImages";
+import { Usage } from "./Usage";
 
 type Props = {
   complet: boolean;
@@ -133,34 +131,16 @@ export const WrapperResultatDetail = ({
                   desc={
                     <>
                       <Box className="mt-4">
-                        <Recommandation solution={solution} />
+                        <Usage solution={solution} />
                       </Box>
                       <hr />
-                      <p className="mb-2">Isolations à prévoir</p>
                       <Box>
-                        <BadgePacoupa
-                          label={
-                            travauxNiveauIsolation === "Global"
-                              ? "Isolation globale"
-                              : travauxNiveauIsolation === "Partiel"
-                                ? "Isolation partielle"
-                                : "Aucune"
-                          }
-                        />
+                        <Isolation gestes={gestes} travauxNiveauIsolation={travauxNiveauIsolation} />
                       </Box>
+                      <hr className="mt-8" />
                       <Box className="mt-4">
-                        <ShowIsolationImages gestes={gestes} />
+                        <EstimationGains solution={solution} />
                       </Box>
-                      {gestes.length > 0 && (
-                        <Box className="my-3">
-                          <Callout
-                            type="warning"
-                            content={<>Ces isolations sont indispensables pour la mise en place de ce système.</>}
-                          />
-                        </Box>
-                      )}
-
-                      <EstimationGains solution={solution} />
                     </>
                   }
                   horizontal
@@ -170,8 +150,6 @@ export const WrapperResultatDetail = ({
                       <Box>{familleImageMap[solution.familleSolution]}</Box>
                       <Box>
                         <span className={cx("mb-0", fr.cx("fr-text--lg"))}>{solution.nom}</span>
-                        <br />
-                        <Badge>{typeMap[solution.type]}</Badge>
                       </Box>
                     </Box>
                   }

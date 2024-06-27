@@ -1,5 +1,7 @@
 import { catalogueSolutions } from "@__content/solutions";
+import { fr } from "@codegouvfr/react-dsfr";
 import { type AlertProps } from "@codegouvfr/react-dsfr/Alert";
+import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 
 import { FamilleCetAirEauImage } from "@/components/img/familles/FamilleCetAirEauImage";
 import { FamilleCetEauEauImage } from "@/components/img/familles/FamilleCetEauEauImage";
@@ -107,10 +109,25 @@ export const fetchSolutions = async (
   };
 };
 
-export const typeMap: Record<SolutionType, string> = {
-  IND: "Solution individuelle",
-  COL: "Solution collective",
-  MIX: "Solution mixte",
+export const typeMap: Record<SolutionType, React.ReactNode> = {
+  IND: (
+    <div className="whitespace-nowrap">
+      <i className={cx(fr.cx("fr-icon-user-fill", "fr-icon--sm"), "mr-1")} />
+      Solution individuelle
+    </div>
+  ),
+  COL: (
+    <div className="whitespace-nowrap">
+      <i className={cx(fr.cx("fr-icon-team-fill", "fr-icon--sm"), "mr-1")} />
+      Solution collective
+    </div>
+  ),
+  MIX: (
+    <div className="whitespace-nowrap">
+      <i className={cx(fr.cx("fr-icon-group-fill", "fr-icon--sm"), "mr-1")} />
+      Solution mixte
+    </div>
+  ),
 };
 
 export const familleImageMap: Record<SolutionFamille, JSX.Element> = {

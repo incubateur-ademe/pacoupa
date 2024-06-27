@@ -51,8 +51,6 @@ const ResultatsPage = async ({ searchParams }: { searchParams: ResultatsPageSear
 
   const { solutions, isRcuEligible } = await fetchSolutions(formData.data, travauxNiveauIsolation);
 
-  console.log(JSON.stringify(solutions, null, 2));
-
   return (
     <>
       <SyncStore hash={searchParams.hash} />

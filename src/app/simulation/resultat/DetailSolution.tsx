@@ -5,23 +5,24 @@ import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import { Evaluation } from "@/app/simulation/resultat/Evaluation";
 import { FranceRenovBlock } from "@/app/simulation/resultat/FranceRenovBlock";
 import { familleImageMap, typeMap } from "@/app/simulation/resultat/helper";
-import { Recommandation } from "@/app/simulation/resultat/Recommandation";
 import { Button } from "@/components/Button";
+import { EstimationGains } from "@/components/EstimationGains";
 import { Box } from "@/dsfr";
 import { H2, H3, Text } from "@/dsfr/base/typography";
 import { useScrollTop } from "@/lib/client/useScrollTop";
-import { type Solution } from "@/lib/common/domain/values/Solution";
-import { type SolutionEnergie } from "@/lib/common/domain/values/SolutionEnergie";
+import { type SolutionAvecEnergie } from "@/lib/common/domain/values/SolutionAvecEnergie";
+
+import { Usage } from "./Usage";
 
 type Props = {
   back: () => void;
-  solution: Solution & SolutionEnergie;
+  solution: SolutionAvecEnergie;
 };
 
 export const DetailSolution = ({ solution, back }: Props) => {
   useScrollTop();
 
-  const { usageCh, usageEcs, usageFr } = solution;
+  const typeComponent = typeMap[solution.type];
 
   return (
     <Box className={cx("max-w-[800px]")}>
@@ -35,7 +36,7 @@ export const DetailSolution = ({ solution, back }: Props) => {
         <Box>{familleImageMap[solution.familleSolution]}</Box>
         <Box>
           <H2 className={fr.cx("fr-text--xl", "fr-mb-1w")}>{solution.nom}</H2>
-          <Badge>{typeMap[solution.type]}</Badge>
+          {typeComponent && <Badge>{typeComponent}</Badge>}
         </Box>
       </Box>
 
@@ -44,13 +45,13 @@ export const DetailSolution = ({ solution, back }: Props) => {
       </Box>
 
       <Box className={fr.cx("fr-mt-4w")}>
-        <Recommandation solution={{ usageCh, usageEcs, usageFr }} />
+        <Usage solution={solution} withTitle={true} />
       </Box>
 
-      <H3 className={fr.cx("fr-text--lg")}>Autres estimations</H3>
+      <H3 className={fr.cx("fr-text--lg")}>Autres </H3>
       <span className={fr.cx("fr-text--xs")}>(isolations comprises)</span>
 
-      {/* <EstimationGains solution={solution} /> */}
+      <EstimationGains solution={solution} />
 
       <Box className={cx("flex", "flex-col", "gap-4")}>
         <Evaluation categorie="environnement" solution={solution} withDetails />
