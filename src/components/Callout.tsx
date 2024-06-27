@@ -2,6 +2,8 @@ import { fr, type FrCxArg } from "@codegouvfr/react-dsfr";
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import { type PropsWithChildren } from "react";
 
+import { Logo } from "./img/Logo";
+
 type Props = {
   content?: React.ReactNode;
   icon?: React.ReactNode;
@@ -44,12 +46,10 @@ const config: Record<Props["type"], { bgColor: string; contentColor: string; tit
 };
 
 export const Callout = ({ content, iconId, icon, title, type }: PropsWithChildren<Props>) => {
-  //bg-yellow-50
-  //title text-yellow-800
-  //content text-yellow-700
-
   type = type ?? "info";
-  icon = icon ?? <i className={fr.cx(iconId ?? "ri-information-fill", "fr-icon--sm")} />;
+
+  icon =
+    type === "pacoupa" ? <Logo /> : icon ?? <i className={fr.cx(iconId ?? "ri-information-fill", "fr-icon--sm")} />;
 
   const { bgColor, titleColor, contentColor } = config[type];
 
