@@ -54,7 +54,14 @@ export const WrapperResultatDetail = ({
 
   const nbSolutions = solutions.length;
 
-  if (detailSolution) return <DetailSolution solution={detailSolution} back={() => setDetailSolution(null)} />;
+  if (detailSolution)
+    return (
+      <DetailSolution
+        solution={detailSolution}
+        back={() => setDetailSolution(null)}
+        travauxNiveauIsolation={travauxNiveauIsolation}
+      />
+    );
 
   return (
     <>
@@ -138,7 +145,7 @@ export const WrapperResultatDetail = ({
                         <Isolation gestes={gestes} travauxNiveauIsolation={travauxNiveauIsolation} />
                       </Box>
                       <hr className="mt-8" />
-                      <Box className="mt-4">
+                      <Box>
                         <EstimationGains solution={solution} />
                       </Box>
                     </>

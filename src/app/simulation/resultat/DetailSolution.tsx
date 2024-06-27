@@ -6,23 +6,30 @@ import { Evaluation } from "@/app/simulation/resultat/Evaluation";
 import { FranceRenovBlock } from "@/app/simulation/resultat/FranceRenovBlock";
 import { familleImageMap, typeMap } from "@/app/simulation/resultat/helper";
 import { Button } from "@/components/Button";
+import { Callout } from "@/components/Callout";
 import { EstimationGains } from "@/components/EstimationGains";
+import { Logo } from "@/components/img/Logo";
 import { Box } from "@/dsfr";
-import { H2, H3, Text } from "@/dsfr/base/typography";
+import { H2, Text } from "@/dsfr/base/typography";
 import { useScrollTop } from "@/lib/client/useScrollTop";
 import { type SolutionAvecEnergie } from "@/lib/common/domain/values/SolutionAvecEnergie";
+import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
 
+import { Isolation } from "./Isolation";
+import { computeIsolations } from "./ShowIsolationImages";
 import { Usage } from "./Usage";
 
 type Props = {
   back: () => void;
   solution: SolutionAvecEnergie;
+  travauxNiveauIsolation: TravauxNiveauIsolation;
 };
 
-export const DetailSolution = ({ solution, back }: Props) => {
+export const DetailSolution = ({ solution, back, travauxNiveauIsolation }: Props) => {
   useScrollTop();
 
   const typeComponent = typeMap[solution.type];
+  const gestes = computeIsolations(solution);
 
   return (
     <Box className={cx("max-w-[800px]")}>
@@ -44,16 +51,43 @@ export const DetailSolution = ({ solution, back }: Props) => {
         <Text>{solution.description}</Text>
       </Box>
 
-      <Box className={fr.cx("fr-mt-4w")}>
+      <Box className="mt-4">
         <Usage solution={solution} withTitle={true} />
       </Box>
 
-      <H3 className={fr.cx("fr-text--lg")}>Autres </H3>
+      <hr />
+
+      <Box>
+        <Isolation gestes={gestes} travauxNiveauIsolation={travauxNiveauIsolation} />
+      </Box>
+
+      <hr className="mt-8" />
+
+      <Box>
+        <EstimationGains solution={solution} />
+      </Box>
+
+      <Box className="mt-0">
+        <Callout
+          type="pacoupa"
+          icon={<Logo />}
+          content={
+            <>
+              Un logement mieux isolé :
+              <ul>
+                <li>Augmente la valeur du bien</li>
+                <li>Est moins sensible aux variations de prix de l’énergie</li>
+                <li>Améliore votre confort</li>
+              </ul>
+            </>
+          }
+        />
+      </Box>
+
+      <Text className="font-medium mt-8 mb-0">Autres estimations</Text>
       <span className={fr.cx("fr-text--xs")}>(isolations comprises)</span>
 
-      <EstimationGains solution={solution} />
-
-      <Box className={cx("flex", "flex-col", "gap-4")}>
+      <Box className={cx("flex", "flex-col", "gap-4", "mt-4")}>
         <Evaluation categorie="environnement" solution={solution} withDetails />
         <hr />
         <Evaluation categorie="cout" solution={solution} withDetails />

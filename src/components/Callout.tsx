@@ -4,6 +4,7 @@ import { type PropsWithChildren } from "react";
 
 type Props = {
   content?: React.ReactNode;
+  icon?: React.ReactNode;
   iconId?: FrCxArg;
   title?: string;
   type: "error" | "info" | "neutral" | "pacoupa" | "success" | "warning";
@@ -11,7 +12,7 @@ type Props = {
 
 const config: Record<Props["type"], { bgColor: string; contentColor: string; titleColor: string }> = {
   pacoupa: {
-    bgColor: "bg-yellow-50",
+    bgColor: "bg-green-50",
     titleColor: "text-green-800",
     contentColor: "text-green-700",
   },
@@ -42,13 +43,13 @@ const config: Record<Props["type"], { bgColor: string; contentColor: string; tit
   },
 };
 
-export const Callout = ({ content, iconId, title, type }: PropsWithChildren<Props>) => {
+export const Callout = ({ content, iconId, icon, title, type }: PropsWithChildren<Props>) => {
   //bg-yellow-50
   //title text-yellow-800
   //content text-yellow-700
 
   type = type ?? "info";
-  const icon = <i className={fr.cx(iconId ?? "ri-information-fill", "fr-icon--sm")} />;
+  icon = icon ?? <i className={fr.cx(iconId ?? "ri-information-fill", "fr-icon--sm")} />;
 
   const { bgColor, titleColor, contentColor } = config[type];
 

@@ -3,6 +3,7 @@ import assert from "assert";
 import { type PropsWithChildren } from "react";
 
 import { Box } from "@/dsfr";
+import { Text } from "@/dsfr/base/typography";
 import { type SolutionAvecEnergie } from "@/lib/common/domain/values/SolutionAvecEnergie";
 
 import { BadgePacoupa } from "./BadgePacoupa";
@@ -20,8 +21,8 @@ export const EstimationGains = ({ solution }: PropsWithChildren<Props>) => {
 
   return (
     <>
-      <Box className="mt-8">
-        <p className="mb-0">Estimation des gains</p>
+      <Box>
+        <Text className="mb-0">Estimation des gains</Text>
         <span className={fr.cx("fr-text--xs")}>(isolations comprises)</span>
         <br />
         <p className="mt-4 mb-2">Gains énergétiques</p>
