@@ -1,15 +1,83 @@
 import { fr } from "@codegouvfr/react-dsfr";
+import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 
 import { Button } from "@/components/Button";
-import { Grid, GridCol } from "@/dsfr";
+import { Card } from "@/components/Card";
+import { Box, Grid, GridCol } from "@/dsfr";
+import { H3, Text } from "@/dsfr/base/typography";
 
-export const FranceRenovBlock = () => {
+type Props = {
+  withWorkflow?: boolean;
+};
+
+export const FranceRenovBlock = ({ withWorkflow }: Props) => {
+  withWorkflow = withWorkflow || false;
+
   return (
     <>
-      <Grid>
-        <GridCol className={fr.cx("fr-mt-6w")}>
-          Pour plus d’informations sur votre projet de rénovation, contactez un conseiller{" "}
-          <strong>France Rénov’</strong>.
+      {withWorkflow && (
+        <Box>
+          <H3 className="text-lg font-medium mb-0">Cette solution vous intéresse ?</H3>
+          <Text className="text-base font-normal">et maintenant ?</Text>
+
+          <Box className={cx("flex flex-wrap gap-4")}>
+            <Card
+              title={
+                <Box className={cx("flex", "justify-between")}>
+                  <i className="ri-number-1" />
+                  <Button
+                    priority="tertiary"
+                    iconId="ri-share-fill"
+                    iconPosition="right"
+                    onClick={() => {
+                      navigator.clipboard.writeText(window.location.href).catch(console.error);
+                    }}
+                  >
+                    {""}
+                  </Button>
+                </Box>
+              }
+              desc={<>Partagez la solution à vos voisins.</>}
+              horizontal
+              size="small"
+              titleAs="h3"
+              className={cx("w-[250px]")}
+            />
+
+            <Card
+              title={
+                <Box className={cx("flex", "justify-between")}>
+                  <i className="ri-number-2" />
+                  <i className="ri-discuss-fill" />
+                </Box>
+              }
+              desc={<>Discutez-en en assemblée générale.</>}
+              horizontal
+              size="small"
+              titleAs="h3"
+              className={cx("w-[250px]")}
+            />
+            <Card
+              title={
+                <Box className={cx("flex", "justify-between")}>
+                  <i className="ri-number-3" />
+                  <i className="ri-phone-fill" />
+                </Box>
+              }
+              desc={<>Prenez contact avec un conseiller France Renov’.</>}
+              horizontal
+              size="small"
+              titleAs="h3"
+              className={cx("w-[250px]")}
+            />
+          </Box>
+        </Box>
+      )}
+      <Grid className={cx("mt-8")}>
+        {/* <GridCol className={fr.cx("fr-mt-6w")}> */}
+        <GridCol>
+          Bénéficiez <strong>gratuitement</strong> de l’aide d’un conseiller <strong>France Rénov’</strong> pour vous
+          guider dans les premières étapes de votre projet.
         </GridCol>
 
         <GridCol className={fr.cx("fr-mt-6w")}>

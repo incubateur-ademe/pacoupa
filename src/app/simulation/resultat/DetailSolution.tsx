@@ -118,7 +118,7 @@ export const DetailSolution = ({ solution, back, travauxNiveauIsolation }: Props
         <hr />
       </Box>
 
-      <FranceRenovBlock />
+      <FranceRenovBlock withWorkflow={true} />
     </Box>
   );
 };
