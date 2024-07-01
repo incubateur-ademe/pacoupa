@@ -2,8 +2,7 @@
 
 import { fr } from "@codegouvfr/react-dsfr";
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
-import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
@@ -32,6 +31,7 @@ import { Usage } from "./Usage";
 
 type Props = {
   complet: boolean;
+  idSolution?: string;
   informationBatiment: InformationBatiment;
   isRcuEligible: boolean;
   solutions: Array<Solution & SolutionEnergie>;
@@ -45,12 +45,19 @@ type Props = {
 export const WrapperResultatDetail = ({
   informationBatiment,
   solutions,
+  idSolution,
   isRcuEligible,
   travauxNiveauIsolation,
   complet,
 }: Props) => {
   const searchParams = useSearchParams();
-  const [detailSolution, setDetailSolution] = useState<(Solution & SolutionEnergie) | null>(null);
+  const router = useRouter();
+
+  let detailSolution: (Solution & SolutionEnergie) | null = null;
+
+  if (idSolution) {
+    detailSolution = solutions.find(s => s.id === idSolution) || null;
+  }
 
   const nbSolutions = solutions.length;
 
@@ -58,7 +65,15 @@ export const WrapperResultatDetail = ({
     return (
       <DetailSolution
         solution={detailSolution}
-        back={() => setDetailSolution(null)}
+        back={() =>
+          router.push(
+            `/simulation/resultat?${createSearchParams({
+              searchParams,
+              name: "idSolution",
+              value: "",
+            })}`,
+          )
+        }
         travauxNiveauIsolation={travauxNiveauIsolation}
       />
     );
@@ -162,7 +177,18 @@ export const WrapperResultatDetail = ({
                   }
                   titleAs="h3"
                   end={
-                    <Button priority="primary" onClick={() => setDetailSolution(solution)}>
+                    <Button
+                      priority="primary"
+                      onClick={() =>
+                        router.push(
+                          `/simulation/resultat?${createSearchParams({
+                            searchParams,
+                            name: "idSolution",
+                            value: solution.id,
+                          })}`,
+                        )
+                      }
+                    >
                       Découvrir
                     </Button>
                   }

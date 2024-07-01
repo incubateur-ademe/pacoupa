@@ -31,6 +31,7 @@ export const metadata: Metadata = {
 export type ResultatsPageSearchParamsProps = {
   complet: "non" | "oui";
   hash: string;
+  idSolution: string;
   travauxNiveauIsolation: TravauxNiveauIsolation;
 };
 
@@ -61,6 +62,7 @@ const ResultatsPage = async ({ searchParams }: { searchParams: ResultatsPageSear
         isRcuEligible={isRcuEligible}
         complet={complet}
         travauxNiveauIsolation={travauxNiveauIsolation}
+        idSolution={searchParams.idSolution}
       />
     </>
   );

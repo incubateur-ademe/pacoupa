@@ -29,7 +29,7 @@ type Props = {
 
 export const DetailSolution = ({ solution, back, travauxNiveauIsolation }: Props) => {
   useScrollTop();
-  const { width = 0 } = useWindowSize({ debounceDelay: 500, initializeWithValue: false });
+  const { width = 0 } = useWindowSize({ debounceDelay: 100, initializeWithValue: false });
 
   const typeComponent = typeMap[solution.type];
   const gestes = computeIsolations(solution);
