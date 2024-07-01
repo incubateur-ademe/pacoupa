@@ -1,12 +1,11 @@
 import { fr } from "@codegouvfr/react-dsfr";
-import Badge from "@codegouvfr/react-dsfr/Badge";
 import { breakpoints } from "@codegouvfr/react-dsfr/fr/breakpoints";
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import { useWindowSize } from "usehooks-ts";
 
 import { Evaluation } from "@/app/simulation/resultat/Evaluation";
 import { FranceRenovBlock } from "@/app/simulation/resultat/FranceRenovBlock";
-import { familleImageMap, typeMap } from "@/app/simulation/resultat/helper";
+import { familleImageMap } from "@/app/simulation/resultat/helper";
 import { Button } from "@/components/Button";
 import { Callout } from "@/components/Callout";
 import { EstimationGains } from "@/components/EstimationGains";
@@ -31,32 +30,32 @@ export const DetailSolution = ({ solution, back, travauxNiveauIsolation }: Props
   useScrollTop();
   const { width = 0 } = useWindowSize({ debounceDelay: 100, initializeWithValue: false });
 
-  const typeComponent = typeMap[solution.type];
   const gestes = computeIsolations(solution);
 
   return (
     <Box className={cx("max-w-[800px]")}>
-      <Box className={cx(fr.cx("fr-mt-4w"), "flex", "justify-between")}>
-        <Button priority="tertiary" iconId="ri-arrow-go-back-line" onClick={back}>
-          Retour à la liste
-        </Button>
-        <Button
-          priority="tertiary"
-          iconId="ri-share-fill"
-          iconPosition="right"
-          onClick={() => {
-            navigator.clipboard.writeText(window.location.href).catch(console.error);
-          }}
-        >
-          {width > breakpoints.getPxValues().sm ? "Partager la solution" : ""}
-        </Button>
-      </Box>
+      <Box className={cx("sticky", "top-0", "bg-white", "z-10", "pb-4", "pt-4")}>
+        <Box className={cx("flex", "justify-between")}>
+          <Button priority="tertiary" iconId="ri-arrow-go-back-line" onClick={back}>
+            Retour à la liste
+          </Button>
+          <Button
+            priority="tertiary"
+            iconId="ri-share-fill"
+            iconPosition="right"
+            onClick={() => {
+              navigator.clipboard.writeText(window.location.href).catch(console.error);
+            }}
+          >
+            {width > breakpoints.getPxValues().sm ? "Partager la solution" : ""}
+          </Button>
+        </Box>
 
-      <Box className={cx("flex items-start gap-4", fr.cx("fr-mt-4w"))}>
-        <Box>{familleImageMap[solution.familleSolution]}</Box>
-        <Box>
-          <H2 className={fr.cx("fr-text--xl", "fr-mb-1w")}>{solution.nom}</H2>
-          {typeComponent && <Badge>{typeComponent}</Badge>}
+        <Box className={cx("flex items-start gap-4", fr.cx("fr-mt-4w"))}>
+          <Box>{familleImageMap[solution.familleSolution]}</Box>
+          <Box>
+            <H2 className={fr.cx("fr-text--xl", "fr-mb-1w")}>{solution.nom}</H2>
+          </Box>
         </Box>
       </Box>
 
