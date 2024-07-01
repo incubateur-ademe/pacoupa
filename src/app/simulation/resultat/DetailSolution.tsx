@@ -1,6 +1,8 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import Badge from "@codegouvfr/react-dsfr/Badge";
+import { breakpoints } from "@codegouvfr/react-dsfr/fr/breakpoints";
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
+import { useWindowSize } from "usehooks-ts";
 
 import { Evaluation } from "@/app/simulation/resultat/Evaluation";
 import { FranceRenovBlock } from "@/app/simulation/resultat/FranceRenovBlock";
@@ -27,15 +29,26 @@ type Props = {
 
 export const DetailSolution = ({ solution, back, travauxNiveauIsolation }: Props) => {
   useScrollTop();
+  const { width = 0 } = useWindowSize({ debounceDelay: 500, initializeWithValue: false });
 
   const typeComponent = typeMap[solution.type];
   const gestes = computeIsolations(solution);
 
   return (
     <Box className={cx("max-w-[800px]")}>
-      <Box className={fr.cx("fr-mt-4w")}>
+      <Box className={cx(fr.cx("fr-mt-4w"), "flex", "justify-between")}>
         <Button priority="tertiary" iconId="ri-arrow-go-back-line" onClick={back}>
           Retour à la liste
+        </Button>
+        <Button
+          priority="tertiary"
+          iconId="ri-share-fill"
+          iconPosition="right"
+          onClick={() => {
+            navigator.clipboard.writeText(window.location.href).catch(console.error);
+          }}
+        >
+          {width > breakpoints.getPxValues().sm ? "Partager la solution" : ""}
         </Button>
       </Box>
 
