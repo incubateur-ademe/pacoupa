@@ -6,7 +6,7 @@ import { SegmentedControl, type SegmentedControlProps } from "@codegouvfr/react-
 import { useEffect, useState } from "react";
 import { z } from "zod";
 
-import { CalloutPacoupa } from "@/components/CalloutPacoupa";
+import { Callout } from "@/components/Callout";
 import { Box, P } from "@/dsfr";
 import { usePacoupaSessionStorage } from "@/lib/client/usePacoupaSessionStorage";
 import { OuiNonLabels } from "@/utils/zod";
@@ -133,7 +133,7 @@ export const Step6 = () => {
             />
 
             <Box>
-              <CalloutPacoupa>Certains systèmes de chaleur nécessitent des unités extérieures.</CalloutPacoupa>
+              <Callout type="pacoupa" content={<>Certains systèmes de chaleur nécessitent des unités extérieures.</>} />
             </Box>
           </>
         )}

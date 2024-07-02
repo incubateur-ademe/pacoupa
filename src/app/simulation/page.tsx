@@ -3,7 +3,7 @@ import { type Metadata } from "next";
 
 import { Button } from "@/components/Button";
 import { ButtonsWrapper } from "@/components/ButtonsWrapper";
-import { CalloutPacoupa } from "@/components/CalloutPacoupa";
+import { Callout } from "@/components/Callout";
 import { Maison2Image } from "@/components/img/Maison2";
 import { Grid, GridCol, P } from "@/dsfr";
 import { H1 } from "@/dsfr/base/typography";
@@ -49,10 +49,15 @@ const SimulationLandingPage = () => {
         En moins de <strong>3 minutes</strong>, découvrez les systèmes de chauffage compatibles avec votre logement.
       </P>
 
-      <CalloutPacoupa>
-        Les informations que nous allons vous demander sont <strong>anonymes</strong> et ne sont{" "}
-        <strong>pas stockées</strong>.
-      </CalloutPacoupa>
+      <Callout
+        type="pacoupa"
+        content={
+          <>
+            Les informations que nous allons vous demander sont <strong>anonymes</strong> et ne sont{" "}
+            <strong>pas stockées</strong>.
+          </>
+        }
+      />
 
       <ButtonsWrapper align="right">
         <Button

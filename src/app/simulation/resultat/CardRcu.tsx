@@ -9,15 +9,18 @@ import { H4, Text } from "@/dsfr/base/typography";
 import { type Solution } from "@/lib/common/domain/values/Solution";
 
 import { familleImageMap, typeMap } from "./helper";
-import { Recommandation } from "./Recommandation";
+import { Usage } from "./Usage";
 
 const rcuSolution = {
   usageCh: "Oui",
   usageEcs: "Oui",
   usageFr: "Non",
-} satisfies Pick<Solution, "usageCh" | "usageEcs" | "usageFr">;
+  type: "COL",
+} satisfies Pick<Solution, "type" | "usageCh" | "usageEcs" | "usageFr">;
 
 export const CardRcu = () => {
+  const typeComponent = typeMap["COL"];
+
   return (
     <>
       <Card
@@ -30,7 +33,7 @@ export const CardRcu = () => {
               </Text>
             </Box>
 
-            <Recommandation solution={rcuSolution} />
+            <Usage solution={rcuSolution as Solution} />
 
             <H4 className={cx(fr.cx("fr-text--sm", "fr-mb-1w"), "font-normal")}>⚠️ Réglementation</H4>
 
@@ -48,7 +51,7 @@ export const CardRcu = () => {
             <Box>
               <span className={cx("mb-0", fr.cx("fr-text--xl"))}>Réseau de chaleur</span>
               <br />
-              <Badge>{typeMap["COL"]}</Badge>
+              {typeComponent && <Badge>{typeComponent}</Badge>}
             </Box>
           </Box>
         }

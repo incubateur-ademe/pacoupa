@@ -3,7 +3,7 @@
 import Input from "@codegouvfr/react-dsfr/Input";
 import { z } from "zod";
 
-import { CalloutPacoupa } from "@/components/CalloutPacoupa";
+import { Callout } from "@/components/Callout";
 import { Box } from "@/dsfr";
 
 import { HeaderFunnel } from "../HeaderFunnel";
@@ -53,9 +53,12 @@ export const Step2 = () => {
               />
             </Box>
             <Box className="mt-8">
-              <CalloutPacoupa>
-                Tous les bâtiments construits avant 1945 sont identiques au niveau de leur isolation d’origine.
-              </CalloutPacoupa>
+              <Callout
+                type="pacoupa"
+                content={
+                  <>Tous les bâtiments construits avant 1945 sont identiques au niveau de leur isolation d’origine.</>
+                }
+              />
             </Box>
           </>
         )}

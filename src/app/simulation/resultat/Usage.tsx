@@ -1,4 +1,5 @@
 import { fr } from "@codegouvfr/react-dsfr";
+import BadgeDsfr from "@codegouvfr/react-dsfr/Badge";
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import { Badge } from "@mui/material";
 
@@ -6,21 +7,28 @@ import { ChauffageImage } from "@/components/img/usages/ChauffageImage";
 import { ClimatisationImage } from "@/components/img/usages/ClimatisationImage";
 import { EcsImage } from "@/components/img/usages/EcsImage";
 import { Grid, GridCol } from "@/dsfr";
+import { Text } from "@/dsfr/base/typography";
 import { type Solution } from "@/lib/common/domain/values/Solution";
 
-export const Recommandation = ({ solution }: { solution: Pick<Solution, "usageCh" | "usageEcs" | "usageFr"> }) => {
-  const { usageCh, usageEcs, usageFr } = solution;
+import { typeMap } from "./helper";
+
+type Props = { solution: Solution; withTitle?: boolean };
+
+export const Usage = ({ solution, withTitle }: Props) => {
+  const { usageCh, usageEcs, usageFr, type } = solution;
+
+  const typeComponent = typeMap[type];
 
   return (
     <>
-      <Grid haveGutters valign="top">
+      {withTitle && <Text className="font-medium mb-1">Usage</Text>}
+
+      {typeComponent && <BadgeDsfr>{typeComponent}</BadgeDsfr>}
+
+      <Grid haveGutters valign="top" className="mt-4">
         {usageCh !== "Non" && (
           <GridCol base={4} className={"flex justify-center items-center"}>
-            <Badge
-              variant="dot"
-              // color={usageCh === "Oui" ? "success" : usageCh === "Non" ? "error" : "info"}
-              anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-            >
+            <Badge variant="dot" anchorOrigin={{ vertical: "bottom", horizontal: "right" }}>
               <ChauffageImage
                 enabled={true}
                 alt={
@@ -67,7 +75,6 @@ export const Recommandation = ({ solution }: { solution: Pick<Solution, "usageCh
           </GridCol>
         )}
       </Grid>
-
       <Grid>
         {usageCh !== "Non" && (
           <GridCol base={4} className={"flex justify-center items-start"}>
@@ -76,10 +83,7 @@ export const Recommandation = ({ solution }: { solution: Pick<Solution, "usageCh
         )}
         {usageEcs !== "Non" && (
           <GridCol base={4} className={"flex justify-center items-start"}>
-            <span className={cx(fr.cx("fr-text--xs", "fr-mt-1w"), "text-center")}>
-              Eau chaude
-              <br /> sanitaire
-            </span>
+            <span className={cx(fr.cx("fr-text--xs", "fr-mt-1w"), "text-center")}>Eau chaude</span>
           </GridCol>
         )}
         {usageFr !== "Non" && (

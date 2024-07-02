@@ -3,7 +3,7 @@
 import { z } from "zod";
 
 import { AutocompleteBan } from "@/components/AutocompleteBan";
-import { CalloutPacoupa } from "@/components/CalloutPacoupa";
+import { Callout } from "@/components/Callout";
 import { Box } from "@/dsfr";
 
 import { HeaderFunnel } from "../HeaderFunnel";
@@ -25,10 +25,15 @@ export const Step1 = () => {
               <AutocompleteBan defaultValue={store.adresse} errors={errors?.adresse?._errors} />
             </Box>
             <Box className="mt-8">
-              <CalloutPacoupa>
-                L’adresse nous permet de connaître votre éligibilité à un réseau de chaleur ainsi que votre zone
-                climatique.
-              </CalloutPacoupa>
+              <Callout
+                type="pacoupa"
+                content={
+                  <>
+                    L’adresse nous permet de connaître votre éligibilité à un réseau de chaleur ainsi que votre zone
+                    climatique.
+                  </>
+                }
+              />
             </Box>
           </>
         )}

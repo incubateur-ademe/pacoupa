@@ -4,7 +4,7 @@ import { fr } from "@codegouvfr/react-dsfr";
 import { Input } from "@codegouvfr/react-dsfr/Input";
 import { z } from "zod";
 
-import { CalloutPacoupa } from "@/components/CalloutPacoupa";
+import { Callout } from "@/components/Callout";
 import { Box, P } from "@/dsfr";
 
 import { HeaderFunnel } from "../HeaderFunnel";
@@ -51,7 +51,10 @@ export const Step4 = () => {
               />
             </Box>
             <Box className="mt-8">
-              <CalloutPacoupa>Cela nous permettra de mieux estimer les coûts et les gains moyens.</CalloutPacoupa>
+              <Callout
+                type="pacoupa"
+                content={<>Cela nous permettra de mieux estimer les coûts et les gains moyens.</>}
+              />
             </Box>
           </>
         )}
