@@ -7,12 +7,17 @@ import { Card } from "@/components/Card";
 import { Box, Grid, GridCol } from "@/dsfr";
 import { H3, Text } from "@/dsfr/base/typography";
 
-type Props = {
-  setOpen: Dispatch<SetStateAction<boolean>>;
-  withWorkflow?: boolean;
-};
+type Props =
+  | {
+      setOpen: Dispatch<SetStateAction<boolean>>;
+      withWorkflow: true;
+    }
+  | {
+      setOpen?: undefined;
+      withWorkflow?: false;
+    };
 
-export const FranceRenovBlock = ({ withWorkflow, setOpen }: Props) => {
+export const FranceRenovBlock = ({ withWorkflow, setOpen }: Props = {}) => {
   withWorkflow = withWorkflow || false;
 
   return (
