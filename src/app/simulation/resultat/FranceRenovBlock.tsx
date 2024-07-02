@@ -1,5 +1,6 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
+import { type Dispatch, type SetStateAction } from "react";
 
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
@@ -7,10 +8,11 @@ import { Box, Grid, GridCol } from "@/dsfr";
 import { H3, Text } from "@/dsfr/base/typography";
 
 type Props = {
+  setOpen: Dispatch<SetStateAction<boolean>>;
   withWorkflow?: boolean;
 };
 
-export const FranceRenovBlock = ({ withWorkflow }: Props) => {
+export const FranceRenovBlock = ({ withWorkflow, setOpen }: Props) => {
   withWorkflow = withWorkflow || false;
 
   return (
@@ -31,6 +33,7 @@ export const FranceRenovBlock = ({ withWorkflow }: Props) => {
                     iconPosition="right"
                     onClick={() => {
                       navigator.clipboard.writeText(window.location.href).catch(console.error);
+                      setOpen(true);
                     }}
                   >
                     {""}
