@@ -5,6 +5,11 @@ const colors = require("tailwindcss/colors");
 module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
+    extend: {
+      boxShadow: {
+        DEFAULT: "4px 4px 0 0 #183D2F",
+      },
+    },
     fontFamily: {
       "geist-sans": ["var(--font-geist-sans)", "sans-serif"],
     },
@@ -20,6 +25,7 @@ module.exports = {
       current: "currentColor",
       black: colors.black,
       white: colors.white,
+      gray: colors.gray,
       yellow: colors.yellow,
       blue: colors.blue,
       red: colors.red,

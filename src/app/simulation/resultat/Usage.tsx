@@ -1,5 +1,4 @@
 import { fr } from "@codegouvfr/react-dsfr";
-import BadgeDsfr from "@codegouvfr/react-dsfr/Badge";
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import { Badge } from "@mui/material";
 
@@ -23,7 +22,7 @@ export const Usage = ({ solution, withTitle }: Props) => {
     <>
       {withTitle && <Text className="font-medium mb-1">Usage</Text>}
 
-      {typeComponent && <BadgeDsfr>{typeComponent}</BadgeDsfr>}
+      {typeComponent}
 
       <Grid haveGutters valign="top" className="mt-4">
         {usageCh !== "Non" && (
