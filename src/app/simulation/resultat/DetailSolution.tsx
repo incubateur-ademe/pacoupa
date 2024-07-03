@@ -30,7 +30,7 @@ type Props = {
 
 export const DetailSolution = ({ solution, back, travauxNiveauIsolation }: Props) => {
   useScrollTop();
-  const [open, setOpen] = useState(false);
+  const [showToast, setShowToast] = useState(false);
 
   const { width = 0 } = useWindowSize({ debounceDelay: 100, initializeWithValue: false });
 
@@ -41,7 +41,7 @@ export const DetailSolution = ({ solution, back, travauxNiveauIsolation }: Props
       return;
     }
 
-    setOpen(false);
+    setShowToast(false);
   };
 
   return (
@@ -57,7 +57,7 @@ export const DetailSolution = ({ solution, back, travauxNiveauIsolation }: Props
             iconPosition="right"
             onClick={() => {
               navigator.clipboard.writeText(window.location.href).catch(console.error);
-              setOpen(true);
+              setShowToast(true);
             }}
           >
             {width > breakpoints.getPxValues().sm ? "Partager la solution" : ""}
@@ -65,7 +65,7 @@ export const DetailSolution = ({ solution, back, travauxNiveauIsolation }: Props
 
           <Snackbar
             anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-            open={open}
+            open={showToast}
             onClose={handleClose}
             autoHideDuration={4000}
             message="L'URL a bien été copiée 🚀."
@@ -139,7 +139,7 @@ export const DetailSolution = ({ solution, back, travauxNiveauIsolation }: Props
         <hr />
       </Box>
 
-      <FranceRenovBlock withWorkflow={true} setOpen={setOpen} />
+      <FranceRenovBlock withWorkflow={true} showToast={setShowToast} />
     </Box>
   );
 };

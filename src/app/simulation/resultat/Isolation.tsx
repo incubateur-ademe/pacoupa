@@ -26,7 +26,7 @@ export const Isolation = ({ gestes, travauxNiveauIsolation }: Props) => {
           }
         />
       </Box>
-      <Box className="mt-4">
+      <Box className="mt-4 flex justify-center gap-8">
         <ShowIsolationImages gestes={gestes} />
       </Box>
       {gestes.length > 0 && (

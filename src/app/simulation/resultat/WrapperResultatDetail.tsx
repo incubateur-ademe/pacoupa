@@ -84,12 +84,9 @@ export const WrapperResultatDetail = ({
         <Grid>
           <GridCol sm={8} xl={6}>
             <Card
-              desc={<span className={fr.cx("fr-text--md")}>{informationBatiment.adresse}</span>}
-              horizontal
-              size="small"
-              title="Copropriété"
-              titleAs="h3"
-              end={
+              content={<span className={fr.cx("fr-text--md")}>{informationBatiment.adresse}</span>}
+              header={<Card.CardHeader title="Copropiété" />}
+              footer={
                 <Button
                   linkProps={{
                     href: "/simulation/etapes",
@@ -150,7 +147,7 @@ export const WrapperResultatDetail = ({
             return (
               <GridCol key={solution.id} base={12} sm={6} xl={4}>
                 <Card
-                  desc={
+                  content={
                     <>
                       <Box className="mt-4">
                         <Usage solution={solution} />
@@ -165,18 +162,8 @@ export const WrapperResultatDetail = ({
                       </Box>
                     </>
                   }
-                  horizontal
-                  size="small"
-                  title={
-                    <Box className={cx("flex items-start gap-4")}>
-                      <Box>{familleImageMap[solution.familleSolution]}</Box>
-                      <Box>
-                        <span className={cx("mb-0", fr.cx("fr-text--lg"))}>{solution.nom}</span>
-                      </Box>
-                    </Box>
-                  }
-                  titleAs="h3"
-                  end={
+                  header={<Card.CardHeader image={familleImageMap[solution.familleSolution]} title={solution.nom} />}
+                  footer={
                     <Button
                       priority="primary"
                       onClick={() =>
