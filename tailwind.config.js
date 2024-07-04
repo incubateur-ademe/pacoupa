@@ -15,10 +15,10 @@ module.exports = {
     },
     // align with dsfr
     screens: {
-      sm: "36em",
-      md: "48em",
-      lg: "62em",
-      xl: "78em",
+      sm: "36em", // 576 px
+      md: "48em", // 768 px
+      lg: "62em", // 992 px
+      xl: "78em", // 1248 px
     },
     colors: {
       transparent: "transparent",

@@ -40,14 +40,14 @@ export const Card = ({
     <>
       <div
         className={cx(
-          "flex flex-col justify-start items-center p-4 gap-4 bg-white border-solid border-green-700 shadow rounded-lg max-w-lg h-full",
+          "flex flex-col justify-start items-center p-2 gap-1 bg-white border-solid border-green-700 shadow rounded-lg max-w-lg h-full relative",
         )}
       >
         {/* Marker */}
         {marker && (
           <Box
             className={cx(
-              "bg-green-50 py-0 px-2 shadow-[1px_1px_0px_#183D2F] rounded-[24px] border-green-700 border border-solid text-sm leading-6 -mt-8",
+              "bg-green-50 py-0 px-2 shadow-[1px_1px_0px_#183D2F] rounded-[24px] border-green-700 border border-solid text-sm leading-6 absolute -top-3",
               { "self-start": markerPosition === "left", "self-end": markerPosition === "right" },
             )}
           >
@@ -58,7 +58,7 @@ export const Card = ({
         {/* Title */}
         {header && (
           <Box
-            className={cx("flex gap-4 items-center", {
+            className={cx("flex items-center", {
               "self-start": headerAlign === "left",
               "self-center": headerAlign === "center",
               "self-end": headerAlign === "right",

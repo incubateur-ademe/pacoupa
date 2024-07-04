@@ -1,6 +1,8 @@
 import { fr } from "@codegouvfr/react-dsfr";
+import { breakpoints } from "@codegouvfr/react-dsfr/fr/breakpoints";
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
-import { type Dispatch, type SetStateAction } from "react";
+import { type Dispatch, type SetStateAction, useCallback } from "react";
+import { useWindowSize } from "usehooks-ts";
 
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
@@ -20,6 +22,67 @@ type Props =
 
 export const FranceRenovBlock = ({ withWorkflow, showToast }: Props = {}) => {
   withWorkflow = withWorkflow || false;
+  const { width = 0 } = useWindowSize({ debounceDelay: 100, initializeWithValue: false });
+
+  const Etape1 = useCallback(() => {
+    if (!showToast) return null;
+
+    return (
+      <Box className={cx("w-[160px]")}>
+        <Card
+          header={<i className="ri-share-fill text-green-900" />}
+          headerAlign="center"
+          content={
+            <Box className="text-center">
+              <Button
+                priority="tertiary no outline"
+                onClick={() => {
+                  navigator.clipboard.writeText(window.location.href).catch(console.error);
+                  showToast(true);
+                }}
+                className="min-h-0 p-0 text-green-700 underline underline-offset-4 hover:!bg-green-50 hover:text-green-700 transition ease-in-out delay-150 hover:scale-110 duration-300"
+              >
+                Partagez
+              </Button>{" "}
+              la solution à vos voisins.
+            </Box>
+          }
+          marker="1"
+          markerPosition="left"
+        />
+      </Box>
+    );
+  }, [showToast]);
+
+  const Etape2 = useCallback(
+    () => (
+      <Box className={cx("w-[160px]")}>
+        <Card
+          header={<i className="ri-discuss-fill" />}
+          headerAlign="center"
+          content={<Box className="text-center">Discutez-en en assemblée générale.</Box>}
+          marker="2"
+          markerPosition="left"
+        />
+      </Box>
+    ),
+    [],
+  );
+
+  const Etape3 = useCallback(
+    () => (
+      <Box className={cx("w-[160px]")}>
+        <Card
+          header={<i className="ri-phone-fill" />}
+          headerAlign="center"
+          content={<Box className="text-center">Prenez contact avec un conseiller France Renov’.</Box>}
+          marker="3"
+          markerPosition="left"
+        />
+      </Box>
+    ),
+    [],
+  );
 
   return (
     <>
@@ -28,49 +91,23 @@ export const FranceRenovBlock = ({ withWorkflow, showToast }: Props = {}) => {
           <H3 className="text-lg font-medium mb-0">Cette solution vous intéresse ?</H3>
           <Text className="text-base font-normal">et maintenant ?</Text>
 
-          <Box className={cx("flex flex-wrap flex-col xl:flex-row gap-8 xl:justify-center")}>
-            <Box className={cx("w-[200px]")}>
-              <Card
-                header={
-                  <Button
-                    priority="tertiary no outline"
-                    onClick={() => {
-                      navigator.clipboard.writeText(window.location.href).catch(console.error);
-                      showToast(true);
-                    }}
-                  >
-                    <i className="ri-share-fill text-green-900" />
-                  </Button>
-                }
-                headerAlign="center"
-                content={<Box className="text-center">Partagez la solution à vos voisins.</Box>}
-                marker="1"
-                markerPosition="left"
-              />
+          {width < breakpoints.getPxValues().sm ? (
+            <Box className={cx("flex flex-wrap gap-8 flex-col justify-center items-start px-8")}>
+              <Etape1 />
+              <Box className="self-end flex gap-8">
+                <Mascotte1 />
+                <Etape2 />
+              </Box>
+              <Etape3 />
             </Box>
-
-            <Box className={cx("w-[200px]")}>
-              <Card
-                header={<i className="ri-discuss-fill" />}
-                headerAlign="center"
-                content={<Box className="text-center">Discutez-en en assemblée générale.</Box>}
-                marker="2"
-                markerPosition="left"
-              />
+          ) : (
+            <Box className={cx("flex flex-wrap gap-8 justify-center items-center")}>
+              <Etape1 />
+              <Etape2 />
+              <Etape3 />
+              <Mascotte1 />
             </Box>
-
-            <Box className={cx("w-[200px]")}>
-              <Card
-                header={<i className="ri-phone-fill" />}
-                headerAlign="center"
-                content={<Box className="text-center">Prenez contact avec un conseiller France Renov’.</Box>}
-                marker="3"
-                markerPosition="left"
-              />
-            </Box>
-
-            <Mascotte1 />
-          </Box>
+          )}
         </Box>
       )}
       <Grid className={cx("mt-8")}>
