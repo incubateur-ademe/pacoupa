@@ -27,7 +27,7 @@ export const TravauxNiveauIsolationSegmentedControl = ({ travauxNiveauIsolation 
   return (
     <>
       <SegmentedControl
-        legend={<>Travaux d’isolation de la copropriété</>}
+        legend={<p className="text-sm font-medium mb-0">Travaux d’isolation de la copropriété</p>}
         name="travaux-isolation"
         aria-required
         aria-describedby="travaux-isolation-message"

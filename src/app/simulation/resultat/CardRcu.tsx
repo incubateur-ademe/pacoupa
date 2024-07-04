@@ -21,6 +21,7 @@ export const CardRcu = () => {
   return (
     <>
       <Card
+        marker="Meilleure solution"
         content={
           <>
             <Box className="mt-4">

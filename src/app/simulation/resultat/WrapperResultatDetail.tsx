@@ -103,12 +103,12 @@ export const WrapperResultatDetail = ({
       </Container>
 
       <Container className={fr.cx("fr-mt-4w")}>
-        <H2 as="h4">
+        <H2 className="text-lg font-bold mb-0">
           Chauffages compatibles
           <DebugButton formData={informationBatiment} solutions={solutions} />
         </H2>
 
-        <p>Dépendent des travaux d’isolations</p>
+        <p className="text-sm font-normal">Dépendent des travaux d’isolations</p>
 
         <TravauxNiveauIsolationSegmentedControl travauxNiveauIsolation={travauxNiveauIsolation} />
 
@@ -141,12 +141,14 @@ export const WrapperResultatDetail = ({
               <CardRcu />
             </GridCol>
           )}
-          {solutions.slice(0, complet ? nbSolutions : isRcuEligible ? 2 : 3).map(solution => {
+          {solutions.slice(0, complet ? nbSolutions : isRcuEligible ? 2 : 3).map((solution, index) => {
             const gestes = computeIsolations(solution);
+            const marker = !isRcuEligible && index === 0 && { marker: "Meilleure solution" };
 
             return (
               <GridCol key={solution.id} base={12} sm={6} xl={4}>
                 <Card
+                  {...marker}
                   content={
                     <>
                       <Box className="mt-4">
