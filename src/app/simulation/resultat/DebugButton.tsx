@@ -4,13 +4,12 @@ import { type PropsWithChildren } from "react";
 
 import { Button } from "@/components/Button";
 import { config } from "@/config";
-import { type informationBatimentSchema } from "@/lib/common/domain/InformationBatiment";
-import { type Solution } from "@/lib/common/domain/values/Solution";
-import { type SolutionEnergie } from "@/lib/common/domain/values/SolutionEnergie";
+import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
+import { type SolutionAvecEnergie } from "@/lib/common/domain/values/SolutionAvecEnergie";
 
 type Props = {
-  formData: ReturnType<typeof informationBatimentSchema.safeParse>;
-  solutions: Array<Solution & SolutionEnergie>;
+  formData: InformationBatiment;
+  solutions: SolutionAvecEnergie[];
 };
 
 export const DebugButton = ({ formData, solutions }: PropsWithChildren<Props>) => {

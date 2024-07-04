@@ -1,9 +1,9 @@
 "use client";
 
-import { fr } from "@codegouvfr/react-dsfr";
 import { SegmentedControl, type SegmentedControlProps } from "@codegouvfr/react-dsfr/SegmentedControl";
 import { useRouter, useSearchParams } from "next/navigation";
 
+import { Box } from "@/dsfr";
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
 import { createSearchParams } from "@/utils/searchParams";
 
@@ -27,7 +27,7 @@ export const TravauxNiveauIsolationSegmentedControl = ({ travauxNiveauIsolation 
   return (
     <>
       <SegmentedControl
-        legend={<>Travaux d’isolation de la copropriété</>}
+        legend={<p className="text-sm font-medium mb-0">Travaux d’isolation de la copropriété</p>}
         name="travaux-isolation"
         aria-required
         aria-describedby="travaux-isolation-message"
@@ -40,7 +40,7 @@ export const TravauxNiveauIsolationSegmentedControl = ({ travauxNiveauIsolation 
               onChange: () => {
                 router.push(
                   `/simulation/resultat?${createSearchParams<TravauxNiveauIsolation>({
-                    baseSearchParams: searchParams,
+                    searchParams,
                     name: "travauxNiveauIsolation",
                     value: label,
                   })}`,
@@ -52,7 +52,9 @@ export const TravauxNiveauIsolationSegmentedControl = ({ travauxNiveauIsolation 
       />
 
       {travauxNiveauIsolation && (
-        <Callout content={wordings[travauxNiveauIsolation]} icon={<i className={fr.cx("ri-information-fill")} />} />
+        <Box className="mt-1 mb-4 -ml-2">
+          <Callout content={wordings[travauxNiveauIsolation]} type="neutral" />
+        </Box>
       )}
     </>
   );

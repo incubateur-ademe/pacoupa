@@ -4,7 +4,7 @@ import { fr } from "@codegouvfr/react-dsfr";
 import Checkbox from "@codegouvfr/react-dsfr/Checkbox";
 import { z } from "zod";
 
-import { CalloutPacoupa } from "@/components/CalloutPacoupa";
+import { Callout } from "@/components/Callout";
 import { Box } from "@/dsfr";
 import { Text } from "@/dsfr/base/typography";
 
@@ -72,10 +72,15 @@ export const Step3 = () => {
             </Box>
 
             <Box>
-              <CalloutPacoupa>
-                Pour vous recommander des chauffages plus écologiques et économiques, nous vous proposerons également
-                des gestes d'isolation adaptés.
-              </CalloutPacoupa>
+              <Callout
+                type="pacoupa"
+                content={
+                  <>
+                    Pour vous recommander des chauffages plus écologiques et économiques, nous vous proposerons
+                    également des gestes d'isolation adaptés.
+                  </>
+                }
+              />
             </Box>
           </>
         )}

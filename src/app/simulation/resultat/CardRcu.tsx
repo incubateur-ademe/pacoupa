@@ -1,68 +1,88 @@
 import { fr } from "@codegouvfr/react-dsfr";
-import Badge from "@codegouvfr/react-dsfr/Badge";
-import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 
+import { BadgePacoupa } from "@/components/BadgePacoupa";
 import { Button } from "@/components/Button";
+import { Callout } from "@/components/Callout";
 import { Card } from "@/components/Card";
-import { Box, P } from "@/dsfr";
-import { H4, Text } from "@/dsfr/base/typography";
+import { Box } from "@/dsfr";
 import { type Solution } from "@/lib/common/domain/values/Solution";
 
-import { familleImageMap, typeMap } from "./helper";
-import { Recommandation } from "./Recommandation";
+import { familleImageMap } from "./helper";
+import { Usage } from "./Usage";
 
 const rcuSolution = {
   usageCh: "Oui",
   usageEcs: "Oui",
   usageFr: "Non",
-} satisfies Pick<Solution, "usageCh" | "usageEcs" | "usageFr">;
+  type: "COL",
+} satisfies Pick<Solution, "type" | "usageCh" | "usageEcs" | "usageFr">;
 
 export const CardRcu = () => {
   return (
     <>
       <Card
-        desc={
+        marker="Meilleure solution"
+        content={
           <>
-            <Box className={fr.cx("fr-mt-2w")}>
-              <Text>
-                Le réseau de chaleur est un système de canalisations qui permettent d’acheminer vers un ensemble de
-                bâtiments de la chaleur produite localement, à partir d’énergies renouvelables et de récupération.
-              </Text>
+            <Box className="mt-4">
+              <Callout
+                type="info"
+                content={
+                  <>
+                    Certaines zones autour du réseau sont classées comme <strong>prioritaires</strong>. Le raccordement
+                    des bâtiments dans ces zones est <strong>obligatoire</strong>.
+                  </>
+                }
+              />
+            </Box>
+            <Box className="mt-4">
+              <Usage solution={rcuSolution as Solution} />
             </Box>
 
-            <Recommandation solution={rcuSolution} />
+            <p className="mb-2">Isolations à prévoir</p>
 
-            <H4 className={cx(fr.cx("fr-text--sm", "fr-mb-1w"), "font-normal")}>⚠️ Réglementation</H4>
+            <Box>
+              <BadgePacoupa label="Aucune" />
+            </Box>
 
-            <P>
-              Plus de 500 réseaux de chaleur sont désormais “classés”, ce qui signifie que certains bâtiments ont
-              l'obligation de se raccorder. Testez votre éligibilité sur le site de france chaleur urbaine.
-            </P>
+            <p className="mb-2 mt-8">Éligibilité au réseau de chaleur</p>
+
+            <Box>
+              <BadgePacoupa label="Éligible" type="green" />
+            </Box>
+
+            <Box className={fr.cx("fr-mt-2w")}>
+              Rendez-vous sur le site de France chaleur urbaine pour en savoir plus sur{" "}
+              <strong>la faisabilité du raccordement</strong>.
+            </Box>
+
+            <Box className="mt-4">
+              <Callout
+                type="pacoupa"
+                content={
+                  <>
+                    Les gains et les coûts du réseau de chaleur ne sont pas estimés car ils dépendent fortement de la
+                    faisabilité et du gestionnaire de réseau.
+                  </>
+                }
+              />
+            </Box>
           </>
         }
-        horizontal
-        size="small"
-        title={
-          <Box className={cx("flex items-start gap-4")}>
-            <Box>{familleImageMap["RCU"]}</Box>
-            <Box>
-              <span className={cx("mb-0", fr.cx("fr-text--xl"))}>Réseau de chaleur</span>
-              <br />
-              <Badge>{typeMap["COL"]}</Badge>
-            </Box>
+        header={<Card.CardHeader image={familleImageMap["RCU"]} title="Réseau de chaleur" />}
+        footer={
+          <Box className="justify-self-end">
+            <Button
+              priority="tertiary no outline"
+              linkProps={{
+                href: `https://france-chaleur-urbaine.beta.gouv.fr/`,
+              }}
+            >
+              france-chaleur-urbaine
+            </Button>
           </Box>
         }
-        titleAs="h3"
-        end={
-          <Button
-            priority="tertiary no outline"
-            linkProps={{
-              href: `https://france-chaleur-urbaine.beta.gouv.fr/`,
-            }}
-          >
-            france-chaleur-urbaine
-          </Button>
-        }
+        footerAlign="center"
       />
     </>
   );
