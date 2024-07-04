@@ -80,29 +80,35 @@ export const WrapperResultatDetail = ({
 
   return (
     <>
-      <Container className={fr.cx("fr-mt-4w")}>
+      <Container className="my-8">
         <Grid>
           <GridCol sm={8} xl={6}>
+            <H2 className="text-lg font-bold mb-1">Copropriété</H2>
             <Card
-              content={<span className={fr.cx("fr-text--md")}>{informationBatiment.adresse}</span>}
-              header={<Card.CardHeader title="Copropiété" />}
+              header={<Box className="text-base font-bold">{informationBatiment.adresse}</Box>}
+              headerAlign="left"
               footer={
-                <Button
-                  linkProps={{
-                    href: "/simulation/etapes",
-                  }}
-                  priority="tertiary no outline"
-                  iconId="ri-arrow-right-line"
-                >
-                  Modifier
-                </Button>
+                <Box className="mt-4 mr-4">
+                  <Button
+                    linkProps={{
+                      href: "/simulation/etapes",
+                    }}
+                    priority="secondary"
+                    iconId="ri-pencil-line"
+                    iconPosition="right"
+                    className="min-h-0 w-min"
+                  >
+                    {"Modifier"}
+                  </Button>
+                </Box>
               }
+              footerAlign="right"
             />
           </GridCol>
         </Grid>
       </Container>
 
-      <Container className={fr.cx("fr-mt-4w")}>
+      <Container className="mt-8">
         <H2 className="text-lg font-bold mb-0">
           Chauffages compatibles
           <DebugButton formData={informationBatiment} solutions={solutions} />

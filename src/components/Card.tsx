@@ -5,7 +5,7 @@ import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import { Box } from "@/dsfr";
 
 type Props = {
-  content: React.ReactNode;
+  content?: React.ReactNode;
   footer?: React.ReactNode;
   footerAlign?: "center" | "left" | "right";
   header?: React.ReactNode;
@@ -40,7 +40,7 @@ export const Card = ({
     <>
       <div
         className={cx(
-          "flex flex-col justify-start items-center p-4 gap-1 bg-white border-solid border-green-700 shadow rounded-lg max-w-lg h-full relative",
+          "flex flex-col justify-start items-center p-4 gap-1 bg-white border-solid border-green-700 shadow rounded-lg max-w-lg grow relative",
         )}
       >
         {/* Marker */}
@@ -69,7 +69,7 @@ export const Card = ({
         )}
 
         {/* Body */}
-        <Box className="grow">{content}</Box>
+        {content && <Box className="grow">{content}</Box>}
 
         {/* Footer */}
         {footer && (
