@@ -8,7 +8,7 @@ import { z } from "zod";
 import { Evaluation } from "@/app/simulation/resultat/Evaluation";
 import { FranceRenovBlock } from "@/app/simulation/resultat/FranceRenovBlock";
 import { familleImageMap, typeMap } from "@/app/simulation/resultat/helper";
-import { Recommandation } from "@/app/simulation/resultat/Recommandation";
+import { Usage } from "@/app/simulation/resultat/Usage";
 import { Button } from "@/components/Button";
 import { Box } from "@/dsfr";
 import { H2, H3, Text } from "@/dsfr/base/typography";
@@ -40,6 +40,9 @@ const schema = z.object({
   noteTravauxIndividuel: noteSchema,
 });
 
+/**
+ * @deprecated
+ */
 const SolutionPage = ({
   params,
   searchParams,
@@ -59,8 +62,6 @@ const SolutionPage = ({
 
   if (!baseSolution) throw new Error(`Erreur : aucune solution trouvée pour l'id ${params.id}`);
 
-  const { usageCh, usageEcs, usageFr } = baseSolution;
-
   const validation = schema.safeParse(searchParams);
 
   if (!validation.success) throw new Error("Erreur lors de l'appel de la page de solution");
@@ -72,6 +73,8 @@ const SolutionPage = ({
     draft.travauxCollectif.note = validation.data.noteTravauxCollectif;
     draft.travauxIndividuel.note = validation.data.noteTravauxIndividuel;
   });
+
+  const typeComponent = typeMap[solution.type];
 
   return (
     <Box className={cx("max-w-[800px]")}>
@@ -89,7 +92,7 @@ const SolutionPage = ({
         <Box>{familleImageMap[solution.familleSolution]}</Box>
         <Box>
           <H2 className={fr.cx("fr-text--xl", "fr-mb-1w")}>{solution.nom}</H2>
-          <Badge>{typeMap[solution.type]}</Badge>
+          {typeComponent && <Badge>{typeComponent}</Badge>}
         </Box>
       </Box>
 
@@ -98,10 +101,13 @@ const SolutionPage = ({
       </Box>
 
       <Box className={fr.cx("fr-mt-4w")}>
-        <Recommandation solution={{ usageCh, usageEcs, usageFr }} />
+        <Usage solution={solution} />
       </Box>
 
-      <H3 className={fr.cx("fr-text--lg")}>Toutes les évaluations</H3>
+      <H3 className={fr.cx("fr-text--lg")}>Autres estimations</H3>
+      <span className={fr.cx("fr-text--xs")}>(isolations comprises)</span>
+
+      {/* <EstimationGains solution={solution} /> */}
 
       <Box className={cx("flex", "flex-col", "gap-4")}>
         <Evaluation categorie="environnement" solution={solution} withDetails />

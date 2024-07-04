@@ -160,8 +160,8 @@ export const Evaluation = ({ categorie, solution, withDetails }: EvaluationProps
                     </Box>
                   )}
 
-                  {text.map(chunk => (
-                    <>
+                  {text.map((chunk, index) => (
+                    <Box key={index}>
                       <Box className={cx("flex")}>
                         <Box className={cx("w-[30px]", "shrink-0", "grow-0", "v-align-middle")}>
                           <InfoIcon sx={{ fontSize: 20 }} />
@@ -173,7 +173,7 @@ export const Evaluation = ({ categorie, solution, withDetails }: EvaluationProps
                         <Box className={cx("w-[30px]", "shrink-0", "grow-0")}></Box>
                         <Text className={cx("pl-0", fr.cx("fr-text--sm"))}>{chunk.contenu}</Text>
                       </Box>
-                    </>
+                    </Box>
                   ))}
                 </DialogContentText>
               </DialogContent>

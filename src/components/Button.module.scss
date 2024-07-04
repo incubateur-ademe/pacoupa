@@ -1,6 +1,10 @@
+.primaryButton, .secondaryButton, .tertiaryButton {
+    color: var(--color-green-700);
+}
+
+
 .primaryButton {
     background-color: var(--color-green-200);
-    color: var(--color-green-700);
     box-shadow: 4px 4px 0px 0px var(--color-green-900);
     border-radius: 4px;
     transition:
@@ -21,7 +25,6 @@
 
 .secondaryButton {
     background-color: var(--color-white) !important;
-    color: var(--color-green-700);
     border-bottom: 2px solid var(--color-green-700) !important;
     box-shadow: unset !important;
     transition:

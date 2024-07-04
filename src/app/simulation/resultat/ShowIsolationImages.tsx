@@ -1,34 +1,42 @@
-import { type PropsWithChildren } from "react";
-
 import { IsolationFenetresImage } from "@/components/img/isolations/IsolationFenetresImage";
 import { IsolationMursImage } from "@/components/img/isolations/IsolationMursImage";
 import { IsolationSolImage } from "@/components/img/isolations/IsolationSolImage";
 import { IsolationToitureImage } from "@/components/img/isolations/IsolationToitureImage";
+import { type GesteIsolation } from "@/lib/common/domain/values/GesteIsolation";
 import { type Solution } from "@/lib/common/domain/values/Solution";
 import { type SolutionEnergie } from "@/lib/common/domain/values/SolutionEnergie";
 
 type Props = {
-  solution: Solution & SolutionEnergie;
+  gestes: GesteIsolation[];
 };
 
-export const ShowIsolationImages = ({ solution }: PropsWithChildren<Props>) => {
+export const computeIsolations = (solution: Solution & SolutionEnergie): GesteIsolation[] => {
+  const result: GesteIsolation[] = [];
+
+  if (solution.etaIsolationPlancherBasApres === "Isolé" && solution.etaIsolationPlancherBasAvant === "Pas isolé")
+    result.push("sol");
+
+  if (solution.etaIsolationMursApres === "Isolé" && solution.etaIsolationMursAvant === "Pas isolé") result.push("murs");
+
+  if (solution.etaIsolationMenuiseriesApres === "Isolé" && solution.etaIsolationMenuiseriesAvant === "Pas isolé")
+    result.push("fenetres");
+
+  if (solution.etaIsolationPlancherHautApres === "Isolé" && solution.etaIsolationPlancherHautAvant === "Pas isolé")
+    result.push("toiture");
+
+  return result;
+};
+
+export const ShowIsolationImages = ({ gestes }: Props) => {
   return (
     <>
-      {solution.etaIsolationPlancherBasApres === "Isolé" && solution.etaIsolationPlancherBasAvant === "Pas isolé" && (
-        <IsolationSolImage />
-      )}
+      {gestes.includes("sol") && <IsolationSolImage />}
 
-      {solution.etaIsolationMursApres === "Isolé" && solution.etaIsolationMursAvant === "Pas isolé" && (
-        <IsolationMursImage />
-      )}
+      {gestes.includes("murs") && <IsolationMursImage />}
 
-      {solution.etaIsolationMenuiseriesApres === "Isolé" && solution.etaIsolationMenuiseriesAvant === "Pas isolé" && (
-        <IsolationFenetresImage />
-      )}
+      {gestes.includes("fenetres") && <IsolationFenetresImage />}
 
-      {solution.etaIsolationPlancherHautApres === "Isolé" && solution.etaIsolationPlancherHautAvant === "Pas isolé" && (
-        <IsolationToitureImage />
-      )}
+      {gestes.includes("toiture") && <IsolationToitureImage />}
     </>
   );
 };
