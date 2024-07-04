@@ -40,7 +40,7 @@ export const Card = ({
     <>
       <div
         className={cx(
-          "flex flex-col justify-start items-center p-4 gap-1 bg-white border-solid border-green-700 shadow rounded-lg max-w-lg grow relative",
+          "flex flex-col justify-start items-stretch p-4 gap-1 bg-white border-solid border-green-700 shadow rounded-lg max-w-lg h-full relative",
         )}
       >
         {/* Marker */}

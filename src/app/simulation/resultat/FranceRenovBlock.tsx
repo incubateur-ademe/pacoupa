@@ -101,11 +101,13 @@ export const FranceRenovBlock = ({ withWorkflow, showToast }: Props = {}) => {
               <Etape3 />
             </Box>
           ) : (
-            <Box className={cx("flex flex-wrap gap-8 justify-center items-center")}>
+            <Box className={cx("flex flex-wrap gap-8 justify-center items-stretch")}>
               <Etape1 />
               <Etape2 />
               <Etape3 />
-              <Mascotte1 />
+              <Box className="self-center">
+                <Mascotte1 />
+              </Box>
             </Box>
           )}
         </Box>

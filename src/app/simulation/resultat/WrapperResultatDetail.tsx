@@ -80,33 +80,29 @@ export const WrapperResultatDetail = ({
 
   return (
     <>
-      <Container className="my-8">
-        <Grid>
-          <GridCol sm={8} xl={6}>
-            <H2 className="text-lg font-bold mb-1">Copropriété</H2>
-            <Card
-              header={<Box className="text-base font-bold">{informationBatiment.adresse}</Box>}
-              headerAlign="left"
-              footer={
-                <Box className="mt-4 mr-4">
-                  <Button
-                    linkProps={{
-                      href: "/simulation/etapes",
-                    }}
-                    priority="secondary"
-                    iconId="ri-pencil-line"
-                    iconPosition="right"
-                    className="min-h-0 w-min"
-                  >
-                    {"Modifier"}
-                  </Button>
-                </Box>
-              }
-              footerAlign="right"
-            />
-          </GridCol>
-        </Grid>
-      </Container>
+      <Box className="my-8">
+        <H2 className="text-lg font-bold mb-1">Copropriété</H2>
+        <Card
+          header={<Box className="text-base font-bold">{informationBatiment.adresse}</Box>}
+          headerAlign="left"
+          footer={
+            <Box className="mt-4 mr-4">
+              <Button
+                linkProps={{
+                  href: "/simulation/etapes",
+                }}
+                priority="secondary"
+                iconId="ri-pencil-line"
+                iconPosition="right"
+                className="min-h-0 w-min"
+              >
+                {"Modifier"}
+              </Button>
+            </Box>
+          }
+          footerAlign="right"
+        />
+      </Box>
 
       <Container className="mt-8">
         <H2 className="text-lg font-bold mb-0">
