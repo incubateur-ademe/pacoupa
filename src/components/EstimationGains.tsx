@@ -29,7 +29,7 @@ export const EstimationGains = ({ solution }: PropsWithChildren<Props>) => {
 
         <span className={fr.cx("fr-text--xs")}>Actuel</span>
         <br />
-        <div className="flex">
+        <div className="flex justify-center">
           <DPEImage lettre={solution.dpeAvant} />
 
           <p className="text-center">
