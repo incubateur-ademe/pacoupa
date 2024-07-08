@@ -28,7 +28,7 @@ export const FranceRenovBlock = ({ withWorkflow, showToast }: Props = {}) => {
     if (!showToast) return null;
 
     return (
-      <Box className={cx("w-[160px]")}>
+      <Box className="flex-1">
         <Card
           header={<i className="ri-share-fill text-green-900" />}
           headerAlign="center"
@@ -56,7 +56,7 @@ export const FranceRenovBlock = ({ withWorkflow, showToast }: Props = {}) => {
 
   const Etape2 = useCallback(
     () => (
-      <Box className={cx("w-[160px]")}>
+      <Box className="flex-1">
         <Card
           header={<i className="ri-discuss-fill" />}
           headerAlign="center"
@@ -71,7 +71,7 @@ export const FranceRenovBlock = ({ withWorkflow, showToast }: Props = {}) => {
 
   const Etape3 = useCallback(
     () => (
-      <Box className={cx("w-[160px]")}>
+      <Box className="flex-1">
         <Card
           header={<i className="ri-phone-fill" />}
           headerAlign="center"
