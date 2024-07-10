@@ -1,4 +1,4 @@
-import { type Solution } from "@/lib/common/domain/values/Solution";
+import { type enumIdSolution, type Solution } from "@/lib/common/domain/values/Solution";
 
 import { solution as solution01 } from "./01";
 import { solution as solution02 } from "./02";
@@ -32,7 +32,7 @@ import { solution as solution54 } from "./54";
 import { solution as solution60 } from "./60";
 import { solution as solution61 } from "./61";
 
-export const catalogueSolutions: Record<string, Solution> = {
+export const catalogueSolutions: Record<(typeof enumIdSolution)[number], Solution> = {
   "01": solution01,
   "02": solution02,
   "03": solution03,
@@ -64,4 +64,4 @@ export const catalogueSolutions: Record<string, Solution> = {
   "54": solution54,
   "60": solution60,
   "61": solution61,
-};
+} as const;

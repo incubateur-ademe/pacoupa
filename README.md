@@ -11,7 +11,7 @@ Mettre à jour le fichier .env avec la variable TURSO_DATABASE_URL="http://127.0
 ```bash
 turso dev --db-file assets/pacoupa.db 
 
-yarn install
+yarn install        
 yarn dev
 open http://localhost:3000
 ```
@@ -41,6 +41,7 @@ Ouvrir le fichier `Simulateur 1 - PACOUPA`
 
 Ouvrir le fichier Simulateur 2 le plus récent. 
 - exporter l'onglet Bdd_energie en bdd_energie.csv
+- exporter l'onglet Bdd_cout en bdd_cout.csv
 
 Ouvrir le fichier `typologies PACOUPA`.
 - exporter l'onglet principal en typologies.csv.
@@ -82,22 +83,23 @@ yarn dk:introspect
 
 Cette commande va regénérer le fichier schema.ts et les types Drizzle.
 
-Modifier le fichier drizzle/schema.ts pour améliorer le typage des objets de persistence: 
-- pour solutions.type, ajouter `drizzleEnumTypes` (ex: `type: text("type", drizzleEnumTypes).notNull()`)
-- ajouter `drizzleEnumUsages` pour 
-    - solutions.usageCh
-    - solutions.usageEcs
-    - solutions.usageFr
-- ajouter `drizzlEnumNotes` pour
-    - solutions.noteImpactSonore
-    - solutions.noteImpactEspaceExterieur
-    - solutions.noteEnvironnemental
-    - solutions.noteMaturite
-- ajouter `drizzleEnumNotes` pour
-    - solutionsParCriteres.noteDifficulte
-    - solutionsParCriteres.noteImpactTravauxColl
-    - solutionsParCriteres.noteImpactTravauxIndiv
-    - solutionsParCriteres.noteCout
+Modifier le fichier drizzle/schema.ts pour améliorer le typage des objets de persistence, en ajoutant les enums qui représentent les domaines de valeurs. 
+
+Ceci sera utile ensuit pour construire les requêtes SQL et exploiter leurs résultats.
+
+Exemple
+
+```js
+export const solutions = sqliteTable("solutions", {
+  id: text("id", { enum: enumIdSolution }).primaryKey(),
+  nom: text("nom").notNull(),
+  familleSolution: text("famille_solution", { enum: enumFamille }).notNull(),
+  type: text("type", { enum: enumType }).notNull(),
+  typeSysteme: text("type_systeme", { enum: enumTypeSysteme }).notNull(),
+  ...
+}
+
+```
 
 Vous pouvez lancer la compilation typescript pour vérifier que le code est resté typesafe.
 
@@ -111,74 +113,6 @@ yarn tsc
 
 Cela peut être dû au token d'accès qui a changé. 
 Regénérer le token et le mettre à jour sur Vercel.
-
-
-### Schéma DB
-
-
-
-```mermaid
-classDiagram
-direction BT
-
-class criteres {
-   text CH
-   text ECS
-   text emetteur
-   text espace_exterieur
-   text env_contraint
-   text toiture_terrasse
-   text temperature
-   text nb_lgts
-   text niveau_renovation
-   integer id
-}
-class solutions {
-   text name
-   text type
-   text usage_CH
-   text usage_ECS
-   text usage_FR
-   text num_AFPAC
-   text emprise_PAC_exterieur
-   text local_technique
-   text emprise_logement
-   text structure
-   text acoustique
-   text reseaux_hydrauliques
-   text PLU
-   text raccordement_electrique
-   text impact_visuel
-   text note_impact_visuel
-   text note_Impact_sonore
-   text note_impact_espace_exterieur
-   text note_environnemental
-   text note_maturite
-   text commentaire_app
-   text commentaire_pouget
-   text id
-}
-class solutions_par_criteres {
-   integer criteres_id
-   text id_solution
-   integer ordre_solution
-   text difficulte
-   text impact_travaux_coll
-   text impact_travaux_indiv
-   text cout
-   text type_solution
-   text usage_CH
-   text usage_ECS
-   text usage_FR
-   integer alertes
-}
-
-
-solutions_par_criteres  -->  solutions : id_solution
-
-solutions_par_criteres  -->  criteres : criteres_id
-```
-
 
 ## Déploiement
 

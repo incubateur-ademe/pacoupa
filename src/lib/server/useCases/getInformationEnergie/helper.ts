@@ -1,4 +1,4 @@
-import { type BddEnergie } from "drizzle/schema";
+import { type BddEnergie } from "drizzle/zod-schema";
 
 import { type SolutionIsolation } from "@/lib/common/domain/values/SolutionIsolation";
 import { type TypeCH } from "@/lib/common/domain/values/TypeCH";

@@ -1,6 +1,4 @@
-import { integer, sqliteTable, text, uniqueIndex } from "drizzle-orm/sqlite-core";
-import { createSelectSchema } from "drizzle-zod";
-import { type z } from "zod";
+import { index, integer, sqliteTable, text, uniqueIndex } from "drizzle-orm/sqlite-core";
 
 import { enumDPE } from "@/lib/common/domain/values/DPE";
 import { enumEmetteur } from "@/lib/common/domain/values/Emetteur";
@@ -10,6 +8,7 @@ import { enumNiveauRenovationSimu1 } from "@/lib/common/domain/values/NiveauReno
 import { enumOuiNonNa } from "@/lib/common/domain/values/OuiNonNa";
 import { enumScenarioRenovationEnveloppe } from "@/lib/common/domain/values/ScenarioRenovationEnveloppe";
 import { enumScenarioRenovationSysteme } from "@/lib/common/domain/values/ScenarioRenovationSysteme";
+import { enumIdSolution } from "@/lib/common/domain/values/Solution";
 import { enumFamille } from "@/lib/common/domain/values/SolutionFamille";
 import { enumIsolation } from "@/lib/common/domain/values/SolutionIsolation";
 import { enumNiveauRenovation } from "@/lib/common/domain/values/SolutionNiveauRenovation";
@@ -25,7 +24,7 @@ import { enumTypologie } from "@/lib/common/domain/values/Typologie";
 import { enumZoneClimatique } from "@/lib/common/domain/values/ZoneClimatique";
 
 export const solutions = sqliteTable("solutions", {
-  id: text("id").primaryKey(),
+  id: text("id", { enum: enumIdSolution }).primaryKey(),
   nom: text("nom").notNull(),
   familleSolution: text("famille_solution", { enum: enumFamille }).notNull(),
   type: text("type", { enum: enumType }).notNull(),
@@ -88,60 +87,128 @@ export const criteres = sqliteTable(
   },
 );
 
-export const criteresBatimentSchema = createSelectSchema(criteres);
+export const solutionsParCriteres = sqliteTable(
+  "solutions_par_criteres",
+  {
+    criteresId: integer("criteres_id").references(() => criteres.id),
+    solutionsId: text("solutions_id").references(() => solutions.id),
+    ordreSolution: integer("ordre_solution"),
+    noteDifficulte: text("note_difficulte", { enum: enumNote }).notNull(),
+    noteImpactTravauxColl: text("note_impact_travaux_coll", { enum: enumNote }).notNull(),
+    noteImpactTravauxIndiv: text("note_impact_travaux_indiv", { enum: enumNote }).notNull(),
+    noteCout: text("note_cout", { enum: enumNote }).notNull(),
+    typeSolution: text("type_solution"),
+  },
+  table => {
+    return {
+      idxSolutionsParCriteresCriteresId: index("idx_solutions_par_criteres_criteres_id").on(table.criteresId),
+      idxSolutionsParCriteresSolutionsId: index("idx_solutions_par_criteres_solutions_id").on(table.solutionsId),
+    };
+  },
+);
 
-export type CriteresBatiment = z.infer<typeof criteresBatimentSchema>;
+export const bddEnergie = sqliteTable(
+  "bdd_energie",
+  {
+    id: integer("id").primaryKey(),
+    zoneClimatique: text("zone_climatique", { enum: enumZoneClimatique }).notNull(),
+    typologie: text("typologie", { enum: enumTypologie }).notNull(),
+    etatIsolationMenuiseries: text("etat_isolation_menuiseries", { enum: enumIsolation }).notNull(),
+    etatIsolationPlancherBas: text("etat_isolation_plancher_bas", { enum: enumIsolation }).notNull(),
+    etatIsolationPlancherHaut: text("etat_isolation_plancher_haut", { enum: enumIsolation }).notNull(),
+    etatIsolationMurs: text("etat_isolation_murs", { enum: enumIsolation }).notNull(),
+    scenarioRenovationEnveloppe: text("scenario_renovation_enveloppe", {
+      enum: enumScenarioRenovationEnveloppe,
+    }).notNull(),
+    etatIsolationMenuiseriesApresScénarioRenovationEnveloppe: text(
+      "etat_isolation_menuiseries_apres_scénario_renovation_enveloppe",
+      { enum: enumIsolation },
+    ).notNull(),
+    etatIsolationPlancherBasApresScénarioRenovationEnveloppe: text(
+      "etat_isolation_plancher_bas_apres_scénario_renovation_enveloppe",
+      { enum: enumIsolation },
+    ).notNull(),
+    etatIsolationPlancherHautApresScénarioRenovationEnveloppe: text(
+      "etat_isolation_plancher_haut_apres_scénario_renovation_enveloppe",
+      { enum: enumIsolation },
+    ).notNull(),
+    etatIsolationMursApresScénarioRenovationEnveloppe: text("etat_isolation_murs_apres_scénario_renovation_enveloppe", {
+      enum: enumIsolation,
+    }).notNull(),
+    typeCh: text("type_CH", { enum: enumTypeCH }),
+    typeEcs: text("type_ECS", { enum: enumTypeECS }),
+    ch: text("CH", { enum: enumTypeWithoutMix }),
+    ecs: text("ECS", { enum: enumTypeWithoutMix }),
+    scenarioRenovationSysteme: text("scenario_renovation_systeme", { enum: enumScenarioRenovationSysteme }).notNull(),
+    cep: integer("CEP"),
+    ges: integer("GES"),
+    dpe: text("DPE", { enum: enumDPE }).notNull(),
+  },
+  table => {
+    return {
+      idxBddEnergieTypologieEcsChScenarioRenovationEnveloppeScenarioRenovationSysteme: index(
+        "idx_bdd_energie_typologie_ECS_CH_scenario_renovation_enveloppe_scenario_renovation_systeme",
+      ).on(table.typologie, table.ecs, table.ch, table.scenarioRenovationEnveloppe, table.scenarioRenovationSysteme),
+    };
+  },
+);
 
-export const solutionsParCriteres = sqliteTable("solutions_par_criteres", {
-  criteresId: integer("criteres_id").references(() => criteres.id),
-  solutionsId: text("solutions_id").references(() => solutions.id),
-  ordreSolution: integer("ordre_solution"),
-  noteDifficulte: text("note_difficulte", { enum: enumNote }).notNull(),
-  noteImpactTravauxColl: text("note_impact_travaux_coll", { enum: enumNote }).notNull(),
-  noteImpactTravauxIndiv: text("note_impact_travaux_indiv", { enum: enumNote }).notNull(),
-  noteCout: text("note_cout", { enum: enumNote }).notNull(),
-  typeSolution: text("type_solution"),
-});
-
-export const bddEnergie = sqliteTable("bdd_energie", {
-  id: integer("id").primaryKey(),
-  zoneClimatique: text("zone_climatique", { enum: enumZoneClimatique }).notNull(),
-  typologie: text("typologie", { enum: enumTypologie }).notNull(),
-  etatIsolationMenuiseries: text("etat_isolation_menuiseries", { enum: enumIsolation }).notNull(),
-  etatIsolationPlancherBas: text("etat_isolation_plancher_bas", { enum: enumIsolation }).notNull(),
-  etatIsolationPlancherHaut: text("etat_isolation_plancher_haut", { enum: enumIsolation }).notNull(),
-  etatIsolationMurs: text("etat_isolation_murs", { enum: enumIsolation }).notNull(),
-  scenarioRenovationEnveloppe: text("scenario_renovation_enveloppe", {
-    enum: enumScenarioRenovationEnveloppe,
-  }).notNull(),
-  etatIsolationMenuiseriesApresScénarioRenovationEnveloppe: text(
-    "etat_isolation_menuiseries_apres_scénario_renovation_enveloppe",
-    { enum: enumIsolation },
-  ).notNull(),
-  etatIsolationPlancherBasApresScénarioRenovationEnveloppe: text(
-    "etat_isolation_plancher_bas_apres_scénario_renovation_enveloppe",
-    { enum: enumIsolation },
-  ).notNull(),
-  etatIsolationPlancherHautApresScénarioRenovationEnveloppe: text(
-    "etat_isolation_plancher_haut_apres_scénario_renovation_enveloppe",
-    { enum: enumIsolation },
-  ).notNull(),
-  etatIsolationMursApresScénarioRenovationEnveloppe: text("etat_isolation_murs_apres_scénario_renovation_enveloppe", {
-    enum: enumIsolation,
-  }).notNull(),
-  typeCh: text("type_CH", { enum: enumTypeCH }),
-  typeEcs: text("type_ECS", { enum: enumTypeECS }),
-  ch: text("CH", { enum: enumTypeWithoutMix }),
-  ecs: text("ECS", { enum: enumTypeWithoutMix }),
-  scenarioRenovationSysteme: text("scenario_renovation_systeme", { enum: enumScenarioRenovationSysteme }).notNull(),
-  cep: integer("CEP"),
-  ges: integer("GES"),
-  dpe: text("DPE", { enum: enumDPE }).notNull(),
-});
-
-export const bddEnergieSchema = createSelectSchema(bddEnergie);
-
-export type BddEnergie = z.infer<typeof bddEnergieSchema>;
+export const bddCout = sqliteTable(
+  "bdd_cout",
+  {
+    id: integer("id").primaryKey(),
+    zoneClimatique: text("zone_climatique"),
+    typologie: text("typologie"),
+    scenarioRenovationEnveloppe: text("scenario_renovation_enveloppe"),
+    typeCh: text("type_CH"),
+    typeEcs: text("type_ECS"),
+    ch: text("CH"),
+    ecs: text("ECS"),
+    scenarioRenovationSysteme: text("scenario_renovation_systeme"),
+    solution01: integer("solution_01"),
+    solution02: integer("solution_02"),
+    solution03: integer("solution_03"),
+    solution04: integer("solution_04"),
+    solution05: integer("solution_05"),
+    solution06: integer("solution_06"),
+    solution07: integer("solution_07"),
+    solution08: integer("solution_08"),
+    solution10: integer("solution_10"),
+    solution11: integer("solution_11"),
+    solution12: integer("solution_12"),
+    solution13: integer("solution_13"),
+    solution15: integer("solution_15"),
+    solution16: integer("solution_16"),
+    solution20: integer("solution_20"),
+    solution21: integer("solution_21"),
+    solution22: integer("solution_22"),
+    solution23: integer("solution_23"),
+    solution25: integer("solution_25"),
+    solution26: integer("solution_26"),
+    solution30: integer("solution_30"),
+    solution31: integer("solution_31"),
+    solution32: integer("solution_32"),
+    solution40: integer("solution_40"),
+    solution50: integer("solution_50"),
+    solution51: integer("solution_51"),
+    solution52: integer("solution_52"),
+    solution53: integer("solution_53"),
+    solution54: integer("solution_54"),
+    solution60: integer("solution_60"),
+    solution61: integer("solution_61"),
+    coutAbonnement: integer("cout_abonnement"),
+    coutMaintenance: integer("cout_maintenance"),
+    coutIsolationEnveloppe: integer("cout_isolation_enveloppe"),
+    factureEnergetique: integer("facture_energetique"),
+  },
+  table => {
+    return {
+      idxBddCoutTypologieEcsChScenarioRenovationEnveloppeScenarioRenovationSysteme: index(
+        "idx_bdd_cout_typologie_ECS_CH_scenario_renovation_enveloppe_scenario_renovation_systeme",
+      ).on(table.typologie, table.ecs, table.ch, table.scenarioRenovationEnveloppe, table.scenarioRenovationSysteme),
+    };
+  },
+);
 
 export const typologies = sqliteTable("typologies", {
   id: integer("id").primaryKey(),
@@ -162,5 +229,3 @@ export const typologies = sqliteTable("typologies", {
   etatIsolationMurs: text("etat_isolation_murs", { enum: enumIsolation }).notNull(),
   surfaceMurs: integer("surface_murs").notNull(),
 });
-
-export const typologiesZodSchema = createSelectSchema(typologies);
