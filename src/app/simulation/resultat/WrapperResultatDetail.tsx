@@ -191,7 +191,7 @@ export const WrapperResultatDetail = ({
         {!complet && nbSolutions > 3 && (
           <Box className={cx("flex", fr.cx("fr-mt-4w"))}>
             <Button
-              priority="tertiary"
+              priority="tertiary no outline"
               className={cx("grow", "md:grow-0", "justify-center")}
               linkProps={{
                 href: `/simulation/resultat?${createSearchParams<ResultatsPageSearchParamsProps["complet"]>({
@@ -201,7 +201,7 @@ export const WrapperResultatDetail = ({
                 })}`,
               }}
             >
-              Voir d’autres solutions
+              Voir plus de solutions
             </Button>
           </Box>
         )}
