@@ -62,12 +62,12 @@ Il faut auparavant s'authentifier avec `turso auth login`.
 # si besoin de supprimer une base `turso db destroy pacoupa`
 
 # création d'une db suffixée avec le jour d'aujourd'hui
-turso db create pacoupa-20240528 --from-file assets/pacoupa.db
+turso db create pacoupa-20240711 --from-file assets/pacoupa.db
 ```
 
 Pour créer un nouveau token d'accès en lecture seule
 ```shell
-turso db tokens create pacoupa-20240528 -r 
+turso db tokens create pacoupa-20240711 -r 
 ```
 
 Recopier le token dans .env et .env.local (TURSO_DATABASE_URL et TURSO_AUTH_TOKEN).
