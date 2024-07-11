@@ -161,7 +161,7 @@ export const WrapperResultatDetail = ({
                       </Box>
                       <hr className="mt-8" />
                       <Box>
-                        <EstimationGains solution={solution} />
+                        <EstimationGains solution={solution} informationBatiment={informationBatiment} />
                       </Box>
                     </>
                   }

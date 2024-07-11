@@ -4,7 +4,9 @@ import { type PropsWithChildren } from "react";
 
 import { Box } from "@/dsfr";
 import { Text } from "@/dsfr/base/typography";
+import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 import { type SolutionAvecEnergieCout } from "@/lib/common/domain/values/SolutionAvecEnergie";
+import { formatEuroNoDecimal } from "@/utils/currency";
 
 import { BadgeEuros } from "./BadgeEuros";
 import { BadgePacoupa } from "./BadgePacoupa";
@@ -12,13 +14,19 @@ import { DPEImage } from "./img/DPEImage";
 import { FlecheImage } from "./img/FlecheImage";
 
 type Props = {
+  informationBatiment: InformationBatiment;
   solution: SolutionAvecEnergieCout;
 };
 
-export const EstimationGains = ({ solution }: PropsWithChildren<Props>) => {
+export const EstimationGains = ({ solution, informationBatiment }: PropsWithChildren<Props>) => {
   assert(solution.cepAvant && solution.cepApres, "cepAvant and cepApres should be defined");
 
   const pourcentageGain = Math.round(((solution.cepAvant - solution.cepApres) / solution.cepAvant) * 100);
+
+  const coutAvant = solution.coutAbonnementAvant + solution.coutMaintenanceAvant + solution.factureEnergetiqueAvant;
+  const coutApres = solution.coutAbonnementApres + solution.coutMaintenanceApres + solution.factureEnergetiqueApres;
+
+  const gainEconomique = coutApres - coutAvant;
 
   console.log({ solution });
 
@@ -45,8 +53,13 @@ export const EstimationGains = ({ solution }: PropsWithChildren<Props>) => {
             </div>
           </div>
           <p className="mt-2 mb-2 text-sm font-medium">Gains économiques</p>
-          <BadgeEuros value={1000} type="green" /> / mois
-          <p className="text-sm leading-6"> 100€ / logement</p>
+          <BadgeEuros
+            value={Math.abs(gainEconomique) * informationBatiment.nbLogements}
+            type="green"
+            prefix={gainEconomique < 0 ? "-" : undefined}
+          />{" "}
+          / mois
+          <p className="text-sm leading-6">{formatEuroNoDecimal(Math.abs(gainEconomique))} / logement</p>
         </div>
         <p className="mb-0">Estimation des coûts</p>
         <p className="text-xs font-normal">(rénovations comprises)</p>
@@ -55,7 +68,11 @@ export const EstimationGains = ({ solution }: PropsWithChildren<Props>) => {
           <div
             title={`coût isolation enveloppe = ${solution.coutIsolationEnveloppe} \ncoût installation systeme = ${solution.coutInstallationSysteme}`}
           >
-            <BadgeEuros value={(solution.coutIsolationEnveloppe ?? 0) + solution.coutInstallationSysteme} type="sand" />
+            <BadgeEuros
+              value={(solution.coutIsolationEnveloppe ?? 0) + solution.coutInstallationSysteme}
+              type="sand"
+              prefix="≈"
+            />
           </div>
           {/* <div className="text-sm font-medium mt-4 mb-3">Aides actionnables</div>
           <BadgeEuros label=" ~ 15 000 €" type="green" /> */}
