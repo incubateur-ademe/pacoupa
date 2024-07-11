@@ -22,40 +22,38 @@ export const EstimationGains = ({ solution }: PropsWithChildren<Props>) => {
 
   return (
     <>
-      <Box>
+      <Box className="mb-8">
         <Text className="mb-0">Estimation des gains</Text>
         <p className="text-xs font-normal">(isolations comprises)</p>
         <div className="px-2">
-          <p className="mt-4 mb-2 text-sm">Gains énergétiques</p>
-          <br />
-          <div className="flex justify-center items-center bg-red-50">
-            <p className="flex flex-col text-xs font-normal">
-              Actuel
-              <DPEImage lettre={solution.dpeAvant} />
-            </p>
+          <div className="mt-4 mb-2 text-sm font-medium">Gains énergétiques</div>
+          <div className="grid grid-cols-[1fr_minmax(85px,_1fr)_1fr] gap-1 justify-items-center">
+            <div className="text-xs font-normal w-[62px]">Actuel</div>
+            <div></div>
+            <div></div>
 
-            <p className="text-center self-end">
-              <span className="ml-4 mr-4">
-                <FlecheImage />
-              </span>
-              <br />
-              <BadgePacoupa label={`- ${pourcentageGain}%`} />
-
-              <br />
-              <span className={fr.cx("fr-text--xs")}>Gain d'énergie</span>
-            </p>
+            <DPEImage lettre={solution.dpeAvant} />
+            <FlecheImage />
             <DPEImage lettre={solution.dpeApres} />
+
+            <div></div>
+            <div className="text-center">
+              <BadgePacoupa label={`- ${pourcentageGain}%`} />
+              <p className={fr.cx("fr-text--xs")}>Gain d'énergie</p>
+            </div>
           </div>
-          <p className="mt-2 mb-2 text-sm">Gains économiques</p>
+          <p className="mt-2 mb-2 text-sm font-medium">Gains économiques</p>
           <BadgeEuros label="- 1000 €" type="green" /> / mois
           <p className="text-sm leading-6"> 100€ / logement</p>
         </div>
         <p className="mb-0">Estimation des coûts</p>
         <p className="text-xs font-normal">(rénovations comprises)</p>
-        <div className="text-sm font-medium">Coût total du projet</div>
-        <BadgeEuros label=" ~ 60 000 €" type="sand" />
-        <div className="text-sm font-medium">Aides actionnables</div>
-        <BadgeEuros label=" ~ 15 000 €" type="green" />
+        <div className="px-2">
+          <div className="text-sm font-medium mb-3">Coût total du projet</div>
+          <BadgeEuros label=" ~ 60 000 €" type="sand" />
+          <div className="text-sm font-medium mt-4 mb-3">Aides actionnables</div>
+          <BadgeEuros label=" ~ 15 000 €" type="green" />
+        </div>
       </Box>
     </>
   );

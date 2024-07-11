@@ -10,7 +10,7 @@ import { EstimationGains } from "@/components/EstimationGains";
 import { HighlightText } from "@/components/HighlightText";
 import { NoDataImage } from "@/components/img/NoDataImage";
 import { TravauxNiveauIsolationSegmentedControl } from "@/components/IsolationSegmentedControl";
-import { Box, Container, Grid, GridCol } from "@/dsfr";
+import { Box, Grid, GridCol } from "@/dsfr";
 import { H2 } from "@/dsfr/base/typography";
 import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 import { type Solution } from "@/lib/common/domain/values/Solution";
@@ -80,7 +80,7 @@ export const WrapperResultatDetail = ({
 
   return (
     <>
-      <Container className="mt-8">
+      <div className="mt-8">
         <Box className="my-8">
           <H2 className="text-lg font-bold mb-1">Copropriété</H2>
           <Card
@@ -213,7 +213,7 @@ export const WrapperResultatDetail = ({
         </Grid>
 
         <FranceRenovBlock />
-      </Container>
+      </div>
     </>
   );
 };
