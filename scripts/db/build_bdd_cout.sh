@@ -48,7 +48,48 @@ sqlite-utils transform $ASSETS_DIR/pacoupa.db bdd_cout \
 --rename "54 - PAC Air / Eau avec chauffage par l'air" solution_54 \
 --rename "60 - PAC individuelle sur boucle d'eau" solution_60 \
 --rename "61 - CET individuel sur retour de chauffage collectif" solution_61 \
-
+--not-null zone_climatique \
+--not-null typologie \
+--not-null scenario_renovation_enveloppe \
+--not-null type_CH \
+--not-null type_ECS \
+--not-null CH \
+--not-null ECS \
+--not-null scenario_renovation_systeme \
+--not-null solution_01 \
+--not-null solution_02 \
+--not-null solution_03 \
+--not-null solution_04 \
+--not-null solution_05 \
+--not-null solution_06 \
+--not-null solution_07 \
+--not-null solution_08 \
+--not-null solution_10 \
+--not-null solution_11 \
+--not-null solution_12 \
+--not-null solution_13 \
+--not-null solution_15 \
+--not-null solution_16 \
+--not-null solution_20 \
+--not-null solution_21 \
+--not-null solution_22 \
+--not-null solution_23 \
+--not-null solution_25 \
+--not-null solution_26 \
+--not-null solution_30 \
+--not-null solution_31 \
+--not-null solution_32 \
+--not-null solution_40 \
+--not-null solution_50 \
+--not-null solution_51 \
+--not-null solution_52 \
+--not-null solution_53 \
+--not-null solution_54 \
+--not-null solution_60 \
+--not-null solution_61 \
+--not-null cout_abonnement \
+--not-null cout_maintenance \
+--not-null facture_energetique
 
 
 # This index save a lot of time when querying the database and prevent to read a bunch of lines.
