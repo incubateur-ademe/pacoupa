@@ -13,13 +13,13 @@ import { FamillePacEauxGrisesEau } from "@/components/img/familles/FamillePacEau
 import { FamillePacSolaireEauImage } from "@/components/img/familles/FamillePacSolaireEauImage";
 import { FamilleRcuImage } from "@/components/img/familles/FamilleRcuImage";
 import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
-import { type Solution } from "@/lib/common/domain/values/Solution";
-import { type SolutionEnergie } from "@/lib/common/domain/values/SolutionEnergie";
+import { type SolutionAvecEnergieCout } from "@/lib/common/domain/values/SolutionAvecEnergie";
 import { type SolutionFamille } from "@/lib/common/domain/values/SolutionFamille";
 import { type SolutionNote } from "@/lib/common/domain/values/SolutionNote";
 import { type SolutionType } from "@/lib/common/domain/values/SolutionTypes";
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
 import { type TypeSystemeWithoutRCU } from "@/lib/common/domain/values/TypeSysteme";
+import { getInformationCout } from "@/lib/server/useCases/getInformationCout";
 import { getInformationEnergie } from "@/lib/server/useCases/getInformationEnergie";
 import { getSolutionsApplicables } from "@/lib/server/useCases/getSolutionsApplicables";
 import { type GetSolutionsApplicablesDTO } from "@/lib/server/useCases/getSolutionsApplicables/dto";
@@ -29,7 +29,7 @@ import { fetchFcuEligibility } from "@/lib/services/fcu";
 type FetchSolutionsReturnType = {
   isRcuEligible: boolean;
   nbSolutions: number;
-  solutions: Array<Solution & SolutionEnergie>;
+  solutions: SolutionAvecEnergieCout[];
 };
 
 export const fetchSolutions = async (
@@ -99,11 +99,42 @@ export const fetchSolutions = async (
     }),
   );
 
+  const solutionsAvecCout = await Promise.all(
+    solutionsAvecEnergie.map(async solution => {
+      const baseCout = await getInformationCout({
+        ...data,
+        scenarioRenovationEnveloppe: "INIT",
+        scenarioRenovationSysteme: "S0",
+        solution: solution.id,
+      });
+
+      const futurCout = await getInformationCout({
+        ...data,
+        scenarioRenovationEnveloppe:
+          travauxNiveauIsolation === "Global" ? "GLOB" : travauxNiveauIsolation === "Partiel" ? "INTER" : "INIT",
+        scenarioRenovationSysteme: solution.typeSysteme as TypeSystemeWithoutRCU,
+        solution: solution.id,
+      });
+
+      return {
+        ...solution,
+        coutAbonnementApres: futurCout.data.coutAbonnement,
+        coutAbonnementAvant: baseCout.data.coutAbonnement,
+        coutInstallationSysteme: futurCout.data.coutInstallationSysteme,
+        coutIsolationEnveloppe: futurCout.data.coutIsolationEnveloppe,
+        coutMaintenanceApres: futurCout.data.coutMaintenance,
+        coutMaintenanceAvant: baseCout.data.coutMaintenance,
+        factureEnergetiqueApres: futurCout.data.factureEnergetique,
+        factureEnergetiqueAvant: baseCout.data.factureEnergetique,
+      };
+    }),
+  );
+
   const nbSolutions = solutions.length + (isRcuEligible ? 1 : 0);
 
   return {
     nbSolutions,
-    solutions: solutionsAvecEnergie,
+    solutions: solutionsAvecCout,
     isRcuEligible,
   };
 };

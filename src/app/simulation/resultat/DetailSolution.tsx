@@ -15,7 +15,7 @@ import { Logo } from "@/components/img/Logo";
 import { Box } from "@/dsfr";
 import { H2, Text } from "@/dsfr/base/typography";
 import { useScrollTop } from "@/lib/client/useScrollTop";
-import { type SolutionAvecEnergie } from "@/lib/common/domain/values/SolutionAvecEnergie";
+import { type SolutionAvecEnergieCout } from "@/lib/common/domain/values/SolutionAvecEnergie";
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
 
 import { Isolation } from "./Isolation";
@@ -24,7 +24,7 @@ import { Usage } from "./Usage";
 
 type Props = {
   back: () => void;
-  solution: SolutionAvecEnergie;
+  solution: SolutionAvecEnergieCout;
   travauxNiveauIsolation: TravauxNiveauIsolation;
 };
 

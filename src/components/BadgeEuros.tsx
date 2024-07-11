@@ -3,11 +3,11 @@ import { type PropsWithChildren } from "react";
 
 type Props = {
   icon?: string;
-  label: string;
   type?: "green" | "neutral" | "sand";
+  value: number;
 };
 
-export const BadgeEuros = ({ label, type = "neutral", icon }: PropsWithChildren<Props>) => {
+export const BadgeEuros = ({ value, type = "neutral", icon }: PropsWithChildren<Props>) => {
   return (
     <>
       <span
@@ -18,7 +18,11 @@ export const BadgeEuros = ({ label, type = "neutral", icon }: PropsWithChildren<
         })}
       >
         {icon && <i className={cx("fr-icon--xs mr-1", icon)} />}
-        <span className="font-bold text-base">{label}</span>
+        <span className="font-bold text-base">
+          {new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(
+            value,
+          )}
+        </span>
       </span>
     </>
   );
