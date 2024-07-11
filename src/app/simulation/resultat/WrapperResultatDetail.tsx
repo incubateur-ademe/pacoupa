@@ -64,6 +64,7 @@ export const WrapperResultatDetail = ({
     return (
       <DetailSolution
         solution={detailSolution}
+        informationBatiment={informationBatiment}
         back={() =>
           router.push(
             `/simulation/resultat?${createSearchParams({

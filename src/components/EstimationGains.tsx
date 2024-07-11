@@ -48,7 +48,7 @@ export const EstimationGains = ({ solution, informationBatiment }: PropsWithChil
 
             <div></div>
             <div className="text-center">
-              <BadgePacoupa label={`- ${pourcentageGain}%`} />
+              <BadgePacoupa label={`- ${pourcentageGain}%`} type="green" />
               <p className={fr.cx("fr-text--xs")}>Gain d'énergie</p>
             </div>
           </div>
