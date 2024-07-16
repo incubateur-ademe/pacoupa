@@ -75,7 +75,7 @@ export const EstimationGains = ({ solution, informationBatiment }: PropsWithChil
             type="green"
             prefix={gainEconomique < 0 ? "-" : undefined}
           />{" "}
-          / mois
+          / an
           <p className="text-sm leading-6">
             {Math.sign(gainEconomique) === -1 && "- "}
             {formatEuroNoDecimal(Math.abs(approximation10(gainEconomique)))} / logement
