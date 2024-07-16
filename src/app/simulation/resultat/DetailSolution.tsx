@@ -15,7 +15,8 @@ import { Logo } from "@/components/img/Logo";
 import { Box } from "@/dsfr";
 import { H2, Text } from "@/dsfr/base/typography";
 import { useScrollTop } from "@/lib/client/useScrollTop";
-import { type SolutionAvecEnergie } from "@/lib/common/domain/values/SolutionAvecEnergie";
+import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
+import { type SolutionAvecEnergieCout } from "@/lib/common/domain/values/SolutionAvecEnergie";
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
 
 import { Isolation } from "./Isolation";
@@ -24,11 +25,12 @@ import { Usage } from "./Usage";
 
 type Props = {
   back: () => void;
-  solution: SolutionAvecEnergie;
+  informationBatiment: InformationBatiment;
+  solution: SolutionAvecEnergieCout;
   travauxNiveauIsolation: TravauxNiveauIsolation;
 };
 
-export const DetailSolution = ({ solution, back, travauxNiveauIsolation }: Props) => {
+export const DetailSolution = ({ solution, informationBatiment, travauxNiveauIsolation, back }: Props) => {
   useScrollTop();
   const [showToast, setShowToast] = useState(false);
 
@@ -97,7 +99,7 @@ export const DetailSolution = ({ solution, back, travauxNiveauIsolation }: Props
       <hr className="mt-8" />
 
       <Box>
-        <EstimationGains solution={solution} />
+        <EstimationGains solution={solution} informationBatiment={informationBatiment} />
       </Box>
 
       <Box className="mt-0">

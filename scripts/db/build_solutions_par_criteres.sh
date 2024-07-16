@@ -20,6 +20,6 @@ sqlite-utils transform $ASSETS_DIR/pacoupa.db solutions_par_criteres \
 
 sqlite-utils add-foreign-key $ASSETS_DIR/pacoupa.db solutions_par_criteres solutions_id solutions id
 
-sqlite-utils create-index pacoupa.db solutions_par_criteres solutions_id
-sqlite-utils create-index pacoupa.db solutions_par_criteres criteres_id
+sqlite-utils create-index $ASSETS_DIR/pacoupa.db solutions_par_criteres solutions_id
+sqlite-utils create-index $ASSETS_DIR/pacoupa.db solutions_par_criteres criteres_id
 

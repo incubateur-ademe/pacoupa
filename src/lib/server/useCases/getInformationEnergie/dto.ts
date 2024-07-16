@@ -14,8 +14,6 @@ export const GetInformationEnergieDTOSchema = informationBatimentSchema
     typeECS: true,
     energieCH: true,
     energieECS: true,
-    espacesExterieursCommuns: true,
-    espacesExterieursPersonnels: true,
   })
   .extend({
     scenarioRenovationEnveloppe: z.enum(enumScenarioRenovationEnveloppe),
