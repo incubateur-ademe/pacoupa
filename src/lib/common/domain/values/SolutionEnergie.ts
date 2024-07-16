@@ -1,4 +1,4 @@
-import { type BddEnergie } from "drizzle/schema";
+import { type BddEnergie } from "drizzle/zod-schema";
 
 export type SolutionEnergie = {
   cepApres: BddEnergie["cep"];

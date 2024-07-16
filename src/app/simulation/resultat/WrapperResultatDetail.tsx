@@ -10,11 +10,10 @@ import { EstimationGains } from "@/components/EstimationGains";
 import { HighlightText } from "@/components/HighlightText";
 import { NoDataImage } from "@/components/img/NoDataImage";
 import { TravauxNiveauIsolationSegmentedControl } from "@/components/IsolationSegmentedControl";
-import { Box, Container, Grid, GridCol } from "@/dsfr";
+import { Box, Grid, GridCol } from "@/dsfr";
 import { H2 } from "@/dsfr/base/typography";
 import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
-import { type Solution } from "@/lib/common/domain/values/Solution";
-import { type SolutionEnergie } from "@/lib/common/domain/values/SolutionEnergie";
+import { type SolutionAvecEnergieCout } from "@/lib/common/domain/values/SolutionAvecEnergie";
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
 import { createSearchParams } from "@/utils/searchParams";
 
@@ -34,7 +33,7 @@ type Props = {
   idSolution?: string;
   informationBatiment: InformationBatiment;
   isRcuEligible: boolean;
-  solutions: Array<Solution & SolutionEnergie>;
+  solutions: SolutionAvecEnergieCout[];
   travauxNiveauIsolation: TravauxNiveauIsolation;
 };
 /**
@@ -53,7 +52,7 @@ export const WrapperResultatDetail = ({
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  let detailSolution: (Solution & SolutionEnergie) | null = null;
+  let detailSolution: SolutionAvecEnergieCout | null = null;
 
   if (idSolution) {
     detailSolution = solutions.find(s => s.id === idSolution) || null;
@@ -65,6 +64,7 @@ export const WrapperResultatDetail = ({
     return (
       <DetailSolution
         solution={detailSolution}
+        informationBatiment={informationBatiment}
         back={() =>
           router.push(
             `/simulation/resultat?${createSearchParams({
@@ -80,7 +80,7 @@ export const WrapperResultatDetail = ({
 
   return (
     <>
-      <Container className="mt-8">
+      <div className="mt-8">
         <Box className="my-8">
           <H2 className="text-lg font-bold mb-1">Copropriété</H2>
           <Card
@@ -162,7 +162,7 @@ export const WrapperResultatDetail = ({
                       </Box>
                       <hr className="mt-8" />
                       <Box>
-                        <EstimationGains solution={solution} />
+                        <EstimationGains solution={solution} informationBatiment={informationBatiment} />
                       </Box>
                     </>
                   }
@@ -191,7 +191,7 @@ export const WrapperResultatDetail = ({
         {!complet && nbSolutions > 3 && (
           <Box className={cx("flex", fr.cx("fr-mt-4w"))}>
             <Button
-              priority="tertiary"
+              priority="tertiary no outline"
               className={cx("grow", "md:grow-0", "justify-center")}
               linkProps={{
                 href: `/simulation/resultat?${createSearchParams<ResultatsPageSearchParamsProps["complet"]>({
@@ -201,7 +201,7 @@ export const WrapperResultatDetail = ({
                 })}`,
               }}
             >
-              Voir d’autres solutions
+              Voir plus de solutions
             </Button>
           </Box>
         )}
@@ -213,7 +213,7 @@ export const WrapperResultatDetail = ({
         </Grid>
 
         <FranceRenovBlock />
-      </Container>
+      </div>
     </>
   );
 };

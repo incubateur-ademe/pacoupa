@@ -1,4 +1,4 @@
-import { type CriteresBatiment } from "drizzle/schema";
+import { type CriteresBatiment } from "drizzle/zod-schema";
 
 import { type GetSolutionsApplicablesDTO } from "./dto";
 
