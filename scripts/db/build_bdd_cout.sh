@@ -2,6 +2,7 @@ sqlite-utils insert $ASSETS_DIR/pacoupa.db bdd_cout $ASSETS_DIR/bdd_cout_clean.c
 
 sqlite-utils transform $ASSETS_DIR/pacoupa.db bdd_cout \
 --pk id \
+--drop periode_constructive \
 --drop etat_menuiseries \
 --drop etat_isolation_plancher_bas \
 --drop etat_isolation_plancher_haut \
@@ -78,7 +79,6 @@ sqlite-utils transform $ASSETS_DIR/pacoupa.db bdd_cout \
 --rename "aides - 61 - CET individuel sur retour de chauffage collectif" aides_solution_61 \
 --not-null zone_climatique \
 --not-null typologie \
---not-null periode_constructive \
 --not-null scenario_renovation_enveloppe \
 --not-null type_CH \
 --not-null type_ECS \

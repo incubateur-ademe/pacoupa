@@ -88,13 +88,13 @@ export const fetchSolutions = async (
         gesAvant: baseEnergie.data.ges,
         gesApres: futurEnergie.data.ges,
         etaIsolationMenuiseriesAvant: baseEnergie.data.etatIsolationMenuiseries,
-        etaIsolationMenuiseriesApres: futurEnergie.data.etatIsolationMenuiseriesApresScénarioRenovationEnveloppe,
+        etaIsolationMenuiseriesApres: futurEnergie.data.etatIsolationMenuiseriesApresScenarioRenovationEnveloppe,
         etaIsolationMursAvant: baseEnergie.data.etatIsolationMurs,
-        etaIsolationMursApres: futurEnergie.data.etatIsolationMursApresScénarioRenovationEnveloppe,
+        etaIsolationMursApres: futurEnergie.data.etatIsolationMursApresScenarioRenovationEnveloppe,
         etaIsolationPlancherBasAvant: baseEnergie.data.etatIsolationPlancherBas,
-        etaIsolationPlancherBasApres: futurEnergie.data.etatIsolationPlancherBasApresScénarioRenovationEnveloppe,
+        etaIsolationPlancherBasApres: futurEnergie.data.etatIsolationPlancherBasApresScenarioRenovationEnveloppe,
         etaIsolationPlancherHautAvant: baseEnergie.data.etatIsolationPlancherHaut,
-        etaIsolationPlancherHautApres: futurEnergie.data.etatIsolationPlancherHautApresScénarioRenovationEnveloppe,
+        etaIsolationPlancherHautApres: futurEnergie.data.etatIsolationPlancherHautApresScenarioRenovationEnveloppe,
       };
     }),
   );

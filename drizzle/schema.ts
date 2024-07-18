@@ -6,7 +6,6 @@ import { enumEnvironnementContraint } from "@/lib/common/domain/values/Environne
 import { enumNbLogement } from "@/lib/common/domain/values/NbLogement";
 import { enumNiveauRenovationSimu1 } from "@/lib/common/domain/values/NiveauRenovation";
 import { enumOuiNonNa } from "@/lib/common/domain/values/OuiNonNa";
-import { enumPeriodeConstructive } from "@/lib/common/domain/values/PeriodeConstructive";
 import { enumScenarioRenovationEnveloppe } from "@/lib/common/domain/values/ScenarioRenovationEnveloppe";
 import { enumScenarioRenovationSysteme } from "@/lib/common/domain/values/ScenarioRenovationSysteme";
 import { enumIdSolution } from "@/lib/common/domain/values/Solution";
@@ -161,7 +160,6 @@ export const bddCout = sqliteTable(
     id: integer("id").primaryKey(),
     zoneClimatique: text("zone_climatique", { enum: enumZoneClimatique }).notNull(),
     typologie: text("typologie", { enum: enumTypologie }).notNull(),
-    periodeConstructive: text("periode_constructive", { enum: enumPeriodeConstructive }).notNull(),
     scenarioRenovationEnveloppe: text("scenario_renovation_enveloppe", {
       enum: enumScenarioRenovationEnveloppe,
     }).notNull(),
