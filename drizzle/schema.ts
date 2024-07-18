@@ -155,8 +155,8 @@ export const bddEnergie = sqliteTable(
   },
 );
 
-export const bddCout = sqliteTable(
-  "bdd_cout",
+export const bddEco = sqliteTable(
+  "bdd_eco",
   {
     id: integer("id").primaryKey(),
     zoneClimatique: text("zone_climatique", { enum: enumZoneClimatique }).notNull(),
@@ -238,8 +238,8 @@ export const bddCout = sqliteTable(
   },
   table => {
     return {
-      idxBddCoutTypologieEcsChScenarioRenovationEnveloppeScenarioRenovationSysteme: index(
-        "idx_bdd_cout_typologie_ECS_CH_scenario_renovation_enveloppe_scenario_renovation_systeme",
+      idxBddEcoTypologieEcsChScenarioRenovationEnveloppeScenarioRenovationSysteme: index(
+        "idx_bdd_eco_typologie_ECS_CH_scenario_renovation_enveloppe_scenario_renovation_systeme",
       ).on(table.typologie, table.ecs, table.ch, table.scenarioRenovationEnveloppe, table.scenarioRenovationSysteme),
     };
   },

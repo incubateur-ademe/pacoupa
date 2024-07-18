@@ -1,6 +1,6 @@
-sqlite-utils insert $ASSETS_DIR/pacoupa.db bdd_cout $ASSETS_DIR/bdd_cout_clean.csv --csv -d --delimiter ';'
+sqlite-utils insert $ASSETS_DIR/pacoupa.db bdd_eco $ASSETS_DIR/bdd_eco_clean.csv --csv -d --delimiter ';'
 
-sqlite-utils transform $ASSETS_DIR/pacoupa.db bdd_cout \
+sqlite-utils transform $ASSETS_DIR/pacoupa.db bdd_eco \
 --pk id \
 --drop periode_constructive \
 --drop etat_menuiseries \
@@ -154,7 +154,7 @@ sqlite-utils transform $ASSETS_DIR/pacoupa.db bdd_cout \
 
 # This index save a lot of time when querying the database and prevent to read a bunch of lines.
 # Which is good because Turso have a free tiers for 1 billion of lines per month.
-sqlite-utils create-index $ASSETS_DIR/pacoupa.db bdd_cout typologie ECS CH scenario_renovation_enveloppe scenario_renovation_systeme
+sqlite-utils create-index $ASSETS_DIR/pacoupa.db bdd_eco typologie ECS CH scenario_renovation_enveloppe scenario_renovation_systeme
 
 
 
