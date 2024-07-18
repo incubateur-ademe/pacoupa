@@ -143,7 +143,8 @@ export const bddEnergie = sqliteTable(
     cep: integer("CEP").notNull(),
     ges: integer("GES").notNull(),
     dpe: text("DPE", { enum: enumDPE }).notNull(),
-    dpeInitiale: text("etiquette_dpe_initiale", { enum: enumDPE }),
+    gainEnergetique: text("gain_energetique_%").notNull(),
+    dpeInitiale: text("etiquette_dpe_initiale", { enum: enumDPE }).notNull(),
   },
   table => {
     return {

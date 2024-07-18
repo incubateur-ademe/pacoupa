@@ -6,7 +6,6 @@ sqlite-utils transform $ASSETS_DIR/pacoupa.db bdd_energie \
 --drop usage_CH \
 --drop usage_ECS \
 --drop emetteur \
---drop gain_energetique_% \
 --drop sortie_passoire_energetique \
 --not-null zone_climatique \
 --not-null typologie \
@@ -26,7 +25,9 @@ sqlite-utils transform $ASSETS_DIR/pacoupa.db bdd_energie \
 --not-null scenario_renovation_systeme \
 --not-null CEP \
 --not-null GES \
---not-null DPE
+--not-null DPE \
+--not-null gain_energetique_% \
+--not-null etiquette_dpe_initiale
 
 # This index save a lot of time when querying the database and prevent to read a bunch of lines.
 # Which is good because Turso have a free tiers for 1 billion of lines per month.
