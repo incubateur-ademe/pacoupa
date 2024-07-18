@@ -13,7 +13,7 @@ import { FamillePacEauxGrisesEau } from "@/components/img/familles/FamillePacEau
 import { FamillePacSolaireEauImage } from "@/components/img/familles/FamillePacSolaireEauImage";
 import { FamilleRcuImage } from "@/components/img/familles/FamilleRcuImage";
 import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
-import { type SolutionAvecEnergieCout } from "@/lib/common/domain/values/SolutionAvecEnergie";
+import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
 import { type SolutionFamille } from "@/lib/common/domain/values/SolutionFamille";
 import { type SolutionNote } from "@/lib/common/domain/values/SolutionNote";
 import { type SolutionType } from "@/lib/common/domain/values/SolutionTypes";
@@ -29,7 +29,7 @@ import { fetchFcuEligibility } from "@/lib/services/fcu";
 type FetchSolutionsReturnType = {
   isRcuEligible: boolean;
   nbSolutions: number;
-  solutions: SolutionAvecEnergieCout[];
+  solutions: SolutionAvecEnergieCoutAide[];
 };
 
 export const fetchSolutions = async (
@@ -126,6 +126,7 @@ export const fetchSolutions = async (
         coutMaintenanceAvant: baseCout.data.coutMaintenance,
         factureEnergetiqueApres: futurCout.data.factureEnergetique,
         factureEnergetiqueAvant: baseCout.data.factureEnergetique,
+        aidesInstallationSysteme: futurCout.data.aidesInstallationSysteme,
       };
     }),
   );

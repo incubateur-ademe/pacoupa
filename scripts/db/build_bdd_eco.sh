@@ -15,37 +15,37 @@ sqlite-utils transform $ASSETS_DIR/pacoupa.db bdd_eco \
 --drop seuil_35% \
 --drop seuil_50% \
 --drop bonification_sortie_passoire \
---rename "01 - PAC Air / Eau" couts_solution_01 \
---rename "02 - PAC Air / Eau (gainée)" couts_solution_02 \
---rename "03 - PAC Eaux grises / Eau" couts_solution_03 \
---rename "04 - PAC sur capteur solaire atmosphérique" couts_solution_04 \
---rename "05 - Hybride : PAC + chaudière" couts_solution_05 \
---rename "06 - Hybride : PAC (gainée) + chaudière" couts_solution_06 \
---rename "07 - PAC sur air extrait" couts_solution_07 \
---rename "08 - PAC Eau / Eau géothermique" couts_solution_08 \
---rename "10 - PAC Air / Eau" couts_solution_10 \
---rename "11 - PAC Air / Eau (gainée)" couts_solution_11 \
---rename "12 - PAC Air / Air (DRV)" couts_solution_12 \
---rename "13 - PAC Eau / Eau géothermique" couts_solution_13 \
---rename "15 - Hybride : PAC + chaudière" couts_solution_15 \
---rename "16 - Hybride : PAC (gainée) + chaudière" couts_solution_16 \
---rename "20 - PAC Air / Eau" couts_solution_20 \
---rename "21 - PAC Air / Eau (gainée)" couts_solution_21 \
---rename "22 - PAC Air / Air (DRV)" couts_solution_22 \
---rename "23 - PAC Eau / Eau géothermique" couts_solution_23 \
---rename "25 - Hybride : PAC + chaudière" couts_solution_25 \
---rename "26 - Hybride : PAC (gainée) + chaudière" couts_solution_26 \
---rename "30 - CET Air extrait / Eau" couts_solution_30 \
---rename "31 - CET Air / Eau (avec unité extérieure)" couts_solution_31 \
---rename "32 - CET Air / Eau (intérieur)" couts_solution_32 \
---rename "40 - PAC Air / Air" couts_solution_40 \
---rename "50 - PAC Air / Eau (avec unité extérieure)" couts_solution_50 \
---rename "51 - PAC Air / Eau (intérieure)" couts_solution_51 \
---rename "52 - PAC Air / Air avec ECS" couts_solution_52 \
---rename "53 - PAC Air extrait / Eau" couts_solution_53 \
---rename "54 - PAC Air / Eau avec chauffage par l'air" couts_solution_54 \
---rename "60 - PAC individuelle sur boucle d'eau" couts_solution_60 \
---rename "61 - CET individuel sur retour de chauffage collectif" couts_solution_61 \
+--rename "01 - PAC Air / Eau" cout_solution_01 \
+--rename "02 - PAC Air / Eau (gainée)" cout_solution_02 \
+--rename "03 - PAC Eaux grises / Eau" cout_solution_03 \
+--rename "04 - PAC sur capteur solaire atmosphérique" cout_solution_04 \
+--rename "05 - Hybride : PAC + chaudière" cout_solution_05 \
+--rename "06 - Hybride : PAC (gainée) + chaudière" cout_solution_06 \
+--rename "07 - PAC sur air extrait" cout_solution_07 \
+--rename "08 - PAC Eau / Eau géothermique" cout_solution_08 \
+--rename "10 - PAC Air / Eau" cout_solution_10 \
+--rename "11 - PAC Air / Eau (gainée)" cout_solution_11 \
+--rename "12 - PAC Air / Air (DRV)" cout_solution_12 \
+--rename "13 - PAC Eau / Eau géothermique" cout_solution_13 \
+--rename "15 - Hybride : PAC + chaudière" cout_solution_15 \
+--rename "16 - Hybride : PAC (gainée) + chaudière" cout_solution_16 \
+--rename "20 - PAC Air / Eau" cout_solution_20 \
+--rename "21 - PAC Air / Eau (gainée)" cout_solution_21 \
+--rename "22 - PAC Air / Air (DRV)" cout_solution_22 \
+--rename "23 - PAC Eau / Eau géothermique" cout_solution_23 \
+--rename "25 - Hybride : PAC + chaudière" cout_solution_25 \
+--rename "26 - Hybride : PAC (gainée) + chaudière" cout_solution_26 \
+--rename "30 - CET Air extrait / Eau" cout_solution_30 \
+--rename "31 - CET Air / Eau (avec unité extérieure)" cout_solution_31 \
+--rename "32 - CET Air / Eau (intérieur)" cout_solution_32 \
+--rename "40 - PAC Air / Air" cout_solution_40 \
+--rename "50 - PAC Air / Eau (avec unité extérieure)" cout_solution_50 \
+--rename "51 - PAC Air / Eau (intérieure)" cout_solution_51 \
+--rename "52 - PAC Air / Air avec ECS" cout_solution_52 \
+--rename "53 - PAC Air extrait / Eau" cout_solution_53 \
+--rename "54 - PAC Air / Eau avec chauffage par l'air" cout_solution_54 \
+--rename "60 - PAC individuelle sur boucle d'eau" cout_solution_60 \
+--rename "61 - CET individuel sur retour de chauffage collectif" cout_solution_61 \
 --rename "aides - 01 - PAC Air / Eau" aides_solution_01 \
 --rename "aides - 02 - PAC Air / Eau (gainée)" aides_solution_02 \
 --rename "aides - 03 - PAC Eaux grises / Eau" aides_solution_03 \
@@ -85,37 +85,37 @@ sqlite-utils transform $ASSETS_DIR/pacoupa.db bdd_eco \
 --not-null CH \
 --not-null ECS \
 --not-null scenario_renovation_systeme \
---not-null couts_solution_01 \
---not-null couts_solution_02 \
---not-null couts_solution_03 \
---not-null couts_solution_04 \
---not-null couts_solution_05 \
---not-null couts_solution_06 \
---not-null couts_solution_07 \
---not-null couts_solution_08 \
---not-null couts_solution_10 \
---not-null couts_solution_11 \
---not-null couts_solution_12 \
---not-null couts_solution_13 \
---not-null couts_solution_15 \
---not-null couts_solution_16 \
---not-null couts_solution_20 \
---not-null couts_solution_21 \
---not-null couts_solution_22 \
---not-null couts_solution_23 \
---not-null couts_solution_25 \
---not-null couts_solution_26 \
---not-null couts_solution_30 \
---not-null couts_solution_31 \
---not-null couts_solution_32 \
---not-null couts_solution_40 \
---not-null couts_solution_50 \
---not-null couts_solution_51 \
---not-null couts_solution_52 \
---not-null couts_solution_53 \
---not-null couts_solution_54 \
---not-null couts_solution_60 \
---not-null couts_solution_61 \
+--not-null cout_solution_01 \
+--not-null cout_solution_02 \
+--not-null cout_solution_03 \
+--not-null cout_solution_04 \
+--not-null cout_solution_05 \
+--not-null cout_solution_06 \
+--not-null cout_solution_07 \
+--not-null cout_solution_08 \
+--not-null cout_solution_10 \
+--not-null cout_solution_11 \
+--not-null cout_solution_12 \
+--not-null cout_solution_13 \
+--not-null cout_solution_15 \
+--not-null cout_solution_16 \
+--not-null cout_solution_20 \
+--not-null cout_solution_21 \
+--not-null cout_solution_22 \
+--not-null cout_solution_23 \
+--not-null cout_solution_25 \
+--not-null cout_solution_26 \
+--not-null cout_solution_30 \
+--not-null cout_solution_31 \
+--not-null cout_solution_32 \
+--not-null cout_solution_40 \
+--not-null cout_solution_50 \
+--not-null cout_solution_51 \
+--not-null cout_solution_52 \
+--not-null cout_solution_53 \
+--not-null cout_solution_54 \
+--not-null cout_solution_60 \
+--not-null cout_solution_61 \
 --not-null aides_solution_01 \
 --not-null aides_solution_02 \
 --not-null aides_solution_03 \

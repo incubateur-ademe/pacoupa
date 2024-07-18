@@ -16,7 +16,7 @@ import { Box } from "@/dsfr";
 import { H2, Text } from "@/dsfr/base/typography";
 import { useScrollTop } from "@/lib/client/useScrollTop";
 import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
-import { type SolutionAvecEnergieCout } from "@/lib/common/domain/values/SolutionAvecEnergie";
+import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
 
 import { Isolation } from "./Isolation";
@@ -26,7 +26,7 @@ import { Usage } from "./Usage";
 type Props = {
   back: () => void;
   informationBatiment: InformationBatiment;
-  solution: SolutionAvecEnergieCout;
+  solution: SolutionAvecEnergieCoutAide;
   travauxNiveauIsolation: TravauxNiveauIsolation;
 };
 

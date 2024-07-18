@@ -7,7 +7,7 @@ import { type PropsWithChildren } from "react";
 import { Box } from "@/dsfr";
 import { Text } from "@/dsfr/base/typography";
 import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
-import { type SolutionAvecEnergieCout } from "@/lib/common/domain/values/SolutionAvecEnergie";
+import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
 import { formatEuroNoDecimal } from "@/utils/currency";
 import { approximation } from "@/utils/number";
 
@@ -19,7 +19,7 @@ import { FlecheImage } from "./img/FlecheImage";
 
 type Props = {
   informationBatiment: InformationBatiment;
-  solution: SolutionAvecEnergieCout;
+  solution: SolutionAvecEnergieCoutAide;
 };
 
 const approximation10k = approximation(4);
@@ -46,6 +46,9 @@ export const EstimationGains = ({ solution, informationBatiment }: PropsWithChil
 
   const approximationEnveloppe = approximation1k(solution.coutIsolationEnveloppe ?? 0);
   const approximationSysteme = approximation1k(solution.coutInstallationSysteme ?? 0);
+
+  const aidesLogement = approximation100(solution.aidesInstallationSysteme);
+  const aidesImmeuble = approximation1k(solution.aidesInstallationSysteme * informationBatiment.nbLogements);
 
   return (
     <>
@@ -84,7 +87,7 @@ export const EstimationGains = ({ solution, informationBatiment }: PropsWithChil
         <p className="mb-0">Estimation des coûts</p>
         <p className="text-xs font-normal">(rénovations comprises)</p>
         <div className="px-2">
-          <div className="text-sm font-medium mb-3">
+          <div className="text-sm font-medium mb-3 flex items-baseline">
             Coût total du projet
             <Tooltip
               title={
@@ -105,19 +108,23 @@ export const EstimationGains = ({ solution, informationBatiment }: PropsWithChil
             <p className="text-sm leading-6">
               {formatEuroNoDecimal(approximationEnveloppe + approximationSysteme)} / logement
             </p>
-
-            <Callout
-              type="warning"
-              content={
-                <>
-                  Les données financières sont des premières estimations. Elles doivent faire l'objet d'études plus
-                  approfondies.
-                </>
-              }
-            />
           </div>
-          {/* <div className="text-sm font-medium mt-4 mb-3">Aides actionnables</div>
-          <BadgeEuros label=" ~ 15 000 €" type="green" /> */}
+
+          <div className="text-sm font-medium mb-3">Aides actionnables</div>
+          <div>
+            <BadgeEuros value={aidesImmeuble} type="green" prefix="⩾" />
+            <p className="text-sm leading-6">{formatEuroNoDecimal(aidesLogement)} / logement</p>
+          </div>
+
+          <Callout
+            type="warning"
+            content={
+              <>
+                Les données financières sont des premières estimations. Elles doivent faire l'objet d'études plus
+                approfondies.
+              </>
+            }
+          />
         </div>
       </Box>
     </>

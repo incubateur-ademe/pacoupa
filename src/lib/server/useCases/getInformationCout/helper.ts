@@ -1,4 +1,4 @@
-import { type BddCout } from "drizzle/zod-schema";
+import { type BddEco } from "drizzle/zod-schema";
 
 import { type TypeCH } from "@/lib/common/domain/values/TypeCH";
 import { type TypeECS } from "@/lib/common/domain/values/TypeECS";
@@ -6,8 +6,8 @@ import { type TypeECS } from "@/lib/common/domain/values/TypeECS";
 import { getTypologie } from "../getTypologie";
 import { type GetInformationCoutDTO } from "./dto";
 
-export type CriteresBddCout = Pick<
-  BddCout,
+export type CriteresBddEco = Pick<
+  BddEco,
   | "ch"
   | "ecs"
   | "scenarioRenovationEnveloppe"
@@ -16,7 +16,6 @@ export type CriteresBddCout = Pick<
   | "typeEcs"
   | "typologie"
   | "zoneClimatique"
-  // | `solution${(typeof enumIdSolution)[number]}`
 >;
 
 /**
@@ -24,20 +23,20 @@ export type CriteresBddCout = Pick<
  *
  * @param dto une simulation
  */
-export const creerCriteresBddCout = async (dto: GetInformationCoutDTO): Promise<CriteresBddCout> => {
+export const creerCriteresBddEco = async (dto: GetInformationCoutDTO): Promise<CriteresBddEco> => {
   const typologie = await getTypologie({ annee: dto.annee, nbLogements: dto.nbLogements });
 
   if (!typologie.data) {
     throw new Error("Typologie not found");
   }
 
-  const zoneClimatique: CriteresBddCout["zoneClimatique"] = "75 - Paris";
+  const zoneClimatique: CriteresBddEco["zoneClimatique"] = "75 - Paris";
 
   const typeCh = dto.energieCH === "electricite" ? "ELEC" : (dto.energieCH.toUpperCase() as TypeCH);
   const typeEcs = dto.energieECS === "ballon electrique" ? "ELEC" : (dto.energieECS.toUpperCase() as TypeECS);
 
-  const ch: CriteresBddCout["ch"] = dto.typeCH === "collectif" ? "COL" : "IND";
-  const ecs: CriteresBddCout["ecs"] = dto.typeECS === "collectif" ? "COL" : "IND";
+  const ch: CriteresBddEco["ch"] = dto.typeCH === "collectif" ? "COL" : "IND";
+  const ecs: CriteresBddEco["ecs"] = dto.typeECS === "collectif" ? "COL" : "IND";
 
   return {
     typologie: typologie.data.nom,

@@ -13,7 +13,7 @@ import { TravauxNiveauIsolationSegmentedControl } from "@/components/IsolationSe
 import { Box, Grid, GridCol } from "@/dsfr";
 import { H2 } from "@/dsfr/base/typography";
 import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
-import { type SolutionAvecEnergieCout } from "@/lib/common/domain/values/SolutionAvecEnergie";
+import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
 import { createSearchParams } from "@/utils/searchParams";
 
@@ -33,7 +33,7 @@ type Props = {
   idSolution?: string;
   informationBatiment: InformationBatiment;
   isRcuEligible: boolean;
-  solutions: SolutionAvecEnergieCout[];
+  solutions: SolutionAvecEnergieCoutAide[];
   travauxNiveauIsolation: TravauxNiveauIsolation;
 };
 /**
@@ -52,7 +52,7 @@ export const WrapperResultatDetail = ({
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  let detailSolution: SolutionAvecEnergieCout | null = null;
+  let detailSolution: SolutionAvecEnergieCoutAide | null = null;
 
   if (idSolution) {
     detailSolution = solutions.find(s => s.id === idSolution) || null;

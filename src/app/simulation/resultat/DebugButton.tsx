@@ -5,11 +5,11 @@ import { type PropsWithChildren } from "react";
 import { Button } from "@/components/Button";
 import { config } from "@/config";
 import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
-import { type SolutionAvecEnergieCout } from "@/lib/common/domain/values/SolutionAvecEnergie";
+import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
 
 type Props = {
   formData: InformationBatiment;
-  solutions: SolutionAvecEnergieCout[];
+  solutions: SolutionAvecEnergieCoutAide[];
 };
 
 export const DebugButton = ({ formData, solutions }: PropsWithChildren<Props>) => {
