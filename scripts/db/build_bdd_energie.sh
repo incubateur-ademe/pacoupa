@@ -1,4 +1,4 @@
-sqlite-utils insert $ASSETS_DIR/pacoupa.db bdd_energie $ASSETS_DIR/bdd_energie_clean.csv --csv -d
+sqlite-utils insert $ASSETS_DIR/pacoupa.db bdd_energie $ASSETS_DIR/bdd_energie_clean.csv --csv -d --delimiter ';'
 
 sqlite-utils transform $ASSETS_DIR/pacoupa.db bdd_energie \
 --pk id \
@@ -6,6 +6,8 @@ sqlite-utils transform $ASSETS_DIR/pacoupa.db bdd_energie \
 --drop usage_CH \
 --drop usage_ECS \
 --drop emetteur \
+--drop gain_energetique_% \
+--drop sortie_passoire_energetique \
 --not-null zone_climatique \
 --not-null typologie \
 --not-null etat_isolation_menuiseries \
@@ -13,10 +15,10 @@ sqlite-utils transform $ASSETS_DIR/pacoupa.db bdd_energie \
 --not-null etat_isolation_plancher_haut \
 --not-null etat_isolation_murs \
 --not-null scenario_renovation_enveloppe \
---not-null etat_isolation_menuiseries_apres_scénario_renovation_enveloppe \
---not-null etat_isolation_plancher_bas_apres_scénario_renovation_enveloppe \
---not-null etat_isolation_plancher_haut_apres_scénario_renovation_enveloppe \
---not-null etat_isolation_murs_apres_scénario_renovation_enveloppe \
+--not-null etat_isolation_menuiseries_apres_scenario_renovation_enveloppe \
+--not-null etat_isolation_plancher_bas_apres_scenario_renovation_enveloppe \
+--not-null etat_isolation_plancher_haut_apres_scenario_renovation_enveloppe \
+--not-null etat_isolation_murs_apres_scenario_renovation_enveloppe \
 --not-null type_CH \
 --not-null type_ECS \
 --not-null CH \
