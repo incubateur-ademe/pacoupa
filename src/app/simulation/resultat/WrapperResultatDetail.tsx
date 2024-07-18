@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
+import { EstimationCouts } from "@/components/EstimationCouts";
 import { EstimationGains } from "@/components/EstimationGains";
 import { HighlightText } from "@/components/HighlightText";
 import { NoDataImage } from "@/components/img/NoDataImage";
@@ -161,9 +162,10 @@ export const WrapperResultatDetail = ({
                         <Isolation gestes={gestes} travauxNiveauIsolation={travauxNiveauIsolation} />
                       </Box>
                       <hr className="mt-8" />
-                      <Box>
-                        <EstimationGains solution={solution} informationBatiment={informationBatiment} />
-                      </Box>
+
+                      <EstimationGains solution={solution} informationBatiment={informationBatiment} />
+
+                      <EstimationCouts solution={solution} informationBatiment={informationBatiment} />
                     </>
                   }
                   header={<Card.CardHeader image={familleImageMap[solution.familleSolution]} title={solution.nom} />}
