@@ -4,7 +4,7 @@ import { type GetSolutionsApplicablesDTO } from "./dto";
 
 export type CriteresBatimentWithoutId = Omit<CriteresBatiment, "id">;
 
-const estRenovationGlobale = (dto: GetSolutionsApplicablesDTO) => dto.renovation?.length === 4;
+const estRenovationGlobale = (dto: GetSolutionsApplicablesDTO) => dto.annee >= 2000 || dto.renovation?.length === 4;
 
 /**
  * Application des règles métiers pour transformer le payload de l'API en en données utilisable pour la clause where de la requête SQL.
@@ -44,8 +44,9 @@ export const creerCriteresSolutionsApplicables = (dto: GetSolutionsApplicablesDT
 
   const nbLgts: CriteresBatimentWithoutId["nbLgts"] = dto.nbLogements < 15 ? "< 15" : ">= 15";
 
-  const niveauRenovation: CriteresBatimentWithoutId["niveauRenovation"] =
-    dto.annee >= 2000 || estRenovationGlobale(dto) ? "Recent ou renove" : "NA";
+  const niveauRenovation: CriteresBatimentWithoutId["niveauRenovation"] = estRenovationGlobale(dto)
+    ? "Recent ou renove"
+    : "NA";
 
   const ch: CriteresBatimentWithoutId["ch"] = dto.typeCH === "collectif" ? "COL" : "IND";
   const ecs: CriteresBatimentWithoutId["ecs"] = dto.typeECS === "collectif" ? "COL" : "IND";
