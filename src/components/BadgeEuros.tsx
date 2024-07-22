@@ -5,7 +5,7 @@ import { formatEuroNoDecimal } from "@/utils/currency";
 
 type Props = {
   icon?: string;
-  prefix?: "-" | "≈";
+  prefix?: "-" | "≈" | "⩾";
   type?: "green" | "neutral" | "sand";
   value: number;
 };

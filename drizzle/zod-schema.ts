@@ -1,7 +1,7 @@
 import { createSelectSchema } from "drizzle-zod";
 import { type z } from "zod";
 
-import { bddCout, bddEnergie, criteres, typologies } from "./schema";
+import { bddEco, bddEnergie, criteres, typologies } from "./schema";
 
 export const criteresBatimentSchema = createSelectSchema(criteres);
 
@@ -11,8 +11,8 @@ export const bddEnergieSchema = createSelectSchema(bddEnergie);
 
 export type BddEnergie = z.infer<typeof bddEnergieSchema>;
 
-export const bddEnergieCoutSchema = createSelectSchema(bddCout);
+export const bddEcoSchema = createSelectSchema(bddEco);
 
-export type BddCout = z.infer<typeof bddEnergieCoutSchema>;
+export type BddEco = z.infer<typeof bddEcoSchema>;
 
 export const typologiesZodSchema = createSelectSchema(typologies);

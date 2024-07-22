@@ -28,16 +28,16 @@ export async function getInformationEnergie(dto: GetInformationEnergieDTO) {
     .select({
       id: bddEnergie.id,
       etatIsolationPlancherBas: bddEnergie.etatIsolationPlancherBas,
-      etatIsolationPlancherBasApresScénarioRenovationEnveloppe:
-        bddEnergie.etatIsolationPlancherBasApresScénarioRenovationEnveloppe,
+      etatIsolationPlancherBasApresScenarioRenovationEnveloppe:
+        bddEnergie.etatIsolationPlancherBasApresScenarioRenovationEnveloppe,
       etatIsolationPlancherHaut: bddEnergie.etatIsolationPlancherHaut,
-      etatIsolationPlancherHautApresScénarioRenovationEnveloppe:
-        bddEnergie.etatIsolationPlancherHautApresScénarioRenovationEnveloppe,
+      etatIsolationPlancherHautApresScenarioRenovationEnveloppe:
+        bddEnergie.etatIsolationPlancherHautApresScenarioRenovationEnveloppe,
       etatIsolationMenuiseries: bddEnergie.etatIsolationMenuiseries,
-      etatIsolationMenuiseriesApresScénarioRenovationEnveloppe:
-        bddEnergie.etatIsolationMenuiseriesApresScénarioRenovationEnveloppe,
+      etatIsolationMenuiseriesApresScenarioRenovationEnveloppe:
+        bddEnergie.etatIsolationMenuiseriesApresScenarioRenovationEnveloppe,
       etatIsolationMurs: bddEnergie.etatIsolationMurs,
-      etatIsolationMursApresScénarioRenovationEnveloppe: bddEnergie.etatIsolationMursApresScénarioRenovationEnveloppe,
+      etatIsolationMursApresScenarioRenovationEnveloppe: bddEnergie.etatIsolationMursApresScenarioRenovationEnveloppe,
       cep: bddEnergie.cep,
       ges: bddEnergie.ges,
       dpe: bddEnergie.dpe,

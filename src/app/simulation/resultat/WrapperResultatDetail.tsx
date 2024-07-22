@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
+import { EstimationCouts } from "@/components/EstimationCouts";
 import { EstimationGains } from "@/components/EstimationGains";
 import { HighlightText } from "@/components/HighlightText";
 import { NoDataImage } from "@/components/img/NoDataImage";
@@ -13,7 +14,7 @@ import { TravauxNiveauIsolationSegmentedControl } from "@/components/IsolationSe
 import { Box, Grid, GridCol } from "@/dsfr";
 import { H2 } from "@/dsfr/base/typography";
 import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
-import { type SolutionAvecEnergieCout } from "@/lib/common/domain/values/SolutionAvecEnergie";
+import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
 import { createSearchParams } from "@/utils/searchParams";
 
@@ -33,7 +34,7 @@ type Props = {
   idSolution?: string;
   informationBatiment: InformationBatiment;
   isRcuEligible: boolean;
-  solutions: SolutionAvecEnergieCout[];
+  solutions: SolutionAvecEnergieCoutAide[];
   travauxNiveauIsolation: TravauxNiveauIsolation;
 };
 /**
@@ -52,7 +53,7 @@ export const WrapperResultatDetail = ({
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  let detailSolution: SolutionAvecEnergieCout | null = null;
+  let detailSolution: SolutionAvecEnergieCoutAide | null = null;
 
   if (idSolution) {
     detailSolution = solutions.find(s => s.id === idSolution) || null;
@@ -161,9 +162,10 @@ export const WrapperResultatDetail = ({
                         <Isolation gestes={gestes} travauxNiveauIsolation={travauxNiveauIsolation} />
                       </Box>
                       <hr className="mt-8" />
-                      <Box>
-                        <EstimationGains solution={solution} informationBatiment={informationBatiment} />
-                      </Box>
+
+                      <EstimationGains solution={solution} informationBatiment={informationBatiment} />
+
+                      <EstimationCouts solution={solution} informationBatiment={informationBatiment} />
                     </>
                   }
                   header={<Card.CardHeader image={familleImageMap[solution.familleSolution]} title={solution.nom} />}
