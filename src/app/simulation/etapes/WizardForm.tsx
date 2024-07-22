@@ -49,8 +49,6 @@ export const WizardForm = ({ schema, render }: Props) => {
   const router = useRouter();
   const { store, setStore, resetStore } = usePacoupaSessionStorage();
 
-  console.log({ activeStep });
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

@@ -3,6 +3,7 @@
 import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
 import { z } from "zod";
 
+import { Callout } from "@/components/Callout";
 import { Box } from "@/dsfr";
 
 import { HeaderFunnel } from "../HeaderFunnel";
@@ -39,6 +40,7 @@ export const Step8 = () => {
                     nativeInputProps: {
                       defaultChecked: store.energieCH === "fioul",
                       value: "fioul",
+                      disabled: store.typeCH === "individuel",
                     },
                   },
                   {
@@ -53,11 +55,25 @@ export const Step8 = () => {
                     nativeInputProps: {
                       defaultChecked: store.energieCH === "electricite",
                       value: "electricite",
+                      disabled: store.typeCH === "collectif",
                     },
                   },
                 ]}
                 state={errors?.energieCH?._errors ? "error" : "default"}
                 stateRelatedMessage={<div aria-live="polite">{errors?.energieCH?._errors}</div>}
+              />
+            </Box>
+
+            <Box>
+              <Callout
+                type="pacoupa"
+                content={
+                  store.typeCH === "collectif" ? (
+                    <>En collectif, le chauffage électrique n'est pas disponible.</>
+                  ) : (
+                    <>En individuel, le chauffage par fioul n'est pas disponible.</>
+                  )
+                }
               />
             </Box>
           </>

@@ -3,6 +3,7 @@
 import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
 import { z } from "zod";
 
+import { Callout } from "@/components/Callout";
 import { Box } from "@/dsfr";
 
 import { HeaderFunnel } from "../HeaderFunnel";
@@ -38,6 +39,7 @@ export const Step11 = () => {
                   nativeInputProps: {
                     defaultChecked: store.energieECS === "fioul",
                     value: "fioul",
+                    disabled: store.typeECS === "individuel",
                   },
                 },
                 {
@@ -58,6 +60,15 @@ export const Step11 = () => {
               state={errors?.energieECS?._errors ? "error" : "default"}
               stateRelatedMessage={<div aria-live="polite">{errors?.energieECS?._errors}</div>}
             />
+
+            {store.typeECS === "individuel" && (
+              <Box>
+                <Callout
+                  type="pacoupa"
+                  content={<>En individuel, le fioul ne peut pas être utilisé pour l'eau chaude.</>}
+                />
+              </Box>
+            )}
           </Box>
         )}
       />
