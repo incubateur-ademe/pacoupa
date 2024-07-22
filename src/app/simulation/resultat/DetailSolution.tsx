@@ -9,14 +9,13 @@ import { Evaluation } from "@/app/simulation/resultat/Evaluation";
 import { FranceRenovBlock } from "@/app/simulation/resultat/FranceRenovBlock";
 import { familleImageMap } from "@/app/simulation/resultat/helper";
 import { Button } from "@/components/Button";
-import { Callout } from "@/components/Callout";
+import { EstimationCouts } from "@/components/EstimationCouts";
 import { EstimationGains } from "@/components/EstimationGains";
-import { Logo } from "@/components/img/Logo";
 import { Box } from "@/dsfr";
 import { H2, Text } from "@/dsfr/base/typography";
 import { useScrollTop } from "@/lib/client/useScrollTop";
 import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
-import { type SolutionAvecEnergieCout } from "@/lib/common/domain/values/SolutionAvecEnergie";
+import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
 
 import { Isolation } from "./Isolation";
@@ -26,7 +25,7 @@ import { Usage } from "./Usage";
 type Props = {
   back: () => void;
   informationBatiment: InformationBatiment;
-  solution: SolutionAvecEnergieCout;
+  solution: SolutionAvecEnergieCoutAide;
   travauxNiveauIsolation: TravauxNiveauIsolation;
 };
 
@@ -98,26 +97,9 @@ export const DetailSolution = ({ solution, informationBatiment, travauxNiveauIso
 
       <hr className="mt-8" />
 
-      <Box>
-        <EstimationGains solution={solution} informationBatiment={informationBatiment} />
-      </Box>
+      <EstimationGains solution={solution} informationBatiment={informationBatiment} avecMessage />
 
-      <Box className="mt-0">
-        <Callout
-          type="pacoupa"
-          icon={<Logo />}
-          content={
-            <>
-              Un logement mieux isolé :
-              <ul>
-                <li>Augmente la valeur du bien</li>
-                <li>Est moins sensible aux variations de prix de l’énergie</li>
-                <li>Améliore votre confort</li>
-              </ul>
-            </>
-          }
-        />
-      </Box>
+      <EstimationCouts solution={solution} informationBatiment={informationBatiment} />
 
       <Text className="font-medium mt-8 mb-0">Autres estimations</Text>
       <span className={fr.cx("fr-text--xs")}>(isolations comprises)</span>

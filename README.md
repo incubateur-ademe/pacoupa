@@ -41,7 +41,7 @@ Ouvrir le fichier `Simulateur 1 - PACOUPA`
 
 Ouvrir le fichier Simulateur 2 le plus récent. 
 - exporter l'onglet Bdd_energie en bdd_energie.csv
-- exporter l'onglet Bdd_cout en bdd_cout.csv
+- exporter l'onglet Bdd_cout du fichier eco en bdd_eco.csv
 
 Ouvrir le fichier `typologies PACOUPA`.
 - exporter l'onglet principal en typologies.csv.
