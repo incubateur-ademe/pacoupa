@@ -11,6 +11,7 @@ import { createObjectFromFormData } from "@/lib/form-data";
 import { ButtonsFunnel } from "./ButtonsFunnel";
 
 export const ETAPE_ANNEE = 1;
+export const ETAPE_ISOLATION = 2;
 export const ETAPE_NB_LOGEMENTS = 3;
 
 export type HandleFormResult =
@@ -43,7 +44,7 @@ type Props = {
 };
 
 export const WizardForm = ({ schema, render }: Props) => {
-  const { nextStep, isLastStep, activeStep, goToStep } = useWizard();
+  const { nextStep, isLastStep, activeStep } = useWizard();
   const [errors, setErrors] = useState<ZodFormattedError<{ [x: string]: unknown }, string>>();
   const router = useRouter();
   const { store, setStore, resetStore } = usePacoupaSessionStorage();
@@ -69,8 +70,8 @@ export const WizardForm = ({ schema, render }: Props) => {
     if (validation.success) {
       const nextStore = { ...store, ...validation.data } as InformationBatiment;
 
-      if (activeStep === ETAPE_ANNEE) {
-        if (validation.data.annee >= 2000) {
+      if (activeStep === ETAPE_ANNEE || activeStep == ETAPE_ISOLATION) {
+        if (validation.data.annee || (store.annee !== undefined && store.annee >= 2000)) {
           nextStore.renovation = ["fenetres", "sol", "toiture", "murs"] satisfies InformationBatiment["renovation"];
         }
       }
@@ -81,12 +82,6 @@ export const WizardForm = ({ schema, render }: Props) => {
       if (isLastStep) {
         const encoded = Base64.encode(JSON.stringify(nextStore));
         return router.push(`/simulation/resultat?hash=${encoded}`);
-      }
-
-      if (activeStep === ETAPE_ANNEE && nextStore.annee >= 2000) {
-        // on saute la page sur les isolations pour les bâtiments > 2000.
-        goToStep(ETAPE_NB_LOGEMENTS);
-        return;
       }
 
       nextStep().catch(() => {
