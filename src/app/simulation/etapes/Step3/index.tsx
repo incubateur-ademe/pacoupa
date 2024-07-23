@@ -80,7 +80,7 @@ export const Step3 = () => {
                 type="pacoupa"
                 content={
                   store.annee !== undefined && store.annee >= 2000 ? (
-                    <>Votre bâtiment étant récent, Pacoupa considère qu'il est correctement isolé.</>
+                    <>Votre bâtiment étant récent, nous considérons qu’il est déjà correctement isolé.</>
                   ) : (
                     <>
                       Pour vous recommander des chauffages plus écologiques et économiques, nous vous proposerons

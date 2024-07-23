@@ -39,7 +39,7 @@ export const Step11 = () => {
                   nativeInputProps: {
                     defaultChecked: store.energieECS === "fioul",
                     value: "fioul",
-                    disabled: store.typeECS === "individuel",
+                    disabled: store.typeCH === "individuel",
                   },
                 },
                 {
@@ -47,6 +47,8 @@ export const Step11 = () => {
                   nativeInputProps: {
                     defaultChecked: store.energieECS === "gaz",
                     value: "gaz",
+                    disabled:
+                      store.typeCH === "collectif" && store.energieCH === "fioul" && store.typeECS == "collectif",
                   },
                 },
                 {
@@ -54,6 +56,9 @@ export const Step11 = () => {
                   nativeInputProps: {
                     defaultChecked: store.energieECS === "ballon electrique",
                     value: "ballon electrique",
+                    disabled:
+                      (store.typeCH === "collectif" && store.energieCH === "fioul" && store.typeECS == "collectif") ||
+                      (store.typeCH === "individuel" && store.energieCH === "gaz"),
                   },
                 },
               ]}
@@ -61,11 +66,31 @@ export const Step11 = () => {
               stateRelatedMessage={<div aria-live="polite">{errors?.energieECS?._errors}</div>}
             />
 
-            {store.typeECS === "individuel" && (
+            {store.typeCH === "individuel" && store.energieCH !== "gaz" && (
               <Box>
                 <Callout
                   type="pacoupa"
-                  content={<>En individuel, le fioul ne peut pas être utilisé pour l'eau chaude.</>}
+                  content={
+                    <>En chauffage individuel électrique, le fioul ne peut pas être utilisé pour l'eau chaude.</>
+                  }
+                />
+              </Box>
+            )}
+
+            {store.typeCH === "individuel" && store.energieCH === "gaz" && (
+              <Box>
+                <Callout
+                  type="pacoupa"
+                  content={<>En chauffage individuel gaz, seul le gaz peut être utilisé pour l'eau chaude.</>}
+                />
+              </Box>
+            )}
+
+            {store.typeCH === "collectif" && store.energieCH === "fioul" && store.typeECS == "collectif" && (
+              <Box>
+                <Callout
+                  type="pacoupa"
+                  content={<>En chauffage collectif fioul, seul le fioul peut être utilisé pour l'eau chaude.</>}
                 />
               </Box>
             )}

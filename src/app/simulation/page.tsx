@@ -41,12 +41,8 @@ const SimulationLandingPage = () => {
       </Grid>
 
       <P>
-        L’objectif de ce simulateur est de vous proposer <strong>la meilleure solution</strong> de chauffage{" "}
-        <strong>adaptée</strong> à votre copropriété.
-      </P>
-
-      <P>
-        En moins de <strong>3 minutes</strong>, découvrez les systèmes de chauffage compatibles avec votre logement.
+        En seulement 11 questions, ce simulateur vous propose <strong>la meilleure solution</strong> de chauffage{" "}
+        <strong>adaptée</strong> à votre copropriété
       </P>
 
       <Callout

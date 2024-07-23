@@ -3,6 +3,7 @@
 import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
 import { z } from "zod";
 
+import { Callout } from "@/components/Callout";
 import { Box } from "@/dsfr";
 
 import { HeaderFunnel } from "../HeaderFunnel";
@@ -46,12 +47,22 @@ export const Step10 = () => {
                   nativeInputProps: {
                     defaultChecked: store.typeECS === "collectif",
                     value: "collectif",
+                    disabled: store.typeCH === "individuel" && store.energieCH === "gaz",
                   },
                 },
               ]}
               state={errors?.typeECS?._errors ? "error" : "default"}
               stateRelatedMessage={<div aria-live="polite">{errors?.typeECS?._errors}</div>}
             />
+
+            {store.typeCH === "individuel" && store.energieCH === "gaz" && (
+              <Box>
+                <Callout
+                  type="pacoupa"
+                  content={<>En chauffage individuel gaz, seul le gaz peut être utilisé pour l'eau chaude.</>}
+                />
+              </Box>
+            )}
           </Box>
         )}
       />
