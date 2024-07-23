@@ -40,8 +40,6 @@ const ResultatsPage = async ({ searchParams }: { searchParams: ResultatsPageSear
 
   const complet = searchParams.complet === "oui";
 
-  const travauxNiveauIsolation = searchParams.travauxNiveauIsolation ?? "Global";
-
   const unparsedFormData: unknown = JSON.parse(Base64.decode(searchParams.hash));
   const formData = informationBatimentSchema.safeParse(unparsedFormData);
 
@@ -50,7 +48,14 @@ const ResultatsPage = async ({ searchParams }: { searchParams: ResultatsPageSear
     throw new Error(`Erreur de formatage du hash ${JSON.stringify(errors)}`);
   }
 
-  const { solutions, isRcuEligible } = await fetchSolutions(formData.data, travauxNiveauIsolation);
+  const informationBatiment = formData.data;
+
+  // Pour les bâtiments après 2000, on considère qu'il est déjà isolé.
+  // La db ne contient que des données pour un scénario d'enveloppe INIT.
+  const travauxNiveauIsolation =
+    informationBatiment.annee >= 2000 ? "Aucun" : searchParams.travauxNiveauIsolation ?? "Global";
+
+  const { solutions, isRcuEligible } = await fetchSolutions(informationBatiment, travauxNiveauIsolation);
 
   return (
     <>

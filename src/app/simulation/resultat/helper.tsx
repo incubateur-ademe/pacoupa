@@ -34,13 +34,8 @@ type FetchSolutionsReturnType = {
 export const fetchSolutions = async (
   data: InformationBatiment,
   travauxNiveauIsolation: TravauxNiveauIsolation,
+  complet: boolean = false,
 ): Promise<FetchSolutionsReturnType> => {
-  // const dataSimu1 =
-  //   travauxNiveauIsolation === "Global"
-  //     ? ({ ...data, renovation: ["fenetres", "murs", "sol", "toiture"] } as GetSolutionsApplicablesDTO)
-  //     : data;
-
-  // const [baseSolutions, adresses] = await Promise.all([getSolutionsApplicables(dataSimu1), fetchBAN(data.adresse)]);
   const [baseSolutions, adresses] = await Promise.all([getSolutionsApplicables(data), fetchBAN(data.adresse)]);
 
   const {
@@ -51,24 +46,19 @@ export const fetchSolutions = async (
 
   const { isEligible: isRcuEligible } = await fetchFcuEligibility({ lon, lat });
 
-  const solutions = baseSolutions.data.map(solution => {
+  const extractBaseSolutions = complet ? baseSolutions.data : baseSolutions.data.slice(0, isRcuEligible ? 2 : 3);
+
+  const solutions = extractBaseSolutions.map(solution => {
     return { ...catalogueSolutions[solution.id], ...solution };
   });
-
-  // Just in case the Simulateur 2 is not exhaustive.
-  const testSimulateur2 = await getInformationEnergie({
-    ...data,
-    scenarioRenovationEnveloppe: "INIT",
-    scenarioRenovationSysteme: "S0",
-  });
-
-  if (!testSimulateur2.data) throw new Error("Erreur récupération données énergétiques manquantes");
 
   const baseEnergie = await getInformationEnergie({
     ...data,
     scenarioRenovationEnveloppe: "INIT",
     scenarioRenovationSysteme: "S0",
   });
+
+  if (!baseEnergie.data) throw new Error("Erreur récupération données énergétiques manquantes");
 
   const solutionsAvecEnergie = await Promise.all(
     solutions.map(async solution => {

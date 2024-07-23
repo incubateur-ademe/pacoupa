@@ -113,7 +113,9 @@ export const WrapperResultatDetail = ({
 
         <p className="text-sm font-normal">Dépendent des travaux d’isolations</p>
 
-        <TravauxNiveauIsolationSegmentedControl travauxNiveauIsolation={travauxNiveauIsolation} />
+        {informationBatiment.annee < 2000 && (
+          <TravauxNiveauIsolationSegmentedControl travauxNiveauIsolation={travauxNiveauIsolation} />
+        )}
 
         <Box>
           {nbSolutions === 0 ? (
