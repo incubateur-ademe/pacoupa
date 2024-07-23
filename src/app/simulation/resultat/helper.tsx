@@ -19,9 +19,12 @@ import { type SolutionNote } from "@/lib/common/domain/values/SolutionNote";
 import { type SolutionType } from "@/lib/common/domain/values/SolutionTypes";
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
 import { type TypeSystemeWithoutRCU } from "@/lib/common/domain/values/TypeSysteme";
-import { getCoutAideAvecChangementSysteme, getCoutRecurrent } from "@/lib/server/useCases/getInformationCout";
-import { getInformationEnergie } from "@/lib/server/useCases/getInformationEnergie";
-import { getSolutionsApplicables } from "@/lib/server/useCases/getSolutionsApplicables";
+import {
+  getCoutAideAvecChangementSystemeMemoized,
+  getCoutRecurrentMemoized,
+} from "@/lib/server/useCases/getInformationCout";
+import { getInformationEnergieMemoized } from "@/lib/server/useCases/getInformationEnergie";
+import { getSolutionsApplicablesMemoized } from "@/lib/server/useCases/getSolutionsApplicables";
 import { fetchBAN } from "@/lib/services/ban";
 import { fetchFcuEligibility } from "@/lib/services/fcu";
 
@@ -43,7 +46,7 @@ export const fetchSolutions = async ({
   complet = false,
 }: FetchSolutionsParams): Promise<FetchSolutionsReturnType> => {
   const [baseSolutions, adresses] = await Promise.all([
-    getSolutionsApplicables(informationBatiment),
+    getSolutionsApplicablesMemoized(informationBatiment),
     fetchBAN(informationBatiment.adresse),
   ]);
 
@@ -61,7 +64,7 @@ export const fetchSolutions = async ({
     return { ...catalogueSolutions[solution.id], ...solution };
   });
 
-  const baseEnergie = await getInformationEnergie({
+  const baseEnergie = await getInformationEnergieMemoized({
     ...informationBatiment,
     scenarioRenovationEnveloppe: "INIT",
     scenarioRenovationSysteme: "S0",
@@ -71,7 +74,7 @@ export const fetchSolutions = async ({
 
   const solutionsAvecEnergie = await Promise.all(
     solutions.map(async solution => {
-      const futurEnergie = await getInformationEnergie({
+      const futurEnergie = await getInformationEnergieMemoized({
         ...informationBatiment,
         scenarioRenovationEnveloppe:
           travauxNiveauIsolation === "Global" ? "GLOB" : travauxNiveauIsolation === "Partiel" ? "INTER" : "INIT",
@@ -98,7 +101,7 @@ export const fetchSolutions = async ({
     }),
   );
 
-  const baseCout = await getCoutRecurrent({
+  const baseCout = await getCoutRecurrentMemoized({
     ...informationBatiment,
     scenarioRenovationEnveloppe: "INIT",
     scenarioRenovationSysteme: "S0",
@@ -108,7 +111,7 @@ export const fetchSolutions = async ({
 
   const solutionsAvecCout = await Promise.all(
     solutionsAvecEnergie.map(async solution => {
-      const futurCout = await getCoutAideAvecChangementSysteme({
+      const futurCout = await getCoutAideAvecChangementSystemeMemoized({
         ...informationBatiment,
         scenarioRenovationEnveloppe:
           travauxNiveauIsolation === "Global" ? "GLOB" : travauxNiveauIsolation === "Partiel" ? "INTER" : "INIT",

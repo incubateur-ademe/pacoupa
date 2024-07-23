@@ -4,6 +4,7 @@ import { type catalogueSolutions } from "@__content/solutions";
 import { bddEco } from "drizzle/schema";
 import { sql } from "drizzle-orm";
 import { type SQLiteColumn } from "drizzle-orm/sqlite-core";
+import moize from "moize";
 
 import { config } from "@/config";
 import { db } from "@/lib/drizzle";
@@ -46,6 +47,11 @@ export async function getCoutRecurrent(dto: Omit<GetInformationCoutDTO, "solutio
 
   return { data: row };
 }
+
+export const getCoutRecurrentMemoized = moize.serialize(getCoutRecurrent, {
+  isPromise: true,
+  maxAge: config.cacheDuration,
+});
 
 type GetCoutAideAvecChangementSystemeReturnType = {
   data: {
@@ -120,3 +126,8 @@ export async function getCoutAideAvecChangementSysteme(
 
   return { data: row };
 }
+
+export const getCoutAideAvecChangementSystemeMemoized = moize.serialize(getCoutAideAvecChangementSysteme, {
+  isPromise: true,
+  maxAge: config.cacheDuration,
+});
