@@ -21,10 +21,54 @@ const creerClauseWhere = (filters: CriteresBddEco) => {
   return sql`${sql.join(sqlChunks, sql` and `)}`;
 };
 
-export async function getInformationCout(dto: GetInformationCoutDTO) {
+/**
+ * Récupère les coûts et les aides sans prendre en compte de changement de système.
+ *
+ * @param dto
+ */
+export async function getCoutRecurrent(dto: Omit<GetInformationCoutDTO, "solution">) {
   const criteresBddEco = await creerCriteresBddEco(dto);
 
-  if (config.env !== "prod") console.debug("criteresBddEco", JSON.stringify(criteresBddEco, null, 2));
+  if (config.env !== "prod")
+    console.debug("criteresBddEco getInformationCoutRecurrent", JSON.stringify(criteresBddEco, null, 2));
+
+  const [row] = await db
+    .select({
+      id: bddEco.id,
+      coutAbonnement: bddEco.coutAbonnement,
+      coutMaintenance: bddEco.coutMaintenance,
+      factureEnergetique: bddEco.factureEnergetique,
+      coutIsolationEnveloppe: bddEco.coutIsolationEnveloppe,
+    })
+    .from(bddEco)
+    .where(creerClauseWhere(criteresBddEco))
+    .limit(1);
+
+  return { data: row };
+}
+
+type GetCoutAideAvecChangementSystemeReturnType = {
+  data: {
+    aidesInstallationSysteme: number;
+    coutAbonnement: number;
+    coutInstallationSysteme: number;
+    coutIsolationEnveloppe: number | null;
+    coutMaintenance: number;
+    factureEnergetique: number;
+    id: number;
+  };
+};
+
+export async function getCoutAideAvecChangementSysteme(
+  dto: GetInformationCoutDTO,
+): Promise<GetCoutAideAvecChangementSystemeReturnType> {
+  const criteresBddEco = await creerCriteresBddEco(dto);
+
+  if (config.env !== "prod")
+    console.debug(
+      "criteresBddEco getInformationCoutEtAideAvecChangementSysteme",
+      JSON.stringify(criteresBddEco, null, 2),
+    );
 
   const solutionColumn: Record<keyof typeof catalogueSolutions, { aides: SQLiteColumn; cout: SQLiteColumn }> = {
     "01": { cout: bddEco.coutSolution01, aides: bddEco.aidesSolution01 },
@@ -76,5 +120,3 @@ export async function getInformationCout(dto: GetInformationCoutDTO) {
 
   return { data: row };
 }
-
-export type GetInformationCoutReturnDTO = ReturnType<typeof getInformationCout>;

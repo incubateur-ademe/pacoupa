@@ -34,6 +34,7 @@ type Props = {
   idSolution?: string;
   informationBatiment: InformationBatiment;
   isRcuEligible: boolean;
+  nbSolutions: number;
   solutions: SolutionAvecEnergieCoutAide[];
   travauxNiveauIsolation: TravauxNiveauIsolation;
 };
@@ -45,6 +46,7 @@ type Props = {
 export const WrapperResultatDetail = ({
   informationBatiment,
   solutions,
+  nbSolutions,
   idSolution,
   isRcuEligible,
   travauxNiveauIsolation,
@@ -58,8 +60,6 @@ export const WrapperResultatDetail = ({
   if (idSolution) {
     detailSolution = solutions.find(s => s.id === idSolution) || null;
   }
-
-  const nbSolutions = solutions.length;
 
   if (detailSolution)
     return (

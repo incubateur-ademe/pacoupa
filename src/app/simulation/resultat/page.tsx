@@ -55,7 +55,11 @@ const ResultatsPage = async ({ searchParams }: { searchParams: ResultatsPageSear
   const travauxNiveauIsolation =
     informationBatiment.annee >= 2000 ? "Aucun" : searchParams.travauxNiveauIsolation ?? "Global";
 
-  const { solutions, isRcuEligible } = await fetchSolutions(informationBatiment, travauxNiveauIsolation);
+  const { solutions, nbSolutions, isRcuEligible } = await fetchSolutions({
+    informationBatiment,
+    travauxNiveauIsolation,
+    complet,
+  });
 
   return (
     <>
@@ -68,6 +72,7 @@ const ResultatsPage = async ({ searchParams }: { searchParams: ResultatsPageSear
         complet={complet}
         travauxNiveauIsolation={travauxNiveauIsolation}
         idSolution={searchParams.idSolution}
+        nbSolutions={nbSolutions}
       />
     </>
   );

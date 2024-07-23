@@ -23,7 +23,7 @@ export type CriteresBddEco = Pick<
  *
  * @param dto une simulation
  */
-export const creerCriteresBddEco = async (dto: GetInformationCoutDTO): Promise<CriteresBddEco> => {
+export const creerCriteresBddEco = async (dto: Omit<GetInformationCoutDTO, "solution">): Promise<CriteresBddEco> => {
   const typologie = await getTypologie({ annee: dto.annee, nbLogements: dto.nbLogements });
 
   if (!typologie) {
