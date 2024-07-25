@@ -1,10 +1,15 @@
 "use client";
 
 import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
+import assert from "assert";
+import { useEffect, useState } from "react";
 import { z } from "zod";
 
 import { Callout } from "@/components/Callout";
 import { Box } from "@/dsfr";
+import { usePacoupaSessionStorage } from "@/lib/client/usePacoupaSessionStorage";
+import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
+import { getEnergieChPossibles } from "@/lib/server/useCases/getCasPossibles";
 
 import { HeaderFunnel } from "../HeaderFunnel";
 import { WizardForm } from "../WizardForm";
@@ -16,6 +21,21 @@ const schema = z.object({
 });
 
 export const Step8 = () => {
+  const { store } = usePacoupaSessionStorage();
+  const [valeursPossibles, setValeursPossibles] = useState<Array<InformationBatiment["energieCH"]>>([]);
+
+  const { typeCH } = store;
+
+  assert(typeCH, "typeCH is required");
+
+  useEffect(() => {
+    getEnergieChPossibles({
+      typeCh: typeCH,
+    })
+      .then(valeurs => setValeursPossibles(valeurs))
+      .catch(console.error);
+  }, [typeCH]);
+
   return (
     <>
       <HeaderFunnel />
@@ -40,7 +60,7 @@ export const Step8 = () => {
                     nativeInputProps: {
                       defaultChecked: store.energieCH === "fioul",
                       value: "fioul",
-                      disabled: store.typeCH === "individuel",
+                      disabled: !valeursPossibles.includes("fioul"),
                     },
                   },
                   {
@@ -48,6 +68,7 @@ export const Step8 = () => {
                     nativeInputProps: {
                       defaultChecked: store.energieCH === "gaz",
                       value: "gaz",
+                      disabled: !valeursPossibles.includes("gaz"),
                     },
                   },
                   {
@@ -55,7 +76,7 @@ export const Step8 = () => {
                     nativeInputProps: {
                       defaultChecked: store.energieCH === "electricite",
                       value: "electricite",
-                      disabled: store.typeCH === "collectif",
+                      disabled: !valeursPossibles.includes("electricite"),
                     },
                   },
                 ]}
@@ -64,18 +85,19 @@ export const Step8 = () => {
               />
             </Box>
 
-            <Box>
-              <Callout
-                type="pacoupa"
-                content={
-                  store.typeCH === "collectif" ? (
-                    <>En collectif, le chauffage électrique n'est pas disponible.</>
-                  ) : (
-                    <>En individuel, le chauffage par fioul n'est pas disponible.</>
-                  )
-                }
-              />
-            </Box>
+            {valeursPossibles.length < 3 && (
+              <Box>
+                <Callout
+                  type="pacoupa"
+                  content={
+                    <>
+                      Certaines énergie pour le chauffage ne sont pas disponibles, étant donné les renseignements
+                      précédents.
+                    </>
+                  }
+                />
+              </Box>
+            )}
           </>
         )}
       />

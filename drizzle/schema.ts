@@ -264,3 +264,12 @@ export const typologies = sqliteTable("typologies", {
   etatIsolationMurs: text("etat_isolation_murs", { enum: enumIsolation }).notNull(),
   surfaceMurs: integer("surface_murs").notNull(),
 });
+
+export const casPossibles = sqliteTable("cas_possibles", {
+  id: integer("id").primaryKey(),
+  typeCh: text("type_CH", { enum: ["collectif", "individuel"] }).notNull(),
+  energieCh: text("energie_CH", { enum: ["fioul", "gaz", "electricite"] }).notNull(),
+  typeEcs: text("type_ECS", { enum: ["collectif", "individuel"] }).notNull(),
+  energieEcs: text("energie_ECS", { enum: ["fioul", "gaz", "electricite"] }).notNull(),
+  estPossible: text("est_possible").notNull(),
+});
