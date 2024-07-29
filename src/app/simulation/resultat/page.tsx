@@ -1,7 +1,7 @@
 import { Base64 } from "js-base64";
 import { type Metadata } from "next";
 
-import { informationBatimentSchema } from "@/lib/common/domain/InformationBatiment";
+import { estGlobalementRenove, informationBatimentSchema } from "@/lib/common/domain/InformationBatiment";
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
 
 import { sharedMetadata } from "../../shared-metadata";
@@ -50,10 +50,11 @@ const ResultatsPage = async ({ searchParams }: { searchParams: ResultatsPageSear
 
   const informationBatiment = formData.data;
 
-  // Pour les bâtiments après 2000, on considère qu'il est déjà isolé.
-  // La db ne contient que des données pour un scénario d'enveloppe INIT.
-  const travauxNiveauIsolation =
-    informationBatiment.annee >= 2000 ? "Aucun" : searchParams.travauxNiveauIsolation ?? "Global";
+  // Pour les bâtiments après 2000 ou déjà entièrement rénové, on ne propose plus de rénovation globale.
+  // Pour info, pour les bâtiments > 2000, la db ne contient que des données pour un scénario d'enveloppe INIT.
+  const travauxNiveauIsolation = estGlobalementRenove(informationBatiment)
+    ? "Aucun"
+    : searchParams.travauxNiveauIsolation ?? "Global";
 
   const { solutions, nbSolutions, isRcuEligible } = await fetchSolutions({
     informationBatiment,

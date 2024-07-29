@@ -33,3 +33,6 @@ export const informationBatimentSchema = z
   .strict();
 
 export type InformationBatiment = z.infer<typeof informationBatimentSchema>;
+
+export const estGlobalementRenove = (informationBatiment: InformationBatiment) =>
+  informationBatiment.renovation?.length === 4 || informationBatiment.annee >= 2000;
