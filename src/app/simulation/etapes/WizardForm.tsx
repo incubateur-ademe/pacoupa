@@ -65,11 +65,16 @@ export const WizardForm = ({ schema, render }: Props) => {
     const formData = new FormData(event.currentTarget);
     const validation = schema.safeParse(createObjectFromFormData(schema)(formData));
 
+    // show data in formData
+    // for (const [key, value] of formData.entries()) {
+    //   console.log(`key ${key}: ${JSON.stringify(value)}`);
+    // }
+
     if (validation.success) {
       const nextStore = { ...store, ...validation.data } as InformationBatiment;
 
-      if (activeStep === ETAPE_ANNEE || activeStep == ETAPE_ISOLATION) {
-        if (validation.data.annee || (store.annee !== undefined && store.annee >= 2000)) {
+      if (activeStep === ETAPE_ANNEE) {
+        if (validation.data.annee !== undefined && validation.data.annee >= 2000) {
           nextStore.renovation = ["fenetres", "sol", "toiture", "murs"] satisfies InformationBatiment["renovation"];
         }
       }

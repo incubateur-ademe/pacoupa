@@ -75,6 +75,15 @@ export const Step3 = () => {
               />
             </Box>
 
+            <>
+              {/* Fix: when the checkbox are disabled, they are not submitted but they should. */}
+              {store.annee !== undefined &&
+                store.annee >= 2000 &&
+                ["fenetres", "sol", "toiture", "murs"].map(value => (
+                  <input key={value} type="hidden" name="renovation" value={value} />
+                ))}
+            </>
+
             <Box>
               <Callout
                 type="pacoupa"

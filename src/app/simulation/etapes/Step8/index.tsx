@@ -91,7 +91,7 @@ export const Step8 = () => {
                   type="pacoupa"
                   content={
                     <>
-                      Certaines énergie pour le chauffage ne sont pas disponibles, étant donné les renseignements
+                      Certaines énergies pour le chauffage ne sont pas disponibles, étant donné les renseignements
                       précédents.
                     </>
                   }
