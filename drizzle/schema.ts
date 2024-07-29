@@ -161,6 +161,10 @@ export const bddEco = sqliteTable(
     id: integer("id").primaryKey(),
     zoneClimatique: text("zone_climatique", { enum: enumZoneClimatique }).notNull(),
     typologie: text("typologie", { enum: enumTypologie }).notNull(),
+    etatIsolationMenuiseries: text("etat_isolation_menuiseries", { enum: enumIsolation }).notNull(),
+    etatIsolationPlancherBas: text("etat_isolation_plancher_bas", { enum: enumIsolation }).notNull(),
+    etatIsolationPlancherHaut: text("etat_isolation_plancher_haut", { enum: enumIsolation }).notNull(),
+    etatIsolationMurs: text("etat_isolation_murs", { enum: enumIsolation }).notNull(),
     scenarioRenovationEnveloppe: text("scenario_renovation_enveloppe", {
       enum: enumScenarioRenovationEnveloppe,
     }).notNull(),
