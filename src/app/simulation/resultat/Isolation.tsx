@@ -7,11 +7,12 @@ import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxN
 import { ShowIsolationImages } from "./ShowIsolationImages";
 
 type Props = {
+  estGlobalementRenove: boolean;
   gestes: GesteIsolation[];
   travauxNiveauIsolation: TravauxNiveauIsolation;
 };
 
-export const Isolation = ({ gestes, travauxNiveauIsolation }: Props) => {
+export const Isolation = ({ gestes, travauxNiveauIsolation, estGlobalementRenove }: Props) => {
   return (
     <>
       <p className="mb-2">Isolations à prévoir</p>
@@ -29,6 +30,20 @@ export const Isolation = ({ gestes, travauxNiveauIsolation }: Props) => {
       <Box className="mt-4 flex justify-center gap-8">
         <ShowIsolationImages gestes={gestes} />
       </Box>
+      {estGlobalementRenove && (
+        <Box className="mt-4 flex justify-center gap-8">
+          <Callout
+            type="pacoupa"
+            content={
+              <div className="leading-6">
+                <strong>Super nouvelle !</strong>
+                <br /> Vous habitez dans un immeuble qui est énergiquement déjà très performant ! Il n’y a plus qu’à
+                changer le chauffage 🙌
+              </div>
+            }
+          />
+        </Box>
+      )}
       {gestes.length > 0 && (
         <Box className="my-4">
           <Callout

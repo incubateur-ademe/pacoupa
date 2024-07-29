@@ -24,7 +24,9 @@ export const ButtonsFunnel = ({ disabled }: Props = { disabled: false }) => {
               priority="tertiary no outline"
               iconId="fr-icon-arrow-left-line"
               nativeButtonProps={{
-                onClick: () => previousStep(),
+                onClick: () => {
+                  previousStep();
+                },
               }}
             >
               Retour

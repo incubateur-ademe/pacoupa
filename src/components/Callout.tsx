@@ -58,7 +58,7 @@ export const Callout = ({ content, iconId, icon, title, type }: PropsWithChildre
       <div className="flex">
         <div className="flex-shrink-0 -mt-0.5">{icon}</div>
         <div className="ml-2">
-          {title && <h3 className={`text-sm font-medium ${titleColor}`}>{title}</h3>}
+          {title && <h3 className={`text-sm font-medium ${titleColor} mb-0`}>{title}</h3>}
           <div className={cx("text-sm", { "mt-2": !!title }, `${contentColor}`)}>{content}</div>
         </div>
       </div>

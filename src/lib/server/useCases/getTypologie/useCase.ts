@@ -1,7 +1,7 @@
 "use server";
 
 import { typologies } from "drizzle/schema";
-import { and, sql } from "drizzle-orm";
+import moize from "moize";
 
 import { db } from "@/lib/drizzle";
 
@@ -11,16 +11,28 @@ type CriteriaProps = {
 };
 
 export async function getTypologie(criteria: CriteriaProps) {
-  const [row] = await db
-    .select()
-    .from(typologies)
-    .where(
-      sql`${and(
-        sql`(${typologies.minPeriode} <= ${criteria.annee} or ${typologies.minPeriode} is null) and (${typologies.maxPeriode} >= ${criteria.annee} or ${typologies.maxPeriode} is null)`,
-        sql`(${typologies.minLogements} <= ${criteria.nbLogements} or ${typologies.minLogements} is null) and (${typologies.maxLogements} >= ${criteria.nbLogements} or ${typologies.maxLogements} is null)`,
-      )}`,
-    )
-    .limit(1);
+  const typologies = await getAllTypologiesMemoized();
 
-  return { data: row };
+  const typologie = typologies.data.find(
+    typologie =>
+      (typologie.minPeriode === null || typologie.minPeriode <= criteria.annee) &&
+      (typologie.maxPeriode === null || typologie.maxPeriode >= criteria.annee) &&
+      (typologie.minLogements === null || typologie.minLogements <= criteria.nbLogements) &&
+      (typologie.maxLogements === null || typologie.maxLogements >= criteria.nbLogements),
+  );
+
+  return typologie;
 }
+
+export async function getAllTypologies() {
+  const rows = await db.select().from(typologies);
+
+  return { data: rows };
+}
+
+/**
+ * Memoized version of getAllTypologies.
+ *
+ * Typologies are not supposed to change often, so we can memoize the result.
+ */
+export const getAllTypologiesMemoized = moize(getAllTypologies, { isPromise: true });

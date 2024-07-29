@@ -2,6 +2,7 @@
 
 import { criteres, solutions, solutionsParCriteres } from "drizzle/schema";
 import { eq, or, sql } from "drizzle-orm";
+import moize from "moize";
 
 import { config } from "@/config";
 import { db } from "@/lib/drizzle";
@@ -62,3 +63,8 @@ export async function getSolutionsApplicables(dto: GetSolutionsApplicablesDTO) {
 
   return { data: rows };
 }
+
+export const getSolutionsApplicablesMemoized = moize.serialize(getSolutionsApplicables, {
+  isPromise: true,
+  maxAge: config.cacheDuration,
+});

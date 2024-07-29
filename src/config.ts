@@ -16,4 +16,5 @@ export const config = {
   tallyButtonLabel: "S'inscrire",
   tallyId: "wvybQ4",
   storeKey: "pacoupa-simulation",
+  cacheDuration: 1000 * 60 * 10, // 10 minutes
 };

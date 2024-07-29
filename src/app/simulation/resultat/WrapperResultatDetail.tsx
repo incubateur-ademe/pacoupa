@@ -13,7 +13,7 @@ import { NoDataImage } from "@/components/img/NoDataImage";
 import { TravauxNiveauIsolationSegmentedControl } from "@/components/IsolationSegmentedControl";
 import { Box, Grid, GridCol } from "@/dsfr";
 import { H2 } from "@/dsfr/base/typography";
-import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
+import { estGlobalementRenove, type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
 import { createSearchParams } from "@/utils/searchParams";
@@ -26,7 +26,7 @@ import { familleImageMap } from "./helper";
 import { Isolation } from "./Isolation";
 import { NouvelleSimulation } from "./NouvelleSimulation";
 import { type ResultatsPageSearchParamsProps } from "./page";
-import { computeIsolations } from "./ShowIsolationImages";
+import { calculeIsolationsManquantes } from "./ShowIsolationImages";
 import { Usage } from "./Usage";
 
 type Props = {
@@ -34,6 +34,7 @@ type Props = {
   idSolution?: string;
   informationBatiment: InformationBatiment;
   isRcuEligible: boolean;
+  nbSolutions: number;
   solutions: SolutionAvecEnergieCoutAide[];
   travauxNiveauIsolation: TravauxNiveauIsolation;
 };
@@ -45,6 +46,7 @@ type Props = {
 export const WrapperResultatDetail = ({
   informationBatiment,
   solutions,
+  nbSolutions,
   idSolution,
   isRcuEligible,
   travauxNiveauIsolation,
@@ -58,8 +60,6 @@ export const WrapperResultatDetail = ({
   if (idSolution) {
     detailSolution = solutions.find(s => s.id === idSolution) || null;
   }
-
-  const nbSolutions = solutions.length;
 
   if (detailSolution)
     return (
@@ -113,7 +113,9 @@ export const WrapperResultatDetail = ({
 
         <p className="text-sm font-normal">Dépendent des travaux d’isolations</p>
 
-        <TravauxNiveauIsolationSegmentedControl travauxNiveauIsolation={travauxNiveauIsolation} />
+        {!estGlobalementRenove(informationBatiment) && (
+          <TravauxNiveauIsolationSegmentedControl travauxNiveauIsolation={travauxNiveauIsolation} />
+        )}
 
         <Box>
           {nbSolutions === 0 ? (
@@ -145,7 +147,7 @@ export const WrapperResultatDetail = ({
             </GridCol>
           )}
           {solutions.slice(0, complet ? nbSolutions : isRcuEligible ? 2 : 3).map((solution, index) => {
-            const gestes = computeIsolations(solution);
+            const gestes = calculeIsolationsManquantes(solution);
             const marker = !isRcuEligible && index === 0 && { marker: "Meilleure solution" };
 
             return (
@@ -159,7 +161,11 @@ export const WrapperResultatDetail = ({
                       </Box>
                       <hr />
                       <Box>
-                        <Isolation gestes={gestes} travauxNiveauIsolation={travauxNiveauIsolation} />
+                        <Isolation
+                          gestes={gestes}
+                          travauxNiveauIsolation={travauxNiveauIsolation}
+                          estGlobalementRenove={estGlobalementRenove(informationBatiment)}
+                        />
                       </Box>
                       <hr className="mt-8" />
 

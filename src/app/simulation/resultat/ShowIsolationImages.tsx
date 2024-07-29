@@ -10,7 +10,7 @@ type Props = {
   gestes: GesteIsolation[];
 };
 
-export const computeIsolations = (solution: Solution & SolutionEnergie): GesteIsolation[] => {
+export const calculeIsolationsManquantes = (solution: Solution & SolutionEnergie): GesteIsolation[] => {
   const result: GesteIsolation[] = [];
 
   if (solution.etaIsolationPlancherBasApres === "Isolé" && solution.etaIsolationPlancherBasAvant === "Pas isolé")

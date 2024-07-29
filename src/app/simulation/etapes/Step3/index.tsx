@@ -39,6 +39,7 @@ export const Step3 = () => {
                       defaultChecked: store.renovation?.includes("toiture"),
                       name: "renovation",
                       value: "toiture",
+                      disabled: store.annee !== undefined && store.annee >= 2000,
                     },
                   },
                   {
@@ -47,6 +48,7 @@ export const Step3 = () => {
                       defaultChecked: store.renovation?.includes("murs"),
                       name: "renovation",
                       value: "murs",
+                      disabled: store.annee !== undefined && store.annee >= 2000,
                     },
                   },
                   {
@@ -55,6 +57,7 @@ export const Step3 = () => {
                       defaultChecked: store.renovation?.includes("sol"),
                       name: "renovation",
                       value: "sol",
+                      disabled: store.annee !== undefined && store.annee >= 2000,
                     },
                   },
                   {
@@ -63,6 +66,7 @@ export const Step3 = () => {
                       defaultChecked: store.renovation?.includes("fenetres"),
                       name: "renovation",
                       value: "fenetres",
+                      disabled: store.annee !== undefined && store.annee >= 2000,
                     },
                   },
                 ]}
@@ -71,14 +75,27 @@ export const Step3 = () => {
               />
             </Box>
 
+            <>
+              {/* Fix: when the checkbox are disabled, they are not submitted but they should. */}
+              {store.annee !== undefined &&
+                store.annee >= 2000 &&
+                ["fenetres", "sol", "toiture", "murs"].map(value => (
+                  <input key={value} type="hidden" name="renovation" value={value} />
+                ))}
+            </>
+
             <Box>
               <Callout
                 type="pacoupa"
                 content={
-                  <>
-                    Pour vous recommander des chauffages plus écologiques et économiques, nous vous proposerons
-                    également des gestes d'isolation adaptés.
-                  </>
+                  store.annee !== undefined && store.annee >= 2000 ? (
+                    <>Votre bâtiment étant récent, nous considérons qu’il est déjà correctement isolé.</>
+                  ) : (
+                    <>
+                      Pour vous recommander des chauffages plus écologiques et économiques, nous vous proposerons
+                      également des gestes d'isolation adaptés.
+                    </>
+                  )
                 }
               />
             </Box>

@@ -1,9 +1,15 @@
 "use client";
 
 import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
+import assert from "assert";
+import { useEffect, useState } from "react";
 import { z } from "zod";
 
+import { Callout } from "@/components/Callout";
 import { Box } from "@/dsfr";
+import { usePacoupaSessionStorage } from "@/lib/client/usePacoupaSessionStorage";
+import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
+import { getEnergieChPossibles } from "@/lib/server/useCases/getCasPossibles";
 
 import { HeaderFunnel } from "../HeaderFunnel";
 import { WizardForm } from "../WizardForm";
@@ -15,6 +21,21 @@ const schema = z.object({
 });
 
 export const Step8 = () => {
+  const { store } = usePacoupaSessionStorage();
+  const [valeursPossibles, setValeursPossibles] = useState<Array<InformationBatiment["energieCH"]>>([]);
+
+  const { typeCH } = store;
+
+  assert(typeCH, "typeCH is required");
+
+  useEffect(() => {
+    getEnergieChPossibles({
+      typeCh: typeCH,
+    })
+      .then(valeurs => setValeursPossibles(valeurs))
+      .catch(console.error);
+  }, [typeCH]);
+
   return (
     <>
       <HeaderFunnel />
@@ -39,6 +60,7 @@ export const Step8 = () => {
                     nativeInputProps: {
                       defaultChecked: store.energieCH === "fioul",
                       value: "fioul",
+                      disabled: !valeursPossibles.includes("fioul"),
                     },
                   },
                   {
@@ -46,6 +68,7 @@ export const Step8 = () => {
                     nativeInputProps: {
                       defaultChecked: store.energieCH === "gaz",
                       value: "gaz",
+                      disabled: !valeursPossibles.includes("gaz"),
                     },
                   },
                   {
@@ -53,6 +76,7 @@ export const Step8 = () => {
                     nativeInputProps: {
                       defaultChecked: store.energieCH === "electricite",
                       value: "electricite",
+                      disabled: !valeursPossibles.includes("electricite"),
                     },
                   },
                 ]}
@@ -60,6 +84,20 @@ export const Step8 = () => {
                 stateRelatedMessage={<div aria-live="polite">{errors?.energieCH?._errors}</div>}
               />
             </Box>
+
+            {valeursPossibles.length < 3 && (
+              <Box>
+                <Callout
+                  type="pacoupa"
+                  content={
+                    <>
+                      Certaines énergies pour le chauffage ne sont pas disponibles, étant donné les renseignements
+                      précédents.
+                    </>
+                  }
+                />
+              </Box>
+            )}
           </>
         )}
       />

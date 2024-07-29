@@ -14,12 +14,12 @@ import { EstimationGains } from "@/components/EstimationGains";
 import { Box } from "@/dsfr";
 import { H2, Text } from "@/dsfr/base/typography";
 import { useScrollTop } from "@/lib/client/useScrollTop";
-import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
+import { estGlobalementRenove, type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
 
 import { Isolation } from "./Isolation";
-import { computeIsolations } from "./ShowIsolationImages";
+import { calculeIsolationsManquantes as calculeIsolationsManquantes } from "./ShowIsolationImages";
 import { Usage } from "./Usage";
 
 type Props = {
@@ -35,7 +35,7 @@ export const DetailSolution = ({ solution, informationBatiment, travauxNiveauIso
 
   const { width = 0 } = useWindowSize({ debounceDelay: 100, initializeWithValue: false });
 
-  const gestes = computeIsolations(solution);
+  const gestes = calculeIsolationsManquantes(solution);
 
   const handleClose = (event: Event | React.SyntheticEvent, reason?: string) => {
     if (reason === "clickaway") {
@@ -92,7 +92,11 @@ export const DetailSolution = ({ solution, informationBatiment, travauxNiveauIso
       <hr />
 
       <Box>
-        <Isolation gestes={gestes} travauxNiveauIsolation={travauxNiveauIsolation} />
+        <Isolation
+          gestes={gestes}
+          travauxNiveauIsolation={travauxNiveauIsolation}
+          estGlobalementRenove={estGlobalementRenove(informationBatiment)}
+        />
       </Box>
 
       <hr className="mt-8" />
