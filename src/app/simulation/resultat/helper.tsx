@@ -19,10 +19,12 @@ import { type SolutionNote } from "@/lib/common/domain/values/SolutionNote";
 import { type SolutionType } from "@/lib/common/domain/values/SolutionTypes";
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
 import { type TypeSystemeWithoutRCU } from "@/lib/common/domain/values/TypeSysteme";
-import { getInformationCout } from "@/lib/server/useCases/getInformationCout";
-import { getInformationEnergie } from "@/lib/server/useCases/getInformationEnergie";
-import { getSolutionsApplicables } from "@/lib/server/useCases/getSolutionsApplicables";
-import { type GetSolutionsApplicablesDTO } from "@/lib/server/useCases/getSolutionsApplicables/dto";
+import {
+  getCoutAideAvecChangementSystemeMemoized,
+  getCoutRecurrentMemoized,
+} from "@/lib/server/useCases/getInformationCout";
+import { getInformationEnergieMemoized } from "@/lib/server/useCases/getInformationEnergie";
+import { getSolutionsApplicablesMemoized } from "@/lib/server/useCases/getSolutionsApplicables";
 import { fetchBAN } from "@/lib/services/ban";
 import { fetchFcuEligibility } from "@/lib/services/fcu";
 
@@ -32,48 +34,48 @@ type FetchSolutionsReturnType = {
   solutions: SolutionAvecEnergieCoutAide[];
 };
 
-export const fetchSolutions = async (
-  data: InformationBatiment,
-  travauxNiveauIsolation: TravauxNiveauIsolation,
-): Promise<FetchSolutionsReturnType> => {
-  const dataSimu1 =
-    travauxNiveauIsolation === "Global"
-      ? ({ ...data, renovation: ["fenetres", "murs", "sol", "toiture"] } as GetSolutionsApplicablesDTO)
-      : data;
+type FetchSolutionsParams = {
+  complet?: boolean;
+  informationBatiment: InformationBatiment;
+  travauxNiveauIsolation: TravauxNiveauIsolation;
+};
 
-  const [baseSolutions, adresses] = await Promise.all([getSolutionsApplicables(dataSimu1), fetchBAN(data.adresse)]);
+export const fetchSolutions = async ({
+  informationBatiment,
+  travauxNiveauIsolation,
+  complet = false,
+}: FetchSolutionsParams): Promise<FetchSolutionsReturnType> => {
+  const [baseSolutions, adresses] = await Promise.all([
+    getSolutionsApplicablesMemoized(informationBatiment),
+    fetchBAN(informationBatiment.adresse),
+  ]);
 
   const {
-    geometry: { coordinates },
+    geometry: {
+      coordinates: [lon, lat],
+    },
   } = adresses.features[0];
-
-  const [lon, lat] = coordinates;
 
   const { isEligible: isRcuEligible } = await fetchFcuEligibility({ lon, lat });
 
-  const solutions = baseSolutions.data.map(solution => {
+  const trancheBaseSolutions = complet ? baseSolutions.data : baseSolutions.data.slice(0, isRcuEligible ? 2 : 3);
+
+  const solutions = trancheBaseSolutions.map(solution => {
     return { ...catalogueSolutions[solution.id], ...solution };
   });
 
-  // Just in case the Simulateur 2 is not exhaustive.
-  const testSimulateur2 = await getInformationEnergie({
-    ...data,
+  const baseEnergie = await getInformationEnergieMemoized({
+    ...informationBatiment,
     scenarioRenovationEnveloppe: "INIT",
     scenarioRenovationSysteme: "S0",
   });
 
-  if (!testSimulateur2.data) throw new Error("Erreur récupération données énergétiques manquantes");
+  if (!baseEnergie.data) throw new Error("Erreur récupération données énergétiques manquantes");
 
   const solutionsAvecEnergie = await Promise.all(
     solutions.map(async solution => {
-      const baseEnergie = await getInformationEnergie({
-        ...data,
-        scenarioRenovationEnveloppe: "INIT",
-        scenarioRenovationSysteme: "S0",
-      });
-
-      const futurEnergie = await getInformationEnergie({
-        ...data,
+      const futurEnergie = await getInformationEnergieMemoized({
+        ...informationBatiment,
         scenarioRenovationEnveloppe:
           travauxNiveauIsolation === "Global" ? "GLOB" : travauxNiveauIsolation === "Partiel" ? "INTER" : "INIT",
         scenarioRenovationSysteme: solution.typeSysteme as TypeSystemeWithoutRCU,
@@ -99,17 +101,18 @@ export const fetchSolutions = async (
     }),
   );
 
+  const baseCout = await getCoutRecurrentMemoized({
+    ...informationBatiment,
+    scenarioRenovationEnveloppe: "INIT",
+    scenarioRenovationSysteme: "S0",
+  });
+
+  if (!baseCout.data) throw new Error("Erreur récupération données coût et aides manquantes");
+
   const solutionsAvecCout = await Promise.all(
     solutionsAvecEnergie.map(async solution => {
-      const baseCout = await getInformationCout({
-        ...data,
-        scenarioRenovationEnveloppe: "INIT",
-        scenarioRenovationSysteme: "S0",
-        solution: solution.id,
-      });
-
-      const futurCout = await getInformationCout({
-        ...data,
+      const futurCout = await getCoutAideAvecChangementSystemeMemoized({
+        ...informationBatiment,
         scenarioRenovationEnveloppe:
           travauxNiveauIsolation === "Global" ? "GLOB" : travauxNiveauIsolation === "Partiel" ? "INTER" : "INIT",
         scenarioRenovationSysteme: solution.typeSysteme as TypeSystemeWithoutRCU,
@@ -131,10 +134,8 @@ export const fetchSolutions = async (
     }),
   );
 
-  const nbSolutions = solutions.length + (isRcuEligible ? 1 : 0);
-
   return {
-    nbSolutions,
+    nbSolutions: baseSolutions.data.length + (isRcuEligible ? 1 : 0),
     solutions: solutionsAvecCout,
     isRcuEligible,
   };

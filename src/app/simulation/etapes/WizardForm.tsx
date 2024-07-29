@@ -10,6 +10,10 @@ import { createObjectFromFormData } from "@/lib/form-data";
 
 import { ButtonsFunnel } from "./ButtonsFunnel";
 
+export const ETAPE_ANNEE = 1;
+export const ETAPE_ISOLATION = 2;
+export const ETAPE_NB_LOGEMENTS = 3;
+
 export type HandleFormResult =
   | {
       errors: ZodFormattedError<{ [x: string]: unknown }, string>;
@@ -40,7 +44,7 @@ type Props = {
 };
 
 export const WizardForm = ({ schema, render }: Props) => {
-  const { nextStep, isLastStep } = useWizard();
+  const { nextStep, isLastStep, activeStep } = useWizard();
   const [errors, setErrors] = useState<ZodFormattedError<{ [x: string]: unknown }, string>>();
   const router = useRouter();
   const { store, setStore, resetStore } = usePacoupaSessionStorage();
@@ -61,10 +65,23 @@ export const WizardForm = ({ schema, render }: Props) => {
     const formData = new FormData(event.currentTarget);
     const validation = schema.safeParse(createObjectFromFormData(schema)(formData));
 
+    // show data in formData
+    // for (const [key, value] of formData.entries()) {
+    //   console.log(`key ${key}: ${JSON.stringify(value)}`);
+    // }
+
     if (validation.success) {
       const nextStore = { ...store, ...validation.data } as InformationBatiment;
+
+      if (activeStep === ETAPE_ANNEE) {
+        if (validation.data.annee !== undefined && validation.data.annee >= 2000) {
+          nextStore.renovation = ["fenetres", "sol", "toiture", "murs"] satisfies InformationBatiment["renovation"];
+        }
+      }
+
       setStore(nextStore);
 
+      /* navigation exceptions */
       if (isLastStep) {
         const encoded = Base64.encode(JSON.stringify(nextStore));
         return router.push(`/simulation/resultat?hash=${encoded}`);

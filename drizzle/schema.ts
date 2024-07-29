@@ -161,6 +161,10 @@ export const bddEco = sqliteTable(
     id: integer("id").primaryKey(),
     zoneClimatique: text("zone_climatique", { enum: enumZoneClimatique }).notNull(),
     typologie: text("typologie", { enum: enumTypologie }).notNull(),
+    etatIsolationMenuiseries: text("etat_isolation_menuiseries", { enum: enumIsolation }).notNull(),
+    etatIsolationPlancherBas: text("etat_isolation_plancher_bas", { enum: enumIsolation }).notNull(),
+    etatIsolationPlancherHaut: text("etat_isolation_plancher_haut", { enum: enumIsolation }).notNull(),
+    etatIsolationMurs: text("etat_isolation_murs", { enum: enumIsolation }).notNull(),
     scenarioRenovationEnveloppe: text("scenario_renovation_enveloppe", {
       enum: enumScenarioRenovationEnveloppe,
     }).notNull(),
@@ -263,4 +267,13 @@ export const typologies = sqliteTable("typologies", {
   surfacePlancherHaut: integer("surface_plancher_haut").notNull(),
   etatIsolationMurs: text("etat_isolation_murs", { enum: enumIsolation }).notNull(),
   surfaceMurs: integer("surface_murs").notNull(),
+});
+
+export const casPossibles = sqliteTable("cas_possibles", {
+  id: integer("id").primaryKey(),
+  typeCh: text("type_CH", { enum: ["collectif", "individuel"] }).notNull(),
+  energieCh: text("energie_CH", { enum: ["fioul", "gaz", "electricite"] }).notNull(),
+  typeEcs: text("type_ECS", { enum: ["collectif", "individuel"] }).notNull(),
+  energieEcs: text("energie_ECS", { enum: ["fioul", "gaz", "electricite"] }).notNull(),
+  estPossible: text("est_possible").notNull(),
 });

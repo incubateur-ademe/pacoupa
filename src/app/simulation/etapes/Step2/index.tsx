@@ -1,10 +1,12 @@
 "use client";
 
 import Input from "@codegouvfr/react-dsfr/Input";
+import { useState } from "react";
 import { z } from "zod";
 
 import { Callout } from "@/components/Callout";
 import { Box } from "@/dsfr";
+import { usePacoupaSessionStorage } from "@/lib/client/usePacoupaSessionStorage";
 
 import { HeaderFunnel } from "../HeaderFunnel";
 import { WizardForm } from "../WizardForm";
@@ -22,6 +24,9 @@ const schema = z.object({
 });
 
 export const Step2 = () => {
+  const { store } = usePacoupaSessionStorage();
+  const [annee, setAnnee] = useState(store.annee);
+
   return (
     <>
       <HeaderFunnel />
@@ -47,6 +52,9 @@ export const Step2 = () => {
                   onBlur: e => {
                     e.target.value = String(Math.round(Number(e.target.value)));
                   },
+                  onChange: e => {
+                    setAnnee(Number(e.target.value));
+                  },
                 }}
                 state={errors?.annee?._errors ? "error" : "default"}
                 stateRelatedMessage={<div aria-live="polite">{errors?.annee?._errors}</div>}
@@ -56,7 +64,13 @@ export const Step2 = () => {
               <Callout
                 type="pacoupa"
                 content={
-                  <>Tous les bâtiments construits avant 1945 sont identiques au niveau de leur isolation d’origine.</>
+                  annee !== undefined && annee >= 2000 ? (
+                    <>
+                      Tous les bâtiments construits après les années 2000 sont <strong>correctement isolés</strong>.
+                    </>
+                  ) : (
+                    <>Tous les bâtiments construits avant 1945 sont identiques au niveau de leur isolation d’origine.</>
+                  )
                 }
               />
             </Box>

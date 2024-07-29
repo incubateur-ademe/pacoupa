@@ -1,4 +1,4 @@
-import { getInformationCout } from "@/lib/server/useCases/getInformationCout";
+import { getCoutAideAvecChangementSysteme } from "@/lib/server/useCases/getInformationCout";
 import { GetInformationCoutDTOSchema } from "@/lib/server/useCases/getInformationCout/dto";
 
 export const dynamic = "force-dynamic"; // defaults to auto
@@ -16,7 +16,7 @@ export async function POST(request: Request) {
     return Response.json({ error: `Données invalides`, detail: errors }, { status: 400 });
   }
 
-  const res = await getInformationCout(dto.data);
+  const res = await getCoutAideAvecChangementSysteme(dto.data);
 
   return Response.json(res, { status: 200 });
 }

@@ -63,3 +63,6 @@ certificates
 # SQLite
 *.db-shm
 *.db-wal
+
+# Google drive credentials
+credentials.json

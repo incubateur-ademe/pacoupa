@@ -30,7 +30,7 @@ export type CriteresBddEnergie = Pick<
 export const creerCriteresBddEnergie = async (dto: GetInformationEnergieDTO): Promise<CriteresBddEnergie> => {
   const typologie = await getTypologie({ annee: dto.annee, nbLogements: dto.nbLogements });
 
-  if (!typologie.data) {
+  if (!typologie) {
     throw new Error("Typologie not found");
   }
 
@@ -48,7 +48,7 @@ export const creerCriteresBddEnergie = async (dto: GetInformationEnergieDTO): Pr
   const ecs: CriteresBddEnergie["ecs"] = dto.typeECS === "collectif" ? "COL" : "IND";
 
   return {
-    typologie: typologie.data.nom,
+    typologie: typologie.nom,
     zoneClimatique,
     etatIsolationMenuiseries,
     etatIsolationPlancherBas,

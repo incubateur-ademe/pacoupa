@@ -2,6 +2,7 @@
 
 import { bddEnergie } from "drizzle/schema";
 import { sql } from "drizzle-orm";
+import moize from "moize";
 
 import { config } from "@/config";
 import { db } from "@/lib/drizzle";
@@ -50,3 +51,8 @@ export async function getInformationEnergie(dto: GetInformationEnergieDTO) {
 }
 
 export type GetInformationEnergieReturnDTO = ReturnType<typeof getInformationEnergie>;
+
+export const getInformationEnergieMemoized = moize.serialize(getInformationEnergie, {
+  isPromise: true,
+  maxAge: config.cacheDuration,
+});
