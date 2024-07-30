@@ -47,7 +47,7 @@ export const Card = ({
         {marker && (
           <Box
             className={cx(
-              "bg-green-50 py-0 px-2 shadow-[1px_1px_0px_#183D2F] rounded-[24px] border-green-700 border border-solid text-sm leading-6 absolute -top-3",
+              "bg-decoration-300 py-0 px-2 shadow-[1px_1px_0px_#183D2F] rounded-[24px] border-green-700 border border-solid text-sm leading-6 absolute -top-3",
               { "self-start": markerPosition === "left", "self-end": markerPosition === "right" },
             )}
           >

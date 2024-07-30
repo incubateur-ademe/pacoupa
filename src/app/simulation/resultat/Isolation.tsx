@@ -1,4 +1,4 @@
-import { BadgePacoupa } from "@/components/BadgePacoupa";
+import { Badge } from "@/components/Badge";
 import { Callout } from "@/components/Callout";
 import { Box } from "@/dsfr";
 import { type GesteIsolation } from "@/lib/common/domain/values/GesteIsolation";
@@ -17,7 +17,7 @@ export const Isolation = ({ gestes, travauxNiveauIsolation, estGlobalementRenove
     <>
       <p className="mb-2">Isolations à prévoir</p>
       <Box>
-        <BadgePacoupa
+        <Badge
           label={
             travauxNiveauIsolation === "Global"
               ? "Isolation globale"

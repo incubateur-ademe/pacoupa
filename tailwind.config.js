@@ -39,6 +39,42 @@ module.exports = {
         100: "var(--color-green-100)",
         50: "var(--color-green-50)",
       },
+      primary: {
+        700: "var(--color-primary-700)",
+        500: "var(--color-primary-500)",
+        300: "var(--color-primary-300)",
+      },
+      secondary: {
+        700: "var(--color-secondary-700)",
+        500: "var(--color-secondary-500)",
+        300: "var(--color-secondary-300)",
+      },
+      tertiary: {
+        700: "var(--color-tertiary-700)",
+        500: "var(--color-tertiary-500)",
+        300: "var(--color-tertiary-300)",
+      },
+      body: {
+        700: "var(--color-body-700)",
+        500: "var(--color-body-500)",
+        300: "var(--color-body-300)",
+      },
+      success: {
+        700: "var(--color-success-700)",
+        300: "var(--color-success-300)",
+      },
+      warning: {
+        700: "var(--color-warning-700)",
+        300: "var(--color-warning-300)",
+      },
+      error: {
+        700: "var(--color-error-700)",
+        300: "var(--color-error-300)",
+      },
+      decoration: {
+        700: "var(--color-decoration-700)",
+        300: "var(--color-decoration-300)",
+      },
     },
   },
   plugins: [],

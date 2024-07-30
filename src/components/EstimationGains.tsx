@@ -9,8 +9,8 @@ import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/Sol
 import { formatEuroNoDecimal } from "@/utils/currency";
 import { approximation } from "@/utils/number";
 
+import { Badge } from "./Badge";
 import { BadgeEuros } from "./BadgeEuros";
-import { BadgePacoupa } from "./BadgePacoupa";
 import { Callout } from "./Callout";
 import { DPEImage } from "./img/DPEImage";
 import { FlecheImage } from "./img/FlecheImage";
@@ -53,7 +53,7 @@ export const EstimationGains = ({ solution, informationBatiment, avecMessage }: 
 
             <div></div>
             <div className="text-center">
-              <BadgePacoupa label={`- ${pourcentageGain}%`} type="green" />
+              <Badge label={`- ${pourcentageGain}%`} type="success" />
               <p className={fr.cx("fr-text--xs")}>Gain d'énergie</p>
             </div>
           </div>
@@ -78,13 +78,13 @@ export const EstimationGains = ({ solution, informationBatiment, avecMessage }: 
           <p className="mt-2 mb-2 text-sm font-medium">Gains économiques</p>
           <BadgeEuros
             value={Math.abs(approximation100(gainEconomique)) * informationBatiment.nbLogements}
-            type="green"
+            type="success"
             prefix={gainEconomique < 0 ? "-" : undefined}
           />{" "}
-          / an
+          /an
           <p className="text-sm leading-6 mb-4">
             {Math.sign(gainEconomique) === -1 && "- "}
-            {formatEuroNoDecimal(Math.abs(approximation10(gainEconomique)))} / logement
+            {formatEuroNoDecimal(Math.abs(approximation10(gainEconomique)))} /logement
           </p>
         </div>
       </Box>

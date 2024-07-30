@@ -4,7 +4,7 @@
 
 
 .primaryButton {
-    background-color: var(--color-green-200);
+    background-color: var(--color-primary-500);
     box-shadow: 4px 4px 0px 0px var(--color-green-900);
     border-radius: 4px;
     transition:
@@ -12,12 +12,12 @@
         transform 0.1s;
 
     &:hover {
-        background-color: var(--color-green-100) !important;
+        background-color: var(--color-primary-300) !important;
         color: var(--color-green-700);
     }
 
     &:active {
-        background-color: var(--color-green-500) !important;
+        background-color: var(--color-primary-700) !important;
         transform: translateY(2px);
         box-shadow: 2px 2px 0px 0px var(--color-green-900);
     }
@@ -34,7 +34,7 @@
 
     &:hover {
         background-color: var(--color-white) !important;
-        border-bottom: 2px solid var(--color-green-500) !important;
+        border-bottom: 2px solid var(--color-primary-700) !important;
     }
 
     &:active {

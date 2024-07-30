@@ -63,16 +63,20 @@ export const EstimationCouts = ({ solution, informationBatiment }: PropsWithChil
             </Tooltip>
           </div>
           <div>
-            <BadgeEuros value={approximationEnveloppeImmeuble + approximationSystemeImmeuble} type="sand" prefix="≈" />
+            <BadgeEuros
+              value={approximationEnveloppeImmeuble + approximationSystemeImmeuble}
+              type="warning"
+              prefix="≈"
+            />
             <p className="text-sm leading-6">
-              {formatEuroNoDecimal(approximationEnveloppe + approximationSysteme)} / logement
+              {formatEuroNoDecimal(approximationEnveloppe + approximationSysteme)} /logement
             </p>
           </div>
 
           <div className="text-sm font-medium mb-3">Aides nationales</div>
           <div>
-            <BadgeEuros value={aidesImmeuble} type="green" prefix="⩾" />
-            <p className="text-sm leading-6">{formatEuroNoDecimal(aidesLogement)} / logement</p>
+            <BadgeEuros value={aidesImmeuble} type="success" prefix="⩾" />
+            <p className="text-sm leading-6">{formatEuroNoDecimal(aidesLogement)} /logement</p>
           </div>
 
           <Callout

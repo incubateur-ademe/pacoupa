@@ -1,7 +1,6 @@
 import { catalogueSolutions } from "@__content/solutions";
-import { type AlertProps } from "@codegouvfr/react-dsfr/Alert";
 
-import { BadgePacoupa } from "@/components/BadgePacoupa";
+import { Badge, type BadgeProps } from "@/components/Badge";
 import { FamilleCetAirEauImage } from "@/components/img/familles/FamilleCetAirEauImage";
 import { FamilleCetEauEauImage } from "@/components/img/familles/FamilleCetEauEauImage";
 import { FamilleGeothermieImage } from "@/components/img/familles/FamilleGeothermieImage";
@@ -142,9 +141,9 @@ export const fetchSolutions = async ({
 };
 
 export const typeMap: Record<SolutionType, React.ReactNode> = {
-  IND: <BadgePacoupa label="Solution individuelle" icon="fr-icon-user-fill" />,
-  COL: <BadgePacoupa label="Solution collective" icon="fr-icon-team-fill" />,
-  MIX: <BadgePacoupa label="Solution mixte" icon="fr-icon-group-fill" />,
+  IND: <Badge label="Solution individuelle" icon="fr-icon-user-fill" />,
+  COL: <Badge label="Solution collective" icon="fr-icon-team-fill" />,
+  MIX: <Badge label="Solution mixte" icon="fr-icon-group-fill" />,
 };
 
 export const familleImageMap: Record<SolutionFamille, JSX.Element> = {
@@ -161,7 +160,7 @@ export const familleImageMap: Record<SolutionFamille, JSX.Element> = {
   "PAC Abs Gaz": <>No image</>,
 };
 
-type NoteMap = Record<SolutionNote, { label: string; severity: AlertProps.Severity }>;
+type NoteMap = Record<SolutionNote, { label: string; severity: BadgeProps["type"] }>;
 
 export const environnementMap: NoteMap = {
   A: { label: "Très positif", severity: "success" },

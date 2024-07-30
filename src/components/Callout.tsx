@@ -14,9 +14,9 @@ type Props = {
 
 const config: Record<Props["type"], { bgColor: string; contentColor: string; titleColor: string }> = {
   pacoupa: {
-    bgColor: "bg-green-50",
+    bgColor: "bg-decoration-300",
     titleColor: "text-green-800",
-    contentColor: "text-green-700",
+    contentColor: "text-body-700",
   },
   error: {
     bgColor: "bg-red-50",
@@ -29,9 +29,9 @@ const config: Record<Props["type"], { bgColor: string; contentColor: string; tit
     contentColor: "text-green-700",
   },
   success: {
-    bgColor: "bg-green-50",
+    bgColor: "bg-decoration-300",
     titleColor: "text-green-800",
-    contentColor: "text-green-700",
+    contentColor: "text-body-700",
   },
   warning: {
     bgColor: "bg-yellow-50",

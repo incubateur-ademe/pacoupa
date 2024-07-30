@@ -1,7 +1,6 @@
 "use client";
 
 import { fr } from "@codegouvfr/react-dsfr";
-import Badge from "@codegouvfr/react-dsfr/Badge";
 import Button from "@codegouvfr/react-dsfr/Button";
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import CloseIcon from "@mui/icons-material/Close";
@@ -11,6 +10,7 @@ import MuiButton from "@mui/material/Button";
 import Image from "next/image";
 import { useState } from "react";
 
+import { Badge } from "@/components/Badge";
 import { Box } from "@/dsfr";
 import { Text } from "@/dsfr/base/typography";
 import { type Solution } from "@/lib/common/domain/values/Solution";
@@ -108,9 +108,7 @@ export const Evaluation = ({ categorie, solution, withDetails }: EvaluationProps
       <Box className={cx("flex")}>
         <span className={cx("inline-block", "w-[20px]")}></span>
         <Box className={cx("grow")}>
-          <Badge noIcon severity={mapper[note].severity}>
-            {mapper[note].label}
-          </Badge>
+          <Badge type={mapper[note].severity} label={mapper[note].label} />
         </Box>
         {withDetails && (text.length !== 0 || image) && (
           <Box>

@@ -1,6 +1,6 @@
 import { fr } from "@codegouvfr/react-dsfr";
 
-import { BadgePacoupa } from "@/components/BadgePacoupa";
+import { Badge } from "@/components/Badge";
 import { Button } from "@/components/Button";
 import { Callout } from "@/components/Callout";
 import { Card } from "@/components/Card";
@@ -42,13 +42,13 @@ export const CardRcu = () => {
             <p className="mb-2">Isolations à prévoir</p>
 
             <Box>
-              <BadgePacoupa label="Aucune" />
+              <Badge label="Aucune" />
             </Box>
 
             <p className="mb-2 mt-8">Éligibilité au réseau de chaleur</p>
 
             <Box>
-              <BadgePacoupa label="Éligible" type="green" />
+              <Badge label="Éligible" type="success" />
             </Box>
 
             <Box className={fr.cx("fr-mt-2w")}>

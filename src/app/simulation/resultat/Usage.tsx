@@ -1,6 +1,6 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
-import { Badge } from "@mui/material";
+import { Badge as BadgeMui } from "@mui/material";
 
 import { ChauffageImage } from "@/components/img/usages/ChauffageImage";
 import { ClimatisationImage } from "@/components/img/usages/ClimatisationImage";
@@ -27,7 +27,7 @@ export const Usage = ({ solution, withTitle }: Props) => {
       <Grid haveGutters valign="top" className="mt-4">
         {usageCh !== "Non" && (
           <GridCol base={4} className={"flex justify-center items-center"}>
-            <Badge variant="dot" anchorOrigin={{ vertical: "bottom", horizontal: "right" }}>
+            <BadgeMui variant="dot" anchorOrigin={{ vertical: "bottom", horizontal: "right" }}>
               <ChauffageImage
                 enabled={true}
                 alt={
@@ -36,13 +36,13 @@ export const Usage = ({ solution, withTitle }: Props) => {
                     : "Solution permettant potentiellement le chauffage"
                 }
               />
-            </Badge>
+            </BadgeMui>
           </GridCol>
         )}
 
         {usageEcs !== "Non" && (
           <GridCol base={4} className={"flex justify-center items-center"}>
-            <Badge
+            <BadgeMui
               variant="dot"
               // color={usageEcs === "Oui" ? "success" : usageEcs === "Non" ? "error" : "info"}
               anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
@@ -55,13 +55,13 @@ export const Usage = ({ solution, withTitle }: Props) => {
                     : "Solution permettant potentiellement l'eau chaude sanitaire"
                 }
               />
-            </Badge>
+            </BadgeMui>
           </GridCol>
         )}
 
         {usageFr !== "Non" && (
           <GridCol base={4} className={"flex justify-center items-center"}>
-            <Badge variant="dot" color={usageFr === "Oui" ? "success" : "info"}>
+            <BadgeMui variant="dot" color={usageFr === "Oui" ? "success" : "info"}>
               <ClimatisationImage
                 enabled={true}
                 alt={
@@ -70,7 +70,7 @@ export const Usage = ({ solution, withTitle }: Props) => {
                     : "La climatisation ne sera pas possible avec des radiateurs à eau. Il faudra soit les remplacer par des ventilo-convecteurs, soit utiliser un plancher rafraichissant (si présent)."
                 }
               />
-            </Badge>
+            </BadgeMui>
           </GridCol>
         )}
       </Grid>
