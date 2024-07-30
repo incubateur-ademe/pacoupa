@@ -3,6 +3,7 @@
 import { casPossibles } from "drizzle/schema";
 import moize from "moize";
 
+import { config } from "@/config";
 import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 import { db } from "@/lib/drizzle";
 
@@ -69,4 +70,4 @@ export async function getAllCasPossibles() {
  *
  * Typologies are not supposed to change often, so we can memoize the result.
  */
-export const getAllCasPossiblesMemoized = moize(getAllCasPossibles, { isPromise: true });
+export const getAllCasPossiblesMemoized = moize(getAllCasPossibles, { isPromise: true, maxAge: config.cacheDuration });
