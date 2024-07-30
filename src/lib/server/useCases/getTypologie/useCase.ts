@@ -3,6 +3,7 @@
 import { typologies } from "drizzle/schema";
 import moize from "moize";
 
+import { config } from "@/config";
 import { db } from "@/lib/drizzle";
 
 type CriteriaProps = {
@@ -35,4 +36,4 @@ export async function getAllTypologies() {
  *
  * Typologies are not supposed to change often, so we can memoize the result.
  */
-export const getAllTypologiesMemoized = moize(getAllTypologies, { isPromise: true });
+export const getAllTypologiesMemoized = moize(getAllTypologies, { isPromise: true, maxAge: config.cacheDuration });
