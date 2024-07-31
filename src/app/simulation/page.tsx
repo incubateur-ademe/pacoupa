@@ -1,12 +1,11 @@
-import { fr } from "@codegouvfr/react-dsfr";
 import { type Metadata } from "next";
 
 import { Button } from "@/components/Button";
 import { ButtonsWrapper } from "@/components/ButtonsWrapper";
 import { Callout } from "@/components/Callout";
 import { Maison2Image } from "@/components/img/Maison2";
-import { Grid, GridCol, P } from "@/dsfr";
-import { H1 } from "@/dsfr/base/typography";
+import { Grid, GridCol } from "@/dsfr";
+import { H1, Text } from "@/dsfr/base/typography";
 
 import { sharedMetadata } from "../shared-metadata";
 
@@ -32,7 +31,7 @@ export const metadata: Metadata = {
 const SimulationLandingPage = () => {
   return (
     <>
-      <H1 className={fr.cx("fr-mt-4w")}>👋 Bienvenue</H1>
+      <H1 className="mt-8">👋 Bienvenue</H1>
 
       <Grid>
         <GridCol base={4} className="">
@@ -40,10 +39,10 @@ const SimulationLandingPage = () => {
         </GridCol>
       </Grid>
 
-      <P>
+      <Text>
         En seulement 11 questions, ce simulateur vous propose <strong>la meilleure solution</strong> de chauffage{" "}
         <strong>adaptée</strong> à votre copropriété
-      </P>
+      </Text>
 
       <Callout
         type="pacoupa"

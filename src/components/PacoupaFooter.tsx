@@ -3,7 +3,6 @@ import { type HeaderProps } from "@codegouvfr/react-dsfr/Header";
 
 import { config } from "@/config";
 import { FooterPersonalDataPolicyItem } from "@/consentManagement";
-import { Box } from "@/dsfr";
 
 import styles from "./PacoupaFooter.module.scss";
 
@@ -17,7 +16,7 @@ const operatorLogo: HeaderProps["operatorLogo"] = {
 
 export const PacoupaFooter = () => {
   return (
-    <Box className={styles.border}>
+    <div className={styles.border}>
       <Footer
         id={footerId}
         accessibility="non compliant"
@@ -64,6 +63,6 @@ export const PacoupaFooter = () => {
           </>
         }
       />
-    </Box>
+    </div>
   );
 };

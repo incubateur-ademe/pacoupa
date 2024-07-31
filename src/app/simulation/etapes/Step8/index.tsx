@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import { z } from "zod";
 
 import { Callout } from "@/components/Callout";
-import { Box } from "@/dsfr";
 import { usePacoupaSessionStorage } from "@/lib/client/usePacoupaSessionStorage";
 import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 import { getEnergieChPossibles } from "@/lib/server/useCases/getCasPossibles";
@@ -44,7 +43,7 @@ export const Step8 = () => {
         schema={schema}
         render={({ errors, store }) => (
           <>
-            <Box>
+            <div>
               <RadioButtons
                 name="energieCH"
                 legend={
@@ -83,10 +82,10 @@ export const Step8 = () => {
                 state={errors?.energieCH?._errors ? "error" : "default"}
                 stateRelatedMessage={<div aria-live="polite">{errors?.energieCH?._errors}</div>}
               />
-            </Box>
+            </div>
 
             {valeursPossibles.length < 3 && (
-              <Box>
+              <div>
                 <Callout
                   type="pacoupa"
                   content={
@@ -96,7 +95,7 @@ export const Step8 = () => {
                     </>
                   }
                 />
-              </Box>
+              </div>
             )}
           </>
         )}

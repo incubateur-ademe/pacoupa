@@ -5,8 +5,8 @@ import { Tooltip } from "react-tooltip";
 
 import { HesitationImage } from "@/components/img/HesitationImage";
 import { UnderlineText } from "@/components/UnderlineText";
-import { Box, Container, Grid, GridCol } from "@/dsfr";
-import { H2 } from "@/dsfr/base/typography";
+import { Container, Grid, GridCol } from "@/dsfr";
+import { H2, Text } from "@/dsfr/base/typography";
 
 import styles from "./explication-pac-zone.module.scss";
 
@@ -19,11 +19,11 @@ export const ExplicationPacZone = () => {
             <HesitationImage width={450} />
           </GridCol>
 
-          <GridCol base={6} className={fr.cx("fr-mt-6w")}>
-            <Box>
+          <GridCol base={6} className="mt-12">
+            <div>
               <H2>PAC, RCU: c'est quoi ?</H2>
-              <p>Vous hésitez entre une chaudière à gaz ou des radiateurs électriques ?</p>
-              <p className={styles.questions}>
+              <Text>Vous hésitez entre une chaudière à gaz ou des radiateurs électriques ?</Text>
+              <Text className={styles.questions}>
                 <strong className="pac">
                   Et pourquoi pas une <UnderlineText>pompe à chaleur</UnderlineText> (PAC){" "}
                   <span className={fr.cx("fr-icon--sm", "ri-information-line")} aria-hidden="true"></span>
@@ -33,8 +33,8 @@ export const ExplicationPacZone = () => {
                   ou un raccordement au <UnderlineText>réseau de chaleur urbain</UnderlineText> (RCU){" "}
                   <span className={fr.cx("fr-icon--sm", "ri-information-line")} aria-hidden="true"></span> ?
                 </strong>
-              </p>
-            </Box>
+              </Text>
+            </div>
           </GridCol>
         </Grid>
       </Container>

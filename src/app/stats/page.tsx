@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 };
 
 const Stats = () => (
-  <Container py="6w">
+  <Container className="my-8">
     <H1>{title}</H1>
     <StatsContent />
   </Container>

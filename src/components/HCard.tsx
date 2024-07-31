@@ -1,6 +1,5 @@
 import { type PropsWithChildren } from "react";
 
-import { Box } from "@/dsfr";
 import { H2, Text } from "@/dsfr/base/typography";
 
 import styles from "./HCard.module.scss";
@@ -14,13 +13,13 @@ type Props = {
 export const HCard = ({ desc, image, title }: PropsWithChildren<Props>) => {
   return (
     <>
-      <Box className={styles.box}>
-        <Box className={styles.image}>{image}</Box>
-        <Box className={styles.text}>
+      <div className={styles.box}>
+        <div className={styles.image}>{image}</div>
+        <div className={styles.text}>
           <H2>{title}</H2>
           <Text>{desc}</Text>
-        </Box>
-      </Box>
+        </div>
+      </div>
     </>
   );
 };

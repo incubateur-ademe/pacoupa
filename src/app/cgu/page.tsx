@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 };
 
 const Cgu = () => (
-  <Container my="4w">
+  <Container className="my-8">
     <H1>{title}</H1>
     <CguContent components={anchorHeadingMDXComponents} />
   </Container>

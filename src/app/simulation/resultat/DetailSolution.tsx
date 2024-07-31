@@ -1,6 +1,4 @@
-import { fr } from "@codegouvfr/react-dsfr";
 import { breakpoints } from "@codegouvfr/react-dsfr/fr/breakpoints";
-import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import Snackbar from "@mui/material/Snackbar";
 import { useState } from "react";
 import { useWindowSize } from "usehooks-ts";
@@ -11,7 +9,6 @@ import { familleImageMap } from "@/app/simulation/resultat/helper";
 import { Button } from "@/components/Button";
 import { EstimationCouts } from "@/components/EstimationCouts";
 import { EstimationGains } from "@/components/EstimationGains";
-import { Box } from "@/dsfr";
 import { H2, Text } from "@/dsfr/base/typography";
 import { useScrollTop } from "@/lib/client/useScrollTop";
 import { estGlobalementRenove, type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
@@ -46,9 +43,9 @@ export const DetailSolution = ({ solution, informationBatiment, travauxNiveauIso
   };
 
   return (
-    <Box className="max-w-[800px]">
-      <Box className="sticky top-0 bg-white z-10 pb-4 pt-4">
-        <Box className="flex justify-between">
+    <div className="max-w-[800px]">
+      <div className="sticky top-0 bg-white z-10 pb-4 pt-4">
+        <div className="flex justify-between">
           <Button priority="tertiary" iconId="ri-arrow-go-back-line" onClick={back}>
             Retour à la liste
           </Button>
@@ -71,33 +68,33 @@ export const DetailSolution = ({ solution, informationBatiment, travauxNiveauIso
             autoHideDuration={4000}
             message="L'URL a bien été copiée 🚀."
           ></Snackbar>
-        </Box>
+        </div>
 
-        <Box className={cx("flex items-start gap-4", fr.cx("fr-mt-4w"))}>
-          <Box>{familleImageMap[solution.familleSolution]}</Box>
-          <Box>
+        <div className="flex items-start gap-4 mt-8">
+          <div>{familleImageMap[solution.familleSolution]}</div>
+          <div>
             <H2 as="h5">{solution.nom}</H2>
-          </Box>
-        </Box>
-      </Box>
+          </div>
+        </div>
+      </div>
 
-      <Box className={fr.cx("fr-mt-2w")}>
+      <div className="mt-4">
         <Text>{solution.description}</Text>
-      </Box>
+      </div>
 
-      <Box className="mt-4">
+      <div className="mt-4">
         <Usage solution={solution} withTitle={true} />
-      </Box>
+      </div>
 
       <hr />
 
-      <Box>
+      <div>
         <Isolation
           gestes={gestes}
           travauxNiveauIsolation={travauxNiveauIsolation}
           estGlobalementRenove={estGlobalementRenove(informationBatiment)}
         />
-      </Box>
+      </div>
 
       <hr className="mt-8" />
 
@@ -106,9 +103,11 @@ export const DetailSolution = ({ solution, informationBatiment, travauxNiveauIso
       <EstimationCouts solution={solution} informationBatiment={informationBatiment} />
 
       <Text className="font-medium mt-8 mb-0">Autres estimations</Text>
-      <span className={fr.cx("fr-text--xs")}>(isolations comprises)</span>
+      <Text inline variant="xs">
+        (isolations comprises)
+      </Text>
 
-      <Box className="flex flex-col gap-4 mt-4">
+      <div className="flex flex-col gap-4 mt-4">
         <Evaluation categorie="environnement" solution={solution} withDetails />
         <hr />
         <Evaluation categorie="cout" solution={solution} withDetails />
@@ -125,9 +124,9 @@ export const DetailSolution = ({ solution, informationBatiment, travauxNiveauIso
         <hr />
         <Evaluation categorie="maturite" solution={solution} withDetails />
         <hr />
-      </Box>
+      </div>
 
       <FranceRenovBlock withWorkflow={true} showToast={setShowToast} />
-    </Box>
+    </div>
   );
 };

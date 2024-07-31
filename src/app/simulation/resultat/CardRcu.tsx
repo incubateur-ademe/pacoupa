@@ -1,10 +1,8 @@
-import { fr } from "@codegouvfr/react-dsfr";
-
 import { Badge } from "@/components/Badge";
 import { Button } from "@/components/Button";
 import { Callout } from "@/components/Callout";
 import { Card } from "@/components/Card";
-import { Box } from "@/dsfr";
+import { Text } from "@/dsfr/base/typography";
 import { type Solution } from "@/lib/common/domain/values/Solution";
 
 import { familleImageMap } from "./helper";
@@ -24,7 +22,7 @@ export const CardRcu = () => {
         marker="Meilleure solution"
         content={
           <>
-            <Box className="mt-4">
+            <div className="mt-4">
               <Callout
                 type="info"
                 content={
@@ -34,29 +32,29 @@ export const CardRcu = () => {
                   </>
                 }
               />
-            </Box>
-            <Box className="mt-4">
+            </div>
+            <div className="mt-4">
               <Usage solution={rcuSolution as Solution} />
-            </Box>
+            </div>
 
-            <p className="mb-2">Isolations à prévoir</p>
+            <Text className="mb-2">Isolations à prévoir</Text>
 
-            <Box>
+            <div>
               <Badge label="Aucune" />
-            </Box>
+            </div>
 
-            <p className="mb-2 mt-8">Éligibilité au réseau de chaleur</p>
+            <Text className="mb-2 mt-8">Éligibilité au réseau de chaleur</Text>
 
-            <Box>
+            <div>
               <Badge label="Éligible" type="success" />
-            </Box>
+            </div>
 
-            <Box className={fr.cx("fr-mt-2w")}>
+            <div className="mt-4">
               Rendez-vous sur le site de France chaleur urbaine pour en savoir plus sur{" "}
               <strong>la faisabilité du raccordement</strong>.
-            </Box>
+            </div>
 
-            <Box className="mt-4">
+            <div className="mt-4">
               <Callout
                 type="pacoupa"
                 content={
@@ -66,12 +64,12 @@ export const CardRcu = () => {
                   </>
                 }
               />
-            </Box>
+            </div>
           </>
         }
         header={<Card.CardHeader image={familleImageMap["RCU"]} title="Réseau de chaleur" />}
         footer={
-          <Box className="justify-self-end">
+          <div className="justify-self-end">
             <Button
               priority="tertiary no outline"
               linkProps={{
@@ -80,7 +78,7 @@ export const CardRcu = () => {
             >
               france-chaleur-urbaine
             </Button>
-          </Box>
+          </div>
         }
         footerAlign="center"
       />

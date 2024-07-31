@@ -4,8 +4,8 @@ import artworkTechnicalErrorSvgUrl from "@codegouvfr/react-dsfr/dsfr/artwork/pic
 import { type StaticImageData } from "next/image";
 import { type ReactNode } from "react";
 
-import { Container, Grid, GridCol, P } from "@/dsfr";
-import { H1 } from "@/dsfr/base/typography";
+import { Container, Grid, GridCol } from "@/dsfr";
+import { H1, Text } from "@/dsfr/base/typography";
 
 const errors = {
   "404": {
@@ -65,16 +65,16 @@ export const ErrorDisplay = ({ code, noRedirect, body, headline, title }: ErrorD
         <GridCol md={6} py="0">
           <H1>{title}</H1>
           {!isNaN(+code) && (
-            <P className="fr-text--sm" mb="3w">
+            <Text variant="sm" className="mb-6">
               Erreur {code}
-            </P>
+            </Text>
           )}
-          <P className="fr-text--lead" mb="3w">
+          <Text variant="xl" className="mb-6">
             {headline}
-          </P>
-          <P className="fr-text--sm" mb="5w">
+          </Text>
+          <Text variant="sm" className="mb-10">
             {body}
-          </P>
+          </Text>
           {!noRedirect && (
             <ButtonsGroup
               inlineLayoutWhen="md and up"

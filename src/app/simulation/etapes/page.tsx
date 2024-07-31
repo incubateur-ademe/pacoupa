@@ -2,7 +2,6 @@ import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import { type Metadata } from "next";
 
 import { Wizard } from "@/components/Wizard";
-import { Box } from "@/dsfr";
 
 import { sharedMetadata } from "../../shared-metadata";
 import styles from "./page.module.scss";
@@ -40,7 +39,7 @@ export const metadata: Metadata = {
 const SimulationPage = () => {
   return (
     // With flex, we can use justify-between to approximatively align the footer at the bottom of the page
-    <Box className={cx(styles.wizard, "flex flex-col justify-start")}>
+    <div className={cx(styles.wizard, "flex flex-col justify-start")}>
       {/* <Wizard startIndex={10}> */}
       <Wizard>
         <Step1 />
@@ -55,7 +54,7 @@ const SimulationPage = () => {
         <Step10 />
         <Step11 />
       </Wizard>
-    </Box>
+    </div>
   );
 };
 

@@ -2,7 +2,6 @@
 
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 
-import { Box } from "@/dsfr";
 import { H3 } from "@/dsfr/base/typography";
 
 type Props = {
@@ -20,7 +19,7 @@ type CardHeaderProps = { image?: JSX.Element; title: React.ReactNode };
 export const CardHeader = ({ image, title }: CardHeaderProps) => {
   return (
     <div className="flex gap-4 items-center self-start">
-      {image && <Box>{image}</Box>}
+      {image && <div>{image}</div>}
       <H3 as="h6">{title}</H3>
     </div>
   );
@@ -44,19 +43,19 @@ export const Card = ({
       >
         {/* Marker */}
         {marker && (
-          <Box
+          <div
             className={cx(
               "bg-decoration-300 py-0 px-2 shadow-[1px_1px_0px_#183D2F] rounded-[24px] border-body-700 border border-solid text-sm leading-6 absolute -top-3",
               { "self-start": markerPosition === "left", "self-end": markerPosition === "right" },
             )}
           >
             {marker}
-          </Box>
+          </div>
         )}
 
         {/* Title */}
         {header && (
-          <Box
+          <div
             className={cx("flex items-center", {
               "self-start": headerAlign === "left",
               "self-center": headerAlign === "center",
@@ -64,15 +63,15 @@ export const Card = ({
             })}
           >
             {header}
-          </Box>
+          </div>
         )}
 
         {/* Body */}
-        {content && <Box className="grow">{content}</Box>}
+        {content && <div className="grow">{content}</div>}
 
         {/* Footer */}
         {footer && (
-          <Box
+          <div
             className={cx({
               "self-start": footerAlign === "left",
               "self-center": footerAlign === "center",
@@ -80,7 +79,7 @@ export const Card = ({
             })}
           >
             {footer}
-          </Box>
+          </div>
         )}
       </div>
     </>

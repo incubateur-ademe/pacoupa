@@ -1,17 +1,15 @@
-import { fr } from "@codegouvfr/react-dsfr";
-
 import { HCard } from "@/components/HCard";
 import { ChaudiereCasseeImage } from "@/components/img/ChaudiereCasseeImage";
 import { MonnaieImage } from "@/components/img/MonnaieImage";
 import { SoleilImage } from "@/components/img/SoleilImage";
-import { Box, Container, Grid, GridCol } from "@/dsfr";
+import { Container, Grid, GridCol } from "@/dsfr";
 import { H2 } from "@/dsfr/base/typography";
 
 import styles from "./raisons-zone.module.scss";
 
 export const RaisonsZone = () => {
   return (
-    <Box className={styles.cards}>
+    <div className={styles.cards}>
       <Container>
         <H2 mt="10w">On a tous une bonne raison</H2>
 
@@ -25,7 +23,7 @@ export const RaisonsZone = () => {
           </GridCol>
         </Grid>
 
-        <Grid className={fr.cx("fr-mt-4w")}>
+        <Grid className="mt-8">
           <GridCol base={9} offset={2}>
             <HCard
               title="Facture trop élevée&nbsp;?"
@@ -35,7 +33,7 @@ export const RaisonsZone = () => {
           </GridCol>
         </Grid>
 
-        <Grid className={fr.cx("fr-mt-4w")}>
+        <Grid className="mt-8">
           <GridCol base={9} offset={4}>
             <HCard
               desc="Réseau de chaleur ? pompe à chaleur ? solaire thermique ? biomasse ? Késako ? Les solutions sont nombreuses, laissez nous vous guider pas à pas."
@@ -45,6 +43,6 @@ export const RaisonsZone = () => {
           </GridCol>
         </Grid>
       </Container>
-    </Box>
+    </div>
   );
 };

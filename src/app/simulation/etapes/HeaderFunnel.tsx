@@ -1,11 +1,8 @@
 "use client";
 
-import { fr } from "@codegouvfr/react-dsfr";
 import { Stepper } from "@codegouvfr/react-dsfr/Stepper";
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import { useWizard } from "react-use-wizard";
-
-import { Box } from "@/dsfr";
 
 // Be careful: the DSFR doesn't allow to have more than 8 steps... So ensure that each phase has less than 8 steps.
 const phases = [
@@ -50,7 +47,7 @@ export const HeaderFunnel = () => {
   const { phase, currentStep, numPhase } = findPhase(activeStep);
 
   return (
-    <Box className={fr.cx("fr-mt-4w")}>
+    <div className="mt-8">
       {/* We can't use nextTitle because it is not shown when it is the last step of a phase... */}
       <Stepper
         currentStep={currentStep + 1}
@@ -61,6 +58,6 @@ export const HeaderFunnel = () => {
           </div>
         }
       />
-    </Box>
+    </div>
   );
 };

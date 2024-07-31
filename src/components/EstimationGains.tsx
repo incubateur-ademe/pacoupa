@@ -1,8 +1,6 @@
-import { fr } from "@codegouvfr/react-dsfr";
 import assert from "assert";
 import { type PropsWithChildren } from "react";
 
-import { Box } from "@/dsfr";
 import { Text } from "@/dsfr/base/typography";
 import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
@@ -37,11 +35,13 @@ export const EstimationGains = ({ solution, informationBatiment, avecMessage }: 
 
   return (
     <>
-      <Box className="mb-8">
+      <div className="mb-8">
         <Text className="mb-0">Estimation des gains</Text>
-        <p className="text-xs font-normal">(isolations comprises)</p>
+        <Text variant="xs">(isolations comprises)</Text>
         <div className="px-2">
-          <p className="mt-4 mb-2 text-sm font-medium">Gains énergétiques</p>
+          <Text variant="sm" className="mt-4 mb-2">
+            Gains énergétiques
+          </Text>
           <div className="grid grid-cols-[1fr_minmax(85px,_1fr)_1fr] gap-1 justify-items-center">
             <div className="text-xs font-normal w-[62px]">Actuel</div>
             <div></div>
@@ -54,11 +54,11 @@ export const EstimationGains = ({ solution, informationBatiment, avecMessage }: 
             <div></div>
             <div className="text-center">
               <Badge label={`- ${pourcentageGain}%`} type="success" />
-              <p className={fr.cx("fr-text--xs")}>Gain d'énergie</p>
+              <Text variant="xs">Gain d'énergie</Text>
             </div>
           </div>
           {avecMessage && (
-            <Box className="mt-0 mb-4">
+            <div className="mt-0 mb-4">
               <Callout
                 type="pacoupa"
                 icon={<Logo />}
@@ -73,9 +73,11 @@ export const EstimationGains = ({ solution, informationBatiment, avecMessage }: 
                   </>
                 }
               />
-            </Box>
+            </div>
           )}
-          <p className="mt-2 mb-2 text-sm font-medium">Gains économiques</p>
+          <Text variant="sm" className="mt-2 mb-2">
+            Gains économiques
+          </Text>
           <BadgeEuros
             value={Math.abs(approximation100(gainEconomique)) * informationBatiment.nbLogements}
             type="success"
@@ -87,7 +89,7 @@ export const EstimationGains = ({ solution, informationBatiment, avecMessage }: 
             {formatEuroNoDecimal(Math.abs(approximation10(gainEconomique)))} /logement
           </div>
         </div>
-      </Box>
+      </div>
     </>
   );
 };

@@ -1,6 +1,6 @@
 import { Badge } from "@/components/Badge";
 import { Callout } from "@/components/Callout";
-import { Box } from "@/dsfr";
+import { Text } from "@/dsfr/base/typography";
 import { type GesteIsolation } from "@/lib/common/domain/values/GesteIsolation";
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
 
@@ -15,8 +15,8 @@ type Props = {
 export const Isolation = ({ gestes, travauxNiveauIsolation, estGlobalementRenove }: Props) => {
   return (
     <>
-      <p className="mb-2">Isolations à prévoir</p>
-      <Box>
+      <Text className="mb-2">Isolations à prévoir</Text>
+      <div>
         <Badge
           label={
             travauxNiveauIsolation === "Global"
@@ -26,12 +26,12 @@ export const Isolation = ({ gestes, travauxNiveauIsolation, estGlobalementRenove
                 : "Aucune"
           }
         />
-      </Box>
-      <Box className="mt-4 flex justify-center gap-8">
+      </div>
+      <div className="mt-4 flex justify-center gap-8">
         <ShowIsolationImages gestes={gestes} />
-      </Box>
+      </div>
       {estGlobalementRenove && (
-        <Box className="mt-4 flex justify-center gap-8">
+        <div className="mt-4 flex justify-center gap-8">
           <Callout
             type="pacoupa"
             content={
@@ -42,15 +42,15 @@ export const Isolation = ({ gestes, travauxNiveauIsolation, estGlobalementRenove
               </div>
             }
           />
-        </Box>
+        </div>
       )}
       {gestes.length > 0 && (
-        <Box className="my-4">
+        <div className="my-4">
           <Callout
             type="warning"
             content={<>Ces isolations sont indispensables pour la mise en place de ce système.</>}
           />
-        </Box>
+        </div>
       )}
     </>
   );

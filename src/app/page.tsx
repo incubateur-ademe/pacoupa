@@ -1,7 +1,6 @@
 import { type Metadata } from "next";
 
 import { config } from "@/config";
-import { Section } from "@/dsfr";
 
 import { DecarbonnonsZone } from "./_landing/decarbonnons-zone";
 import { ExplicationPacZone } from "./_landing/explication-pac-zone";
@@ -34,33 +33,33 @@ const Home = () => {
 
   return (
     <>
-      <Section mt="8w">
+      <section className="mt-16">
         <LandingHero />
-      </Section>
+      </section>
 
-      {/* <Section mt="14w">
+      {/* <section mt="14w">
         <LogosZone />
-      </Section> */}
+      </section> */}
 
-      <Section mt="6w">
+      <section className="mt-12">
         <RaisonsZone />
-      </Section>
+      </section>
 
-      <Section mt="15w">
+      <section className="mt-30">
         <ExplicationPacZone />
-      </Section>
+      </section>
 
-      <Section mt="16w">
+      <section className="mt-32">
         <LaisserGuider />
-      </Section>
+      </section>
 
-      <Section mt="6w">
+      <section className="mt-12">
         <Solution5mnZone />
-      </Section>
+      </section>
 
-      <Section mt="6w">
+      <section className="mt-12">
         <DecarbonnonsZone />
-      </Section>
+      </section>
     </>
   );
 };

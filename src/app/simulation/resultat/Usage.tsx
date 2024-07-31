@@ -1,5 +1,3 @@
-import { fr } from "@codegouvfr/react-dsfr";
-import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import { Badge as BadgeMui } from "@mui/material";
 
 import { ChauffageImage } from "@/components/img/usages/ChauffageImage";
@@ -77,17 +75,23 @@ export const Usage = ({ solution, withTitle }: Props) => {
       <Grid>
         {usageCh !== "Non" && (
           <GridCol base={4} className={"flex justify-center items-start"}>
-            <span className={fr.cx("fr-text--xs", "fr-mt-1w")}>Chauffage</span>
+            <Text inline variant="xs" className="mt-2">
+              Chauffage
+            </Text>
           </GridCol>
         )}
         {usageEcs !== "Non" && (
           <GridCol base={4} className={"flex justify-center items-start"}>
-            <span className={cx(fr.cx("fr-text--xs", "fr-mt-1w"), "text-center")}>Eau chaude</span>
+            <Text inline variant="xs" className="mt-2">
+              Eau chaude
+            </Text>
           </GridCol>
         )}
         {usageFr !== "Non" && (
           <GridCol base={4} className={"flex justify-center items-start"}>
-            <span className={fr.cx("fr-text--xs", "fr-mt-1w")}>Climatisation</span>
+            <Text inline variant="xs" className="mt-2">
+              Climatisation
+            </Text>
           </GridCol>
         )}
       </Grid>

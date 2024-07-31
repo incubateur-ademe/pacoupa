@@ -5,7 +5,6 @@ import { useState } from "react";
 import { z } from "zod";
 
 import { Callout } from "@/components/Callout";
-import { Box } from "@/dsfr";
 import { usePacoupaSessionStorage } from "@/lib/client/usePacoupaSessionStorage";
 
 import { HeaderFunnel } from "../HeaderFunnel";
@@ -35,7 +34,7 @@ export const Step2 = () => {
         schema={schema}
         render={({ errors, store }) => (
           <>
-            <Box>
+            <div>
               <Input
                 label={
                   <>
@@ -59,8 +58,8 @@ export const Step2 = () => {
                 state={errors?.annee?._errors ? "error" : "default"}
                 stateRelatedMessage={<div aria-live="polite">{errors?.annee?._errors}</div>}
               />
-            </Box>
-            <Box className="mt-8">
+            </div>
+            <div className="mt-8">
               <Callout
                 type="pacoupa"
                 content={
@@ -73,7 +72,7 @@ export const Step2 = () => {
                   )
                 }
               />
-            </Box>
+            </div>
           </>
         )}
       />

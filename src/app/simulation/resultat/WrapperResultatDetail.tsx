@@ -1,6 +1,5 @@
 "use client";
 
-import { fr } from "@codegouvfr/react-dsfr";
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -11,7 +10,7 @@ import { EstimationGains } from "@/components/EstimationGains";
 import { HighlightText } from "@/components/HighlightText";
 import { NoDataImage } from "@/components/img/NoDataImage";
 import { TravauxNiveauIsolationSegmentedControl } from "@/components/IsolationSegmentedControl";
-import { Box, Grid, GridCol } from "@/dsfr";
+import {  Grid, GridCol } from "@/dsfr";
 import { H2, Text } from "@/dsfr/base/typography";
 import { estGlobalementRenove, type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
@@ -82,15 +81,15 @@ export const WrapperResultatDetail = ({
   return (
     <>
       <div className="mt-8">
-        <Box className="my-8">
+        <div className="my-8">
           <H2 as="h6" className="mb-2">
             Copropriété
           </H2>
           <Card
-            header={<Box className="text-base font-bold">{informationBatiment.adresse}</Box>}
+            header={<div className="text-base font-bold">{informationBatiment.adresse}</div>}
             headerAlign="left"
             footer={
-              <Box className="mt-4 mr-4">
+              <div className="mt-4 mr-4">
                 <Button
                   linkProps={{
                     href: "/simulation/etapes",
@@ -102,11 +101,11 @@ export const WrapperResultatDetail = ({
                 >
                   {"Modifier"}
                 </Button>
-              </Box>
+              </div>
             }
             footerAlign="right"
           />
-        </Box>
+        </div>
 
         <H2 as="h6" className="mb-0">
           Chauffages compatibles
@@ -119,16 +118,16 @@ export const WrapperResultatDetail = ({
           <TravauxNiveauIsolationSegmentedControl travauxNiveauIsolation={travauxNiveauIsolation} />
         )}
 
-        <Box>
+        <div>
           {nbSolutions === 0 ? (
-            <Box>
-              <Box className={cx("text-center", fr.cx("fr-my-8w"))}>
+            <div>
+              <div className="text-center my-16">
                 <NoDataImage />
-              </Box>
+              </div>
               <p>
                 Nous n’avons trouvé <strong>aucune solution</strong> ENR compatible pour votre bâtiment.
               </p>
-            </Box>
+            </div>
           ) : (
             <>
               Nous avons trouvé{" "}
@@ -140,9 +139,9 @@ export const WrapperResultatDetail = ({
               de chauffage adaptées à votre bâtiment.
             </>
           )}
-        </Box>
+        </div>
 
-        <Grid haveGutters className={fr.cx("fr-mt-3w")}>
+        <Grid haveGutters className="mt-6">
           {isRcuEligible && (
             <GridCol key="rcu" base={12} sm={6} xl={4}>
               <CardRcu />
@@ -158,17 +157,17 @@ export const WrapperResultatDetail = ({
                   {...marker}
                   content={
                     <>
-                      <Box className="mt-4">
+                      <div className="mt-4">
                         <Usage solution={solution} />
-                      </Box>
+                      </div>
                       <hr />
-                      <Box>
+                      <div>
                         <Isolation
                           gestes={gestes}
                           travauxNiveauIsolation={travauxNiveauIsolation}
                           estGlobalementRenove={estGlobalementRenove(informationBatiment)}
                         />
-                      </Box>
+                      </div>
                       <hr className="mt-8" />
 
                       <EstimationGains solution={solution} informationBatiment={informationBatiment} />
@@ -199,7 +198,7 @@ export const WrapperResultatDetail = ({
           })}
         </Grid>
         {!complet && nbSolutions > 3 && (
-          <Box className={cx("flex", fr.cx("fr-mt-4w"))}>
+          <div className="flex mt-8">
             <Button
               priority="tertiary no outline"
               className={cx("grow", "md:grow-0", "justify-center")}
@@ -213,11 +212,11 @@ export const WrapperResultatDetail = ({
             >
               Voir plus de solutions
             </Button>
-          </Box>
+          </div>
         )}
 
         <Grid>
-          <GridCol className={fr.cx("fr-mt-6w")}>
+          <GridCol className="mt-12">
             <NouvelleSimulation />
           </GridCol>
         </Grid>

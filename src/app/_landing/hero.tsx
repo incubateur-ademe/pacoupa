@@ -36,7 +36,7 @@ const LandingHeroDesktop = () => (
           </Button> */}
         </ButtonsWrapper>
       </GridCol>
-      <GridCol base={6} className="fr-mx-auto">
+      <GridCol base={6} className="mx-auto">
         <HeroImage />
       </GridCol>
     </Grid>

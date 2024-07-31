@@ -1,11 +1,9 @@
 "use client";
 
-import { fr } from "@codegouvfr/react-dsfr";
 import Checkbox from "@codegouvfr/react-dsfr/Checkbox";
 import { z } from "zod";
 
 import { Callout } from "@/components/Callout";
-import { Box } from "@/dsfr";
 import { Text } from "@/dsfr/base/typography";
 
 import { HeaderFunnel } from "../HeaderFunnel";
@@ -24,12 +22,12 @@ export const Step3 = () => {
         schema={schema}
         render={({ errors, store }) => (
           <>
-            <Box>
+            <div>
               <Checkbox
                 legend={
                   <p>
                     Quels ont été les travaux d’isolation réalisés il y a moins de 15 ans ? <br />
-                    <Text className={fr.cx("fr-text--xs")}>Si vous avez un doute, ne cochez pas la case.</Text>
+                    <Text variant="xs">Si vous avez un doute, ne cochez pas la case.</Text>
                   </p>
                 }
                 options={[
@@ -73,7 +71,7 @@ export const Step3 = () => {
                 state={errors?.renovation?._errors ? "error" : "default"}
                 stateRelatedMessage={<div aria-live="polite">{errors?.renovation?._errors}</div>}
               />
-            </Box>
+            </div>
 
             <>
               {/* Fix: when the checkbox are disabled, they are not submitted but they should. */}
@@ -84,7 +82,7 @@ export const Step3 = () => {
                 ))}
             </>
 
-            <Box>
+            <div>
               <Callout
                 type="pacoupa"
                 content={
@@ -98,7 +96,7 @@ export const Step3 = () => {
                   )
                 }
               />
-            </Box>
+            </div>
           </>
         )}
       />

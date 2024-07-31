@@ -1,6 +1,5 @@
 "use client";
 
-import { fr } from "@codegouvfr/react-dsfr";
 import Button from "@codegouvfr/react-dsfr/Button";
 import CloseIcon from "@mui/icons-material/Close";
 import InfoIcon from "@mui/icons-material/Info";
@@ -10,7 +9,6 @@ import Image from "next/image";
 import { useState } from "react";
 
 import { Badge } from "@/components/Badge";
-import { Box } from "@/dsfr";
 import { Text } from "@/dsfr/base/typography";
 import { type Solution } from "@/lib/common/domain/values/Solution";
 
@@ -96,21 +94,21 @@ export const Evaluation = ({ categorie, solution, withDetails }: EvaluationProps
   if (note === "dynamic") return null;
 
   return (
-    <Box>
-      <Box className={fr.cx("fr-mt-1w", "fr-mb-1v")}>
+    <div>
+      <div className="mt-2 mb-1">
         <span className="inline-block w-[20px]" aria-hidden>
           {emoji ?? ""}
         </span>
         <span className="pl-0">{titre}</span>
-      </Box>
+      </div>
 
-      <Box className="flex">
+      <div className="flex">
         <span className="inline-block w-[20px]"></span>
-        <Box className="grow">
+        <div className="grow">
           <Badge type={mapper[note].severity} label={mapper[note].label} />
-        </Box>
+        </div>
         {withDetails && (text.length !== 0 || image) && (
-          <Box>
+          <div>
             <Tooltip title={"En savoir +"} arrow>
               <Button
                 priority="tertiary no outline"
@@ -150,37 +148,37 @@ export const Evaluation = ({ categorie, solution, withDetails }: EvaluationProps
               <DialogContent>
                 <DialogContentText id="alert-dialog-description">
                   {image && (
-                    <Box className={fr.cx("fr-mb-4w")}>
+                    <div className="mb-8">
                       <Image src={`/img/solutions/${image}`} alt="test" width={1200} height={900} layout="responsive" />
-                    </Box>
+                    </div>
                   )}
 
                   {text.map((chunk, index) => (
-                    <Box key={index}>
-                      <Box className="flex items-stretch">
-                        <Box className="w-[30px] mt-1">
+                    <div key={index}>
+                      <div className="flex items-stretch">
+                        <div className="w-[30px] mt-1">
                           <InfoIcon sx={{ fontSize: 20 }} />
-                        </Box>
+                        </div>
 
                         <Text variant="sm" className="mb-0 font-bold shrink-0 grow-0">
                           {chunk.titre}
                         </Text>
-                      </Box>
+                      </div>
 
-                      <Box className="flex">
-                        <Box className="w-[30px] shrink-0 grow-0"></Box>
+                      <div className="flex">
+                        <div className="w-[30px] shrink-0 grow-0"></div>
                         <Text variant="sm" className="pl-0">
                           {chunk.contenu}
                         </Text>
-                      </Box>
-                    </Box>
+                      </div>
+                    </div>
                   ))}
                 </DialogContentText>
               </DialogContent>
             </Dialog>
-          </Box>
+          </div>
         )}
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 };

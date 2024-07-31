@@ -1,4 +1,4 @@
-import { H2 } from "@/dsfr/base/typography";
+import { H2, Text } from "@/dsfr/base/typography";
 
 export interface MentionPartProps {
   children?: React.ReactNode | React.ReactNode[];
@@ -9,9 +9,9 @@ export interface MentionPartProps {
 
 export const MentionPart = (props: MentionPartProps): JSX.Element => {
   return (
-    <div className="fr-mt-3w" {...props.divProps}>
+    <div className="mt-6" {...props.divProps}>
       <H2>{props.title}</H2>
-      <p className="fr-mb-2w">{props.description}</p>
+      <Text className="mb-4">{props.description}</Text>
       {props.children}
     </div>
   );

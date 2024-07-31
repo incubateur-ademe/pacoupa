@@ -1,8 +1,6 @@
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import { type PropsWithChildren } from "react";
 
-import { Box } from "@/dsfr";
-
 import styles from "./ButtonsWrapper.module.scss";
 
 type Props = {
@@ -23,14 +21,14 @@ type Props = {
 export const ButtonsWrapper = (props: PropsWithChildren<Props>) => {
   return (
     <>
-      <Box
+      <div
         className={cx(
           styles.buttons,
           props.align === "right" ? "justify-end" : props.align === "center" ? "justify-between" : "",
         )}
       >
         {props.children}
-      </Box>
+      </div>
     </>
   );
 };

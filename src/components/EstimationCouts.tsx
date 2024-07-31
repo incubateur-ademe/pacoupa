@@ -4,7 +4,6 @@ import { Tooltip } from "@mui/material";
 import assert from "assert";
 import { type PropsWithChildren } from "react";
 
-import { Box } from "@/dsfr";
 import { Text } from "@/dsfr/base/typography";
 import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
@@ -41,12 +40,12 @@ export const EstimationCouts = ({ solution, informationBatiment }: PropsWithChil
 
   return (
     <>
-      <Box className="mb-6">
+      <div className="mb-6">
         <Text className="mb-0">Estimation des coûts</Text>
-        <p className="text-xs font-normal">(rénovations comprises)</p>
+        <Text variant="xs">(rénovations comprises)</Text>
 
         <div className="px-2">
-          <p className="flex items-baseline mt-4 mb-2 text-sm font-medium">
+          <Text variant="sm" className="flex items-baseline mt-4 mb-2">
             Coût total du projet
             <Tooltip
               title={
@@ -61,22 +60,22 @@ export const EstimationCouts = ({ solution, informationBatiment }: PropsWithChil
             >
               <span className={cx(fr.cx("ri-information-line", "fr-icon--sm"), "ml-2")} />
             </Tooltip>
-          </p>
+          </Text>
           <div>
             <BadgeEuros
               value={approximationEnveloppeImmeuble + approximationSystemeImmeuble}
               type="warning"
               prefix="≈"
             />
-            <p className="text-sm leading-6">
-              {formatEuroNoDecimal(approximationEnveloppe + approximationSysteme)} /logement
-            </p>
+            <Text variant="sm">{formatEuroNoDecimal(approximationEnveloppe + approximationSysteme)} /logement</Text>
           </div>
 
-          <p className="mt-4 mb-2 text-sm font-medium">Aides nationales</p>
+          <Text variant="sm" className="mt-4 mb-2">
+            Aides nationales
+          </Text>
           <div>
             <BadgeEuros value={aidesImmeuble} type="success" prefix="⩾" />
-            <p className="text-sm leading-6">{formatEuroNoDecimal(aidesLogement)} /logement</p>
+            <Text variant="sm">{formatEuroNoDecimal(aidesLogement)} /logement</Text>
           </div>
 
           <div className="mt-4">
@@ -91,7 +90,7 @@ export const EstimationCouts = ({ solution, informationBatiment }: PropsWithChil
             />
           </div>
         </div>
-      </Box>
+      </div>
     </>
   );
 };
