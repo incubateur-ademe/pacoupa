@@ -5,6 +5,7 @@ import { type StaticImageData } from "next/image";
 import { type ReactNode } from "react";
 
 import { Container, Grid, GridCol, P } from "@/dsfr";
+import { H1 } from "@/dsfr/base/typography";
 
 const errors = {
   "404": {
@@ -62,7 +63,7 @@ export const ErrorDisplay = ({ code, noRedirect, body, headline, title }: ErrorD
     <Container>
       <Grid haveGutters valign="middle" align="center" my="7w" mtmd="12w" mbmd="10w">
         <GridCol md={6} py="0">
-          <h1>{title}</h1>
+          <H1>{title}</H1>
           {!isNaN(+code) && (
             <P className="fr-text--sm" mb="3w">
               Erreur {code}

@@ -12,7 +12,7 @@ import { HighlightText } from "@/components/HighlightText";
 import { NoDataImage } from "@/components/img/NoDataImage";
 import { TravauxNiveauIsolationSegmentedControl } from "@/components/IsolationSegmentedControl";
 import { Box, Grid, GridCol } from "@/dsfr";
-import { H2 } from "@/dsfr/base/typography";
+import { H2, Text } from "@/dsfr/base/typography";
 import { estGlobalementRenove, type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
@@ -83,7 +83,9 @@ export const WrapperResultatDetail = ({
     <>
       <div className="mt-8">
         <Box className="my-8">
-          <H2 className="text-lg font-bold mb-1">Copropriété</H2>
+          <H2 as="h6" className="mb-2">
+            Copropriété
+          </H2>
           <Card
             header={<Box className="text-base font-bold">{informationBatiment.adresse}</Box>}
             headerAlign="left"
@@ -106,12 +108,12 @@ export const WrapperResultatDetail = ({
           />
         </Box>
 
-        <H2 className="text-lg font-bold mb-0">
+        <H2 as="h6" className="mb-0">
           Chauffages compatibles
           <DebugButton formData={informationBatiment} solutions={solutions} />
         </H2>
 
-        <p className="text-sm font-normal">Dépendent des travaux d’isolations</p>
+        <Text variant="sm">Dépendent des travaux d’isolations</Text>
 
         {!estGlobalementRenove(informationBatiment) && (
           <TravauxNiveauIsolationSegmentedControl travauxNiveauIsolation={travauxNiveauIsolation} />

@@ -2,6 +2,7 @@ import AccessibiliteContent from "@__content/accessibilite.mdx";
 import { type Metadata } from "next";
 
 import { Container } from "@/dsfr";
+import { H1 } from "@/dsfr/base/typography";
 import { anchorHeadingMDXComponents } from "@/mdx-components";
 
 import { sharedMetadata } from "../shared-metadata";
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
 
 const Accessibilite = () => (
   <Container my="4w">
-    <h1>{title}</h1>
+    <H1>{title}</H1>
     <AccessibiliteContent components={anchorHeadingMDXComponents} />
   </Container>
 );

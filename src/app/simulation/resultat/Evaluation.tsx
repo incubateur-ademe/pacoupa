@@ -2,7 +2,6 @@
 
 import { fr } from "@codegouvfr/react-dsfr";
 import Button from "@codegouvfr/react-dsfr/Button";
-import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import CloseIcon from "@mui/icons-material/Close";
 import InfoIcon from "@mui/icons-material/Info";
 import { Dialog, DialogContent, DialogContentText, DialogTitle, Tooltip } from "@mui/material";
@@ -99,15 +98,15 @@ export const Evaluation = ({ categorie, solution, withDetails }: EvaluationProps
   return (
     <Box>
       <Box className={fr.cx("fr-mt-1w", "fr-mb-1v")}>
-        <span className={cx("inline-block", "w-[20px]")} aria-hidden>
+        <span className="inline-block w-[20px]" aria-hidden>
           {emoji ?? ""}
         </span>
-        <span className={cx("pl-0")}>{titre}</span>
+        <span className="pl-0">{titre}</span>
       </Box>
 
-      <Box className={cx("flex")}>
-        <span className={cx("inline-block", "w-[20px]")}></span>
-        <Box className={cx("grow")}>
+      <Box className="flex">
+        <span className="inline-block w-[20px]"></span>
+        <Box className="grow">
           <Badge type={mapper[note].severity} label={mapper[note].label} />
         </Box>
         {withDetails && (text.length !== 0 || image) && (
@@ -129,11 +128,9 @@ export const Evaluation = ({ categorie, solution, withDetails }: EvaluationProps
               aria-labelledby="alert-dialog-title"
               aria-describedby="alert-dialog-description"
             >
-              <DialogTitle id="alert-dialog-title" className={fr.cx("fr-mt-4w")}>
-                <span className={cx("inline-block", "w-[20px]")} aria-hidden>
-                  {emoji ?? ""}
-                </span>
-                <span className={cx("pl-1")}>{titre}</span>
+              <DialogTitle id="alert-dialog-title" className="!mt-6">
+                {emoji && `${emoji} `}
+                {titre}
               </DialogTitle>
 
               <MuiButton
@@ -160,16 +157,21 @@ export const Evaluation = ({ categorie, solution, withDetails }: EvaluationProps
 
                   {text.map((chunk, index) => (
                     <Box key={index}>
-                      <Box className={cx("flex")}>
-                        <Box className={cx("w-[30px]", "shrink-0", "grow-0", "v-align-middle")}>
+                      <Box className="flex items-stretch">
+                        <Box className="w-[30px] mt-1">
                           <InfoIcon sx={{ fontSize: 20 }} />
                         </Box>
-                        <h3 className={cx("mb-0", fr.cx("fr-text--sm"))}>{chunk.titre}</h3>
+
+                        <Text variant="sm" className="mb-0 font-bold shrink-0 grow-0">
+                          {chunk.titre}
+                        </Text>
                       </Box>
 
-                      <Box className={cx("flex")}>
-                        <Box className={cx("w-[30px]", "shrink-0", "grow-0")}></Box>
-                        <Text className={cx("pl-0", fr.cx("fr-text--sm"))}>{chunk.contenu}</Text>
+                      <Box className="flex">
+                        <Box className="w-[30px] shrink-0 grow-0"></Box>
+                        <Text variant="sm" className="pl-0">
+                          {chunk.contenu}
+                        </Text>
                       </Box>
                     </Box>
                   ))}

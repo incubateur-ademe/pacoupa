@@ -3,6 +3,7 @@
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 
 import { Box } from "@/dsfr";
+import { H3 } from "@/dsfr/base/typography";
 
 type Props = {
   content?: React.ReactNode;
@@ -20,7 +21,7 @@ export const CardHeader = ({ image, title }: CardHeaderProps) => {
   return (
     <div className="flex gap-4 items-center self-start">
       {image && <Box>{image}</Box>}
-      <h4 className="mb-0 text-lg font-bold text-body-700">{title}</h4>
+      <H3 as="h6">{title}</H3>
     </div>
   );
 };

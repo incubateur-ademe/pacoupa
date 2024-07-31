@@ -76,7 +76,7 @@ export const DetailSolution = ({ solution, informationBatiment, travauxNiveauIso
         <Box className={cx("flex items-start gap-4", fr.cx("fr-mt-4w"))}>
           <Box>{familleImageMap[solution.familleSolution]}</Box>
           <Box>
-            <H2 className={fr.cx("fr-text--xl", "fr-mb-1w")}>{solution.nom}</H2>
+            <H2 as="h5">{solution.nom}</H2>
           </Box>
         </Box>
       </Box>
