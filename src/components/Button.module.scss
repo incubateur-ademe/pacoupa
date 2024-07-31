@@ -1,5 +1,5 @@
 .primaryButton, .secondaryButton, .tertiaryButton {
-    color: var(--color-green-700);
+    color: var(--color-body-700);
 }
 
 
@@ -13,7 +13,7 @@
 
     &:hover {
         background-color: var(--color-primary-300) !important;
-        color: var(--color-green-700);
+        color: var(--color-body-700);
     }
 
     &:active {
@@ -25,7 +25,7 @@
 
 .secondaryButton {
     background-color: var(--color-white) !important;
-    border-bottom: 2px solid var(--color-green-700) !important;
+    border-bottom: 2px solid var(--color-body-700) !important;
     box-shadow: unset !important;
     transition:
         background-color 0.1s,

@@ -137,37 +137,8 @@
 
         /* Custom colors ------------------------------------------------------- */
 
-        /* --color-primary-shadow: #183d2f; */
         --color-green-900: #183d2f;
-        /* --color-primary-border: #274430; */
         --color-green-800: #274430;
-        /* 
-        --color-title: #304436; 
-        --color-primary-text-hover: #304436;
-        --color-secondary-text: #304436; 
-        --color-primary-text: #334337;
-        */
-        --color-green-700: #304436;
-
-        --color-green-600: #535F57;
-
-        /* 
-        --color-primary-background-active: #80b990;
-        */
-        --color-green-500: #80b990;
-        /* 
-        --color-primary-background: #92e3a9;
-        --color-secondary-text-active: #92e3a9; 
-        */
-        --color-green-400: #B7CABD;
-
-        --color-green-200: #92e3a9;
-        /* --color-primary-background-hover: #b3ebc3; */
-        --color-green-100: #b3ebc3;
-        /* --color-footer-background: #ebf7eb; */
-        --color-green-50: #E8F7EC;
-
-        /* --color-secondary-background: #fff; */
         --color-white: #fff;
 
         /* implémentation du DS de Pacoupa */

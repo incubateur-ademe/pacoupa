@@ -21,12 +21,12 @@ const config: Record<Props["type"], { bgColor: string; contentColor: string; tit
   error: {
     bgColor: "bg-red-50",
     titleColor: "text-green-800",
-    contentColor: "text-green-700",
+    contentColor: "text-body-700",
   },
   info: {
     bgColor: "bg-blue-50",
     titleColor: "text-green-800",
-    contentColor: "text-green-700",
+    contentColor: "text-body-700",
   },
   success: {
     bgColor: "bg-decoration-300",
@@ -36,12 +36,12 @@ const config: Record<Props["type"], { bgColor: string; contentColor: string; tit
   warning: {
     bgColor: "bg-yellow-50",
     titleColor: "text-green-800",
-    contentColor: "text-green-700",
+    contentColor: "text-body-700",
   },
   neutral: {
     bgColor: "bg-white",
     titleColor: "text-green-800",
-    contentColor: "text-green-700",
+    contentColor: "text-body-700",
   },
 };
 

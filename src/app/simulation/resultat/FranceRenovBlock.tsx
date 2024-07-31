@@ -40,7 +40,7 @@ export const FranceRenovBlock = ({ withWorkflow, showToast }: Props = {}) => {
                   navigator.clipboard.writeText(window.location.href).catch(console.error);
                   showToast(true);
                 }}
-                className="min-h-0 p-0 text-green-700 underline underline-offset-4 hover:!bg-decoration-300 hover:text-green-700 transition ease-in-out delay-150 hover:scale-110 duration-300"
+                className="min-h-0 p-0 text-body-700 underline underline-offset-4 hover:!bg-decoration-300 hover:text-body-700 transition ease-in-out delay-150 hover:scale-110 duration-300"
               >
                 Partagez
               </Button>{" "}
