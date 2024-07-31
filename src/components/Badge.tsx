@@ -11,7 +11,7 @@ export type BadgeProps = {
 export const Badge = ({ label, type = "neutral", icon, size = "small" }: PropsWithChildren<BadgeProps>) => {
   return (
     <p
-      className={cx(`inline-flex items-center rounded-md px-1 py-0.5 font-bold`, {
+      className={cx(`inline-flex items-center rounded-md px-1 py-0.5 mb-0 font-bold`, {
         "bg-success-300 text-success-700": type === "success",
         "bg-warning-300 text-warning-700": type === "warning",
         "bg-error-300 text-error-700": type === "error",

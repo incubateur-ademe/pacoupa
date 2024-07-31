@@ -41,12 +41,12 @@ export const EstimationCouts = ({ solution, informationBatiment }: PropsWithChil
 
   return (
     <>
-      <Box className="mb-8">
+      <Box className="mb-6">
         <Text className="mb-0">Estimation des coûts</Text>
         <p className="text-xs font-normal">(rénovations comprises)</p>
 
         <div className="px-2">
-          <div className="text-sm font-medium mb-3 flex items-baseline">
+          <p className="flex items-baseline mt-4 mb-2 text-sm font-medium">
             Coût total du projet
             <Tooltip
               title={
@@ -61,7 +61,7 @@ export const EstimationCouts = ({ solution, informationBatiment }: PropsWithChil
             >
               <span className={cx(fr.cx("ri-information-line", "fr-icon--sm"), "ml-2")} />
             </Tooltip>
-          </div>
+          </p>
           <div>
             <BadgeEuros
               value={approximationEnveloppeImmeuble + approximationSystemeImmeuble}
@@ -73,21 +73,23 @@ export const EstimationCouts = ({ solution, informationBatiment }: PropsWithChil
             </p>
           </div>
 
-          <div className="text-sm font-medium mb-3">Aides nationales</div>
+          <p className="mt-4 mb-2 text-sm font-medium">Aides nationales</p>
           <div>
             <BadgeEuros value={aidesImmeuble} type="success" prefix="⩾" />
             <p className="text-sm leading-6">{formatEuroNoDecimal(aidesLogement)} /logement</p>
           </div>
 
-          <Callout
-            type="warning"
-            content={
-              <>
-                Les données financières sont des premières estimations. Elles doivent faire l'objet d'études plus
-                approfondies.
-              </>
-            }
-          />
+          <div className="mt-4">
+            <Callout
+              type="warning"
+              content={
+                <>
+                  Les données financières sont des premières estimations. Elles doivent faire l'objet d'études plus
+                  approfondies.
+                </>
+              }
+            />
+          </div>
         </div>
       </Box>
     </>

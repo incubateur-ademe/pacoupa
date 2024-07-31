@@ -89,7 +89,7 @@ export const FranceRenovBlock = ({ withWorkflow, showToast }: Props = {}) => {
       {withWorkflow && (
         <Box>
           <H3 className="text-lg font-medium mb-0">Cette solution vous intéresse ?</H3>
-          <Text className="text-base font-normal">et maintenant ?</Text>
+          <Text variant="md">et maintenant ?</Text>
 
           {width < breakpoints.getPxValues().sm ? (
             <Box className={cx("flex flex-wrap gap-8 flex-col justify-center items-start px-8")}>

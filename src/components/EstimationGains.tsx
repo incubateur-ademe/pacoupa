@@ -41,7 +41,7 @@ export const EstimationGains = ({ solution, informationBatiment, avecMessage }: 
         <Text className="mb-0">Estimation des gains</Text>
         <p className="text-xs font-normal">(isolations comprises)</p>
         <div className="px-2">
-          <div className="mt-4 mb-2 text-sm font-medium">Gains énergétiques</div>
+          <p className="mt-4 mb-2 text-sm font-medium">Gains énergétiques</p>
           <div className="grid grid-cols-[1fr_minmax(85px,_1fr)_1fr] gap-1 justify-items-center">
             <div className="text-xs font-normal w-[62px]">Actuel</div>
             <div></div>
@@ -82,10 +82,10 @@ export const EstimationGains = ({ solution, informationBatiment, avecMessage }: 
             prefix={gainEconomique < 0 ? "-" : undefined}
           />{" "}
           /an
-          <p className="text-sm leading-6 mb-4">
+          <div className="text-sm leading-6 mb-0">
             {Math.sign(gainEconomique) === -1 && "- "}
             {formatEuroNoDecimal(Math.abs(approximation10(gainEconomique)))} /logement
-          </p>
+          </div>
         </div>
       </Box>
     </>

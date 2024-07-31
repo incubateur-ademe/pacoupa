@@ -5,11 +5,11 @@
 /* Custom color for stepper's - needs to be outside Tailwind's @layer  */
 
 .fr-stepper__title {
-    color: var(--color-green-700);
+    color: var(--color-body-700);
 }
 
 .fr-stepper__steps {
-    background-image: repeating-linear-gradient(to right, var(--color-green-500) 0, var(--color-green-500) var(--active-inner), transparent var(--active-inner), transparent var(--active-outer)), repeating-linear-gradient(to right, var(--color-green-50) 0, var(--color-green-50) var(--default-inner), transparent var(--default-inner), transparent var(--default-outer)) !important;
+    background-image: repeating-linear-gradient(to right, var(--color-primary-700) 0, var(--color-primary-700) var(--active-inner), transparent var(--active-inner), transparent var(--active-outer)), repeating-linear-gradient(to right, var(--color-decoration-300) 0, var(--color-decoration-300) var(--default-inner), transparent var(--default-inner), transparent var(--default-outer)) !important;
 }
 
 @layer base {
@@ -17,7 +17,7 @@
     /* Customization upon the DSFR */
 
     body {
-        color: var(--color-green-700);
+        color: var(--color-body-700);
     }
 
     h6,
@@ -26,11 +26,7 @@
     h3,
     h2,
     h1 {
-        color: var(--color-green-700);
-    }
-
-    h1 {
-        font-size: 2rem;
+        color: var(--color-body-700);
     }
 
     :root {
