@@ -6,7 +6,7 @@ import { useWindowSize } from "usehooks-ts";
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
 import { Mascotte1 } from "@/components/img/mascotte/Mascotte1";
-import { Box, Grid, GridCol } from "@/dsfr";
+import { Grid, GridCol } from "@/dsfr";
 import { H3, Text } from "@/dsfr/base/typography";
 
 type Props =
