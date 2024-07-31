@@ -2,6 +2,8 @@ import { fr, type FrCxArg } from "@codegouvfr/react-dsfr";
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import { type PropsWithChildren } from "react";
 
+import { H3 } from "@/dsfr/base/typography";
+
 import { Logo } from "./img/Logo";
 
 type Props = {
@@ -58,7 +60,7 @@ export const Callout = ({ content, iconId, icon, title, type }: PropsWithChildre
       <div className="flex">
         <div className="flex-shrink-0 -mt-0.5">{icon}</div>
         <div className="ml-2">
-          {title && <h3 className={`text-sm font-medium ${titleColor} mb-0`}>{title}</h3>}
+          {title && <H3 className={`text-sm font-medium ${titleColor} mb-0`}>{title}</H3>}
           <div className={cx("text-sm", { "mt-2": !!title }, `${contentColor}`)}>{content}</div>
         </div>
       </div>
