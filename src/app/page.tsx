@@ -2,6 +2,7 @@ import { type Metadata } from "next";
 
 import { config } from "@/config";
 
+import { DecarbonnonsZone } from "./_landing/decarbonnons-zone";
 import { ExplicationPacZone } from "./_landing/explication-pac-zone";
 import { LandingHero } from "./_landing/hero";
 import { LaisserGuider } from "./_landing/laisser-guider-zone";
@@ -55,11 +56,12 @@ const Home = () => {
       <section>
         <Solution5mnZone />
       </section>
-      {/*
 
-      <section className="mt-12">
+      <section>
         <DecarbonnonsZone />
-      </section> */}
+      </section>
+
+      <div className="md:mb-30"></div>
     </div>
   );
 };

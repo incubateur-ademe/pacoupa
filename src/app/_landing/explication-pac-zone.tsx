@@ -6,7 +6,7 @@ import { Tooltip } from "react-tooltip";
 
 import { HesitationImage } from "@/components/img/HesitationImage";
 import { UnderlineText } from "@/components/UnderlineText";
-import { H2, Text } from "@/dsfr/base/typography";
+import { H2, H3, Text } from "@/dsfr/base/typography";
 
 import styles from "./explication-pac-zone.module.scss";
 
@@ -43,8 +43,8 @@ const ExplicationDesktop = () => (
 
     <div className="grow-[2]">
       <H2>PAC, RCU: c'est quoi&nbsp;?</H2>
-      <Text>Vous hésitez entre une chaudière à gaz ou des radiateurs électriques&nbsp;?</Text>
-      <Text className={styles.questions}>
+      <Text variant="xl">Vous hésitez entre une chaudière à gaz ou des radiateurs électriques&nbsp;?</Text>
+      <H3 as="h4" className="mt-16">
         <strong className="pac">
           Et pourquoi pas une <UnderlineText>pompe à chaleur</UnderlineText> (PAC){" "}
           <span className={fr.cx("fr-icon--sm", "ri-information-line")} aria-hidden="true"></span>
@@ -54,7 +54,7 @@ const ExplicationDesktop = () => (
           ou un raccordement au <UnderlineText>réseau de chaleur urbain</UnderlineText> (RCU){" "}
           <span className={fr.cx("fr-icon--sm", "ri-information-line")} aria-hidden="true"></span>&nbsp;?
         </strong>
-      </Text>
+      </H3>
     </div>
   </div>
 );
@@ -67,8 +67,8 @@ const ExplicationMobile = () => (
 
     <div className="grow-[2]">
       <H2>PAC, RCU: c'est quoi&nbsp;?</H2>
-      <Text>Vous hésitez entre une chaudière à gaz ou des radiateurs électriques&nbsp;?</Text>
-      <Text className={styles.questions}>
+      <Text variant="xl">Vous hésitez entre une chaudière à gaz ou des radiateurs électriques&nbsp;?</Text>
+      <Text variant="xl" className={styles.questions}>
         <strong className="pac">
           Et pourquoi pas une <UnderlineText>pompe à chaleur</UnderlineText> (PAC){" "}
           <span className={fr.cx("fr-icon--sm", "ri-information-line")} aria-hidden="true"></span>
