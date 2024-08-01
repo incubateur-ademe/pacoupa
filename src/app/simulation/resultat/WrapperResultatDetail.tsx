@@ -10,7 +10,7 @@ import { EstimationGains } from "@/components/EstimationGains";
 import { HighlightText } from "@/components/HighlightText";
 import { NoDataImage } from "@/components/img/NoDataImage";
 import { TravauxNiveauIsolationSegmentedControl } from "@/components/IsolationSegmentedControl";
-import {  Grid, GridCol } from "@/dsfr";
+import { Grid, GridCol } from "@/dsfr";
 import { H2, Text } from "@/dsfr/base/typography";
 import { estGlobalementRenove, type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
