@@ -6,6 +6,7 @@ import { ExplicationPacZone } from "./_landing/explication-pac-zone";
 import { LandingHero } from "./_landing/hero";
 import { LaisserGuider } from "./_landing/laisser-guider-zone";
 import { RaisonsZone } from "./_landing/raisons-zone";
+import { Solution5mnZone } from "./_landing/solution-5mn-zone";
 import { sharedMetadata } from "./shared-metadata";
 
 const title = `Accueil - ${config.name}`;
@@ -51,10 +52,10 @@ const Home = () => {
         <LaisserGuider />
       </section>
 
-      {/*
-      <section className="mt-12">
+      <section>
         <Solution5mnZone />
       </section>
+      {/*
 
       <section className="mt-12">
         <DecarbonnonsZone />

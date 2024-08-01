@@ -9,9 +9,9 @@ export const Solution5mnZone = () => {
   return (
     <div>
       <Container>
-        <H2 mt="16w">La solution qui vous correspond en moins de 5min</H2>
+        <H2>La solution qui vous correspond en moins de 5min</H2>
 
-        <div className="flex flex-col md:flex-row gap-8 items-stretch">
+        <div className="flex flex-col md:flex-row gap-4 md:gap-32 items-stretch">
           <VCard
             title="Simple"
             desc="Répondez à seulement quelques questions."
