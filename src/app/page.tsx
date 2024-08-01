@@ -4,6 +4,7 @@ import { config } from "@/config";
 
 import { ExplicationPacZone } from "./_landing/explication-pac-zone";
 import { LandingHero } from "./_landing/hero";
+import { LaisserGuider } from "./_landing/laisser-guider-zone";
 import { RaisonsZone } from "./_landing/raisons-zone";
 import { sharedMetadata } from "./shared-metadata";
 
@@ -46,9 +47,9 @@ const Home = () => {
         <ExplicationPacZone />
       </section>
 
-      {/* <section>
+      <section>
         <LaisserGuider />
-      </section> */}
+      </section>
 
       {/*
       <section className="mt-12">

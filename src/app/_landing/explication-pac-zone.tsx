@@ -37,7 +37,7 @@ export const ExplicationPacZone = () => {
 
 const ExplicationDesktop = () => (
   <div className="hidden md:flex">
-    <div className=" basis-[300px] grow-1 order-first -translate-y-12">
+    <div className="basis-[300px] grow order-first -translate-y-12">
       <HesitationImage />
     </div>
 
@@ -61,7 +61,7 @@ const ExplicationDesktop = () => (
 
 const ExplicationMobile = () => (
   <div className="flex md:hidden flex-col rounded-none">
-    <div className="relative basis-[300px] grow-1 order-last md:order-first md:-translate-y-12">
+    <div className="relative basis-[300px] grow order-last md:order-first md:-translate-y-12">
       <HesitationImage />
     </div>
 

@@ -10,7 +10,7 @@ type Props = {
 export function PlanteImage({ height, width }: Props) {
   return (
     <>
-      <Image src={plante as string} width={width} height={height} alt="Plante" />
+      <Image src={plante as string} fill alt="Plante" className="object-contain" />
     </>
   );
 }
