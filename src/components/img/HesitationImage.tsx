@@ -10,7 +10,7 @@ type Props = {
 export function HesitationImage({ height, width }: Props) {
   return (
     <>
-      <Image src={hesitation as string} width={width} height={height} alt="Hesitation" />
+      <Image src={hesitation as string} fill alt="Hesitation" className="object-fit" />
     </>
   );
 }

@@ -11,10 +11,10 @@ export const RaisonsZone = () => {
   return (
     <div className={styles.cards}>
       <Container>
-        <H2 mt="10w">On a tous une bonne raison</H2>
+        <H2>On a tous une bonne raison</H2>
 
         <Grid>
-          <GridCol base={9}>
+          <GridCol base={12}>
             <HCard
               title="Chaudière en panne&nbsp;?"
               desc="C’est le bon moment pour vous renseigner sur les solutions durables, spécifiquement adaptées à votre immeuble."
@@ -24,7 +24,7 @@ export const RaisonsZone = () => {
         </Grid>
 
         <Grid className="mt-8">
-          <GridCol base={9} offset={2}>
+          <GridCol base={12} offsetMd={2}>
             <HCard
               title="Facture trop élevée&nbsp;?"
               desc="Les solutions “renouvelables” sont souvent moins gourmandes, et donc moins exposées aux augmentations de prix."
@@ -34,7 +34,7 @@ export const RaisonsZone = () => {
         </Grid>
 
         <Grid className="mt-8">
-          <GridCol base={9} offset={4}>
+          <GridCol base={12} offsetMd={4}>
             <HCard
               desc="Réseau de chaleur ? pompe à chaleur ? solaire thermique ? biomasse ? Késako ? Les solutions sont nombreuses, laissez nous vous guider pas à pas."
               title="Envie de passer au vert&nbsp;?"

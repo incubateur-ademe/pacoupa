@@ -1,11 +1,11 @@
 "use client";
 
 import { fr } from "@codegouvfr/react-dsfr";
+import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import { Tooltip } from "react-tooltip";
 
 import { HesitationImage } from "@/components/img/HesitationImage";
 import { UnderlineText } from "@/components/UnderlineText";
-import { Container, Grid, GridCol } from "@/dsfr";
 import { H2, Text } from "@/dsfr/base/typography";
 
 import styles from "./explication-pac-zone.module.scss";
@@ -13,31 +13,12 @@ import styles from "./explication-pac-zone.module.scss";
 export const ExplicationPacZone = () => {
   return (
     <>
-      <Container className={styles.hesitation}>
-        <Grid className={fr.colors.decisions.text.actionHigh.redMarianne.default}>
-          <GridCol base={6} className={"flex justify-center content-center"}>
-            <HesitationImage width={450} />
-          </GridCol>
-
-          <GridCol base={6} className="mt-12">
-            <div>
-              <H2>PAC, RCU: c'est quoi ?</H2>
-              <Text>Vous hésitez entre une chaudière à gaz ou des radiateurs électriques ?</Text>
-              <Text className={styles.questions}>
-                <strong className="pac">
-                  Et pourquoi pas une <UnderlineText>pompe à chaleur</UnderlineText> (PAC){" "}
-                  <span className={fr.cx("fr-icon--sm", "ri-information-line")} aria-hidden="true"></span>
-                </strong>
-                <br />
-                <strong className="rcu">
-                  ou un raccordement au <UnderlineText>réseau de chaleur urbain</UnderlineText> (RCU){" "}
-                  <span className={fr.cx("fr-icon--sm", "ri-information-line")} aria-hidden="true"></span> ?
-                </strong>
-              </Text>
-            </div>
-          </GridCol>
-        </Grid>
-      </Container>
+      <div className={cx(styles.hesitation, "rounded-none md:rounded-lg")}>
+        <div>
+          <ExplicationDesktop />
+          <ExplicationMobile />
+        </div>
+      </div>
 
       {/* TODO: utiliser Material UI tooltip à la place */}
       <Tooltip anchorSelect=".pac" place="top">
@@ -53,3 +34,51 @@ export const ExplicationPacZone = () => {
     </>
   );
 };
+
+const ExplicationDesktop = () => (
+  <div className="hidden md:flex">
+    <div className=" basis-[300px] grow-1 order-first -translate-y-12">
+      <HesitationImage />
+    </div>
+
+    <div className="grow-[2]">
+      <H2>PAC, RCU: c'est quoi&nbsp;?</H2>
+      <Text>Vous hésitez entre une chaudière à gaz ou des radiateurs électriques&nbsp;?</Text>
+      <Text className={styles.questions}>
+        <strong className="pac">
+          Et pourquoi pas une <UnderlineText>pompe à chaleur</UnderlineText> (PAC){" "}
+          <span className={fr.cx("fr-icon--sm", "ri-information-line")} aria-hidden="true"></span>
+        </strong>
+        <br />
+        <strong className="rcu">
+          ou un raccordement au <UnderlineText>réseau de chaleur urbain</UnderlineText> (RCU){" "}
+          <span className={fr.cx("fr-icon--sm", "ri-information-line")} aria-hidden="true"></span>&nbsp;?
+        </strong>
+      </Text>
+    </div>
+  </div>
+);
+
+const ExplicationMobile = () => (
+  <div className="flex md:hidden flex-col rounded-none">
+    <div className="relative basis-[300px] grow-1 order-last md:order-first md:-translate-y-12">
+      <HesitationImage />
+    </div>
+
+    <div className="grow-[2]">
+      <H2>PAC, RCU: c'est quoi&nbsp;?</H2>
+      <Text>Vous hésitez entre une chaudière à gaz ou des radiateurs électriques&nbsp;?</Text>
+      <Text className={styles.questions}>
+        <strong className="pac">
+          Et pourquoi pas une <UnderlineText>pompe à chaleur</UnderlineText> (PAC){" "}
+          <span className={fr.cx("fr-icon--sm", "ri-information-line")} aria-hidden="true"></span>
+        </strong>
+        <br />
+        <strong className="rcu">
+          ou un raccordement au <UnderlineText>réseau de chaleur urbain</UnderlineText> (RCU){" "}
+          <span className={fr.cx("fr-icon--sm", "ri-information-line")} aria-hidden="true"></span>&nbsp;?
+        </strong>
+      </Text>
+    </div>
+  </div>
+);

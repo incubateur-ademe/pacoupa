@@ -2,12 +2,9 @@ import { type Metadata } from "next";
 
 import { config } from "@/config";
 
-import { DecarbonnonsZone } from "./_landing/decarbonnons-zone";
 import { ExplicationPacZone } from "./_landing/explication-pac-zone";
 import { LandingHero } from "./_landing/hero";
-import { LaisserGuider } from "./_landing/laisser-guider-zone";
 import { RaisonsZone } from "./_landing/raisons-zone";
-import { Solution5mnZone } from "./_landing/solution-5mn-zone";
 import { sharedMetadata } from "./shared-metadata";
 
 const title = `Accueil - ${config.name}`;
@@ -33,7 +30,7 @@ const Home = () => {
 
   return (
     <>
-      <section className="mt-16">
+      <section className="mt-8 md:mt-16">
         <LandingHero />
       </section>
 
@@ -41,15 +38,15 @@ const Home = () => {
         <LogosZone />
       </section> */}
 
-      <section className="mt-12">
+      <section className="mt-12 md:mt-20">
         <RaisonsZone />
       </section>
 
-      <section className="mt-30">
+      <section className="mt-12 md:mt-20">
         <ExplicationPacZone />
       </section>
 
-      <section className="mt-32">
+      {/*<section className="mt-32">
         <LaisserGuider />
       </section>
 
@@ -59,7 +56,7 @@ const Home = () => {
 
       <section className="mt-12">
         <DecarbonnonsZone />
-      </section>
+      </section> */}
     </>
   );
 };

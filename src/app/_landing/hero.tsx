@@ -50,12 +50,13 @@ const LandingHeroMobile = () => (
         <H1>Trouvez la meilleure solution de chauffage écologique, adaptée à votre copropriété</H1>
       </GridCol>
     </Grid>
-    <Grid haveGutters>
+
+    <CTA source="landing" />
+
+    <Grid haveGutters className="mt-8">
       <GridCol base={10} offset={1}>
         <HeroImage />
       </GridCol>
     </Grid>
-
-    <CTA source="landing" />
   </Container>
 );

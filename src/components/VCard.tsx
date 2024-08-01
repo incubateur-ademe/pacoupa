@@ -13,7 +13,7 @@ type Props = {
 export const VCard = ({ desc, image, title }: PropsWithChildren<Props>) => {
   return (
     <>
-      <div className={styles.div}>
+      <div className={styles.box}>
         <div className={styles.image}>{image}</div>
         <div className={styles.text}>
           <H2>{title}</H2>
