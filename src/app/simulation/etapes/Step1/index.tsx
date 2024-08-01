@@ -4,6 +4,7 @@ import { z } from "zod";
 
 import { AutocompleteBan } from "@/components/AutocompleteBan";
 import { Callout } from "@/components/Callout";
+import { Text } from "@/dsfr/base/typography";
 
 import { HeaderFunnel } from "../HeaderFunnel";
 import { WizardForm } from "../WizardForm";
@@ -27,10 +28,10 @@ export const Step1 = () => {
               <Callout
                 type="pacoupa"
                 content={
-                  <>
+                  <Text className="mb-0">
                     L’adresse nous permet de connaître votre éligibilité à un réseau de chaleur ainsi que votre zone
                     climatique.
-                  </>
+                  </Text>
                 }
               />
             </div>

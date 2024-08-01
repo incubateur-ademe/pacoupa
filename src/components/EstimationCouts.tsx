@@ -82,10 +82,10 @@ export const EstimationCouts = ({ solution, informationBatiment }: PropsWithChil
             <Callout
               type="warning"
               content={
-                <>
+                <Text variant="sm" className="mb-0">
                   Les données financières sont des premières estimations. Elles doivent faire l'objet d'études plus
                   approfondies.
-                </>
+                </Text>
               }
             />
           </div>

@@ -75,7 +75,7 @@ export const Step5 = () => {
             <SegmentedControl
               legend={
                 <>
-                  Votre copropriété a-t-elle des <strong>espaces extérieurs communs</strong> ?
+                  Votre copropriété a-t-elle des <strong>espaces extérieurs communs</strong>&nbsp;?
                 </>
               }
               name="possedeEspacesExterieursCommuns"
@@ -139,7 +139,10 @@ export const Step5 = () => {
             />
 
             <div>
-              <Callout type="pacoupa" content={<>Certains systèmes de chaleur nécessitent des unités extérieures.</>} />
+              <Callout
+                type="pacoupa"
+                content={<Text className="mb-0">Certains systèmes de chaleur nécessitent des unités extérieures.</Text>}
+              />
             </div>
           </>
         )}

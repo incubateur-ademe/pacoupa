@@ -33,7 +33,7 @@ export const Step4 = () => {
               <Input
                 label={
                   <>
-                    Combien y a-t-il de <strong>logements</strong> dans le bâtiment ?
+                    Combien y a-t-il de <strong>logements</strong> dans le bâtiment&nbsp;?
                   </>
                 }
                 nativeInputProps={{
@@ -54,14 +54,16 @@ export const Step4 = () => {
             <div className="mt-8">
               <Callout
                 type="pacoupa"
-                content={<>Cela nous permettra de mieux estimer les coûts et les gains moyens.</>}
+                content={
+                  <Text className="mb-0">Cela nous permettra de mieux estimer les coûts et les gains moyens.</Text>
+                }
               />
             </div>
           </>
         )}
       />
 
-      <Text variant="sm" className="mt-8">
+      <Text variant="sm" className="mt-8 mb-0">
         <i className={cx("mr-2", fr.cx("fr-icon-info-fill"))} aria-hidden={true} />
         Plutôt autour de 10, 50, 100, 200 ?
       </Text>

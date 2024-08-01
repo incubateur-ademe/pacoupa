@@ -10,7 +10,7 @@ import { EstimationGains } from "@/components/EstimationGains";
 import { HighlightText } from "@/components/HighlightText";
 import { NoDataImage } from "@/components/img/NoDataImage";
 import { TravauxNiveauIsolationSegmentedControl } from "@/components/IsolationSegmentedControl";
-import { Grid, GridCol } from "@/dsfr";
+import { Container, Grid, GridCol } from "@/dsfr";
 import { H2, Text } from "@/dsfr/base/typography";
 import { estGlobalementRenove, type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
@@ -79,150 +79,148 @@ export const WrapperResultatDetail = ({
     );
 
   return (
-    <>
-      <div className="mt-8">
-        <div className="my-8">
-          <H2 as="h6" className="mb-2">
-            Copropriété
-          </H2>
-          <Card
-            header={<div className="text-base font-bold">{informationBatiment.adresse}</div>}
-            headerAlign="left"
-            footer={
-              <div className="mt-4 mr-4">
-                <Button
-                  linkProps={{
-                    href: "/simulation/etapes",
-                  }}
-                  priority="secondary"
-                  iconId="ri-pencil-line"
-                  iconPosition="right"
-                  className="min-h-0 w-min"
-                >
-                  {"Modifier"}
-                </Button>
-              </div>
-            }
-            footerAlign="right"
-          />
-        </div>
-
-        <H2 as="h6" className="mb-0">
-          Chauffages compatibles
-          <DebugButton formData={informationBatiment} solutions={solutions} />
+    <Container>
+      <div className="my-8">
+        <H2 as="h6" className="mb-2">
+          Copropriété
         </H2>
-
-        <Text variant="sm">Dépendent des travaux d’isolations</Text>
-
-        {!estGlobalementRenove(informationBatiment) && (
-          <TravauxNiveauIsolationSegmentedControl travauxNiveauIsolation={travauxNiveauIsolation} />
-        )}
-
-        <div>
-          {nbSolutions === 0 ? (
-            <div>
-              <div className="text-center my-16">
-                <NoDataImage />
-              </div>
-              <p>
-                Nous n’avons trouvé <strong>aucune solution</strong> ENR compatible pour votre bâtiment.
-              </p>
+        <Card
+          header={<div className="text-base font-bold">{informationBatiment.adresse}</div>}
+          headerAlign="left"
+          footer={
+            <div className="mt-4 mr-4">
+              <Button
+                linkProps={{
+                  href: "/simulation/etapes",
+                }}
+                priority="secondary"
+                iconId="ri-pencil-line"
+                iconPosition="right"
+                className="min-h-0 w-min"
+              >
+                {"Modifier"}
+              </Button>
             </div>
-          ) : (
-            <>
-              Nous avons trouvé{" "}
-              <strong>
-                <HighlightText>
-                  {nbSolutions} solution{nbSolutions > 1 ? "s" : ""}
-                </HighlightText>
-              </strong>{" "}
-              de chauffage adaptées à votre bâtiment.
-            </>
-          )}
-        </div>
-
-        <Grid haveGutters className="mt-6">
-          {isRcuEligible && (
-            <GridCol key="rcu" base={12} sm={6} xl={4}>
-              <CardRcu />
-            </GridCol>
-          )}
-          {solutions.slice(0, complet ? nbSolutions : isRcuEligible ? 2 : 3).map((solution, index) => {
-            const gestes = calculeIsolationsManquantes(solution);
-            const marker = !isRcuEligible && index === 0 && { marker: "Meilleure solution" };
-
-            return (
-              <GridCol key={solution.id} base={12} sm={6} xl={4}>
-                <Card
-                  {...marker}
-                  content={
-                    <>
-                      <div className="mt-4">
-                        <Usage solution={solution} />
-                      </div>
-                      <hr />
-                      <div>
-                        <Isolation
-                          gestes={gestes}
-                          travauxNiveauIsolation={travauxNiveauIsolation}
-                          estGlobalementRenove={estGlobalementRenove(informationBatiment)}
-                        />
-                      </div>
-                      <hr className="mt-8" />
-
-                      <EstimationGains solution={solution} informationBatiment={informationBatiment} />
-
-                      <EstimationCouts solution={solution} informationBatiment={informationBatiment} />
-                    </>
-                  }
-                  header={<Card.CardHeader image={familleImageMap[solution.familleSolution]} title={solution.nom} />}
-                  footer={
-                    <Button
-                      priority="primary"
-                      onClick={() =>
-                        router.push(
-                          `/simulation/resultat?${createSearchParams({
-                            searchParams,
-                            name: "idSolution",
-                            value: solution.id,
-                          })}`,
-                        )
-                      }
-                    >
-                      Découvrir
-                    </Button>
-                  }
-                />
-              </GridCol>
-            );
-          })}
-        </Grid>
-        {!complet && nbSolutions > 3 && (
-          <div className="flex mt-8">
-            <Button
-              priority="tertiary no outline"
-              className={cx("grow", "md:grow-0", "justify-center")}
-              linkProps={{
-                href: `/simulation/resultat?${createSearchParams<ResultatsPageSearchParamsProps["complet"]>({
-                  searchParams,
-                  name: "complet",
-                  value: "oui",
-                })}`,
-              }}
-            >
-              Voir plus de solutions
-            </Button>
-          </div>
-        )}
-
-        <Grid>
-          <GridCol className="mt-12">
-            <NouvelleSimulation />
-          </GridCol>
-        </Grid>
-
-        <FranceRenovBlock />
+          }
+          footerAlign="right"
+        />
       </div>
-    </>
+
+      <H2 as="h6" className="mb-0">
+        Chauffages compatibles
+        <DebugButton formData={informationBatiment} solutions={solutions} />
+      </H2>
+
+      <Text variant="sm">Dépendent des travaux d’isolations</Text>
+
+      {!estGlobalementRenove(informationBatiment) && (
+        <TravauxNiveauIsolationSegmentedControl travauxNiveauIsolation={travauxNiveauIsolation} />
+      )}
+
+      <div>
+        {nbSolutions === 0 ? (
+          <div>
+            <div className="text-center my-16">
+              <NoDataImage />
+            </div>
+            <p>
+              Nous n’avons trouvé <strong>aucune solution</strong> ENR compatible pour votre bâtiment.
+            </p>
+          </div>
+        ) : (
+          <>
+            Nous avons trouvé{" "}
+            <strong>
+              <HighlightText>
+                {nbSolutions} solution{nbSolutions > 1 ? "s" : ""}
+              </HighlightText>
+            </strong>{" "}
+            de chauffage adaptées à votre bâtiment.
+          </>
+        )}
+      </div>
+
+      <Grid haveGutters className="mt-6">
+        {isRcuEligible && (
+          <GridCol key="rcu" base={12} sm={6} xl={4}>
+            <CardRcu />
+          </GridCol>
+        )}
+        {solutions.slice(0, complet ? nbSolutions : isRcuEligible ? 2 : 3).map((solution, index) => {
+          const gestes = calculeIsolationsManquantes(solution);
+          const marker = !isRcuEligible && index === 0 && { marker: "Meilleure solution" };
+
+          return (
+            <GridCol key={solution.id} base={12} sm={6} xl={4}>
+              <Card
+                {...marker}
+                content={
+                  <>
+                    <div className="mt-4">
+                      <Usage solution={solution} />
+                    </div>
+                    <hr />
+                    <div>
+                      <Isolation
+                        gestes={gestes}
+                        travauxNiveauIsolation={travauxNiveauIsolation}
+                        estGlobalementRenove={estGlobalementRenove(informationBatiment)}
+                      />
+                    </div>
+                    <hr className="mt-8" />
+
+                    <EstimationGains solution={solution} informationBatiment={informationBatiment} />
+
+                    <EstimationCouts solution={solution} informationBatiment={informationBatiment} />
+                  </>
+                }
+                header={<Card.CardHeader image={familleImageMap[solution.familleSolution]} title={solution.nom} />}
+                footer={
+                  <Button
+                    priority="primary"
+                    onClick={() =>
+                      router.push(
+                        `/simulation/resultat?${createSearchParams({
+                          searchParams,
+                          name: "idSolution",
+                          value: solution.id,
+                        })}`,
+                      )
+                    }
+                  >
+                    Découvrir
+                  </Button>
+                }
+              />
+            </GridCol>
+          );
+        })}
+      </Grid>
+      {!complet && nbSolutions > 3 && (
+        <div className="flex mt-8">
+          <Button
+            priority="tertiary no outline"
+            className={cx("grow", "md:grow-0", "justify-center")}
+            linkProps={{
+              href: `/simulation/resultat?${createSearchParams<ResultatsPageSearchParamsProps["complet"]>({
+                searchParams,
+                name: "complet",
+                value: "oui",
+              })}`,
+            }}
+          >
+            Voir plus de solutions
+          </Button>
+        </div>
+      )}
+
+      <Grid>
+        <GridCol className="mt-12">
+          <NouvelleSimulation />
+        </GridCol>
+      </Grid>
+
+      <FranceRenovBlock />
+    </Container>
   );
 };

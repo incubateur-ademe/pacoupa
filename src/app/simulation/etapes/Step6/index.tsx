@@ -75,7 +75,7 @@ export const Step6 = () => {
             <SegmentedControl
               legend={
                 <>
-                  En règle générale, les appartements ont-ils des <strong>espaces extérieurs privés</strong> ?
+                  En règle générale, les appartements ont-ils des <strong>espaces extérieurs privés</strong>&nbsp;?
                 </>
               }
               name="possedeEspacesExterieursPersonnels"
@@ -134,7 +134,10 @@ export const Step6 = () => {
             />
 
             <div>
-              <Callout type="pacoupa" content={<>Certains systèmes de chaleur nécessitent des unités extérieures.</>} />
+              <Callout
+                type="pacoupa"
+                content={<Text className="mb-0">Certains systèmes de chaleur nécessitent des unités extérieures.</Text>}
+              />
             </div>
           </>
         )}

@@ -35,11 +35,11 @@ export const Isolation = ({ gestes, travauxNiveauIsolation, estGlobalementRenove
           <Callout
             type="pacoupa"
             content={
-              <div className="leading-6">
+              <Text variant="sm" className="leading-6 mb-0">
                 <strong>Super nouvelle !</strong>
                 <br /> Vous habitez dans un immeuble qui est énergiquement déjà très performant ! Il n’y a plus qu’à
                 changer le chauffage 🙌
-              </div>
+              </Text>
             }
           />
         </div>
@@ -48,7 +48,11 @@ export const Isolation = ({ gestes, travauxNiveauIsolation, estGlobalementRenove
         <div className="my-4">
           <Callout
             type="warning"
-            content={<>Ces isolations sont indispensables pour la mise en place de ce système.</>}
+            content={
+              <Text variant="sm" className="mb-0">
+                Ces isolations sont indispensables pour la mise en place de ce système.
+              </Text>
+            }
           />
         </div>
       )}

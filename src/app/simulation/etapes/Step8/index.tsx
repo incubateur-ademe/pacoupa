@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { z } from "zod";
 
 import { Callout } from "@/components/Callout";
+import { Text } from "@/dsfr/base/typography";
 import { usePacoupaSessionStorage } from "@/lib/client/usePacoupaSessionStorage";
 import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 import { getEnergieChPossibles } from "@/lib/server/useCases/getCasPossibles";
@@ -48,7 +49,7 @@ export const Step8 = () => {
                 name="energieCH"
                 legend={
                   <>
-                    Quelle <strong>énergie principale</strong> utilisez-vous pour vous chauffer ?
+                    Quelle <strong>énergie principale</strong> utilisez-vous pour vous chauffer&nbsp;?
                   </>
                 }
                 aria-required
@@ -89,10 +90,10 @@ export const Step8 = () => {
                 <Callout
                   type="pacoupa"
                   content={
-                    <>
+                    <Text className="mb-0">
                       Certaines énergies pour le chauffage ne sont pas disponibles, étant donné les renseignements
                       précédents.
-                    </>
+                    </Text>
                   }
                 />
               </div>

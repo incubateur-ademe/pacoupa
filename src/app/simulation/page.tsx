@@ -44,7 +44,7 @@ const SimulationLandingPage = () => {
         <Callout
           type="pacoupa"
           content={
-            <Text>
+            <Text className="mb-0">
               Les informations que nous allons vous demander sont <strong>anonymes</strong> et ne sont{" "}
               <strong>pas stockées</strong>.
             </Text>

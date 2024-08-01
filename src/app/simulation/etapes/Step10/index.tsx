@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { z } from "zod";
 
 import { Callout } from "@/components/Callout";
+import { Text } from "@/dsfr/base/typography";
 import { usePacoupaSessionStorage } from "@/lib/client/usePacoupaSessionStorage";
 import { getTypeEcsPossibles } from "@/lib/server/useCases/getCasPossibles";
 
@@ -81,7 +82,9 @@ export const Step10 = () => {
                 <Callout
                   type="pacoupa"
                   content={
-                    <>Le type d'eau chaude collectif n'est pas disponible, étant donné les renseignements précédents.</>
+                    <Text className="mb-0">
+                      Le type d'eau chaude collectif n'est pas disponible, étant donné les renseignements précédents.
+                    </Text>
                   }
                 />
               </div>

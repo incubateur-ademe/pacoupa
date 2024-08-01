@@ -43,7 +43,9 @@ export const EstimationGains = ({ solution, informationBatiment, avecMessage }: 
             Gains énergétiques
           </Text>
           <div className="grid grid-cols-[1fr_minmax(85px,_1fr)_1fr] gap-1 justify-items-center">
-            <div className="text-xs font-normal w-[62px]">Actuel</div>
+            <Text variant="xs" className="font-normal w-[62px] mb-0">
+              Actuel
+            </Text>
             <div></div>
             <div></div>
 
@@ -54,7 +56,9 @@ export const EstimationGains = ({ solution, informationBatiment, avecMessage }: 
             <div></div>
             <div className="text-center">
               <Badge label={`- ${pourcentageGain}%`} type="success" />
-              <Text variant="xs">Gain d'énergie</Text>
+              <Text variant="xs" className="mb-0">
+                Gain d'énergie
+              </Text>
             </div>
           </div>
           {avecMessage && (
@@ -63,14 +67,14 @@ export const EstimationGains = ({ solution, informationBatiment, avecMessage }: 
                 type="pacoupa"
                 icon={<Logo />}
                 content={
-                  <>
+                  <Text variant="sm" className="mb-0">
                     Un logement mieux isolé :
                     <ul>
                       <li>Augmente la valeur du bien</li>
                       <li>Est moins sensible aux variations de prix de l’énergie</li>
                       <li>Améliore votre confort</li>
                     </ul>
-                  </>
+                  </Text>
                 }
               />
             </div>
@@ -84,10 +88,10 @@ export const EstimationGains = ({ solution, informationBatiment, avecMessage }: 
             prefix={gainEconomique < 0 ? "-" : undefined}
           />{" "}
           /an
-          <div className="text-sm leading-6 mb-0">
+          <Text variant="sm" className="leading-6 mb-0">
             {Math.sign(gainEconomique) === -1 && "- "}
             {formatEuroNoDecimal(Math.abs(approximation10(gainEconomique)))} /logement
-          </div>
+          </Text>
         </div>
       </div>
     </>

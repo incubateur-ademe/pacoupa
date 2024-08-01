@@ -26,7 +26,7 @@ export const Step3 = () => {
               <Checkbox
                 legend={
                   <p>
-                    Quels ont été les travaux d’isolation réalisés il y a moins de 15 ans ? <br />
+                    Quels ont été les travaux d’isolation réalisés il y a moins de 15 ans&nbsp;? <br />
                     <Text variant="xs">Si vous avez un doute, ne cochez pas la case.</Text>
                   </p>
                 }
@@ -87,12 +87,14 @@ export const Step3 = () => {
                 type="pacoupa"
                 content={
                   store.annee !== undefined && store.annee >= 2000 ? (
-                    <>Votre bâtiment étant récent, nous considérons qu’il est déjà correctement isolé.</>
+                    <Text className="mb-0">
+                      Votre bâtiment étant récent, nous considérons qu’il est déjà correctement isolé.
+                    </Text>
                   ) : (
-                    <>
+                    <Text className="mb-0">
                       Pour vous recommander des chauffages plus écologiques et économiques, nous vous proposerons
                       également des gestes d'isolation adaptés.
-                    </>
+                    </Text>
                   )
                 }
               />

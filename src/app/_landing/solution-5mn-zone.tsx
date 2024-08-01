@@ -20,7 +20,7 @@ export const Solution5mnZone = () => {
 
           <VCard
             title="Personnalisée"
-            desc="Déterminez la solution faites pour votre copropriété."
+            desc="Déterminez la solution faite pour votre copropriété."
             image={<CrayonImage width={80} />}
           />
 

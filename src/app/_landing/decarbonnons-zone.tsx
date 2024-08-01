@@ -44,7 +44,7 @@ export const DecarbonnonsZone = () => {
 
               <Text variant="lg">
                 Passer d’une énergie fossile à un <strong>vecteur décarboné</strong> devrait permettre d’abaisser{" "}
-                rapidement et très significativement les émissions de CO2.
+                rapidement et très significativement les émissions de CO₂.
               </Text>
               <Text variant="lg">
                 Toutefois, les solutions ne sont pas universelles, pas toutes matures, et ne peuvent s’envisager
