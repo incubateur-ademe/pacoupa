@@ -19,7 +19,6 @@ import { PacoupaHeader } from "@/components/PacoupaHeader";
 import { Matomo } from "@/components/utils/Matomo";
 import { config } from "@/config";
 import { ConsentBannerAndConsentManagement } from "@/consentManagement";
-import { Container } from "@/dsfr";
 
 import { defaultColorScheme } from "../defaultColorScheme";
 import { StartDsfr } from "../StartDsfr";
@@ -125,7 +124,7 @@ const RootLayout = ({ children }: PropsWithChildren) => {
                   // className={styles.content}
                   className={cx(styles.content)}
                 >
-                  <Container>{children}</Container>
+                  {children}
                 </main>
                 {/* <Follow /> */}
                 <PacoupaFooter />

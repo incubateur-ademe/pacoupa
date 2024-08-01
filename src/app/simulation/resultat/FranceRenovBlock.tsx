@@ -1,4 +1,3 @@
-import { fr } from "@codegouvfr/react-dsfr";
 import { breakpoints } from "@codegouvfr/react-dsfr/fr/breakpoints";
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import { type Dispatch, type SetStateAction, useCallback } from "react";
@@ -7,7 +6,7 @@ import { useWindowSize } from "usehooks-ts";
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
 import { Mascotte1 } from "@/components/img/mascotte/Mascotte1";
-import { Box, Grid, GridCol } from "@/dsfr";
+import { Grid, GridCol } from "@/dsfr";
 import { H3, Text } from "@/dsfr/base/typography";
 
 type Props =
@@ -28,58 +27,58 @@ export const FranceRenovBlock = ({ withWorkflow, showToast }: Props = {}) => {
     if (!showToast) return null;
 
     return (
-      <Box className="flex-1">
+      <div className="flex-1">
         <Card
           header={<i className="ri-share-fill text-green-900" />}
           headerAlign="center"
           content={
-            <Box className="text-center">
+            <div className="text-center">
               <Button
                 priority="tertiary no outline"
                 onClick={() => {
                   navigator.clipboard.writeText(window.location.href).catch(console.error);
                   showToast(true);
                 }}
-                className="min-h-0 p-0 text-green-700 underline underline-offset-4 hover:!bg-green-50 hover:text-green-700 transition ease-in-out delay-150 hover:scale-110 duration-300"
+                className="min-h-0 p-0 text-body-700 underline underline-offset-4 hover:!bg-decoration-300 hover:text-body-700 transition ease-in-out delay-150 hover:scale-110 duration-300"
               >
                 Partagez
               </Button>{" "}
               la solution à vos voisins.
-            </Box>
+            </div>
           }
           marker="1"
           markerPosition="left"
         />
-      </Box>
+      </div>
     );
   }, [showToast]);
 
   const Etape2 = useCallback(
     () => (
-      <Box className="flex-1">
+      <div className="flex-1">
         <Card
           header={<i className="ri-discuss-fill" />}
           headerAlign="center"
-          content={<Box className="text-center">Discutez-en en assemblée générale.</Box>}
+          content={<div className="text-center">Discutez-en en assemblée générale.</div>}
           marker="2"
           markerPosition="left"
         />
-      </Box>
+      </div>
     ),
     [],
   );
 
   const Etape3 = useCallback(
     () => (
-      <Box className="flex-1">
+      <div className="flex-1">
         <Card
           header={<i className="ri-phone-fill" />}
           headerAlign="center"
-          content={<Box className="text-center">Prenez contact avec un conseiller France Renov’.</Box>}
+          content={<div className="text-center">Prenez contact avec un conseiller France Renov’.</div>}
           marker="3"
           markerPosition="left"
         />
-      </Box>
+      </div>
     ),
     [],
   );
@@ -87,30 +86,30 @@ export const FranceRenovBlock = ({ withWorkflow, showToast }: Props = {}) => {
   return (
     <>
       {withWorkflow && (
-        <Box>
+        <div>
           <H3 className="text-lg font-medium mb-0">Cette solution vous intéresse ?</H3>
-          <Text className="text-base font-normal">et maintenant ?</Text>
+          <Text variant="md">et maintenant ?</Text>
 
           {width < breakpoints.getPxValues().sm ? (
-            <Box className={cx("flex flex-wrap gap-8 flex-col justify-center items-start px-8")}>
+            <div className={cx("flex flex-wrap gap-8 flex-col justify-center items-start px-8")}>
               <Etape1 />
-              <Box className="self-end flex gap-8">
+              <div className="self-end flex gap-8">
                 <Mascotte1 />
                 <Etape2 />
-              </Box>
+              </div>
               <Etape3 />
-            </Box>
+            </div>
           ) : (
-            <Box className={cx("flex flex-wrap gap-8 justify-center items-stretch")}>
+            <div className={cx("flex flex-wrap gap-8 justify-center items-stretch")}>
               <Etape1 />
               <Etape2 />
               <Etape3 />
-              <Box className="self-center">
+              <div className="self-center">
                 <Mascotte1 />
-              </Box>
-            </Box>
+              </div>
+            </div>
           )}
-        </Box>
+        </div>
       )}
       <Grid className={cx("mt-8")}>
         <GridCol>
@@ -118,7 +117,7 @@ export const FranceRenovBlock = ({ withWorkflow, showToast }: Props = {}) => {
           guider dans les premières étapes de votre projet.
         </GridCol>
 
-        <GridCol className={fr.cx("fr-mt-6w")}>
+        <GridCol className="mt-12">
           <Button
             linkProps={{
               href: "https://france-renov.gouv.fr/preparer-projet/trouver-conseiller",

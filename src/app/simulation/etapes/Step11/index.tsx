@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { z } from "zod";
 
 import { Callout } from "@/components/Callout";
-import { Box } from "@/dsfr";
+import { Text } from "@/dsfr/base/typography";
 import { usePacoupaSessionStorage } from "@/lib/client/usePacoupaSessionStorage";
 import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 import { getEnergieEcsPossibles } from "@/lib/server/useCases/getCasPossibles";
@@ -47,12 +47,12 @@ export const Step11 = () => {
       <WizardForm
         schema={schema}
         render={({ errors, store }) => (
-          <Box>
+          <div>
             <RadioButtons
               name="energieECS"
               legend={
                 <>
-                  Quel <strong>énergie principale</strong> utilisez-vous pour chauffer l’eau ?
+                  Quel <strong>énergie principale</strong> utilisez-vous pour chauffer l’eau&nbsp;?
                 </>
               }
               aria-required
@@ -88,19 +88,19 @@ export const Step11 = () => {
             />
 
             {valeursPossibles.length < 3 && (
-              <Box>
+              <div>
                 <Callout
                   type="pacoupa"
                   content={
-                    <>
+                    <Text className="mb-0">
                       Certaines énergies pour l'eau chaude ne sont pas disponibles, étant donné les renseignements
                       précédents.
-                    </>
+                    </Text>
                   }
                 />
-              </Box>
+              </div>
             )}
-          </Box>
+          </div>
         )}
       />
     </>

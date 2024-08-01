@@ -1,7 +1,7 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { type PropsWithChildren } from "react";
 
-import { Box, P } from "@/dsfr";
+import { Text } from "@/dsfr/base/typography";
 
 import styles from "./Banner.module.scss";
 
@@ -11,9 +11,9 @@ type Props = {
 
 export const Banner = (props: PropsWithChildren<Props>) => {
   return (
-    <Box className={styles.banner}>
+    <div className={styles.banner}>
       <i className={fr.cx("fr-icon-info-fill")} aria-hidden={true} />
-      <P className={fr.cx("fr-text--sm")}>{props.title}</P>
-    </Box>
+      <Text variant="sm">{props.title}</Text>
+    </div>
   );
 };

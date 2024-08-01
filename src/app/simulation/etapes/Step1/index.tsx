@@ -4,7 +4,7 @@ import { z } from "zod";
 
 import { AutocompleteBan } from "@/components/AutocompleteBan";
 import { Callout } from "@/components/Callout";
-import { Box } from "@/dsfr";
+import { Text } from "@/dsfr/base/typography";
 
 import { HeaderFunnel } from "../HeaderFunnel";
 import { WizardForm } from "../WizardForm";
@@ -21,20 +21,20 @@ export const Step1 = () => {
         schema={schema}
         render={({ errors, store }) => (
           <>
-            <Box>
+            <div>
               <AutocompleteBan defaultValue={store.adresse} errors={errors?.adresse?._errors} />
-            </Box>
-            <Box className="mt-8">
+            </div>
+            <div className="mt-8">
               <Callout
                 type="pacoupa"
                 content={
-                  <>
+                  <Text className="mb-0">
                     L’adresse nous permet de connaître votre éligibilité à un réseau de chaleur ainsi que votre zone
                     climatique.
-                  </>
+                  </Text>
                 }
               />
-            </Box>
+            </div>
           </>
         )}
       />

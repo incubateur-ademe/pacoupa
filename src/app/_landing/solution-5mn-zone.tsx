@@ -2,16 +2,16 @@ import { ComprehensibleImage } from "@/components/img/ComprehensibleImage";
 import { CrayonImage } from "@/components/img/CrayonImage";
 import { QuestionnaireImage } from "@/components/img/QuestionnaireImage";
 import { VCard } from "@/components/VCard";
-import { Box, Container } from "@/dsfr";
+import { Container } from "@/dsfr";
 import { H2 } from "@/dsfr/base/typography";
 
 export const Solution5mnZone = () => {
   return (
-    <Box>
+    <div>
       <Container>
-        <H2 mt="16w">La solution qui vous correspond en moins de 5min</H2>
+        <H2>La solution qui vous correspond en moins de 5min</H2>
 
-        <Box className="flex flex-col md:flex-row gap-8 items-stretch">
+        <div className="flex flex-col md:flex-row gap-4 md:gap-32 items-stretch">
           <VCard
             title="Simple"
             desc="Répondez à seulement quelques questions."
@@ -20,7 +20,7 @@ export const Solution5mnZone = () => {
 
           <VCard
             title="Personnalisée"
-            desc="Déterminez la solution faites pour votre copropriété."
+            desc="Déterminez la solution faite pour votre copropriété."
             image={<CrayonImage width={80} />}
           />
 
@@ -29,8 +29,8 @@ export const Solution5mnZone = () => {
             desc="Bénéficiez de conseils d’experts accessibles pour tous."
             image={<ComprehensibleImage width={80} />}
           />
-        </Box>
+        </div>
       </Container>
-    </Box>
+    </div>
   );
 };

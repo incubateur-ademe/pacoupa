@@ -1,6 +1,7 @@
 import { type Metadata } from "next";
 
 import { Container } from "@/dsfr";
+import { H1 } from "@/dsfr/base/typography";
 
 import { sharedMetadata } from "../shared-metadata";
 import { StatsContent } from "./content";
@@ -25,8 +26,8 @@ export const metadata: Metadata = {
 };
 
 const Stats = () => (
-  <Container py="6w">
-    <h1>{title}</h1>
+  <Container className="my-8">
+    <H1>{title}</H1>
     <StatsContent />
   </Container>
 );

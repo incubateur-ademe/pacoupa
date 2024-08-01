@@ -2,10 +2,11 @@
 
 import { fr } from "@codegouvfr/react-dsfr";
 import { Input } from "@codegouvfr/react-dsfr/Input";
+import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import { z } from "zod";
 
 import { Callout } from "@/components/Callout";
-import { Box, P } from "@/dsfr";
+import { Text } from "@/dsfr/base/typography";
 
 import { HeaderFunnel } from "../HeaderFunnel";
 import { WizardForm } from "../WizardForm";
@@ -28,11 +29,11 @@ export const Step4 = () => {
         schema={schema}
         render={({ errors, store }) => (
           <>
-            <Box>
+            <div>
               <Input
                 label={
                   <>
-                    Combien y a-t-il de <strong>logements</strong> dans le bâtiment ?
+                    Combien y a-t-il de <strong>logements</strong> dans le bâtiment&nbsp;?
                   </>
                 }
                 nativeInputProps={{
@@ -49,21 +50,23 @@ export const Step4 = () => {
                 state={errors?.nbLogements?._errors ? "error" : "default"}
                 stateRelatedMessage={<div aria-live="polite">{errors?.nbLogements?._errors}</div>}
               />
-            </Box>
-            <Box className="mt-8">
+            </div>
+            <div className="mt-8">
               <Callout
                 type="pacoupa"
-                content={<>Cela nous permettra de mieux estimer les coûts et les gains moyens.</>}
+                content={
+                  <Text className="mb-0">Cela nous permettra de mieux estimer les coûts et les gains moyens.</Text>
+                }
               />
-            </Box>
+            </div>
           </>
         )}
       />
 
-      <P className={fr.cx("fr-mt-8v", "fr-text--sm")}>
-        <i className={fr.cx("fr-icon-info-fill", "fr-mr-2v")} aria-hidden={true} />
+      <Text variant="sm" className="mt-8 mb-0">
+        <i className={cx("mr-2", fr.cx("fr-icon-info-fill"))} aria-hidden={true} />
         Plutôt autour de 10, 50, 100, 200 ?
-      </P>
+      </Text>
     </>
   );
 };

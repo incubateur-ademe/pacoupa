@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 
 export default function PolitiqueConfidentialite() {
   return (
-    <Container my="4w">
+    <Container className="my-8">
       <PrivacyPolicy
         includeBetaGouv
         cookieConsentButton={<FooterConsentManagementItem />}

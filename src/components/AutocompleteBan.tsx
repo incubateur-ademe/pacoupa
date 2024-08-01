@@ -1,5 +1,5 @@
 import { fr } from "@codegouvfr/react-dsfr";
-import { Box, CircularProgress, TextField } from "@mui/material";
+import { CircularProgress, TextField } from "@mui/material";
 import Autocomplete from "@mui/material/Autocomplete";
 import Grid from "@mui/material/Grid";
 import match from "autosuggest-highlight/match";
@@ -7,6 +7,7 @@ import parse from "autosuggest-highlight/parse";
 import { useEffect, useState } from "react";
 import { useDebounceValue } from "usehooks-ts";
 
+import { Text } from "@/dsfr/base/typography";
 import { type FeatureCollection, fetchBAN } from "@/lib/services/ban";
 
 const minCharactersBeforeFetching = 10;
@@ -101,9 +102,9 @@ export function AutocompleteBan({ defaultValue, errors }: AutocompletBanMuiProps
           />
           {errors && (
             <>
-              <Box id="adresse-error" className={fr.cx("fr-error-text")} aria-live="polite">
+              <div id="adresse-error" className={fr.cx("fr-error-text")} aria-live="polite">
                 {errors[0]}
-              </Box>
+              </div>
             </>
           )}
         </>
@@ -126,9 +127,9 @@ export function AutocompleteBan({ defaultValue, errors }: AutocompletBanMuiProps
               </Grid>
               <Grid item sx={{ width: "calc(100% - 44px)", wordWrap: "break-word" }}>
                 {parts.map(({ text, highlight }, index) => (
-                  <Box key={index} component="span" sx={{ fontWeight: highlight ? "bold" : "regular" }}>
+                  <Text inline key={index} className={highlight ? "font-bold" : "font-normal"}>
                     {text}
-                  </Box>
+                  </Text>
                 ))}
               </Grid>
             </Grid>

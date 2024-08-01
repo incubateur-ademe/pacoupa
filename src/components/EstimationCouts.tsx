@@ -4,7 +4,6 @@ import { Tooltip } from "@mui/material";
 import assert from "assert";
 import { type PropsWithChildren } from "react";
 
-import { Box } from "@/dsfr";
 import { Text } from "@/dsfr/base/typography";
 import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
@@ -41,12 +40,12 @@ export const EstimationCouts = ({ solution, informationBatiment }: PropsWithChil
 
   return (
     <>
-      <Box className="mb-8">
+      <div className="mb-6">
         <Text className="mb-0">Estimation des coûts</Text>
-        <p className="text-xs font-normal">(rénovations comprises)</p>
+        <Text variant="xs">(rénovations comprises)</Text>
 
         <div className="px-2">
-          <div className="text-sm font-medium mb-3 flex items-baseline">
+          <Text variant="sm" className="flex items-baseline mt-4 mb-2">
             Coût total du projet
             <Tooltip
               title={
@@ -61,31 +60,37 @@ export const EstimationCouts = ({ solution, informationBatiment }: PropsWithChil
             >
               <span className={cx(fr.cx("ri-information-line", "fr-icon--sm"), "ml-2")} />
             </Tooltip>
-          </div>
+          </Text>
           <div>
-            <BadgeEuros value={approximationEnveloppeImmeuble + approximationSystemeImmeuble} type="sand" prefix="≈" />
-            <p className="text-sm leading-6">
-              {formatEuroNoDecimal(approximationEnveloppe + approximationSysteme)} / logement
-            </p>
+            <BadgeEuros
+              value={approximationEnveloppeImmeuble + approximationSystemeImmeuble}
+              type="warning"
+              prefix="≈"
+            />
+            <Text variant="sm">{formatEuroNoDecimal(approximationEnveloppe + approximationSysteme)} /logement</Text>
           </div>
 
-          <div className="text-sm font-medium mb-3">Aides nationales</div>
+          <Text variant="sm" className="mt-4 mb-2">
+            Aides nationales
+          </Text>
           <div>
-            <BadgeEuros value={aidesImmeuble} type="green" prefix="⩾" />
-            <p className="text-sm leading-6">{formatEuroNoDecimal(aidesLogement)} / logement</p>
+            <BadgeEuros value={aidesImmeuble} type="success" prefix="⩾" />
+            <Text variant="sm">{formatEuroNoDecimal(aidesLogement)} /logement</Text>
           </div>
 
-          <Callout
-            type="warning"
-            content={
-              <>
-                Les données financières sont des premières estimations. Elles doivent faire l'objet d'études plus
-                approfondies.
-              </>
-            }
-          />
+          <div className="mt-4">
+            <Callout
+              type="warning"
+              content={
+                <Text variant="sm" className="mb-0">
+                  Les données financières sont des premières estimations. Elles doivent faire l'objet d'études plus
+                  approfondies.
+                </Text>
+              }
+            />
+          </div>
         </div>
-      </Box>
+      </div>
     </>
   );
 };

@@ -12,14 +12,14 @@ export interface LandingHeroProps {
 }
 
 export const LandingHero = () => (
-  <>
+  <Container>
     <LandingHeroMobile />
     <LandingHeroDesktop />
-  </>
+  </Container>
 );
 
 const LandingHeroDesktop = () => (
-  <Container className="hidden md:flex">
+  <div className="hidden md:flex">
     <Grid haveGutters>
       <GridCol base={6}>
         <H1>Trouvez la meilleure solution de chauffage écologique, adaptée à votre copropriété</H1>
@@ -36,26 +36,27 @@ const LandingHeroDesktop = () => (
           </Button> */}
         </ButtonsWrapper>
       </GridCol>
-      <GridCol base={6} className="fr-mx-auto">
+      <GridCol base={6} className="mx-auto">
         <HeroImage />
       </GridCol>
     </Grid>
-  </Container>
+  </div>
 );
 
 const LandingHeroMobile = () => (
-  <Container className="md:hidden">
+  <div className="md:hidden">
     <Grid haveGutters>
       <GridCol>
         <H1>Trouvez la meilleure solution de chauffage écologique, adaptée à votre copropriété</H1>
       </GridCol>
     </Grid>
-    <Grid haveGutters>
+
+    <CTA source="landing" />
+
+    <Grid haveGutters className="mt-8">
       <GridCol base={10} offset={1}>
         <HeroImage />
       </GridCol>
     </Grid>
-
-    <CTA source="landing" />
-  </Container>
+  </div>
 );

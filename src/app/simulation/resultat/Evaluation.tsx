@@ -1,9 +1,6 @@
 "use client";
 
-import { fr } from "@codegouvfr/react-dsfr";
-import Badge from "@codegouvfr/react-dsfr/Badge";
 import Button from "@codegouvfr/react-dsfr/Button";
-import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import CloseIcon from "@mui/icons-material/Close";
 import InfoIcon from "@mui/icons-material/Info";
 import { Dialog, DialogContent, DialogContentText, DialogTitle, Tooltip } from "@mui/material";
@@ -11,7 +8,7 @@ import MuiButton from "@mui/material/Button";
 import Image from "next/image";
 import { useState } from "react";
 
-import { Box } from "@/dsfr";
+import { Badge } from "@/components/Badge";
 import { Text } from "@/dsfr/base/typography";
 import { type Solution } from "@/lib/common/domain/values/Solution";
 
@@ -97,23 +94,21 @@ export const Evaluation = ({ categorie, solution, withDetails }: EvaluationProps
   if (note === "dynamic") return null;
 
   return (
-    <Box>
-      <Box className={fr.cx("fr-mt-1w", "fr-mb-1v")}>
-        <span className={cx("inline-block", "w-[20px]")} aria-hidden>
+    <div>
+      <div className="mt-2 mb-1">
+        <span className="inline-block w-[20px]" aria-hidden>
           {emoji ?? ""}
         </span>
-        <span className={cx("pl-0")}>{titre}</span>
-      </Box>
+        <span className="pl-0">{titre}</span>
+      </div>
 
-      <Box className={cx("flex")}>
-        <span className={cx("inline-block", "w-[20px]")}></span>
-        <Box className={cx("grow")}>
-          <Badge noIcon severity={mapper[note].severity}>
-            {mapper[note].label}
-          </Badge>
-        </Box>
+      <div className="flex">
+        <span className="inline-block w-[20px]"></span>
+        <div className="grow">
+          <Badge type={mapper[note].severity} label={mapper[note].label} />
+        </div>
         {withDetails && (text.length !== 0 || image) && (
-          <Box>
+          <div>
             <Tooltip title={"En savoir +"} arrow>
               <Button
                 priority="tertiary no outline"
@@ -131,11 +126,9 @@ export const Evaluation = ({ categorie, solution, withDetails }: EvaluationProps
               aria-labelledby="alert-dialog-title"
               aria-describedby="alert-dialog-description"
             >
-              <DialogTitle id="alert-dialog-title" className={fr.cx("fr-mt-4w")}>
-                <span className={cx("inline-block", "w-[20px]")} aria-hidden>
-                  {emoji ?? ""}
-                </span>
-                <span className={cx("pl-1")}>{titre}</span>
+              <DialogTitle id="alert-dialog-title" className="!mt-6">
+                {emoji && `${emoji} `}
+                {titre}
               </DialogTitle>
 
               <MuiButton
@@ -155,32 +148,37 @@ export const Evaluation = ({ categorie, solution, withDetails }: EvaluationProps
               <DialogContent>
                 <DialogContentText id="alert-dialog-description">
                   {image && (
-                    <Box className={fr.cx("fr-mb-4w")}>
+                    <div className="mb-8">
                       <Image src={`/img/solutions/${image}`} alt="test" width={1200} height={900} layout="responsive" />
-                    </Box>
+                    </div>
                   )}
 
                   {text.map((chunk, index) => (
-                    <Box key={index}>
-                      <Box className={cx("flex")}>
-                        <Box className={cx("w-[30px]", "shrink-0", "grow-0", "v-align-middle")}>
+                    <div key={index}>
+                      <div className="flex items-stretch">
+                        <div className="w-[30px] mt-1">
                           <InfoIcon sx={{ fontSize: 20 }} />
-                        </Box>
-                        <h3 className={cx("mb-0", fr.cx("fr-text--sm"))}>{chunk.titre}</h3>
-                      </Box>
+                        </div>
 
-                      <Box className={cx("flex")}>
-                        <Box className={cx("w-[30px]", "shrink-0", "grow-0")}></Box>
-                        <Text className={cx("pl-0", fr.cx("fr-text--sm"))}>{chunk.contenu}</Text>
-                      </Box>
-                    </Box>
+                        <Text variant="sm" className="mb-0 font-bold shrink-0 grow-0">
+                          {chunk.titre}
+                        </Text>
+                      </div>
+
+                      <div className="flex">
+                        <div className="w-[30px] shrink-0 grow-0"></div>
+                        <Text variant="sm" className="pl-0">
+                          {chunk.contenu}
+                        </Text>
+                      </div>
+                    </div>
                   ))}
                 </DialogContentText>
               </DialogContent>
             </Dialog>
-          </Box>
+          </div>
         )}
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 };

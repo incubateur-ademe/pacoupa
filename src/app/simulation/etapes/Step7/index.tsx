@@ -3,8 +3,6 @@
 import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
 import { z } from "zod";
 
-import { Box } from "@/dsfr";
-
 import { HeaderFunnel } from "../HeaderFunnel";
 import { WizardForm } from "../WizardForm";
 import { GroupeImage } from "./GroupeImage";
@@ -29,7 +27,7 @@ export const Step7 = () => {
         schema={schema}
         render={({ errors, store }) => (
           <>
-            <Box>
+            <div>
               <RadioButtons
                 legend={<>S’agit-il d’un chauffage...</>}
                 name="typeCH"
@@ -56,7 +54,7 @@ export const Step7 = () => {
                 state={errors?.typeCH?._errors ? "error" : "default"}
                 stateRelatedMessage={<div aria-live="polite">{errors?.typeCH?._errors}</div>}
               />
-            </Box>
+            </div>
           </>
         )}
       />

@@ -5,7 +5,7 @@ import { useState } from "react";
 import { z } from "zod";
 
 import { Callout } from "@/components/Callout";
-import { Box } from "@/dsfr";
+import { Text } from "@/dsfr/base/typography";
 import { usePacoupaSessionStorage } from "@/lib/client/usePacoupaSessionStorage";
 
 import { HeaderFunnel } from "../HeaderFunnel";
@@ -35,11 +35,11 @@ export const Step2 = () => {
         schema={schema}
         render={({ errors, store }) => (
           <>
-            <Box>
+            <div>
               <Input
                 label={
                   <>
-                    Quelle est <strong>l’année</strong> de construction du bâtiment ?
+                    Quelle est <strong>l’année</strong> de construction du bâtiment&nbsp;?
                   </>
                 }
                 nativeInputProps={{
@@ -59,21 +59,23 @@ export const Step2 = () => {
                 state={errors?.annee?._errors ? "error" : "default"}
                 stateRelatedMessage={<div aria-live="polite">{errors?.annee?._errors}</div>}
               />
-            </Box>
-            <Box className="mt-8">
+            </div>
+            <div className="mt-8">
               <Callout
                 type="pacoupa"
                 content={
                   annee !== undefined && annee >= 2000 ? (
-                    <>
+                    <Text className="mb-0">
                       Tous les bâtiments construits après les années 2000 sont <strong>correctement isolés</strong>.
-                    </>
+                    </Text>
                   ) : (
-                    <>Tous les bâtiments construits avant 1945 sont identiques au niveau de leur isolation d’origine.</>
+                    <Text className="mb-0">
+                      Tous les bâtiments construits avant 1945 sont identiques au niveau de leur isolation d’origine.
+                    </Text>
                   )
                 }
               />
-            </Box>
+            </div>
           </>
         )}
       />

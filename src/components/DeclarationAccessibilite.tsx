@@ -1,3 +1,5 @@
+import { H1, H2 } from "@/dsfr/base/typography";
+
 export const DeclarationAccessibilite = ({
   produit = "[PRODUIT]",
   organisme = "Fabrique numérique des ministères sociaux",
@@ -8,7 +10,7 @@ export const DeclarationAccessibilite = ({
 }) => {
   return (
     <div>
-      <h1>Déclaration d’accessibilité</h1>
+      <H1>Déclaration d’accessibilité</H1>
       <p>
         <span>{produit}</span> s’engage à rendre son service accessible, conformément à{" "}
         <a href="https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000037388867/">
@@ -18,13 +20,13 @@ export const DeclarationAccessibilite = ({
       <p>
         Cette déclaration d’accessibilité s’applique à <span>{organisme}</span>.
       </p>
-      <h2>État de conformité</h2>
+      <H2>État de conformité</H2>
       <p>
         <span>{produit}</span> est <b>{conformite} avec le RGAA 4.1</b>.
         {!audited && <span>Le site n’a encore pas été audité.</span>}
       </p>
-      <h2>Contenus non accessibles</h2>
-      <h2>Établissement de cette déclaration d’accessibilité</h2>
+      <H2>Contenus non accessibles</H2>
+      <H2>Établissement de cette déclaration d’accessibilité</H2>
       <p>
         Cette déclaration a été établie le{" "}
         <b>
@@ -32,7 +34,7 @@ export const DeclarationAccessibilite = ({
         </b>
         .
       </p>
-      <h2>Amélioration et contact</h2>
+      <H2>Amélioration et contact</H2>
       <p>
         Si vous n’arrivez pas à accéder à un contenu ou à un service, vous pouvez contacter le responsable de{" "}
         <span>{organisme}</span> pour être orienté vers une alternative accessible ou obtenir le contenu sous une autre
@@ -43,7 +45,7 @@ export const DeclarationAccessibilite = ({
           E-mail : <a href={`mailto:${email}`}>{email}</a>
         </li>
       </ul>
-      <h2>Voie de recours</h2>
+      <H2>Voie de recours</H2>
       <p>
         Cette procédure est à utiliser dans le cas suivant : vous avez signalé au responsable du site internet un défaut
         d’accessibilité qui vous empêche d’accéder à un contenu ou à un des services du portail et vous n’avez pas

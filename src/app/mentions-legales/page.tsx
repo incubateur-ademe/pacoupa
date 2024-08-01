@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 
 export default function MentionsLegales() {
   return (
-    <Container my="4w">
+    <Container className="my-8">
       <LegalNotice
         includeBetaGouv
         siteName={config.name}
