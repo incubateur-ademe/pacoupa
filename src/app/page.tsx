@@ -29,8 +29,8 @@ const Home = () => {
   // }
 
   return (
-    <>
-      <section className="mt-8 md:mt-16">
+    <div className="flex flex-col mt-6 md:mt-12 gap-12 md:gap-24">
+      <section>
         <LandingHero />
       </section>
 
@@ -38,18 +38,19 @@ const Home = () => {
         <LogosZone />
       </section> */}
 
-      <section className="mt-12 md:mt-20">
+      <section>
         <RaisonsZone />
       </section>
 
-      <section className="mt-12 md:mt-20">
+      <section>
         <ExplicationPacZone />
       </section>
 
-      {/*<section className="mt-32">
+      {/* <section>
         <LaisserGuider />
-      </section>
+      </section> */}
 
+      {/*
       <section className="mt-12">
         <Solution5mnZone />
       </section>
@@ -57,7 +58,7 @@ const Home = () => {
       <section className="mt-12">
         <DecarbonnonsZone />
       </section> */}
-    </>
+    </div>
   );
 };
 
