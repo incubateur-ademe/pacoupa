@@ -60,8 +60,6 @@ const Home = () => {
       <section>
         <DecarbonnonsZone />
       </section>
-
-      <div className="md:mb-30"></div>
     </div>
   );
 };

@@ -15,7 +15,7 @@ export const DecarbonnonsZone = () => {
           importée de l’autre bout du monde.
         </Text>
 
-        <div className="flex flex-col md:flex-row gap-32">
+        <div className="flex flex-col md:flex-row gap-8 md:gap-32">
           <div>
             <H3 as="h4">Le secteur du bâtiment en 2 chiffres</H3>
 
@@ -57,7 +57,7 @@ export const DecarbonnonsZone = () => {
             </div>
           </div>
 
-          <div className="mt-8">
+          <div>
             <Maison2Image width={300} />
           </div>
         </div>

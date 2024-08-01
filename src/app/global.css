@@ -17,7 +17,7 @@
     /* Customization upon the DSFR */
 
     body {
-        color: var(--color-body-700);
+        color: var(--color-body-700) !important;
     }
 
     h6,
@@ -26,7 +26,7 @@
     h3,
     h2,
     h1 {
-        color: var(--color-body-700);
+        color: var(--color-body-700) !important;
     }
 
     :root {
