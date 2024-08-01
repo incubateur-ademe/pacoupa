@@ -1,6 +1,4 @@
-import { fr } from "@codegouvfr/react-dsfr";
 import { breakpoints } from "@codegouvfr/react-dsfr/fr/breakpoints";
-import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import Snackbar from "@mui/material/Snackbar";
 import { useState } from "react";
 import { useWindowSize } from "usehooks-ts";
@@ -11,7 +9,7 @@ import { familleImageMap } from "@/app/simulation/resultat/helper";
 import { Button } from "@/components/Button";
 import { EstimationCouts } from "@/components/EstimationCouts";
 import { EstimationGains } from "@/components/EstimationGains";
-import { Box } from "@/dsfr";
+import { Container } from "@/dsfr";
 import { H2, Text } from "@/dsfr/base/typography";
 import { useScrollTop } from "@/lib/client/useScrollTop";
 import { estGlobalementRenove, type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
@@ -46,88 +44,92 @@ export const DetailSolution = ({ solution, informationBatiment, travauxNiveauIso
   };
 
   return (
-    <Box className="max-w-[800px]">
-      <Box className="sticky top-0 bg-white z-10 pb-4 pt-4">
-        <Box className="flex justify-between">
-          <Button priority="tertiary" iconId="ri-arrow-go-back-line" onClick={back}>
-            Retour à la liste
-          </Button>
-          <Button
-            priority="tertiary"
-            iconId="ri-share-fill"
-            iconPosition="right"
-            onClick={() => {
-              navigator.clipboard.writeText(window.location.href).catch(console.error);
-              setShowToast(true);
-            }}
-          >
-            {width > breakpoints.getPxValues().sm ? "Partager la solution" : ""}
-          </Button>
+    <Container>
+      <div className="max-w-[800px]">
+        <div className="sticky top-0 bg-white z-10 pb-4 pt-4">
+          <div className="flex justify-between">
+            <Button priority="tertiary" iconId="ri-arrow-go-back-line" onClick={back}>
+              Retour à la liste
+            </Button>
+            <Button
+              priority="tertiary"
+              iconId="ri-share-fill"
+              iconPosition="right"
+              onClick={() => {
+                navigator.clipboard.writeText(window.location.href).catch(console.error);
+                setShowToast(true);
+              }}
+            >
+              {width > breakpoints.getPxValues().sm ? "Partager la solution" : ""}
+            </Button>
 
-          <Snackbar
-            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-            open={showToast}
-            onClose={handleClose}
-            autoHideDuration={4000}
-            message="L'URL a bien été copiée 🚀."
-          ></Snackbar>
-        </Box>
+            <Snackbar
+              anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+              open={showToast}
+              onClose={handleClose}
+              autoHideDuration={4000}
+              message="L'URL a bien été copiée 🚀."
+            ></Snackbar>
+          </div>
 
-        <Box className={cx("flex items-start gap-4", fr.cx("fr-mt-4w"))}>
-          <Box>{familleImageMap[solution.familleSolution]}</Box>
-          <Box>
-            <H2 className={fr.cx("fr-text--xl", "fr-mb-1w")}>{solution.nom}</H2>
-          </Box>
-        </Box>
-      </Box>
+          <div className="flex items-start gap-4 mt-8">
+            <div>{familleImageMap[solution.familleSolution]}</div>
+            <div>
+              <H2 as="h5">{solution.nom}</H2>
+            </div>
+          </div>
+        </div>
 
-      <Box className={fr.cx("fr-mt-2w")}>
-        <Text>{solution.description}</Text>
-      </Box>
+        <div className="mt-4">
+          <Text>{solution.description}</Text>
+        </div>
 
-      <Box className="mt-4">
-        <Usage solution={solution} withTitle={true} />
-      </Box>
+        <div className="mt-4">
+          <Usage solution={solution} withTitle={true} />
+        </div>
 
-      <hr />
-
-      <Box>
-        <Isolation
-          gestes={gestes}
-          travauxNiveauIsolation={travauxNiveauIsolation}
-          estGlobalementRenove={estGlobalementRenove(informationBatiment)}
-        />
-      </Box>
-
-      <hr className="mt-8" />
-
-      <EstimationGains solution={solution} informationBatiment={informationBatiment} avecMessage />
-
-      <EstimationCouts solution={solution} informationBatiment={informationBatiment} />
-
-      <Text className="font-medium mt-8 mb-0">Autres estimations</Text>
-      <span className={fr.cx("fr-text--xs")}>(isolations comprises)</span>
-
-      <Box className="flex flex-col gap-4 mt-4">
-        <Evaluation categorie="environnement" solution={solution} withDetails />
         <hr />
-        <Evaluation categorie="cout" solution={solution} withDetails />
-        <hr />
-        <Evaluation categorie="difficulte" solution={solution} withDetails />
-        <hr />
-        <Evaluation categorie="travauxCollectif" solution={solution} withDetails />
-        <hr />
-        <Evaluation categorie="travauxIndividuel" solution={solution} withDetails />
-        <hr />
-        <Evaluation categorie="acoustique" solution={solution} withDetails />
-        <hr />
-        <Evaluation categorie="espaceExterieur" solution={solution} withDetails />
-        <hr />
-        <Evaluation categorie="maturite" solution={solution} withDetails />
-        <hr />
-      </Box>
 
-      <FranceRenovBlock withWorkflow={true} showToast={setShowToast} />
-    </Box>
+        <div>
+          <Isolation
+            gestes={gestes}
+            travauxNiveauIsolation={travauxNiveauIsolation}
+            estGlobalementRenove={estGlobalementRenove(informationBatiment)}
+          />
+        </div>
+
+        <hr className="mt-8" />
+
+        <EstimationGains solution={solution} informationBatiment={informationBatiment} avecMessage />
+
+        <EstimationCouts solution={solution} informationBatiment={informationBatiment} />
+
+        <Text className="font-medium mt-8 mb-0">Autres estimations</Text>
+        <Text inline variant="xs">
+          (isolations comprises)
+        </Text>
+
+        <div className="flex flex-col gap-4 mt-4">
+          <Evaluation categorie="environnement" solution={solution} withDetails />
+          <hr />
+          <Evaluation categorie="cout" solution={solution} withDetails />
+          <hr />
+          <Evaluation categorie="difficulte" solution={solution} withDetails />
+          <hr />
+          <Evaluation categorie="travauxCollectif" solution={solution} withDetails />
+          <hr />
+          <Evaluation categorie="travauxIndividuel" solution={solution} withDetails />
+          <hr />
+          <Evaluation categorie="acoustique" solution={solution} withDetails />
+          <hr />
+          <Evaluation categorie="espaceExterieur" solution={solution} withDetails />
+          <hr />
+          <Evaluation categorie="maturite" solution={solution} withDetails />
+          <hr />
+        </div>
+
+        <FranceRenovBlock withWorkflow={true} showToast={setShowToast} />
+      </div>
+    </Container>
   );
 };

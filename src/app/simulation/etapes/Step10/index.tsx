@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { z } from "zod";
 
 import { Callout } from "@/components/Callout";
-import { Box } from "@/dsfr";
+import { Text } from "@/dsfr/base/typography";
 import { usePacoupaSessionStorage } from "@/lib/client/usePacoupaSessionStorage";
 import { getTypeEcsPossibles } from "@/lib/server/useCases/getCasPossibles";
 
@@ -46,7 +46,7 @@ export const Step10 = () => {
       <WizardForm
         schema={schema}
         render={({ errors, store }) => (
-          <Box>
+          <div>
             <RadioButtons
               name="typeECS"
               legend={<>Le système de production d'eau chaude est ...</>}
@@ -78,16 +78,18 @@ export const Step10 = () => {
             />
 
             {valeursPossibles.length < 2 && (
-              <Box>
+              <div>
                 <Callout
                   type="pacoupa"
                   content={
-                    <>Le type d'eau chaude collectif n'est pas disponible, étant donné les renseignements précédents.</>
+                    <Text className="mb-0">
+                      Le type d'eau chaude collectif n'est pas disponible, étant donné les renseignements précédents.
+                    </Text>
                   }
                 />
-              </Box>
+              </div>
             )}
-          </Box>
+          </div>
         )}
       />
     </>

@@ -3,11 +3,12 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { Checkbox } from "@codegouvfr/react-dsfr/Checkbox";
 import { SegmentedControl, type SegmentedControlProps } from "@codegouvfr/react-dsfr/SegmentedControl";
+import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import { useEffect, useState } from "react";
 import { z } from "zod";
 
 import { Callout } from "@/components/Callout";
-import { Box, P } from "@/dsfr";
+import { Text } from "@/dsfr/base/typography";
 import { usePacoupaSessionStorage } from "@/lib/client/usePacoupaSessionStorage";
 import { OuiNonLabels } from "@/utils/zod";
 
@@ -74,7 +75,7 @@ export const Step5 = () => {
             <SegmentedControl
               legend={
                 <>
-                  Votre copropriété a-t-elle des <strong>espaces extérieurs communs</strong> ?
+                  Votre copropriété a-t-elle des <strong>espaces extérieurs communs</strong>&nbsp;?
                 </>
               }
               name="possedeEspacesExterieursCommuns"
@@ -93,15 +94,15 @@ export const Step5 = () => {
               }
             />
 
-            <p className={fr.cx("fr-mt-2w")} id="possedeEspacesExterieursCommuns-message" aria-live="polite">
+            <Text className="mt-4" id="possedeEspacesExterieursCommuns-message" aria-live="polite">
               {errors?.possedeEspacesExterieursCommuns?._errors && (
-                <span className={fr.cx("fr-message", "fr-message--error", "fr-mt-2w")}>
+                <span className={cx("mt-4", fr.cx("fr-message", "fr-message--error"))}>
                   {errors?.possedeEspacesExterieursCommuns?._errors}
                 </span>
               )}
-            </p>
+            </Text>
 
-            <P className={fr.cx("fr-mt-8v")}>Lesquels ?</P>
+            <Text className="mt-8">Lesquels ?</Text>
 
             <Checkbox
               disabled={radioState !== "Oui"}
@@ -137,9 +138,12 @@ export const Step5 = () => {
               stateRelatedMessage={<div aria-live="polite">{errors?.espacesExterieursCommuns?._errors}</div>}
             />
 
-            <Box>
-              <Callout type="pacoupa" content={<>Certains systèmes de chaleur nécessitent des unités extérieures.</>} />
-            </Box>
+            <div>
+              <Callout
+                type="pacoupa"
+                content={<Text className="mb-0">Certains systèmes de chaleur nécessitent des unités extérieures.</Text>}
+              />
+            </div>
           </>
         )}
       />

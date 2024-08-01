@@ -2,7 +2,6 @@ import { fr } from "@codegouvfr/react-dsfr";
 import { cx, type CxArg } from "@codegouvfr/react-dsfr/tools/cx";
 import { forwardRef, type PropsWithChildren } from "react";
 
-import { Box, BoxRef } from "@/dsfr";
 import { type OmitStartsWith } from "@/utils/types";
 
 import { type MarginProps, type PaddingProps } from "../utils/spacing";
@@ -23,7 +22,7 @@ export type GridProps = PropsWithChildren<
  */
 export const Grid = forwardRef<HTMLDivElement, GridProps>(
   ({ children, haveGutters, align, valign, className, ...rest }, ref) => (
-    <BoxRef
+    <div
       className={cx(
         fr.cx(
           "fr-grid-row",
@@ -37,7 +36,7 @@ export const Grid = forwardRef<HTMLDivElement, GridProps>(
       {...rest}
     >
       {children}
-    </BoxRef>
+    </div>
   ),
 );
 
@@ -88,7 +87,7 @@ export const GridCol = ({
   flex,
   ...rest
 }: GridColProps) => (
-  <Box
+  <div
     className={cx(
       flex && "flex",
       fr.cx(
@@ -113,5 +112,5 @@ export const GridCol = ({
     {...rest}
   >
     {children}
-  </Box>
+  </div>
 );

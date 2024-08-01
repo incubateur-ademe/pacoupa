@@ -3,7 +3,7 @@
 import { SegmentedControl, type SegmentedControlProps } from "@codegouvfr/react-dsfr/SegmentedControl";
 import { useRouter, useSearchParams } from "next/navigation";
 
-import { Box } from "@/dsfr";
+import { Text } from "@/dsfr/base/typography";
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
 import { createSearchParams } from "@/utils/searchParams";
 
@@ -27,7 +27,11 @@ export const TravauxNiveauIsolationSegmentedControl = ({ travauxNiveauIsolation 
   return (
     <>
       <SegmentedControl
-        legend={<p className="text-sm font-medium mb-0">Travaux d’isolation de la copropriété</p>}
+        legend={
+          <Text variant="sm" className="mb-0">
+            Travaux d’isolation de la copropriété
+          </Text>
+        }
         name="travaux-isolation"
         aria-required
         aria-describedby="travaux-isolation-message"
@@ -52,9 +56,9 @@ export const TravauxNiveauIsolationSegmentedControl = ({ travauxNiveauIsolation 
       />
 
       {travauxNiveauIsolation && (
-        <Box className="mt-1 mb-4 -ml-2">
+        <div className="mt-1 mb-4 -ml-2">
           <Callout content={wordings[travauxNiveauIsolation]} type="neutral" />
-        </Box>
+        </div>
       )}
     </>
   );

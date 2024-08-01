@@ -1,13 +1,15 @@
-import { cx } from "@codegouvfr/react-dsfr/tools/cx";
+import { cx, type CxArg } from "@codegouvfr/react-dsfr/tools/cx";
+import { type PropsWithChildren } from "react";
 
-import { Box, type BoxProps } from "@/dsfr";
-
-export type ContainerProps = Omit<BoxProps, "ml" | "mr" | "mx" | "pl" | "pr" | "px"> & {
+export type ContainerProps = PropsWithChildren<{
+  className?: CxArg;
   fluid?: boolean;
   size?: "lg" | "md" | "sm" | "xl";
-};
+}>;
 
 /**
+ * TODO: modifier doc depuis la suppression des Box
+ *
  * Un Container est un composant qui permet de centrer le contenu de la page et d'ajouter des gouttières.
  *
  * Si fluid, alors il prend 100% de la largeur du viewport.
@@ -30,8 +32,8 @@ export const Container = ({ children, className, fluid, size, ...rest }: Contain
   if (size) containerClass += `-${size}`;
   if (fluid) containerClass += `--fluid`;
   return (
-    <Box className={cx(className, containerClass)} {...rest}>
+    <div className={cx(className, containerClass)} {...rest}>
       {children}
-    </Box>
+    </div>
   );
 };

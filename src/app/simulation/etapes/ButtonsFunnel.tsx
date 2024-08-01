@@ -1,11 +1,9 @@
 "use client";
 
-import { fr } from "@codegouvfr/react-dsfr";
 import { useWizard } from "react-use-wizard";
 
 import { Button } from "@/components/Button";
 import { ButtonsWrapper } from "@/components/ButtonsWrapper";
-import { Box } from "@/dsfr";
 
 type Props = {
   disabled?: boolean;
@@ -16,7 +14,7 @@ export const ButtonsFunnel = ({ disabled }: Props = { disabled: false }) => {
 
   return (
     <>
-      <Box className={fr.cx("fr-mb-6w")}>
+      <div className="mb-12">
         <ButtonsWrapper align="center">
           {!isFirstStep && (
             <Button
@@ -35,7 +33,7 @@ export const ButtonsFunnel = ({ disabled }: Props = { disabled: false }) => {
 
           <Button nativeButtonProps={{ disabled }}>{isLastStep ? "Voir les résultats" : "Suivant"}</Button>
         </ButtonsWrapper>
-      </Box>
+      </div>
     </>
   );
 };

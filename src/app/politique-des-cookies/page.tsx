@@ -6,7 +6,7 @@ import { Container } from "@/dsfr";
 
 export default function CookiePolicyPage() {
   return (
-    <Container my="4w">
+    <Container className="my-8">
       <CookiesPolicy
         analyticTool={{
           name: "Matomo",

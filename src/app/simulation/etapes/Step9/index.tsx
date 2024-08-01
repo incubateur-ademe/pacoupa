@@ -3,8 +3,6 @@
 import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
 import { z } from "zod";
 
-import { Box } from "@/dsfr";
-
 import { HeaderFunnel } from "../HeaderFunnel";
 import { WizardForm } from "../WizardForm";
 
@@ -23,7 +21,7 @@ export const Step9 = () => {
         schema={schema}
         render={({ errors, store }) => (
           <>
-            <Box>
+            <div>
               <RadioButtons
                 name="emetteur"
                 legend={<>Vous vous chauffez grâce à...</>}
@@ -48,7 +46,7 @@ export const Step9 = () => {
                 state={errors?.emetteur?._errors ? "error" : "default"}
                 stateRelatedMessage={<div aria-live="polite">{errors?.emetteur?._errors}</div>}
               />
-            </Box>
+            </div>
           </>
         )}
       />

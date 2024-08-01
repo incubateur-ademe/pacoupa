@@ -3,6 +3,7 @@ import { type Metadata } from "next";
 
 import { config } from "@/config";
 import { Container } from "@/dsfr";
+import { H1 } from "@/dsfr/base/typography";
 import { anchorHeadingMDXComponents } from "@/mdx-components";
 
 import { sharedMetadata } from "../shared-metadata";
@@ -27,8 +28,8 @@ export const metadata: Metadata = {
 };
 
 const Cgu = () => (
-  <Container my="4w">
-    <h1>{title}</h1>
+  <Container className="my-8">
+    <H1>{title}</H1>
     <CguContent components={anchorHeadingMDXComponents} />
   </Container>
 );

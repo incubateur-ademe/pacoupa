@@ -4,24 +4,24 @@ import Card from "@codegouvfr/react-dsfr/Card";
 import { CTA } from "@/components/CTA";
 
 import { Container, Grid, GridCol } from "../layout";
-import { Box, P } from "./Box";
+import { Text } from "./typography";
 
 export const Follow = () => (
-  <Box className={fr.cx("fr-follow")}>
+  <div className={fr.cx("fr-follow")}>
     <Container>
       <Grid>
         {/* <GridCol base={6}>
-          <Box className={fr.cx("fr-follow__newsletter")}>
+          <div className={fr.cx("fr-follow__newsletter")}>
             <div>
-              <p className="fr-h5">Contact</p>
-              <p className="fr-text--sm">
+              <H5>Contact</H5>
+              <Text variant="sm">
                 Si vous n'avez pas trouvé de réponses à vos questions, contactez-nous à{" "}
                 <Link href="mailto:pacoupa@beta.gouv.fr" target="_blank">
                   pacoupa@beta.gouv.fr
                 </Link>
-              </p>
+              </Text>
             </div>
-          </Box>
+          </div>
         </GridCol> */}
         <GridCol base={6} offset={6}>
           <Card
@@ -30,9 +30,9 @@ export const Follow = () => (
             shadow
             desc={
               <>
-                <P>
+                <Text>
                   <strong>Tenez vous informé des nouveautés.</strong>
-                </P>
+                </Text>
 
                 <CTA source="landing" />
               </>
@@ -45,5 +45,5 @@ export const Follow = () => (
         </GridCol>
       </Grid>
     </Container>
-  </Box>
+  </div>
 );

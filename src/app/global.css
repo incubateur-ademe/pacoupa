@@ -5,11 +5,11 @@
 /* Custom color for stepper's - needs to be outside Tailwind's @layer  */
 
 .fr-stepper__title {
-    color: var(--color-green-700);
+    color: var(--color-body-700);
 }
 
 .fr-stepper__steps {
-    background-image: repeating-linear-gradient(to right, var(--color-green-500) 0, var(--color-green-500) var(--active-inner), transparent var(--active-inner), transparent var(--active-outer)), repeating-linear-gradient(to right, var(--color-green-50) 0, var(--color-green-50) var(--default-inner), transparent var(--default-inner), transparent var(--default-outer)) !important;
+    background-image: repeating-linear-gradient(to right, var(--color-primary-700) 0, var(--color-primary-700) var(--active-inner), transparent var(--active-inner), transparent var(--active-outer)), repeating-linear-gradient(to right, var(--color-decoration-300) 0, var(--color-decoration-300) var(--default-inner), transparent var(--default-inner), transparent var(--default-outer)) !important;
 }
 
 @layer base {
@@ -17,7 +17,7 @@
     /* Customization upon the DSFR */
 
     body {
-        color: var(--color-green-700);
+        color: var(--color-body-700) !important;
     }
 
     h6,
@@ -26,11 +26,7 @@
     h3,
     h2,
     h1 {
-        color: var(--color-green-700);
-    }
-
-    h1 {
-        font-size: 2rem;
+        color: var(--color-body-700) !important;
     }
 
     :root {
@@ -137,33 +133,43 @@
 
         /* Custom colors ------------------------------------------------------- */
 
-        /* --color-primary-shadow: #183d2f; */
         --color-green-900: #183d2f;
-        /* --color-primary-border: #274430; */
         --color-green-800: #274430;
-        /* 
-        --color-title: #304436; 
-        --color-primary-text-hover: #304436;
-        --color-secondary-text: #304436; 
-        --color-primary-text: #334337;
-        */
-        --color-green-700: #304436;
-        /* 
-        --color-primary-background-active: #80b990;
-        */
-        --color-green-500: #80b990;
-        /* 
-        --color-primary-background: #92e3a9;
-        --color-secondary-text-active: #92e3a9; 
-        */
-        --color-green-200: #92e3a9;
-        /* --color-primary-background-hover: #b3ebc3; */
-        --color-green-100: #b3ebc3;
-        /* --color-footer-background: #ebf7eb; */
-        --color-green-50: #ebf7eb;
-
-        /* --color-secondary-background: #fff; */
         --color-white: #fff;
+
+        /* implémentation du DS de Pacoupa */
+
+        --color-primary-700: hsla(137, 29%, 61%, 1);    /* #80B990 - Primay/Darker */
+        --color-primary-500: hsla(137, 59%, 73%, 1);    /* #92E3A9 - Primay/Main */
+        --color-primary-300: hsla(137, 58%, 81%, 1);    /* #B3EBC3 - Primay/Lighter */
+
+        --color-secondary-700: hsla(267, 31%, 58%, 1);  /* #9274B6 - Secondary/Darker */
+        --color-secondary-500: hsla(267, 59%, 73%, 1);  /* #B691E3 - Secondary/Main */
+        --color-secondary-300: hsla(267, 60%, 89%, 1);  /* #E2D3F4 - Secondary/Lighter */
+
+        --color-tertiary-700: hsla(40, 45%, 63%, 1);    /* #CBAE75 - Tertiary/Darker */
+        --color-tertiary-500: hsla(39, 98%, 78%, 1);    /* #FED992 - Tertiary/Main */
+        --color-tertiary-300: hsla(39, 100%, 86%, 1);   /* #FFE7B9 - Tertiary/Ligher */
+
+        /* for font */
+
+        --color-body-700: hsla(138, 17%, 23%, 1);       /* #304436 - Text/Primary */
+        --color-body-500: hsla(140, 7%, 35%, 1);        /* #535F57 - Text/Secondary */
+        --color-body-300: hsla(139, 15%, 75%, 1);       /* #B7CABD - Text/Tertiary */
+
+        /* for callouts */
+
+        --color-success-700: hsla(155, 34%, 38%, 1);    /* #408367 - Tag/Vert/Font */
+        --color-success-300: hsla(138, 87%, 94%, 1);    /* #E3FDEB - Tag/Vert/Background */
+
+        --color-warning-700: hsla(48, 59%, 31%, 1);     /* #7D6A20 - Tag/Jaune/Font */ 
+        --color-warning-300: hsla(42, 93%, 94%, 1);     /* #FEF6E3 - Tag/Jaune/Background */
+
+        --color-error-700: hsla(21, 100%, 35%, 1);      /* #B34000 - Tag/Rouge/Font */
+        --color-error-300: hsla(6, 100%, 98%, 1);       /* #FFF6F5 - Tag/Rouge/Background */
+
+        --color-decoration-700: hsla(138, 17%, 23%, 1); /* #304436 - Decoration/Stroke */
+        --color-decoration-300: hsla(137, 47%, 94%, 1); /* #E8F7EC - Decoration/Light bg */
 
     }
 
