@@ -15,7 +15,7 @@ export const Badge = ({ label, type = "neutral", icon, size = "small" }: PropsWi
         "bg-success-300 text-success-700": type === "success",
         "bg-warning-300 text-warning-700": type === "warning",
         "bg-error-300 text-error-700": type === "error",
-        "bg-gray-200 text-gray-700": type === "neutral",
+        "bg-neutral-300 text-neutral-700": type === "neutral",
         "leading-6 text-base": size === "medium",
         "uppercase leading-5 text-xs": size === "small",
       })}

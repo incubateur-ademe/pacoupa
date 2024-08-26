@@ -105,9 +105,6 @@ export const DetailSolution = ({ solution, informationBatiment, travauxNiveauIso
         <EstimationCouts solution={solution} informationBatiment={informationBatiment} />
 
         <Text className="font-medium mt-8 mb-0">Autres estimations</Text>
-        <Text inline variant="xs">
-          (isolations comprises)
-        </Text>
 
         <div className="flex flex-col gap-4 mt-4">
           <Evaluation categorie="environnement" solution={solution} withDetails />
