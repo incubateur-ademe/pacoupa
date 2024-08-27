@@ -1,8 +1,6 @@
 "use client";
 
-import { fr } from "@codegouvfr/react-dsfr";
 import { Input } from "@codegouvfr/react-dsfr/Input";
-import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import { z } from "zod";
 
 import { Callout } from "@/components/Callout";
@@ -55,18 +53,16 @@ export const Step4 = () => {
               <Callout
                 type="pacoupa"
                 content={
-                  <Text className="mb-0">Cela nous permettra de mieux estimer les coûts et les gains moyens.</Text>
+                  <Text className="mb-0">
+                    Plutôt autour de 10, 50, 100, 200 ? Cela nous permettra de mieux estimer les coûts et les gains
+                    moyens.
+                  </Text>
                 }
               />
             </div>
           </>
         )}
       />
-
-      <Text variant="sm" className="mt-8 mb-0">
-        <i className={cx("mr-2", fr.cx("fr-icon-info-fill"))} aria-hidden={true} />
-        Plutôt autour de 10, 50, 100, 200 ?
-      </Text>
     </>
   );
 };
