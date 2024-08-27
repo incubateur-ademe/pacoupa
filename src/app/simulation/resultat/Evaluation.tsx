@@ -1,8 +1,8 @@
 "use client";
 
-import Button from "@codegouvfr/react-dsfr/Button";
 import CloseIcon from "@mui/icons-material/Close";
 import InfoIcon from "@mui/icons-material/Info";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { Dialog, DialogContent, DialogContentText, DialogTitle, Tooltip } from "@mui/material";
 import MuiButton from "@mui/material/Button";
 import Image from "next/image";
@@ -103,7 +103,7 @@ export const Evaluation = ({ categorie, solution, withDetails }: EvaluationProps
 
   return (
     <div>
-      <div className="flex mt-2 mb-1 items-center">
+      <div className="flex items-center">
         <span className="inline-block w-[20px] leading-[0rem]" aria-hidden>
           {emoji ?? ""}
         </span>
@@ -118,15 +118,9 @@ export const Evaluation = ({ categorie, solution, withDetails }: EvaluationProps
         {withDetails && (text.length !== 0 || image) && (
           <div>
             <Tooltip title={"En savoir +"} arrow>
-              <Button
-                priority="tertiary no outline"
-                iconId="ri-information-line"
-                nativeButtonProps={{
-                  onClick: handleClickOpen,
-                }}
-              >
-                {""}
-              </Button>
+              <button onClick={handleClickOpen}>
+                <InfoOutlinedIcon />
+              </button>
             </Tooltip>
             <Dialog
               open={open}

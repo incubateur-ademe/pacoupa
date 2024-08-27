@@ -49,7 +49,7 @@ export const DetailSolution = ({ solution, informationBatiment, travauxNiveauIso
         <div className="sticky top-0 bg-white z-10 pb-4 pt-4">
           <div className="flex justify-between">
             <Button priority="tertiary" iconId="ri-arrow-go-back-line" onClick={back}>
-              Retour à la liste
+              {width > breakpoints.getPxValues().sm ? "Retour à la liste" : "Retour"}
             </Button>
             <Button
               priority="tertiary"
@@ -60,7 +60,7 @@ export const DetailSolution = ({ solution, informationBatiment, travauxNiveauIso
                 setShowToast(true);
               }}
             >
-              {width > breakpoints.getPxValues().sm ? "Partager la solution" : ""}
+              {width > breakpoints.getPxValues().sm ? "Partager la solution" : "Partager"}
             </Button>
 
             <Snackbar
@@ -106,23 +106,22 @@ export const DetailSolution = ({ solution, informationBatiment, travauxNiveauIso
 
         <Text className="font-medium mt-8 mb-0">Autres estimations</Text>
 
-        <div className="flex flex-col gap-4 mt-4">
+        <div className="flex flex-col gap-6 mt-4 mb-8">
           <Evaluation categorie="environnement" solution={solution} withDetails />
-          <hr />
+
           <Evaluation categorie="cout" solution={solution} withDetails />
-          <hr />
+
           <Evaluation categorie="difficulte" solution={solution} withDetails />
-          <hr />
+
           <Evaluation categorie="travauxCollectif" solution={solution} withDetails />
-          <hr />
+
           <Evaluation categorie="travauxIndividuel" solution={solution} withDetails />
-          <hr />
+
           <Evaluation categorie="acoustique" solution={solution} withDetails />
-          <hr />
+
           <Evaluation categorie="espaceExterieur" solution={solution} withDetails />
-          <hr />
+
           <Evaluation categorie="maturite" solution={solution} withDetails />
-          <hr />
         </div>
 
         <FranceRenovBlock withWorkflow={true} showToast={setShowToast} />
