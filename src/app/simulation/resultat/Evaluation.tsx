@@ -9,6 +9,14 @@ import Image from "next/image";
 import { useState } from "react";
 
 import { Badge } from "@/components/Badge";
+import { Bust } from "@/components/img/twemoji/Bust";
+import { Busts } from "@/components/img/twemoji/Busts";
+import { Clock } from "@/components/img/twemoji/Clock";
+import { Eyes } from "@/components/img/twemoji/Eyes";
+import { Herb } from "@/components/img/twemoji/Herb";
+import { MoneyBag } from "@/components/img/twemoji/MoneyBag";
+import { Package } from "@/components/img/twemoji/Package";
+import { Speaker } from "@/components/img/twemoji/Speaker";
 import { Text } from "@/dsfr/base/typography";
 import { type Solution } from "@/lib/common/domain/values/Solution";
 
@@ -34,46 +42,46 @@ type EvaluationProps = {
 
 const config = {
   environnement: {
-    emoji: "🌿",
+    emoji: <Herb />,
     titre: "Bénéfice environnemental",
     mapper: environnementMap,
   },
   cout: {
-    emoji: "💰",
+    emoji: <MoneyBag />,
     titre: "Coût",
     mapper: coutMap,
   },
   difficulte: {
-    emoji: "📦",
+    emoji: <Package />,
     titre: "Facilité d’installation",
     mapper: faciliteMap,
   },
   travauxCollectif: {
-    emoji: "👥",
+    emoji: <Busts />,
     titre: "Impact des travaux sur les parties communes",
     mapper: travauxMap,
   },
   travauxIndividuel: {
-    emoji: "👤",
+    emoji: <Bust />,
     titre: "Impact des travaux dans les appartements",
     mapper: travauxMap,
   },
   acoustique: {
-    emoji: "🔊",
+    emoji: <Speaker />,
     titre: "Impact sonore",
     mapper: acoustiqueMap,
   },
   espaceExterieur: {
-    emoji: "👀",
+    emoji: <Eyes />,
     titre: "Impact espace extérieur",
     mapper: travauxMap,
   },
   maturite: {
-    emoji: "🕗",
+    emoji: <Clock />,
     titre: "Maturité",
     mapper: maturiteMap,
   },
-} satisfies Record<SolutionEvaluation, { emoji?: string; mapper: unknown; titre: string }>;
+} satisfies Record<SolutionEvaluation, { emoji?: JSX.Element; mapper: unknown; titre: string }>;
 
 export const Evaluation = ({ categorie, solution, withDetails }: EvaluationProps) => {
   const [open, setOpen] = useState(false);
@@ -95,15 +103,15 @@ export const Evaluation = ({ categorie, solution, withDetails }: EvaluationProps
 
   return (
     <div>
-      <div className="mt-2 mb-1">
-        <span className="inline-block w-[20px]" aria-hidden>
+      <div className="flex mt-2 mb-1 items-center">
+        <span className="inline-block w-[20px] leading-[0rem]" aria-hidden>
           {emoji ?? ""}
         </span>
-        <span className="pl-0">{titre}</span>
+        <span className="pl-[8px]">{titre}</span>
       </div>
 
       <div className="flex">
-        <span className="inline-block w-[20px]"></span>
+        <span className="inline-block w-[28px]"></span>
         <div className="grow">
           <Badge type={mapper[note].severity} label={mapper[note].label} />
         </div>
@@ -127,8 +135,14 @@ export const Evaluation = ({ categorie, solution, withDetails }: EvaluationProps
               aria-describedby="alert-dialog-description"
             >
               <DialogTitle id="alert-dialog-title" className="!mt-6">
-                {emoji && `${emoji} `}
-                {titre}
+                <div className="flex mt-2 mb-1 items-center">
+                  {emoji && (
+                    <span className="inline-block w-[20px] leading-[0rem]" aria-hidden>
+                      {emoji ?? ""}
+                    </span>
+                  )}
+                  <span className="pl-[8px]">{titre}</span>
+                </div>
               </DialogTitle>
 
               <MuiButton
