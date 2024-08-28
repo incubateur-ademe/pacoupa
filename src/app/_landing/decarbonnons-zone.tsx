@@ -15,11 +15,11 @@ export const DecarbonnonsZone = () => {
           importée de l’autre bout du monde.
         </Text>
 
-        <div className="grid grid-cols-1 gap-8 lg:gap-28 justify-items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-28 justify-items-center">
           <div>
             <H3 as="h4">Le secteur du bâtiment en 2 chiffres</H3>
 
-            <div className="grid grid-cols-1 gap-8 justify-items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 justify-items-center">
               <div className="flex flex-col gap-2 items-center">
                 <div className="max-w-[160px]">
                   <Camembert47PourcentImage />
@@ -61,7 +61,7 @@ export const DecarbonnonsZone = () => {
             </div>
           </div>
 
-          <div className="max-w-[239px]">
+          <div className="max-w-[239px] lg:pt-4">
             <Maison2Image />
           </div>
         </div>
