@@ -20,6 +20,7 @@ export const Button = (props: Props) => {
               ? styles.tertiaryButton
               : styles.primaryButton,
           props.className,
+          "w-full sm:w-auto justify-center font-bold",
         )}
       >
         {props.children}

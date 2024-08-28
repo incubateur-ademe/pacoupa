@@ -15,21 +15,25 @@ export const DecarbonnonsZone = () => {
           importée de l’autre bout du monde.
         </Text>
 
-        <div className="flex flex-col md:flex-row gap-8 md:gap-32">
+        <div className="grid grid-cols-1 gap-8 lg:gap-28 justify-items-center">
           <div>
             <H3 as="h4">Le secteur du bâtiment en 2 chiffres</H3>
 
-            <div className="flex flex-col md:flex-row gap-8">
-              <div className="flex flex-col gap-2 items-center px-8">
-                <Camembert47PourcentImage width={150} />
-                <Text variant="md" className="text-center mb-0">
+            <div className="grid grid-cols-1 gap-8 justify-items-center">
+              <div className="flex flex-col gap-2 items-center">
+                <div className="max-w-[160px]">
+                  <Camembert47PourcentImage />
+                </div>
+                <Text variant="md" className="text-center mb-0 max-w-[230px]">
                   part de la consommation énergétique française
                 </Text>
               </div>
 
-              <div className="flex flex-col gap-2 items-center px-8">
-                <Camembert18PourcentImage width={150} />
-                <Text variant="md" className="text-center mb-0">
+              <div className="flex flex-col gap-2 items-center">
+                <div className="max-w-[160px]">
+                  <Camembert18PourcentImage />
+                </div>
+                <Text variant="md" className="text-center mb-0 max-w-[230px]">
                   part des émissions nationales de gaz à effet de serre (GES)
                 </Text>
               </div>
@@ -57,8 +61,8 @@ export const DecarbonnonsZone = () => {
             </div>
           </div>
 
-          <div>
-            <Maison2Image width={300} />
+          <div className="max-w-[239px]">
+            <Maison2Image />
           </div>
         </div>
       </Container>
