@@ -11,7 +11,7 @@ export const Solution5mnZone = () => {
       <Container>
         <H2>La solution qui vous correspond en moins de 5min</H2>
 
-        <div className="flex flex-col md:flex-row items-center md:items-stretch gap-4 justify-between">
+        <div className="grid justify-center grid-col-1 md:grid-cols-3 gap-4">
           <div className="max-w-[280px]">
             <VCard
               title="Simple"
