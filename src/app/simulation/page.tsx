@@ -32,8 +32,10 @@ const SimulationLandingPage = () => {
   return (
     <div className="max-w-[800px]">
       <Container>
-        <div className="mt-8 flex justify-center items-center gap-8">
-          <Maison2Image width={300} />
+        <div className="my-8 flex justify-center items-center">
+          <div className="max-w-[239px]">
+            <Maison2Image />
+          </div>
         </div>
 
         <Text>

@@ -3,6 +3,7 @@
 import { type ButtonProps } from "@codegouvfr/react-dsfr/Button";
 
 import { Button } from "@/components/Button";
+import { config } from "@/config";
 
 type Props = ButtonProps.AsAnchor &
   ButtonProps.Common &
@@ -17,7 +18,7 @@ export const StartSimulationButton = (props: Props) => {
           href: "/simulation",
         }}
       >
-        Lancez une simulation
+        {config.ctaTitle}
       </Button>
     </>
   );
