@@ -70,7 +70,9 @@ export const Step2 = () => {
                     </Text>
                   ) : (
                     <Text className="mb-0">
-                      Tous les bâtiments construits avant 1945 sont identiques au niveau de leur isolation d’origine.
+                      Tous les bâtiments construits avant 1945 sont traités identiquement au niveau de leur isolation
+                      d’origine. Vous n’avez donc pas besoin d’être précis sur l’année dans ce cas (1930, 1900 ou 1870
+                      auront les mêmes résultats).
                     </Text>
                   )
                 }

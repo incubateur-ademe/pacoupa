@@ -1,5 +1,6 @@
 import { Badge } from "@/components/Badge";
 import { Callout } from "@/components/Callout";
+import { RaisingHands } from "@/components/img/twemoji/RaisingHands";
 import { Text } from "@/dsfr/base/typography";
 import { type GesteIsolation } from "@/lib/common/domain/values/GesteIsolation";
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
@@ -38,7 +39,10 @@ export const Isolation = ({ gestes, travauxNiveauIsolation, estGlobalementRenove
               <Text variant="sm" className="leading-6 mb-0">
                 <strong>Super nouvelle !</strong>
                 <br /> Vous habitez dans un immeuble qui est énergiquement déjà très performant ! Il n’y a plus qu’à
-                changer le chauffage 🙌
+                changer le chauffage&nbsp;
+                <span className="inline-block w-[20px] align-middle">
+                  <RaisingHands />
+                </span>
               </Text>
             }
           />
