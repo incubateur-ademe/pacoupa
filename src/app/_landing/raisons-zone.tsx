@@ -10,7 +10,7 @@ export const RaisonsZone = () => {
     <Container>
       <H2 className="text-pretty">On a tous une bonne raison</H2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-5 gap-4 sm:gap-8">
         <div className="col-span-1 sm:col-span-3">
           <HCard
             title="Chaudière en panne&nbsp;?"
