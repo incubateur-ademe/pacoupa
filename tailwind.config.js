@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       boxShadow: {
-        DEFAULT: "4px 4px 0 0 #183D2F",
+        DEFAULT: "4px 4px 0 0 var(--color-green-900)",
       },
     },
     fontFamily: {
@@ -31,7 +31,7 @@ module.exports = {
       red: colors.red,
       green: {
         900: "var(--color-green-900)",
-        800: "var(--color-green-900)",
+        800: "var(--color-green-800)",
       },
       primary: {
         700: "var(--color-primary-700)",
