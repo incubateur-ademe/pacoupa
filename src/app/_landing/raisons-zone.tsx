@@ -8,7 +8,7 @@ import { H2 } from "@/dsfr/base/typography";
 export const RaisonsZone = () => {
   return (
     <Container>
-      <H2 className="text-balance">On a tous une bonne raison</H2>
+      <H2 className="text-pretty">On a tous une bonne raison</H2>
 
       <div className="grid grid-cols-5 gap-4">
         <div className="col-span-3">
