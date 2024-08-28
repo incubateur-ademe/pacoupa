@@ -37,11 +37,11 @@ export const ExplicationPacZone = () => {
 
 const ExplicationDesktop = () => (
   <div className="hidden md:flex">
-    <div className="basis-[300px] grow order-first -translate-y-12">
+    <div className="basis-[500px] flex-1 -translate-y-12">
       <HesitationImage />
     </div>
 
-    <div className="grow-[2]">
+    <div className="flex-2">
       <H2>PAC, RCU: c'est quoi&nbsp;?</H2>
       <Text variant="xl">Vous hésitez entre une chaudière à gaz ou des radiateurs électriques&nbsp;?</Text>
       <H3 as="h4" className="mt-16">
@@ -51,8 +51,12 @@ const ExplicationDesktop = () => (
         </strong>
         <br />
         <strong className="rcu">
-          ou un raccordement au <UnderlineText>réseau de chaleur urbain</UnderlineText> (RCU){" "}
-          <span className={fr.cx("fr-icon--sm", "ri-information-line")} aria-hidden="true"></span>&nbsp;?
+          ou un raccordement au <UnderlineText>réseau de chaleur urbain</UnderlineText>
+          <span className={fr.cx("fr-icon--sm", "ri-information-line")} aria-hidden="true">
+            {" "}
+            (RCU)
+          </span>
+          &nbsp;?
         </strong>
       </H3>
     </div>
@@ -61,7 +65,7 @@ const ExplicationDesktop = () => (
 
 const ExplicationMobile = () => (
   <div className="flex md:hidden flex-col rounded-none">
-    <div className="relative basis-[300px] grow order-last md:order-first md:-translate-y-12">
+    <div className="basis-[300px] flex-grow order-last -translate-y-12">
       <HesitationImage />
     </div>
 

@@ -12,7 +12,7 @@ export const config = {
   appVersionCommit: process.env.NEXT_PUBLIC_APP_VERSION_COMMIT!,
   repositoryUrl: process.env.NEXT_PUBLIC_REPOSITORY_URL!,
   formUrl: "/simulation",
-  ctaTitle: "Lancez une simulation",
+  ctaTitle: "Lancer la simulation",
   tallyButtonLabel: "S'inscrire",
   tallyId: "wvybQ4",
   storeKey: "pacoupa-simulation",
