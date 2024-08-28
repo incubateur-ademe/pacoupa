@@ -42,7 +42,7 @@ export const EstimationCouts = ({ solution, informationBatiment }: PropsWithChil
     <>
       <div className="mb-6">
         <Text className="mb-0">Estimation des coûts</Text>
-        <Text variant="xs">(rénovations comprises)</Text>
+        <Text variant="xs">(isolations comprises)</Text>
 
         <div className="px-2">
           <Text variant="sm" className="flex items-baseline mt-4 mb-2">
