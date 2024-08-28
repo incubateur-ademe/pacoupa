@@ -19,7 +19,7 @@ export const DecarbonnonsZone = () => {
           <div>
             <H3 as="h4">Le secteur du bâtiment en 2 chiffres</H3>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 justify-items-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 justify-items-center">
               <div className="flex flex-col gap-2 items-center">
                 <div className="max-w-[160px]">
                   <Camembert47PourcentImage />
