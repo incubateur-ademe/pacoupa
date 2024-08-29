@@ -32,8 +32,9 @@ const Home = () => {
   // }
 
   return (
-    <div className="flex flex-col mt-6 md:mt-12 gap-12 md:gap-24">
-      <section>
+    // <div className="flex flex-col mt-6 md:mt-12 gap-12 md:gap-24">
+    <>
+      <section className="col-start-2">
         <LandingHero />
       </section>
 
@@ -41,26 +42,26 @@ const Home = () => {
         <LogosZone />
       </section> */}
 
-      <section>
+      <section className="col-start-2">
         <RaisonsZone />
       </section>
 
-      <section>
+      <section className="col-start-1 col-span-3">
         <ExplicationPacZone />
       </section>
 
-      <section>
+      <section className="col-start-2">
         <LaisserGuider />
       </section>
 
-      <section>
+      <section className="col-start-2">
         <Solution5mnZone />
       </section>
 
-      <section>
+      <section className="col-start-2">
         <DecarbonnonsZone />
       </section>
-    </div>
+    </>
   );
 };
 

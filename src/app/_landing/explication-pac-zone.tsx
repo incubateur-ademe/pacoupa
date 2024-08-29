@@ -1,7 +1,6 @@
 "use client";
 
 import { fr } from "@codegouvfr/react-dsfr";
-import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import { Tooltip } from "react-tooltip";
 
 import { HesitationImage } from "@/components/img/HesitationImage";
@@ -13,8 +12,8 @@ import styles from "./explication-pac-zone.module.scss";
 export const ExplicationPacZone = () => {
   return (
     <>
-      <div className={cx(styles.hesitation, "rounded-none md:rounded-lg")}>
-        <div>
+      <div className={styles.hesitation}>
+        <div className="px-4 max-w-[1200px] mx-auto">
           <ExplicationDesktop />
           <ExplicationMobile />
         </div>
@@ -37,7 +36,7 @@ export const ExplicationPacZone = () => {
 
 const ExplicationDesktop = () => (
   <div className="hidden md:flex">
-    <div className="basis-[500px] flex-1 -translate-y-12">
+    <div className="relative left-0 top-0 basis-[500px] flex-1 -translate-y-20 z-1">
       <HesitationImage />
     </div>
 

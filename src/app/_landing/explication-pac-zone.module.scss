@@ -1,17 +1,10 @@
-@import "../global.scss";
-
 .hesitation {
-    background: radial-gradient(
+    background: linear-gradient(to bottom right, #ffffff 50%, transparent 49.5%) top left / 100% 50px no-repeat,
+        linear-gradient(to bottom left, transparent 49.5%, #ffffff 50%) bottom right / 100% 20px no-repeat,
+        radial-gradient(
         209.62% 1164.8% at 4.41% 14.31%,
         #d2d4ee 0%,
         #ffffff 100%
     );
-    padding-bottom: 50px;
-    padding-top: 20px;
-
-    @media (max-width: $breakpoint-md) {
-        padding-left: 16px;
-        padding-right: 16px;
-    }
+    padding: 50px;
 }
-
