@@ -4,7 +4,7 @@ import { type Metadata } from "next";
 import { config } from "@/config";
 import { FooterConsentManagementItem } from "@/consentManagement";
 
-import { sharedMetadata } from "../shared-metadata";
+import { sharedMetadata } from "../../shared-metadata";
 
 const title = "Politique de confidentialité";
 const url = "/politique-de-confidentialite";

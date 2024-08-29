@@ -2,7 +2,7 @@ import { type Metadata } from "next";
 
 import { H1 } from "@/dsfr/base/typography";
 
-import { sharedMetadata } from "../shared-metadata";
+import { sharedMetadata } from "../../shared-metadata";
 import { StatsContent } from "./content";
 
 const title = "Statistiques d'utilisation";

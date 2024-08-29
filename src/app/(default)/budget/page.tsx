@@ -2,7 +2,7 @@ import { type Metadata } from "next";
 
 import { ErrorDisplay } from "@/components/ErrorDisplay";
 
-import { sharedMetadata } from "../shared-metadata";
+import { sharedMetadata } from "../../shared-metadata";
 
 const title = "Budget";
 const url = "/budget";

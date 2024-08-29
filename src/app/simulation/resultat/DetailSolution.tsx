@@ -44,7 +44,7 @@ export const DetailSolution = ({ solution, informationBatiment, travauxNiveauIso
 
   return (
     <>
-      <div className="sticky top-0 bg-white z-10 pb-4">
+      <div className="sticky top-0 bg-white z-10 pb-4 pt-2">
         <div className="flex justify-between">
           <Button priority="tertiary" iconId="ri-arrow-go-back-line" onClick={back}>
             {width > breakpoints.getPxValues().sm ? "Retour à la liste" : "Retour"}

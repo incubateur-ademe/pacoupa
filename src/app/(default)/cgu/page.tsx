@@ -5,7 +5,7 @@ import { config } from "@/config";
 import { H1 } from "@/dsfr/base/typography";
 import { anchorHeadingMDXComponents } from "@/mdx-components";
 
-import { sharedMetadata } from "../shared-metadata";
+import { sharedMetadata } from "../../shared-metadata";
 
 const title = "Conditions générales d'utilisation";
 const description = `Les présentes conditions générales d’utilisation (dites «CGU») fixent le cadre juridique du Site Web "${config.name}" et définissent les conditions d’accès et d’utilisation des services par l’Utilisateur.`;
@@ -27,10 +27,10 @@ export const metadata: Metadata = {
 };
 
 const Cgu = () => (
-  <div className="col-start-2">
+  <>
     <H1>{title}</H1>
     <CguContent components={anchorHeadingMDXComponents} />
-  </div>
+  </>
 );
 
 export default Cgu;

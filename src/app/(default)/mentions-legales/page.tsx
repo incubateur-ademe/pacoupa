@@ -3,7 +3,7 @@ import { type Metadata } from "next";
 
 import { config } from "@/config";
 
-import { sharedMetadata } from "../shared-metadata";
+import { sharedMetadata } from "../../shared-metadata";
 
 const title = "Mentions légales";
 const url = "/mentions-legales";
