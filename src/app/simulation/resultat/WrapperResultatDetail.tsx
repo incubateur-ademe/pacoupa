@@ -10,7 +10,7 @@ import { EstimationGains } from "@/components/EstimationGains";
 import { HighlightText } from "@/components/HighlightText";
 import { NoDataImage } from "@/components/img/NoDataImage";
 import { TravauxNiveauIsolationSegmentedControl } from "@/components/IsolationSegmentedControl";
-import { Container, Grid, GridCol } from "@/dsfr";
+import { Grid, GridCol } from "@/dsfr";
 import { H2, Text } from "@/dsfr/base/typography";
 import { estGlobalementRenove, type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
@@ -79,8 +79,8 @@ export const WrapperResultatDetail = ({
     );
 
   return (
-    <Container>
-      <div className="my-8">
+    <>
+      <div>
         <H2 as="h6" className="mb-2">
           Copropriété
         </H2>
@@ -106,7 +106,7 @@ export const WrapperResultatDetail = ({
         />
       </div>
 
-      <H2 as="h6" className="mb-0">
+      <H2 as="h6" className="mt-8 mb-0">
         Chauffages compatibles
         <DebugButton formData={informationBatiment} solutions={solutions} />
       </H2>
@@ -221,6 +221,6 @@ export const WrapperResultatDetail = ({
       </Grid>
 
       <FranceRenovBlock />
-    </Container>
+    </>
   );
 };

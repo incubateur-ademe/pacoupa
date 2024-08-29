@@ -47,7 +47,7 @@ export const HeaderFunnel = () => {
   const { phase, currentStep, numPhase } = findPhase(activeStep);
 
   return (
-    <div className="mt-8">
+    <>
       {/* We can't use nextTitle because it is not shown when it is the last step of a phase... */}
       <Stepper
         currentStep={currentStep + 1}
@@ -58,6 +58,6 @@ export const HeaderFunnel = () => {
           </div>
         }
       />
-    </div>
+    </>
   );
 };
