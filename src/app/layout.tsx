@@ -22,7 +22,6 @@ import { ConsentBannerAndConsentManagement } from "@/consentManagement";
 
 import { defaultColorScheme } from "../defaultColorScheme";
 import { StartDsfr } from "../StartDsfr";
-import styles from "./layout.module.scss";
 import { sharedMetadata } from "./shared-metadata";
 
 const contentId = "content";
@@ -45,11 +44,7 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: PropsWithChildren) => {
   return (
-    <html
-      lang="fr"
-      {...getHtmlAttributes({ defaultColorScheme, lang: "fr" })}
-      className={cx(GeistSans.variable, styles.app)}
-    >
+    <html lang="fr" {...getHtmlAttributes({ defaultColorScheme, lang: "fr" })} className={cx(GeistSans.variable)}>
       <head>
         <StartDsfr />
         <DsfrHead
@@ -98,7 +93,7 @@ const RootLayout = ({ children }: PropsWithChildren) => {
               {/* <Banner
             title={<>Le simulateur est en construction. Inscrivez-vous et nous vous préviendrons lors de sa sortie.</>}
           /> */}
-              <div className={styles.app}>
+              <div className="min-h-full">
                 {/* <Header
               brandTop={<Brand />}
               homeLinkProps={{
@@ -121,8 +116,7 @@ const RootLayout = ({ children }: PropsWithChildren) => {
                 <main
                   role="main"
                   id={contentId}
-                  // className={styles.content}
-                  className={cx(styles.content)}
+                  className="grid grid-cols-[16px_1fr_16px] md:grid-cols-[minmax(90px,_1fr)_minmax(320px,_1200px)_minmax(90px,_1fr)] lg:grid-cols-[minmax(120px,_1fr)_minmax(320px,_1200px)_minmax(120px,_1fr)] xl:grid-cols-[minmax(180px,_1fr)_minmax(900px,_1200px)_minmax(180px,_1fr)] gap-y-12 md:gap-y-24"
                 >
                   {children}
                 </main>

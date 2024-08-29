@@ -2,9 +2,8 @@ import { LegalNotice } from "@incubateur-ademe/legal-pages-react";
 import { type Metadata } from "next";
 
 import { config } from "@/config";
-import { Container } from "@/dsfr";
 
-import { sharedMetadata } from "../shared-metadata";
+import { sharedMetadata } from "../../shared-metadata";
 
 const title = "Mentions légales";
 const url = "/mentions-legales";
@@ -24,7 +23,7 @@ export const metadata: Metadata = {
 
 export default function MentionsLegales() {
   return (
-    <Container className="my-8">
+    <div className="col-start-2">
       <LegalNotice
         includeBetaGouv
         siteName={config.name}
@@ -38,6 +37,6 @@ export default function MentionsLegales() {
           email: "privacy@vercel.com",
         }}
       />
-    </Container>
+    </div>
   );
 }

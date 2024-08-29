@@ -2,11 +2,10 @@ import CguContent from "@__content/cgu.mdx";
 import { type Metadata } from "next";
 
 import { config } from "@/config";
-import { Container } from "@/dsfr";
 import { H1 } from "@/dsfr/base/typography";
 import { anchorHeadingMDXComponents } from "@/mdx-components";
 
-import { sharedMetadata } from "../shared-metadata";
+import { sharedMetadata } from "../../shared-metadata";
 
 const title = "Conditions générales d'utilisation";
 const description = `Les présentes conditions générales d’utilisation (dites «CGU») fixent le cadre juridique du Site Web "${config.name}" et définissent les conditions d’accès et d’utilisation des services par l’Utilisateur.`;
@@ -28,10 +27,10 @@ export const metadata: Metadata = {
 };
 
 const Cgu = () => (
-  <Container className="my-8">
+  <>
     <H1>{title}</H1>
     <CguContent components={anchorHeadingMDXComponents} />
-  </Container>
+  </>
 );
 
 export default Cgu;
