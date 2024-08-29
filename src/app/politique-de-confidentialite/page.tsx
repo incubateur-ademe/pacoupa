@@ -3,7 +3,6 @@ import { type Metadata } from "next";
 
 import { config } from "@/config";
 import { FooterConsentManagementItem } from "@/consentManagement";
-import { Container } from "@/dsfr";
 
 import { sharedMetadata } from "../shared-metadata";
 
@@ -25,7 +24,7 @@ export const metadata: Metadata = {
 
 export default function PolitiqueConfidentialite() {
   return (
-    <Container className="my-8">
+    <div className="col-start-2">
       <PrivacyPolicy
         includeBetaGouv
         cookieConsentButton={<FooterConsentManagementItem />}
@@ -58,6 +57,6 @@ export default function PolitiqueConfidentialite() {
           // },
         ]}
       />
-    </Container>
+    </div>
   );
 }

@@ -34,7 +34,7 @@ const Home = () => {
   return (
     // <div className="flex flex-col mt-6 md:mt-12 gap-12 md:gap-24">
     <>
-      <section className="col-start-2">
+      <section className="col-start-2 mt-4">
         <LandingHero />
       </section>
 

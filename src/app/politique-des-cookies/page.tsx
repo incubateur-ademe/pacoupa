@@ -2,11 +2,10 @@ import { CookiesPolicy } from "@incubateur-ademe/legal-pages-react";
 
 import { config } from "@/config";
 import { FooterConsentManagementItem } from "@/consentManagement";
-import { Container } from "@/dsfr";
 
 export default function CookiePolicyPage() {
   return (
-    <Container className="my-8">
+    <div className="col-start-2">
       <CookiesPolicy
         analyticTool={{
           name: "Matomo",
@@ -16,6 +15,6 @@ export default function CookiePolicyPage() {
         cookieConsentButton={<FooterConsentManagementItem />}
         siteName={config.name}
       />
-    </Container>
+    </div>
   );
 }

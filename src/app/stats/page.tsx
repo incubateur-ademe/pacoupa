@@ -1,6 +1,5 @@
 import { type Metadata } from "next";
 
-import { Container } from "@/dsfr";
 import { H1 } from "@/dsfr/base/typography";
 
 import { sharedMetadata } from "../shared-metadata";
@@ -26,10 +25,10 @@ export const metadata: Metadata = {
 };
 
 const Stats = () => (
-  <Container className="my-8">
+  <div className="my-8">
     <H1>{title}</H1>
     <StatsContent />
-  </Container>
+  </div>
 );
 
 export default Stats;

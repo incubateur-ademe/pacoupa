@@ -2,7 +2,6 @@ import CguContent from "@__content/cgu.mdx";
 import { type Metadata } from "next";
 
 import { config } from "@/config";
-import { Container } from "@/dsfr";
 import { H1 } from "@/dsfr/base/typography";
 import { anchorHeadingMDXComponents } from "@/mdx-components";
 
@@ -28,10 +27,10 @@ export const metadata: Metadata = {
 };
 
 const Cgu = () => (
-  <Container className="my-8">
+  <div className="col-start-2">
     <H1>{title}</H1>
     <CguContent components={anchorHeadingMDXComponents} />
-  </Container>
+  </div>
 );
 
 export default Cgu;

@@ -1,7 +1,6 @@
 import AccessibiliteContent from "@__content/accessibilite.mdx";
 import { type Metadata } from "next";
 
-import { Container } from "@/dsfr";
 import { H1 } from "@/dsfr/base/typography";
 import { anchorHeadingMDXComponents } from "@/mdx-components";
 
@@ -23,10 +22,10 @@ export const metadata: Metadata = {
 };
 
 const Accessibilite = () => (
-  <Container className="my-8">
+  <div className="col-start-2">
     <H1>{title}</H1>
     <AccessibiliteContent components={anchorHeadingMDXComponents} />
-  </Container>
+  </div>
 );
 
 export default Accessibilite;

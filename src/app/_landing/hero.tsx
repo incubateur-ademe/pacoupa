@@ -2,7 +2,7 @@
 
 import { ButtonsWrapper } from "@/components/ButtonsWrapper";
 import { CTA } from "@/components/CTA";
-import { Container, Grid, GridCol } from "@/dsfr";
+import { Grid, GridCol } from "@/dsfr";
 import { H1 } from "@/dsfr/base/typography";
 
 import { HeroImage } from "../../components/img/HeroImage";
@@ -12,10 +12,10 @@ export interface LandingHeroProps {
 }
 
 export const LandingHero = () => (
-  <Container>
+  <>
     <LandingHeroMobile />
     <LandingHeroDesktop />
-  </Container>
+  </>
 );
 
 const LandingHeroDesktop = () => (
