@@ -16,6 +16,7 @@ const csp = {
     "'self'",
     "https://*.gouv.fr",
     "https://api-adresse.data.gouv.fr",
+    "https://sentry.incubateur.net",
     process.env.PACOUPA_ENV === "preprod" && "https://vercel.live",
     process.env.NODE_ENV === "development" && "http://localhost",
   ],
