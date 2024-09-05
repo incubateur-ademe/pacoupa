@@ -1,4 +1,5 @@
 import createMDX from "@next/mdx";
+import { withSentryConfig } from "@sentry/nextjs";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkGfm from "remark-gfm";
 import remarkMdxFrontmatter from "remark-mdx-frontmatter";
@@ -15,6 +16,7 @@ const csp = {
     "'self'",
     "https://*.gouv.fr",
     "https://api-adresse.data.gouv.fr",
+    "https://sentry.incubateur.net",
     process.env.PACOUPA_ENV === "preprod" && "https://vercel.live",
     process.env.NODE_ENV === "development" && "http://localhost",
   ],
@@ -124,6 +126,38 @@ const config = {
   },
 };
 
+const sentryConfig = {
+  // For all available options, see:
+  // https://github.com/getsentry/sentry-webpack-plugin#options
+
+  org: "betagouv",
+  project: "pacoupa",
+  sentryUrl: "https://sentry.incubateur.net/",
+
+  // for sourcemaps
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+
+  // Only print logs for uploading source maps in CI
+  silent: !process.env.CI,
+
+  // For all available options, see:
+  // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
+
+  // Upload a larger set of source maps for prettier stack traces (increases build time)
+  widenClientFileUpload: true,
+
+  // Automatically annotate React components to show their full name in breadcrumbs and session replay
+  reactComponentAnnotation: {
+    enabled: true,
+  },
+
+  // Hides source maps from generated client bundles
+  hideSourceMaps: true,
+
+  // Automatically tree-shake Sentry logger statements to reduce bundle size
+  disableLogger: true,
+};
+
 const withMDX = createMDX({
   extension: /\.mdx?$/,
   options: {
@@ -131,7 +165,7 @@ const withMDX = createMDX({
   },
 });
 
-export default withMDX(config);
+export default withSentryConfig(withMDX(config), sentryConfig);
 
 console.log("dans Next.config ------------------------");
 console.log("TURSO_DATABASE_URL", process.env.TURSO_DATABASE_URL);

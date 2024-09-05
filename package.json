@@ -37,6 +37,7 @@
     "@mui/icons-material": "^5.15.16",
     "@mui/material": "^5.15.15",
     "@next/mdx": "^14.0.3",
+    "@sentry/nextjs": "^8",
     "@socialgouv/matomo-next": "^1.6.1",
     "@types/mdx": "^2.0.10",
     "autosuggest-highlight": "^3.3.4",
