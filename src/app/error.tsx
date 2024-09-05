@@ -14,7 +14,7 @@ export default function Error({ error, reset: _reset }: { error: Error & { diges
   }, [error]);
 
   return (
-    <div>
+    <div className="col-start-2 mt-4">
       <MatomoPush event={["trackEvent", "500", "Erreur serveur"]} />
       <ErrorDisplay code="500" />
 
