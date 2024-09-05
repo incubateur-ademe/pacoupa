@@ -29,11 +29,11 @@ export const Step8 = () => {
   assert(typeCH, "typeCH is required");
 
   useEffect(() => {
-    getEnergieChPossibles({
-      typeCh: typeCH,
-    })
-      .then(valeurs => setValeursPossibles(valeurs))
-      .catch(console.error);
+    setValeursPossibles(
+      getEnergieChPossibles({
+        typeCh: typeCH,
+      }),
+    );
   }, [typeCH]);
 
   return (
