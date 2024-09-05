@@ -1,11 +1,4 @@
-"use server";
-
-import { casPossibles } from "drizzle/schema";
-import moize from "moize";
-
-import { config } from "@/config";
 import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
-import { db } from "@/lib/drizzle";
 
 type EnergieEcsPossibleContexte = {
   energieCh: InformationBatiment["energieCH"];
@@ -17,57 +10,292 @@ type TypeEcsPossibleContexte = Omit<EnergieEcsPossibleContexte, "typeEcs">;
 
 type EnergieChPossibleContexte = Omit<TypeEcsPossibleContexte, "energieCh">;
 
-export async function getEnergieEcsPossibles(criteria: EnergieEcsPossibleContexte) {
-  const cas = await getAllCasPossiblesMemoized();
-
+export function getEnergieEcsPossibles(criteria: EnergieEcsPossibleContexte) {
   return Array.from(
     new Set(
-      cas.data
+      allCasPossibles
         .filter(
           cas =>
-            cas.estPossible === "oui" &&
-            cas.typeCh === criteria.typeCh &&
-            cas.energieCh === criteria.energieCh &&
-            cas.typeEcs === criteria.typeEcs,
+            cas.typeCh === criteria.typeCh && cas.energieCh === criteria.energieCh && cas.typeEcs === criteria.typeEcs,
         )
         .map(cas => cas.energieEcs),
     ),
   );
 }
 
-export async function getTypeEcsPossibles(criteria: TypeEcsPossibleContexte) {
-  const cas = await getAllCasPossiblesMemoized();
-
+export function getTypeEcsPossibles(criteria: TypeEcsPossibleContexte) {
   return Array.from(
     new Set(
-      cas.data
-        .filter(
-          cas => cas.estPossible === "oui" && cas.typeCh === criteria.typeCh && cas.energieCh === criteria.energieCh,
-        )
+      allCasPossibles
+        .filter(cas => cas.typeCh === criteria.typeCh && cas.energieCh === criteria.energieCh)
         .map(cas => cas.typeEcs),
     ),
   );
 }
 
-export async function getEnergieChPossibles(criteria: EnergieChPossibleContexte) {
-  const cas = await getAllCasPossiblesMemoized();
-
-  return Array.from(
-    new Set(
-      cas.data.filter(cas => cas.estPossible === "oui" && cas.typeCh === criteria.typeCh).map(cas => cas.energieCh),
-    ),
-  );
+export function getEnergieChPossibles(criteria: EnergieChPossibleContexte) {
+  return Array.from(new Set(allCasPossibles.filter(cas => cas.typeCh === criteria.typeCh).map(cas => cas.energieCh)));
 }
 
-export async function getAllCasPossibles() {
-  const rows = await db.select().from(casPossibles);
-
-  return { data: rows };
-}
-
-/**
- * Memoized version of getAllTypologies.
- *
- * Typologies are not supposed to change often, so we can memoize the result.
+/*
+ Tous les cas sont rencensés ici. Par exemple, on ne peut avoir un chauffage collectif à l'électricité ou un chauffage 
+ individuel au fioul.  Comme on pose les questions dans un certain ordre, on a ce système de contexte qui prend les informations 
+ précédemment renseignées par l'utilisateur.
+ Dans le doute, on a gardé les cas impossible au cas où on voudrait, plus tard, créer une API pour afficher tous les cas.
  */
-export const getAllCasPossiblesMemoized = moize(getAllCasPossibles, { isPromise: true, maxAge: config.cacheDuration });
+export const allCas = [
+  {
+    typeCh: "collectif",
+    energieCh: "electricite",
+    typeEcs: "individuel",
+    energieEcs: "gaz",
+    estPossible: "non",
+  },
+  {
+    typeCh: "collectif",
+    energieCh: "electricite",
+    typeEcs: "collectif",
+    energieEcs: "gaz",
+    estPossible: "non",
+  },
+  {
+    typeCh: "collectif",
+    energieCh: "electricite",
+    typeEcs: "individuel",
+    energieEcs: "electricite",
+    estPossible: "non",
+  },
+  {
+    typeCh: "collectif",
+    energieCh: "electricite",
+    typeEcs: "collectif",
+    energieEcs: "electricite",
+    estPossible: "non",
+  },
+  {
+    typeCh: "collectif",
+    energieCh: "electricite",
+    typeEcs: "individuel",
+    energieEcs: "fioul",
+    estPossible: "non",
+  },
+  {
+    typeCh: "collectif",
+    energieCh: "electricite",
+    typeEcs: "collectif",
+    energieEcs: "fioul",
+    estPossible: "non",
+  },
+  {
+    typeCh: "collectif",
+    energieCh: "fioul",
+    typeEcs: "individuel",
+    energieEcs: "gaz",
+    estPossible: "non",
+  },
+  {
+    typeCh: "collectif",
+    energieCh: "fioul",
+    typeEcs: "collectif",
+    energieEcs: "gaz",
+    estPossible: "non",
+  },
+  {
+    typeCh: "collectif",
+    energieCh: "fioul",
+    typeEcs: "individuel",
+    energieEcs: "electricite",
+    estPossible: "non",
+  },
+  {
+    typeCh: "collectif",
+    energieCh: "fioul",
+    typeEcs: "collectif",
+    energieEcs: "electricite",
+    estPossible: "non",
+  },
+  {
+    typeCh: "collectif",
+    energieCh: "fioul",
+    typeEcs: "individuel",
+    energieEcs: "fioul",
+    estPossible: "non",
+  },
+  {
+    typeCh: "collectif",
+    energieCh: "fioul",
+    typeEcs: "collectif",
+    energieEcs: "fioul",
+    estPossible: "oui",
+  },
+  {
+    typeCh: "collectif",
+    energieCh: "gaz",
+    typeEcs: "individuel",
+    energieEcs: "gaz",
+    estPossible: "oui",
+  },
+  {
+    typeCh: "collectif",
+    energieCh: "gaz",
+    typeEcs: "collectif",
+    energieEcs: "gaz",
+    estPossible: "oui",
+  },
+  {
+    typeCh: "collectif",
+    energieCh: "gaz",
+    typeEcs: "individuel",
+    energieEcs: "electricite",
+    estPossible: "oui",
+  },
+  {
+    typeCh: "collectif",
+    energieCh: "gaz",
+    typeEcs: "collectif",
+    energieEcs: "electricite",
+    estPossible: "non",
+  },
+  {
+    typeCh: "collectif",
+    energieCh: "gaz",
+    typeEcs: "individuel",
+    energieEcs: "fioul",
+    estPossible: "non",
+  },
+  {
+    typeCh: "collectif",
+    energieCh: "gaz",
+    typeEcs: "collectif",
+    energieEcs: "fioul",
+    estPossible: "non",
+  },
+  {
+    typeCh: "individuel",
+    energieCh: "electricite",
+    typeEcs: "individuel",
+    energieEcs: "gaz",
+    estPossible: "non",
+  },
+  {
+    typeCh: "individuel",
+    energieCh: "electricite",
+    typeEcs: "collectif",
+    energieEcs: "gaz",
+    estPossible: "non",
+  },
+  {
+    typeCh: "individuel",
+    energieCh: "electricite",
+    typeEcs: "individuel",
+    energieEcs: "electricite",
+    estPossible: "oui",
+  },
+  {
+    typeCh: "individuel",
+    energieCh: "electricite",
+    typeEcs: "collectif",
+    energieEcs: "electricite",
+    estPossible: "oui",
+  },
+  {
+    typeCh: "individuel",
+    energieCh: "electricite",
+    typeEcs: "individuel",
+    energieEcs: "fioul",
+    estPossible: "non",
+  },
+  {
+    typeCh: "individuel",
+    energieCh: "electricite",
+    typeEcs: "collectif",
+    energieEcs: "fioul",
+    estPossible: "non",
+  },
+  {
+    typeCh: "individuel",
+    energieCh: "fioul",
+    typeEcs: "individuel",
+    energieEcs: "gaz",
+    estPossible: "non",
+  },
+  {
+    typeCh: "individuel",
+    energieCh: "fioul",
+    typeEcs: "collectif",
+    energieEcs: "gaz",
+    estPossible: "non",
+  },
+  {
+    typeCh: "individuel",
+    energieCh: "fioul",
+    typeEcs: "individuel",
+    energieEcs: "electricite",
+    estPossible: "non",
+  },
+  {
+    typeCh: "individuel",
+    energieCh: "fioul",
+    typeEcs: "collectif",
+    energieEcs: "electricite",
+    estPossible: "non",
+  },
+  {
+    typeCh: "individuel",
+    energieCh: "fioul",
+    typeEcs: "individuel",
+    energieEcs: "fioul",
+    estPossible: "non",
+  },
+  {
+    typeCh: "individuel",
+    energieCh: "fioul",
+    typeEcs: "collectif",
+    energieEcs: "fioul",
+    estPossible: "non",
+  },
+  {
+    typeCh: "individuel",
+    energieCh: "gaz",
+    typeEcs: "individuel",
+    energieEcs: "gaz",
+    estPossible: "oui",
+  },
+  {
+    typeCh: "individuel",
+    energieCh: "gaz",
+    typeEcs: "collectif",
+    energieEcs: "gaz",
+    estPossible: "non",
+  },
+  {
+    typeCh: "individuel",
+    energieCh: "gaz",
+    typeEcs: "individuel",
+    energieEcs: "electricite",
+    estPossible: "non",
+  },
+  {
+    typeCh: "individuel",
+    energieCh: "gaz",
+    typeEcs: "collectif",
+    energieEcs: "electricite",
+    estPossible: "non",
+  },
+  {
+    typeCh: "individuel",
+    energieCh: "gaz",
+    typeEcs: "individuel",
+    energieEcs: "fioul",
+    estPossible: "non",
+  },
+  {
+    typeCh: "individuel",
+    energieCh: "gaz",
+    typeEcs: "collectif",
+    energieEcs: "fioul",
+    estPossible: "non",
+  },
+] as const;
+
+const allCasPossibles = allCas.filter(cas => cas.estPossible === "oui");
