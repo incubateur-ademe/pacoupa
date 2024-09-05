@@ -31,12 +31,12 @@ export const Step10 = () => {
   assert(energieCH, "energieCH is required");
 
   useEffect(() => {
-    getTypeEcsPossibles({
-      typeCh: typeCH,
-      energieCh: energieCH,
-    })
-      .then(valeurs => setValeursPossibles(valeurs))
-      .catch(console.error);
+    setValeursPossibles(
+      getTypeEcsPossibles({
+        typeCh: typeCH,
+        energieCh: energieCH,
+      }),
+    );
   }, [energieCH, typeCH]);
 
   return (
