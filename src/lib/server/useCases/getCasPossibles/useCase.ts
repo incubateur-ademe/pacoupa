@@ -37,12 +37,12 @@ export function getEnergieChPossibles(criteria: EnergieChPossibleContexte) {
   return Array.from(new Set(allCasPossibles.filter(cas => cas.typeCh === criteria.typeCh).map(cas => cas.energieCh)));
 }
 
-/**
- * Memoized version of getAllTypologies.
- *
- * Typologies are not supposed to change often, so we can memoize the result.
+/*
+ Tous les cas sont rencensés ici. Par exemple, on ne peut avoir un chauffage collectif à l'électricité ou un chauffage 
+ individuel au fioul.  Comme on pose les questions dans un certain ordre, on a ce système de contexte qui prend les informations 
+ précédemment renseignées par l'utilisateur.
+ Dans le doute, on a gardé les cas impossible au cas où on voudrait, plus tard, créer une API pour afficher tous les cas.
  */
-// export const getAllCasPossiblesMemoized = moize(getAllCasPossibles, { isPromise: true, maxAge: config.cacheDuration });
 export const allCas = [
   {
     typeCh: "collectif",
