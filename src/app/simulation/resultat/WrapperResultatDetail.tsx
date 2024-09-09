@@ -201,12 +201,15 @@ export const WrapperResultatDetail = ({
           <Button
             priority="tertiary no outline"
             className={cx("grow", "md:grow-0", "justify-center")}
-            linkProps={{
-              href: `/simulation/resultat?${createSearchParams<ResultatsPageSearchParamsProps["complet"]>({
-                searchParams,
-                name: "complet",
-                value: "oui",
-              })}`,
+            onClick={() => {
+              router.push(
+                `/simulation/resultat?${createSearchParams<ResultatsPageSearchParamsProps["complet"]>({
+                  searchParams,
+                  name: "complet",
+                  value: "oui",
+                })}`,
+                { scroll: false },
+              );
             }}
           >
             Voir plus de solutions

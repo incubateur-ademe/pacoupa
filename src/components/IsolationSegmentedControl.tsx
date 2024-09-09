@@ -48,6 +48,7 @@ export const TravauxNiveauIsolationSegmentedControl = ({ travauxNiveauIsolation 
                     name: "travauxNiveauIsolation",
                     value: label,
                   })}`,
+                  { scroll: false },
                 );
               },
             },
