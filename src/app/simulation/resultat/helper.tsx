@@ -45,7 +45,11 @@ export const fetchSolutions = async ({
   complet = false,
 }: FetchSolutionsParams): Promise<FetchSolutionsReturnType> => {
   const [baseSolutions, adresses] = await Promise.all([
-    getSolutionsApplicablesMemoized(informationBatiment),
+    getSolutionsApplicablesMemoized(
+      travauxNiveauIsolation === "Global"
+        ? { ...informationBatiment, renovation: ["fenetres", "sol", "toiture", "murs"] }
+        : informationBatiment,
+    ),
     fetchBAN(informationBatiment.adresse),
   ]);
 
