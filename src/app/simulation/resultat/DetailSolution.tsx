@@ -10,7 +10,6 @@ import { Button } from "@/components/Button";
 import { EstimationCouts } from "@/components/EstimationCouts";
 import { EstimationGains } from "@/components/EstimationGains";
 import { H2, Text } from "@/dsfr/base/typography";
-import { useScrollTop } from "@/lib/client/useScrollTop";
 import { estGlobalementRenove, type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
@@ -27,7 +26,6 @@ type Props = {
 };
 
 export const DetailSolution = ({ solution, informationBatiment, travauxNiveauIsolation, back }: Props) => {
-  useScrollTop();
   const [showToast, setShowToast] = useState(false);
 
   const { width = 0 } = useWindowSize({ debounceDelay: 100, initializeWithValue: false });
@@ -43,7 +41,7 @@ export const DetailSolution = ({ solution, informationBatiment, travauxNiveauIso
   };
 
   return (
-    <>
+    <div>
       <div className="sticky top-0 bg-white z-10 pb-4 pt-2">
         <div className="flex justify-between">
           <Button priority="tertiary" iconId="ri-arrow-go-back-line" onClick={back}>
@@ -123,6 +121,6 @@ export const DetailSolution = ({ solution, informationBatiment, travauxNiveauIso
       </div>
 
       <FranceRenovBlock withWorkflow={true} showToast={setShowToast} />
-    </>
+    </div>
   );
 };

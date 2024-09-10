@@ -27,7 +27,9 @@ export const Step3 = () => {
                 legend={
                   <p>
                     Quels ont été les travaux d’isolation réalisés il y a moins de 15 ans&nbsp;? <br />
-                    <Text variant="xs">Si vous avez un doute, ne cochez pas la case.</Text>
+                    <Text inline variant="xs">
+                      Si vous avez un doute, ne cochez pas la case.
+                    </Text>
                   </p>
                 }
                 options={[
@@ -69,7 +71,7 @@ export const Step3 = () => {
                   },
                 ]}
                 state={errors?.renovation?._errors ? "error" : "default"}
-                stateRelatedMessage={<div aria-live="polite">{errors?.renovation?._errors}</div>}
+                stateRelatedMessage={errors?.renovation?._errors}
               />
             </div>
 
