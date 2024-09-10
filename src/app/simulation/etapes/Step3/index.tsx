@@ -71,7 +71,7 @@ export const Step3 = () => {
                   },
                 ]}
                 state={errors?.renovation?._errors ? "error" : "default"}
-                stateRelatedMessage={errors?.renovation?._errors}
+                stateRelatedMessage={<span aria-live="polite">{errors?.renovation?._errors}</span>}
               />
             </div>
 

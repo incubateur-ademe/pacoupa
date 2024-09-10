@@ -44,7 +44,7 @@ export const Step9 = () => {
                   },
                 ]}
                 state={errors?.emetteur?._errors ? "error" : "default"}
-                stateRelatedMessage={<div aria-live="polite">{errors?.emetteur?._errors}</div>}
+                stateRelatedMessage={<span aria-live="polite">{errors?.emetteur?._errors}</span>}
               />
             </div>
           </>

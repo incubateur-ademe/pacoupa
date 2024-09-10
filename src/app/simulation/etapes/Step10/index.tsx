@@ -74,7 +74,7 @@ export const Step10 = () => {
                 },
               ]}
               state={errors?.typeECS?._errors ? "error" : "default"}
-              stateRelatedMessage={<div aria-live="polite">{errors?.typeECS?._errors}</div>}
+              stateRelatedMessage={<span aria-live="polite">{errors?.typeECS?._errors}</span>}
             />
 
             {valeursPossibles.length < 2 && (
