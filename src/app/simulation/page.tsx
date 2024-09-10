@@ -54,7 +54,7 @@ const SimulationLandingPage = () => {
       <ButtonsWrapper align="right">
         <Button
           linkProps={{
-            href: "./simulation/etapes",
+            href: "/simulation/etapes",
           }}
         >
           Commencer
