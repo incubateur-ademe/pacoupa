@@ -8,6 +8,7 @@ import { Callout } from "@/components/Callout";
 import { Card } from "@/components/Card";
 import { Text } from "@/dsfr/base/typography";
 import { type Solution } from "@/lib/common/domain/values/Solution";
+import { Matomo } from "@/lib/matomo-events";
 
 import { familleImageMap } from "./helper";
 import { Usage } from "./Usage";
@@ -79,7 +80,7 @@ export const CardRcu = () => {
               linkProps={{
                 href: `https://france-chaleur-urbaine.beta.gouv.fr/`,
                 onClick: () => {
-                  push(["trackEvent", "Page Résultats", "Clic FCU", "Lien FCU"]);
+                  push(["trackEvent", Matomo.Category["Page résultats"], "Clic FCU", "Lien FCU"]);
                 },
               }}
             >

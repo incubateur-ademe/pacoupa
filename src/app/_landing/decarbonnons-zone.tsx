@@ -55,7 +55,7 @@ export const DecarbonnonsZone = () => {
 
             <H3 className="mt-8">Pacoupa vous guide dans ce choix</H3>
 
-            <CTA eventName="Bouton inter" />
+            <CTA eventName="Bouton bas" />
           </div>
         </div>
 

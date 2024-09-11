@@ -11,6 +11,7 @@ import { Card } from "@/components/Card";
 import { Mascotte1 } from "@/components/img/mascotte/Mascotte1";
 import { Grid, GridCol } from "@/dsfr";
 import { H3, Text } from "@/dsfr/base/typography";
+import { Matomo } from "@/lib/matomo-events";
 
 type Props =
   | {
@@ -41,7 +42,7 @@ export const FranceRenovBlock = ({ withWorkflow, showToast }: Props = {}) => {
                 onClick={() => {
                   push([
                     "trackEvent",
-                    withWorkflow ? "Page Détails solution" : "Page Résultats",
+                    withWorkflow ? Matomo.Category["Page détails de solution"] : Matomo.Category["Page résultats"],
                     "Clic Partager France Renov",
                     "Partager France Renov",
                   ]);
@@ -134,7 +135,7 @@ export const FranceRenovBlock = ({ withWorkflow, showToast }: Props = {}) => {
               onClick: () => {
                 push([
                   "trackEvent",
-                  withWorkflow ? "Page Détails solution" : "Page Résultats",
+                  withWorkflow ? Matomo.Category["Page détails de solution"] : Matomo.Category["Page résultats"],
                   "Clic Trouver un conseiller",
                   "Trouver un conseiller",
                 ]);

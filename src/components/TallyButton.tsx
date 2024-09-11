@@ -4,6 +4,7 @@ import type ButtonDsfr from "@codegouvfr/react-dsfr/Button";
 import { push } from "@socialgouv/matomo-next";
 
 import { config } from "@/config";
+import { Matomo } from "@/lib/matomo-events";
 
 import { Button } from "./Button";
 
@@ -15,7 +16,8 @@ const defaultSource = "Landing page";
  * Custom button for Tally button
  */
 export const TallyButton = ({ source, size: initialSize }: Props) => {
-  const onClick = () => push(["trackEvent", "Tally button", "Click", source || defaultSource]);
+  const onClick = () =>
+    push(["trackEvent", Matomo.Category["Page d'accueil"], "Click Tally button", source || defaultSource]);
 
   const size = initialSize || "medium";
 

@@ -5,6 +5,7 @@ import { useEffect } from "react";
 
 import { ErrorDisplay } from "@/components/ErrorDisplay";
 import { MatomoPush } from "@/components/utils/MatomoPush";
+import { Matomo } from "@/lib/matomo-events";
 
 export default function Error({ error, reset: _reset }: { error: Error & { digest?: string }; reset: () => void }) {
   useEffect(() => {
@@ -15,7 +16,7 @@ export default function Error({ error, reset: _reset }: { error: Error & { diges
 
   return (
     <div className="col-start-2 mt-4">
-      <MatomoPush event={["trackEvent", "500", "Erreur serveur"]} />
+      <MatomoPush event={["trackEvent", Matomo.Category["Page d'erreur"], "Erreur serveur (500)"]} />
       <ErrorDisplay code="500" />
 
       {/* <button

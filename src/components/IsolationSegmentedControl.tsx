@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 import { Text } from "@/dsfr/base/typography";
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
+import { Matomo } from "@/lib/matomo-events";
 import { createSearchParams } from "@/utils/searchParams";
 
 import { Callout } from "./Callout";
@@ -43,7 +44,7 @@ export const TravauxNiveauIsolationSegmentedControl = ({ travauxNiveauIsolation 
               value: label,
               checked: (label === "Global" && !travauxNiveauIsolation) || travauxNiveauIsolation === label,
               onChange: () => {
-                push(["trackEvent", "Page Résultats", "Clic Travaux", `${label}`]);
+                push(["trackEvent", Matomo.Category["Page résultats"], "Clic Travaux", `${label}`]);
 
                 router.push(
                   `/simulation/resultat?${createSearchParams({

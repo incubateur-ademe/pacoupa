@@ -20,6 +20,7 @@ import { Package } from "@/components/img/twemoji/Package";
 import { Speaker } from "@/components/img/twemoji/Speaker";
 import { Text } from "@/dsfr/base/typography";
 import { type Solution } from "@/lib/common/domain/values/Solution";
+import { Matomo } from "@/lib/matomo-events";
 
 import { acoustiqueMap, coutMap, environnementMap, faciliteMap, maturiteMap, travauxMap } from "./helper";
 
@@ -88,7 +89,7 @@ export const Evaluation = ({ categorie, solution, withDetails }: EvaluationProps
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
-    push(["trackEvent", "Page Détails solution", "Clic Info critère", `Infobulle ${categorie}`]);
+    push(["trackEvent", Matomo.Category["Page détails de solution"], "Clic Info critère", `Infobulle ${categorie}`]);
 
     setOpen(true);
   };

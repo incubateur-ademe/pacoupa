@@ -16,6 +16,7 @@ import { H2, Text } from "@/dsfr/base/typography";
 import { estGlobalementRenove, type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
+import { Matomo } from "@/lib/matomo-events";
 import { createSearchParams } from "@/utils/searchParams";
 
 import { CardRcu } from "./CardRcu";
@@ -64,7 +65,12 @@ export const Resultat = ({
                 linkProps={{
                   href: "/simulation/etapes",
                   onClick: () => {
-                    push(["trackEvent", "Page Résultats", "Clic Modifier formulaire", "Modifier formulaire"]);
+                    push([
+                      "trackEvent",
+                      Matomo.Category["Page résultats"],
+                      "Clic Modifier formulaire",
+                      "Modifier formulaire",
+                    ]);
                   },
                 }}
                 priority="secondary"
@@ -156,7 +162,7 @@ export const Resultat = ({
                       href: `/simulation/resultat/${solution.id}?${searchParams.toString()}`,
 
                       onClick: () => {
-                        push(["trackEvent", "Page Résultats", "Clic Découvrir", "Découvrir"]);
+                        push(["trackEvent", Matomo.Category["Page résultats"], "Clic Découvrir", "Découvrir"]);
                       },
                     }}
                   >
@@ -174,7 +180,12 @@ export const Resultat = ({
             priority="tertiary no outline"
             className={cx("grow", "md:grow-0", "justify-center")}
             onClick={() => {
-              push(["trackEvent", "Page Résultats", "Clic Voir plus de solutions", "Voir plus de solutions"]);
+              push([
+                "trackEvent",
+                Matomo.Category["Page résultats"],
+                "Clic Voir plus de solutions",
+                "Voir plus de solutions",
+              ]);
 
               router.push(
                 `/simulation/resultat?${createSearchParams({

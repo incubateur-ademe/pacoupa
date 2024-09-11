@@ -17,6 +17,7 @@ import { H2, Text } from "@/dsfr/base/typography";
 import { estGlobalementRenove, type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
+import { Matomo } from "@/lib/matomo-events";
 
 import { Isolation } from "../Isolation";
 import { calculeIsolationsManquantes as calculeIsolationsManquantes } from "../ShowIsolationImages";
@@ -55,7 +56,7 @@ export const DetailSolution = ({ solution, informationBatiment, travauxNiveauIso
               href: `/simulation/resultat?${searchParams.toString()}`,
 
               onClick: () => {
-                push(["trackEvent", "Détails solution", "Clic Retour", "Retour"]);
+                push(["trackEvent", Matomo.Category["Page détails de solution"], "Clic Retour", "Retour"]);
               },
             }}
           >
@@ -66,7 +67,7 @@ export const DetailSolution = ({ solution, informationBatiment, travauxNiveauIso
             iconId="ri-share-fill"
             iconPosition="right"
             onClick={() => {
-              push(["trackEvent", "Détails solution", "Clic Partager", "Partager"]);
+              push(["trackEvent", Matomo.Category["Page détails de solution"], "Clic Partager", "Partager"]);
 
               navigator.clipboard.writeText(window.location.href).catch(console.error);
               setShowToast(true);
