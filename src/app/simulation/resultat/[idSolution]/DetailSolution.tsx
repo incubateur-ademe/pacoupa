@@ -2,13 +2,13 @@
 
 import { breakpoints } from "@codegouvfr/react-dsfr/fr/breakpoints";
 import Snackbar from "@mui/material/Snackbar";
-import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { useWindowSize } from "usehooks-ts";
 
-import { Evaluation } from "@/app/simulation/(resultat)/Evaluation";
-import { FranceRenovBlock } from "@/app/simulation/(resultat)/FranceRenovBlock";
-import { familleImageMap } from "@/app/simulation/(resultat)/helper";
+import { Evaluation } from "@/app/simulation/resultat/Evaluation";
+import { FranceRenovBlock } from "@/app/simulation/resultat/FranceRenovBlock";
+import { familleImageMap } from "@/app/simulation/resultat/helper";
 import { Button } from "@/components/Button";
 import { EstimationCouts } from "@/components/EstimationCouts";
 import { EstimationGains } from "@/components/EstimationGains";
@@ -17,20 +17,19 @@ import { estGlobalementRenove, type InformationBatiment } from "@/lib/common/dom
 import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
 
-import { Isolation } from "../../Isolation";
-import { calculeIsolationsManquantes as calculeIsolationsManquantes } from "../../ShowIsolationImages";
-import { Usage } from "../../Usage";
+import { Isolation } from "../Isolation";
+import { calculeIsolationsManquantes as calculeIsolationsManquantes } from "../ShowIsolationImages";
+import { Usage } from "../Usage";
 
 type Props = {
   informationBatiment: InformationBatiment;
-  searchParams: URLSearchParams;
   solution: SolutionAvecEnergieCoutAide;
   travauxNiveauIsolation: TravauxNiveauIsolation;
 };
 
-export const DetailSolution = ({ solution, informationBatiment, travauxNiveauIsolation, searchParams }: Props) => {
-  const router = useRouter();
+export const DetailSolution = ({ solution, informationBatiment, travauxNiveauIsolation }: Props) => {
   const [showToast, setShowToast] = useState(false);
+  const searchParams = useSearchParams();
 
   const { width = 0 } = useWindowSize({ debounceDelay: 100, initializeWithValue: false });
 
@@ -51,7 +50,7 @@ export const DetailSolution = ({ solution, informationBatiment, travauxNiveauIso
           <Button
             priority="tertiary"
             iconId="ri-arrow-go-back-line"
-            onClick={() => router.push(`/simulation/resultat?${searchParams.toString()}`)}
+            linkProps={{ href: `/simulation/resultat?${searchParams.toString()}` }}
           >
             {width > breakpoints.getPxValues().sm ? "Retour à la liste" : "Retour"}
           </Button>

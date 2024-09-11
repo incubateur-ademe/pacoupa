@@ -17,15 +17,15 @@ import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/Sol
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
 import { createSearchParams } from "@/utils/searchParams";
 
-import { CardRcu } from "../CardRcu";
-import { DebugButton } from "../DebugButton";
-import { FranceRenovBlock } from "../FranceRenovBlock";
-import { familleImageMap } from "../helper";
-import { Isolation } from "../Isolation";
-import { NouvelleSimulation } from "../NouvelleSimulation";
-import { calculeIsolationsManquantes } from "../ShowIsolationImages";
-import { Usage } from "../Usage";
-import { type ResultatsPageSearchParamsProps } from "./page";
+import { CardRcu } from "./CardRcu";
+import { DebugButton } from "./DebugButton";
+import { FranceRenovBlock } from "./FranceRenovBlock";
+import { familleImageMap } from "./helper";
+import { Isolation } from "./Isolation";
+import { NouvelleSimulation } from "./NouvelleSimulation";
+import { type ResultatsPageProps } from "./page";
+import { calculeIsolationsManquantes } from "./ShowIsolationImages";
+import { Usage } from "./Usage";
 
 type Props = {
   complet: boolean;
@@ -149,7 +149,10 @@ export const Resultat = ({
                 footer={
                   <Button
                     priority="primary"
-                    onClick={() => router.push(`/simulation/resultat-detail/${solution.id}?${searchParams.toString()}`)}
+                    linkProps={{
+                      href: `/simulation/resultat/${solution.id}?${searchParams.toString()}`,
+                    }}
+                    // onClick={() => router.push(`/simulation/resultat/${solution.id}?${searchParams.toString()}`)}
                   >
                     Découvrir
                   </Button>
@@ -166,7 +169,7 @@ export const Resultat = ({
             className={cx("grow", "md:grow-0", "justify-center")}
             onClick={() => {
               router.push(
-                `/simulation/resultat?${createSearchParams<ResultatsPageSearchParamsProps["complet"]>({
+                `/simulation/resultat?${createSearchParams<ResultatsPageProps["searchParams"]["complet"]>({
                   searchParams,
                   name: "complet",
                   value: "oui",

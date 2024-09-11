@@ -1,19 +1,17 @@
-import assert from "assert";
 import { Base64 } from "js-base64";
 import { type Metadata } from "next";
 
 import { estGlobalementRenove, informationBatimentSchema } from "@/lib/common/domain/InformationBatiment";
-import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
 
-import { sharedMetadata } from "../../../../shared-metadata";
-import { fetchSolutions } from "../../helper";
-import { SyncStore } from "../../SyncStore";
-import { DetailSolution } from "./DetailSolution";
+import { sharedMetadata } from "../../shared-metadata";
+import { fetchSolutions } from "./helper";
+import { Resultat } from "./Resultat";
+import { SyncStore } from "./SyncStore";
 
-const title = "Détail solution";
-const description = "Détail solution";
-const url = "/simulation/resultat-detail";
+const title = "Résultat simulation";
+const description = "Résultat simulation";
+const url = "/simulation/resultat";
 
 export const metadata: Metadata = {
   ...sharedMetadata,
@@ -30,19 +28,19 @@ export const metadata: Metadata = {
   },
 };
 
-export type Props = {
-  params: {
-    idSolution: string;
-  };
+export type ResultatsPageProps = {
   searchParams: {
+    complet: "non" | "oui";
     hash: string;
     idSolution: string;
     travauxNiveauIsolation: TravauxNiveauIsolation;
   };
 };
 
-const ResultatsPage = async ({ params: { idSolution }, searchParams }: Props) => {
+const ResultatsPage = async ({ searchParams }: ResultatsPageProps) => {
   if (!searchParams.hash) throw new Error("Le hash est manquant");
+
+  const complet = searchParams.complet === "oui";
 
   const unparsedFormData: unknown = JSON.parse(Base64.decode(searchParams.hash));
   const formData = informationBatimentSchema.safeParse(unparsedFormData);
@@ -60,29 +58,23 @@ const ResultatsPage = async ({ params: { idSolution }, searchParams }: Props) =>
     ? "Aucun"
     : searchParams.travauxNiveauIsolation ?? "Global";
 
-  const { solutions } = await fetchSolutions({
+  const { solutions, nbSolutions, isRcuEligible } = await fetchSolutions({
     informationBatiment,
     travauxNiveauIsolation,
-    complet: true,
+    complet,
   });
-
-  let detailSolution: SolutionAvecEnergieCoutAide | null = null;
-
-  if (idSolution) {
-    detailSolution = solutions.find(s => s.id === idSolution) || null;
-  }
-
-  assert(detailSolution, "La solution n'a pas été trouvée");
 
   return (
     <>
       <SyncStore hash={searchParams.hash} />
 
-      <DetailSolution
-        solution={detailSolution}
-        informationBatiment={informationBatiment}
+      <Resultat
+        informationBatiment={formData.data}
+        solutions={solutions}
+        isRcuEligible={isRcuEligible}
+        complet={complet}
         travauxNiveauIsolation={travauxNiveauIsolation}
-        searchParams={new URLSearchParams(searchParams)}
+        nbSolutions={nbSolutions}
       />
     </>
   );
