@@ -1,5 +1,8 @@
+"use client";
+
 import { breakpoints } from "@codegouvfr/react-dsfr/fr/breakpoints";
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
+import { push } from "@socialgouv/matomo-next";
 import { type Dispatch, type SetStateAction, useCallback } from "react";
 import { useWindowSize } from "usehooks-ts";
 
@@ -36,6 +39,13 @@ export const FranceRenovBlock = ({ withWorkflow, showToast }: Props = {}) => {
               <Button
                 priority="tertiary no outline"
                 onClick={() => {
+                  push([
+                    "trackEvent",
+                    withWorkflow ? "Page Détails solution" : "Page Résultats",
+                    "Clic Partager France Renov",
+                    "Partager France Renov",
+                  ]);
+
                   navigator.clipboard.writeText(window.location.href).catch(console.error);
                   showToast(true);
                 }}
@@ -51,7 +61,7 @@ export const FranceRenovBlock = ({ withWorkflow, showToast }: Props = {}) => {
         />
       </div>
     );
-  }, [showToast]);
+  }, [showToast, withWorkflow]);
 
   const Etape2 = useCallback(
     () => (
@@ -121,6 +131,14 @@ export const FranceRenovBlock = ({ withWorkflow, showToast }: Props = {}) => {
           <Button
             linkProps={{
               href: "https://france-renov.gouv.fr/preparer-projet/trouver-conseiller",
+              onClick: () => {
+                push([
+                  "trackEvent",
+                  withWorkflow ? "Page Détails solution" : "Page Résultats",
+                  "Clic Trouver un conseiller",
+                  "Trouver un conseiller",
+                ]);
+              },
             }}
           >
             Trouver un conseiller

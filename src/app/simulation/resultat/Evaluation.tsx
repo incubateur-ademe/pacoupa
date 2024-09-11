@@ -5,6 +5,7 @@ import InfoIcon from "@mui/icons-material/Info";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { Dialog, DialogContent, DialogContentText, DialogTitle, Tooltip } from "@mui/material";
 import MuiButton from "@mui/material/Button";
+import { push } from "@socialgouv/matomo-next";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -87,6 +88,8 @@ export const Evaluation = ({ categorie, solution, withDetails }: EvaluationProps
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
+    push(["trackEvent", "Page Détails solution", "Clic Info critère", `Infobulle ${categorie}`]);
+
     setOpen(true);
   };
   const handleClose = () => {

@@ -24,7 +24,7 @@ const LandingHeroDesktop = () => (
       <GridCol base={6}>
         <H1>Trouvez la meilleure solution de chauffage écologique, adaptée à votre copropriété</H1>
         <ButtonsWrapper>
-          <CTA source="landing" />
+          <CTA eventName="Bouton haut" />
 
           {/* <Button
             priority="secondary"
@@ -51,7 +51,7 @@ const LandingHeroMobile = () => (
       </GridCol>
     </Grid>
 
-    <CTA source="landing" />
+    <CTA eventName="Bouton haut" />
 
     <Grid haveGutters className="mt-8">
       <GridCol base={10} offset={1}>

@@ -2,6 +2,7 @@
 
 import { breakpoints } from "@codegouvfr/react-dsfr/fr/breakpoints";
 import Snackbar from "@mui/material/Snackbar";
+import { push } from "@socialgouv/matomo-next";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { useWindowSize } from "usehooks-ts";
@@ -50,7 +51,13 @@ export const DetailSolution = ({ solution, informationBatiment, travauxNiveauIso
           <Button
             priority="tertiary"
             iconId="ri-arrow-go-back-line"
-            linkProps={{ href: `/simulation/resultat?${searchParams.toString()}` }}
+            linkProps={{
+              href: `/simulation/resultat?${searchParams.toString()}`,
+
+              onClick: () => {
+                push(["trackEvent", "Détails solution", "Clic Retour", "Retour"]);
+              },
+            }}
           >
             {width > breakpoints.getPxValues().sm ? "Retour à la liste" : "Retour"}
           </Button>
@@ -59,6 +66,8 @@ export const DetailSolution = ({ solution, informationBatiment, travauxNiveauIso
             iconId="ri-share-fill"
             iconPosition="right"
             onClick={() => {
+              push(["trackEvent", "Détails solution", "Clic Partager", "Partager"]);
+
               navigator.clipboard.writeText(window.location.href).catch(console.error);
               setShowToast(true);
             }}

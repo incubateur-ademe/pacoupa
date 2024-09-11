@@ -1,5 +1,6 @@
 "use client";
 
+import { push } from "@socialgouv/matomo-next";
 import { useWizard } from "react-use-wizard";
 
 import { Button } from "@/components/Button";
@@ -10,7 +11,7 @@ type Props = {
 };
 
 export const ButtonsFunnel = ({ disabled }: Props = { disabled: false }) => {
-  const { isFirstStep, isLastStep, previousStep } = useWizard();
+  const { isFirstStep, isLastStep, previousStep, activeStep } = useWizard();
 
   return (
     <>
@@ -23,6 +24,7 @@ export const ButtonsFunnel = ({ disabled }: Props = { disabled: false }) => {
               iconId="fr-icon-arrow-left-line"
               nativeButtonProps={{
                 onClick: () => {
+                  push(["trackEvent", "Formulaire", "Clic Retour", `Retour Q${activeStep + 1}`]);
                   previousStep();
                 },
               }}
@@ -31,7 +33,20 @@ export const ButtonsFunnel = ({ disabled }: Props = { disabled: false }) => {
             </Button>
           )}
 
-          <Button nativeButtonProps={{ disabled }}>{isLastStep ? "Voir les résultats" : "Suivant"}</Button>
+          <Button
+            nativeButtonProps={{
+              disabled,
+              onClick: () => {
+                if (isLastStep) {
+                  push(["trackEvent", "Formulaire", "Clic Fin", "Voir résultats"]);
+                } else {
+                  push(["trackEvent", "Formulaire", "Clic Retour", `Retour Q${activeStep + 1}`]);
+                }
+              },
+            }}
+          >
+            {isLastStep ? "Voir les résultats" : "Suivant"}
+          </Button>
         </ButtonsWrapper>
       </div>
     </>

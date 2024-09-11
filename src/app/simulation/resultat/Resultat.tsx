@@ -1,6 +1,7 @@
 "use client";
 
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
+import { push } from "@socialgouv/matomo-next";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/Button";
@@ -62,6 +63,9 @@ export const Resultat = ({
               <Button
                 linkProps={{
                   href: "/simulation/etapes",
+                  onClick: () => {
+                    push(["trackEvent", "Page Résultats", "Clic Modifier formulaire", "Modifier formulaire"]);
+                  },
                 }}
                 priority="secondary"
                 iconId="ri-pencil-line"
@@ -150,8 +154,11 @@ export const Resultat = ({
                     priority="primary"
                     linkProps={{
                       href: `/simulation/resultat/${solution.id}?${searchParams.toString()}`,
+
+                      onClick: () => {
+                        push(["trackEvent", "Page Résultats", "Clic Découvrir", "Découvrir"]);
+                      },
                     }}
-                    // onClick={() => router.push(`/simulation/resultat/${solution.id}?${searchParams.toString()}`)}
                   >
                     Découvrir
                   </Button>
@@ -167,6 +174,8 @@ export const Resultat = ({
             priority="tertiary no outline"
             className={cx("grow", "md:grow-0", "justify-center")}
             onClick={() => {
+              push(["trackEvent", "Page Résultats", "Clic Voir plus de solutions", "Voir plus de solutions"]);
+
               router.push(
                 `/simulation/resultat?${createSearchParams({
                   searchParams,

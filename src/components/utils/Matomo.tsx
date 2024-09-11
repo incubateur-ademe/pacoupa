@@ -65,20 +65,20 @@ export const Matomo = ({ env, nonce }: MatomoProps) => {
 
   /* The @socialgouv/matomo-next does not work with next 13, so we need to handle by ourselves */
   useEffect(() => {
-    console.log(
-      "dans Matomo useEffect 2",
-      JSON.stringify(
-        {
-          env,
-          matomoConsent,
-          pathname,
-          previousPath,
-          searchParams: searchParams.toString(),
-        },
-        null,
-        2,
-      ),
-    );
+    // console.log(
+    //   "dans Matomo useEffect 2",
+    //   JSON.stringify(
+    //     {
+    //       env,
+    //       matomoConsent,
+    //       pathname,
+    //       previousPath,
+    //       searchParams: searchParams.toString(),
+    //     },
+    //     null,
+    //     2,
+    //   ),
+    // );
 
     if (!initialized || !matomoConsent || !pathname || env === "dev") {
       return;

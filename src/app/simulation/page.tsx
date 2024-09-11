@@ -55,6 +55,7 @@ const SimulationLandingPage = () => {
         <Button
           linkProps={{
             href: "/simulation/etapes",
+            // onClick: () => push(["trackEvent", "Formulaire", "Clic Commencer", "Commencer"]),
           }}
         >
           Commencer

@@ -1,6 +1,7 @@
 "use client";
 
 import { SegmentedControl, type SegmentedControlProps } from "@codegouvfr/react-dsfr/SegmentedControl";
+import { push } from "@socialgouv/matomo-next";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import { Text } from "@/dsfr/base/typography";
@@ -42,6 +43,8 @@ export const TravauxNiveauIsolationSegmentedControl = ({ travauxNiveauIsolation 
               value: label,
               checked: (label === "Global" && !travauxNiveauIsolation) || travauxNiveauIsolation === label,
               onChange: () => {
+                push(["trackEvent", "Page Résultats", "Clic Travaux", `${label}`]);
+
                 router.push(
                   `/simulation/resultat?${createSearchParams({
                     searchParams,
