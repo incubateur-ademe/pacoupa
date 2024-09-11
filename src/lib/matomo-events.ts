@@ -1,9 +1,7 @@
-export namespace Matomo {
-  export enum Category {
-    "Page d'erreur",
-    "Formulaire",
-    "Page d'accueil",
-    "Page de détails de solution",
-    "Page de résultats",
-  }
-}
+export const matomoCategory = {
+  formulaire: "Formulaire",
+  accueil: "Page d'accueil",
+  erreur: "Page d'erreur",
+  solutionDetails: "Page de détails de solution",
+  resultats: "Page de résultats",
+} as const;

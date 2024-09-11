@@ -5,7 +5,7 @@ import { useWizard } from "react-use-wizard";
 
 import { Button } from "@/components/Button";
 import { ButtonsWrapper } from "@/components/ButtonsWrapper";
-import { Matomo } from "@/lib/matomo-events";
+import { matomoCategory } from "@/lib/matomo-events";
 
 type Props = {
   disabled?: boolean;
@@ -25,7 +25,7 @@ export const ButtonsFunnel = ({ disabled }: Props = { disabled: false }) => {
               iconId="fr-icon-arrow-left-line"
               nativeButtonProps={{
                 onClick: () => {
-                  push(["trackEvent", Matomo.Category.Formulaire, "Clic Retour", `Retour Q${activeStep + 1}`]);
+                  push(["trackEvent", matomoCategory.formulaire, "Clic Retour", `Retour Q${activeStep + 1}`]);
                   previousStep();
                 },
               }}
@@ -39,9 +39,9 @@ export const ButtonsFunnel = ({ disabled }: Props = { disabled: false }) => {
               disabled,
               onClick: () => {
                 if (isLastStep) {
-                  push(["trackEvent", Matomo.Category.Formulaire, "Clic Fin", "Voir résultats"]);
+                  push(["trackEvent", matomoCategory.formulaire, "Clic Fin", "Voir résultats"]);
                 } else {
-                  push(["trackEvent", Matomo.Category.Formulaire, "Clic Retour", `Retour Q${activeStep + 1}`]);
+                  push(["trackEvent", matomoCategory.formulaire, "Clic Retour", `Retour Q${activeStep + 1}`]);
                 }
               },
             }}

@@ -4,14 +4,14 @@ import { push } from "@socialgouv/matomo-next";
 import { type PropsWithChildren } from "react";
 
 import { config } from "@/config";
-import { Matomo } from "@/lib/matomo-events";
+import { matomoCategory } from "@/lib/matomo-events";
 
 import { Button } from "./Button";
 
-const defaultEventCategory = Matomo.Category["Page d'accueil"];
+const defaultEventCategory = matomoCategory.accueil;
 
 export interface CTAProps {
-  eventCategory?: Matomo.Category;
+  eventCategory?: (typeof matomoCategory)[keyof typeof matomoCategory];
   eventName: "Bouton bas" | "Bouton haut" | "Bouton intermédiaire";
   href?: string;
 }
