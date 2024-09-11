@@ -17,20 +17,18 @@ import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/Sol
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
 import { createSearchParams } from "@/utils/searchParams";
 
-import { CardRcu } from "./CardRcu";
-import { DebugButton } from "./DebugButton";
-import { DetailSolution } from "./DetailSolution";
-import { FranceRenovBlock } from "./FranceRenovBlock";
-import { familleImageMap } from "./helper";
-import { Isolation } from "./Isolation";
-import { NouvelleSimulation } from "./NouvelleSimulation";
+import { CardRcu } from "../CardRcu";
+import { DebugButton } from "../DebugButton";
+import { FranceRenovBlock } from "../FranceRenovBlock";
+import { familleImageMap } from "../helper";
+import { Isolation } from "../Isolation";
+import { NouvelleSimulation } from "../NouvelleSimulation";
+import { calculeIsolationsManquantes } from "../ShowIsolationImages";
+import { Usage } from "../Usage";
 import { type ResultatsPageSearchParamsProps } from "./page";
-import { calculeIsolationsManquantes } from "./ShowIsolationImages";
-import { Usage } from "./Usage";
 
 type Props = {
   complet: boolean;
-  idSolution?: string;
   informationBatiment: InformationBatiment;
   isRcuEligible: boolean;
   nbSolutions: number;
@@ -38,45 +36,18 @@ type Props = {
   travauxNiveauIsolation: TravauxNiveauIsolation;
 };
 /**
- * Composant qui affiche le résultat des solutions par défaut ou bien une solution détaillée.
- *
- * Composant client pour alterner entre les 2 affichages.
+ * Composant qui affiche le résultat des solutions par défaut.
  */
-export const WrapperResultatDetail = ({
+export const Resultat = ({
   informationBatiment,
   solutions,
   nbSolutions,
-  idSolution,
   isRcuEligible,
   travauxNiveauIsolation,
   complet,
 }: Props) => {
   const searchParams = useSearchParams();
   const router = useRouter();
-
-  let detailSolution: SolutionAvecEnergieCoutAide | null = null;
-
-  if (idSolution) {
-    detailSolution = solutions.find(s => s.id === idSolution) || null;
-  }
-
-  if (detailSolution)
-    return (
-      <DetailSolution
-        solution={detailSolution}
-        informationBatiment={informationBatiment}
-        back={() =>
-          router.push(
-            `/simulation/resultat?${createSearchParams({
-              searchParams,
-              name: "idSolution",
-              value: "",
-            })}`,
-          )
-        }
-        travauxNiveauIsolation={travauxNiveauIsolation}
-      />
-    );
 
   return (
     <>
@@ -178,15 +149,7 @@ export const WrapperResultatDetail = ({
                 footer={
                   <Button
                     priority="primary"
-                    onClick={() =>
-                      router.push(
-                        `/simulation/resultat?${createSearchParams({
-                          searchParams,
-                          name: "idSolution",
-                          value: solution.id,
-                        })}`,
-                      )
-                    }
+                    onClick={() => router.push(`/simulation/resultat-detail/${solution.id}?${searchParams.toString()}`)}
                   >
                     Découvrir
                   </Button>
