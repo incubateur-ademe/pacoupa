@@ -43,7 +43,7 @@ export const TravauxNiveauIsolationSegmentedControl = ({ travauxNiveauIsolation 
               checked: (label === "Global" && !travauxNiveauIsolation) || travauxNiveauIsolation === label,
               onChange: () => {
                 router.push(
-                  `/simulation/resultat?${createSearchParams<TravauxNiveauIsolation>({
+                  `/simulation/resultat?${createSearchParams({
                     searchParams,
                     name: "travauxNiveauIsolation",
                     value: label,

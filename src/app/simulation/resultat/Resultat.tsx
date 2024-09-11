@@ -23,7 +23,6 @@ import { FranceRenovBlock } from "./FranceRenovBlock";
 import { familleImageMap } from "./helper";
 import { Isolation } from "./Isolation";
 import { NouvelleSimulation } from "./NouvelleSimulation";
-import { type ResultatsPageProps } from "./page";
 import { calculeIsolationsManquantes } from "./ShowIsolationImages";
 import { Usage } from "./Usage";
 
@@ -169,7 +168,7 @@ export const Resultat = ({
             className={cx("grow", "md:grow-0", "justify-center")}
             onClick={() => {
               router.push(
-                `/simulation/resultat?${createSearchParams<ResultatsPageProps["searchParams"]["complet"]>({
+                `/simulation/resultat?${createSearchParams({
                   searchParams,
                   name: "complet",
                   value: "oui",
