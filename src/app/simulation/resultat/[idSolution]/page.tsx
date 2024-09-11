@@ -1,10 +1,8 @@
 import assert from "assert";
 import { type Metadata } from "next";
 
-import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
-
 import { sharedMetadata } from "../../../shared-metadata";
-import { checkAndLoadResultatParams, ResultatSearchParams } from "../helper";
+import { checkAndLoadResultatParams, type ResultatSearchParams } from "../helper";
 import { SyncStore } from "../SyncStore";
 import { DetailSolution } from "./DetailSolution";
 
@@ -31,7 +29,7 @@ export type Props = {
   params: {
     idSolution: string;
   };
-  searchParams: ResultatSearchParams
+  searchParams: ResultatSearchParams;
 };
 
 const ResultatDetailPage = async ({ params: { idSolution }, searchParams }: Props) => {
