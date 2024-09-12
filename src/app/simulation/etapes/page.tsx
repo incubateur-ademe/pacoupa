@@ -1,6 +1,5 @@
 import { type Metadata } from "next";
 
-import { MatomoPush } from "@/components/utils/MatomoPush";
 import { Wizard } from "@/components/Wizard";
 
 import { sharedMetadata } from "../../shared-metadata";
@@ -39,7 +38,6 @@ const SimulationPage = () => {
   return (
     // With flex, we can use justify-between to approximatively align the footer at the bottom of the page
     <div className="flex flex-col justify-start w-[288px] sm:w-[400px] md:w-[600px] xl:w-[800px]">
-      <MatomoPush event={["trackEvent", "Formulaire", "Clic Commencer", "Commencer"]} />
       {/* <Wizard startIndex={10}> */}
       <Wizard>
         <Step1 />
