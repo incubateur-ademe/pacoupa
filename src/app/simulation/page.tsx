@@ -1,4 +1,3 @@
-import { push } from "@socialgouv/matomo-next";
 import { type Metadata } from "next";
 
 import { Button } from "@/components/Button";
@@ -6,7 +5,6 @@ import { ButtonsWrapper } from "@/components/ButtonsWrapper";
 import { Callout } from "@/components/Callout";
 import { Maison2Image } from "@/components/img/Maison2";
 import { Text } from "@/dsfr/base/typography";
-import { matomoCategory } from "@/lib/matomo-events";
 
 import { sharedMetadata } from "../shared-metadata";
 
@@ -57,9 +55,6 @@ const SimulationLandingPage = () => {
         <Button
           linkProps={{
             href: "/simulation/etapes",
-            onClick: () => {
-              push(["trackEvent", matomoCategory.formulaire, "Clic Commencer", "Commencer"]);
-            },
           }}
         >
           Commencer
