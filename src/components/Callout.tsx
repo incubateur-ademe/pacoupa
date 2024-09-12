@@ -1,6 +1,5 @@
 import { fr, type FrCxArg } from "@codegouvfr/react-dsfr";
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
-import { type PropsWithChildren } from "react";
 
 import { H3 } from "@/dsfr/base/typography";
 
@@ -47,7 +46,7 @@ const config: Record<Props["type"], { bgColor: string; contentColor: string; tit
   },
 };
 
-export const Callout = ({ content, iconId, icon, title, type }: PropsWithChildren<Props>) => {
+export const Callout = ({ content, iconId, icon, title, type }: Props) => {
   type = type ?? "info";
 
   icon =

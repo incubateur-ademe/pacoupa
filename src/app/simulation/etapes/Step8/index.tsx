@@ -81,7 +81,7 @@ export const Step8 = () => {
                   },
                 ]}
                 state={errors?.energieCH?._errors ? "error" : "default"}
-                stateRelatedMessage={<div aria-live="polite">{errors?.energieCH?._errors}</div>}
+                stateRelatedMessage={<span aria-live="polite">{errors?.energieCH?._errors}</span>}
               />
             </div>
 

@@ -13,7 +13,7 @@ export const LaisserGuider = () => {
             leur pertinence écologique et économique.
           </Text>
 
-          <CTA source="landing" />
+          <CTA eventName="Bouton intermédiaire" />
         </div>
 
         <div className="relative basis-[200px] grow">

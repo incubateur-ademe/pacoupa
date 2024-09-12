@@ -52,7 +52,7 @@ export const Step7 = () => {
                   },
                 ]}
                 state={errors?.typeCH?._errors ? "error" : "default"}
-                stateRelatedMessage={<div aria-live="polite">{errors?.typeCH?._errors}</div>}
+                stateRelatedMessage={<span aria-live="polite">{errors?.typeCH?._errors}</span>}
               />
             </div>
           </>

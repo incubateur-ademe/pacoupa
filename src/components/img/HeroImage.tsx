@@ -1,6 +1,7 @@
+import Image from "next/image";
+
 import hero from "../../../public/img/hero.svg";
-import { ImageCard } from "./ImageCard";
 
 export function HeroImage() {
-  return <ImageCard src={hero as string} alt="Immeuble à la loupe" />;
+  return <Image priority src={hero as string} alt="Immeuble à la loupe" sizes="100vw" className="h-auto w-full" />;
 }

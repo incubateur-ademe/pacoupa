@@ -1,12 +1,12 @@
 import { type Metadata } from "next";
 
-import { Button } from "@/components/Button";
 import { ButtonsWrapper } from "@/components/ButtonsWrapper";
 import { Callout } from "@/components/Callout";
 import { Maison2Image } from "@/components/img/Maison2";
 import { Text } from "@/dsfr/base/typography";
 
 import { sharedMetadata } from "../shared-metadata";
+import { CommencerButton } from "./CommencerButton";
 
 const title = "Simulation";
 const description = "Début de la simulation";
@@ -52,13 +52,7 @@ const SimulationLandingPage = () => {
       />
 
       <ButtonsWrapper align="right">
-        <Button
-          linkProps={{
-            href: "./simulation/etapes",
-          }}
-        >
-          Commencer
-        </Button>
+        <CommencerButton />
       </ButtonsWrapper>
     </div>
   );

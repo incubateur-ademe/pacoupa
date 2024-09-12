@@ -1,9 +1,14 @@
+"use client";
+
+import { push } from "@socialgouv/matomo-next";
+
 import { Badge } from "@/components/Badge";
 import { Button } from "@/components/Button";
 import { Callout } from "@/components/Callout";
 import { Card } from "@/components/Card";
 import { Text } from "@/dsfr/base/typography";
 import { type Solution } from "@/lib/common/domain/values/Solution";
+import { matomoCategory } from "@/lib/matomo-events";
 
 import { familleImageMap } from "./helper";
 import { Usage } from "./Usage";
@@ -74,6 +79,9 @@ export const CardRcu = () => {
               priority="tertiary no outline"
               linkProps={{
                 href: `https://france-chaleur-urbaine.beta.gouv.fr/`,
+                onClick: () => {
+                  push(["trackEvent", matomoCategory.resultats, "Clic FCU", "Lien FCU"]);
+                },
               }}
             >
               france-chaleur-urbaine
