@@ -31,8 +31,6 @@ export function AutocompleteBan({ defaultValue, errors }: AutocompletBanMuiProps
       if (defaultValue) {
         const proposals = (await fetchBAN(defaultValue)).features;
 
-        console.debug("dans load initial", { proposals });
-
         setValue(proposals[0]);
         setOptions(proposals);
       }

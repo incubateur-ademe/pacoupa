@@ -1772,10 +1772,10 @@
     unplugin "1.0.1"
     uuid "^9.0.0"
 
-"@socialgouv/matomo-next@^1.6.1":
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/@socialgouv/matomo-next/-/matomo-next-1.8.0.tgz#1dee455a440b84bc135381a85fef33d000698222"
-  integrity sha512-00EdsbW0u/VrKFa7DfVjnXV4oXA6Ag3kkCisSL2nFseRQhEsds5T8xsAgvNQAtiMW9AR6Mz3TNZt7A2/mIb9kA==
+"@socialgouv/matomo-next@^1.9.1":
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/@socialgouv/matomo-next/-/matomo-next-1.9.1.tgz#ff76f8eb93d636df5bfe6d6047a6edbabfe65a84"
+  integrity sha512-mhWK6EUV/qS39i8aRJTm/XFCOI6xAwxQooAFBuiByfpvIqQQqa3et01C6b53Rxb3K0ACOk6lipudXSY2sc2WSg==
 
 "@swc/helpers@0.5.2":
   version "0.5.2"
@@ -6430,6 +6430,7 @@ streamsearch@^1.1.0:
   integrity sha512-Mcc5wHehp9aXz1ax6bZUyY5afg9u2rv5cqQI3mRrYkGC8rW2hM02jWuwjtL++LS5qinSyhj2QfLyNsuc+VsExg==
 
 "string-width-cjs@npm:string-width@^4.2.0", string-width@^4.1.0:
+  name string-width-cjs
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
   integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
@@ -6510,6 +6511,7 @@ stringify-entities@^4.0.0:
     character-entities-legacy "^3.0.0"
 
 "strip-ansi-cjs@npm:strip-ansi@^6.0.1", strip-ansi@^6.0.0, strip-ansi@^6.0.1:
+  name strip-ansi-cjs
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
   integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==

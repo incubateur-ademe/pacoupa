@@ -1,4 +1,5 @@
 import { catalogueSolutions } from "@__content/solutions";
+import { Base64 } from "js-base64";
 
 import { Badge, type BadgeProps } from "@/components/Badge";
 import { FamilleCetAirEauImage } from "@/components/img/familles/FamilleCetAirEauImage";
@@ -11,7 +12,11 @@ import { FamillePacEauEauImage } from "@/components/img/familles/FamillePacEauEa
 import { FamillePacEauxGrisesEau } from "@/components/img/familles/FamillePacEauxGrisesEau";
 import { FamillePacSolaireEauImage } from "@/components/img/familles/FamillePacSolaireEauImage";
 import { FamilleRcuImage } from "@/components/img/familles/FamilleRcuImage";
-import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
+import {
+  estGlobalementRenove,
+  type InformationBatiment,
+  informationBatimentSchema,
+} from "@/lib/common/domain/InformationBatiment";
 import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
 import { type SolutionFamille } from "@/lib/common/domain/values/SolutionFamille";
 import { type SolutionNote } from "@/lib/common/domain/values/SolutionNote";
@@ -26,6 +31,48 @@ import { getInformationEnergieMemoized } from "@/lib/server/useCases/getInformat
 import { getSolutionsApplicablesMemoized } from "@/lib/server/useCases/getSolutionsApplicables";
 import { fetchBAN } from "@/lib/services/ban";
 import { fetchFcuEligibility } from "@/lib/services/fcu";
+
+export type ResultatSearchParams = {
+  complet?: "non" | "oui";
+  hash: string;
+  travauxNiveauIsolation?: TravauxNiveauIsolation;
+};
+
+export const parseParams = (searchParams: ResultatSearchParams) => {
+  if (!searchParams.hash) throw new Error("Le hash est manquant");
+
+  const complet = searchParams.complet === "oui";
+
+  const unparsedFormData: unknown = JSON.parse(Base64.decode(searchParams.hash));
+  const formData = informationBatimentSchema.safeParse(unparsedFormData);
+
+  if (!formData.success) {
+    const errors = formData.error.format();
+    throw new Error(`Erreur de formatage du hash ${JSON.stringify(errors)}`);
+  }
+
+  const informationBatiment = formData.data;
+
+  return { informationBatiment, complet };
+};
+
+export const checkAndLoadResultatParams = async (searchParams: ResultatSearchParams) => {
+  const { informationBatiment, complet } = parseParams(searchParams);
+
+  // Pour les bâtiments après 2000 ou déjà entièrement rénové, on ne propose plus de rénovation globale.
+  // Pour info, pour les bâtiments > 2000, la db ne contient que des données pour un scénario d'enveloppe INIT.
+  const travauxNiveauIsolation = estGlobalementRenove(informationBatiment)
+    ? "Aucun"
+    : searchParams.travauxNiveauIsolation ?? "Global";
+
+  const { solutions, nbSolutions, isRcuEligible } = await fetchSolutions({
+    informationBatiment,
+    travauxNiveauIsolation,
+    complet,
+  });
+
+  return { informationBatiment, complet, travauxNiveauIsolation, solutions, nbSolutions, isRcuEligible };
+};
 
 type FetchSolutionsReturnType = {
   isRcuEligible: boolean;

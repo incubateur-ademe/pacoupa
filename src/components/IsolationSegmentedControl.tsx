@@ -1,10 +1,12 @@
 "use client";
 
 import { SegmentedControl, type SegmentedControlProps } from "@codegouvfr/react-dsfr/SegmentedControl";
+import { push } from "@socialgouv/matomo-next";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import { Text } from "@/dsfr/base/typography";
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
+import { matomoCategory } from "@/lib/matomo-events";
 import { createSearchParams } from "@/utils/searchParams";
 
 import { Callout } from "./Callout";
@@ -42,8 +44,10 @@ export const TravauxNiveauIsolationSegmentedControl = ({ travauxNiveauIsolation 
               value: label,
               checked: (label === "Global" && !travauxNiveauIsolation) || travauxNiveauIsolation === label,
               onChange: () => {
+                push(["trackEvent", matomoCategory.resultats, "Clic Travaux", `${label}`]);
+
                 router.push(
-                  `/simulation/resultat?${createSearchParams<TravauxNiveauIsolation>({
+                  `/simulation/resultat?${createSearchParams({
                     searchParams,
                     name: "travauxNiveauIsolation",
                     value: label,

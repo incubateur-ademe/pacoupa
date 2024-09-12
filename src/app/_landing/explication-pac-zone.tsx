@@ -64,7 +64,7 @@ const ExplicationDesktop = () => (
 
 const ExplicationMobile = () => (
   <div className="flex md:hidden flex-col rounded-none">
-    <div className="basis-[300px] flex-grow order-last -translate-y-8">
+    <div className="relative basis-[300px] flex-grow order-last -translate-y-8">
       <HesitationImage />
     </div>
 

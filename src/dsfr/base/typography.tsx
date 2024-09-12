@@ -89,7 +89,7 @@ const textProps = ({ variant, ...rest }: Omit<TextProps<boolean>, "children" | "
  * @see https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-de-l-identite-de-l-etat/typographie/#:~:text=Corps%20de%20texte
  */
 export const Text = <Inline extends boolean>({ inline, children, ...rest }: TextProps<Inline>) =>
-  inline ? <span {...textProps(rest)}>{children}</span> : <p {...textProps(rest)}>{children}</p>;
+  inline ? <span {...textProps(rest)}>{children}</span> : <div {...textProps(rest)}>{children}</div>;
 
 /**
  * Ref version of {@link Text}

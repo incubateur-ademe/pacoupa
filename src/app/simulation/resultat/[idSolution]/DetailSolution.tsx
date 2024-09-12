@@ -1,5 +1,9 @@
+"use client";
+
 import { breakpoints } from "@codegouvfr/react-dsfr/fr/breakpoints";
 import Snackbar from "@mui/material/Snackbar";
+import { push } from "@socialgouv/matomo-next";
+import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { useWindowSize } from "usehooks-ts";
 
@@ -10,25 +14,24 @@ import { Button } from "@/components/Button";
 import { EstimationCouts } from "@/components/EstimationCouts";
 import { EstimationGains } from "@/components/EstimationGains";
 import { H2, Text } from "@/dsfr/base/typography";
-import { useScrollTop } from "@/lib/client/useScrollTop";
 import { estGlobalementRenove, type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
+import { matomoCategory } from "@/lib/matomo-events";
 
-import { Isolation } from "./Isolation";
-import { calculeIsolationsManquantes as calculeIsolationsManquantes } from "./ShowIsolationImages";
-import { Usage } from "./Usage";
+import { Isolation } from "../Isolation";
+import { calculeIsolationsManquantes as calculeIsolationsManquantes } from "../ShowIsolationImages";
+import { Usage } from "../Usage";
 
 type Props = {
-  back: () => void;
   informationBatiment: InformationBatiment;
   solution: SolutionAvecEnergieCoutAide;
   travauxNiveauIsolation: TravauxNiveauIsolation;
 };
 
-export const DetailSolution = ({ solution, informationBatiment, travauxNiveauIsolation, back }: Props) => {
-  useScrollTop();
+export const DetailSolution = ({ solution, informationBatiment, travauxNiveauIsolation }: Props) => {
   const [showToast, setShowToast] = useState(false);
+  const searchParams = useSearchParams();
 
   const { width = 0 } = useWindowSize({ debounceDelay: 100, initializeWithValue: false });
 
@@ -43,10 +46,20 @@ export const DetailSolution = ({ solution, informationBatiment, travauxNiveauIso
   };
 
   return (
-    <>
+    <div>
       <div className="sticky top-0 bg-white z-10 pb-4 pt-2">
         <div className="flex justify-between">
-          <Button priority="tertiary" iconId="ri-arrow-go-back-line" onClick={back}>
+          <Button
+            priority="tertiary"
+            iconId="ri-arrow-go-back-line"
+            linkProps={{
+              href: `/simulation/resultat?${searchParams.toString()}`,
+
+              onClick: () => {
+                push(["trackEvent", matomoCategory.solutionDetails, "Clic Retour", "Retour"]);
+              },
+            }}
+          >
             {width > breakpoints.getPxValues().sm ? "Retour à la liste" : "Retour"}
           </Button>
           <Button
@@ -54,6 +67,8 @@ export const DetailSolution = ({ solution, informationBatiment, travauxNiveauIso
             iconId="ri-share-fill"
             iconPosition="right"
             onClick={() => {
+              push(["trackEvent", matomoCategory.solutionDetails, "Clic Partager", "Partager"]);
+
               navigator.clipboard.writeText(window.location.href).catch(console.error);
               setShowToast(true);
             }}
@@ -123,6 +138,6 @@ export const DetailSolution = ({ solution, informationBatiment, travauxNiveauIso
       </div>
 
       <FranceRenovBlock withWorkflow={true} showToast={setShowToast} />
-    </>
+    </div>
   );
 };

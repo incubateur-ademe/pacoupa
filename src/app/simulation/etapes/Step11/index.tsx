@@ -84,7 +84,7 @@ export const Step11 = () => {
                 },
               ]}
               state={errors?.energieECS?._errors ? "error" : "default"}
-              stateRelatedMessage={<div aria-live="polite">{errors?.energieECS?._errors}</div>}
+              stateRelatedMessage={<span aria-live="polite">{errors?.energieECS?._errors}</span>}
             />
 
             {valeursPossibles.length < 3 && (

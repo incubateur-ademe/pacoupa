@@ -57,7 +57,7 @@ export const Step2 = () => {
                   },
                 }}
                 state={errors?.annee?._errors ? "error" : "default"}
-                stateRelatedMessage={<div aria-live="polite">{errors?.annee?._errors}</div>}
+                stateRelatedMessage={<span aria-live="polite">{errors?.annee?._errors}</span>}
               />
             </div>
             <div className="mt-8">

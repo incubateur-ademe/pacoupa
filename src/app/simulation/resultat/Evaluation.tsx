@@ -5,6 +5,7 @@ import InfoIcon from "@mui/icons-material/Info";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { Dialog, DialogContent, DialogContentText, DialogTitle, Tooltip } from "@mui/material";
 import MuiButton from "@mui/material/Button";
+import { push } from "@socialgouv/matomo-next";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -19,6 +20,7 @@ import { Package } from "@/components/img/twemoji/Package";
 import { Speaker } from "@/components/img/twemoji/Speaker";
 import { Text } from "@/dsfr/base/typography";
 import { type Solution } from "@/lib/common/domain/values/Solution";
+import { matomoCategory } from "@/lib/matomo-events";
 
 import { acoustiqueMap, coutMap, environnementMap, faciliteMap, maturiteMap, travauxMap } from "./helper";
 
@@ -87,6 +89,8 @@ export const Evaluation = ({ categorie, solution, withDetails }: EvaluationProps
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
+    push(["trackEvent", matomoCategory.solutionDetails, "Clic Info critère", `Infobulle ${categorie}`]);
+
     setOpen(true);
   };
   const handleClose = () => {

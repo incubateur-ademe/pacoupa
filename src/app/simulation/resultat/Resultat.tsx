@@ -1,6 +1,7 @@
 "use client";
 
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
+import { push } from "@socialgouv/matomo-next";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/Button";
@@ -15,22 +16,20 @@ import { H2, Text } from "@/dsfr/base/typography";
 import { estGlobalementRenove, type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
+import { matomoCategory } from "@/lib/matomo-events";
 import { createSearchParams } from "@/utils/searchParams";
 
 import { CardRcu } from "./CardRcu";
 import { DebugButton } from "./DebugButton";
-import { DetailSolution } from "./DetailSolution";
 import { FranceRenovBlock } from "./FranceRenovBlock";
 import { familleImageMap } from "./helper";
 import { Isolation } from "./Isolation";
 import { NouvelleSimulation } from "./NouvelleSimulation";
-import { type ResultatsPageSearchParamsProps } from "./page";
 import { calculeIsolationsManquantes } from "./ShowIsolationImages";
 import { Usage } from "./Usage";
 
 type Props = {
   complet: boolean;
-  idSolution?: string;
   informationBatiment: InformationBatiment;
   isRcuEligible: boolean;
   nbSolutions: number;
@@ -38,45 +37,18 @@ type Props = {
   travauxNiveauIsolation: TravauxNiveauIsolation;
 };
 /**
- * Composant qui affiche le résultat des solutions par défaut ou bien une solution détaillée.
- *
- * Composant client pour alterner entre les 2 affichages.
+ * Composant qui affiche le résultat des solutions par défaut.
  */
-export const WrapperResultatDetail = ({
+export const Resultat = ({
   informationBatiment,
   solutions,
   nbSolutions,
-  idSolution,
   isRcuEligible,
   travauxNiveauIsolation,
   complet,
 }: Props) => {
   const searchParams = useSearchParams();
   const router = useRouter();
-
-  let detailSolution: SolutionAvecEnergieCoutAide | null = null;
-
-  if (idSolution) {
-    detailSolution = solutions.find(s => s.id === idSolution) || null;
-  }
-
-  if (detailSolution)
-    return (
-      <DetailSolution
-        solution={detailSolution}
-        informationBatiment={informationBatiment}
-        back={() =>
-          router.push(
-            `/simulation/resultat?${createSearchParams({
-              searchParams,
-              name: "idSolution",
-              value: "",
-            })}`,
-          )
-        }
-        travauxNiveauIsolation={travauxNiveauIsolation}
-      />
-    );
 
   return (
     <>
@@ -92,6 +64,9 @@ export const WrapperResultatDetail = ({
               <Button
                 linkProps={{
                   href: "/simulation/etapes",
+                  onClick: () => {
+                    push(["trackEvent", matomoCategory.resultats, "Clic Modifier formulaire", "Modifier formulaire"]);
+                  },
                 }}
                 priority="secondary"
                 iconId="ri-pencil-line"
@@ -178,15 +153,13 @@ export const WrapperResultatDetail = ({
                 footer={
                   <Button
                     priority="primary"
-                    onClick={() =>
-                      router.push(
-                        `/simulation/resultat?${createSearchParams({
-                          searchParams,
-                          name: "idSolution",
-                          value: solution.id,
-                        })}`,
-                      )
-                    }
+                    linkProps={{
+                      href: `/simulation/resultat/${solution.id}?${searchParams.toString()}`,
+
+                      onClick: () => {
+                        push(["trackEvent", matomoCategory.resultats, "Clic Découvrir", "Découvrir"]);
+                      },
+                    }}
                   >
                     Découvrir
                   </Button>
@@ -202,8 +175,10 @@ export const WrapperResultatDetail = ({
             priority="tertiary no outline"
             className={cx("grow", "md:grow-0", "justify-center")}
             onClick={() => {
+              push(["trackEvent", matomoCategory.resultats, "Clic Voir plus de solutions", "Voir plus de solutions"]);
+
               router.push(
-                `/simulation/resultat?${createSearchParams<ResultatsPageSearchParamsProps["complet"]>({
+                `/simulation/resultat?${createSearchParams({
                   searchParams,
                   name: "complet",
                   value: "oui",

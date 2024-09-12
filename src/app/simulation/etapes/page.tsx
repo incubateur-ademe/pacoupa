@@ -38,6 +38,9 @@ const SimulationPage = () => {
   return (
     // With flex, we can use justify-between to approximatively align the footer at the bottom of the page
     <div className="flex flex-col justify-start w-[288px] sm:w-[400px] md:w-[600px] xl:w-[800px]">
+      {/* MatomoPush causes a bug in Chrome when used here. I don't know why. */}
+      {/* <MatomoPush event={["trackEvent", matomoCategory.formulaire, "Clic Commencer", "Commencer"]} /> */}
+
       {/* <Wizard startIndex={10}> */}
       <Wizard>
         <Step1 />

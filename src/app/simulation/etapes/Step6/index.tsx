@@ -130,7 +130,7 @@ export const Step6 = () => {
                 },
               ]}
               state={errors?.espacesExterieursPersonnels?._errors ? "error" : "default"}
-              stateRelatedMessage={<div aria-live="polite">{errors?.espacesExterieursPersonnels?._errors}</div>}
+              stateRelatedMessage={errors?.espacesExterieursPersonnels?._errors}
             />
 
             <div>
