@@ -70,5 +70,7 @@ credentials.json
 # Sentry Config File
 .env.sentry-build-plugin
 
+# Assets folder is present but should be ignored bc csv and db files will make git clone slow.
+# All assets should be rebuild from csv files in Google Drive and are stored in Turso when used in deployments.
 assets/*
 !assets/.gitkeep
