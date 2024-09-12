@@ -24,7 +24,6 @@ iconv -f utf-8 -t utf-8 -c  $ASSETS_DIR/bdd_eco_h1.csv | grep -v '^;' > $ASSETS_
 iconv -f utf-8 -t utf-8 -c  $ASSETS_DIR/bdd_eco_h2.csv | grep -v '^;' > $ASSETS_DIR/bdd_eco_h2_clean.csv
 iconv -f utf-8 -t utf-8 -c  $ASSETS_DIR/bdd_eco_h3.csv | grep -v '^;' > $ASSETS_DIR/bdd_eco_h3_clean.csv
 iconv -f utf-8 -t utf-8 -c  $ASSETS_DIR/typologies.csv > $ASSETS_DIR/typologies_clean.csv
-iconv -f utf-8 -t utf-8 -c  $ASSETS_DIR/cas_possibles.csv > $ASSETS_DIR/cas_possibles_clean.csv
 
 # check ---------------------------------------------------------------------------------------
 
@@ -42,7 +41,6 @@ ASSETS_DIR=$ASSETS_DIR ./build_solutions_par_criteres.sh
 ASSETS_DIR=$ASSETS_DIR ./build_bdd_energie.sh
 ASSETS_DIR=$ASSETS_DIR ./build_bdd_eco.sh
 ASSETS_DIR=$ASSETS_DIR ./build_typologies.sh
-ASSETS_DIR=$ASSETS_DIR ./build_cas_possibles.sh
 
 # post ----------------------------------------------------------------------------------------
 
@@ -57,4 +55,3 @@ rm $ASSETS_DIR/bdd_eco_h1_clean.csv
 rm $ASSETS_DIR/bdd_eco_h2_clean.csv
 rm $ASSETS_DIR/bdd_eco_h3_clean.csv
 rm $ASSETS_DIR/typologies_clean.csv
-rm $ASSETS_DIR/cas_possibles_clean.csv
