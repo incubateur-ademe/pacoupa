@@ -71,3 +71,4 @@ credentials.json
 .env.sentry-build-plugin
 
 assets/*
+!assets/.gitkeep
