@@ -20,6 +20,7 @@ export const GetInformationCoutDTOSchema = informationBatimentSchema
     scenarioRenovationEnveloppe: z.enum(enumScenarioRenovationEnveloppe),
     scenarioRenovationSysteme: z.enum(enumScenarioRenovationSysteme),
     solution: z.enum(enumIdSolution),
+    codePostal: z.string().length(5),
   });
 
 export type GetInformationCoutDTO = z.infer<typeof GetInformationCoutDTOSchema>;

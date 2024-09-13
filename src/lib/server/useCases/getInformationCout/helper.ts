@@ -5,6 +5,7 @@ import { type TypeCH } from "@/lib/common/domain/values/TypeCH";
 import { type TypeECS } from "@/lib/common/domain/values/TypeECS";
 
 import { getTypologie } from "../getTypologie";
+import { getZoneClimatiqueAssociee } from "../getZonesClimatiques";
 import { type GetInformationCoutDTO } from "./dto";
 
 type GesteIsolation = "Menuiseries" | "Murs" | "PlancherBas" | "PlancherHaut";
@@ -34,7 +35,7 @@ export const creerCriteresBddEco = async (dto: Omit<GetInformationCoutDTO, "solu
     throw new Error("Typologie not found");
   }
 
-  const zoneClimatique: CriteresBddEco["zoneClimatique"] = "75 - Paris";
+  const zoneClimatique: CriteresBddEco["zoneClimatique"] = getZoneClimatiqueAssociee(dto.codePostal.substring(0, 2));
 
   const etatIsolationMenuiseries: SolutionIsolation = dto.renovation?.includes("fenetres") ? "Isolé" : "Pas isolé";
   const etatIsolationPlancherBas: SolutionIsolation = dto.renovation?.includes("sol") ? "Isolé" : "Pas isolé";

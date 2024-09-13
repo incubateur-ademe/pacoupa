@@ -18,6 +18,7 @@ export const GetInformationEnergieDTOSchema = informationBatimentSchema
   .extend({
     scenarioRenovationEnveloppe: z.enum(enumScenarioRenovationEnveloppe),
     scenarioRenovationSysteme: z.enum(enumScenarioRenovationSysteme),
+    codePostal: z.string().length(5),
   });
 
 export type GetInformationEnergieDTO = z.infer<typeof GetInformationEnergieDTOSchema>;

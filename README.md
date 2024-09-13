@@ -27,34 +27,32 @@ yarn build
 <a href="https://vercel.com/?utm_source=ademe&utm_campaign=oss" alt="Url Vercel"><image src="https://user-images.githubusercontent.com/37937348/161967395-a5064a6a-b4d3-4ede-a940-ad81fa773916.svg" alt="Vercel" width="100" /></a>
 
 
-## Persistence
+## Construction de la db
 
-Les données sont stockées dans une DB SQLite hébergée sur Turso.
+Les données sont stockées dans une DB SQLite.
 
-1. Création de la DB SQLite
+La db pacoupa.db peut être reconstruite à partir des fichiers stockés sur Google Drive.
 
-Le fichier pacoupa.db peut être reconstruit à partir des fichiers tableurs stockés sur Google Drive.
+Télécharger tous les fichiers du simulateur 1 et 2 dans le répertoire `assets`.
 
-Ouvrir le fichier `Simulateur 1 - PACOUPA`
-- exporter en csv le premier onglet en le nommant solutions_par_criteres.csv
-- exporter le second en le nommant solutions.csv
+1. Ouvrir le fichier `Simulateur 1 - PACOUPA`
+    - exporter en csv le premier onglet en le nommant solutions_par_criteres.csv
+    - exporter le second en le nommant solutions.csv
 
-Ouvrir le fichier Simulateur 2 le plus récent. 
-- exporter l'onglet Bdd_energie en bdd_energie.csv
-- exporter l'onglet Bdd_cout du fichier eco en bdd_eco.csv
+2. Télécharger les fichier du Simulateur 2 les plus récents. 
+    - renommer les fichier csv bdd_energie en bdd_energie_h1.csv, bdd_energie_h2.csv, bdd_energie_h3.csv
+    - renommer les fichiers csv bdd_eco en bdd_eco_h1.csv, bdd_eco_h2.csv, bdd_eco_h3.csv
 
-Ouvrir le fichier `typologies PACOUPA`.
-- exporter l'onglet principal en typologies.csv.
+3. Ouvrir le fichier `typologies PACOUPA`.
+    - exporter l'onglet principal en typologies.csv.
 
-- stocker tous ces fichiers dans le répertoire assets
-- lancer le script /scripts/db/build_db.sh 
+4. Télécharger le fichier cas_possibles.csv
 
-```shell
-./scripts/db/build_db.sh
-```
+4. Lancer le script `yarn db:build`
 
+## Turso
 
-2. Push sur Turso
+Turso permet d'héberger des bases SQLite.
 
 Il faut auparavant s'authentifier avec `turso auth login`.
 
@@ -62,12 +60,12 @@ Il faut auparavant s'authentifier avec `turso auth login`.
 # si besoin de supprimer une base `turso db destroy pacoupa`
 
 # création d'une db suffixée avec le jour d'aujourd'hui
-turso db create pacoupa-20240711 --from-file assets/pacoupa.db
+turso db create pacoupa-20240913 --from-file assets/pacoupa.db
 ```
 
 Pour créer un nouveau token d'accès en lecture seule
 ```shell
-turso db tokens create pacoupa-20240711 -r 
+turso db tokens create pacoupa-20240913 -r 
 ```
 
 Recopier le token dans .env et .env.local (TURSO_DATABASE_URL et TURSO_AUTH_TOKEN).

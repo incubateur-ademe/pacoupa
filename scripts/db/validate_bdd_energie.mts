@@ -4,7 +4,9 @@ import { $ } from "zx";
 
 console.log("dans check_solutions.mts --------------------");
 
-await $`sqlite-utils memory ${process.env.ASSETS_DIR}/bdd_energie_clean.csv "select * from bdd_energie_clean" > bdd_energie.json`;
+await $`sqlite-utils memory ${process.env.ASSETS_DIR}/bdd_energie_h1_clean.csv "select * from bdd_energie_h1_clean" > bdd_energie.json`;
+await $`sqlite-utils memory ${process.env.ASSETS_DIR}/bdd_energie_h2_clean.csv "select * from bdd_energie_h2_clean" > bdd_energie.json`;
+await $`sqlite-utils memory ${process.env.ASSETS_DIR}/bdd_energie_h3_clean.csv "select * from bdd_energie_h3_clean" > bdd_energie.json`;
 
 const schema = z.array(
   z.object({
