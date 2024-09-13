@@ -101,6 +101,7 @@ export const fetchSolutions = async ({
   ]);
 
   const {
+    properties: { postcode: codePostal },
     geometry: {
       coordinates: [lon, lat],
     },
@@ -118,6 +119,7 @@ export const fetchSolutions = async ({
     ...informationBatiment,
     scenarioRenovationEnveloppe: "INIT",
     scenarioRenovationSysteme: "S0",
+    codePostal,
   });
 
   if (!baseEnergie.data) throw new Error("Erreur récupération données énergétiques manquantes");
@@ -129,6 +131,7 @@ export const fetchSolutions = async ({
         scenarioRenovationEnveloppe:
           travauxNiveauIsolation === "Global" ? "GLOB" : travauxNiveauIsolation === "Partiel" ? "INTER" : "INIT",
         scenarioRenovationSysteme: solution.typeSysteme as TypeSystemeWithoutRCU,
+        codePostal,
       });
 
       return {
@@ -155,6 +158,7 @@ export const fetchSolutions = async ({
     ...informationBatiment,
     scenarioRenovationEnveloppe: "INIT",
     scenarioRenovationSysteme: "S0",
+    codePostal,
   });
 
   if (!baseCout.data) throw new Error("Erreur récupération données coût et aides manquantes");
@@ -167,6 +171,7 @@ export const fetchSolutions = async ({
           travauxNiveauIsolation === "Global" ? "GLOB" : travauxNiveauIsolation === "Partiel" ? "INTER" : "INIT",
         scenarioRenovationSysteme: solution.typeSysteme as TypeSystemeWithoutRCU,
         solution: solution.id,
+        codePostal,
       });
 
       return {
