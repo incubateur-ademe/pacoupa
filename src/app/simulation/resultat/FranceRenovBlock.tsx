@@ -2,16 +2,25 @@
 
 import { breakpoints } from "@codegouvfr/react-dsfr/fr/breakpoints";
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
+import CloseIcon from "@mui/icons-material/Close";
+import { Dialog, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
+import MuiButton from "@mui/material/Button";
 import { push } from "@socialgouv/matomo-next";
-import { type Dispatch, type SetStateAction, useCallback } from "react";
+import assert from "assert";
+import Link from "next/link";
+import { type Dispatch, type SetStateAction, useCallback, useEffect, useState } from "react";
+import { type UrlObject } from "url";
 import { useWindowSize } from "usehooks-ts";
 
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
 import { Mascotte1 } from "@/components/img/mascotte/Mascotte1";
 import { Grid, GridCol } from "@/dsfr";
-import { H3, Text } from "@/dsfr/base/typography";
+import { H3, H4, H5, Text } from "@/dsfr/base/typography";
+import { usePacoupaSessionStorage } from "@/lib/client/usePacoupaSessionStorage";
 import { matomoCategory } from "@/lib/matomo-events";
+import { fetchBAN } from "@/lib/services/ban";
+import { fetchFranceRenovStructure, type FranceRenovStructure } from "@/lib/services/france-renov";
 
 type Props =
   | {
@@ -25,6 +34,34 @@ type Props =
 
 export const FranceRenovBlock = ({ withWorkflow, showToast }: Props = {}) => {
   withWorkflow = withWorkflow || false;
+  const [open, setOpen] = useState(false);
+  const { store } = usePacoupaSessionStorage();
+  const [franceRenovStructure, setFranceRenovStructure] = useState<FranceRenovStructure | undefined>();
+
+  useEffect(() => {
+    const runEffect = async () => {
+      assert(store.adresse !== undefined, "store.adresse doit être présent");
+      const { citycode: codeInsee } = (await fetchBAN(store.adresse)).features[0].properties;
+
+      setFranceRenovStructure(await fetchFranceRenovStructure(codeInsee));
+    };
+
+    runEffect().catch(error => {
+      console.error("Erreur réseau lors de l'appel à la BAN", error);
+    });
+  }, [store.adresse]);
+
+  const structureWebsite = franceRenovStructure && franceRenovStructure.Site_Internet_Structure;
+
+  let structureHoraires;
+  try {
+    if (franceRenovStructure?.Horaires_Structure) {
+      structureHoraires = JSON.parse(franceRenovStructure.Horaires_Structure) as string[];
+    }
+  } catch (error) {
+    console.error("Erreur lors de la lecture des horaires de la structure France Renov", error);
+  }
+
   const { width = 0 } = useWindowSize({ debounceDelay: 100, initializeWithValue: false });
 
   const Etape1 = useCallback(() => {
@@ -130,20 +167,98 @@ export const FranceRenovBlock = ({ withWorkflow, showToast }: Props = {}) => {
 
         <GridCol className="mt-12">
           <Button
-            linkProps={{
-              href: "https://france-renov.gouv.fr/preparer-projet/trouver-conseiller",
-              onClick: () => {
-                push([
-                  "trackEvent",
-                  withWorkflow ? matomoCategory.solutionDetails : matomoCategory.resultats,
-                  "Clic Trouver un conseiller",
-                  "Trouver un conseiller",
-                ]);
-              },
+            onClick={() => {
+              push([
+                "trackEvent",
+                withWorkflow ? matomoCategory.solutionDetails : matomoCategory.resultats,
+                "Clic Trouver un conseiller",
+                "Trouver un conseiller",
+              ]);
+
+              setOpen(true);
             }}
           >
             Trouver un conseiller
           </Button>
+
+          <Dialog
+            open={open}
+            onClose={() => setOpen(false)}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+            fullWidth
+            maxWidth="lg"
+          >
+            <DialogTitle id="alert-dialog-title" className="!mt-6">
+              <H4 className="mb-0">Votre conseiller</H4>
+            </DialogTitle>
+
+            <MuiButton
+              variant="text"
+              endIcon={<CloseIcon />}
+              onClick={() => setOpen(false)}
+              sx={{
+                position: "absolute",
+                right: 8,
+                top: 8,
+                color: theme => theme.palette.grey[500],
+              }}
+            >
+              Fermer
+            </MuiButton>
+
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                <H5>{franceRenovStructure?.Nom_Structure}</H5>
+
+                <Text variant="md" className="font-normal mb-0">
+                  Adresse
+                </Text>
+                <Text variant="md" className="font-medium">
+                  {franceRenovStructure?.Adresse_Structure}
+                </Text>
+
+                <Text variant="md" className="font-normal mb-0">
+                  Téléphone
+                </Text>
+                <Text variant="md" className="font-medium text-primary-700">
+                  <Link href={`tel:${franceRenovStructure?.Telephone_Structure}`}>
+                    {franceRenovStructure?.Telephone_Structure}
+                  </Link>
+                </Text>
+
+                <Text variant="md" className="font-normal mb-0">
+                  Mail
+                </Text>
+                <Text variant="md" className="font-medium text-primary-700">
+                  <Link href="mailto:contact@aletpe.fr">{franceRenovStructure?.Email_Structure}</Link>
+                </Text>
+
+                <Text variant="md" className="font-normal mb-0">
+                  Site web
+                </Text>
+                {structureWebsite && (
+                  <Text variant="md" className="font-medium text-primary-700">
+                    <Link href={structureWebsite as unknown as UrlObject} target="_blank">
+                      {structureWebsite}
+                    </Link>
+                  </Text>
+                )}
+
+                {structureHoraires && (
+                  <div className="mt-8 border-solid border-l-4 border-y-0 border-r-0 border-primary-700 pl-4">
+                    {structureHoraires.map(ligne => (
+                      <div key={ligne}>
+                        <Text variant="md" className="font-normal mb-0">
+                          {ligne}
+                        </Text>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </DialogContentText>
+            </DialogContent>
+          </Dialog>
         </GridCol>
       </Grid>
     </>

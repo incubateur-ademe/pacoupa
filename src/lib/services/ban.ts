@@ -5,7 +5,7 @@ export type FeatureCollection = {
   };
   properties: {
     city: string;
-    citycode: string;
+    citycode: string; // INSEE code
     context: string;
     housenumber: string;
     id: string;
@@ -22,7 +22,7 @@ export type FeatureCollection = {
   type: "Feature";
 };
 
-const URL_BAN = "https://api-adresse.data.gouv.fr/search/";
+const BAN_URL = "https://api-adresse.data.gouv.fr/search/";
 
 const defaultMaxResults = 7;
 
@@ -34,7 +34,7 @@ export const fetchBAN = async (query: string): Promise<{ features: FeatureCollec
     autocomplete: "1",
   });
 
-  const banRequest = new Request(URL_BAN + "?" + searchParams.toString());
+  const banRequest = new Request(BAN_URL + "?" + searchParams.toString());
 
   try {
     const result = await fetch(banRequest);
