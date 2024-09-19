@@ -27,6 +27,8 @@ export type FranceRenovStructure = {
   Telephone_Structure: string;
 };
 
+const ERREUR_RESEAU = "Erreur réseau lors de l'appel à France Renov";
+
 export const fetchFranceRenovStructure = async (codeInsee: string) => {
   const searchParams = new URLSearchParams({
     q: codeInsee,
@@ -36,12 +38,17 @@ export const fetchFranceRenovStructure = async (codeInsee: string) => {
   const request = new Request(FranceRenov_URL + "?" + searchParams.toString());
 
   try {
-    const result = await fetch(request);
-    const data = (await result.json()) as RetourFranceRenov;
+    const response = await fetch(request);
+
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+
+    const data = (await response.json()) as RetourFranceRenov;
 
     if (data.total >= 1) return data.results[0];
   } catch (err) {
-    console.error("Erreur réseau lors de l'appel à France Renov", err);
-    throw new Error("Erreur réseau lors de l'appel à France Renov");
+    console.error(ERREUR_RESEAU, err);
+    throw new Error(ERREUR_RESEAU);
   }
 };

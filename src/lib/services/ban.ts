@@ -26,6 +26,8 @@ const BAN_URL = "https://api-adresse.data.gouv.fr/search/";
 
 const defaultMaxResults = 7;
 
+const ERREUR_RESEAU = "Erreur réseau lors de l'appel à la BAN";
+
 export const fetchBAN = async (query: string): Promise<{ features: FeatureCollection[] }> => {
   const searchParams = new URLSearchParams({
     q: query,
@@ -37,11 +39,16 @@ export const fetchBAN = async (query: string): Promise<{ features: FeatureCollec
   const banRequest = new Request(BAN_URL + "?" + searchParams.toString());
 
   try {
-    const result = await fetch(banRequest);
-    const proposals = (await result.json()) as Promise<{ features: FeatureCollection[] }>;
+    const response = await fetch(banRequest);
+
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+
+    const proposals = (await response.json()) as Promise<{ features: FeatureCollection[] }>;
     return proposals;
   } catch (err) {
-    console.error("Erreur réseau lors de l'appel à la BAN", err);
-    throw new Error("Erreur réseau lors de l'appel à la BAN");
+    console.error(ERREUR_RESEAU, err);
+    throw new Error(ERREUR_RESEAU);
   }
 };
