@@ -3,10 +3,9 @@
 import { breakpoints } from "@codegouvfr/react-dsfr/fr/breakpoints";
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import CloseIcon from "@mui/icons-material/Close";
-import { Dialog, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
+import { Dialog as MuiDialog, DialogContent, DialogContentText, DialogTitle, styled } from "@mui/material";
 import MuiButton from "@mui/material/Button";
 import { push } from "@socialgouv/matomo-next";
-import assert from "assert";
 import Link from "next/link";
 import { type Dispatch, type SetStateAction, useCallback, useEffect, useState } from "react";
 import { type UrlObject } from "url";
@@ -32,6 +31,12 @@ type Props =
       withWorkflow?: false;
     };
 
+const Dialog = styled(MuiDialog)(() => ({
+  "& .MuiDialogContent-root": {
+    padding: "0px 16px 50px",
+  },
+}));
+
 export const FranceRenovBlock = ({ withWorkflow, showToast }: Props = {}) => {
   withWorkflow = withWorkflow || false;
   const [open, setOpen] = useState(false);
@@ -40,15 +45,20 @@ export const FranceRenovBlock = ({ withWorkflow, showToast }: Props = {}) => {
 
   useEffect(() => {
     const runEffect = async () => {
-      assert(store.adresse !== undefined, "store.adresse doit être présent");
-      const { citycode: codeInsee } = (await fetchBAN(store.adresse)).features[0].properties;
+      const codeInsee = (await fetchBAN(store.adresse!)).features[0].properties.citycode;
 
-      setFranceRenovStructure(await fetchFranceRenovStructure(codeInsee));
+      try {
+        setFranceRenovStructure(await fetchFranceRenovStructure(codeInsee));
+      } catch (ignore) {
+        // L'API pour récupérer les structures France Renov est optionnelle.
+      }
     };
 
-    runEffect().catch(error => {
-      console.error("Erreur réseau lors de l'appel à la BAN", error);
-    });
+    if (store.adresse) {
+      runEffect().catch(error => {
+        console.error("Erreur réseau lors de l'appel à la BAN", error);
+      });
+    }
   }, [store.adresse]);
 
   const structureWebsite = franceRenovStructure && franceRenovStructure.Site_Internet_Structure;
@@ -57,6 +67,9 @@ export const FranceRenovBlock = ({ withWorkflow, showToast }: Props = {}) => {
   try {
     if (franceRenovStructure?.Horaires_Structure) {
       structureHoraires = JSON.parse(franceRenovStructure.Horaires_Structure) as string[];
+
+      if (!Array.isArray(structureHoraires))
+        throw new Error("Les horaires de la structure France Renov sont non valides");
     }
   } catch (error) {
     console.error("Erreur lors de la lecture des horaires de la structure France Renov", error);
@@ -215,7 +228,8 @@ export const FranceRenovBlock = ({ withWorkflow, showToast }: Props = {}) => {
                   Adresse
                 </Text>
                 <Text variant="md" className="font-medium">
-                  {franceRenovStructure?.Adresse_Structure}
+                  {franceRenovStructure?.Adresse_Structure} <br />
+                  {franceRenovStructure?.Code_Postal_Structure} {franceRenovStructure?.Commune_Structure}
                 </Text>
 
                 <Text variant="md" className="font-normal mb-0">
@@ -231,7 +245,9 @@ export const FranceRenovBlock = ({ withWorkflow, showToast }: Props = {}) => {
                   Mail
                 </Text>
                 <Text variant="md" className="font-medium text-primary-700">
-                  <Link href="mailto:contact@aletpe.fr">{franceRenovStructure?.Email_Structure}</Link>
+                  <Link href={`mailto:${franceRenovStructure?.Email_Structure}`}>
+                    {franceRenovStructure?.Email_Structure}
+                  </Link>
                 </Text>
 
                 <Text variant="md" className="font-normal mb-0">
