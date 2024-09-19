@@ -22,7 +22,7 @@ export const Step1 = () => {
         render={({ errors, store }) => (
           <>
             <div>
-              <AutocompleteBan defaultValue={store.adresse} errors={errors?.adresse?._errors} />
+              <AutocompleteBan defaultInputValue={store.adresse} errors={errors?.adresse?._errors} />
             </div>
             <div className="mt-8">
               <Callout
