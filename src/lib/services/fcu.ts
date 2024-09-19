@@ -10,7 +10,7 @@ export type FcuEligibility = {
   rateENRR: number;
 };
 
-const FCU_URL = "https://france-chaleur-urbaine-dev.osc-fr1.scalingo.io/api/v1/eligibility";
+const FCU_URL = "https://france-chaleur-urbaine.beta.gouv.fr/api/v1/eligibility";
 
 const ERREUR_RESEAU = "Erreur réseau lors de l'appel à FCU";
 
