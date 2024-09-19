@@ -153,7 +153,7 @@ export function AutocompleteBan({ defaultInputValue, errors }: AutocompletBanMui
             type="warning"
             content={
               <Text className="mb-0">
-                Nous manquons de précisions climatiques sur votre zone géographique. Les résultats trouvés seront moins
+                Désolé, nous manquons de données climatiques pour votre ville. Les résultats pourraient être moins
                 précis.
               </Text>
             }
