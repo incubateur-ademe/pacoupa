@@ -15,7 +15,7 @@ import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
 import { Mascotte1 } from "@/components/img/mascotte/Mascotte1";
 import { Grid, GridCol } from "@/dsfr";
-import { H3, H4, H5, Text } from "@/dsfr/base/typography";
+import { H3, H5, Text } from "@/dsfr/base/typography";
 import { usePacoupaSessionStorage } from "@/lib/client/usePacoupaSessionStorage";
 import { matomoCategory } from "@/lib/matomo-events";
 import { fetchBAN } from "@/lib/services/ban";
@@ -34,6 +34,9 @@ type Props =
 const Dialog = styled(MuiDialog)(() => ({
   "& .MuiDialogContent-root": {
     padding: "0px 16px 50px",
+  },
+  "& .MuiPaper-root": {
+    borderRadius: "0.5rem",
   },
 }));
 
@@ -199,11 +202,12 @@ export const FranceRenovBlock = ({ withWorkflow, showToast }: Props = {}) => {
             onClose={() => setOpen(false)}
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
+            fullScreen={width > breakpoints.getPxValues().sm ? false : true}
             fullWidth
-            maxWidth="lg"
+            maxWidth="md"
           >
-            <DialogTitle id="alert-dialog-title" className="!mt-6">
-              <H4 className="mb-0">Votre conseiller</H4>
+            <DialogTitle id="alert-dialog-title" className="!mt-8 !text-[22px] !text-body-500 !pl-4">
+              Votre conseiller
             </DialogTitle>
 
             <MuiButton
@@ -255,7 +259,11 @@ export const FranceRenovBlock = ({ withWorkflow, showToast }: Props = {}) => {
                 </Text>
                 {structureWebsite && (
                   <Text variant="md" className="font-medium text-primary-700">
-                    <Link href={structureWebsite as unknown as UrlObject} target="_blank">
+                    <Link
+                      href={`https://${structureWebsite}` as unknown as UrlObject}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       {structureWebsite}
                     </Link>
                   </Text>
