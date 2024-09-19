@@ -96,6 +96,9 @@ export const zonesClimatiques = {
   "94 - Val-de-Marne": "75 - Paris",
 } as const;
 
+export const isCodePostalSupporte = (codePostal: string) =>
+  Object.keys(zonesClimatiques).some(zone => zone.startsWith(codePostal.substring(0, 2)));
+
 export const getZoneClimatiqueAssociee = (zoneClimatique: string) => {
   const key = Object.keys(zonesClimatiques).find(key =>
     key.startsWith(zoneClimatique),
