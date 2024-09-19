@@ -32,9 +32,14 @@ yarn build
 open http://localhost:3000
 ```
 
----
-<a href="https://vercel.com/?utm_source=ademe&utm_campaign=oss" alt="Url Vercel"><image src="https://user-images.githubusercontent.com/37937348/161967395-a5064a6a-b4d3-4ede-a940-ad81fa773916.svg" alt="Vercel" width="100" /></a>
+### Test manuel
 
+Voici une URL de la page des résultats. 
+Si elle s'affiche convenablement, alors l'application et la db sont bien configurées.
+
+```shell
+open http://localhost:3000/simulation/resultat?hash=eyJhZHJlc3NlIjoiMyBSdWUgZGVzIExpc3NlcyAyODAwMCBDaGFydHJlcyIsImFubmVlIjoxOTcwLCJyZW5vdmF0aW9uIjpbXSwibmJMb2dlbWVudHMiOjMwLCJwb3NzZWRlRXNwYWNlc0V4dGVyaWV1cnNDb21tdW5zIjoiTm9uIiwicG9zc2VkZUVzcGFjZXNFeHRlcmlldXJzUGVyc29ubmVscyI6Ik91aSIsImVzcGFjZXNFeHRlcmlldXJzUGVyc29ubmVscyI6WyJiYWxjb24iXSwidHlwZUNIIjoiaW5kaXZpZHVlbCIsImVuZXJnaWVDSCI6ImdheiIsImVtZXR0ZXVyIjoicmFkaWF0ZXVycyIsInR5cGVFQ1MiOiJpbmRpdmlkdWVsIiwiZW5lcmdpZUVDUyI6ImdheiJ9&travauxNiveauIsolation=Global
+```
 
 ## Construction de la db
 
