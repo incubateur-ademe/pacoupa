@@ -224,6 +224,9 @@ export const FranceRenovBlock = ({ withWorkflow, showToast }: Props = {}) => {
               Fermer
             </MuiButton>
 
+            {/* There are warnings in the dev console on this because Mui Dialog add a p which is not convenient at all.*/}
+            {/* We don't want to add <br/> and inline-block everywhere. So the best option is to live with this React warnings.*/}
+
             <DialogContent>
               <DialogContentText id="alert-dialog-description">
                 <H5>{franceRenovStructure?.Nom_Structure}</H5>
