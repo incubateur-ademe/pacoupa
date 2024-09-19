@@ -7,6 +7,7 @@ import { Button } from "@/components/Button";
 import { Callout } from "@/components/Callout";
 import { Card } from "@/components/Card";
 import { Text } from "@/dsfr/base/typography";
+import { usePacoupaSessionStorage } from "@/lib/client/usePacoupaSessionStorage";
 import { type Solution } from "@/lib/common/domain/values/Solution";
 import { matomoCategory } from "@/lib/matomo-events";
 
@@ -21,6 +22,8 @@ const rcuSolution = {
 } satisfies Pick<Solution, "type" | "usageCh" | "usageEcs" | "usageFr">;
 
 export const CardRcu = () => {
+  const { store } = usePacoupaSessionStorage();
+
   return (
     <>
       <Card
@@ -78,7 +81,7 @@ export const CardRcu = () => {
             <Button
               priority="tertiary no outline"
               linkProps={{
-                href: `https://france-chaleur-urbaine.beta.gouv.fr/`,
+                href: `https://france-chaleur-urbaine.beta.gouv.fr/?heating=${store.typeCH}&address=${store.adresse}`,
                 onClick: () => {
                   push(["trackEvent", matomoCategory.resultats, "Clic FCU", "Lien FCU"]);
                 },
