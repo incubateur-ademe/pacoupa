@@ -10,7 +10,9 @@ export type FcuEligibility = {
   rateENRR: number;
 };
 
-const URL_FCU = "https://france-chaleur-urbaine-dev.osc-fr1.scalingo.io/api/v1/eligibility";
+const FCU_URL = "https://france-chaleur-urbaine-dev.osc-fr1.scalingo.io/api/v1/eligibility";
+
+const ERREUR_RESEAU = "Erreur réseau lors de l'appel à FCU";
 
 type FetchFcuEligibilityProps = {
   lat: number;
@@ -23,14 +25,19 @@ export const fetchFcuEligibility = async ({ lon, lat }: FetchFcuEligibilityProps
     lon: lon.toString(),
   });
 
-  const fcuRequest = new Request(URL_FCU + "?" + searchParams.toString());
+  const fcuRequest = new Request(FCU_URL + "?" + searchParams.toString());
 
   try {
-    const result = await fetch(fcuRequest);
-    const eligibility = (await result.json()) as Promise<FcuEligibility>;
+    const response = await fetch(fcuRequest);
+
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+
+    const eligibility = (await response.json()) as Promise<FcuEligibility>;
     return eligibility;
   } catch (err) {
-    console.error("Erreur réseau lors de l'appel à FCU", err);
-    throw new Error("Erreur réseau lors de l'appel à FCU");
+    console.error(ERREUR_RESEAU, err);
+    throw new Error(ERREUR_RESEAU);
   }
 };
