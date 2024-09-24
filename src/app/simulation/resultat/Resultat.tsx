@@ -5,7 +5,6 @@ import { Snackbar } from "@mui/material";
 import { push } from "@socialgouv/matomo-next";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
-import { useWindowSize } from "usehooks-ts";
 
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
@@ -53,8 +52,6 @@ export const Resultat = ({
   const searchParams = useSearchParams();
   const router = useRouter();
   const [showToast, setShowToast] = useState(false);
-
-  const { width = 0 } = useWindowSize({ debounceDelay: 100, initializeWithValue: false });
 
   const handleClose = (event: Event | React.SyntheticEvent, reason?: string) => {
     if (reason === "clickaway") {

@@ -42,9 +42,7 @@ export default function Page() {
                 }}
               />
 
-              <Button type="submit" className="btn btn-primary px-4 py-2 rounded-lg text-white">
-                Envoyer
-              </Button>
+              <Button type="submit">Envoyer</Button>
             </div>
           </form>
         </div>
