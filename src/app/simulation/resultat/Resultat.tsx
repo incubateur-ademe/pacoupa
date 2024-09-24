@@ -68,10 +68,9 @@ export const Resultat = ({
           Copropriété
         </H2>
         <Card
-          header={<div className="text-base font-bold">{informationBatiment.adresse}</div>}
-          headerAlign="left"
-          footer={
-            <div className="mt-4 mr-4">
+          content={
+            <div className="flex justify-between items-baseline">
+              <div className="text-base font-bold">{informationBatiment.adresse}</div>
               <Button
                 linkProps={{
                   href: "/simulation/etapes",
@@ -79,16 +78,14 @@ export const Resultat = ({
                     push(["trackEvent", matomoCategory.resultats, "Clic Modifier formulaire", "Modifier formulaire"]);
                   },
                 }}
-                priority="secondary"
+                priority="tertiary"
                 iconId="ri-pencil-line"
                 iconPosition="right"
-                className="min-h-0 w-min"
               >
                 {"Modifier"}
               </Button>
             </div>
           }
-          footerAlign="right"
         />
       </div>
 
