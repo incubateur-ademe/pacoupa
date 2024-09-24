@@ -5,10 +5,11 @@ export type BadgeProps = {
   icon?: string;
   label: string;
   size?: "medium" | "small";
+  title?: string;
   type?: "error" | "neutral" | "success" | "warning";
 };
 
-export const Badge = ({ label, type = "neutral", icon, size = "small" }: PropsWithChildren<BadgeProps>) => {
+export const Badge = ({ label, type = "neutral", icon, size = "small", title }: PropsWithChildren<BadgeProps>) => {
   return (
     <p
       className={cx(`inline-flex items-center rounded-md px-1 py-0.5 mb-0 font-bold`, {
@@ -19,6 +20,7 @@ export const Badge = ({ label, type = "neutral", icon, size = "small" }: PropsWi
         "leading-6 text-sm": size === "medium",
         "uppercase leading-5 text-xs": size === "small",
       })}
+      title={title}
     >
       {icon && <i className={cx("fr-icon--xs mr-1", icon)} />}
       {label}
