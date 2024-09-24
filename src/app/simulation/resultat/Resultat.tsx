@@ -1,8 +1,11 @@
 "use client";
 
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
+import { Snackbar } from "@mui/material";
 import { push } from "@socialgouv/matomo-next";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
+import { useWindowSize } from "usehooks-ts";
 
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
@@ -49,6 +52,17 @@ export const Resultat = ({
 }: Props) => {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const [showToast, setShowToast] = useState(false);
+
+  const { width = 0 } = useWindowSize({ debounceDelay: 100, initializeWithValue: false });
+
+  const handleClose = (event: Event | React.SyntheticEvent, reason?: string) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setShowToast(false);
+  };
 
   return (
     <>
@@ -192,8 +206,32 @@ export const Resultat = ({
         </div>
       )}
 
+      <div className="flex justify-between mt-8">
+        <Button
+          priority="secondary"
+          iconId="ri-share-fill"
+          iconPosition="right"
+          onClick={() => {
+            push(["trackEvent", matomoCategory.solutionDetails, "Clic Partager", "Partager"]);
+
+            navigator.clipboard.writeText(window.location.href).catch(console.error);
+            setShowToast(true);
+          }}
+        >
+          Partager tous les résultats
+        </Button>
+
+        <Snackbar
+          anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+          open={showToast}
+          onClose={handleClose}
+          autoHideDuration={4000}
+          message="L'URL a bien été copiée 🚀."
+        ></Snackbar>
+      </div>
+
       <Grid>
-        <GridCol className="mt-12">
+        <GridCol className="mt-8">
           <NouvelleSimulation />
         </GridCol>
       </Grid>
