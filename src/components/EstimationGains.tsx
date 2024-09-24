@@ -55,7 +55,11 @@ export const EstimationGains = ({ solution, informationBatiment, avecMessage }: 
 
             <div></div>
             <div className="text-center">
-              <Badge label={`- ${pourcentageGain}%`} type="success" />
+              <Badge
+                label={`- ${pourcentageGain}%`}
+                type="success"
+                title={`CEP initiale: ${solution.cepAvant} | CEP future: ${solution.cepApres}`}
+              />
               <Text variant="xs" className="mb-0">
                 Gain d'énergie
               </Text>
