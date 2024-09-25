@@ -14,7 +14,7 @@ import { Button } from "@/components/Button";
 import { EstimationCouts } from "@/components/EstimationCouts";
 import { EstimationGains } from "@/components/EstimationGains";
 import { H2, Text } from "@/dsfr/base/typography";
-import { estGlobalementRenove, type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
+import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
 import { matomoCategory } from "@/lib/matomo-events";
@@ -104,11 +104,7 @@ export const DetailSolution = ({ solution, informationBatiment, travauxNiveauIso
       <hr />
 
       <div>
-        <Isolation
-          gestes={gestes}
-          travauxNiveauIsolation={travauxNiveauIsolation}
-          estGlobalementRenove={estGlobalementRenove(informationBatiment)}
-        />
+        <Isolation gestes={gestes} travauxNiveauIsolation={travauxNiveauIsolation} />
       </div>
 
       <hr className="mt-8" />

@@ -7,11 +7,13 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 import { Button } from "@/components/Button";
+import { Callout } from "@/components/Callout";
 import { Card } from "@/components/Card";
 import { EstimationCouts } from "@/components/EstimationCouts";
 import { EstimationGains } from "@/components/EstimationGains";
 import { HighlightText } from "@/components/HighlightText";
 import { NoDataImage } from "@/components/img/NoDataImage";
+import { RaisingHands } from "@/components/img/twemoji/RaisingHands";
 import { TravauxNiveauIsolationSegmentedControl } from "@/components/IsolationSegmentedControl";
 import { Grid, GridCol } from "@/dsfr";
 import { H2, Text } from "@/dsfr/base/typography";
@@ -89,7 +91,25 @@ export const Resultat = ({
         />
       </div>
 
-      <H2 as="h6" className="mt-8 mb-0">
+      {estGlobalementRenove(informationBatiment) && (
+        <div className="mt-8 flex justify-center gap-8">
+          <Callout
+            type="pacoupa"
+            content={
+              <Text variant="sm" className="leading-6 mb-0">
+                <strong>Super nouvelle !</strong>
+                <br /> Vous habitez dans un immeuble qui est énergiquement déjà très performant ! Il n’y a plus qu’à
+                changer le chauffage.&nbsp;
+                <span className="inline-block w-[20px] align-middle">
+                  <RaisingHands />
+                </span>
+              </Text>
+            }
+          />
+        </div>
+      )}
+
+      <H2 as="h6" className="mt-4 mb-0">
         Chauffages compatibles
         <DebugButton formData={informationBatiment} solutions={solutions} />
       </H2>
@@ -144,11 +164,7 @@ export const Resultat = ({
                     </div>
                     <hr />
                     <div>
-                      <Isolation
-                        gestes={gestes}
-                        travauxNiveauIsolation={travauxNiveauIsolation}
-                        estGlobalementRenove={estGlobalementRenove(informationBatiment)}
-                      />
+                      <Isolation gestes={gestes} travauxNiveauIsolation={travauxNiveauIsolation} />
                     </div>
                     <hr className="mt-8" />
 
