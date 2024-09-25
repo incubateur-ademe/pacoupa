@@ -181,112 +181,134 @@ export const FranceRenovBlock = ({ withWorkflow, showToast }: Props = {}) => {
           guider dans les premières étapes de votre projet.
         </GridCol>
 
-        <GridCol className="mt-12">
-          <Button
-            onClick={() => {
-              push([
-                "trackEvent",
-                withWorkflow ? matomoCategory.solutionDetails : matomoCategory.resultats,
-                "Clic Trouver un conseiller",
-                "Trouver un conseiller",
-              ]);
-
-              setOpen(true);
-            }}
-          >
-            Trouver un conseiller
-          </Button>
-
-          <Dialog
-            open={open}
-            onClose={() => setOpen(false)}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
-            fullScreen={width > breakpoints.getPxValues().sm ? false : true}
-            fullWidth
-            maxWidth="md"
-          >
-            <DialogTitle id="alert-dialog-title" className="!mt-8 !text-[22px] !text-body-500 !pl-4">
-              Votre conseiller
-            </DialogTitle>
-
-            <MuiButton
-              variant="text"
-              endIcon={<CloseIcon />}
-              onClick={() => setOpen(false)}
-              sx={{
-                position: "absolute",
-                right: 8,
-                top: 8,
-                color: theme => theme.palette.grey[500],
+        {!franceRenovStructure && (
+          <GridCol className="mt-12">
+            <Button
+              linkProps={{
+                href: "https://france-renov.gouv.fr/preparer-projet/trouver-conseiller",
+                onClick: () => {
+                  push([
+                    "trackEvent",
+                    withWorkflow ? matomoCategory.solutionDetails : matomoCategory.resultats,
+                    "Clic Trouver un conseiller - lien générique",
+                    "Trouver un conseiller",
+                  ]);
+                },
               }}
             >
-              Fermer
-            </MuiButton>
+              Trouver un conseiller
+            </Button>
+          </GridCol>
+        )}
 
-            {/* There are warnings in the dev console on this because Mui Dialog add a p which is not convenient at all.*/}
-            {/* We don't want to add <br/> and inline-block everywhere. So the best option is to live with this React warnings.*/}
+        {franceRenovStructure && (
+          <GridCol className="mt-12">
+            <Button
+              onClick={() => {
+                push([
+                  "trackEvent",
+                  withWorkflow ? matomoCategory.solutionDetails : matomoCategory.resultats,
+                  "Clic Trouver un conseiller",
+                  "Trouver un conseiller",
+                ]);
 
-            <DialogContent>
-              <DialogContentText id="alert-dialog-description">
-                <H5>{franceRenovStructure?.Nom_Structure}</H5>
+                setOpen(true);
+              }}
+            >
+              Trouver un conseiller
+            </Button>
 
-                <Text variant="md" className="font-normal mb-0">
-                  Adresse
-                </Text>
-                <Text variant="md" className="font-medium">
-                  {franceRenovStructure?.Adresse_Structure} <br />
-                  {franceRenovStructure?.Code_Postal_Structure} {franceRenovStructure?.Commune_Structure}
-                </Text>
+            <Dialog
+              open={open}
+              onClose={() => setOpen(false)}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+              fullScreen={width > breakpoints.getPxValues().sm ? false : true}
+              fullWidth
+              maxWidth="md"
+            >
+              <DialogTitle id="alert-dialog-title" className="!mt-8 !text-[22px] !text-body-500 !pl-4">
+                Votre conseiller
+              </DialogTitle>
 
-                <Text variant="md" className="font-normal mb-0">
-                  Téléphone
-                </Text>
-                <Text variant="md" className="font-medium text-primary-700">
-                  <Link href={`tel:${franceRenovStructure?.Telephone_Structure}`}>
-                    {franceRenovStructure?.Telephone_Structure}
-                  </Link>
-                </Text>
+              <MuiButton
+                variant="text"
+                endIcon={<CloseIcon />}
+                onClick={() => setOpen(false)}
+                sx={{
+                  position: "absolute",
+                  right: 8,
+                  top: 8,
+                  color: theme => theme.palette.grey[500],
+                }}
+              >
+                Fermer
+              </MuiButton>
 
-                <Text variant="md" className="font-normal mb-0">
-                  Mail
-                </Text>
-                <Text variant="md" className="font-medium text-primary-700">
-                  <Link href={`mailto:${franceRenovStructure?.Email_Structure}`}>
-                    {franceRenovStructure?.Email_Structure}
-                  </Link>
-                </Text>
+              {/* There are warnings in the dev console on this because Mui Dialog add a p which is not convenient at all.*/}
+              {/* We don't want to add <br/> and inline-block everywhere. So the best option is to live with this React warnings.*/}
 
-                <Text variant="md" className="font-normal mb-0">
-                  Site web
-                </Text>
-                {structureWebsite && (
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  <H5>{franceRenovStructure?.Nom_Structure}</H5>
+
+                  <Text variant="md" className="font-normal mb-0">
+                    Adresse
+                  </Text>
+                  <Text variant="md" className="font-medium">
+                    {franceRenovStructure?.Adresse_Structure} <br />
+                    {franceRenovStructure?.Code_Postal_Structure} {franceRenovStructure?.Commune_Structure}
+                  </Text>
+
+                  <Text variant="md" className="font-normal mb-0">
+                    Téléphone
+                  </Text>
                   <Text variant="md" className="font-medium text-primary-700">
-                    <Link
-                      href={`https://${structureWebsite}` as unknown as UrlObject}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {structureWebsite}
+                    <Link href={`tel:${franceRenovStructure?.Telephone_Structure}`}>
+                      {franceRenovStructure?.Telephone_Structure}
                     </Link>
                   </Text>
-                )}
 
-                {structureHoraires && (
-                  <div className="mt-8 border-solid border-l-4 border-y-0 border-r-0 border-primary-700 pl-4">
-                    {structureHoraires.map(ligne => (
-                      <div key={ligne}>
-                        <Text variant="md" className="font-normal mb-0">
-                          {ligne}
-                        </Text>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </DialogContentText>
-            </DialogContent>
-          </Dialog>
-        </GridCol>
+                  <Text variant="md" className="font-normal mb-0">
+                    Mail
+                  </Text>
+                  <Text variant="md" className="font-medium text-primary-700">
+                    <Link href={`mailto:${franceRenovStructure?.Email_Structure}`}>
+                      {franceRenovStructure?.Email_Structure}
+                    </Link>
+                  </Text>
+
+                  <Text variant="md" className="font-normal mb-0">
+                    Site web
+                  </Text>
+                  {structureWebsite && (
+                    <Text variant="md" className="font-medium text-primary-700">
+                      <Link
+                        href={`https://${structureWebsite}` as unknown as UrlObject}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {structureWebsite}
+                      </Link>
+                    </Text>
+                  )}
+
+                  {structureHoraires && (
+                    <div className="mt-8 border-solid border-l-4 border-y-0 border-r-0 border-primary-700 pl-4">
+                      {structureHoraires.map(ligne => (
+                        <div key={ligne}>
+                          <Text variant="md" className="font-normal mb-0">
+                            {ligne}
+                          </Text>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </DialogContentText>
+              </DialogContent>
+            </Dialog>
+          </GridCol>
+        )}
       </Grid>
     </>
   );
