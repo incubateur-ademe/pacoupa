@@ -157,7 +157,16 @@ export const Resultat = ({
                     <EstimationCouts solution={solution} informationBatiment={informationBatiment} />
                   </>
                 }
-                header={<Card.CardHeader image={familleImageMap[solution.familleSolution]} title={solution.nom} />}
+                header={
+                  <Card.CardHeader
+                    image={
+                      <div className="w-10 h-10 flex items-center justify-center">
+                        {familleImageMap[solution.familleSolution]}
+                      </div>
+                    }
+                    title={solution.nom}
+                  />
+                }
                 footer={
                   <Button
                     priority="primary"

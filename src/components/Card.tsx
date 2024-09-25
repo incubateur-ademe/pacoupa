@@ -16,9 +16,9 @@ type CardHeaderProps = { image?: JSX.Element; title: React.ReactNode };
 
 export const CardHeader = ({ image, title }: CardHeaderProps) => {
   return (
-    <div className="flex gap-4 items-center self-start mt-2">
-      {image && <div>{image}</div>}
-      <h3 className="text-base font-bold leading-6 text-balance">{title}</h3>
+    <div className="flex gap-4 items-center mt-2">
+      {image && <>{image}</>}
+      <h3 className="text-base font-bold leading-6 text-balance mb-0">{title}</h3>
     </div>
   );
 };
