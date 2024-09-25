@@ -1,8 +1,10 @@
 "use client";
 
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
+import { Snackbar } from "@mui/material";
 import { push } from "@socialgouv/matomo-next";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
 
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
@@ -49,6 +51,15 @@ export const Resultat = ({
 }: Props) => {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const [showToast, setShowToast] = useState(false);
+
+  const handleClose = (event: Event | React.SyntheticEvent, reason?: string) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setShowToast(false);
+  };
 
   return (
     <>
@@ -57,10 +68,9 @@ export const Resultat = ({
           Copropriété
         </H2>
         <Card
-          header={<div className="text-base font-bold">{informationBatiment.adresse}</div>}
-          headerAlign="left"
-          footer={
-            <div className="mt-4 mr-4">
+          content={
+            <div className="flex justify-between items-baseline">
+              <div className="text-base font-bold">{informationBatiment.adresse}</div>
               <Button
                 linkProps={{
                   href: "/simulation/etapes",
@@ -68,16 +78,14 @@ export const Resultat = ({
                     push(["trackEvent", matomoCategory.resultats, "Clic Modifier formulaire", "Modifier formulaire"]);
                   },
                 }}
-                priority="secondary"
+                priority="tertiary"
                 iconId="ri-pencil-line"
                 iconPosition="right"
-                className="min-h-0 w-min"
               >
                 {"Modifier"}
               </Button>
             </div>
           }
-          footerAlign="right"
         />
       </div>
 
@@ -149,7 +157,16 @@ export const Resultat = ({
                     <EstimationCouts solution={solution} informationBatiment={informationBatiment} />
                   </>
                 }
-                header={<Card.CardHeader image={familleImageMap[solution.familleSolution]} title={solution.nom} />}
+                header={
+                  <Card.CardHeader
+                    image={
+                      <div className="w-10 h-10 flex items-center justify-center">
+                        {familleImageMap[solution.familleSolution]}
+                      </div>
+                    }
+                    title={solution.nom}
+                  />
+                }
                 footer={
                   <Button
                     priority="primary"
@@ -192,8 +209,32 @@ export const Resultat = ({
         </div>
       )}
 
+      <div className="flex justify-between mt-8">
+        <Button
+          priority="secondary"
+          iconId="ri-share-fill"
+          iconPosition="right"
+          onClick={() => {
+            push(["trackEvent", matomoCategory.solutionDetails, "Clic Partager", "Partager"]);
+
+            navigator.clipboard.writeText(window.location.href).catch(console.error);
+            setShowToast(true);
+          }}
+        >
+          Partager tous les résultats
+        </Button>
+
+        <Snackbar
+          anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+          open={showToast}
+          onClose={handleClose}
+          autoHideDuration={4000}
+          message="L'URL a bien été copiée 🚀."
+        ></Snackbar>
+      </div>
+
       <Grid>
-        <GridCol className="mt-12">
+        <GridCol className="mt-8">
           <NouvelleSimulation />
         </GridCol>
       </Grid>

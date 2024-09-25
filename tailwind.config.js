@@ -7,6 +7,7 @@ module.exports = {
   theme: {
     extend: {
       boxShadow: {
+        md: "2px 2px 0 0 var(--color-text-primary)",
         DEFAULT: "4px 4px 0 0 var(--color-green-900)",
       },
     },

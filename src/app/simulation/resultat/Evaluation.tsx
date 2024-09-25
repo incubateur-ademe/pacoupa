@@ -3,7 +3,7 @@
 import CloseIcon from "@mui/icons-material/Close";
 import InfoIcon from "@mui/icons-material/Info";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import { Dialog, DialogContent, DialogContentText, DialogTitle, Tooltip } from "@mui/material";
+import { Dialog as MuiDialog, DialogContent, DialogContentText, DialogTitle, styled, Tooltip } from "@mui/material";
 import MuiButton from "@mui/material/Button";
 import { push } from "@socialgouv/matomo-next";
 import Image from "next/image";
@@ -84,6 +84,12 @@ const config = {
     mapper: maturiteMap,
   },
 } satisfies Record<SolutionEvaluation, { emoji?: JSX.Element; mapper: unknown; titre: string }>;
+
+const Dialog = styled(MuiDialog)(() => ({
+  "& .MuiPaper-root": {
+    borderRadius: "0.5rem",
+  },
+}));
 
 export const Evaluation = ({ categorie, solution, withDetails }: EvaluationProps) => {
   const [open, setOpen] = useState(false);

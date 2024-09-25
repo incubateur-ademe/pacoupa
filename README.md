@@ -83,14 +83,14 @@ Il faut d'abord s'authentifier.
 Créer une db, suffixée avec la date du jour au format ISO.
 
 ```shell
-turso db create pacoupa-20240913 --from-file assets/pacoupa.db
+turso db create pacoupa-20240923 --from-file assets/pacoupa.db
 ```
 
 Un token d'accès est nécessaire afin de pouvoir lire la db.
 
 Pour créer un nouveau token d'accès en lecture seule
 ```shell
-turso db tokens create pacoupa-20240913 -r 
+turso db tokens create pacoupa-20240923 -r 
 ```
 
 En développement, il faut recopier le token dans `.env` et `.env.local` (`TURSO_DATABASE_URL` et `TURSO_AUTH_TOKEN`).
