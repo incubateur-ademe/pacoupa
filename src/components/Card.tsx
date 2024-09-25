@@ -2,8 +2,6 @@
 
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 
-import { H3 } from "@/dsfr/base/typography";
-
 type Props = {
   content?: React.ReactNode;
   footer?: React.ReactNode;
@@ -18,9 +16,9 @@ type CardHeaderProps = { image?: JSX.Element; title: React.ReactNode };
 
 export const CardHeader = ({ image, title }: CardHeaderProps) => {
   return (
-    <div className="flex gap-4 items-center self-start">
-      {image && <div>{image}</div>}
-      <H3 as="h6">{title}</H3>
+    <div className="flex gap-4 items-center mt-2">
+      {image && <>{image}</>}
+      <h3 className="text-base font-bold leading-6 text-balance mb-0">{title}</h3>
     </div>
   );
 };
@@ -38,7 +36,7 @@ export const Card = ({
     <>
       <div
         className={cx(
-          "flex flex-col justify-start items-stretch p-4 gap-1 bg-white border-solid border-body-700 shadow rounded-lg max-w-lg h-full relative",
+          "flex flex-col justify-start items-stretch p-4 gap-1 bg-white border border-solid border-body-700 shadow rounded-lg max-w-lg h-full relative",
         )}
       >
         {/* Marker */}
