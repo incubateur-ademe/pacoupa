@@ -157,22 +157,29 @@
         --color-text-secondary: hsla(140, 7%, 35%, 1);  /* #535F57 - Text/Secondary */
         --color-text-tertiary: hsla(139, 15%, 75%, 1);  /* #B7CABD - Text/Tertiary */
 
-        /* for callouts & badge */
+        /* for badge */
 
-        --color-tag-vert-font: hsla(155, 34%, 38%, 1);  /* #408367 - Tag/Vert/Font */
-        --color-tag-vert-bg: hsla(138, 87%, 94%, 1);    /* #E3FDEB - Tag/Vert/Background */
+        --color-tag-vert-font: hsla(155, 34%, 38%, 1);     /* #408367 - Tag/Vert/Font */
+        --color-tag-vert-bg: hsla(138, 87%, 94%, 1);       /* #E3FDEB - Tag/Vert/Background */
 
-        --color-tag-jaune-font: hsla(48, 59%, 31%, 1);  /* #7D6A20 - Tag/Jaune/Font */ 
-        --color-tag-jaune-bg: hsla(42, 93%, 94%, 1);    /* #FEF6E3 - Tag/Jaune/Background */
+        --color-tag-jaune-font: hsla(48, 59%, 31%, 1);     /* #7D6A20 - Tag/Jaune/Font */ 
+        --color-tag-jaune-bg: hsla(42, 93%, 94%, 1);       /* #FEF6E3 - Tag/Jaune/Background */
 
-        --color-rouge-font: hsla(21, 100%, 35%, 1);     /* #B34000 - Tag/Rouge/Font */
-        --color-rouge-bg: hsla(6, 100%, 98%, 1);        /* #FFF6F5 - Tag/Rouge/Background */
+        --color-tag-rouge-font: hsla(21, 100%, 35%, 1);    /* #B34000 - Tag/Rouge/Font */
+        --color-tag-rouge-bg: hsla(6, 100%, 98%, 1);       /* #FFF6F5 - Tag/Rouge/Background */
 
-        --color-gris-font: hsla(0, 0%, 9%, 1);            /* #B34000 - Tag/Gris/Font */
-        --color-gris-bg: hsla(0, 0%, 93%, 1);             /* #FFF6F5 - Tag/Gris/Background */
+        --color-tag-gris-font: hsla(0, 0%, 9%, 1);         /* #B34000 - Tag/Gris/Font */
+        --color-tag-gris-bg: hsla(0, 0%, 93%, 1);          /* #FFF6F5 - Tag/Gris/Background */
 
         --color-decoration-stroke: hsla(138, 17%, 23%, 1); /* #304436 - Decoration/Stroke */
         --color-decoration-bg: hsla(137, 47%, 94%, 1);     /* #E8F7EC - Decoration/Light bg */
+
+        /* for callouts */
+
+        --color-callout-jaune: hsla(42, 93%, 94%, 1);   /* #FEF6E3 - Callout/Jaune */
+        --color-callout-bleu: hsla(226, 100%, 95%, 1);  /* #E5EBFF - Callout/Bleu */
+        --color-callout-vert: hsla(136, 48%, 94%, 1);   /* #E8F7EC - Callout/Vert */
+        --color-callout-rouge: hsla(0, 100%, 96%, 1);   /* #FFE9E9 - Callout/Rouge */
 
     }
 
