@@ -62,6 +62,60 @@ export const PacoupaFooter = () => {
             </a>
           </>
         }
+        linkList={[
+          {
+            categoryName: "Nos partenaires",
+            links: [
+              {
+                linkProps: {
+                  href: "https://france-renov.gouv.fr",
+                },
+                text: "France Renov'",
+              },
+              {
+                linkProps: {
+                  href: "https://www.dossierfacile.logement.gouv.fr",
+                },
+                text: "Dossier Facile",
+              },
+              {
+                linkProps: {
+                  href: "https://france-chaleur-urbaine.beta.gouv.fr",
+                },
+                text: "France Chaleur Urbaine",
+              },
+              {
+                linkProps: {
+                  href: "https://mesaidesreno.beta.gouv.fr",
+                },
+                text: "Mes aides Réno",
+              },
+              {
+                linkProps: {
+                  href: "https://zerologementvacant.beta.gouv.fr",
+                },
+                text: "Zéro Logement Vacant",
+              },
+            ],
+          },
+          {
+            categoryName: "Liens utiles",
+            links: [
+              {
+                linkProps: {
+                  href: "https://beta.gouv.fr/startups/pacoupa.html",
+                },
+                text: "À propos",
+              },
+              {
+                linkProps: {
+                  href: "mailto:pacoupa@beta.gouv.fr",
+                },
+                text: "Contact",
+              },
+            ],
+          },
+        ]}
       />
     </div>
   );
