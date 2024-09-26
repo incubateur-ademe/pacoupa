@@ -20,22 +20,22 @@ const config: Record<Props["type"], { bgColor: string; contentColor: string; tit
     contentColor: "text-body-700",
   },
   error: {
-    bgColor: "bg-red-50",
+    bgColor: "bg-calloutred",
     titleColor: "text-green-800",
     contentColor: "text-body-700",
   },
   info: {
-    bgColor: "bg-blue-50",
+    bgColor: "bg-calloutblue",
     titleColor: "text-green-800",
     contentColor: "text-body-700",
   },
   success: {
-    bgColor: "bg-decoration-300",
+    bgColor: "bg-calloutgreen",
     titleColor: "text-green-800",
     contentColor: "text-body-700",
   },
   warning: {
-    bgColor: "bg-yellow-50",
+    bgColor: "bg-calloutyellow",
     titleColor: "text-green-800",
     contentColor: "text-body-700",
   },
@@ -55,7 +55,7 @@ export const Callout = ({ content, iconId, icon, title, type }: Props) => {
   const { bgColor, titleColor, contentColor } = config[type];
 
   return (
-    <div className={`rounded-md p-2 ${bgColor}`}>
+    <div className={`rounded-[4px] p-2 ${bgColor} w-full`}>
       <div className="flex">
         <div className="flex-shrink-0 -mt-0.5">{icon}</div>
         <div className="ml-2">
