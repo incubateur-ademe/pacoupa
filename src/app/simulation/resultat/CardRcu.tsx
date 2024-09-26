@@ -45,11 +45,15 @@ export const CardRcu = () => {
               <Usage solution={rcuSolution as Solution} />
             </div>
 
+            <hr />
+
             <Text className="mb-2">Isolations à prévoir</Text>
 
             <div>
               <Badge label="Aucune" />
             </div>
+
+            <hr className="mt-8" />
 
             <Text className="mb-2 mt-8">Éligibilité au réseau de chaleur</Text>
 
@@ -75,7 +79,13 @@ export const CardRcu = () => {
             </div>
           </>
         }
-        header={<Card.CardHeader image={familleImageMap["RCU"]} title="Réseau de chaleur" />}
+        // header={<Card.CardHeader image={familleImageMap["RCU"]} title="Réseau de chaleur" />}
+        header={
+          <Card.CardHeader
+            image={<div className="w-10 h-10 flex items-center justify-center">{familleImageMap["RCU"]}</div>}
+            title="Réseau de chaleur"
+          />
+        }
         footer={
           <div className="justify-self-end">
             <Button
