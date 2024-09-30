@@ -1,3 +1,5 @@
+import { ficheReference12 } from "@__content/fiches-reference";
+
 import { type Solution } from "@/lib/common/domain/values/Solution";
 
 // TODO: solution à supprimer ??
@@ -129,4 +131,5 @@ export const solution = {
       },
     ],
   },
+  ficheReference: ficheReference12,
 } satisfies Solution;

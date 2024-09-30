@@ -1,3 +1,4 @@
+import { type FicheReference } from "./FicheReference";
 import { type SolutionEvaluation } from "./SolutionEvaluation";
 import { type SolutionFamille } from "./SolutionFamille";
 import { type SolutionType } from "./SolutionTypes";
@@ -46,6 +47,7 @@ export type Solution = {
   environnement: SolutionEvaluation;
   espaceExterieur: SolutionEvaluation;
   familleSolution: SolutionFamille;
+  ficheReference: FicheReference;
   id: string;
   maturite: SolutionEvaluation;
   nom: string;
