@@ -1,11 +1,11 @@
-import Content from "@__content/landing-pages/chauffage-energie-renouvelable-copropriete.mdx";
+import Content, { frontmatter } from "@__content/landing-pages/chauffage-energie-renouvelable-copropriete.mdx";
 import { type Metadata } from "next";
 
 import { anchorHeadingMDXComponents } from "@/mdx-components";
 
 import { sharedMetadata } from "../../../shared-metadata";
 
-const title = "Les systèmes de chauffage à énergie renouvelable (ENR) pour les copropriétés";
+const title = frontmatter.titre;
 const url = "/landing-pages/chauffage-energie-renouvelable-copropriete";
 
 export const metadata: Metadata = {

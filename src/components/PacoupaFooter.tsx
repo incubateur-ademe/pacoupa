@@ -116,25 +116,25 @@ export const PacoupaFooter = () => {
             ],
           },
           {
-            categoryName: "En savoir plus",
+            categoryName: "Les enjeux",
             links: [
               {
                 linkProps: {
                   href: "/landing-pages/renovation-energetique-copropriete",
                 },
-                text: "La rénovation énergétique en copropriété",
+                text: "Rénovation en copropriété",
               },
               {
                 linkProps: {
                   href: "/landing-pages/chauffage-energie-renouvelable-copropriete",
                 },
-                text: "Les systèmes de chauffage à énergie renouvelable (ENR) pour les copropriétés",
+                text: "Chauffages à énergie renouvelable en copropriété",
               },
               {
                 linkProps: {
                   href: "/landing-pages/ges-batiment-france",
                 },
-                text: "Quelle part du bâtiment dans l’émission de Gaz à Effet de Serre (GES) en France et comment la réduire?",
+                text: "Bâtiments et décarbonation en France",
               },
             ],
           },
