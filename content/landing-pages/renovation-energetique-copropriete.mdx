@@ -8,11 +8,18 @@ import {Card} from "../../src/components/Card.tsx"
 
 ## La rénovation énergétique en copropriété
 
-La rénovation énergétique des bâtiments est un enjeu majeur pour réduire notre impact environnemental et améliorer notre qualité de vie.
+<div className="grid grid-cols-[1fr_minmax(100px,_272px)] gap-8">
+  <div>
+    La rénovation énergétique des bâtiments est un enjeu majeur pour réduire notre impact environnemental et améliorer notre qualité de vie.
 
-En France, les copropriétés représentent une part significative du parc immobilier (28%), et leur rénovation énergétique est essentielle pour atteindre les objectifs de réduction des émissions de gaz à effet de serre (GES).
+    En France, les copropriétés représentent une part significative du parc immobilier (28%), et leur rénovation énergétique est essentielle pour atteindre les objectifs de réduction des émissions de gaz à effet de serre (GES).
 
-Cet article vise à vous introduire aux concepts clés et aux bénéfices de la rénovation énergétique en copropriété.
+    Cet article vise à vous introduire aux concepts clés et aux bénéfices de la rénovation énergétique en copropriété.
+  </div>
+
+<img src="/landing/house-diagram.svg" className="max-w-[272px]"/>
+
+</div>
 
 <div class="mt-40" />
 
@@ -22,7 +29,7 @@ La rénovation énergétique présente de nombreux avantages pour les coproprié
 
 <div class="grid grid-cols-3 mt-2 gap-8">
     <Card
-    header={<h4>Réduction des coûts énergétiques</h4>}
+    header={<h4><img src="/landing/environment.svg" className="w-[80px] h-[80px]"/><br/>Réduction des coûts énergétiques</h4>}
     content={
       <>
       Une meilleure isolation et des systèmes de chauffage plus efficaces réduisent considérablement les factures de chauffage et d’électricité.
@@ -30,7 +37,7 @@ La rénovation énergétique présente de nombreux avantages pour les coproprié
     }
     />
     <Card
-    header={<h4>Confort amélioré</h4>}
+    header={<h4><img src="/landing/confort.svg" className="w-[80px] h-[80px]"/><br/>Confort amélioré</h4>}
     content={
       <>
       Une rénovation énergétique permet de maintenir une température agréable tout au long de l’année, réduisant les variations thermiques
@@ -38,7 +45,7 @@ La rénovation énergétique présente de nombreux avantages pour les coproprié
     }
     />
     <Card
-    header={<h4>Valorisation du patrimoine immobilier</h4>}
+    header={<h4><img src="/landing/house.svg" className="w-[80px] h-[80px]"/><br/>Valorisation du patrimoine immobilier</h4>}
     content={
       <>
       Un bâtiment rénové énergétiquement voit sa valeur augmenter sur le marché immobilier.
@@ -46,7 +53,7 @@ La rénovation énergétique présente de nombreux avantages pour les coproprié
     }
     />
     <Card
-    header={<h4>Réduction des émissions de GES</h4>}
+    header={<h4><img src="/landing/leaf.svg" className="w-[80px] h-[80px]"/><br/>Réduction des émissions de GES</h4>}
     content={
       <>
       En consommant moins d’énergie, les copropriétés contribuent à la lutte contre le changement climatique.
@@ -54,7 +61,7 @@ La rénovation énergétique présente de nombreux avantages pour les coproprié
     }
     />
     <Card
-    header={<h4>Accès aux aides financières</h4>}
+    header={<h4><img src="/landing/money.svg" className="w-[80px] h-[80px]"/><br/>Accès aux aides financières</h4>}
     content={
       <>
       L’État et les collectivités locales offrent diverses subventions et aides pour soutenir les projets de rénovation énergétique.
