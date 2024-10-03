@@ -64,6 +64,29 @@ export const PacoupaFooter = () => {
         }
         linkList={[
           {
+            categoryName: "Les enjeux",
+            links: [
+              {
+                linkProps: {
+                  href: "/landing-pages/renovation-energetique-copropriete",
+                },
+                text: "Rénovation en copropriété",
+              },
+              {
+                linkProps: {
+                  href: "/landing-pages/chauffage-energie-renouvelable-copropriete",
+                },
+                text: "Chauffages à énergie renouvelable en copropriété",
+              },
+              {
+                linkProps: {
+                  href: "/landing-pages/ges-batiment-france",
+                },
+                text: "Bâtiments et décarbonation en France",
+              },
+            ],
+          },
+          {
             categoryName: "Nos partenaires",
             links: [
               {
@@ -112,29 +135,6 @@ export const PacoupaFooter = () => {
                   href: "mailto:pacoupa@beta.gouv.fr",
                 },
                 text: "Contact",
-              },
-            ],
-          },
-          {
-            categoryName: "Les enjeux",
-            links: [
-              {
-                linkProps: {
-                  href: "/landing-pages/renovation-energetique-copropriete",
-                },
-                text: "Rénovation en copropriété",
-              },
-              {
-                linkProps: {
-                  href: "/landing-pages/chauffage-energie-renouvelable-copropriete",
-                },
-                text: "Chauffages à énergie renouvelable en copropriété",
-              },
-              {
-                linkProps: {
-                  href: "/landing-pages/ges-batiment-france",
-                },
-                text: "Bâtiments et décarbonation en France",
               },
             ],
           },
