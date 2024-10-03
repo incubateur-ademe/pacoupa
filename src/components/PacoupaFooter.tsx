@@ -115,6 +115,29 @@ export const PacoupaFooter = () => {
               },
             ],
           },
+          {
+            categoryName: "En savoir plus",
+            links: [
+              {
+                linkProps: {
+                  href: "/landing-pages/renovation-energetique-copropriete",
+                },
+                text: "La rénovation énergétique en copropriété",
+              },
+              {
+                linkProps: {
+                  href: "/landing-pages/chauffage-energie-renouvelable-copropriete",
+                },
+                text: "Les systèmes de chauffage à énergie renouvelable (ENR) pour les copropriétés",
+              },
+              {
+                linkProps: {
+                  href: "/landing-pages/ges-batiment-france",
+                },
+                text: "Quelle part du bâtiment dans l’émission de Gaz à Effet de Serre (GES) en France et comment la réduire?",
+              },
+            ],
+          },
         ]}
       />
     </div>
