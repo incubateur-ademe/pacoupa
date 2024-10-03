@@ -1,8 +1,8 @@
 import { type FicheReference } from "@/lib/common/domain/values/FicheReference";
 
 export const ficheReference = {
-  titrePrincipal: "",
-  lieu: "",
+  titrePrincipal: "Résidence Hermann Sabran",
+  lieu: "Lyon (Rhône)",
   nbLogements: 0,
   nbm2: 0,
   anneeConstruction: 0,

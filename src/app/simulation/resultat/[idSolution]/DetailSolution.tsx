@@ -22,6 +22,7 @@ import { matomoCategory } from "@/lib/matomo-events";
 import { Isolation } from "../Isolation";
 import { calculeIsolationsManquantes as calculeIsolationsManquantes } from "../ShowIsolationImages";
 import { Usage } from "../Usage";
+import { FicheReference } from "./FicheReference";
 
 type Props = {
   informationBatiment: InformationBatiment;
@@ -131,6 +132,10 @@ export const DetailSolution = ({ solution, informationBatiment, travauxNiveauIso
         <Evaluation categorie="espaceExterieur" solution={solution} withDetails />
 
         <Evaluation categorie="maturite" solution={solution} withDetails />
+      </div>
+
+      <div className="mb-8">
+        <FicheReference solution={solution} />
       </div>
 
       <FranceRenovBlock withWorkflow={true} showToast={setShowToast} />
