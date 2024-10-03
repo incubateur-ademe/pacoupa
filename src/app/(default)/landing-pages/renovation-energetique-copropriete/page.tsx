@@ -1,11 +1,11 @@
-import Content from "@__content/landing-pages/renovation-energetique-copropriete.mdx";
+import Content, { frontmatter } from "@__content/landing-pages/renovation-energetique-copropriete.mdx";
 import { type Metadata } from "next";
 
 import { anchorHeadingMDXComponents } from "@/mdx-components";
 
 import { sharedMetadata } from "../../../shared-metadata";
 
-const title = "La rénovation énergétique en copropriété";
+const title = frontmatter.titre;
 const url = "/landing-pages/renovation-energetique-copropriete";
 
 export const metadata: Metadata = {

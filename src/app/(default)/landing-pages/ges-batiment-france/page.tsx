@@ -1,11 +1,11 @@
-import Content from "@__content/landing-pages/ges-batiment-france.mdx";
+import Content, { frontmatter } from "@__content/landing-pages/ges-batiment-france.mdx";
 import { type Metadata } from "next";
 
 import { anchorHeadingMDXComponents } from "@/mdx-components";
 
 import { sharedMetadata } from "../../../shared-metadata";
 
-const title = "Quelle part du bâtiment dans l’émission de Gaz à Effet de Serre (GES) en France et comment la réduire ?";
+const title = frontmatter.titre;
 const url = "/landing-pages/ges-batiment-france";
 
 export const metadata: Metadata = {
