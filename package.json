@@ -23,7 +23,8 @@
     "dk:introspect": "drizzle-kit introspect",
     "dk:up": "yarn drizzle-kit up:sqlite",
     "dk:check": "yarn drizzle-kit check:sqlite",
-    "db:build": "./scripts/db/build_db.sh"
+    "db:build": "./scripts/db/build_db.sh",
+    "buildCatalogue": "ts-node ./scripts/buildCatalogue.ts && yarn lint content/solutions"
   },
   "dependencies": {
     "@codegouvfr/react-dsfr": "^1.0.1",
