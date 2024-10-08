@@ -1,12 +1,12 @@
-import Content, { frontmatter } from "@__content/landing-pages/chauffage-energie-renouvelable-copropriete/index.mdx";
+import Content, { frontmatter } from "@__content/faq/index.mdx";
 import { type Metadata } from "next";
 
 import { anchorHeadingMDXComponents } from "@/mdx-components";
 
-import { sharedMetadata } from "../../../shared-metadata";
+import { sharedMetadata } from "../../shared-metadata";
 
 const title = frontmatter.titre;
-const url = "/landing-pages/chauffage-energie-renouvelable-copropriete";
+const url = "/faq";
 
 export const metadata: Metadata = {
   ...sharedMetadata,
@@ -21,10 +21,10 @@ export const metadata: Metadata = {
   },
 };
 
-const LandingPage = () => (
+const FaqPage = () => (
   <>
     <Content components={anchorHeadingMDXComponents} />
   </>
 );
 
-export default LandingPage;
+export default FaqPage;
