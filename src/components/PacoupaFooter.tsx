@@ -142,6 +142,12 @@ export const PacoupaFooter = () => {
                 },
                 text: "FAQ",
               },
+              {
+                linkProps: {
+                  href: "/methodologie",
+                },
+                text: "Méthodologie détaillée du simulateur",
+              },
             ],
           },
         ]}

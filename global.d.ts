@@ -92,6 +92,12 @@ declare module "@__content/faq/index.mdx" {
   export const frontmatter: LandingPageMDXMetadata;
 }
 
+declare module "@__content/methodologie/index.mdx" {
+  const MDXContent: MDXContent;
+  export default MDXContent;
+  export const frontmatter: LandingPageMDXMetadata;
+}
+
 declare module "@codegouvfr/react-dsfr/*.svg" {
   export interface SVG {
     height: number;
