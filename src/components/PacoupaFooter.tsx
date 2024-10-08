@@ -136,6 +136,12 @@ export const PacoupaFooter = () => {
                 },
                 text: "Contact",
               },
+              {
+                linkProps: {
+                  href: "/faq",
+                },
+                text: "FAQ",
+              },
             ],
           },
         ]}
