@@ -11,7 +11,6 @@ import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
 import { FranceImage } from "@/components/img/FranceImage";
 import { ChauffageImage } from "@/components/img/usages/ChauffageImage";
-import { ClimatisationImage } from "@/components/img/usages/ClimatisationImage";
 import { EcsImage } from "@/components/img/usages/EcsImage";
 import { H3, H6 } from "@/dsfr/base/typography";
 import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
@@ -118,22 +117,24 @@ export const FicheReference: React.FC<FicheReferenceProps> = ({ solution }) => {
                           <div className="w-10">
                             <DoorImage />
                           </div>
-                          70 logements
+                          {fiche.nbLogements} logements
                         </div>
-                        <div className="text-center">
-                          <div className="flex flex-col items-center">
-                            <div className="w-10">
-                              <SurfaceImage />
+                        {fiche.nbm2 && (
+                          <div className="text-center">
+                            <div className="flex flex-col items-center">
+                              <div className="w-10">
+                                <SurfaceImage />
+                              </div>
+                              {fiche.nbm2} m&sup2;
                             </div>
-                            3154 m&sup2;
                           </div>
-                        </div>
+                        )}
                         <div className="text-center">
                           <div className="flex flex-col items-center">
                             <div className="w-10">
                               <HemletImage />
                             </div>
-                            Année 1978
+                            {fiche.anneeConstruction}
                           </div>
                         </div>
                       </div>
@@ -151,7 +152,7 @@ export const FicheReference: React.FC<FicheReferenceProps> = ({ solution }) => {
                                   </div>
                                   Chauffage
                                 </div>
-                                <div className="text-sm font-bold ml-7 mt-1">Plancher chauffant électrique</div>
+                                <div className="text-sm font-bold ml-7 mt-1">{fiche.avantChauffage ?? "inconnu"}</div>
                               </div>
 
                               <div className="mt-4">
@@ -161,10 +162,10 @@ export const FicheReference: React.FC<FicheReferenceProps> = ({ solution }) => {
                                   </div>
                                   Eau chaude
                                 </div>
-                                <div className="text-sm font-bold ml-7 mt-1">Ballon individuel électrique</div>
+                                <div className="text-sm font-bold ml-7 mt-1">{fiche.avantECS ?? "Inconnu"}</div>
                               </div>
 
-                              <div className="mt-4">
+                              {/* <div className="mt-4">
                                 <div className="flex items-center">
                                   <div className="text-sm font-normal leading-6 size-6 mr-1">
                                     <ClimatisationImage />
@@ -172,7 +173,7 @@ export const FicheReference: React.FC<FicheReferenceProps> = ({ solution }) => {
                                   Climatisation
                                 </div>
                                 <div className="text-sm font-bold ml-7 mt-1">Aucune</div>
-                              </div>
+                              </div> */}
                             </div>
                           }
                         />
