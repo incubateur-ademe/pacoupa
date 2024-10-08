@@ -9,9 +9,9 @@
   },
   "scripts": {
     "postinstall": "copy-dsfr-to-public",
-    "predev": "only-include-used-icons && yarn buildCatalogue",
+    "predev": "only-include-used-icons && yarn build-catalogue && yarn build-fiches",
     "dev": "next dev",
-    "prebuild": "only-include-used-icons && yarn buildCatalogue",
+    "prebuild": "only-include-used-icons && yarn build-catalogue && yarn build-fiches",
     "build": "next build",
     "postbuild": "next-sitemap",
     "start": "next start",
@@ -24,7 +24,8 @@
     "dk:up": "yarn drizzle-kit up:sqlite",
     "dk:check": "yarn drizzle-kit check:sqlite",
     "db:build": "./scripts/db/build_db.sh",
-    "buildCatalogue": "ts-node ./scripts/buildCatalogue.ts"
+    "build-catalogue": "ts-node ./scripts/build_catalogue.ts",
+    "build-fiches": "ts-node ./scripts/build_fiches_reference.ts"
   },
   "dependencies": {
     "@codegouvfr/react-dsfr": "^1.0.1",

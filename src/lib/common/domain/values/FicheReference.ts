@@ -1,21 +1,38 @@
+import { type catalogueSolutions } from "@__content/solutions";
+
 import { type DPE } from "./DPE";
 
 export type FicheReference = {
   anneeConstruction: number;
-  anneeLivraison: number;
+  apresChauffage: string;
+  apresECS: string;
+  avantages: string[];
   bureauEtude: string;
-  depApres: DPE;
+  codeDepartement?: string;
   detailMaterielsInstalles: string[];
-  dpeAvant: DPE;
-  gainEnergetique: number;
+  dpeApres?: DPE;
+  dpeAvant?: DPE;
+  gainEnergetique?: number;
   images?: string[];
-  initChauffage: string;
-  initClimatisation: string;
-  initECS: string;
   installateur: string;
+  isolation: string;
   lieu: string;
   maitreOuvrage: string;
   nbLogements: number;
-  nbm2: number;
+  nbm2?: number;
+  solutionId: keyof typeof catalogueSolutions;
   titrePrincipal: string;
-};
+} & (
+  | {
+      anneeLivraison: number;
+      avantChauffage: string;
+      avantECS: string;
+      estNeuf: false;
+    }
+  | {
+      anneeLivraison?: never;
+      avantChauffage?: never;
+      avantECS?: never;
+      estNeuf: true;
+    }
+);

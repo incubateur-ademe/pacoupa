@@ -1,5 +1,3 @@
-import { ficheReference60 } from "@__content/fiches-reference";
-
 import { type Solution } from "@/lib/common/domain/values/Solution";
 
 export const solution = {
@@ -133,5 +131,4 @@ export const solution = {
       },
     ],
   },
-  ficheReference: ficheReference60,
 } satisfies Solution;
