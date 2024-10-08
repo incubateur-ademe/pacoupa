@@ -1,4 +1,4 @@
-import { Badge as BadgeMui } from "@mui/material";
+import { Badge as BadgeMui, Tooltip } from "@mui/material";
 
 import { ChauffageImage } from "@/components/img/usages/ChauffageImage";
 import { ClimatisationImage } from "@/components/img/usages/ClimatisationImage";
@@ -26,14 +26,16 @@ export const Usage = ({ solution, withTitle }: Props) => {
         {usageCh !== "Non" && (
           <GridCol base={4} className={"flex justify-center items-center"}>
             <BadgeMui variant="dot" anchorOrigin={{ vertical: "bottom", horizontal: "right" }}>
-              <ChauffageImage
-                enabled={true}
-                alt={
+              <Tooltip
+                title={
                   usageCh === "Oui"
                     ? "Solution permettant le chauffage"
                     : "Solution permettant potentiellement le chauffage"
                 }
-              />
+                arrow
+              >
+                <ChauffageImage />
+              </Tooltip>
             </BadgeMui>
           </GridCol>
         )}
@@ -45,14 +47,16 @@ export const Usage = ({ solution, withTitle }: Props) => {
               // color={usageEcs === "Oui" ? "success" : usageEcs === "Non" ? "error" : "info"}
               anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
             >
-              <EcsImage
-                enabled={true}
-                alt={
+              <Tooltip
+                title={
                   usageEcs === "Oui"
                     ? "Solution permettant l'eau chaude sanitaire"
                     : "Solution permettant potentiellement l'eau chaude sanitaire"
                 }
-              />
+                arrow
+              >
+                <EcsImage />
+              </Tooltip>
             </BadgeMui>
           </GridCol>
         )}
@@ -60,14 +64,16 @@ export const Usage = ({ solution, withTitle }: Props) => {
         {usageFr !== "Non" && (
           <GridCol base={4} className={"flex justify-center items-center"}>
             <BadgeMui variant="dot" color={usageFr === "Oui" ? "success" : "info"}>
-              <ClimatisationImage
-                enabled={true}
-                alt={
+              <Tooltip
+                title={
                   usageFr === "Oui"
                     ? "Solution permettant la climatisation"
                     : "La climatisation ne sera pas possible avec des radiateurs à eau. Il faudra soit les remplacer par des ventilo-convecteurs, soit utiliser un plancher rafraichissant (si présent)."
                 }
-              />
+                arrow
+              >
+                <ClimatisationImage />
+              </Tooltip>
             </BadgeMui>
           </GridCol>
         )}
