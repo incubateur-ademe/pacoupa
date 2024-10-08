@@ -75,12 +75,12 @@ declare module "@__content/landing-pages/chauffage-energie-renouvelable-copropri
   export default MDXContent;
   export const frontmatter: LandingPageMDXMetadata;
 }
-declare module "@__content/landing-pages/ges-batiment-france.mdx" {
+declare module "@__content/landing-pages/ges-batiment-france/index.mdx" {
   const MDXContent: MDXContent;
   export default MDXContent;
   export const frontmatter: LandingPageMDXMetadata;
 }
-declare module "@__content/landing-pages/renovation-energetique-copropriete.mdx" {
+declare module "@__content/landing-pages/renovation-energetique-copropriete/index.mdx" {
   const MDXContent: MDXContent;
   export default MDXContent;
   export const frontmatter: LandingPageMDXMetadata;

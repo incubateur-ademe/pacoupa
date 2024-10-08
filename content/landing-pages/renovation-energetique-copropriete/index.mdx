@@ -2,7 +2,9 @@
 titre: La rénovation énergétique en copropriété
 ---
 
-import {Card} from "../../src/components/Card.tsx"
+import {Card} from "../../../src/components/Card.tsx"
+import { PacoupixImage } from "./PacoupixImage.tsx"
+import { BuildingImage } from "./BuildingImage.tsx"
 
 <div class="mt-16" />
 
@@ -24,7 +26,7 @@ En France, les copropriétés représentent une part significative du parc immob
 
 La rénovation énergétique présente de nombreux avantages pour les copropriétés :
 
-<div class="grid grid-cols-3 mt-2 gap-8">
+<div class="grid grid-col-1 md:grid-cols-3 mt-2 gap-8 place-content-center">
     <Card
     header={<h4><img src="/landing/environment.svg" className="w-[80px] h-[80px]" alt=""/><br/>Réduction des coûts énergétiques</h4>}
     content={
@@ -65,6 +67,9 @@ La rénovation énergétique présente de nombreux avantages pour les coproprié
       </>
     }
     />
+    <div className="hidden max-w-[100px] md:flex items-center">
+      <PacoupixImage />
+    </div>
 </div>
 
 <div class="mt-40" />
@@ -73,45 +78,51 @@ La rénovation énergétique présente de nombreux avantages pour les coproprié
 
 Voici les principales étapes pour une copropriété :
 
-<div className="space-y-8">
-  <details className="space-y-4">
-    <summary className="text-xl font-bold">1. Réalisation d'un audit énergétique</summary>
+<div className="grid grid-col-1 md:grid-cols-[1fr_minmax(100px,_200px)] gap-8">
+  <div className="space-y-8">
+    <details className="space-y-4">
+      <summary className="text-xl font-bold">1. Réalisation d'un audit énergétique</summary>
 
-    Un audit énergétique est une analyse approfondie de la performance énergétique du bâtiment. Il identifie les sources de déperdition de chaleur et propose des solutions pour améliorer l’efficacité énergétique.
-    
-  </details>
+      Un audit énergétique est une analyse approfondie de la performance énergétique du bâtiment. Il identifie les sources de déperdition de chaleur et propose des solutions pour améliorer l’efficacité énergétique.
+      
+    </details>
 
-  <details class="space-y-4">
-    <summary className="text-xl font-bold">2. Vote en assemblée générale</summary>
+    <details class="space-y-4">
+      <summary className="text-xl font-bold">2. Vote en assemblée générale</summary>
 
-    Pour lancer un projet de rénovation énergétique, il est (souvent) nécessaire d’obtenir l’accord des copropriétaires lors d’une assemblée générale. Une présentation claire des bénéfices et des coûts est cruciale pour convaincre les copropriétaires.
-  </details>
+      Pour lancer un projet de rénovation énergétique, il est (souvent) nécessaire d’obtenir l’accord des copropriétaires lors d’une assemblée générale. Une présentation claire des bénéfices et des coûts est cruciale pour convaincre les copropriétaires.
+    </details>
 
-  <details class="space-y-4">
-    <summary className="text-xl font-bold">3. Planification et choix des travaux</summary>
+    <details class="space-y-4">
+      <summary className="text-xl font-bold">3. Planification et choix des travaux</summary>
 
-    En fonction des résultats de l’audit énergétique, il faut planifier les travaux nécessaires. Cela peut inclure plusieurs types de travaux, comme l’isolation des murs, du toit, le remplacement des fenêtres, ou encore la modernisation du système de chauffage.
-  </details>
+      En fonction des résultats de l’audit énergétique, il faut planifier les travaux nécessaires. Cela peut inclure plusieurs types de travaux, comme l’isolation des murs, du toit, le remplacement des fenêtres, ou encore la modernisation du système de chauffage.
+    </details>
 
-  <details class="space-y-4">
-    <summary className="text-xl font-bold">4. Recherche de financement</summary>
+    <details class="space-y-4">
+      <summary className="text-xl font-bold">4. Recherche de financement</summary>
 
-    Il existe plusieurs aides financières et subventions pour la rénovation énergétique, telles que MaPrimeRénov’, les Certificats d’Économies d’Énergie (CEE), ou encore les aides de l’Agence Nationale de l'Habitat (ANAH).
-  </details>
+      Il existe plusieurs aides financières et subventions pour la rénovation énergétique, telles que MaPrimeRénov’, les Certificats d’Économies d’Énergie (CEE), ou encore les aides de l’Agence Nationale de l'Habitat (ANAH).
+    </details>
 
-  <details class="space-y-4">
-    <summary className="text-xl font-bold">5. Sélection des entreprises et réalisation des travaux</summary>
+    <details class="space-y-4">
+      <summary className="text-xl font-bold">5. Sélection des entreprises et réalisation des travaux</summary>
 
-    Faire appel à des entreprises qualifiées et certifiées RGE (Reconnu Garant de l’Environnement) est essentiel pour garantir la qualité des travaux et bénéficier des aides financières.
-  </details>
+      Faire appel à des entreprises qualifiées et certifiées RGE (Reconnu Garant de l’Environnement) est essentiel pour garantir la qualité des travaux et bénéficier des aides financières.
+    </details>
 
-  <details class="space-y-4">
-    <summary className="text-xl font-bold">6. Suivi et maintenance</summary>
+    <details class="space-y-4">
+      <summary className="text-xl font-bold">6. Suivi et maintenance</summary>
 
-    Une fois les travaux réalisés, il est important de suivre la performance énergétique du bâtiment et d’effectuer une maintenance régulière pour préserver les gains énergétiques obtenus.
-  </details>
+      Une fois les travaux réalisés, il est important de suivre la performance énergétique du bâtiment et d’effectuer une maintenance régulière pour préserver les gains énergétiques obtenus.
+    </details>
+  </div>
+
+  <div className="hidden md:flex items-center">
+    <BuildingImage />
+  </div>
+  
 </div>
-
 
 <div class="mt-40"/>
 

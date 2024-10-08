@@ -1,4 +1,4 @@
-import Content, { frontmatter } from "@__content/landing-pages/renovation-energetique-copropriete.mdx";
+import Content, { frontmatter } from "@__content/landing-pages/renovation-energetique-copropriete/index.mdx";
 import { type Metadata } from "next";
 
 import { anchorHeadingMDXComponents } from "@/mdx-components";

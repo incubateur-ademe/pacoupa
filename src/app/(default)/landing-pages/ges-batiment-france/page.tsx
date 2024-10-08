@@ -1,4 +1,4 @@
-import Content, { frontmatter } from "@__content/landing-pages/ges-batiment-france.mdx";
+import Content, { frontmatter } from "@__content/landing-pages/ges-batiment-france/index.mdx";
 import { type Metadata } from "next";
 
 import { anchorHeadingMDXComponents } from "@/mdx-components";
