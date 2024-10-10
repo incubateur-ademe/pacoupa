@@ -6,6 +6,7 @@ type Props = {
   content?: React.ReactNode;
   footer?: React.ReactNode;
   footerAlign?: "center" | "left" | "right";
+  fullWidth?: boolean;
   header?: React.ReactNode;
   headerAlign?: "center" | "left" | "right";
   marker?: string;
@@ -31,12 +32,14 @@ export const Card = ({
   footer,
   headerAlign = "left",
   footerAlign = "right",
+  fullWidth = false,
 }: Props) => {
   return (
     <>
       <div
         className={cx(
-          "flex flex-col justify-start items-stretch p-4 gap-1 bg-white border border-solid border-body-700 shadow rounded-lg max-w-lg h-full relative",
+          "flex flex-col justify-start items-stretch p-4 gap-1 bg-white border border-solid border-body-700 shadow rounded-lg h-full relative",
+          { "max-w-lg": !fullWidth },
         )}
       >
         {/* Marker */}

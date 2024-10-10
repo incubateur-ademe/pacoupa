@@ -23,8 +23,8 @@ export const paragraphContentMDXComponents: MDXComponents = {
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
-    ...components,
     a: MdxLink,
     CTA: CTA,
+    ...components,
   };
 }

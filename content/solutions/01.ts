@@ -9,7 +9,7 @@ export const solution = {
   description:
     "La pompe à chaleur (PAC) air / eau prélève de la chaleur dans l'air extérieur, augmente son niveau de température et la transfère à un circuit d'eau.",
   usageCh: "Non",
-  usageEcs: "Oui",
+  usageEcs: "Possible",
   usageFr: "Non",
   environnement: {
     note: "B",
