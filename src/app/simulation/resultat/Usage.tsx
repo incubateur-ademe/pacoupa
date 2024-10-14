@@ -34,7 +34,9 @@ export const Usage = ({ solution, withTitle }: Props) => {
                 }
                 arrow
               >
-                <ChauffageImage />
+                <div className="size-10">
+                  <ChauffageImage />
+                </div>
               </Tooltip>
             </BadgeMui>
           </GridCol>
@@ -55,7 +57,9 @@ export const Usage = ({ solution, withTitle }: Props) => {
                 }
                 arrow
               >
-                <EcsImage />
+                <div className="size-10">
+                  <EcsImage />
+                </div>
               </Tooltip>
             </BadgeMui>
           </GridCol>
@@ -72,7 +76,9 @@ export const Usage = ({ solution, withTitle }: Props) => {
                 }
                 arrow
               >
-                <ClimatisationImage />
+                <div className="size-10">
+                  <ClimatisationImage />
+                </div>
               </Tooltip>
             </BadgeMui>
           </GridCol>
