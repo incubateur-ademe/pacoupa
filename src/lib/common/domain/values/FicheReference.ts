@@ -3,7 +3,7 @@ import { type catalogueSolutions } from "@__content/solutions";
 import { type DPE } from "./DPE";
 
 export type FicheReference = {
-  anneeConstruction: number;
+  anneeConstruction?: number;
   apresChauffage: string;
   apresECS: string;
   avantages: string[];
@@ -18,13 +18,13 @@ export type FicheReference = {
   isolation: string;
   lieu: string;
   maitreOuvrage: string;
-  nbLogements: number;
+  nbLogements?: number;
   nbm2?: number;
   solutionId: keyof typeof catalogueSolutions;
   titrePrincipal: string;
 } & (
   | {
-      anneeLivraison: number;
+      anneeLivraison?: number;
       avantChauffage: string;
       avantECS: string;
       estNeuf: false;
