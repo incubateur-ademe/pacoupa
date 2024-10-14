@@ -18,7 +18,7 @@ export const FicheReferenceList: React.FC<FicheReferenceProps> = ({ solution }) 
 
       <div className="flex flex-col gap-6">
         {fiches.map((fiche, index) => (
-          <FicheReferenceCard key={index} fiche={fiche} />
+          <FicheReferenceCard key={index} fiche={fiche} solution={solution} />
         ))}
       </div>
     </>

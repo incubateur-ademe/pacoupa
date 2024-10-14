@@ -13,14 +13,18 @@ import { ChauffageImage } from "@/components/img/usages/ChauffageImage";
 import { EcsImage } from "@/components/img/usages/EcsImage";
 import { H6 } from "@/dsfr/base/typography";
 import { type FicheReference } from "@/lib/common/domain/values/FicheReference";
+import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
 import { matomoCategory } from "@/lib/matomo-events";
 
+import { familleImageMap } from "../helper";
+import { Usage } from "../Usage";
 import { DoorImage } from "./DoorImage";
 import { HemletImage } from "./HelmetImage";
 import { SurfaceImage } from "./SurfaceImage";
 
 type Props = {
   fiche: FicheReference;
+  solution: SolutionAvecEnergieCoutAide;
 };
 
 const Dialog = styled(MuiDialog)(() => ({
@@ -32,7 +36,7 @@ const Dialog = styled(MuiDialog)(() => ({
   },
 }));
 
-export const FicheReferenceCard = ({ fiche }: PropsWithChildren<Props>) => {
+export const FicheReferenceCard = ({ fiche, solution }: PropsWithChildren<Props>) => {
   const [open, setOpen] = useState(false);
   const { width = 0 } = useWindowSize({ debounceDelay: 100, initializeWithValue: false });
 
@@ -179,6 +183,32 @@ export const FicheReferenceCard = ({ fiche }: PropsWithChildren<Props>) => {
                       <div className="text-sm font-bold ml-7 mt-1">Aucune</div>
                     </div> */}
                           </div>
+                        }
+                      />
+                    </div>
+
+                    <div className="flex justify-center mt-8">
+                      <Card
+                        content={
+                          <>
+                            <div className="min-w-80">
+                              <div className="text-base font-medium">Solution initiale</div>
+
+                              <Card.CardHeader
+                                image={
+                                  <div className="w-10 h-10 flex items-center justify-center">
+                                    {familleImageMap[solution.familleSolution]}
+                                  </div>
+                                }
+                                title={solution.nom}
+                              />
+                              <div className="mt-4">
+                                <Usage solution={solution} />
+                              </div>
+
+                              <div>Détail des matériels installés</div>
+                            </div>
+                          </>
                         }
                       />
                     </div>
