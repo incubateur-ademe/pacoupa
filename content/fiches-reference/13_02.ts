@@ -25,4 +25,5 @@ export const ficheReference = {
     "Ventilation double flux",
     "Très faibles consommations : 27 kWh/m²/an pour chauffage, ECS, VMC et éclairage des parties communes",
   ],
+  images: ["/img/fiches-reference/13_02_01.jpg", "/img/fiches-reference/13_02_02.jpg"],
 } satisfies FicheReference;

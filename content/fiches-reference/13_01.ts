@@ -24,4 +24,5 @@ export const ficheReference = {
     "Temps de retour sur investissement (avec subventions) : 6 ans",
     "PAC sur eau de nappe, puits de 68 m de profondeur et espacés de 280 m",
   ],
+  images: ["/img/fiches-reference/13_01_01.png", "/img/fiches-reference/13_01_02.jpg"],
 } satisfies FicheReference;

@@ -19,4 +19,5 @@ export const ficheReference = {
   installateur: "SCETEC",
   anneeLivraison: 2024,
   avantages: ["Sans unité extérieure"],
+  images: ["/img/fiches-reference/53_01_01.png", "/img/fiches-reference/53_01_02.png"],
 } satisfies FicheReference;

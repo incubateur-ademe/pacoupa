@@ -23,4 +23,5 @@ export const ficheReference = {
     "Rénovation d’un bâtiment historique en centre-ville (ancienne maison de Cognac H. Mounier).",
     "Mise en œuvre du système DRV à récupération d’énergie pour assurer une indépendance en chauffage / climatisation par appartement.",
   ],
+  images: ["/img/fiches-reference/12_01_01.jpg", "/img/fiches-reference/12_01_02.png"],
 } satisfies FicheReference;

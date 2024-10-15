@@ -21,4 +21,5 @@ export const ficheReference = {
   avantages: [
     "L’implantation de la PAC en toiture était compliquée par les travaux nécessaires au passage des réseaux hydrauliques. La solution de PAC gainable a donc été retenue. ",
   ],
+  images: ["/img/fiches-reference/06_01_01.png", "/img/fiches-reference/06_01_02.png"],
 } satisfies FicheReference;

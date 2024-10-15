@@ -17,9 +17,9 @@ export const ficheReference = {
   maitreOuvrage: "Immobilière 3F",
   bureauEtude: "LGX ingénierie ",
   installateur: "PITEL",
-  images: [],
   anneeLivraison: 2020,
   avantages: [
     "Le choix de la technologie PAC Hydragreen a été réalisé pour augmenter la part EnR avec le raccordement au réseau de chaleur déjà existant.",
   ],
+  images: ["/img/fiches-reference/01_01_01.png", "/img/fiches-reference/01_01_02.png"],
 } satisfies FicheReference;

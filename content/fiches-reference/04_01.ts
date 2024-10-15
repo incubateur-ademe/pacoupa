@@ -22,4 +22,5 @@ export const ficheReference = {
   avantages: [
     "Les capteurs solaires hybrides produisent à la fois de l’eau chaude sanitaire et de l’électricité photovoltaïque. Le projet est labélisé SMILE.",
   ],
+  images: ["/img/fiches-reference/04_01_01.jpg", "/img/fiches-reference/04_01_02.jpg"],
 } satisfies FicheReference;

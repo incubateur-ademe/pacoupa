@@ -22,4 +22,5 @@ export const ficheReference = {
   avantages: [
     "Dossier Titre V opération réalisé pour pouvoir bénéficier des aides financières et justifier l’atteinte de l’étiquette DPE C.",
   ],
+  images: ["/img/fiches-reference/60_01_01.png", "/img/fiches-reference/60_01_02.png"],
 } satisfies FicheReference;

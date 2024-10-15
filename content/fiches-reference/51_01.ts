@@ -22,4 +22,5 @@ export const ficheReference = {
     "Facture de chauffage et ECS divisée par 6",
     "Passage en étiquette DPE B",
   ],
+  images: ["/img/fiches-reference/51_01_01.jpg", "/img/fiches-reference/51_01_02.jpg"],
 } satisfies FicheReference;

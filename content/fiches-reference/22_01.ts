@@ -17,4 +17,5 @@ export const ficheReference = {
   bureauEtude: "JCD Etude",
   installateur: "Aqualia",
   avantages: [],
+  images: ["/img/fiches-reference/22_01_01.jpg", "/img/fiches-reference/22_01_02.png"],
 } satisfies FicheReference;

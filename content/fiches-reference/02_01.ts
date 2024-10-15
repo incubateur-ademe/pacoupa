@@ -20,4 +20,5 @@ export const ficheReference = {
     "Fonctionnement sans appoint à la température de référence de la zone à -18°C",
     "Récupérateur de chaleur sur eaux usées instantané",
   ],
+  images: ["/img/fiches-reference/02_01_01.png", "/img/fiches-reference/02_01_02.png"],
 } satisfies FicheReference;

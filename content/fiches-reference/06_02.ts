@@ -17,4 +17,5 @@ export const ficheReference = {
   bureauEtude: "Pouget Consultants",
   installateur: "UTB",
   avantages: ["La PAC couvre 50% des besoins ECS", "Sans module extérieur : PAC gainée"],
+  images: ["/img/fiches-reference/06_02_01.png", "/img/fiches-reference/06_02_02.png"],
 } satisfies FicheReference;

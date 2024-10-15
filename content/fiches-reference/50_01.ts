@@ -22,4 +22,5 @@ export const ficheReference = {
   avantages: [
     "Remplacement d’une chaudière à fioul et de chauffe-eau électrique par une PAC pour le chauffage et l’ECS faisant passer la classe énergétique de la section E-G à B-C.",
   ],
+  images: ["/img/fiches-reference/50_01_01.png", "/img/fiches-reference/50_01_02.jpg"],
 } satisfies FicheReference;

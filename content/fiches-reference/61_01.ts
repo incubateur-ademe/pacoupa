@@ -23,4 +23,5 @@ export const ficheReference = {
   avantages: [
     "Projet combinant une PAC collective géothermique, un plancher chauffant, et des CET eau-eau individuels raccordés sur le retour du réseau hydraulique du chauffage.",
   ],
+  images: ["/img/fiches-reference/61_01_01.png", "/img/fiches-reference/61_01_02.png"],
 } satisfies FicheReference;

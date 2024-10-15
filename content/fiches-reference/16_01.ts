@@ -21,4 +21,5 @@ export const ficheReference = {
   avantages: [
     "Le projet est situé à 1000 m d’altitude, avec une température extérieure de référence de -19°C. L’environnement est très calme et l’implantation en toiture était impossible (chalets). La PAC a donc été installée dans un local.",
   ],
+  images: ["/img/fiches-reference/16_01_01.jpg", "/img/fiches-reference/16_01_02.jpg"],
 } satisfies FicheReference;

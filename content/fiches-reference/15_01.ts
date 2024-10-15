@@ -28,4 +28,5 @@ export const ficheReference = {
   avantages: [
     "Avec Hydrapac, les économies sur la facture ECS sont de 25 à 30 % par rapport à la chaudière fioul existante.",
   ],
+  images: ["/img/fiches-reference/15_01_01.jpg", "/img/fiches-reference/15_01_02.png"],
 } satisfies FicheReference;
