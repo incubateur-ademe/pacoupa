@@ -22,5 +22,5 @@ export const ficheReference = {
   avantages: [
     "Le chantier portait sur la réhabilitation complète et l’extension du Foyer de l’Espérance en vue de pouvoir accueillir 102 résidents contre 86, initialement. Les PAC réalisent le chauffage et la production d’eau chaude sanitaire pour 5 bâtiments.",
   ],
-  images: ["/img/fiches-reference/10_01_01.png"],
+  images: ["/img/fiches-reference/10_01_01.png", "/img/fiches-reference/10_01_02.png"],
 } satisfies FicheReference;

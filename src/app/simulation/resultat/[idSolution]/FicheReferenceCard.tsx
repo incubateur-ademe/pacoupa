@@ -10,6 +10,7 @@ import { useWindowSize } from "usehooks-ts";
 import { Button } from "@/components/Button";
 import { Callout } from "@/components/Callout";
 import { Card } from "@/components/Card";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/Carousel";
 import { FranceImage } from "@/components/img/FranceImage";
 import { ChauffageImage } from "@/components/img/usages/ChauffageImage";
 import { EcsImage } from "@/components/img/usages/EcsImage";
@@ -231,15 +232,27 @@ const FicheDialog = ({ open, setOpen, fiche, solution }: FicheDialogProps) => {
               <>
                 <h3 className="text-base font-medium mt-8">Galerie</h3>
 
-                <div className="relative w-full h-[300px]">
-                  <Image
-                    src={fiche.images[0]}
-                    alt={fiche.titrePrincipal}
-                    sizes="300px"
-                    fill
-                    className="object-contain"
-                  />
-                </div>
+                <Carousel>
+                  <CarouselContent>
+                    {fiche.images.map(image => (
+                      <>
+                        <CarouselItem>
+                          <div className="relative w-[calc(100%-2rem)] h-[300px] mx-auto">
+                            <Image
+                              src={image}
+                              alt={fiche.titrePrincipal}
+                              sizes="300px"
+                              fill
+                              className="object-contain"
+                            />
+                          </div>
+                        </CarouselItem>
+                      </>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious />
+                  <CarouselNext />
+                </Carousel>
               </>
             )}
           </div>

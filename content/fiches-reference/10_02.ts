@@ -18,4 +18,5 @@ export const ficheReference = {
   installateur: "",
   anneeLivraison: 2018,
   avantages: ["Bâtiment passif", "Fonctionnement sans appoint à la température de référence de la zone à -18°C."],
+  images: ["/img/fiches-reference/10_02_01.png", "/img/fiches-reference/10_02_02.png"],
 } satisfies FicheReference;
