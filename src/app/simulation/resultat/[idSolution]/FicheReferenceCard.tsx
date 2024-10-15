@@ -79,16 +79,7 @@ const FicheDialog = ({ open, setOpen, fiche, solution }: FicheDialogProps) => {
           </div>
         </DialogTitle>
 
-        {/* There are warnings in the dev console on this because Mui Dialog add a p which is not convenient at all.*/}
-        {/* We don't want to add <br/> and inline-block everywhere. So the best option is to live with this React warnings.*/}
-
         <DialogContent>
-          {/* <H5>{franceRenovStructure?.Nom_Structure}</H5>
-
-              <Text variant="md" className="font-normal mb-0">
-                Adresse
-              </Text> */}
-
           <div className="grid grid-cols-[80px_1fr]">
             <div>
               <FranceImage className="" />
@@ -100,15 +91,15 @@ const FicheDialog = ({ open, setOpen, fiche, solution }: FicheDialogProps) => {
           </div>
 
           <div className="grid grid-cols-3 place-content-center mt-8">
-            {fiche.nbLogements && (
+            {fiche.nbLogements ? (
               <div className="flex flex-col justify-center items-center">
                 <div className="w-10">
                   <DoorImage />
                 </div>
                 <div className="text-center">{fiche.nbLogements} logements</div>
               </div>
-            )}
-            {fiche.nbm2 && (
+            ) : null}
+            {fiche.nbm2 ? (
               <div className="text-center">
                 <div className="flex flex-col items-center">
                   <div className="w-10">
@@ -117,8 +108,8 @@ const FicheDialog = ({ open, setOpen, fiche, solution }: FicheDialogProps) => {
                   <div className="text-center">{new Intl.NumberFormat("fr-FR").format(fiche.nbm2)} m&sup2;</div>
                 </div>
               </div>
-            )}
-            {fiche.anneeConstruction && (
+            ) : null}
+            {fiche.anneeConstruction ? (
               <div className="text-center">
                 <div className="flex flex-col items-center">
                   <div className="w-10">
@@ -127,7 +118,7 @@ const FicheDialog = ({ open, setOpen, fiche, solution }: FicheDialogProps) => {
                   <div className="text-center">{fiche.anneeConstruction}</div>
                 </div>
               </div>
-            )}
+            ) : null}
           </div>
 
           <div className="grid grid-cols-1 xl:grid-cols-2 justify-items-center mt-8 gap-8">
@@ -161,16 +152,6 @@ const FicheDialog = ({ open, setOpen, fiche, solution }: FicheDialogProps) => {
                       </div>
                     </>
                   )}
-
-                  {/* <div className="mt-4">
-                      <div className="flex items-center">
-                        <div className="text-sm font-normal leading-6 size-6 mr-1">
-                          <ClimatisationImage />
-                        </div>
-                        Climatisation
-                      </div>
-                      <div className="text-sm font-bold ml-7 mt-1">Aucune</div>
-                    </div> */}
                 </div>
               }
             />
