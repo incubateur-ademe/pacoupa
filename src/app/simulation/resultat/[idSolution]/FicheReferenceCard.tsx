@@ -3,6 +3,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { Dialog as MuiDialog, DialogContent, DialogTitle, styled } from "@mui/material";
 import MuiButton from "@mui/material/Button";
 import { push } from "@socialgouv/matomo-next";
+import Image from "next/image";
 import { type PropsWithChildren, useState } from "react";
 import { useWindowSize } from "usehooks-ts";
 
@@ -229,20 +230,16 @@ const FicheDialog = ({ open, setOpen, fiche, solution }: FicheDialogProps) => {
             {fiche.images && fiche.images.length >= 1 && (
               <>
                 <h3 className="text-base font-medium mt-8">Galerie</h3>
-                <Callout
-                  type="pacoupa"
-                  content={
-                    fiche.images.length == 1 ? (
-                      <div className="text-sm">{fiche.images[0]}</div>
-                    ) : (
-                      <ul className="text-sm">
-                        {fiche.images.map((avantage, index) => (
-                          <li key={index}>{avantage}</li>
-                        ))}
-                      </ul>
-                    )
-                  }
-                />
+
+                <div className="relative w-full h-[300px]">
+                  <Image
+                    src={fiche.images[0]}
+                    alt={fiche.titrePrincipal}
+                    sizes="300px"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
               </>
             )}
           </div>

@@ -14,7 +14,7 @@ export const FicheReferenceList: React.FC<FicheReferenceProps> = ({ solution }) 
 
   return (
     <>
-      <H3 className="text-lg font-medium mb-4">Exemple d’application</H3>
+      <H3 className="text-lg font-medium mb-4">Exemple{fiches && fiches.length > 1 ? "s" : ""} d’application</H3>
 
       <div className="flex flex-col gap-6">
         {fiches.map((fiche, index) => (
