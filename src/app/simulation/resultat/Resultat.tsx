@@ -9,8 +9,6 @@ import { useState } from "react";
 import { Button } from "@/components/Button";
 import { Callout } from "@/components/Callout";
 import { Card } from "@/components/Card";
-import { EstimationCouts } from "@/components/EstimationCouts";
-import { EstimationGains } from "@/components/EstimationGains";
 import { HighlightText } from "@/components/HighlightText";
 import { NoDataImage } from "@/components/img/NoDataImage";
 import { RaisingHands } from "@/components/img/twemoji/RaisingHands";
@@ -26,11 +24,9 @@ import { createSearchParams } from "@/utils/searchParams";
 import { CardRcu } from "./CardRcu";
 import { DebugButton } from "./DebugButton";
 import { FranceRenovBlock } from "./FranceRenovBlock";
-import { familleImageMap } from "./helper";
-import { Isolation } from "./Isolation";
 import { NouvelleSimulation } from "./NouvelleSimulation";
 import { calculeIsolationsManquantes } from "./ShowIsolationImages";
-import { Usage } from "./Usage";
+import { SolutionCard } from "./SolutionCard";
 
 type Props = {
   complet: boolean;
@@ -149,58 +145,25 @@ export const Resultat = ({
             <CardRcu />
           </GridCol>
         )}
-        {solutions.slice(0, complet ? nbSolutions : isRcuEligible ? 2 : 3).map((solution, index) => {
-          const gestes = calculeIsolationsManquantes(solution);
-          const marker = !isRcuEligible && index === 0 && { marker: "Meilleure solution" };
 
-          return (
-            <GridCol key={solution.id} base={12} sm={6} xl={4}>
-              <Card
-                {...marker}
-                content={
-                  <>
-                    <div className="mt-4">
-                      <Usage solution={solution} />
-                    </div>
-                    <hr />
-                    <div>
-                      <Isolation gestes={gestes} travauxNiveauIsolation={travauxNiveauIsolation} />
-                    </div>
-                    <hr className="mt-8" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+          {solutions.slice(0, complet ? nbSolutions : isRcuEligible ? 2 : 3).map((solution, index) => {
+            const gestes = calculeIsolationsManquantes(solution);
+            const marker = !isRcuEligible && index === 0 ? "Meilleure solution" : "";
 
-                    <EstimationGains solution={solution} informationBatiment={informationBatiment} />
-
-                    <EstimationCouts solution={solution} informationBatiment={informationBatiment} />
-                  </>
-                }
-                header={
-                  <Card.CardHeader
-                    image={
-                      <div className="w-10 h-10 flex items-center justify-center">
-                        {familleImageMap[solution.familleSolution]}
-                      </div>
-                    }
-                    title={solution.nom}
-                  />
-                }
-                footer={
-                  <Button
-                    priority="primary"
-                    linkProps={{
-                      href: `/simulation/resultat/${solution.id}?${searchParams.toString()}`,
-
-                      onClick: () => {
-                        push(["trackEvent", matomoCategory.resultats, "Clic Découvrir", "Découvrir"]);
-                      },
-                    }}
-                  >
-                    Découvrir
-                  </Button>
-                }
-              />
-            </GridCol>
-          );
-        })}
+            return (
+              <div key={solution.id}>
+                <SolutionCard
+                  solution={solution}
+                  gestes={gestes}
+                  marker={marker}
+                  informationBatiment={informationBatiment}
+                  travauxNiveauIsolation={travauxNiveauIsolation}
+                />
+              </div>
+            );
+          })}
+        </div>
       </Grid>
       {!complet && nbSolutions > 3 && (
         <div className="flex mt-8">
