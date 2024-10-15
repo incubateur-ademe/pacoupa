@@ -55,16 +55,47 @@ declare type SolutionMDXMetadata = {
   label: string;
   scoreEcologique: string;
   titre: string;
-  titre: string;
   type: "collectif" | "individuel";
   usageChauffage: "non" | "oui" | "possible";
   usageECS: "non" | "oui" | "possible";
+};
+
+declare type LandingPageMDXMetadata = {
+  titre: string;
 };
 
 declare module "content/solutions/*.mdx" {
   const MDXContent: MDXContent;
   export default MDXContent;
   export const frontmatter: SolutionMDXMetadata;
+}
+
+declare module "@__content/landing-pages/chauffage-energie-renouvelable-copropriete/index.mdx" {
+  const MDXContent: MDXContent;
+  export default MDXContent;
+  export const frontmatter: LandingPageMDXMetadata;
+}
+declare module "@__content/landing-pages/ges-batiment-france/index.mdx" {
+  const MDXContent: MDXContent;
+  export default MDXContent;
+  export const frontmatter: LandingPageMDXMetadata;
+}
+declare module "@__content/landing-pages/renovation-energetique-copropriete/index.mdx" {
+  const MDXContent: MDXContent;
+  export default MDXContent;
+  export const frontmatter: LandingPageMDXMetadata;
+}
+
+declare module "@__content/faq/index.mdx" {
+  const MDXContent: MDXContent;
+  export default MDXContent;
+  export const frontmatter: LandingPageMDXMetadata;
+}
+
+declare module "@__content/methodologie/index.mdx" {
+  const MDXContent: MDXContent;
+  export default MDXContent;
+  export const frontmatter: LandingPageMDXMetadata;
 }
 
 declare module "@codegouvfr/react-dsfr/*.svg" {

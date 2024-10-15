@@ -8,6 +8,7 @@ import { sharedMetadata } from "../../shared-metadata";
 
 const title = "Déclaration d'accessibilité";
 const url = "/accessibilite";
+
 export const metadata: Metadata = {
   ...sharedMetadata,
   title,

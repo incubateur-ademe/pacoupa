@@ -9,9 +9,9 @@
   },
   "scripts": {
     "postinstall": "copy-dsfr-to-public",
-    "predev": "only-include-used-icons",
+    "predev": "only-include-used-icons && yarn build-catalogue && yarn build-fiches",
     "dev": "next dev",
-    "prebuild": "only-include-used-icons",
+    "prebuild": "only-include-used-icons && yarn build-catalogue && yarn build-fiches",
     "build": "next build",
     "postbuild": "next-sitemap",
     "start": "next start",
@@ -23,7 +23,9 @@
     "dk:introspect": "drizzle-kit introspect",
     "dk:up": "yarn drizzle-kit up:sqlite",
     "dk:check": "yarn drizzle-kit check:sqlite",
-    "db:build": "./scripts/db/build_db.sh"
+    "db:build": "./scripts/db/build_db.sh",
+    "build-catalogue": "ts-node ./scripts/build_catalogue.ts",
+    "build-fiches": "ts-node ./scripts/build_fiches_reference.ts"
   },
   "dependencies": {
     "@codegouvfr/react-dsfr": "^1.0.1",
@@ -48,6 +50,7 @@
     "js-base64": "^3.7.7",
     "moize": "^6.1.6",
     "next": "^14.0.3",
+    "next-mdx-remote": "^5.0.0",
     "next-sitemap": "^4.2.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
