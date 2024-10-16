@@ -28,5 +28,5 @@ export const ficheReference = {
   avantages: [
     "Les technologies simples et éprouvées ont permis un gain sur le CEP de 74%, et le passage d’une étiquette DPE F à C.",
   ],
-  images: ["/img/fiches-reference/05_01_01.png", "/img/fiches-reference/05_01_02.png"],
+  images: ["/img/fiches-reference/05_01_01.jpg", "/img/fiches-reference/05_01_02.jpg"],
 } satisfies FicheReference;

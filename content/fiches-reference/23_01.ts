@@ -21,5 +21,5 @@ export const ficheReference = {
   avantages: [
     "Réhabilitation complète du bâtiment avec agrandissement de la maison de retraite afin d’accueillir 85 personnes. Le chauffage est assuré par une cascade de 3 pompes à chaleur géothermiques, raccordées sur 26 forages.",
   ],
-  images: ["/img/fiches-reference/23_01_01.png", "/img/fiches-reference/23_01_02.png"],
+  images: ["/img/fiches-reference/23_01_01.jpg", "/img/fiches-reference/23_01_02.jpg"],
 } satisfies FicheReference;

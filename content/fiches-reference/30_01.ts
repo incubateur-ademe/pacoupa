@@ -23,5 +23,5 @@ export const ficheReference = {
     "Les 112 logements sont répartis sur 5 bâtiments (R+3 à R+7) équipés de 4 ascenseurs.",
     "Certification NF Habitat HQE et HPE Rénovation. Réhabilitation en site occupé et en présence d’amiante.",
   ],
-  images: ["/img/fiches-reference/30_01_01.png", "/img/fiches-reference/30_01_02.png"],
+  images: ["/img/fiches-reference/30_01_01.jpg", "/img/fiches-reference/30_01_02.jpg"],
 } satisfies FicheReference;

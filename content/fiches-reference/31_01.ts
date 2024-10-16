@@ -18,5 +18,5 @@ export const ficheReference = {
   installateur: "Bedier",
   anneeLivraison: 2021,
   avantages: [],
-  images: ["/img/fiches-reference/31_01_01.png", "/img/fiches-reference/31_01_02.jpg"],
+  images: ["/img/fiches-reference/31_01_01.jpg", "/img/fiches-reference/31_01_02.jpg"],
 } satisfies FicheReference;

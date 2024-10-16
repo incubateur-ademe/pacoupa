@@ -16,5 +16,5 @@ export const ficheReference = {
   bureauEtude: "BETOM Ingénierie",
   installateur: "PINEAU THERMIC SYSTEM",
   avantages: ["PAC sur air extrait de VMC collective pour la production d’ECS, sans unité extérieure"],
-  images: ["/img/fiches-reference/07_01_01.jpg", "/img/fiches-reference/07_01_02.png"],
+  images: ["/img/fiches-reference/07_01_01.jpg", "/img/fiches-reference/07_01_02.jpg"],
 } satisfies FicheReference;

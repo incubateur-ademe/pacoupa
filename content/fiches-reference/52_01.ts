@@ -22,5 +22,5 @@ export const ficheReference = {
     "Baisse des factures par 3 à 4",
     "100 m² de panneaux photovoltaïques",
   ],
-  images: ["/img/fiches-reference/52_01_01.jpg", "/img/fiches-reference/52_01_02.png"],
+  images: ["/img/fiches-reference/52_01_01.jpg", "/img/fiches-reference/52_01_02.jpg"],
 } satisfies FicheReference;

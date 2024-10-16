@@ -22,5 +22,5 @@ export const ficheReference = {
     "Support béton + support anti vibratile",
     "« Banquette » pour dissimuler la VMC",
   ],
-  images: ["/img/fiches-reference/11_01_01.jpg", "/img/fiches-reference/11_01_02.png"],
+  images: ["/img/fiches-reference/11_01_01.jpg", "/img/fiches-reference/11_01_02.jpg"],
 } satisfies FicheReference;

@@ -16,5 +16,5 @@ export const ficheReference = {
   bureauEtude: "NEORKA",
   installateur: "JL groupe",
   avantages: ["PAC triple service sans unité extérieur sans option de rafraichissement"],
-  images: ["/img/fiches-reference/54_01_01.png", "/img/fiches-reference/54_01_02.png"],
+  images: ["/img/fiches-reference/54_01_01.jpg", "/img/fiches-reference/54_01_02.jpg"],
 } satisfies FicheReference;

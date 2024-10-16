@@ -19,5 +19,5 @@ export const ficheReference = {
   avantages: [
     "Le projet est situé en zone urbaine dense. La chaufferie est composée de deux pompes à chaleur air/eau installées à l’intérieur du local technique et raccordées sur l’extérieur par l’intermédiaire d’un réseau aéraulique. ",
   ],
-  images: ["/img/fiches-reference/21_01_01.png", "/img/fiches-reference/21_01_02.png"],
+  images: ["/img/fiches-reference/21_01_01.jpg", "/img/fiches-reference/21_01_02.jpg"],
 } satisfies FicheReference;

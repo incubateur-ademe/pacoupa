@@ -16,5 +16,5 @@ export const ficheReference = {
   bureauEtude: "Pouget Consultants",
   installateur: "Climatech Ouest",
   avantages: ["Le projet atteint le seuil 2025 de la RE2020."],
-  images: ["/img/fiches-reference/32_01_01.jpg", "/img/fiches-reference/32_01_02.png"],
+  images: ["/img/fiches-reference/32_01_01.jpg", "/img/fiches-reference/32_01_02.jpg"],
 } satisfies FicheReference;
