@@ -6,6 +6,7 @@ type Props = {
   content?: React.ReactNode;
   footer?: React.ReactNode;
   footerAlign?: "center" | "left" | "right";
+  fullWidth?: boolean;
   header?: React.ReactNode;
   headerAlign?: "center" | "left" | "right";
   marker?: string;

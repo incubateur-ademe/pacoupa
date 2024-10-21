@@ -24,15 +24,15 @@ export type FicheReference = {
   titrePrincipal: string;
 } & (
   | {
-      anneeLivraison?: number;
-      avantChauffage: string;
-      avantECS: string;
-      estNeuf: false;
-    }
-  | {
       anneeLivraison?: never;
       avantChauffage?: never;
       avantECS?: never;
       estNeuf: true;
+    }
+  | {
+      anneeLivraison?: number;
+      avantChauffage: string;
+      avantECS: string;
+      estNeuf: false;
     }
 );

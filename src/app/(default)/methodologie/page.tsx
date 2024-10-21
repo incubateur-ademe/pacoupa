@@ -1,13 +1,12 @@
-import AccessibiliteContent from "@__content/accessibilite.mdx";
+import Content, { frontmatter } from "@__content/methodologie/index.mdx";
 import { type Metadata } from "next";
 
-import { H1 } from "@/dsfr/base/typography";
 import { anchorHeadingMDXComponents } from "@/mdx-components";
 
 import { sharedMetadata } from "../../shared-metadata";
 
-const title = "Déclaration d'accessibilité";
-const url = "/accessibilite";
+const title = frontmatter.titre;
+const url = "/faq";
 
 export const metadata: Metadata = {
   ...sharedMetadata,
@@ -22,11 +21,10 @@ export const metadata: Metadata = {
   },
 };
 
-const Accessibilite = () => (
+const FaqPage = () => (
   <>
-    <H1>{title}</H1>
-    <AccessibiliteContent components={anchorHeadingMDXComponents} />
+    <Content components={anchorHeadingMDXComponents} />
   </>
 );
 
-export default Accessibilite;
+export default FaqPage;

@@ -146,6 +146,12 @@ yarn tsc
 Cela peut être dû au token d'accès qui a changé. 
 Regénérer le token et le mettre à jour sur Vercel.
 
+*Comment ajouter une variable d'environnement ? *
+
+L'ajouter dans .env pour l'utiliser et dans .env.development pour référence (commit dans Git).
+
+Lancer le script `yarn generatedEnvDeclaration` pour modifier le scope global de process.env et profiter de l'autocomplétion.
+
 ## Déploiement
 
 Le produit est déployé sur Vercel.
@@ -155,3 +161,6 @@ Le produit est déployé sur Vercel.
 | prod | Production | main | Site de production | https://pacoupa.ademe.fr/ |
 | preprod | Preview | dev | Site de préproduction | https://pacoupa.ademe.vercel.app/ |
 | dev (défaut) | Development | (feature branch) | Recette par PR |  |
+
+
+
