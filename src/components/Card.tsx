@@ -32,14 +32,12 @@ export const Card = ({
   footer,
   headerAlign = "left",
   footerAlign = "right",
-  fullWidth = false,
 }: Props) => {
   return (
     <>
       <div
         className={cx(
-          "flex flex-col justify-start items-stretch p-4 gap-1 bg-white border border-solid border-body-700 shadow rounded-lg h-full relative",
-          { "max-w-lg": !fullWidth },
+          "flex flex-col justify-start items-stretch p-4 gap-1 bg-white border border-solid border-body-700 shadow rounded-lg w-full max-w-lg h-full relative",
         )}
       >
         {/* Marker */}

@@ -23,4 +23,5 @@ export const ficheReference = {
     "COP effectif mesuré de l’ordre de 5 pour la production ECS",
     "COP effectif mesuré de l’ordre de 4 pour la production ECS et le Bouclage",
   ],
+  images: ["/img/fiches-reference/03_01_01.jpg", "/img/fiches-reference/03_01_02.jpg"],
 } satisfies FicheReference;
