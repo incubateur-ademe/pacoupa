@@ -217,7 +217,7 @@ const FicheDialog = ({ open, setOpen, fiche, solution }: FicheDialogProps) => {
               <>
                 <h3 className="text-base font-medium mt-8">Galerie</h3>
 
-                <Carousel>
+                <Carousel className="max-w-[calc(100vw-8em)] mx-auto">
                   <CarouselContent>
                     {fiche.images.map(image => (
                       <>

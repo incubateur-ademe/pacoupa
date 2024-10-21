@@ -6,28 +6,26 @@ import { RaisonCard1, RaisonCard2, RaisonCard3 } from "./cards";
 
 export const RaisonsZoneMobile = () => {
   return (
-    <div className="md:hidden relative w-full max-w-2xl mx-auto">
-      <Carousel>
-        <CarouselContent>
-          <>
-            <CarouselItem>
-              <div className="relative w-[calc(100%-2rem)] h-[300px] mx-auto">
-                <RaisonCard1 />
-              </div>
-            </CarouselItem>
-              <div className="relative w-[calc(100%-2rem)] h-[300px] mx-auto">
-                <RaisonCard2 />
-              </div>
-            </CarouselItem>
-              <div className="relative w-[calc(100%-2rem)] h-[300px] mx-auto">
-                <RaisonCard3 />
-              </div>
-            </CarouselItem>
-          </>
-        </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
-      </Carousel>
-    </div>
+    <Carousel className="md:hidden max-w-[calc(100vw-4em)] mx-auto">
+      <CarouselContent className="-ml-1">
+        <CarouselItem className="basis-full min-w-[320px] pl-1">
+          <div className="p-1">
+            <RaisonCard1 />
+          </div>
+        </CarouselItem>
+        <CarouselItem className="basis-full pl-1">
+          <div className="p-1">
+            <RaisonCard2 />
+          </div>
+        </CarouselItem>
+        <CarouselItem className="basis-full pl-1">
+          <div className="p-1">
+            <RaisonCard3 />
+          </div>
+        </CarouselItem>
+      </CarouselContent>
+      <CarouselPrevious />
+      <CarouselNext />
+    </Carousel>
   );
 };
