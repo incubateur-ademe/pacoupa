@@ -139,32 +139,26 @@ export const Resultat = ({
         )}
       </div>
 
-      <Grid haveGutters className="mt-6">
-        {isRcuEligible && (
-          <GridCol key="rcu" base={12} sm={6} xl={4}>
-            <CardRcu />
-          </GridCol>
-        )}
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 mt-6">
+        {isRcuEligible && <CardRcu />}
+        {solutions.slice(0, complet ? nbSolutions : isRcuEligible ? 2 : 3).map((solution, index) => {
+          const gestes = calculeIsolationsManquantes(solution);
+          const marker = !isRcuEligible && index === 0 ? "Meilleure solution" : "";
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
-          {solutions.slice(0, complet ? nbSolutions : isRcuEligible ? 2 : 3).map((solution, index) => {
-            const gestes = calculeIsolationsManquantes(solution);
-            const marker = !isRcuEligible && index === 0 ? "Meilleure solution" : "";
+          return (
+            <div key={solution.id}>
+              <SolutionCard
+                solution={solution}
+                gestes={gestes}
+                marker={marker}
+                informationBatiment={informationBatiment}
+                travauxNiveauIsolation={travauxNiveauIsolation}
+              />
+            </div>
+          );
+        })}
+      </div>
 
-            return (
-              <div key={solution.id}>
-                <SolutionCard
-                  solution={solution}
-                  gestes={gestes}
-                  marker={marker}
-                  informationBatiment={informationBatiment}
-                  travauxNiveauIsolation={travauxNiveauIsolation}
-                />
-              </div>
-            );
-          })}
-        </div>
-      </Grid>
       {!complet && nbSolutions > 3 && (
         <div className="flex mt-8">
           <Button
