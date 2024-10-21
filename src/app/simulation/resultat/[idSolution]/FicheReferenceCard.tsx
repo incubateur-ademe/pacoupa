@@ -121,7 +121,7 @@ const FicheDialog = ({ open, setOpen, fiche, solution }: FicheDialogProps) => {
             ) : null}
           </div>
 
-          <div className="grid grid-cols-1 xl:grid-cols-2 justify-items-center mt-8 gap-8">
+          <div className="flex flex-col md:flex-row mt-8 gap-8 justify-start items-center md:items-start">
             <Card
               content={
                 <div className="">
@@ -174,12 +174,16 @@ const FicheDialog = ({ open, setOpen, fiche, solution }: FicheDialogProps) => {
                       <Usage solution={solution} />
                     </div>
 
-                    <div className="text-sm font-medium">Détail des matériels installés</div>
-                    <ul className="text-sm">
-                      {fiche.detailMaterielsInstalles.map((materiel, index) => (
-                        <li key={index}>{materiel}</li>
-                      ))}
-                    </ul>
+                    {!!fiche.detailMaterielsInstalles.length && (
+                      <>
+                        <div className="text-sm font-medium">Détail des matériels installés</div>
+                        <ul className="text-sm">
+                          {fiche.detailMaterielsInstalles.map((materiel, index) => (
+                            <li key={index}>{materiel}</li>
+                          ))}
+                        </ul>
+                      </>
+                    )}
                   </div>
                 </>
               }

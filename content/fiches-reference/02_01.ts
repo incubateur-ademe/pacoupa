@@ -12,7 +12,7 @@ export const ficheReference = {
   apresChauffage: "Chauffage électrique",
   apresECS: "PAC Air / Eau (gainée)",
   isolation: "Bâtiment neuf RT2012",
-  detailMaterielsInstalles: ["", "", ""],
+  detailMaterielsInstalles: [],
   maitreOuvrage: "Woodeum",
   bureauEtude: "Pouget Consultants",
   installateur: "Dulipecc",
