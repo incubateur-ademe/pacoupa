@@ -12,7 +12,7 @@ export const ficheReference = {
   apresChauffage: "Chauffage électrique",
   apresECS: "PAC Air / Eau (gainée)",
   isolation: "Bâtiment neuf RT2012",
-  detailMaterielsInstalles: ["", "", ""],
+  detailMaterielsInstalles: [],
   maitreOuvrage: "Woodeum",
   bureauEtude: "Pouget Consultants",
   installateur: "Dulipecc",
@@ -20,4 +20,5 @@ export const ficheReference = {
     "Fonctionnement sans appoint à la température de référence de la zone à -18°C",
     "Récupérateur de chaleur sur eaux usées instantané",
   ],
+  images: ["/img/fiches-reference/02_01_01.jpg", "/img/fiches-reference/02_01_02.jpg"],
 } satisfies FicheReference;

@@ -20,4 +20,5 @@ export const ficheReference = {
   installateur: "Eury",
   anneeLivraison: 2019,
   avantages: ["Bâtiment passif"],
+  images: ["/img/fiches-reference/01_02_01.jpg", "/img/fiches-reference/01_02_02.jpg"],
 } satisfies FicheReference;

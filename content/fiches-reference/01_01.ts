@@ -21,4 +21,5 @@ export const ficheReference = {
   avantages: [
     "Le choix de la technologie PAC Hydragreen a été réalisé pour augmenter la part EnR avec le raccordement au réseau de chaleur déjà existant.",
   ],
+  images: ["/img/fiches-reference/01_01_01.jpg", "/img/fiches-reference/01_01_02.jpg"],
 } satisfies FicheReference;
