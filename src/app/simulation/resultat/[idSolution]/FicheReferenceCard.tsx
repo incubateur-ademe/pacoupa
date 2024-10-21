@@ -18,6 +18,7 @@ import { H6 } from "@/dsfr/base/typography";
 import { type FicheReference } from "@/lib/common/domain/values/FicheReference";
 import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
 import { matomoCategory } from "@/lib/matomo-events";
+import { cn } from "@/utils/cn";
 
 import { familleImageMap } from "../helper";
 import { Usage } from "../Usage";
@@ -217,7 +218,7 @@ const FicheDialog = ({ open, setOpen, fiche, solution }: FicheDialogProps) => {
               <>
                 <h3 className="text-base font-medium mt-8">Galerie</h3>
 
-                <Carousel>
+                <Carousel className="max-w-[calc(100vw-8rem)] mx-auto">
                   <CarouselContent>
                     {fiche.images.map(image => (
                       <>
@@ -235,8 +236,8 @@ const FicheDialog = ({ open, setOpen, fiche, solution }: FicheDialogProps) => {
                       </>
                     ))}
                   </CarouselContent>
-                  <CarouselPrevious />
-                  <CarouselNext />
+                  <CarouselPrevious className={cn("-left-14 sm:-left-8 md:-left-4")} />
+                  <CarouselNext className={cn("-right-14 sm:-right-8 md:-right-4")} />
                 </Carousel>
               </>
             )}

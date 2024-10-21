@@ -199,13 +199,13 @@ const CarouselPrevious = forwardRef<HTMLButtonElement, React.HTMLProps<HTMLButto
       className={cn(
         "absolute h-8 w-8 rounded-full",
         orientation === "horizontal"
-          ? "-left-4 top-1/2 -translate-y-1/2"
+          ? "-left-8 top-1/2 -translate-y-1/2"
           : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
         className,
       )}
     >
       <KeyboardArrowLeftIcon className="h-4 w-4" />
-      <span className="sr-only">Image précédente</span>{" "}
+      <span className="sr-only">Image précédent</span>
     </Button>
   );
 });
@@ -241,7 +241,7 @@ const CarouselNext = forwardRef<HTMLButtonElement, React.HTMLProps<HTMLButtonEle
       className={cn(
         "absolute h-8 w-8 rounded-full",
         orientation === "horizontal"
-          ? "-right-4 top-1/2 -translate-y-1/2"
+          ? "-right-8 top-1/2 -translate-y-1/2"
           : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
         className,
       )}
