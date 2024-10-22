@@ -11,36 +11,26 @@ import { formatEuroNoDecimal } from "@/utils/currency";
 import { approximation } from "@/utils/number";
 
 import { BadgeEuros } from "./BadgeEuros";
-import { Callout } from "./Callout";
 
 type Props = {
   informationBatiment: InformationBatiment;
   solution: SolutionAvecEnergieCoutAide;
 };
 
-const approximation10k = approximation(4);
 const approximation1k = approximation(3);
 const approximation100 = approximation(2);
 
-export const EstimationCouts = ({ solution, informationBatiment }: PropsWithChildren<Props>) => {
+export const EstimationCouts = ({ solution }: PropsWithChildren<Props>) => {
   assert(solution.cepAvant && solution.cepApres, "cepAvant and cepApres should be defined");
-
-  const approximationEnveloppeImmeuble = approximation10k(
-    (solution.coutIsolationEnveloppe ?? 0) * informationBatiment.nbLogements,
-  );
-  const approximationSystemeImmeuble = approximation10k(
-    (solution.coutInstallationSysteme ?? 0) * informationBatiment.nbLogements,
-  );
 
   const approximationEnveloppe = approximation1k(solution.coutIsolationEnveloppe ?? 0);
   const approximationSysteme = approximation1k(solution.coutInstallationSysteme ?? 0);
 
   const aidesLogement = approximation100(solution.aidesInstallationSysteme);
-  const aidesImmeuble = approximation1k(solution.aidesInstallationSysteme * informationBatiment.nbLogements);
 
   return (
     <>
-      <div className="mb-6">
+      <div className="mt-8">
         <Text className="mb-0">Estimation des coûts</Text>
         <Text variant="xs">(isolations comprises)</Text>
 
@@ -51,8 +41,8 @@ export const EstimationCouts = ({ solution, informationBatiment }: PropsWithChil
               title={
                 <>
                   <ul>
-                    <li>coût isolation enveloppe : {formatEuroNoDecimal(approximationEnveloppeImmeuble)}</li>
-                    <li>coût installation systeme : {formatEuroNoDecimal(approximationSystemeImmeuble)}</li>
+                    <li>coût isolation enveloppe : {formatEuroNoDecimal(approximationEnveloppe)}</li>
+                    <li>coût installation systeme : {formatEuroNoDecimal(approximationSysteme)}</li>
                   </ul>
                 </>
               }
@@ -62,32 +52,15 @@ export const EstimationCouts = ({ solution, informationBatiment }: PropsWithChil
             </Tooltip>
           </Text>
           <div>
-            <BadgeEuros
-              value={approximationEnveloppeImmeuble + approximationSystemeImmeuble}
-              type="warning"
-              prefix="≈"
-            />
-            <Text variant="sm">{formatEuroNoDecimal(approximationEnveloppe + approximationSysteme)} /logement</Text>
+            <BadgeEuros value={approximationEnveloppe + approximationSysteme} type="warning" prefix="≈" />{" "}
+            <span className="text-sm">par logement</span>
           </div>
 
-          <Text variant="sm" className="mt-4 mb-2">
+          <Text variant="sm" className="mt-10 mb-2">
             Aides nationales
           </Text>
           <div>
-            <BadgeEuros value={aidesImmeuble} type="success" prefix="⩾" />
-            <Text variant="sm">{formatEuroNoDecimal(aidesLogement)} /logement</Text>
-          </div>
-
-          <div className="mt-4">
-            <Callout
-              type="warning"
-              content={
-                <Text variant="sm" className="mb-0">
-                  Les données financières sont des premières estimations. Elles doivent faire l'objet d'études plus
-                  approfondies.
-                </Text>
-              }
-            />
+            <BadgeEuros value={aidesLogement} type="success" prefix="⩾" /> <span className="text-sm">par logement</span>
           </div>
         </div>
       </div>

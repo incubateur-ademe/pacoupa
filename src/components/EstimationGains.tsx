@@ -4,7 +4,6 @@ import { type PropsWithChildren } from "react";
 import { Text } from "@/dsfr/base/typography";
 import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
-import { formatEuroNoDecimal } from "@/utils/currency";
 import { approximation } from "@/utils/number";
 
 import { Badge } from "./Badge";
@@ -20,10 +19,9 @@ type Props = {
   solution: SolutionAvecEnergieCoutAide;
 };
 
-const approximation100 = approximation(2);
 const approximation10 = approximation(1);
 
-export const EstimationGains = ({ solution, informationBatiment, avecMessage }: PropsWithChildren<Props>) => {
+export const EstimationGains = ({ solution, avecMessage }: PropsWithChildren<Props>) => {
   assert(solution.cepAvant && solution.cepApres, "cepAvant and cepApres should be defined");
 
   const pourcentageGain = Math.round(((solution.cepAvant - solution.cepApres) / solution.cepAvant) * 100);
@@ -87,15 +85,11 @@ export const EstimationGains = ({ solution, informationBatiment, avecMessage }: 
             Gains économiques
           </Text>
           <BadgeEuros
-            value={Math.abs(approximation100(gainEconomique)) * informationBatiment.nbLogements}
+            value={Math.abs(approximation10(gainEconomique))}
             type="success"
-            prefix={gainEconomique < 0 ? "-" : undefined}
+            prefix={Math.sign(gainEconomique) === -1 ? "-" : undefined}
           />{" "}
-          /an
-          <Text variant="sm" className="leading-6 mb-0">
-            {Math.sign(gainEconomique) === -1 && "- "}
-            {formatEuroNoDecimal(Math.abs(approximation10(gainEconomique)))} /logement
-          </Text>
+          /an par logement
         </div>
       </div>
     </>

@@ -33,7 +33,7 @@ export type Props = {
 };
 
 const ResultatDetailPage = async ({ params: { idSolution }, searchParams }: Props) => {
-  const { informationBatiment, travauxNiveauIsolation, solutions } = await checkAndLoadResultatParams(searchParams);
+  const { informationBatiment, solutions } = await checkAndLoadResultatParams(searchParams);
 
   const detailSolution = idSolution ? solutions.find(s => s.id === idSolution) : null;
 
@@ -43,11 +43,7 @@ const ResultatDetailPage = async ({ params: { idSolution }, searchParams }: Prop
     <>
       <SyncStore hash={searchParams.hash} />
 
-      <DetailSolution
-        solution={detailSolution}
-        informationBatiment={informationBatiment}
-        travauxNiveauIsolation={travauxNiveauIsolation}
-      />
+      <DetailSolution solution={detailSolution} informationBatiment={informationBatiment} />
     </>
   );
 };
