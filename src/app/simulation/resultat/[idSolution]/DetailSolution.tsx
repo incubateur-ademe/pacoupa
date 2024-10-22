@@ -16,7 +16,6 @@ import { EstimationGains } from "@/components/EstimationGains";
 import { H2, Text } from "@/dsfr/base/typography";
 import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
-import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
 import { matomoCategory } from "@/lib/matomo-events";
 
 import { Isolation } from "../Isolation";
@@ -27,10 +26,9 @@ import { FicheReferenceList } from "./FicheReferenceList";
 type Props = {
   informationBatiment: InformationBatiment;
   solution: SolutionAvecEnergieCoutAide;
-  travauxNiveauIsolation: TravauxNiveauIsolation;
 };
 
-export const DetailSolution = ({ solution, informationBatiment, travauxNiveauIsolation }: Props) => {
+export const DetailSolution = ({ solution, informationBatiment }: Props) => {
   const [showToast, setShowToast] = useState(false);
   const searchParams = useSearchParams();
 
@@ -105,7 +103,7 @@ export const DetailSolution = ({ solution, informationBatiment, travauxNiveauIso
       <hr />
 
       <div>
-        <Isolation gestes={gestes} travauxNiveauIsolation={travauxNiveauIsolation} />
+        <Isolation gestes={gestes} />
       </div>
 
       <hr className="mt-8" />
