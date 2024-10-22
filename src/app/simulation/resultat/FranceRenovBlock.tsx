@@ -260,37 +260,47 @@ export const FranceRenovBlock = ({ withWorkflow, showToast }: Props = {}) => {
                     {franceRenovStructure?.Code_Postal_Structure} {franceRenovStructure?.Commune_Structure}
                   </Text>
 
-                  <Text variant="md" className="font-normal mb-0">
-                    Téléphone
-                  </Text>
-                  <Text variant="md" className="font-medium text-primary-700">
-                    <Link href={`tel:${franceRenovStructure?.Telephone_Structure}`}>
-                      {franceRenovStructure?.Telephone_Structure}
-                    </Link>
-                  </Text>
+                  {franceRenovStructure?.Telephone_Structure && (
+                    <>
+                      <Text variant="md" className="font-normal mb-0">
+                        Téléphone
+                      </Text>
+                      <Text variant="md" className="font-medium text-primary-700">
+                        <Link href={`tel:${franceRenovStructure?.Telephone_Structure}`}>
+                          {franceRenovStructure?.Telephone_Structure}
+                        </Link>
+                      </Text>
+                    </>
+                  )}
 
-                  <Text variant="md" className="font-normal mb-0">
-                    Mail
-                  </Text>
-                  <Text variant="md" className="font-medium text-primary-700">
-                    <Link href={`mailto:${franceRenovStructure?.Email_Structure}`}>
-                      {franceRenovStructure?.Email_Structure}
-                    </Link>
-                  </Text>
+                  {franceRenovStructure?.Email_Structure && (
+                    <>
+                      <Text variant="md" className="font-normal mb-0">
+                        Mail
+                      </Text>
+                      <Text variant="md" className="font-medium text-primary-700">
+                        <Link href={`mailto:${franceRenovStructure?.Email_Structure}`}>
+                          {franceRenovStructure?.Email_Structure}
+                        </Link>
+                      </Text>
+                    </>
+                  )}
 
-                  <Text variant="md" className="font-normal mb-0">
-                    Site web
-                  </Text>
                   {structureWebsite && (
-                    <Text variant="md" className="font-medium text-primary-700">
-                      <Link
-                        href={`https://${structureWebsite}` as unknown as UrlObject}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {structureWebsite}
-                      </Link>
-                    </Text>
+                    <>
+                      <Text variant="md" className="font-normal mb-0">
+                        Site web
+                      </Text>
+                      <Text variant="md" className="font-medium text-primary-700">
+                        <Link
+                          href={`https://${structureWebsite}` as unknown as UrlObject}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {structureWebsite}
+                        </Link>
+                      </Text>
+                    </>
                   )}
 
                   {structureHoraires && (
