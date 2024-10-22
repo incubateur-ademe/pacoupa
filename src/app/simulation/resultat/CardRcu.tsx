@@ -8,18 +8,9 @@ import { Callout } from "@/components/Callout";
 import { Card } from "@/components/Card";
 import { Text } from "@/dsfr/base/typography";
 import { usePacoupaSessionStorage } from "@/lib/client/usePacoupaSessionStorage";
-import { type Solution } from "@/lib/common/domain/values/Solution";
 import { matomoCategory } from "@/lib/matomo-events";
 
 import { familleImageMap } from "./helper";
-import { Usage } from "./Usage";
-
-const rcuSolution = {
-  usageCh: "Oui",
-  usageEcs: "Oui",
-  usageFr: "Non",
-  type: "COL",
-} satisfies Pick<Solution, "type" | "usageCh" | "usageEcs" | "usageFr">;
 
 export const CardRcu = () => {
   const { store } = usePacoupaSessionStorage();
@@ -40,9 +31,6 @@ export const CardRcu = () => {
                   </>
                 }
               />
-            </div>
-            <div className="mt-4">
-              <Usage solution={rcuSolution as Solution} />
             </div>
 
             <hr />
