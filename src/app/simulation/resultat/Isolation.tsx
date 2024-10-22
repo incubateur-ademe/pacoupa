@@ -1,3 +1,4 @@
+import { Badge } from "@/components/Badge";
 import { Text } from "@/dsfr/base/typography";
 import { type GesteIsolation } from "@/lib/common/domain/values/GesteIsolation";
 
@@ -12,9 +13,15 @@ export const Isolation = ({ gestes }: Props) => {
     <>
       <Text className="mb-2">Isolations à prévoir</Text>
 
-      <div className="mt-4 flex justify-center gap-8">
-        <ShowIsolationImages gestes={gestes} />
-      </div>
+      {!gestes.length ? (
+        <div>
+          <Badge label="Aucune" />
+        </div>
+      ) : (
+        <div className="mt-4 flex justify-center gap-8">
+          <ShowIsolationImages gestes={gestes} />
+        </div>
+      )}
     </>
   );
 };
