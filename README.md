@@ -45,31 +45,57 @@ open http://localhost:3000/simulation/resultat?hash=eyJhZHJlc3NlIjoiMyBSdWUgZGVz
 
 Les données sont stockées dans une base SQLite `pacoupa.db`. 
 
-Elle peut être reconstruite à partir des fichiers stockés sur Google Drive.
+Elle est construite à partir des fichiers CSV du répertoire `assets`. 
 
-Télécharger tous les fichiers du simulateur 1 et 2 dans le répertoire `assets`. 
+Les fichiers requis sont les suivants :
+- bdd_eco_h1.csv
+- bdd_eco_h2.csv
+- bdd_eco_h3.csv
+- bdd_energie_h1.csv
+- bdd_energie_h2.csv
+- bdd_energie_h3.csv
+- solutions_par_criteres.csv
+- solutions.csv
+- typologies.csv
 
-Pour cela :
-1. Rassembler les fichiers csv : 
-    1. Ouvrir le fichier `Simulateur 1 - PACOUPA`.
-        - exporter en csv le premier onglet en le nommant `solutions_par_criteres.csv`.
-        - exporter le second en le nommant `solutions.csv`.
-        
-    2. Télécharger les fichier du Simulateur 2 les plus récents. 
-        - renommer les fichier csv bdd_energie en `bdd_energie_h1.csv`, `bdd_energie_h2.csv`, `bdd_energie_h3.csv`.
-        - renommer les fichiers csv bdd_eco en `bdd_eco_h1.csv`, `bdd_eco_h2.csv`, `bdd_eco_h3.csv`.
+Ces fichiers CSV sont constitués à partir de fichier Excel/Google sheet stockés sur Google Drive dans le répertoire Pacoupa (demander l'accès).
 
-    3. Ouvrir le fichier `typologies PACOUPA`.
-        - exporter l'onglet principal en le nommant `typologies.csv`.
+1. Ouvrir le fichier `typologies PACOUPA`.
+    - exporter l'onglet principal en le nommant `typologies.csv`.
 
-2. Lancer le script `yarn db:build`
+2. Ouvrir le fichier `Simulateur 1 - PACOUPA`.
+    - exporter l'onglet "Solutions par critères" en csv en le nommant `solutions_par_criteres.csv`.
+    - exporter l'onglet "Catalogue de solutions" en le nommant `solutions.csv`.
+    
+3. Télécharger les fichier du Simulateur 2 les plus récents. 
+    - renommer les fichier csv bdd_energie en `bdd_energie_h1.csv`, `bdd_energie_h2.csv`, `bdd_energie_h3.csv`.
+    - renommer les fichiers csv bdd_eco en `bdd_eco_h1.csv`, `bdd_eco_h2.csv`, `bdd_eco_h3.csv`.
+
+
+Quand tous les fichiers requis sont présents dans `assets`, lancer le script de génération de la base SQLite.
+
+```shell
+yarn db:build
+```
 
 <details>
-    <summary>Note sur la sauvegarde des fichiers CSV</summary>
+    <summary>Comment visualiser les data SQLite ?</summary>
 
-    À chaque fois qu'un fichier pacoupa.db est créé, et à minima, quand il est utilisé en production (cf. plus loin sur l'hébergement Turso), il est conseillé de stocker l'ensemble des fichiers csv dans le répertoire `PACOUPA/Backup csv/[YYYYMMDD]`. 
+    Pour visualiser les data, vous pouvez utiliser l'outil datasette.
+
+    datasette assets/pacoupa.db
+
+    Une technique pour s'assurer que le script de génératin de la base s'est bien lancé, est de regarder la volumétrie attendue (ex: 120 000 lignes pour bdd_eco et bdd_energie).
+</details>
+
+<details>
+    <summary>Sauvegarde des fichiers CSV</summary>
+
+    Pour ne pas surcharger inutilement le repo GitHub Pacoupa, les fichiers CSV ne sont pas stockés (cf. .gitignore).
+
+    Donc, à chaque fois qu'un fichier pacoupa.db est créé, et à minima, quand il est utilisé en production (cf. plus loin sur l'hébergement Turso), il est fortement conseillé de stocker l'ensemble des fichiers CSV dans le répertoire `PACOUPA/Backup csv/[YYYYMMDD]`. 
     
-    Comme cela, on peut à tout moment retrouver les fichiers sources ou bien reconstituer le fichier SQLite.
+    Comme cela, à tout moment l'historique des fichiers sources qui ont permis de constituer une certaine version de la base SQLite est disponible.
     
 </details>
 
@@ -93,14 +119,14 @@ Avant d'interagir avec Turso, il faut d'abord s'authentifier.
 Créer une db, suffixée avec la date du jour au format ISO.
 
 ```shell
-turso db create pacoupa-20240923 --from-file assets/pacoupa.db
+turso db create pacoupa-20241022 --from-file assets/pacoupa.db
 ```
 
 Un token d'accès est nécessaire afin de pouvoir lire la db.
 
 Pour créer un nouveau token d'accès en lecture seule
 ```shell
-turso db tokens create pacoupa-20240923 -r 
+turso db tokens create pacoupa-20241022 -r 
 ```
 
 En développement, il faut recopier le token dans `.env` et `.env.local` (`TURSO_DATABASE_URL` et `TURSO_AUTH_TOKEN`).
@@ -190,6 +216,14 @@ Lancer le script `yarn generatedEnvDeclaration` pour modifier le scope global de
 ## Déploiement
 
 Le produit est déployé sur Vercel dans l'organisation [ADEME](https://vercel.com/ademe).
+
+Pour modifier les variables d'environnement, aller sur le dashboard de Pacoupa.
+
+Dans Settings > Environment variable, modifier les variables pour l'environnement voulu. 
+
+NB: Vercel considère la review et les environnements des branches de PR comme la Preview 
+(l'environnement Development de Vercel représente les environnements locaux, que l'on n'utilise pas pour Pacoupa).
+
 
 | PACOUPA_ENV | Terminologie Vercel | Branche Git | Fonction | URL |
 | --- | --- | --- | --- | --- |
