@@ -6,7 +6,7 @@ A partir de quelques questions simples sur l’immeuble, l'outil permet de dirig
 
 ## Installation
 
-### Lancement de la db locale
+### Lancer la db localement
 
 Mettre à jour le fichier .env avec la variable TURSO_DATABASE_URL="http://127.0.0.1:8080".
 
@@ -15,7 +15,7 @@ Mettre à jour le fichier .env avec la variable TURSO_DATABASE_URL="http://127.0
 turso dev --db-file assets/pacoupa.db 
 ```
 
-### Lancement de l'app en développement
+### Lancer l'app en local
 
 ```shell
 yarn install
@@ -23,7 +23,7 @@ yarn dev
 open http://localhost:3000
 ```
 
-### Lancement de l'app en mode production pour la CI/CD
+### Lancemer l'app en mode production
 
 ```shell
 yarn install        
@@ -45,10 +45,11 @@ open http://localhost:3000/simulation/resultat?hash=eyJhZHJlc3NlIjoiMyBSdWUgZGVz
 
 Les données sont stockées dans une DB SQLite.
 
-La db pacoupa.db peut être reconstruite à partir des fichiers stockés sur Google Drive.
+La db `pacoupa.db` peut être reconstruite à partir des fichiers stockés sur Google Drive.
 
-Télécharger tous les fichiers du simulateur 1 et 2 dans le répertoire `assets`.
+Télécharger tous les fichiers du simulateur 1 et 2 dans le répertoire `assets`. 
 
+Pour cela :
 1. Rassembler les fichiers csv : 
     1. Ouvrir le fichier `Simulateur 1 - PACOUPA`.
         - exporter en csv le premier onglet en le nommant `solutions_par_criteres.csv`.
@@ -72,7 +73,7 @@ Télécharger tous les fichiers du simulateur 1 et 2 dans le répertoire `assets
 
 ## Turso
 
-Turso permet d'héberger des bases SQLite.
+En production, nous utilisons Turso pour héberger les bases SQLite.
 
 Il faut d'abord s'authentifier.
 
@@ -97,14 +98,18 @@ En développement, il faut recopier le token dans `.env` et `.env.local` (`TURSO
 
 En production sous Vercel, il faudra ajouter/modifier ces variables d'environnement dans les settings.
 
-> [!Tip]  
-> Pour supprimer une base `turso db destroy pacoupa`
+<details>
+    <summary>Comment supprimer une base Turso ?</summary>
+
+    Ex: turso db destroy pacoupa-20240923.
+</details>
+
 
 ### Génération du schéma Drizzle
 
 Drizzle est un ORM/query builder typescript.
 
-Il peut, par introspection, générer le schéma ORM et générer les types correspondants.
+Il peut, par introspection, générer le schéma ORM et générer les types TS correspondants.
 
 Prérequis : le fichier `.env` doit bien renseigner les variables `TURSO_DATABASE_URL` et `TURSO_AUTH_TOKEN`.
 
@@ -113,11 +118,32 @@ Prérequis : le fichier `.env` doit bien renseigner les variables `TURSO_DATABAS
 yarn dk:introspect
 ```
 
-Cette commande va regénérer le fichier schema.ts et les types Drizzle.
+Cette commande va regénérer le fichier schema.ts.
 
-Modifier le fichier drizzle/schema.ts pour améliorer le typage des objets de persistence, en ajoutant les enums qui représentent les domaines de valeurs. 
+À partir de ce schéma, les types TS peuvent être inférés. Pour maximiser leur utilité, nous devons retravailler `schema.ts` afin d'ajouter les enums qui représentent les domaines de valeur (ex: ).
 
-Ceci sera utile ensuit pour construire les requêtes SQL et exploiter leurs résultats, ainsi qu'avoir une meilleure autocomplétion typescript.
+Modifier le fichier `drizzle/schema.ts` pour améliorer le typage des objets de persistence, en ajoutant les enums qui représentent les domaines de valeurs.
+
+
+<details>
+    <summary>Détails sur les types</summary>
+
+    Grâce à cela, nous bénéficierons d'une autocomplétion parfaite. Par exemple, pour le champ `dpe`, nous aurons comme valeurs possibles `["A", "B", "C", "D", "E", "F", "G"]`. 
+    
+    Nous utilisons également drizzle-zod, qui permet d'inférer des schémas zod à partir du schéma Drizzle.
+
+    Ex: 
+        // zod-schema.ts
+        import { createSelectSchema } from "drizzle-zod";
+        import { type z } from "zod";
+        import { bddEco, bddEnergie, criteres, typologies } from "./schema";
+
+        export const criteresBatimentSchema = createSelectSchema(criteres);
+
+    De cette façon, nous essayons autant que possible de ne pas se répéter tout en apportant le plus d'information au niveau des types.
+</details>
+
+Ceci sera utile pour construire les requêtes SQL et exploiter leurs résultats, ainsi qu'avoir une meilleure autocomplétion typescript.
 
 Exemple
 
@@ -133,7 +159,7 @@ export const solutions = sqliteTable("solutions", {
 
 ```
 
-Vous pouvez lancer la compilation typescript pour vérifier que le code est typesafe.
+Vous pouvez lancer la compilation typescript pour vérifier que le code typescript se compile correctement.
 
 ```shell
 yarn tsc
@@ -146,15 +172,15 @@ yarn tsc
 Cela peut être dû au token d'accès qui a changé. 
 Regénérer le token et le mettre à jour sur Vercel.
 
-*Comment ajouter une variable d'environnement ? *
+*Comment ajouter une variable d'environnement ?*
 
-L'ajouter dans .env pour l'utiliser et dans .env.development pour référence (commit dans Git).
+L'ajouter dans `.env` pour l'utiliser et dans `.env.development` pour référence (commit dans Git).
 
-Lancer le script `yarn generatedEnvDeclaration` pour modifier le scope global de process.env et profiter de l'autocomplétion.
+Lancer le script `yarn generatedEnvDeclaration` pour modifier le scope global de `process.env` et profiter de l'autocomplétion.
 
 ## Déploiement
 
-Le produit est déployé sur Vercel.
+Le produit est déployé sur Vercel dans l'organisation [ADEME](https://vercel.com/ademe).
 
 | PACOUPA_ENV | Terminologie Vercel | Branche Git | Fonction | URL |
 | --- | --- | --- | --- | --- |
