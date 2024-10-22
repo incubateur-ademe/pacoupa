@@ -152,7 +152,6 @@ export const Resultat = ({
                 gestes={gestes}
                 marker={marker}
                 informationBatiment={informationBatiment}
-                travauxNiveauIsolation={travauxNiveauIsolation}
               />
             </div>
           );
