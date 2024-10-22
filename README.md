@@ -6,7 +6,7 @@ A partir de quelques questions simples sur l’immeuble, l'outil permet de dirig
 
 ## Installation
 
-### Lancement de la db locale
+### Lancer la db localement
 
 Mettre à jour le fichier .env avec la variable TURSO_DATABASE_URL="http://127.0.0.1:8080".
 
@@ -15,7 +15,7 @@ Mettre à jour le fichier .env avec la variable TURSO_DATABASE_URL="http://127.0
 turso dev --db-file assets/pacoupa.db 
 ```
 
-### Lancement de l'app en développement
+### Lancer l'app en local
 
 ```shell
 yarn install
@@ -23,7 +23,7 @@ yarn dev
 open http://localhost:3000
 ```
 
-### Lancement de l'app en mode production pour la CI/CD
+### Lancer l'app en mode production
 
 ```shell
 yarn install        
@@ -32,10 +32,10 @@ yarn build
 open http://localhost:3000
 ```
 
-### Test manuel
+### Tester manuellement
 
 Voici une URL de la page des résultats. 
-Si elle s'affiche convenablement, alors l'application et la db sont bien configurées.
+Si elle s'affiche convenablement alors l'application et la db sont bien configurées.
 
 ```shell
 open http://localhost:3000/simulation/resultat?hash=eyJhZHJlc3NlIjoiMyBSdWUgZGVzIExpc3NlcyAyODAwMCBDaGFydHJlcyIsImFubmVlIjoxOTcwLCJyZW5vdmF0aW9uIjpbXSwibmJMb2dlbWVudHMiOjMwLCJwb3NzZWRlRXNwYWNlc0V4dGVyaWV1cnNDb21tdW5zIjoiTm9uIiwicG9zc2VkZUVzcGFjZXNFeHRlcmlldXJzUGVyc29ubmVscyI6Ik91aSIsImVzcGFjZXNFeHRlcmlldXJzUGVyc29ubmVscyI6WyJiYWxjb24iXSwidHlwZUNIIjoiaW5kaXZpZHVlbCIsImVuZXJnaWVDSCI6ImdheiIsImVtZXR0ZXVyIjoicmFkaWF0ZXVycyIsInR5cGVFQ1MiOiJpbmRpdmlkdWVsIiwiZW5lcmdpZUVDUyI6ImdheiJ9&travauxNiveauIsolation=Global
@@ -43,38 +43,74 @@ open http://localhost:3000/simulation/resultat?hash=eyJhZHJlc3NlIjoiMyBSdWUgZGVz
 
 ## Construction de la db
 
-Les données sont stockées dans une DB SQLite.
+Les données sont stockées dans une base SQLite `pacoupa.db`. 
 
-La db pacoupa.db peut être reconstruite à partir des fichiers stockés sur Google Drive.
+Elle est construite à partir des fichiers CSV du répertoire `assets`. 
 
-Télécharger tous les fichiers du simulateur 1 et 2 dans le répertoire `assets`.
+Les fichiers requis sont les suivants :
+- bdd_eco_h1.csv
+- bdd_eco_h2.csv
+- bdd_eco_h3.csv
+- bdd_energie_h1.csv
+- bdd_energie_h2.csv
+- bdd_energie_h3.csv
+- solutions_par_criteres.csv
+- solutions.csv
+- typologies.csv
 
-1. Rassembler les fichiers csv : 
-    1. Ouvrir le fichier `Simulateur 1 - PACOUPA`.
-        - exporter en csv le premier onglet en le nommant `solutions_par_criteres.csv`.
-        - exporter le second en le nommant `solutions.csv`.
-        
-    2. Télécharger les fichier du Simulateur 2 les plus récents. 
-        - renommer les fichier csv bdd_energie en `bdd_energie_h1.csv`, `bdd_energie_h2.csv`, `bdd_energie_h3.csv`.
-        - renommer les fichiers csv bdd_eco en `bdd_eco_h1.csv`, `bdd_eco_h2.csv`, `bdd_eco_h3.csv`.
+Ces fichiers CSV sont constitués à partir de fichier Excel/Google sheet stockés sur Google Drive dans le répertoire Pacoupa (demander l'accès).
 
-    3. Ouvrir le fichier `typologies PACOUPA`.
-        - exporter l'onglet principal en le nommant `typologies.csv`.
+1. Ouvrir le fichier `typologies PACOUPA`.
+    - exporter l'onglet principal en le nommant `typologies.csv`.
 
-2. Lancer le script `yarn db:build`
+2. Ouvrir le fichier `Simulateur 1 - PACOUPA`.
+    - exporter l'onglet "Solutions par critères" en csv en le nommant `solutions_par_criteres.csv`.
+    - exporter l'onglet "Catalogue de solutions" en le nommant `solutions.csv`.
+    
+3. Télécharger les fichier du Simulateur 2 les plus récents. 
+    - renommer les fichier csv bdd_energie en `bdd_energie_h1.csv`, `bdd_energie_h2.csv`, `bdd_energie_h3.csv`.
+    - renommer les fichiers csv bdd_eco en `bdd_eco_h1.csv`, `bdd_eco_h2.csv`, `bdd_eco_h3.csv`.
+
+
+Quand tous les fichiers requis sont présents dans `assets`, lancer le script de génération de la base SQLite.
+
+```shell
+yarn db:build
+```
 
 <details>
-    <summary>Note sur la sauvegarde des fichiers CSV</summary>
+    <summary>Comment visualiser les data SQLite ?</summary>
 
-    À chaque fois qu'un fichier pacoupa.db est créé, et à minima, quand il est utilisé en production (cf. plus loin sur l'hébergement Turso), il est conseillé de stocker l'ensemble des fichiers csv dans le répertoire `PACOUPA/Backup csv/[YYYYMMDD]` afin de pouvoir à tout moment de retrouver les fichiers sources ou bien de reconstituer le fichier SQLite.
+    Pour visualiser les data, vous pouvez utiliser l'outil datasette.
+
+    datasette assets/pacoupa.db
+
+    Une technique pour s'assurer que le script de génératin de la base s'est bien lancé, est de regarder la volumétrie attendue (ex: 120 000 lignes pour bdd_eco et bdd_energie).
+</details>
+
+<details>
+    <summary>Sauvegarde des fichiers CSV</summary>
+
+    Pour ne pas surcharger inutilement le repo GitHub Pacoupa, les fichiers CSV ne sont pas stockés (cf. .gitignore).
+
+    Donc, à chaque fois qu'un fichier pacoupa.db est créé, et à minima, quand il est utilisé en production (cf. plus loin sur l'hébergement Turso), il est fortement conseillé de stocker l'ensemble des fichiers CSV dans le répertoire `PACOUPA/Backup csv/[YYYYMMDD]`. 
+    
+    Comme cela, à tout moment l'historique des fichiers sources qui ont permis de constituer une certaine version de la base SQLite est disponible.
     
 </details>
 
 ## Turso
 
-Turso permet d'héberger des bases SQLite.
+En production, nous utilisons [Turso](https://turso.tech/) pour héberger les bases SQLite.
 
-Il faut d'abord s'authentifier.
+
+Prérequis: 
+- installer le CLI Turso
+- se créer un compte. 
+
+Voir la [documentation officielle](https://docs.turso.tech/quickstart). 
+
+Avant d'interagir avec Turso, il faut d'abord s'authentifier.
 
 ```shell
  turso auth login
@@ -83,28 +119,32 @@ Il faut d'abord s'authentifier.
 Créer une db, suffixée avec la date du jour au format ISO.
 
 ```shell
-turso db create pacoupa-20240923 --from-file assets/pacoupa.db
+turso db create pacoupa-20241022 --from-file assets/pacoupa.db
 ```
 
 Un token d'accès est nécessaire afin de pouvoir lire la db.
 
 Pour créer un nouveau token d'accès en lecture seule
 ```shell
-turso db tokens create pacoupa-20240923 -r 
+turso db tokens create pacoupa-20241022 -r 
 ```
 
 En développement, il faut recopier le token dans `.env` et `.env.local` (`TURSO_DATABASE_URL` et `TURSO_AUTH_TOKEN`).
 
 En production sous Vercel, il faudra ajouter/modifier ces variables d'environnement dans les settings.
 
-> [!Tip]  
-> Pour supprimer une base `turso db destroy pacoupa`
+<details>
+    <summary>Comment supprimer une base Turso ?</summary>
+
+    Ex: turso db destroy pacoupa-20240923.
+</details>
+
 
 ### Génération du schéma Drizzle
 
 Drizzle est un ORM/query builder typescript.
 
-Il peut, par introspection, générer le schéma ORM et générer les types correspondants.
+Il peut, par introspection, générer le schéma ORM et générer les types TS correspondants.
 
 Prérequis : le fichier `.env` doit bien renseigner les variables `TURSO_DATABASE_URL` et `TURSO_AUTH_TOKEN`.
 
@@ -113,13 +153,35 @@ Prérequis : le fichier `.env` doit bien renseigner les variables `TURSO_DATABAS
 yarn dk:introspect
 ```
 
-Cette commande va regénérer le fichier schema.ts et les types Drizzle.
+Cette commande va regénérer le fichier `schema.ts`.
 
-Modifier le fichier drizzle/schema.ts pour améliorer le typage des objets de persistence, en ajoutant les enums qui représentent les domaines de valeurs. 
+À partir de ce schéma, les types TS peuvent être inférés. Pour maximiser leur utilité, nous devons retravailler `schema.ts` afin d'ajouter les enums qui représentent les domaines de valeur.
 
-Ceci sera utile ensuit pour construire les requêtes SQL et exploiter leurs résultats, ainsi qu'avoir une meilleure autocomplétion typescript.
+Modifier le fichier `drizzle/schema.ts` pour améliorer le typage des objets de persistence, en ajoutant les enums qui représentent les domaines de valeurs.
 
-Exemple
+<details>
+    <summary>Détails sur les types</summary>
+
+    Grâce à cela, nous bénéficierons d'une autocomplétion parfaite. Par exemple, pour le champ `dpe`, nous aurons comme valeurs possibles `["A", "B", "C", "D", "E", "F", "G"]`. 
+    
+    Nous utilisons également drizzle-zod, qui permet d'inférer des schémas zod à partir du schéma Drizzle.
+
+    Ex: 
+        // zod-schema.ts
+        import { createSelectSchema } from "drizzle-zod";
+        import { type z } from "zod";
+        import { bddEco, bddEnergie, criteres, typologies } from "./schema";
+
+        export const criteresBatimentSchema = createSelectSchema(criteres);
+
+    De cette façon, nous essayons autant que possible de ne pas se répéter tout en apportant le plus d'information au niveau des types.
+</details>
+
+Ceci sera utile pour construire les requêtes SQL et exploiter leurs résultats, ainsi qu'avoir une meilleure autocomplétion typescript.
+
+Voir les enums déclarés dans `lib/common/domain/values`.
+
+*Exemple*
 
 ```js
 export const solutions = sqliteTable("solutions", {
@@ -130,10 +192,9 @@ export const solutions = sqliteTable("solutions", {
   typeSysteme: text("type_systeme", { enum: enumTypeSysteme }).notNull(),
   ...
 }
-
 ```
 
-Vous pouvez lancer la compilation typescript pour vérifier que le code est typesafe.
+Vous pouvez lancer la commande suivante pour vérifier que le code typescript compile correctement.
 
 ```shell
 yarn tsc
@@ -146,21 +207,27 @@ yarn tsc
 Cela peut être dû au token d'accès qui a changé. 
 Regénérer le token et le mettre à jour sur Vercel.
 
-*Comment ajouter une variable d'environnement ? *
+*Comment ajouter une variable d'environnement ?*
 
-L'ajouter dans .env pour l'utiliser et dans .env.development pour référence (commit dans Git).
+L'ajouter dans `.env` pour l'utiliser et dans `.env.development` pour référence (commit dans Git).
 
-Lancer le script `yarn generatedEnvDeclaration` pour modifier le scope global de process.env et profiter de l'autocomplétion.
+Lancer le script `yarn generatedEnvDeclaration` pour modifier le scope global de `process.env` et profiter de l'autocomplétion.
 
 ## Déploiement
 
-Le produit est déployé sur Vercel.
+Le produit est déployé sur Vercel dans l'organisation [ADEME](https://vercel.com/ademe).
+
+Pour modifier les variables d'environnement, aller sur le dashboard de Pacoupa.
+
+Dans Settings > Environment variable, modifier les variables pour l'environnement voulu. 
+
+NB: Vercel considère la review et les environnements des branches de PR comme la Preview 
+(l'environnement Development de Vercel représente les environnements locaux, que l'on n'utilise pas pour Pacoupa).
+
 
 | PACOUPA_ENV | Terminologie Vercel | Branche Git | Fonction | URL |
 | --- | --- | --- | --- | --- |
 | prod | Production | main | Site de production | https://pacoupa.ademe.fr/ |
 | preprod | Preview | dev | Site de préproduction | https://pacoupa.ademe.vercel.app/ |
 | dev (défaut) | Development | (feature branch) | Recette par PR |  |
-
-
 
