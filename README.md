@@ -23,7 +23,7 @@ yarn dev
 open http://localhost:3000
 ```
 
-### Lancemer l'app en mode production
+### Lancer l'app en mode production
 
 ```shell
 yarn install        
@@ -32,10 +32,10 @@ yarn build
 open http://localhost:3000
 ```
 
-### Test manuel
+### Tester manuellement
 
 Voici une URL de la page des résultats. 
-Si elle s'affiche convenablement, alors l'application et la db sont bien configurées.
+Si elle s'affiche convenablement alors l'application et la db sont bien configurées.
 
 ```shell
 open http://localhost:3000/simulation/resultat?hash=eyJhZHJlc3NlIjoiMyBSdWUgZGVzIExpc3NlcyAyODAwMCBDaGFydHJlcyIsImFubmVlIjoxOTcwLCJyZW5vdmF0aW9uIjpbXSwibmJMb2dlbWVudHMiOjMwLCJwb3NzZWRlRXNwYWNlc0V4dGVyaWV1cnNDb21tdW5zIjoiTm9uIiwicG9zc2VkZUVzcGFjZXNFeHRlcmlldXJzUGVyc29ubmVscyI6Ik91aSIsImVzcGFjZXNFeHRlcmlldXJzUGVyc29ubmVscyI6WyJiYWxjb24iXSwidHlwZUNIIjoiaW5kaXZpZHVlbCIsImVuZXJnaWVDSCI6ImdheiIsImVtZXR0ZXVyIjoicmFkaWF0ZXVycyIsInR5cGVFQ1MiOiJpbmRpdmlkdWVsIiwiZW5lcmdpZUVDUyI6ImdheiJ9&travauxNiveauIsolation=Global
@@ -43,9 +43,9 @@ open http://localhost:3000/simulation/resultat?hash=eyJhZHJlc3NlIjoiMyBSdWUgZGVz
 
 ## Construction de la db
 
-Les données sont stockées dans une DB SQLite.
+Les données sont stockées dans une base SQLite `pacoupa.db`. 
 
-La db `pacoupa.db` peut être reconstruite à partir des fichiers stockés sur Google Drive.
+Elle peut être reconstruite à partir des fichiers stockés sur Google Drive.
 
 Télécharger tous les fichiers du simulateur 1 et 2 dans le répertoire `assets`. 
 
@@ -67,15 +67,24 @@ Pour cela :
 <details>
     <summary>Note sur la sauvegarde des fichiers CSV</summary>
 
-    À chaque fois qu'un fichier pacoupa.db est créé, et à minima, quand il est utilisé en production (cf. plus loin sur l'hébergement Turso), il est conseillé de stocker l'ensemble des fichiers csv dans le répertoire `PACOUPA/Backup csv/[YYYYMMDD]` afin de pouvoir à tout moment de retrouver les fichiers sources ou bien de reconstituer le fichier SQLite.
+    À chaque fois qu'un fichier pacoupa.db est créé, et à minima, quand il est utilisé en production (cf. plus loin sur l'hébergement Turso), il est conseillé de stocker l'ensemble des fichiers csv dans le répertoire `PACOUPA/Backup csv/[YYYYMMDD]`. 
+    
+    Comme cela, on peut à tout moment retrouver les fichiers sources ou bien reconstituer le fichier SQLite.
     
 </details>
 
 ## Turso
 
-En production, nous utilisons Turso pour héberger les bases SQLite.
+En production, nous utilisons [Turso](https://turso.tech/) pour héberger les bases SQLite.
 
-Il faut d'abord s'authentifier.
+
+Prérequis: 
+- installer le CLI Turso
+- se créer un compte. 
+
+Voir la [documentation officielle](https://docs.turso.tech/quickstart). 
+
+Avant d'interagir avec Turso, il faut d'abord s'authentifier.
 
 ```shell
  turso auth login
@@ -118,12 +127,11 @@ Prérequis : le fichier `.env` doit bien renseigner les variables `TURSO_DATABAS
 yarn dk:introspect
 ```
 
-Cette commande va regénérer le fichier schema.ts.
+Cette commande va regénérer le fichier `schema.ts`.
 
-À partir de ce schéma, les types TS peuvent être inférés. Pour maximiser leur utilité, nous devons retravailler `schema.ts` afin d'ajouter les enums qui représentent les domaines de valeur (ex: ).
+À partir de ce schéma, les types TS peuvent être inférés. Pour maximiser leur utilité, nous devons retravailler `schema.ts` afin d'ajouter les enums qui représentent les domaines de valeur.
 
 Modifier le fichier `drizzle/schema.ts` pour améliorer le typage des objets de persistence, en ajoutant les enums qui représentent les domaines de valeurs.
-
 
 <details>
     <summary>Détails sur les types</summary>
@@ -145,7 +153,9 @@ Modifier le fichier `drizzle/schema.ts` pour améliorer le typage des objets de 
 
 Ceci sera utile pour construire les requêtes SQL et exploiter leurs résultats, ainsi qu'avoir une meilleure autocomplétion typescript.
 
-Exemple
+Voir les enums déclarés dans `lib/common/domain/values`.
+
+*Exemple*
 
 ```js
 export const solutions = sqliteTable("solutions", {
@@ -156,10 +166,9 @@ export const solutions = sqliteTable("solutions", {
   typeSysteme: text("type_systeme", { enum: enumTypeSysteme }).notNull(),
   ...
 }
-
 ```
 
-Vous pouvez lancer la compilation typescript pour vérifier que le code typescript se compile correctement.
+Vous pouvez lancer la commande suivante pour vérifier que le code typescript compile correctement.
 
 ```shell
 yarn tsc
@@ -187,6 +196,4 @@ Le produit est déployé sur Vercel dans l'organisation [ADEME](https://vercel.c
 | prod | Production | main | Site de production | https://pacoupa.ademe.fr/ |
 | preprod | Preview | dev | Site de préproduction | https://pacoupa.ademe.vercel.app/ |
 | dev (défaut) | Development | (feature branch) | Recette par PR |  |
-
-
 
