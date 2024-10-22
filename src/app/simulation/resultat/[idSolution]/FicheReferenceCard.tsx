@@ -220,20 +220,12 @@ const FicheDialog = ({ open, setOpen, fiche, solution }: FicheDialogProps) => {
 
                 <Carousel className="max-w-[calc(100vw-8rem)] mx-auto">
                   <CarouselContent>
-                    {fiche.images.map(image => (
-                      <>
-                        <CarouselItem>
-                          <div className="relative w-[calc(100%-2rem)] h-[300px] mx-auto">
-                            <Image
-                              src={image}
-                              alt={fiche.titrePrincipal}
-                              sizes="300px"
-                              fill
-                              className="object-contain"
-                            />
-                          </div>
-                        </CarouselItem>
-                      </>
+                    {fiche.images.map((image, index) => (
+                      <CarouselItem key={index}>
+                        <div className="relative w-[calc(100%-2rem)] h-[300px] mx-auto">
+                          <Image src={image} alt={fiche.titrePrincipal} sizes="300px" fill className="object-contain" />
+                        </div>
+                      </CarouselItem>
                     ))}
                   </CarouselContent>
                   <CarouselPrevious className={cn("-left-14 sm:-left-8 md:-left-4")} />
