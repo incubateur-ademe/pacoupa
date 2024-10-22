@@ -36,7 +36,7 @@ const Dialog = styled(MuiDialog)(() => ({
     padding: "0px 16px 50px",
   },
   "& .MuiDialogTitle-root": {
-    "padding-right": "0px",
+    paddingRight: "0px",
   },
   "& .MuiPaper-root": {
     borderRadius: "0.5rem",
