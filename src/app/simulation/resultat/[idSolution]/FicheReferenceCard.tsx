@@ -116,7 +116,7 @@ const FicheDialog = ({ open, setOpen, fiche, solution }: FicheDialogProps) => {
                   <div className="w-10">
                     <HemletImage />
                   </div>
-                  <div className="text-center">{fiche.anneeConstruction}</div>
+                  <div className="text-center">année {fiche.anneeConstruction}</div>
                 </div>
               </div>
             ) : null}
