@@ -44,8 +44,15 @@ export default function PolitiqueConfidentialite() {
             name: "Vercel",
             country: "États-Unis",
             hostingCountry: "France (AWS cdg1)",
-            serviceType: "Hébergement",
+            serviceType: "Hébergement du site web",
             policyUrl: "https://vercel.com/legal/privacy-policy",
+          },
+          {
+            name: "Turso",
+            country: "États-Unis",
+            hostingCountry: "France, Paris",
+            serviceType: "Hébergement des données",
+            policyUrl: "https://turso.tech/privacy-policy",
           },
           // {
           //   name: "<Renseigner le nom du service>",
