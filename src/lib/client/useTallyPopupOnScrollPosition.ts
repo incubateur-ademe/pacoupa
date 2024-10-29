@@ -90,7 +90,6 @@ export const useTallyPopupOnScrollPosition = (formId: string, percentage?: numbe
           width: 400,
           emoji: {
             text: "🙏",
-            animation: "heart-beat",
           },
           doNotShowAfterSubmit: true,
           onClose: () => {
