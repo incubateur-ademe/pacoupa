@@ -15,7 +15,7 @@ const defaultSource = "Landing page";
 /**
  * Custom button for Tally button
  */
-export const TallyButton = ({ source, size: initialSize }: Props) => {
+export const TallyInscriptionButton = ({ source, size: initialSize }: Props) => {
   const onClick = () => push(["trackEvent", matomoCategory.accueil, "Click Tally button", source || defaultSource]);
 
   const size = initialSize || "medium";
@@ -24,12 +24,12 @@ export const TallyButton = ({ source, size: initialSize }: Props) => {
     <>
       <Button
         onClick={onClick}
-        data-tally-open={config.tallyId}
+        data-tally-open={config.tally.inscription.id}
         data-tally-emoji-text="👋"
         data-tally-emoji-animation="wave"
         size={size}
       >
-        {config.tallyButtonLabel}
+        {config.tally.inscription.label}
       </Button>
     </>
   );
