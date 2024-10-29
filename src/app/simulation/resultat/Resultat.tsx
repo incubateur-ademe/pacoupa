@@ -1,10 +1,16 @@
 "use client";
 
+declare global {
+  interface Window {
+    Tally?: Any;
+  }
+}
+
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import { Snackbar } from "@mui/material";
 import { push } from "@socialgouv/matomo-next";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Button } from "@/components/Button";
 import { Callout } from "@/components/Callout";
@@ -15,11 +21,13 @@ import { RaisingHands } from "@/components/img/twemoji/RaisingHands";
 import { TravauxNiveauIsolationSegmentedControl } from "@/components/IsolationSegmentedControl";
 import { Grid, GridCol } from "@/dsfr";
 import { H2, Text } from "@/dsfr/base/typography";
+import { useScrollPosition } from "@/lib/client/useScrollPosition";
 import { estGlobalementRenove, type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
 import { matomoCategory } from "@/lib/matomo-events";
 import { createSearchParams } from "@/utils/searchParams";
+import { type Any } from "@/utils/types";
 
 import { CardRcu } from "./CardRcu";
 import { DebugButton } from "./DebugButton";
@@ -50,6 +58,8 @@ export const Resultat = ({
   const searchParams = useSearchParams();
   const router = useRouter();
   const [showToast, setShowToast] = useState(false);
+  const [showTally, setShowTally] = useState(false);
+  const { scrollPercentage } = useScrollPosition();
 
   const handleClose = (event: Event | React.SyntheticEvent, reason?: string) => {
     if (reason === "clickaway") {
@@ -58,6 +68,26 @@ export const Resultat = ({
 
     setShowToast(false);
   };
+
+  useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    if (window.Tally?.openPopup) {
+      if (scrollPercentage > 50 && !showTally) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+        window.Tally.openPopup("3j9oPa", {
+          width: 400,
+          emoji: {
+            text: "🙏",
+            animation: "heart-beat",
+          },
+          doNotShowAfterSubmit: true,
+          onClose: () => {
+            setShowTally(true);
+          },
+        });
+      }
+    }
+  }, [scrollPercentage, showTally]);
 
   return (
     <>

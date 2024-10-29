@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 
+import { config } from "@/config";
 import { H1 } from "@/dsfr/base/typography";
 import { useScrollTop } from "@/lib/client/useScrollTop";
 
@@ -16,17 +17,15 @@ const ContactPage = () => {
 
   useEffect(() => {
     if (iframeRef.current) {
-      iframeRef.current.src =
-        "https://tally.so/embed/n9JZBV?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1";
+      iframeRef.current.src = `https://tally.so/embed/${config.tally.contact.id}?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1`;
     }
   }, []);
 
   return (
     <div className="col-start-2 mt-10 md:mt-20 relative ">
       <H1 className="relative md:before:content-[''] before:block before:absolute before:top-[-35px] before:left-[-55px] before:w-full before:h-[91px] before:max-w-[650px] before:bg-[url('/img/dot.png')] before:bg-no-repeat">
-        Contactez-nous
+        {config.tally.contact.label}
       </H1>
-      {/* <H1 className={styles.text}>Contactez-nous</H1> */}
 
       <p className="text-xl">Nous lisons tous vos messages, vraiment !</p>
 
