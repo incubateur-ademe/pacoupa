@@ -10,7 +10,7 @@ import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import { Snackbar } from "@mui/material";
 import { push } from "@socialgouv/matomo-next";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { Button } from "@/components/Button";
 import { Callout } from "@/components/Callout";
@@ -19,9 +19,10 @@ import { HighlightText } from "@/components/HighlightText";
 import { NoDataImage } from "@/components/img/NoDataImage";
 import { RaisingHands } from "@/components/img/twemoji/RaisingHands";
 import { TravauxNiveauIsolationSegmentedControl } from "@/components/IsolationSegmentedControl";
+import { config } from "@/config";
 import { Grid, GridCol } from "@/dsfr";
 import { H2, Text } from "@/dsfr/base/typography";
-import { useScrollPosition } from "@/lib/client/useScrollPosition";
+import { useTallyPopupOnScrollPosition } from "@/lib/client/useTallyPopupOnScrollPosition";
 import { estGlobalementRenove, type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
@@ -58,8 +59,7 @@ export const Resultat = ({
   const searchParams = useSearchParams();
   const router = useRouter();
   const [showToast, setShowToast] = useState(false);
-  const [showTally, setShowTally] = useState(false);
-  const { scrollPercentage } = useScrollPosition();
+  useTallyPopupOnScrollPosition(config.tally.feedback.id);
 
   const handleClose = (event: Event | React.SyntheticEvent, reason?: string) => {
     if (reason === "clickaway") {
@@ -68,26 +68,6 @@ export const Resultat = ({
 
     setShowToast(false);
   };
-
-  useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    if (window.Tally?.openPopup) {
-      if (scrollPercentage > 50 && !showTally) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-        window.Tally.openPopup("3j9oPa", {
-          width: 400,
-          emoji: {
-            text: "🙏",
-            animation: "heart-beat",
-          },
-          doNotShowAfterSubmit: true,
-          onClose: () => {
-            setShowTally(true);
-          },
-        });
-      }
-    }
-  }, [scrollPercentage, showTally]);
 
   return (
     <>
