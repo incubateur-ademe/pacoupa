@@ -62,7 +62,7 @@ const RootLayout = ({ children }: PropsWithChildren) => {
             //"Spectral-ExtraBold"
           ]}
         />
-        <Script src="https://tally.so/widgets/embed.js" />
+        <Script src="https://tally.so/widgets/embed.js" strategy="lazyOnload" />
 
         <Suspense>
           <Matomo env={config.env} />

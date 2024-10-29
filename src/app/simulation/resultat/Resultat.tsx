@@ -1,5 +1,11 @@
 "use client";
 
+declare global {
+  interface Window {
+    Tally?: Any;
+  }
+}
+
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import { Snackbar } from "@mui/material";
 import { push } from "@socialgouv/matomo-next";
@@ -13,13 +19,16 @@ import { HighlightText } from "@/components/HighlightText";
 import { NoDataImage } from "@/components/img/NoDataImage";
 import { RaisingHands } from "@/components/img/twemoji/RaisingHands";
 import { TravauxNiveauIsolationSegmentedControl } from "@/components/IsolationSegmentedControl";
+import { config } from "@/config";
 import { Grid, GridCol } from "@/dsfr";
 import { H2, Text } from "@/dsfr/base/typography";
+import { useTallyPopupOnScrollPosition } from "@/lib/client/useTallyPopupOnScrollPosition";
 import { estGlobalementRenove, type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
 import { matomoCategory } from "@/lib/matomo-events";
 import { createSearchParams } from "@/utils/searchParams";
+import { type Any } from "@/utils/types";
 
 import { CardRcu } from "./CardRcu";
 import { DebugButton } from "./DebugButton";
@@ -50,6 +59,7 @@ export const Resultat = ({
   const searchParams = useSearchParams();
   const router = useRouter();
   const [showToast, setShowToast] = useState(false);
+  useTallyPopupOnScrollPosition(config.tally.feedback.id);
 
   const handleClose = (event: Event | React.SyntheticEvent, reason?: string) => {
     if (reason === "clickaway") {

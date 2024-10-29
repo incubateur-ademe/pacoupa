@@ -132,7 +132,9 @@ export const PacoupaFooter = () => {
               },
               {
                 linkProps: {
-                  href: "mailto:pacoupa@beta.gouv.fr",
+                  // href: "mailto:pacoupa@beta.gouv.fr",
+                  href: "/contact",
+                  scroll: false,
                 },
                 text: "Contact",
               },

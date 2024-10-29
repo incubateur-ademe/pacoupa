@@ -13,8 +13,20 @@ export const config = {
   repositoryUrl: process.env.NEXT_PUBLIC_REPOSITORY_URL!,
   formUrl: "/simulation",
   ctaTitle: "Lancer la simulation",
-  tallyButtonLabel: "S'inscrire",
-  tallyId: "wvybQ4",
+  tally: {
+    inscription: {
+      label: "S'inscrire",
+      id: "wvybQ4",
+    },
+    contact: {
+      id: "n9JZBV",
+      label: "Contactez-nous",
+    },
+    feedback: {
+      id: "3j9oPa",
+      label: "Donnez-nous votre avis",
+    },
+  },
   storeKey: "pacoupa-simulation",
   cacheDuration: 1000 * 60 * 60, // 1 heure
 };
