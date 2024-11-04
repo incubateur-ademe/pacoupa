@@ -34,7 +34,9 @@ const ContactPage = () => {
         question.
       </p>
 
-      <iframe ref={iframeRef} loading="eager" width="100%" height="100%" title="Page de contact" allowFullScreen />
+      <div className="border border-solid border-body-700 shadow rounded-lg px-16 pb-8">
+        <iframe ref={iframeRef} loading="eager" width="100%" height="100%" title="Page de contact" allowFullScreen />
+      </div>
     </div>
   );
 };
