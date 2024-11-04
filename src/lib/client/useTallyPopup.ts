@@ -101,3 +101,37 @@ export const useTallyPopupOnScrollPosition = (formId: string, percentage?: numbe
     }
   }, [formId, options, finalPercentage, scrollPercentage, userHasCanceled]);
 };
+
+/**
+ * Open a Tally popup after a timeout.
+ *
+ * @param formId Tally form id
+ * @param options the options for the Tally popup
+ */
+export const useTallyPopupOnTimeout = (formId: string, delay: number = 10_000, options?: TallyPopupOptions) => {
+  const [userHasCanceled, setUserHasCanceled] = useState(false);
+
+  useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    if (window.Tally?.openPopup) {
+      const timeoutId = setTimeout(() => {
+        if (!userHasCanceled) {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+          window.Tally.openPopup(formId, {
+            width: 400,
+            emoji: {
+              text: "🙏",
+            },
+            doNotShowAfterSubmit: true,
+            onClose: () => {
+              setUserHasCanceled(true);
+            },
+            ...options,
+          });
+        }
+      }, delay);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [formId, delay, options, userHasCanceled]);
+};
