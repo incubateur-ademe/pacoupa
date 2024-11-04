@@ -22,7 +22,7 @@ import { TravauxNiveauIsolationSegmentedControl } from "@/components/IsolationSe
 import { config } from "@/config";
 import { Grid, GridCol } from "@/dsfr";
 import { H2, Text } from "@/dsfr/base/typography";
-import { useTallyPopupOnScrollPosition } from "@/lib/client/useTallyPopupOnScrollPosition";
+import { useTallyPopupOnTimeout } from "@/lib/client/useTallyPopup";
 import { estGlobalementRenove, type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
@@ -59,7 +59,7 @@ export const Resultat = ({
   const searchParams = useSearchParams();
   const router = useRouter();
   const [showToast, setShowToast] = useState(false);
-  useTallyPopupOnScrollPosition(config.tally.feedback.id);
+  useTallyPopupOnTimeout(config.tally.feedback.id, 60_000);
 
   const handleClose = (event: Event | React.SyntheticEvent, reason?: string) => {
     if (reason === "clickaway") {
