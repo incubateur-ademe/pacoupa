@@ -59,7 +59,7 @@ export const Resultat = ({
   const searchParams = useSearchParams();
   const router = useRouter();
   const [showToast, setShowToast] = useState(false);
-  useTallyPopupOnTimeout(config.tally.feedback.id, 60_000);
+  useTallyPopupOnTimeout(config.tally.feedback.id, 90_000);
 
   const handleClose = (event: Event | React.SyntheticEvent, reason?: string) => {
     if (reason === "clickaway") {
