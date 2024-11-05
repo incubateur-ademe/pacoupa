@@ -11,6 +11,7 @@ type Props = {
   headerAlign?: "center" | "left" | "right";
   marker?: string;
   markerPosition?: "left" | "right";
+  removeShadowOnHover?: boolean;
 };
 
 type CardHeaderProps = { image?: JSX.Element; title: React.ReactNode };
@@ -32,12 +33,17 @@ export const Card = ({
   footer,
   headerAlign = "left",
   footerAlign = "right",
+  removeShadowOnHover,
 }: Props) => {
   return (
     <>
       <div
         className={cx(
-          "flex flex-col justify-start items-stretch p-4 gap-1 bg-white border border-solid border-body-700 shadow rounded-lg w-full max-w-lg h-full relative",
+          "flex flex-col justify-start items-stretch p-4 gap-1 bg-white border border-solid border-body-700 shadow rounded-lg w-full max-w-lg h-full relative ",
+          {
+            "transition-transform duration-300 hover:shadow-none motion-reduce:transition-none motion-reduce:hover:transform-none":
+              removeShadowOnHover,
+          },
         )}
       >
         {/* Marker */}

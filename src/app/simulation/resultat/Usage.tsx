@@ -18,9 +18,11 @@ export const Usage = ({ solution, withTitle }: Props) => {
 
   return (
     <>
-      {withTitle && <Text className="font-medium mb-1">Usage</Text>}
+      <div className="flex gap-1">
+        {withTitle && <Text className="font-medium mb-1">Usage</Text>}
 
-      {typeComponent}
+        {typeComponent}
+      </div>
 
       <Grid haveGutters valign="top" className="mt-4">
         {usageCh !== "Non" && (

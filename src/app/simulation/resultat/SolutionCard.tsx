@@ -27,19 +27,25 @@ export const SolutionCard = ({ solution, informationBatiment, gestes, marker }: 
   const searchParams = useSearchParams();
 
   return (
-    <>
+    <div className="transition-transform motion-reduce:transition-none motion-reduce:hover:transform-none duration-300 hover:scale-105">
       <Card
+        removeShadowOnHover
         {...(marker && { marker })}
         content={
           <>
-            <div className="mt-8">
+            <div className="mt-6">
               <Isolation gestes={gestes} />
             </div>
-            <hr className="mt-10" />
+
+            <hr className="mt-8 pb-4" />
 
             <EstimationGains solution={solution} informationBatiment={informationBatiment} />
 
-            <EstimationCouts solution={solution} informationBatiment={informationBatiment} />
+            <hr className="my-0" />
+
+            <div className="-mt-10">
+              <EstimationCouts solution={solution} informationBatiment={informationBatiment} />
+            </div>
           </>
         }
         header={
@@ -53,9 +59,11 @@ export const SolutionCard = ({ solution, informationBatiment, gestes, marker }: 
           />
         }
         footer={
-          <div className="mt-12">
+          <div className="mt-8">
             <Button
-              priority="primary"
+              priority="tertiary"
+              iconId="ri-add-line"
+              iconPosition="left"
               linkProps={{
                 href: `/simulation/resultat/${solution.id}?${searchParams.toString()}`,
 
@@ -64,11 +72,11 @@ export const SolutionCard = ({ solution, informationBatiment, gestes, marker }: 
                 },
               }}
             >
-              Découvrir
+              En savoir plus
             </Button>
           </div>
         }
       />
-    </>
+    </div>
   );
 };
