@@ -27,8 +27,9 @@ export const SolutionCard = ({ solution, informationBatiment, gestes, marker }: 
   const searchParams = useSearchParams();
 
   return (
-    <div className="transition-transform duration-300 hover:scale-105">
+    <div className="transition-transform motion-reduce:transition-none motion-reduce:hover:transform-none duration-300 hover:scale-105">
       <Card
+        removeShadowOnHover
         {...(marker && { marker })}
         content={
           <>
