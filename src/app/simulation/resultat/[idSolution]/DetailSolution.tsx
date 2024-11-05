@@ -111,9 +111,9 @@ export const DetailSolution = ({ solution, informationBatiment }: Props) => {
 
       <hr className="mt-8" />
 
-      <EstimationGains solution={solution} informationBatiment={informationBatiment} avecMessage />
+      <EstimationGains withTitle solution={solution} informationBatiment={informationBatiment} avecMessage />
 
-      <EstimationCouts solution={solution} informationBatiment={informationBatiment} />
+      <EstimationCouts withTitle withTooltip solution={solution} informationBatiment={informationBatiment} />
 
       <Text className="font-medium mt-10 mb-0">Autres estimations</Text>
 
