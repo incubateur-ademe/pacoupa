@@ -13,6 +13,10 @@ export const {
       title: "Matomo",
       description: "Outil d’analyse comportementale des utilisateurs.",
     },
+    tally: {
+      title: "Tally",
+      description: "Hébergement de formulaires.",
+    },
   },
   personalDataPolicyLinkProps: {
     href: "/politique-de-confidentialite#cookies",
