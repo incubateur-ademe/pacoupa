@@ -1,6 +1,7 @@
 "use client";
 
 import { breakpoints } from "@codegouvfr/react-dsfr/fr/breakpoints";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 import Snackbar from "@mui/material/Snackbar";
 import { push } from "@socialgouv/matomo-next";
 import { useSearchParams } from "next/navigation";
@@ -30,7 +31,9 @@ type Props = {
 
 export const DetailSolution = ({ solution, informationBatiment }: Props) => {
   const [showToast, setShowToast] = useState(false);
+  const [showAllEvaluations, setShowAllEvaluations] = useState(false);
   const searchParams = useSearchParams();
+  const [animationParent] = useAutoAnimate();
 
   const { width = 0 } = useWindowSize({ debounceDelay: 100, initializeWithValue: false });
 
@@ -87,7 +90,7 @@ export const DetailSolution = ({ solution, informationBatiment }: Props) => {
         <div className="flex items-start gap-4 mt-8">
           <div>{familleImageMap[solution.familleSolution]}</div>
           <div>
-            <H2 as="h5">{solution.nom}</H2>
+            <H2 className="!text-base !font-bold">{solution.nom}</H2>
           </div>
         </div>
       </div>
@@ -97,7 +100,7 @@ export const DetailSolution = ({ solution, informationBatiment }: Props) => {
       </div>
 
       <div className="mt-4">
-        <Usage solution={solution} withTitle={true} />
+        <Usage solution={solution} withTitle />
       </div>
 
       <hr />
@@ -112,25 +115,38 @@ export const DetailSolution = ({ solution, informationBatiment }: Props) => {
 
       <EstimationCouts solution={solution} informationBatiment={informationBatiment} />
 
-      <Text className="font-medium mt-8 mb-0">Autres estimations</Text>
+      <Text className="font-medium mt-10 mb-0">Autres estimations</Text>
 
-      <div className="flex flex-col gap-6 mt-4 mb-8">
-        <Evaluation categorie="environnement" solution={solution} withDetails />
-
-        <Evaluation categorie="cout" solution={solution} withDetails />
-
+      <div className="flex flex-col gap-6 mt-4">
         <Evaluation categorie="difficulte" solution={solution} withDetails />
 
         <Evaluation categorie="travauxCollectif" solution={solution} withDetails />
 
         <Evaluation categorie="travauxIndividuel" solution={solution} withDetails />
 
-        <Evaluation categorie="acoustique" solution={solution} withDetails />
+        <Button
+          priority="tertiary"
+          iconId={showAllEvaluations ? "ri-arrow-up-s-line" : "ri-arrow-right-s-line"}
+          iconPosition="right"
+          onClick={() => setShowAllEvaluations(!showAllEvaluations)}
+        >
+          {!showAllEvaluations ? "Voir plus d'estimations" : "Voir moins d'estimations"}
+        </Button>
 
-        <Evaluation categorie="espaceExterieur" solution={solution} withDetails />
+        <div ref={animationParent}>
+          {showAllEvaluations && (
+            <>
+              <Evaluation categorie="acoustique" solution={solution} withDetails />
 
-        <Evaluation categorie="maturite" solution={solution} withDetails />
+              <Evaluation categorie="espaceExterieur" solution={solution} withDetails />
+
+              <Evaluation categorie="maturite" solution={solution} withDetails />
+            </>
+          )}
+        </div>
       </div>
+
+      <hr className="my-4" />
 
       <div className="mb-8">
         <FicheReferenceList solution={solution} />

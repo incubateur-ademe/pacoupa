@@ -12,6 +12,8 @@ import { Callout } from "./Callout";
 import { DPEImage } from "./img/DPEImage";
 import { FlecheImage } from "./img/FlecheImage";
 import { Logo } from "./img/Logo";
+import { Herb } from "./img/twemoji/Herb";
+import { MoneyBag } from "./img/twemoji/MoneyBag";
 
 type Props = {
   avecMessage?: boolean;
@@ -35,9 +37,14 @@ export const EstimationGains = ({ solution, avecMessage }: PropsWithChildren<Pro
     <>
       <div className="mb-8">
         <Text className="mb-0">Estimation des gains</Text>
-        <Text variant="xs">(isolations comprises)</Text>
+        <Text variant="xs" className="mb-0">
+          (isolations comprises)
+        </Text>
         <div className="px-2">
-          <Text variant="sm" className="mt-4 mb-2">
+          <Text variant="sm" className="flex gap-1 mt-4 mb-2 items-center font-medium">
+            <span className="inline-block w-[20px] leading-[0rem]" aria-hidden>
+              <Herb />
+            </span>
             Gains énergétiques
           </Text>
           <div className="grid grid-cols-[1fr_minmax(85px,_1fr)_1fr] gap-1 justify-items-center">
@@ -81,7 +88,10 @@ export const EstimationGains = ({ solution, avecMessage }: PropsWithChildren<Pro
               />
             </div>
           )}
-          <Text variant="sm" className="mt-2 mb-2">
+          <Text variant="sm" className="flex gap-1 mt-4 mb-2 items-center font-medium">
+            <span className="inline-block w-[20px] leading-[0rem]" aria-hidden>
+              <MoneyBag />
+            </span>
             Gains économiques
           </Text>
           <BadgeEuros

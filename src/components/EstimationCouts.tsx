@@ -11,6 +11,8 @@ import { formatEuroNoDecimal } from "@/utils/currency";
 import { approximation } from "@/utils/number";
 
 import { BadgeEuros } from "./BadgeEuros";
+import { Bank } from "./img/twemoji/Bank";
+import { Banknote } from "./img/twemoji/Banknote";
 
 type Props = {
   informationBatiment: InformationBatiment;
@@ -31,12 +33,17 @@ export const EstimationCouts = ({ solution }: PropsWithChildren<Props>) => {
   return (
     <>
       <div className="mt-8">
-        <Text className="mb-0">Estimation des coûts</Text>
-        <Text variant="xs">(isolations comprises)</Text>
+        <Text className="mb-0 font-medium">Estimation des coûts</Text>
+        <Text variant="xs" className="mb-0">
+          (isolations comprises)
+        </Text>
 
         <div className="px-2">
-          <Text variant="sm" className="flex items-baseline mt-4 mb-2">
-            Coût total du projet
+          <Text variant="sm" className="flex gap-1 mt-4 mb-2 items-center font-medium">
+            <span className="inline-block w-[20px] leading-[0rem]" aria-hidden>
+              <Banknote />
+            </span>
+            Coût total du projet (sans aides)
             <Tooltip
               title={
                 <>
@@ -51,14 +58,19 @@ export const EstimationCouts = ({ solution }: PropsWithChildren<Props>) => {
               <span className={cx(fr.cx("ri-information-line", "fr-icon--sm"), "ml-2")} />
             </Tooltip>
           </Text>
+
           <div>
             <BadgeEuros value={approximationEnveloppe + approximationSysteme} type="warning" prefix="≈" />{" "}
             <span className="text-sm">par logement</span>
           </div>
 
-          <Text variant="sm" className="mt-10 mb-2">
+          <Text variant="sm" className="flex gap-1 mt-4 mb-2 items-center font-medium">
+            <span className="inline-block w-[20px] leading-[0rem]" aria-hidden>
+              <Bank />
+            </span>
             Aides nationales
           </Text>
+
           <div>
             <BadgeEuros value={aidesLogement} type="success" prefix="⩾" /> <span className="text-sm">par logement</span>
           </div>

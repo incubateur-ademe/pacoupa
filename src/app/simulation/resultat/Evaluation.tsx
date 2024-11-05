@@ -14,26 +14,17 @@ import { Bust } from "@/components/img/twemoji/Bust";
 import { Busts } from "@/components/img/twemoji/Busts";
 import { Clock } from "@/components/img/twemoji/Clock";
 import { Eyes } from "@/components/img/twemoji/Eyes";
-import { Herb } from "@/components/img/twemoji/Herb";
-import { MoneyBag } from "@/components/img/twemoji/MoneyBag";
 import { Package } from "@/components/img/twemoji/Package";
 import { Speaker } from "@/components/img/twemoji/Speaker";
 import { Text } from "@/dsfr/base/typography";
 import { type Solution } from "@/lib/common/domain/values/Solution";
 import { matomoCategory } from "@/lib/matomo-events";
 
-import { acoustiqueMap, coutMap, environnementMap, faciliteMap, maturiteMap, travauxMap } from "./helper";
+import { acoustiqueMap, faciliteMap, maturiteMap, travauxMap } from "./helper";
 
 type SolutionEvaluation = keyof Pick<
   Solution,
-  | "acoustique"
-  | "cout"
-  | "difficulte"
-  | "environnement"
-  | "espaceExterieur"
-  | "maturite"
-  | "travauxCollectif"
-  | "travauxIndividuel"
+  "acoustique" | "difficulte" | "espaceExterieur" | "maturite" | "travauxCollectif" | "travauxIndividuel"
 >;
 
 type EvaluationProps = {
@@ -43,16 +34,6 @@ type EvaluationProps = {
 };
 
 const config = {
-  environnement: {
-    emoji: <Herb />,
-    titre: "Bénéfice environnemental",
-    mapper: environnementMap,
-  },
-  cout: {
-    emoji: <MoneyBag />,
-    titre: "Coût",
-    mapper: coutMap,
-  },
   difficulte: {
     emoji: <Package />,
     titre: "Facilité d’installation",
