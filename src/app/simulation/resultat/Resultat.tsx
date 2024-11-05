@@ -9,6 +9,7 @@ declare global {
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import { Snackbar } from "@mui/material";
 import { push } from "@socialgouv/matomo-next";
+import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
@@ -157,12 +158,14 @@ export const Resultat = ({
 
           return (
             <div key={solution.id}>
-              <SolutionCard
-                solution={solution}
-                gestes={gestes}
-                marker={marker}
-                informationBatiment={informationBatiment}
-              />
+              <Link href={`/simulation/resultat/${solution.id}?${searchParams.toString()}`}>
+                <SolutionCard
+                  solution={solution}
+                  gestes={gestes}
+                  marker={marker}
+                  informationBatiment={informationBatiment}
+                />
+              </Link>
             </div>
           );
         })}
