@@ -2,7 +2,7 @@ import { Footer } from "@codegouvfr/react-dsfr/Footer";
 import { type HeaderProps } from "@codegouvfr/react-dsfr/Header";
 
 import { config } from "@/config";
-import { FooterPersonalDataPolicyItem } from "@/consentManagement";
+import { FooterConsentManagementItem, FooterPersonalDataPolicyItem } from "@/consentManagement";
 
 import styles from "./PacoupaFooter.module.scss";
 
@@ -34,11 +34,7 @@ export const PacoupaFooter = () => {
             text: "Politique des cookies",
             linkProps: { href: "/politique-des-cookies" },
           },
-          // {
-          //   ...headerFooterDisplayItem,
-          //   iconId: "fr-icon-theme-fill",
-          // },
-          // <FooterConsentManagementItem key="FooterConsentManagementItem" />,
+          <FooterConsentManagementItem key="FooterConsentManagementItem" />,
           {
             text: <>▲&nbsp;Propulsé par Vercel</>,
             linkProps: {

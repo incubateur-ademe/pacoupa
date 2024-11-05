@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+import { useConsent } from "@/consentManagement";
 import { type Any } from "@/utils/types";
 
 import { useScrollPosition } from "./useScrollPosition";
@@ -77,45 +78,16 @@ type TallyPopupOptions = {
  */
 export const useTallyPopupOnScrollPosition = (formId: string, percentage?: number, options?: TallyPopupOptions) => {
   const [userHasCanceled, setUserHasCanceled] = useState(false);
+  const { finalityConsent } = useConsent();
   const { scrollPercentage } = useScrollPosition();
 
   const finalPercentage = !percentage ? 50 : percentage <= 0 || percentage > 100 ? 50 : percentage;
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    if (window.Tally?.openPopup) {
-      if (scrollPercentage > finalPercentage && !userHasCanceled) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-        window.Tally.openPopup(formId, {
-          width: 400,
-          emoji: {
-            text: "🙏",
-          },
-          doNotShowAfterSubmit: true,
-          onClose: () => {
-            setUserHasCanceled(true);
-          },
-          ...options,
-        });
-      }
-    }
-  }, [formId, options, finalPercentage, scrollPercentage, userHasCanceled]);
-};
-
-/**
- * Open a Tally popup after a timeout.
- *
- * @param formId Tally form id
- * @param options the options for the Tally popup
- */
-export const useTallyPopupOnTimeout = (formId: string, delay: number = 10_000, options?: TallyPopupOptions) => {
-  const [userHasCanceled, setUserHasCanceled] = useState(false);
-
-  useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    if (window.Tally?.openPopup) {
-      const timeoutId = setTimeout(() => {
-        if (!userHasCanceled) {
+    if (finalityConsent?.tally) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      if (window.Tally?.openPopup) {
+        if (scrollPercentage > finalPercentage && !userHasCanceled) {
           // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
           window.Tally.openPopup(formId, {
             width: 400,
@@ -129,9 +101,44 @@ export const useTallyPopupOnTimeout = (formId: string, delay: number = 10_000, o
             ...options,
           });
         }
-      }, delay);
-
-      return () => clearTimeout(timeoutId);
+      }
     }
-  }, [formId, delay, options, userHasCanceled]);
+  }, [formId, options, finalPercentage, scrollPercentage, userHasCanceled, finalityConsent?.tally]);
+};
+
+/**
+ * Open a Tally popup after a timeout.
+ *
+ * @param formId Tally form id
+ * @param options the options for the Tally popup
+ */
+export const useTallyPopupOnTimeout = (formId: string, delay: number = 10_000, options?: TallyPopupOptions) => {
+  const [userHasCanceled, setUserHasCanceled] = useState(false);
+  const { finalityConsent } = useConsent();
+
+  useEffect(() => {
+    if (finalityConsent?.tally) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      if (window.Tally?.openPopup) {
+        const timeoutId = setTimeout(() => {
+          if (!userHasCanceled) {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+            window.Tally.openPopup(formId, {
+              width: 400,
+              emoji: {
+                text: "🙏",
+              },
+              doNotShowAfterSubmit: true,
+              onClose: () => {
+                setUserHasCanceled(true);
+              },
+              ...options,
+            });
+          }
+        }, delay);
+
+        return () => clearTimeout(timeoutId);
+      }
+    }
+  }, [formId, delay, options, userHasCanceled, finalityConsent?.tally]);
 };

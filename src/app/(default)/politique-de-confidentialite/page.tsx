@@ -38,23 +38,51 @@ export default function PolitiqueConfidentialite() {
             editor: "Matomo & ADEME",
             destination: "France",
           },
+          {
+            category: "Hébergement de formulaires",
+            name: "Tally",
+            expiration: "7 jours",
+            finalities: "Mesure d’audience",
+            editor: "Tally",
+            destination: "France",
+          },
         ]}
         thirdParties={[
           {
             name: "Vercel",
             country: "États-Unis",
             hostingCountry: "France (AWS cdg1)",
-            serviceType: "Hébergement",
+            serviceType: "Hébergement du site web",
             policyUrl: "https://vercel.com/legal/privacy-policy",
           },
-          // {
-          //   name: "<Renseigner le nom du service>",
-          //   country: "<Pays d’origine du service>",
-          //   hostingCountry:
-          //     "<Si le service permet de changer la localisation du stockage ou du transit des données, le préciser>",
-          //   serviceType: "<Renseigner le type service (Hébergement, bdd, etc.)>",
-          //   policyUrl: "<Ajouter le lien de la politique de confidentialité du service>",
-          // },
+          {
+            name: "Turso",
+            country: "États-Unis",
+            hostingCountry: "France, Paris",
+            serviceType: "Hébergement des données",
+            policyUrl: "https://turso.tech/privacy-policy",
+          },
+          {
+            name: "Matomo",
+            country: "États-Unis",
+            hostingCountry: "Europe",
+            serviceType: "Mesure d’audience anonymisée",
+            policyUrl: "https://fr.matomo.org/privacy-policy/",
+          },
+          {
+            name: "Sentry",
+            country: "États-Unis",
+            hostingCountry: "Europe",
+            serviceType: "Surveillance des erreurs",
+            policyUrl: "https://sentry.io/privacy/",
+          },
+          {
+            name: "Tally",
+            country: "Belgique",
+            hostingCountry: "Europe",
+            serviceType: "Hébergement de formulaires",
+            policyUrl: "https://tally.so/help/terms-and-privacy",
+          },
         ]}
       />
     </div>
