@@ -12,16 +12,19 @@ import { Callout } from "./Callout";
 import { DPEImage } from "./img/DPEImage";
 import { FlecheImage } from "./img/FlecheImage";
 import { Logo } from "./img/Logo";
+import { Herb } from "./img/twemoji/Herb";
+import { MoneyBag } from "./img/twemoji/MoneyBag";
 
 type Props = {
   avecMessage?: boolean;
   informationBatiment: InformationBatiment;
   solution: SolutionAvecEnergieCoutAide;
+  withTitle?: boolean;
 };
 
 const approximation10 = approximation(1);
 
-export const EstimationGains = ({ solution, avecMessage }: PropsWithChildren<Props>) => {
+export const EstimationGains = ({ solution, avecMessage, withTitle }: PropsWithChildren<Props>) => {
   assert(solution.cepAvant && solution.cepApres, "cepAvant and cepApres should be defined");
 
   const pourcentageGain = Math.round(((solution.cepAvant - solution.cepApres) / solution.cepAvant) * 100);
@@ -34,11 +37,20 @@ export const EstimationGains = ({ solution, avecMessage }: PropsWithChildren<Pro
   return (
     <>
       <div className="mb-8">
-        <Text className="mb-0">Estimation des gains</Text>
-        <Text variant="xs">(isolations comprises)</Text>
+        {withTitle && (
+          <div className="mb-4">
+            <Text className="mb-0">Estimation des gains</Text>
+            <Text variant="xs" className="mb-0">
+              (isolations comprises)
+            </Text>
+          </div>
+        )}
         <div className="px-2">
-          <Text variant="sm" className="mt-4 mb-2">
-            Gains énergétiques
+          <Text variant="sm" className="flex gap-1 mt-0 mb-2 items-center font-medium">
+            <span className="inline-block w-[20px] leading-[0rem]" aria-hidden>
+              <Herb />
+            </span>
+            Gains énergétiques estimés
           </Text>
           <div className="grid grid-cols-[1fr_minmax(85px,_1fr)_1fr] gap-1 justify-items-center">
             <Text variant="xs" className="font-normal w-[62px] mb-0">
@@ -48,23 +60,24 @@ export const EstimationGains = ({ solution, avecMessage }: PropsWithChildren<Pro
             <div></div>
 
             <DPEImage lettre={solution.dpeAvant} />
-            <FlecheImage />
-            <DPEImage lettre={solution.dpeApres} />
+            <div className="relative">
+              <FlecheImage />
 
-            <div></div>
-            <div className="text-center">
-              <Badge
-                label={`- ${pourcentageGain}%`}
-                type="success"
-                title={`CEP initiale: ${solution.cepAvant} | CEP future: ${solution.cepApres}`}
-              />
-              <Text variant="xs" className="mb-0">
-                Gain d'énergie
-              </Text>
+              <div className="text-center absolute top-1">
+                <Badge
+                  label={`- ${pourcentageGain}%`}
+                  type="success"
+                  title={`CEP initiale: ${solution.cepAvant} | CEP future: ${solution.cepApres}`}
+                />
+                <Text variant="xs" className="mb-0">
+                  Gain d'énergie
+                </Text>
+              </div>
             </div>
+            <DPEImage lettre={solution.dpeApres} />
           </div>
           {avecMessage && (
-            <div className="mt-0 mb-4">
+            <div className="mt-8 mb-4">
               <Callout
                 type="pacoupa"
                 icon={<Logo />}
@@ -81,8 +94,11 @@ export const EstimationGains = ({ solution, avecMessage }: PropsWithChildren<Pro
               />
             </div>
           )}
-          <Text variant="sm" className="mt-2 mb-2">
-            Gains économiques
+          <Text variant="sm" className="flex gap-1 mt-8 mb-2 items-center font-medium">
+            <span className="inline-block w-[20px] leading-[0rem]" aria-hidden>
+              <MoneyBag />
+            </span>
+            Gains économiques estimés
           </Text>
           <BadgeEuros
             value={Math.abs(approximation10(gainEconomique))}
