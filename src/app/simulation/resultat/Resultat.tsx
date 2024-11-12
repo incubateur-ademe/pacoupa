@@ -60,7 +60,7 @@ export const Resultat = ({
   const searchParams = useSearchParams();
   const router = useRouter();
   const [showToast, setShowToast] = useState(false);
-  useTallyPopupOnTimeout(config.tally.feedback.id, 90_000);
+  useTallyPopupOnTimeout(config.tally.feedback.id, 45_000);
 
   const handleClose = (event: Event | React.SyntheticEvent, reason?: string) => {
     if (reason === "clickaway") {
@@ -158,7 +158,14 @@ export const Resultat = ({
 
           return (
             <div key={solution.id}>
-              <Link href={`/simulation/resultat/${solution.id}?${searchParams.toString()}`}>
+              <Link
+                href={`/simulation/resultat/${solution.id}?${searchParams.toString()}`}
+                className="block h-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition-transform motion-reduce:transition-none motion-reduce:hover:transform-none duration-300 hover:scale-103 focus-within:scale-103 active:scale-103 rounded-lg"
+                onClick={() => {
+                  push(["trackEvent", matomoCategory.resultats, "Clic Découvrir", "Découvrir"]);
+                }}
+                scroll={true}
+              >
                 <SolutionCard
                   solution={solution}
                   gestes={gestes}
