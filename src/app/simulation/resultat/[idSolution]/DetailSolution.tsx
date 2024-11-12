@@ -15,6 +15,7 @@ import { Button } from "@/components/Button";
 import { EstimationCouts } from "@/components/EstimationCouts";
 import { EstimationGains } from "@/components/EstimationGains";
 import { H2, Text } from "@/dsfr/base/typography";
+import { useScrollTop } from "@/lib/client/useScrollTop";
 import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
 import { matomoCategory } from "@/lib/matomo-events";
@@ -30,6 +31,7 @@ type Props = {
 };
 
 export const DetailSolution = ({ solution, informationBatiment }: Props) => {
+  useScrollTop();
   const [showToast, setShowToast] = useState(false);
   const [showAllEvaluations, setShowAllEvaluations] = useState(false);
   const searchParams = useSearchParams();
