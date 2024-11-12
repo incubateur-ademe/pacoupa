@@ -23,7 +23,7 @@ type Props = {
 export const SolutionCard = ({ solution, informationBatiment, gestes, marker }: PropsWithChildren<Props>) => {
   return (
     <Card
-      removeShadowOnHover
+      removeShadowOnClick
       {...(marker && { marker })}
       content={
         <>
