@@ -54,7 +54,7 @@ export const SolutionCard = ({ solution, informationBatiment, gestes, marker }: 
       }
       footer={
         <>
-          <div className="flex gap-2 justify-between items-center pb-2 mt-8 border-b-2 border-t-0 border-x-0 border-solid border-[#304436] hover:!border-[#80b990] hover:!text-[#80b990] active:!text-[#92e3a9] shadow-none px-0 font-bold">
+          <div className="group-hover:scale-105 transition-transform motion-reduce:transition-none motion-reduce:hover:transform-none duration-300 flex gap-2 justify-between items-center pb-2 mt-8 border-b-2 border-t-0 border-x-0 border-solid border-[#304436] hover:!border-[#80b990] hover:!text-[#80b990] active:!text-[#92e3a9] shadow-none px-0 font-bold">
             <div className="w-4 h-4">
               <PlusIcon />
             </div>
