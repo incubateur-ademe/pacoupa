@@ -4,6 +4,7 @@ import Link, { type LinkProps } from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { type AnchorHTMLAttributes, createElement } from "react";
 
+import { anchorHeadingMDXComponents } from "@/mdx-components";
 import { type Any } from "@/utils/types";
 
 type TableProps = {
@@ -108,5 +109,6 @@ interface CustomMDXProps {
 }
 
 export function CustomMDX(props: CustomMDXProps) {
-  return <MDXRemote {...props} components={{ ...components, ...(props.components || {}) }} />;
+  // return <MDXRemote {...props} components={{ ...components, ...(props.components || {}) }} />;
+  return <MDXRemote {...props} components={{ ...anchorHeadingMDXComponents, ...(props.components || {}) }} />;
 }

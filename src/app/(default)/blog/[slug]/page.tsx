@@ -2,6 +2,7 @@ import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { baseUrl } from "@/app/sitemap";
+import { H1 } from "@/dsfr/base/typography";
 
 import { CustomMDX } from "../mdx";
 import { formatDate, getBlogPosts } from "../utils";
@@ -67,7 +68,7 @@ export default function Blog({ params }: Props) {
   }
 
   return (
-    <div className="col-start-2">
+    <>
       <section>
         <script
           type="application/ld+json"
@@ -85,20 +86,20 @@ export default function Blog({ params }: Props) {
                 : `/og?title=${encodeURIComponent(post.metadata.title)}`,
               url: `${baseUrl}/blog/${post.slug}`,
               author: {
-                "@type": "Person",
-                name: "My Portfolio",
+                "@type": "Organization",
+                name: "Blog Pacoupa",
               },
             }),
           }}
         />
-        <h1 className="title font-semibold text-2xl tracking-tighter">{post.metadata.title}</h1>
-        <div className="flex justify-between items-center mt-2 mb-8 text-sm">
+        <H1 className="mb-3">{post.metadata.title}</H1>
+        <div className="flex justify-between items-center mb-2 text-sm">
           <p className="text-sm text-neutral-600 dark:text-neutral-400">{formatDate(post.metadata.publishedAt)}</p>
         </div>
         <article className="prose">
           <CustomMDX source={post.content} />
         </article>
       </section>
-    </div>
+    </>
   );
 }

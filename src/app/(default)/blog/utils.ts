@@ -50,32 +50,14 @@ function getMDXData(dir: string) {
 }
 
 export function getBlogPosts() {
-  console.log("dans getBlogPosts");
   return getMDXData(path.join(process.cwd(), "content", "posts"));
 }
 
-export function formatDate(date: string, includeRelative = false) {
-  const currentDate = new Date();
+export function formatDate(date: string) {
   if (!date.includes("T")) {
     date = `${date}T00:00:00`;
   }
   const targetDate = new Date(date);
-
-  const yearsAgo = currentDate.getFullYear() - targetDate.getFullYear();
-  const monthsAgo = currentDate.getMonth() - targetDate.getMonth();
-  const daysAgo = currentDate.getDate() - targetDate.getDate();
-
-  let formattedDate = "";
-
-  if (yearsAgo > 0) {
-    formattedDate = `Il y a ${yearsAgo} ans`;
-  } else if (monthsAgo > 0) {
-    formattedDate = `il y a ${monthsAgo} mois`;
-  } else if (daysAgo > 0) {
-    formattedDate = `il y a ${daysAgo} jours`;
-  } else {
-    formattedDate = "Aujourd'hui";
-  }
 
   const fullDate = targetDate.toLocaleString("fr-fr", {
     month: "long",
@@ -83,9 +65,5 @@ export function formatDate(date: string, includeRelative = false) {
     year: "numeric",
   });
 
-  if (!includeRelative) {
-    return fullDate;
-  }
-
-  return `${fullDate} (${formattedDate})`;
+  return `${fullDate}`;
 }
