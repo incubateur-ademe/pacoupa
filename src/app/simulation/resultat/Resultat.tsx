@@ -160,7 +160,7 @@ export const Resultat = ({
             <div key={solution.id}>
               <Link
                 href={`/simulation/resultat/${solution.id}?${searchParams.toString()}`}
-                className="block h-full focus:outline-none focus:ring-2 focus:ring-blue-500 transition-transform motion-reduce:transition-none motion-reduce:hover:transform-none duration-300 hover:scale-103 focus-within:scale-103 active:scale-103 rounded-lg"
+                className="group block h-full rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-transform motion-reduce:transition-none motion-reduce:hover:transform-none duration-300 hover:scale-103 focus-within:scale-103 active:scale-103"
                 onClick={() => {
                   push(["trackEvent", matomoCategory.resultats, "Clic Découvrir", "Découvrir"]);
                 }}
