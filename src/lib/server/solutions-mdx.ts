@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-unresolved
 import "server-only";
 
 import { readdir } from "fs/promises";
