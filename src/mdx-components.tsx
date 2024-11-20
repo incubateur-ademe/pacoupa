@@ -5,9 +5,9 @@ import { MdxLink } from "@/components/mdx/Link";
 import { getLabelFromChildren } from "@/utils/react";
 import { slugify } from "@/utils/string";
 
+import { Card } from "./components/Card";
 import { CTA } from "./components/CTA";
 import { AnchorLink } from "./dsfr/client";
-import { Card } from "./components/Card";
 
 export const anchorHeadingMDXComponents: MDXComponents = {
   h1: props => <AnchorLink as="h1" anchor={slugify(getLabelFromChildren(props.children))} {...props} />,
