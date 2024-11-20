@@ -16,7 +16,7 @@ export async function BlogPosts() {
 
   return (
     <>
-      <div className="mb-8">
+      <div className="mb-4 md:mb-8">
         <Link key={firstPost.slug} className="flex flex-col space-y-1 bg-none" href={`/blog/${firstPost.slug}`}>
           {firstPost.frontmatter.image && (
             <div className="mb-8 relative w-full h-[400px]">
@@ -28,21 +28,22 @@ export async function BlogPosts() {
               />
             </div>
           )}
-          <div className="w-full flex flex-col justify-center items-center space-x-0 md:space-x-2">
-            <H2 as="h4" className="text-neutral-900 dark:text-neutral-100 tracking-tight mb-1">
+          <div className="w-full flex flex-col justify-center items-start">
+          
+            <H2 as="h4" className="text-neutral-900 tracking-tight mb-1 text-pretty">
               {firstPost.frontmatter.title}
             </H2>
             <p className="text-neutral-600 tabular-nums text-sm">{formatDate(firstPost.frontmatter.publishedAt)}</p>
-            <p>{firstPost.frontmatter.summary}</p>
+            <p className="line-clamp-5 md:line-clamp-6">{firstPost.frontmatter.summary}</p>
           </div>
         </Link>
       </div>
-      <div className="grid grid-cols-2 gap-8">
+      <div className="grid grid-col-1 lg:grid-cols-2 gap-2 md:gap-8">
         {restPosts.map(post => (
           <div key={post.slug} className="mb-8">
             <Link className="flex flex-col space-y-1 bg-none" href={`/blog/${post.slug}`}>
               {post.frontmatter.image && (
-                <div className="mb-8 relative w-full h-[400px]">
+                <div className="mb-4 relative w-full h-[400px]">
                   <Image
                     src={post.frontmatter.image}
                     alt="Image de décoration de l'article"
@@ -51,14 +52,14 @@ export async function BlogPosts() {
                   />
                 </div>
               )}
-              <div className="w-full flex flex-col justify-center items-center space-x-0 md:space-x-2">
-                <H2 as="h5" className="text-neutral-900 tracking-tight mb-1">
+              <div className="w-full flex flex-col justify-center items-start">
+                <H2 as="h5" className="text-neutral-900 tracking-tight mb-1 text-pretty">
                   {post.frontmatter.title}
                 </H2>
-                <p className="text-neutral-600 dark:text-gray-500 tabular-nums text-sm">
+                <p className="text-neutral-600 tabular-nums text-sm mb-2">
                   {formatDate(post.frontmatter.publishedAt)}
                 </p>
-                <p>{post.frontmatter.summary}</p>
+                <p className="line-clamp-3 md:line-clamp-4 lg:line-clamp-5">{post.frontmatter.summary}</p>
               </div>
             </Link>
           </div>

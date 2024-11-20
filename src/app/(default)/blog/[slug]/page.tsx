@@ -104,7 +104,7 @@ export default async function Blog({ params }: Props) {
             />
           </div>
         )}
-        <H2 as="h4" className="my-3">
+        <H2 as="h3" className="my-3">
           {post.frontmatter.title}
         </H2>
         <div className="flex justify-between items-center mb-2 text-sm">

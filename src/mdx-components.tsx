@@ -25,6 +25,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     a: MdxLink,
     CTA: CTA,
+    ...anchorHeadingMDXComponents,
     ...components,
   };
 }
