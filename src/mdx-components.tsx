@@ -7,6 +7,7 @@ import { slugify } from "@/utils/string";
 
 import { CTA } from "./components/CTA";
 import { AnchorLink } from "./dsfr/client";
+import { Card } from "./components/Card";
 
 export const anchorHeadingMDXComponents: MDXComponents = {
   h1: props => <AnchorLink as="h1" anchor={slugify(getLabelFromChildren(props.children))} {...props} />,
@@ -24,7 +25,8 @@ export const paragraphContentMDXComponents: MDXComponents = {
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     a: MdxLink,
-    CTA: CTA,
+    CTA,
+    Card,
     ...anchorHeadingMDXComponents,
     ...components,
   };
