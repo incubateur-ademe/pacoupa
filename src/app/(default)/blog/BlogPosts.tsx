@@ -29,7 +29,6 @@ export async function BlogPosts() {
             </div>
           )}
           <div className="w-full flex flex-col justify-center items-start">
-          
             <H2 as="h4" className="text-neutral-900 tracking-tight mb-1 text-pretty">
               {firstPost.frontmatter.title}
             </H2>
@@ -56,9 +55,7 @@ export async function BlogPosts() {
                 <H2 as="h5" className="text-neutral-900 tracking-tight mb-1 text-pretty">
                   {post.frontmatter.title}
                 </H2>
-                <p className="text-neutral-600 tabular-nums text-sm mb-2">
-                  {formatDate(post.frontmatter.publishedAt)}
-                </p>
+                <p className="text-neutral-600 tabular-nums text-sm mb-2">{formatDate(post.frontmatter.publishedAt)}</p>
                 <p className="line-clamp-3 md:line-clamp-4 lg:line-clamp-5">{post.frontmatter.summary}</p>
               </div>
             </Link>
