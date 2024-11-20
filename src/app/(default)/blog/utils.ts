@@ -1,57 +1,15 @@
-import fs from "fs";
+import { readdir } from "fs/promises";
+import { type MDXProps } from "mdx/types";
 import path from "path";
+import { z } from "zod";
 
-type Metadata = {
-  image?: string;
-  publishedAt: string;
-  summary: string;
-  title: string;
-};
-
-function parseFrontmatter(fileContent: string) {
-  const frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
-  const match = frontmatterRegex.exec(fileContent);
-  const frontMatterBlock = match![1];
-  const content = fileContent.replace(frontmatterRegex, "").trim();
-  const frontMatterLines = frontMatterBlock.trim().split("\n");
-  const metadata: Partial<Metadata> = {};
-
-  frontMatterLines.forEach(line => {
-    const [key, ...valueArr] = line.split(": ");
-    let value = valueArr.join(": ").trim();
-    value = value.replace(/^['"](.*)['"]$/, "$1"); // Remove quotes
-    metadata[key.trim() as keyof Metadata] = value;
-  });
-
-  return { metadata: metadata as Metadata, content };
-}
-
-function getMDXFiles(dir: string) {
-  return fs.readdirSync(dir).filter(file => path.extname(file) === ".mdx");
-}
-
-function readMDXFile(filePath: string) {
-  const rawContent = fs.readFileSync(filePath, "utf-8");
-  return parseFrontmatter(rawContent);
-}
-
-function getMDXData(dir: string) {
-  const mdxFiles = getMDXFiles(dir);
-  return mdxFiles.map(file => {
-    const { metadata, content } = readMDXFile(path.join(dir, file));
-    const slug = path.basename(file, path.extname(file));
-
-    return {
-      metadata,
-      slug,
-      content,
-    };
-  });
-}
-
-export function getBlogPosts() {
-  return getMDXData(path.join(process.cwd(), "content", "posts"));
-}
+const MetadataSchema = z.object({
+  image: z.string().optional(),
+  publishedAt: z.string(),
+  draft: z.boolean().default(true),
+  summary: z.string(),
+  title: z.string(),
+});
 
 export function formatDate(date: string) {
   if (!date.includes("T")) {
@@ -67,3 +25,43 @@ export function formatDate(date: string) {
 
   return `${fullDate}`;
 }
+
+type GetBlogPostsReturn = MDXFormat[];
+
+type MDXFormat = {
+  content: (props: MDXProps) => JSX.Element;
+  frontmatter: z.infer<typeof MetadataSchema>;
+  slug: string;
+};
+
+type RemarkCompileReturnWithFilename = {
+  default: (props: MDXProps) => JSX.Element;
+  filename: string;
+  frontmatter: Record<string, unknown>;
+};
+
+export const getBlogPosts = async (): Promise<GetBlogPostsReturn> => {
+  // List all mdx files.
+  const fileNames = (await readdir("content/posts", { withFileTypes: true }))
+    .filter(filenode => filenode.isFile())
+    .filter(dir => dir.name.endsWith(".mdx"))
+    .map(dir => dir.name);
+
+  // Compilation of mdx files.
+  const mdxFilesWithUnknownFrontmatter = await Promise.all(
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+    fileNames.map<Promise<RemarkCompileReturnWithFilename>>(async filename => ({
+      ...(await import(`@__content/posts/${filename}`)),
+      filename,
+    })),
+  );
+
+  // Transformation and parsing of frontmatter.
+  const mdxFiles = mdxFilesWithUnknownFrontmatter.map(file => ({
+    content: file.default,
+    frontmatter: MetadataSchema.parse(file.frontmatter),
+    slug: path.basename(file.filename, path.extname(file.filename)),
+  }));
+
+  return mdxFiles;
+};
