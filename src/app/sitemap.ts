@@ -1,6 +1,8 @@
+import { config } from "@/config";
+
 import { getBlogPosts } from "./(default)/blog/utils";
 
-export const baseUrl = "https://portfolio-blog-starter.vercel.app";
+export const baseUrl = config.host || "https://pacoupa.ademe.fr/";
 
 export default async function sitemap() {
   const blogs = (await getBlogPosts()).map(post => ({
