@@ -87,6 +87,7 @@ const loadMDXFiles = async (fileNames: string[]) => {
       throw new Error(`Invalid frontmatter found in ${file.filename}: ${JSON.stringify(result.error.errors, null, 2)}`);
     }
 
+    // Check if slug is valid.
     sluggify(file.filename);
   }
 
@@ -116,7 +117,7 @@ export const getBlogPost = async (slug: string): Promise<MDXFormat> => {
   const fileNames = await getMDXFilenames();
 
   // Find the file that matches the given slug.
-  const matchingFile = fileNames.find(filename => sluggify(filename));
+  const matchingFile = fileNames.find(filename => slug === sluggify(filename));
 
   if (!matchingFile) {
     throw new Error(`No blog post found with slug: ${slug}`);

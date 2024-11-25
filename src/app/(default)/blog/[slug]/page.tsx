@@ -61,7 +61,7 @@ type Props = {
 };
 
 export default async function Blog({ params }: Props) {
-  const post = (await getBlogPosts()).find(post => post.slug === params.slug);
+  const post = await getBlogPost(params.slug);
 
   if (!post) {
     notFound();
