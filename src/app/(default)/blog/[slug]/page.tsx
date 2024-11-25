@@ -3,6 +3,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 
 import { baseUrl } from "@/app/sitemap";
+import { config } from "@/config";
 import { H2 } from "@/dsfr/base/typography";
 
 import { formatDate, getBlogPost, getBlogPosts } from "../utils";
@@ -27,17 +28,17 @@ export async function generateMetadata({ params }: GenerateMetadataProps): Promi
     return;
   }
 
-  const { title, publishedAt: publishedTime, summary: description, image } = post.frontmatter;
+  const { title, publishedAt, summary, image } = post.frontmatter;
   const ogImage = image ? image : `${baseUrl}/og?title=${encodeURIComponent(title)}`;
 
   return {
     title,
-    description,
+    description: summary,
     openGraph: {
       title,
-      description,
+      description: summary,
       type: "article",
-      publishedTime,
+      publishedTime: publishedAt,
       url: `${baseUrl}/blog/${post.slug}`,
       images: [
         {
@@ -48,7 +49,7 @@ export async function generateMetadata({ params }: GenerateMetadataProps): Promi
     twitter: {
       card: "summary_large_image",
       title,
-      description,
+      description: summary,
       images: [ogImage],
     },
   };
@@ -67,6 +68,9 @@ export default async function Blog({ params }: Props) {
     notFound();
   }
 
+  const { title, publishedAt, summary, image } = post.frontmatter;
+  const ogImage = image ? image : `${baseUrl}/og?title=${encodeURIComponent(title)}`;
+
   const Content = post.content;
 
   return (
@@ -79,36 +83,29 @@ export default async function Blog({ params }: Props) {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "BlogPosting",
-              headline: post.frontmatter.title,
-              datePublished: post.frontmatter.publishedAt,
-              dateModified: post.frontmatter.publishedAt,
-              description: post.frontmatter.summary,
-              image: post.frontmatter.image
-                ? `${baseUrl}${post.frontmatter.image}`
-                : `/og?title=${encodeURIComponent(post.frontmatter.title)}`,
+              headline: title,
+              datePublished: publishedAt,
+              dateModified: publishedAt,
+              description: summary,
+              image: ogImage,
               url: `${baseUrl}/blog/${post.slug}`,
               author: {
                 "@type": "Organization",
-                name: "Blog Pacoupa",
+                name: `${config.name || "Pacoupa"} - ADEME`,
               },
             }),
           }}
         />
-        {post.frontmatter.image && (
+        {image && (
           <div className="mb-8 relative w-full h-[500px]">
-            <Image
-              src={post.frontmatter.image}
-              alt="Image de décoration de l'article"
-              fill
-              className="rounded-lg object-cover"
-            />
+            <Image src={image} alt="Image de décoration de l'article" fill className="rounded-lg object-cover" />
           </div>
         )}
         <H2 as="h3" className="my-3">
-          {post.frontmatter.title}
+          {title}
         </H2>
         <div className="flex justify-between items-center mb-2 text-sm">
-          <p className="text-sm text-neutral-600 dark:text-neutral-400">{formatDate(post.frontmatter.publishedAt)}</p>
+          <p className="text-sm text-neutral-600 dark:text-neutral-400">{formatDate(publishedAt)}</p>
         </div>
         <article className="prose">
           <Content />
