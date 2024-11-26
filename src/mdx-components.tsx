@@ -50,16 +50,20 @@ export const paragraphContentMDXComponents: MDXComponents = {
   p: Fragment,
 };
 
+export const defaultMdxComponents: MDXComponents = {
+  a: MdxLink,
+  CTA,
+  Card,
+  Details,
+  Question,
+  Reponse,
+  Separateur,
+  ...anchorHeadingMDXComponents,
+};
+
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
-    a: MdxLink,
-    CTA,
-    Card,
-    Details,
-    Question,
-    Reponse,
-    Separateur,
-    ...anchorHeadingMDXComponents,
+    ...defaultMdxComponents,
     ...components,
   };
 }
