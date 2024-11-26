@@ -20,7 +20,11 @@ export const Details = ({ children }: PropsWithChildren) => {
 
 export const Question = ({ children }: PropsWithChildren) => {
   return (
-    <AnchorLink as="summary" anchor={slugify(getLabelFromChildren(children))} className="mt-2 list-outside">
+    <AnchorLink
+      as="summary"
+      anchor={slugify(getLabelFromChildren(children))}
+      className="mt-2 list-outside focus:!outline-primary-700"
+    >
       <b>{children}</b>
     </AnchorLink>
   );
