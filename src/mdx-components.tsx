@@ -9,15 +9,28 @@ import { Card } from "./components/Card";
 import { CTA } from "./components/CTA";
 import { AnchorLink } from "./dsfr/client";
 
+export const Details = ({ children }: PropsWithChildren) => {
+  return (
+    /* using a name for all Details make it like an accordion, with only one item open maximum */
+    <details name="details" className="pl-6 marker:text-decoration-700">
+      {children}
+    </details>
+  );
+};
+
 export const Question = ({ children }: PropsWithChildren) => {
   return (
-    <AnchorLink as="summary" anchor={slugify(getLabelFromChildren(children))} className="mt-2">
+    <AnchorLink as="summary" anchor={slugify(getLabelFromChildren(children))} className="mt-2 list-outside">
       <b>{children}</b>
     </AnchorLink>
   );
 };
 export const Reponse = ({ children }: PropsWithChildren) => {
-  return <div className="pl-4 pt-2">{children}</div>;
+  return <div className="pt-2">{children}</div>;
+};
+
+export const Separateur = ({ niveau }: { niveau: number }) => {
+  return <div className={`mt-${niveau ?? "4"}`} />;
 };
 
 export const anchorHeadingMDXComponents: MDXComponents = {
@@ -38,8 +51,10 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     a: MdxLink,
     CTA,
     Card,
+    Details,
     Question,
     Reponse,
+    Separateur,
     ...anchorHeadingMDXComponents,
     ...components,
   };
