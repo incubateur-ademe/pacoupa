@@ -27,6 +27,7 @@ const csp = {
   "script-src": [
     "'self'",
     "'unsafe-inline'",
+    "''unsafe-eval'",
     "https://stats.beta.gouv.fr",
     "https://tally.so",
     process.env.PACOUPA_ENV === "preprod" && "https://vercel.live",
