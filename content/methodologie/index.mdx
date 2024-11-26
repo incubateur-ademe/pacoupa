@@ -1,160 +1,176 @@
 ---
 titre: Méthodologie détaillée du simulateur
 ---
-import { Card } from "../../src/components/Card.tsx";
 
 # Méthodologie détaillée du simulateur
 
-<div class="mt-4" />
+<Separateur niveau="4" />
 
 ## 1. La philosophie générale de Pacoupa 
-<div>
-    La rénovation énergétique étant un sujet complexe, il a été démontré que l’accompagnement des décideurs est un point indispensable pour déclencher un passage à l’acte : les propriétaires ont besoin de pouvoir se projeter dans le projet : combien ça coute ? quelles sont les aides disponibles ? comment gérer le projet ? quelles sont les économies à la clé ? quelle est la durée des travaux ? est-ce que mon confort va être amélioré ? 
+
+La rénovation énergétique étant un sujet complexe, il a été démontré que l’accompagnement des décideurs est un point indispensable pour déclencher un passage à l’acte : les propriétaires ont besoin de pouvoir se projeter dans le projet : combien ça coute ? quelles sont les aides disponibles ? comment gérer le projet ? quelles sont les économies à la clé ? quelle est la durée des travaux ? est-ce que mon confort va être amélioré ? 
 
 Aujourd’hui, cet accompagnement n’est réalisé de façon neutre et gratuite, que par les espaces France Rénov’ via le service public de la rénovation énergétique. 
 Pacoupa est un service numérique en ligne qui se positionne en amont de cet accompagnement, lorsque l’espace France Rénov n’est pas encore identifié. Il vise à communiquer de l'information personnalisée, technique, neutre et chiffrée sur la rénovation et le changement de système de chauffage afin d'accompagner la copropriété dans le passage à l'acte et l'inciter à prendre contact avec des professionnels pour concrétiser son projet. 
 
-<b>A partir d’un simulateur, Pacoupa propose une liste de systèmes de chauffage en énergie renouvelables installables dans un contexte de rénovation énergétique de l’immeuble (isolation). L’outil propose une estimation des coûts, des gains énergétiques et financiers rendus possibles grâce à cette rénovation.</b>
+**A partir d’un simulateur, Pacoupa propose une liste de systèmes de chauffage en énergie renouvelables installables dans un contexte de rénovation énergétique de l’immeuble (isolation). L’outil propose une estimation des coûts, des gains énergétiques et financiers rendus possibles grâce à cette rénovation.**
 
 L’objectif est de donner des ordres de grandeurs des coûts, des aides et des gains énergétiques engendrés pour que l’utilisateur puisse se projeter dans les travaux à mettre en œuvre (isolation, changement de système). Il permet également d’informer sur les systèmes en énergies renouvelables compatibles avec chaque immeuble.
-</div>
 
-<div class="mt-8" />
+<Separateur niveau="8" />
 
 ## 2. Les principaux messages
-<div>
+
 Pacoupa est un service numérique de l’ADEME qui vise à promouvoir :
-<div class="mt-2" />
+
+<Separateur niveau="2" />
+
 -	la rénovation globale et performante : traiter les 6 postes de travaux (isolation des murs, des planchers bas, de la toiture, menuiseries extérieurs, ventilation, production de chauffage et d’eau chaude sanitaire) + Planifier les travaux en 3 étapes maximum, sur une durée limitée, selon un ordonnancement précis  (priorité à l’enveloppe et la ventilation)
 -	les travaux au niveau de la copropriété et pas à l’appartement : les travaux au niveau de la copropriété permettent de traiter l’ensemble des postes et permettent d’atteindre une meilleure performance.
 -	le changement de système après la rénovation de l’enveloppe évitant ainsi le surdimensionnement de l’appareil et permettant un fonctionnement à basse température.
-<div class="mt-4" />
+
+<Separateur niveau="4" />
+
 Le service donne des ordres de grandeurs des coûts, des économies et du gain d’étiquette DPE possible avec les travaux proposés (isolation et changement de système).
 
 Il donne également des éléments techniques sur les différents systèmes de chauffage proposés.
-</div>
 
-<div class="mt-8" />
+<Separateur niveau="8" />
+
 ## 3. La méthodologie du simulateur
-<div>
+
 L’utilisateur répond à 11 questions et abouti sur un écran de résultat qui lui présente les solutions ENR compatibles avec son logement dans un scénario de rénovation globale, dans un ordre précis de pertinence.
 Pour chaque solution, des informations techniques sur la solution sont données : solution individuelle ou collective, usage possible (chauffage, ECS, climatisation), les travaux à prévoir pour être en rénovation globale, une estimation du gain de lettre DPE, une estimation des gains économiques et des coûts du projet (travaux d’isolation + changement de système).
 
 L’utilisateur a ensuite la possibilité de modifier le scénario de rénovation en choisissant « rénovation partielle » ou « aucune rénovation ».
-</div>
 
-<div class="mt-4" />
-<details>
-  <summary><b>3.1 Les questions</b></summary>
-<div class="mt-4" />
-Les 11 questions proposées à l’utilisateur sont les suivantes :
+<Separateur niveau="4" />
 
-- <b>Son adresse</b>: permet de faire un appel à la BAN (base d’adresse nationale), au site FCU (https://france-chaleur-urbaine.beta.gouv.fr/) pour vérifier l’éligibilité à un réseau de chaleur et permet aussi de préciser les données climatiques de la région à laquelle le bâtiment appartient.
-- L’<b>année de construction, les travaux d’isolations déjà réalisés et le nombre de logements</b>: permet d’apprécier les caractéristiques géométriques et les performances énergétiques initiales de l’immeuble.
-- Les <b>espaces extérieurs commun</b>: permet de préconiser d’étudier une PAC géothermique ou une PAC aérothermique dès lors que des espaces extérieurs sont disponibles (cours, jardin, parking, toiture terrasse).
-- Les <b>espaces extérieurs privés</b> (balcons) : permet de préconiser d’étudier une PAC individuelle (air/eau ou air/air) avec unité extérieure.
-- Le <b>type de chauffage</b> (individuel ou collectif) : permet de préconiser des technologies du même type. Pour le moment, le passage d’un chauffage individuel à un chauffage collectif n’est pas traité. (Et inversement)
-- Le <b>type d’émetteur</b> (radiateur ou plancher chauffant) : permet de déterminer le régime de température d’eau.
-- L’<b>énergie de chauffage</b>: permet de réaliser les calculs sur les consommations et émissions initiales liées à la production de chauffage du bâtiment.
-- Le <b>type de production d’eau chaude sanitaire</b> (individuelle ou collective) : permet de préconiser des technologies du même type.
-- L’<b>énergie utilisée pour la production d’ECS</b>: permet de réaliser les calculs sur les consommations et émissions initiales liées à la production d’eau chaude sanitaire du bâtiment.
+<Details>
+  <Question>**3.1 Les questions**</Question>
 
-</details>
+  <Reponse>
+    Les 11 questions proposées à l’utilisateur sont les suivantes :
 
-<div class="mt-4" />
-<details>
-  <summary><b>3.2 Le classement des solutions</b></summary>
-<div class="mt-4" />
-Il y a généralement plusieurs solutions de production d’eau chaude et de chauffage qui sont proposées.
+    - **Son adresse**: permet de faire un appel à la BAN (base d’adresse nationale), au site FCU (https://france-chaleur-urbaine.beta.gouv.fr/) pour vérifier l’éligibilité à un réseau de chaleur et permet aussi de préciser les données climatiques de la région à laquelle le bâtiment appartient.
+    - L’**année de construction, les travaux d’isolations déjà réalisés et le nombre de logements**: permet d’apprécier les caractéristiques géométriques et les performances énergétiques initiales de l’immeuble.
+    - Les **espaces extérieurs commun**: permet de préconiser d’étudier une PAC géothermique ou une PAC aérothermique dès lors que des espaces extérieurs sont disponibles (cours, jardin, parking, toiture terrasse).
+    - Les **espaces extérieurs privés** (balcons) : permet de préconiser d’étudier une PAC individuelle (air/eau ou air/air) avec unité extérieure.
+    - Le **type de chauffage** (individuel ou collectif) : permet de préconiser des technologies du même type. Pour le moment, le passage d’un chauffage individuel à un chauffage collectif n’est pas traité. (Et inversement)
+    - Le **type d’émetteur** (radiateur ou plancher chauffant) : permet de déterminer le régime de température d’eau.
+    - L’**énergie de chauffage**: permet de réaliser les calculs sur les consommations et émissions initiales liées à la production de chauffage du bâtiment.
+    - Le **type de production d’eau chaude sanitaire** (individuelle ou collective) : permet de préconiser des technologies du même type.
+    - L’**énergie utilisée pour la production d’ECS**: permet de réaliser les calculs sur les consommations et émissions initiales liées à la production d’eau chaude sanitaire du bâtiment.
+  </Reponse>
+</Details>
 
-Les questions posées sont simples et peu nombreuses, l’objectif est d’alerter les utilisateurs sur le fait que des solutions ENR sont compatibles avec la configuration de leur immeuble. La faisabilité réelle, à la fois technique et économique seront à étudier plus finement dans la suite du projet de rénovation. Il est possible que des solutions préconisées ne soit finalement pas possibles pour des contraintes d’intégration (visuelle, encombrement, accès, règlementation …).
+<Separateur niveau="4" />
 
-Le service Pacoupa propose une hiérarchie dans les différents systèmes afin de calquer au mieux aux recommandations de l’ADEME.
+<Details>
+  <Question>**3.2 Le classement des solutions**</Question>
 
-Seules les trois premières solutions du classement apparaissent avec un tag « meilleure solution » pour la première du classement. La visualisation de toutes les solutions nécessite une action (clic sur le bouton « autres solutions ») de la part de l’utilisateur.
+  <Reponse>
+    Il y a généralement plusieurs solutions de production d’eau chaude et de chauffage qui sont proposées.
 
-Les grands principes de la hiérarchisation sont les suivants :
+    Les questions posées sont simples et peu nombreuses, l’objectif est d’alerter les utilisateurs sur le fait que des solutions ENR sont compatibles avec la configuration de leur immeuble. La faisabilité réelle, à la fois technique et économique seront à étudier plus finement dans la suite du projet de rénovation. Il est possible que des solutions préconisées ne soit finalement pas possibles pour des contraintes d’intégration (visuelle, encombrement, accès, règlementation …).
 
-- lorsqu’un réseau de chaleur est disponible autour de l’immeuble, celui-ci apparait en « meilleure solution » (même si l’immeuble est en chauffage individuel)
-- lorsque l’immeuble est en chauffage et ECS collective et que l’utilisateur déclare des espaces extérieurs disponibles (jardin, cours ou parking), la PAC géothermique apparait en premier.
-- Des solutions ENR pour l’ECS seule (collective) peuvent être préconisées même si le chauffage est également collectif.
-- Les solutions sont ensuite classées par pertinence.
+    Le service Pacoupa propose une hiérarchie dans les différents systèmes afin de calquer au mieux aux recommandations de l’ADEME.
 
-</details>
+    Seules les trois premières solutions du classement apparaissent avec un tag « meilleure solution » pour la première du classement. La visualisation de toutes les solutions nécessite une action (clic sur le bouton « autres solutions ») de la part de l’utilisateur.
 
-<div class="mt-4" />
-<details>
-  <summary><b>3.3 Les calculs effectués : estimations</b></summary>
-<div class="mt-4" />
-L’ensemble des calculs proposés sont basés sur la méthode 3CL utilisée pour réaliser les DPE.
-L’ADEME a confié à Pouget Consultants l’élaboration des simulations qui couvrent toutes les configurations qui peuvent être obtenues à la suite du questionnaire. Au total, ce sont plus de 120 000 simulations qui ont été réalisées. 
-L’ensemble de ces hypothèses permettent d’aboutir à une estimation de la lettre DPE à l’état initial et des consommations de chauffage et d’eau chaude sanitaire de l’immeuble.
+    Les grands principes de la hiérarchisation sont les suivants :
 
-La comparaison entre l’état initial et l’état final se fait en comparant 2 lignes de l’Excel contenant toutes les simulations.
-Les coûts proposés dans l’outil comprennent à la fois les coûts des travaux proposés pour atteindre le scénario de travaux visé (global / partiel / aucun) et le coût du changement de système de chauffage.
+    - lorsqu’un réseau de chaleur est disponible autour de l’immeuble, celui-ci apparait en « meilleure solution » (même si l’immeuble est en chauffage individuel)
+    - lorsque l’immeuble est en chauffage et ECS collective et que l’utilisateur déclare des espaces extérieurs disponibles (jardin, cours ou parking), la PAC géothermique apparait en premier.
+    - Des solutions ENR pour l’ECS seule (collective) peuvent être préconisées même si le chauffage est également collectif.
+    - Les solutions sont ensuite classées par pertinence.
+  </Reponse>  
+</Details>
 
-<div class="mt-4" />
-<details>
-  <summary>3.3.1 Évaluation énérgétique</summary>
-<div class="mt-4" />
-Les immeubles sont classés par typologies, en fonction de leur année de construction et de leur nombre de logement. Au total, ce sont 21 typologies qui sont étudiées. Pour chacune des typologies, des hypothèses géométriques et énergétiques sont établies, à savoir :
+<Separateur niveau="4" />
 
-- La surface habitable totale du logement (m²shab) ;
-- La compacité du bâtiment (Surface de murs / m²shab, Surface de toiture / m²shab, Surface de menuiseries / m²shab, Surface de plancher bas / m²shab, hauteur sous plafond) ;
-- Les performances thermiques des parois et des menuiseries dans leur état initial.
+<Details>
+  <Question>**3.3 Les calculs effectués : estimations**</Question>
 
-Ppur chacune des typologies, des hypothèses sur les systèmes de production de chauffage & ECS sont établies, à savoir :
+  <Reponse>
+    L’ensemble des calculs proposés sont basés sur la méthode 3CL utilisée pour réaliser les DPE.
+    L’ADEME a confié à Pouget Consultants l’élaboration des simulations qui couvrent toutes les configurations qui peuvent être obtenues à la suite du questionnaire. Au total, ce sont plus de 120 000 simulations qui ont été réalisées. 
+    L’ensemble de ces hypothèses permettent d’aboutir à une estimation de la lettre DPE à l’état initial et des consommations de chauffage et d’eau chaude sanitaire de l’immeuble.
 
-- Age du système de production (« > 10 ans » ; « < 10 ans ») ;
-- Type de système de production (« chaudière gaz basse température » ; « chaudière gaz à condensation » …) ;
-- Type d’émetteur (« Radiateur à eau basse température » ; « Radiateur à eau haute température » ; « convecteurs électriques ») ;
-- Isolation des réseaux de distribution d’eau chaude sanitaire (« réseaux non isolés » ; « réseaux isolés ») ;
-- Type de régulation terminale (« Sans » ; « Robinet thermostatique »).
+    La comparaison entre l’état initial et l’état final se fait en comparant 2 lignes de l’Excel contenant toutes les simulations.
+    Les coûts proposés dans l’outil comprennent à la fois les coûts des travaux proposés pour atteindre le scénario de travaux visé (global / partiel / aucun) et le coût du changement de système de chauffage.
+  </Reponse>
+</Details>
 
-Les conditions environnementales (température extérieure, degrés-heures…) dans lequel se trouve l’immeuble dépendent de sa situation géographique. La France compte 3 zones climatiques : H1, H2 et H3. Comme ces trois zones sont étendues, des variations de climat peuvent y être observées. Ainsi, les zones climatiques sont sous-divisées en zone thermique. 8 au total. Pour simplifier les calculs, une zone thermique par zone climatique est étudiée ; H1a (Nord de la France), H2b (Centre -Ouest) et H3 (Sud).
+<Separateur niveau="4" />
 
-Pour simplifier les calculs aussi, tous les systèmes étudiés (61 au total) sont regroupés dans des « familles de solution » (7 au total). Il existe des familles de « solutions hybrides » (3) ou des familles « solutions 100% thermodynamique » (3). Deux systèmes qui appartiennent à la même famille ont les mêmes usages (chauffage seulement, ecs seulement, chauffage et ecs). La configuration le système existant n’est pas remplacé représente aussi une famille (1).
+<Details>
+  <Question>3.3.1 Évaluation énérgétique</Question>
 
-Les performances des PAC sont définies par leur SCOP qui dépend de leur type, du type d’émetteur, et de la zone climatique. Pour simplifier les calculs, un seul SCOP est considéré pour toutes les familles de solution. Il correspond au SCOP d’une PAC Air / Eau dont les émetteurs ont été installées ou rénovés après 2017. (SCOP = 2,8 en zone H1a et H2b ; SCOP = 3,3 en zone H3).
+  <Reponse>
+    Les immeubles sont classés par typologies, en fonction de leur année de construction et de leur nombre de logement. Au total, ce sont 21 typologies qui sont étudiées. Pour chacune des typologies, des hypothèses géométriques et énergétiques sont établies, à savoir :
 
-Enfin, chaque famille de solution est étudiée à travers trois scénarios d’isolation de l’enveloppe :
+    - La surface habitable totale du logement (m²shab) ;
+    - La compacité du bâtiment (Surface de murs / m²shab, Surface de toiture / m²shab, Surface de menuiseries / m²shab, Surface de plancher bas / m²shab, hauteur sous plafond) ;
+    - Les performances thermiques des parois et des menuiseries dans leur état initial.
 
-- Scénario « INIT » : Aucun geste d’isolation
-- Scénario « PART » : 2 gestes d’isolations (ne comprenant pas les murs extérieurs) + Ventilation
-- Scénario « GLOB » : Tous les gestes d’isolations possibles (murs, menuiseries, plancher haut & bas) + Ventilation
+    Pour chacune des typologies, des hypothèses sur les systèmes de production de chauffage & ECS sont établies, à savoir :
 
-Attention, si certaines parois ont déjà été isolées il y a moins de 15 ans, elles ne sont pas prises en compte dans les scénarios d’isolations. Aussi les typologies récentes (année de construction « après 2000 ») ne font pas l’objet de scénario d’isolation puisque leurs parois sont déjà performantes.
+    - Age du système de production (« \> 10 ans » ; « \< 10 ans ») ;
+    - Type de système de production (« chaudière gaz basse température » ; « chaudière gaz à condensation » …) ;
+    - Type d’émetteur (« Radiateur à eau basse température » ; « Radiateur à eau haute température » ; « convecteurs électriques ») ;
+    - Isolation des réseaux de distribution d’eau chaude sanitaire (« réseaux non isolés » ; « réseaux isolés ») ;
+    - Type de régulation terminale (« Sans » ; « Robinet thermostatique »).
 
-L’ensemble de ces hypothèses permettent d’aboutir à une estimation de l’étiquette DPE de l’immeuble avant et après travaux, ainsi que les consommations en énergie primaire et les émissions de gaz à effet de serre associés.
-</details>
+    Les conditions environnementales (température extérieure, degrés-heures…) dans lequel se trouve l’immeuble dépendent de sa situation géographique. La France compte 3 zones climatiques : H1, H2 et H3. Comme ces trois zones sont étendues, des variations de climat peuvent y être observées. Ainsi, les zones climatiques sont sous-divisées en zone thermique. 8 au total. Pour simplifier les calculs, une zone thermique par zone climatique est étudiée ; H1a (Nord de la France), H2b (Centre -Ouest) et H3 (Sud).
 
-<div class="mt-4" />
-<details>
-  <summary>3.3.2 Évaluation économique</summary>
-<div class="mt-4" />
-A chaque simulation est associée un coût d’investissement, qui se divise en deux parties ;
+    Pour simplifier les calculs aussi, tous les systèmes étudiés (61 au total) sont regroupés dans des « familles de solution » (7 au total). Il existe des familles de « solutions hybrides » (3) ou des familles « solutions 100% thermodynamique » (3). Deux systèmes qui appartiennent à la même famille ont les mêmes usages (chauffage seulement, ecs seulement, chauffage et ecs). La configuration le système existant n’est pas remplacé représente aussi une famille (1).
 
-- Coût d’investissement lié à la rénovation de l’enveloppe : Les coûts sont obtenus en multipliant le coût de réhabilitation d’une paroi (en € HT/m²) par la surface de la paroi (m²)
-- Coût d’investissement lié à la mise en place de système : Les coûts sont obtenus en sommant :
-    - Les coûts liés à la génération : Il dépend du niveau d’isolation de l’immeuble et du système à installer
-    - Les coûts liés à la distribution : Il dépend du type de production de chauffage et ECS
-    - Les coûts liés à l’émission : Il dépend du type d’émetteur avant travaux
+    Les performances des PAC sont définies par leur SCOP qui dépend de leur type, du type d’émetteur, et de la zone climatique. Pour simplifier les calculs, un seul SCOP est considéré pour toutes les familles de solution. Il correspond au SCOP d’une PAC Air / Eau dont les émetteurs ont été installées ou rénovés après 2017. (SCOP = 2,8 en zone H1a et H2b ; SCOP = 3,3 en zone H3).
 
-Les coûts liés à la maintenance, à la l’abonnement et à la facture énergétique sont aussi calculés.
-</details>
+    Enfin, chaque famille de solution est étudiée à travers trois scénarios d’isolation de l’enveloppe :
 
-<div class="mt-4" />
-<details>
-  <summary>3.3.3 Aides financières</summary>
-<div class="mt-4" />
-Les aides financières liées au dispositif MaPrimeRénov’ Copropriété sont calculées. Pour simplifier la prise en compte des travaux réalisés « à l’échelle du logement » dans MPR Copro, ils sont considérés comme des « travaux privatifs d’intérêt collectifs. ».
+    - Scénario « INIT » : Aucun geste d’isolation
+    - Scénario « PART » : 2 gestes d’isolations (ne comprenant pas les murs extérieurs) + Ventilation
+    - Scénario « GLOB » : Tous les gestes d’isolations possibles (murs, menuiseries, plancher haut & bas) + Ventilation
 
-Le Coup de pouce « Rénovation performante de bâtiment résidentiel collectif » n’est pas étudié. Idem pour le « Fonds Chaleur ».
-</details>
+    Attention, si certaines parois ont déjà été isolées il y a moins de 15 ans, elles ne sont pas prises en compte dans les scénarios d’isolations. Aussi les typologies récentes (année de construction « après 2000 ») ne font pas l’objet de scénario d’isolation puisque leurs parois sont déjà performantes.
 
-</details>
+    L’ensemble de ces hypothèses permettent d’aboutir à une estimation de l’étiquette DPE de l’immeuble avant et après travaux, ainsi que les consommations en énergie primaire et les émissions de gaz à effet de serre associés.
+  </Reponse>
+</Details>
 
-<div class="mt-12" />
+<Separateur niveau="4" />
+
+<Details>
+  <Question>3.3.2 Évaluation économique</Question>
+  
+  <Reponse>
+    A chaque simulation est associée un coût d’investissement, qui se divise en deux parties ;
+
+    - Coût d’investissement lié à la rénovation de l’enveloppe : Les coûts sont obtenus en multipliant le coût de réhabilitation d’une paroi (en € HT/m²) par la surface de la paroi (m²)
+    - Coût d’investissement lié à la mise en place de système : Les coûts sont obtenus en sommant :
+        - Les coûts liés à la génération : Il dépend du niveau d’isolation de l’immeuble et du système à installer
+        - Les coûts liés à la distribution : Il dépend du type de production de chauffage et ECS
+        - Les coûts liés à l’émission : Il dépend du type d’émetteur avant travaux
+
+    Les coûts liés à la maintenance, à la l’abonnement et à la facture énergétique sont aussi calculés.
+  </Reponse>
+</Details>
+
+<Separateur niveau="4" />
+
+<Details>
+  <Question>3.3.3 Aides financières</Question>
+  
+  <Reponse>
+    Les aides financières liées au dispositif MaPrimeRénov’ Copropriété sont calculées. Pour simplifier la prise en compte des travaux réalisés « à l’échelle du logement » dans MPR Copro, ils sont considérés comme des « travaux privatifs d’intérêt collectifs. ».
+
+    Le Coup de pouce « Rénovation performante de bâtiment résidentiel collectif » n’est pas étudié. Idem pour le « Fonds Chaleur ».
+  </Reponse>
+</Details>
+
+<Separateur niveau="12" />
 
 <Card
     fullWidth
@@ -171,7 +187,6 @@ Le Coup de pouce « Rénovation performante de bâtiment résidentiel collectif 
       <div class="mt-8">
       </div>
         <CTA eventName="Landing page" />
-
     </>
     }
  />

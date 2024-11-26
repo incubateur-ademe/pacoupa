@@ -44,7 +44,11 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: PropsWithChildren) => {
   return (
-    <html lang="fr" {...getHtmlAttributes({ defaultColorScheme, lang: "fr" })} className={cx(GeistSans.variable)}>
+    <html
+      lang="fr"
+      {...getHtmlAttributes({ defaultColorScheme, lang: "fr" })}
+      className={cx(GeistSans.variable, "h-full")}
+    >
       <head>
         <StartDsfr />
         <DsfrHead
@@ -68,7 +72,7 @@ const RootLayout = ({ children }: PropsWithChildren) => {
           <Matomo env={config.env} />
         </Suspense>
       </head>
-      <body>
+      <body className="h-full">
         <DsfrProvider lang="fr">
           <NextAppDirEmotionCacheProvider options={{ key: "css" }}>
             <MuiDsfrThemeProvider>
@@ -93,7 +97,7 @@ const RootLayout = ({ children }: PropsWithChildren) => {
               {/* <Banner
             title={<>Le simulateur est en construction. Inscrivez-vous et nous vous préviendrons lors de sa sortie.</>}
           /> */}
-              <div className="min-h-full">
+              <div className="min-h-full flex flex-col">
                 {/* <Header
               brandTop={<Brand />}
               homeLinkProps={{
@@ -116,7 +120,7 @@ const RootLayout = ({ children }: PropsWithChildren) => {
                 <main
                   role="main"
                   id={contentId}
-                  className="grid grid-cols-[16px_1fr_16px] md:grid-cols-[minmax(90px,_1fr)_minmax(320px,_1200px)_minmax(90px,_1fr)] lg:grid-cols-[minmax(120px,_1fr)_minmax(320px,_1200px)_minmax(120px,_1fr)] xl:grid-cols-[minmax(180px,_1fr)_minmax(900px,_1200px)_minmax(180px,_1fr)] gap-y-12 md:gap-y-24"
+                  className="flex-grow grid grid-cols-[16px_1fr_16px] md:grid-cols-[minmax(90px,_1fr)_minmax(320px,_1200px)_minmax(90px,_1fr)] lg:grid-cols-[minmax(120px,_1fr)_minmax(320px,_1200px)_minmax(120px,_1fr)] xl:grid-cols-[minmax(180px,_1fr)_minmax(900px,_1200px)_minmax(180px,_1fr)] gap-y-12 md:gap-y-24"
                 >
                   {children}
                 </main>

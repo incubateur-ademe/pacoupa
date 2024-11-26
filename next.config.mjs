@@ -30,7 +30,7 @@ const csp = {
     "https://stats.beta.gouv.fr",
     "https://tally.so",
     process.env.PACOUPA_ENV === "preprod" && "https://vercel.live",
-    process.env.NODE_ENV === "development" && "'unsafe-eval' http://localhost",
+    process.env.NODE_ENV !== "prod" && "'unsafe-eval'",
   ],
   "style-src": ["'self'", "'unsafe-inline'"],
   "object-src": ["'self'", "data:"],
