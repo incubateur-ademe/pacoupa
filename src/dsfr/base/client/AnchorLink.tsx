@@ -1,13 +1,21 @@
 "use client";
 
+import Link from "next/link";
 import { type PropsWithChildren } from "react";
 
 export interface AnchorLinkProps {
   anchor: string;
-  as?: "h1" | "h2" | "h3";
+  as?: "h1" | "h2" | "h3" | "summary";
+  className?: string;
   iconSize?: "lg" | "sm" | "xl";
 }
-export const AnchorLink = ({ anchor, children, as: HtmlTag = "h3", iconSize }: PropsWithChildren<AnchorLinkProps>) => {
+export const AnchorLink = ({
+  anchor,
+  children,
+  as: HtmlTag = "h3",
+  iconSize,
+  className,
+}: PropsWithChildren<AnchorLinkProps>) => {
   return (
     <>
       <style jsx>{`
@@ -29,14 +37,11 @@ export const AnchorLink = ({ anchor, children, as: HtmlTag = "h3", iconSize }: P
           display: inline;
         }
       `}</style>
-      <HtmlTag
-        id={anchor}
-        onClick={() => {
-          location.href = `#${anchor}`;
-        }}
-      >
+      <HtmlTag id={anchor} className={className}>
         {children}
-        <span className={`fr-icon-link fr-icon${iconSize ? `--${iconSize}` : ""}`}></span>
+        <Link href={`#${anchor}`} className="bg-none">
+          <span className={`fr-icon-link fr-icon${iconSize ? `--${iconSize}` : ""}`}></span>
+        </Link>
       </HtmlTag>
     </>
   );
