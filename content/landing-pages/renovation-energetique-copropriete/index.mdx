@@ -72,42 +72,45 @@ Voici les principales étapes pour une copropriété :
 
 <div className="grid grid-col-1 md:grid-cols-[1fr_minmax(100px,_200px)] gap-8">
   <div className="space-y-8">
-    <details className="space-y-4">
-      <summary className="text-xl font-bold">1. Réalisation d'un audit énergétique</summary>
+    <Details>
+      <Details.Question>1. Réalisation d'un audit énergétique</Details.Question>
+      <Details.Answer>
+        Un audit énergétique est une analyse approfondie de la performance énergétique du bâtiment. Il identifie les sources de déperdition de chaleur et propose des solutions pour améliorer l’efficacité énergétique.
+      </Details.Answer> 
+    </Details>
 
-      Un audit énergétique est une analyse approfondie de la performance énergétique du bâtiment. Il identifie les sources de déperdition de chaleur et propose des solutions pour améliorer l’efficacité énergétique.
-      
-    </details>
+    <Details>
+      <Details.Question>2. Vote en assemblée générale</Details.Question>
+      <Details.Answer>Pour lancer un projet de rénovation énergétique, il est (souvent) nécessaire d’obtenir l’accord des copropriétaires lors d’une assemblée générale. Une présentation claire des bénéfices et des coûts est cruciale pour convaincre les copropriétaires.</Details.Answer>
+    </Details>
 
-    <details className="space-y-4">
-      <summary className="text-xl font-bold">2. Vote en assemblée générale</summary>
+    <Details>
+      <Details.Question>3. Planification et choix des travaux</Details.Question>
+      <Details.Answer>
+        En fonction des résultats de l’audit énergétique, il faut planifier les travaux nécessaires. Cela peut inclure plusieurs types de travaux, comme l’isolation des murs, du toit, le remplacement des fenêtres, ou encore la modernisation du système de chauffage.
+      </Details.Answer>
+    </Details>
 
-      Pour lancer un projet de rénovation énergétique, il est (souvent) nécessaire d’obtenir l’accord des copropriétaires lors d’une assemblée générale. Une présentation claire des bénéfices et des coûts est cruciale pour convaincre les copropriétaires.
-    </details>
+    <Details>
+      <Details.Question>4. Recherche de financement</Details.Question>
+      <Details.Answer>
+        Il existe plusieurs aides financières et subventions pour la rénovation énergétique, telles que MaPrimeRénov’, les Certificats d’Économies d’Énergie (CEE), ou encore les aides de l’Agence Nationale de l'Habitat (ANAH).
+      </Details.Answer>
+    </Details>
 
-    <details className="space-y-4">
-      <summary className="text-xl font-bold">3. Planification et choix des travaux</summary>
+    <Details>
+      <Details.Question>5. Sélection des entreprises et réalisation des travaux</Details.Question>
+      <Details.Answer>
+        Faire appel à des entreprises qualifiées et certifiées RGE (Reconnu Garant de l’Environnement) est essentiel pour garantir la qualité des travaux et bénéficier des aides financières.
+      </Details.Answer>
+    </Details>
 
-      En fonction des résultats de l’audit énergétique, il faut planifier les travaux nécessaires. Cela peut inclure plusieurs types de travaux, comme l’isolation des murs, du toit, le remplacement des fenêtres, ou encore la modernisation du système de chauffage.
-    </details>
-
-    <details className="space-y-4">
-      <summary className="text-xl font-bold">4. Recherche de financement</summary>
-
-      Il existe plusieurs aides financières et subventions pour la rénovation énergétique, telles que MaPrimeRénov’, les Certificats d’Économies d’Énergie (CEE), ou encore les aides de l’Agence Nationale de l'Habitat (ANAH).
-    </details>
-
-    <details className="space-y-4">
-      <summary className="text-xl font-bold">5. Sélection des entreprises et réalisation des travaux</summary>
-
-      Faire appel à des entreprises qualifiées et certifiées RGE (Reconnu Garant de l’Environnement) est essentiel pour garantir la qualité des travaux et bénéficier des aides financières.
-    </details>
-
-    <details className="space-y-4">
-      <summary className="text-xl font-bold">6. Suivi et maintenance</summary>
-
-      Une fois les travaux réalisés, il est important de suivre la performance énergétique du bâtiment et d’effectuer une maintenance régulière pour préserver les gains énergétiques obtenus.
-    </details>
+    <Details>
+      <Details.Question>6. Suivi et maintenance</Details.Question>
+      <Details.Answer>
+        Une fois les travaux réalisés, il est important de suivre la performance énergétique du bâtiment et d’effectuer une maintenance régulière pour préserver les gains énergétiques obtenus.
+      </Details.Answer>
+    </Details>
   </div>
 
   <div className="hidden md:flex items-center">
@@ -148,9 +151,9 @@ Voici les six postes de travaux les plus couramment réalisés dans le cadre d�
     </Card>
   </div>
 
-<p className="mt-8">
-  Lorsqu’ils sont réalisés en une seule fois, il s’agit d’une rénovation globale. Bien plus performante qu’une rénovation monogeste (ou encore geste par geste), elle permet de traiter les ponts thermiques ainsi qu’un meilleur dimensionnement du système de chauffage. 
-</p>
+<Spacer size="32" />
+
+Lorsqu’ils sont réalisés en une seule fois, il s’agit d’une rénovation globale. Bien plus performante qu’une rénovation monogeste (ou encore geste par geste), elle permet de traiter les ponts thermiques ainsi qu’un meilleur dimensionnement du système de chauffage. 
 
 <Spacer size="32" />
 

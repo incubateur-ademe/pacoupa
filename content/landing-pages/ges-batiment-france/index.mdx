@@ -24,6 +24,7 @@ import { PlantImage } from "./PlantImage.tsx"
 <Spacer size="64" />
 
 ## Le contexte
+
 <div className="grid grid-cols-[minmax(230px,_1fr)_minmax(50px,_177px)] gap-2 md:gap-8">
   <div>
     Le secteur du bâtiment représente aujourd'hui environ 18 % des émissions de gaz à effet de serre (GES) en France. À l'heure où la lutte contre le réchauffement climatique est une priorité mondiale, ce secteur se trouve au cœur des enjeux de la transition énergétique. 
@@ -111,38 +112,41 @@ Heureusement, plusieurs facteurs démontrent un contexte de plus en plus favorab
 <div className="grid grid-col-1 md:grid-cols-[1fr_minmax(100px,_200px)] gap-8">
 
   <div className="space-y-8">
-    <details className="space-y-4">
-      <summary className="text-xl font-bold">1. L’augmentation des prix de l'énergie</summary>
+    <Details>
+      <Details.Question>1. L’augmentation des prix de l'énergie</Details.Question>
+      <Details.Answer>
+        La hausse des coûts des énergies fossiles incite à rechercher des alternatives plus économiques.
+      </Details.Answer>
+    </Details>
 
-      La hausse des coûts des énergies fossiles incite à rechercher des alternatives plus économiques.
+    <Details>
+      <Details.Question>2. Les réglementations et les lois</Details.Question>
+      <Details.Answer>
+        Les réglementations de plus en plus strictes obligent les propriétaires à se conformer à des normes énergétiques élevées.
+      </Details.Answer>
+    </Details>
 
-    </details>
+    <Details>
+      <Details.Question>3. La conscience écologique croissante</Details.Question>
+      <Details.Answer>
+        Les préoccupations environnementales et le désir de contribuer à la lutte contre le changement climatique poussent de plus en plus de personnes à envisager des rénovations énergétiques.
+      </Details.Answer>
+    </Details>
 
-    <details className="space-y-4">
-      <summary className="text-xl font-bold">2. Les réglementations et les lois</summary>
+    <Details>
+      <Details.Question>4. Le confort et la nécessaire adaptation au changement climatique </Details.Question>
+      <Details.Answer>
+        Les températures extrêmes, notamment en été, rendent la rénovation énergétique attractive pour améliorer le confort thermique des logements.
+      </Details.Answer>
+    </Details>
 
-      Les réglementations de plus en plus strictes obligent les propriétaires à se conformer à des normes énergétiques élevées.
-      
-    </details>
-
-    <details className="space-y-4">
-      <summary className="text-xl font-bold">3. La conscience écologique croissante</summary>
-
-      Les préoccupations environnementales et le désir de contribuer à la lutte contre le changement climatique poussent de plus en plus de personnes à envisager des rénovations énergétiques.
-      
-    </details>
-
-    <details className="space-y-4">
-      <summary className="text-xl font-bold">4. Le confort et la nécessaire adaptation au changement climatique </summary>
-
-      Les températures extrêmes, notamment en été, rendent la rénovation énergétique attractive pour améliorer le confort thermique des logements.
-    </details>
-
-    <details className="space-y-4">
-      <summary className="text-xl font-bold">5. La disponibilité des aides publiques</summary>
-
-      L’État soutient la rénovation énergétique à travers des aides financières (MaPrimeRénov’ et CEE par exemple) et des services publics d’accompagnement gratuits (France Rénov’).                                                    
-    </details>
+    <Details>
+      <Details.Question>5. La disponibilité des aides publiques</Details.Question>
+      <Details.Answer>
+        L’État soutient la rénovation énergétique à travers des aides financières (MaPrimeRénov’ et CEE par exemple) et des services publics d’accompagnement gratuits (France Rénov’).
+      </Details.Answer>
+                
+    </Details>
   </div>
 
   <div className="hidden md:flex items-center">
@@ -154,10 +158,8 @@ Heureusement, plusieurs facteurs démontrent un contexte de plus en plus favorab
 
 ## Le déclencheur pour réaliser des travaux : le remplacement du système de chauffage
 
-
 <div className="grid grid-cols-[minmax(230px,_1fr)_minmax(50px,_177px)] gap-2 md:gap-8">
-
-    <div>
+  <div>
     Le remplacement du système de chauffage est souvent le déclencheur des réflexions sur la rénovation énergétique. Cependant, ce remplacement présente des risques :
 
     - **Rester en fossile** : il existe un risque de simplement remplacer un système fossile par un autre, sans envisager des alternatives décarbonées par faute d’information ou par habitude.
@@ -165,7 +167,7 @@ Heureusement, plusieurs facteurs démontrent un contexte de plus en plus favorab
 
     Pour éviter ces pièges, il est essentiel de promouvoir une **approche globale de la rénovation énergétique, intégrant à la fois l'isolation et l'installation de systèmes de chauffage fonctionnant avec des énergies renouvelables**, et d'accompagner les copropriétés tout au long du processus.
 
-    </div>
+  </div>
 
   <div className="flex items-end">
     <PlantImage />

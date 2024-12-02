@@ -47,9 +47,9 @@ L’utilisateur a ensuite la possibilité de modifier le scénario de rénovatio
 <Spacer size="8" />
 
 <Details>
-  <Question>**3.1 Les questions**</Question>
+  <Details.Question>**3.1 Les questions**</Details.Question>
 
-  <Reponse>
+  <Details.Answer>
     Les 11 questions proposées à l’utilisateur sont les suivantes :
 
     - **Son adresse**: permet de faire un appel à la BAN (base d’adresse nationale), au site FCU (https://france-chaleur-urbaine.beta.gouv.fr/) pour vérifier l’éligibilité à un réseau de chaleur et permet aussi de préciser les données climatiques de la région à laquelle le bâtiment appartient.
@@ -61,15 +61,15 @@ L’utilisateur a ensuite la possibilité de modifier le scénario de rénovatio
     - L’**énergie de chauffage**: permet de réaliser les calculs sur les consommations et émissions initiales liées à la production de chauffage du bâtiment.
     - Le **type de production d’eau chaude sanitaire** (individuelle ou collective) : permet de préconiser des technologies du même type.
     - L’**énergie utilisée pour la production d’ECS**: permet de réaliser les calculs sur les consommations et émissions initiales liées à la production d’eau chaude sanitaire du bâtiment.
-  </Reponse>
+  </Details.Answer>
 </Details>
 
 <Spacer size="8" />
 
 <Details>
-  <Question>**3.2 Le classement des solutions**</Question>
+  <Details.Question>**3.2 Le classement des solutions**</Details.Question>
 
-  <Reponse>
+  <Details.Answer>
     Il y a généralement plusieurs solutions de production d’eau chaude et de chauffage qui sont proposées.
 
     Les questions posées sont simples et peu nombreuses, l’objectif est d’alerter les utilisateurs sur le fait que des solutions ENR sont compatibles avec la configuration de leur immeuble. La faisabilité réelle, à la fois technique et économique seront à étudier plus finement dans la suite du projet de rénovation. Il est possible que des solutions préconisées ne soit finalement pas possibles pour des contraintes d’intégration (visuelle, encombrement, accès, règlementation …).
@@ -84,30 +84,30 @@ L’utilisateur a ensuite la possibilité de modifier le scénario de rénovatio
     - lorsque l’immeuble est en chauffage et ECS collective et que l’utilisateur déclare des espaces extérieurs disponibles (jardin, cours ou parking), la PAC géothermique apparait en premier.
     - Des solutions ENR pour l’ECS seule (collective) peuvent être préconisées même si le chauffage est également collectif.
     - Les solutions sont ensuite classées par pertinence.
-  </Reponse>  
+  </Details.Answer>  
 </Details>
 
 <Spacer size="8" />
 
 <Details>
-  <Question>**3.3 Les calculs effectués : estimations**</Question>
+  <Details.Question>**3.3 Les calculs effectués : estimations**</Details.Question>
 
-  <Reponse>
+  <Details.Answer>
     L’ensemble des calculs proposés sont basés sur la méthode 3CL utilisée pour réaliser les DPE.
     L’ADEME a confié à Pouget Consultants l’élaboration des simulations qui couvrent toutes les configurations qui peuvent être obtenues à la suite du questionnaire. Au total, ce sont plus de 120 000 simulations qui ont été réalisées. 
     L’ensemble de ces hypothèses permettent d’aboutir à une estimation de la lettre DPE à l’état initial et des consommations de chauffage et d’eau chaude sanitaire de l’immeuble.
 
     La comparaison entre l’état initial et l’état final se fait en comparant 2 lignes de l’Excel contenant toutes les simulations.
     Les coûts proposés dans l’outil comprennent à la fois les coûts des travaux proposés pour atteindre le scénario de travaux visé (global / partiel / aucun) et le coût du changement de système de chauffage.
-  </Reponse>
+  </Details.Answer>
 </Details>
 
 <Spacer size="8" />
 
 <Details>
-  <Question>3.3.1 Évaluation énérgétique</Question>
+  <Details.Question>3.3.1 Évaluation énérgétique</Details.Question>
 
-  <Reponse>
+  <Details.Answer>
     Les immeubles sont classés par typologies, en fonction de leur année de construction et de leur nombre de logement. Au total, ce sont 21 typologies qui sont étudiées. Pour chacune des typologies, des hypothèses géométriques et énergétiques sont établies, à savoir :
 
     - La surface habitable totale du logement (m²shab) ;
@@ -137,15 +137,15 @@ L’utilisateur a ensuite la possibilité de modifier le scénario de rénovatio
     Attention, si certaines parois ont déjà été isolées il y a moins de 15 ans, elles ne sont pas prises en compte dans les scénarios d’isolations. Aussi les typologies récentes (année de construction « après 2000 ») ne font pas l’objet de scénario d’isolation puisque leurs parois sont déjà performantes.
 
     L’ensemble de ces hypothèses permettent d’aboutir à une estimation de l’étiquette DPE de l’immeuble avant et après travaux, ainsi que les consommations en énergie primaire et les émissions de gaz à effet de serre associés.
-  </Reponse>
+  </Details.Answer>
 </Details>
 
 <Spacer size="8" />
 
 <Details>
-  <Question>3.3.2 Évaluation économique</Question>
+  <Details.Question>3.3.2 Évaluation économique</Details.Question>
   
-  <Reponse>
+  <Details.Answer>
     A chaque simulation est associée un coût d’investissement, qui se divise en deux parties ;
 
     - Coût d’investissement lié à la rénovation de l’enveloppe : Les coûts sont obtenus en multipliant le coût de réhabilitation d’une paroi (en € HT/m²) par la surface de la paroi (m²)
@@ -155,19 +155,19 @@ L’utilisateur a ensuite la possibilité de modifier le scénario de rénovatio
         - Les coûts liés à l’émission : Il dépend du type d’émetteur avant travaux
 
     Les coûts liés à la maintenance, à la l’abonnement et à la facture énergétique sont aussi calculés.
-  </Reponse>
+  </Details.Answer>
 </Details>
 
 <Spacer size="8" />
 
 <Details>
-  <Question>3.3.3 Aides financières</Question>
+  <Details.Question>3.3.3 Aides financières</Details.Question>
   
-  <Reponse>
+  <Details.Answer>
     Les aides financières liées au dispositif MaPrimeRénov’ Copropriété sont calculées. Pour simplifier la prise en compte des travaux réalisés « à l’échelle du logement » dans MPR Copro, ils sont considérés comme des « travaux privatifs d’intérêt collectifs. ».
 
     Le Coup de pouce « Rénovation performante de bâtiment résidentiel collectif » n’est pas étudié. Idem pour le « Fonds Chaleur ».
-  </Reponse>
+  </Details.Answer>
 </Details>
 
 <Spacer size="32" />
