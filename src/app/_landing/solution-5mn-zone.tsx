@@ -14,7 +14,7 @@ export const Solution5mnZone = () => {
           <VCard
             title="Simple"
             desc="Répondez à seulement quelques questions."
-            image={<Details.QuestionnaireImage width={80} />}
+            image={<QuestionnaireImage width={80} />}
           />
         </div>
 
