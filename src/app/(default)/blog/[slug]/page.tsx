@@ -3,8 +3,10 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 
 import { baseUrl } from "@/app/sitemap";
+import { Button } from "@/components/Button";
 import { config } from "@/config";
 import { H2 } from "@/dsfr/base/typography";
+import { cn } from "@/utils/cn";
 
 import { formatDate, getBlogPost, getBlogPosts } from "../utils";
 
@@ -96,6 +98,21 @@ export default async function Blog({ params }: Props) {
             }),
           }}
         />
+
+        <Button
+          priority="tertiary no outline"
+          iconId="ri-arrow-left-line"
+          iconPosition="left"
+          title="Retour"
+          linkProps={{
+            href: "/blog",
+            title: "Retour à la liste des articles",
+          }}
+          className={cn("pl-0")}
+        >
+          Retour
+        </Button>
+
         {image && (
           <div className="mb-8 relative w-full h-[400px]">
             <Image src={image} alt="Image de décoration de l'article" fill className="rounded-lg object-cover" />
@@ -105,7 +122,7 @@ export default async function Blog({ params }: Props) {
           {title}
         </H2>
         <div className="flex justify-between items-center mb-2 text-sm">
-          <p className="text-sm text-neutral-600 dark:text-neutral-400">{formatDate(publishedAt)}</p>
+          <p className="text-sm font-thin text-neutral-600 dark:text-neutral-400">{formatDate(publishedAt)}</p>
         </div>
         <article className="prose">
           <Content />

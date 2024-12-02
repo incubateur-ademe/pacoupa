@@ -15,7 +15,7 @@ export async function BlogPosts() {
   });
 
   return (
-    <div className="max-w-[680px] mx-auto">
+    <>
       <div className="mb-4 md:mb-8">
         <Link key={firstPost.slug} className="flex flex-col space-y-1 bg-none" href={`/blog/${firstPost.slug}`}>
           {firstPost.frontmatter.image && (
@@ -62,6 +62,6 @@ export async function BlogPosts() {
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 }
