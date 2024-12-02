@@ -5,8 +5,8 @@ import { MdxLink } from "@/components/mdx/Link";
 import { getLabelFromChildren } from "@/utils/react";
 import { slugify } from "@/utils/string";
 
-import { Card } from "./components/Card";
 import { CTA } from "./components/CTA";
+import { MdxCard } from "./components/MdxCard";
 import { AnchorLink } from "./dsfr/client";
 
 export const Details = ({ children }: PropsWithChildren) => {
@@ -33,8 +33,9 @@ export const Reponse = ({ children }: PropsWithChildren) => {
   return <div className="pt-2">{children}</div>;
 };
 
-export const Separateur = ({ niveau }: { niveau: number }) => {
-  return <div className={`mt-${niveau ?? "4"}`} />;
+export const Spacer = ({ size }: { size: number }) => {
+  // eslint-disable-next-line react/forbid-dom-props
+  return <div style={{ marginTop: `${size ?? "4"}px` }} />;
 };
 
 export const anchorHeadingMDXComponents: MDXComponents = {
@@ -53,11 +54,11 @@ export const paragraphContentMDXComponents: MDXComponents = {
 export const defaultMdxComponents: MDXComponents = {
   a: MdxLink,
   CTA,
-  Card,
+  Card: MdxCard,
   Details,
   Question,
   Reponse,
-  Separateur,
+  Spacer: Spacer,
   ...anchorHeadingMDXComponents,
 };
 

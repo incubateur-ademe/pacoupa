@@ -2,9 +2,9 @@
 titre: Méthodologie détaillée du simulateur
 ---
 
-# Méthodologie détaillée du simulateur
+## Méthodologie détaillée du simulateur
 
-<Separateur niveau="4" />
+<Spacer size="16" />
 
 ## 1. La philosophie générale de Pacoupa 
 
@@ -17,25 +17,25 @@ Pacoupa est un service numérique en ligne qui se positionne en amont de cet acc
 
 L’objectif est de donner des ordres de grandeurs des coûts, des aides et des gains énergétiques engendrés pour que l’utilisateur puisse se projeter dans les travaux à mettre en œuvre (isolation, changement de système). Il permet également d’informer sur les systèmes en énergies renouvelables compatibles avec chaque immeuble.
 
-<Separateur niveau="8" />
+<Spacer size="32" />
 
 ## 2. Les principaux messages
 
 Pacoupa est un service numérique de l’ADEME qui vise à promouvoir :
 
-<Separateur niveau="2" />
+<Spacer size="8" />
 
 -	la rénovation globale et performante : traiter les 6 postes de travaux (isolation des murs, des planchers bas, de la toiture, menuiseries extérieurs, ventilation, production de chauffage et d’eau chaude sanitaire) + Planifier les travaux en 3 étapes maximum, sur une durée limitée, selon un ordonnancement précis  (priorité à l’enveloppe et la ventilation)
 -	les travaux au niveau de la copropriété et pas à l’appartement : les travaux au niveau de la copropriété permettent de traiter l’ensemble des postes et permettent d’atteindre une meilleure performance.
 -	le changement de système après la rénovation de l’enveloppe évitant ainsi le surdimensionnement de l’appareil et permettant un fonctionnement à basse température.
 
-<Separateur niveau="4" />
+<Spacer size="8" />
 
 Le service donne des ordres de grandeurs des coûts, des économies et du gain d’étiquette DPE possible avec les travaux proposés (isolation et changement de système).
 
 Il donne également des éléments techniques sur les différents systèmes de chauffage proposés.
 
-<Separateur niveau="8" />
+<Spacer size="8" />
 
 ## 3. La méthodologie du simulateur
 
@@ -44,7 +44,7 @@ Pour chaque solution, des informations techniques sur la solution sont données 
 
 L’utilisateur a ensuite la possibilité de modifier le scénario de rénovation en choisissant « rénovation partielle » ou « aucune rénovation ».
 
-<Separateur niveau="4" />
+<Spacer size="8" />
 
 <Details>
   <Question>**3.1 Les questions**</Question>
@@ -64,7 +64,7 @@ L’utilisateur a ensuite la possibilité de modifier le scénario de rénovatio
   </Reponse>
 </Details>
 
-<Separateur niveau="4" />
+<Spacer size="8" />
 
 <Details>
   <Question>**3.2 Le classement des solutions**</Question>
@@ -87,7 +87,7 @@ L’utilisateur a ensuite la possibilité de modifier le scénario de rénovatio
   </Reponse>  
 </Details>
 
-<Separateur niveau="4" />
+<Spacer size="8" />
 
 <Details>
   <Question>**3.3 Les calculs effectués : estimations**</Question>
@@ -102,7 +102,7 @@ L’utilisateur a ensuite la possibilité de modifier le scénario de rénovatio
   </Reponse>
 </Details>
 
-<Separateur niveau="4" />
+<Spacer size="8" />
 
 <Details>
   <Question>3.3.1 Évaluation énérgétique</Question>
@@ -140,7 +140,7 @@ L’utilisateur a ensuite la possibilité de modifier le scénario de rénovatio
   </Reponse>
 </Details>
 
-<Separateur niveau="4" />
+<Spacer size="8" />
 
 <Details>
   <Question>3.3.2 Évaluation économique</Question>
@@ -158,7 +158,7 @@ L’utilisateur a ensuite la possibilité de modifier le scénario de rénovatio
   </Reponse>
 </Details>
 
-<Separateur niveau="4" />
+<Spacer size="8" />
 
 <Details>
   <Question>3.3.3 Aides financières</Question>
@@ -170,23 +170,16 @@ L’utilisateur a ensuite la possibilité de modifier le scénario de rénovatio
   </Reponse>
 </Details>
 
-<Separateur niveau="12" />
+<Spacer size="32" />
 
-<Card
-    fullWidth
-    header={<h4>Passez à l'action grâce à Pacoupa</h4>}
-    content={
-      <>
-        <p>
-        Pour les copropriétés intéressées par un passage aux systèmes de chauffage à énergie renouvelable, il est important de se renseigner en amont sur les solutions adaptées à son bâtiment.
-        </p>
-        <p>
-        Pacoupa, notre simulateur en ligne, permet d'estimer les coûts et les bénéfices d'un projet de rénovation énergétique pour votre copropriété. <b>En moins de 5 minutes</b>, vous pouvez obtenir une <b>évaluation des économies d'énergie</b>, des réductions <b>d'émissions</b> de CO2, et du retour sur <b>investissement</b>.
-        </p>
+<Card fullWidth>
+  <Card.Title>Passez à l'action grâce à Pacoupa</Card.Title>
+  <Card.Body>
+    Pour les copropriétés intéressées par un passage aux systèmes de chauffage à énergie renouvelable, il est important de se renseigner en amont sur les solutions adaptées à son bâtiment.
+    Pacoupa, notre simulateur en ligne, permet d'estimer les coûts et les bénéfices d'un projet de rénovation énergétique pour votre copropriété. <b>En moins de 5 minutes</b>, vous pouvez obtenir une <b>évaluation des économies d'énergie</b>, des réductions <b>d'émissions</b> de CO2, et du retour sur <b>investissement</b>.
+    
+    <Spacer size="16" />
+    <CTA eventName="Landing page" />
 
-      <div class="mt-8">
-      </div>
-        <CTA eventName="Landing page" />
-    </>
-    }
- />
+  </Card.Body>
+</Card>
