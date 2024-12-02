@@ -74,7 +74,7 @@ export default async function Blog({ params }: Props) {
   const Content = post.content;
 
   return (
-    <>
+    <div className="max-w-[680px] mx-auto">
       <section>
         <script
           type="application/ld+json"
@@ -97,7 +97,7 @@ export default async function Blog({ params }: Props) {
           }}
         />
         {image && (
-          <div className="mb-8 relative w-full h-[500px]">
+          <div className="mb-8 relative w-full h-[400px]">
             <Image src={image} alt="Image de décoration de l'article" fill className="rounded-lg object-cover" />
           </div>
         )}
@@ -111,6 +111,6 @@ export default async function Blog({ params }: Props) {
           <Content />
         </article>
       </section>
-    </>
+    </div>
   );
 }
