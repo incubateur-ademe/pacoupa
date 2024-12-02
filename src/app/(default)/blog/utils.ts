@@ -61,7 +61,7 @@ type RemarkCompileReturnWithFilename = {
  * @returns Get all MDX slugs
  */
 const getMDXFilenames = async () =>
-  (await readdir("content/posts", { withFileTypes: true }))
+  (await readdir("content/blog", { withFileTypes: true }))
     .filter(filenode => filenode.isFile())
     .filter(dir => dir.name.endsWith(".mdx"))
     .map(dir => dir.name);
@@ -71,7 +71,7 @@ const loadMDXFiles = async (fileNames: string[]) => {
   const mdxFilesWithUnknownFrontmatter = await Promise.all(
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     fileNames.map<Promise<RemarkCompileReturnWithFilename>>(async filename => ({
-      ...(await import(`@__content/posts/${filename}`)),
+      ...(await import(`@__content/blog/${filename}`)),
       filename,
     })),
   );
@@ -123,7 +123,7 @@ export const getBlogPost = async (slug: string): Promise<MDXFormat> => {
     throw new Error(`No blog post found with slug: ${slug}`);
   }
 
-  const file = (await import(`@__content/posts/${matchingFile}`)) as RemarkCompileReturnWithFilename;
+  const file = (await import(`@__content/blog/${matchingFile}`)) as RemarkCompileReturnWithFilename;
 
   return {
     content: file.default,

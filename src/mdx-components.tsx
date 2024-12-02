@@ -1,4 +1,5 @@
 import { type MDXComponents } from "mdx/types";
+import Image from "next/image";
 import { Fragment } from "react";
 
 import { MdxLink } from "@/components/mdx/Link";
@@ -6,9 +7,9 @@ import { getLabelFromChildren } from "@/utils/react";
 import { slugify } from "@/utils/string";
 
 import { CTA } from "./components/CTA";
-import { MdxCard } from "./components/MdxCard";
-import { MdxDetails } from "./components/MdxDetails";
-import { MdxSpacer } from "./components/MdxSpacer";
+import { MdxCard } from "./components/mdx/MdxCard";
+import { MdxDetails } from "./components/mdx/MdxDetails";
+import { MdxSpacer } from "./components/mdx/MdxSpacer";
 import { AnchorLink } from "./dsfr/client";
 
 export const anchorHeadingMDXComponents: MDXComponents = {
@@ -30,6 +31,8 @@ export const defaultMdxComponents: MDXComponents = {
   Card: MdxCard,
   Details: MdxDetails,
   Spacer: MdxSpacer,
+  // eslint-disable-next-line jsx-a11y/alt-text
+  Image: props => <Image {...props} />,
   ...anchorHeadingMDXComponents,
 };
 
