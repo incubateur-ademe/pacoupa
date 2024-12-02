@@ -8,7 +8,7 @@ import { TargetImage } from "./TargetImage.tsx"
 import { SunImage } from "./SunImage.tsx"
 import { PlantImage } from "./PlantImage.tsx"
  
-<div className="mt-16" />
+<Separateur niveau="16" />
 
 ## Quelle part du bâtiment dans l’émission de gaz à effet de serre en France et comment la réduire ?
 
@@ -23,7 +23,7 @@ import { PlantImage } from "./PlantImage.tsx"
 
 </div>
 
-<div className="mt-32" />
+<Separateur niveau="32" />
 
 ## Le contexte
 <div className="grid grid-cols-[minmax(230px,_1fr)_minmax(50px,_177px)] gap-2 md:gap-8">
@@ -38,7 +38,7 @@ import { PlantImage } from "./PlantImage.tsx"
   </div>
 </div>
 
-<div className="mt-32" />
+<Separateur niveau="32" />
 
 ## L’état actuel des bâtiments en France
 
@@ -57,7 +57,7 @@ import { PlantImage } from "./PlantImage.tsx"
 
 </div>
 
-<div className="mt-32" />
+<Separateur niveau="32" />
 
 ## Les défis de la transition énergétique
 
@@ -90,13 +90,13 @@ Pour réduire les émissions de gaz à effet de serre des bâtiments, plusieurs 
     />
 </div>
 
-<div className="mt-12" />
+<Separateur niveau="12" />
 
 <div>    
 La rénovation énergétique des bâtiments est un facteur clé de cette transition. Pourtant, le rythme actuel des rénovations est insuffisant. Les rénovations sont souvent effectuées au fil du temps poste par poste (fenêtres, toiture, chauffage) au lieu d'être abordées de manière globale. Les travaux successifs ne sont pas toujours cohérents et peuvent créer des désordres sur le bâtiment, par exemple des ponts thermique si l’isolation entre le toit et les murs n’est pas continue.
 </div>
 
-<div className="mt-32" />
+<Separateur niveau="32" />
 
 ## Les obstacles majeurs à la décarbonation
 
@@ -108,7 +108,7 @@ Cependant, plusieurs obstacles freinent cette transition :
 - **Trop de rénovations partielles** : moins efficaces que les rénovations globales.
 - **Faible adoption des énergies renouvelables** : très peu de copropriétés installent des systèmes de chauffage basés sur des énergies renouvelables, souvent par manque de connaissances ou d’aides pour se lancer.
 
-<div className="mt-32" />
+<Separateur niveau="32" />
 
 ## Un contexte favorable à la transition
 
@@ -156,7 +156,7 @@ Heureusement, plusieurs facteurs démontrent un contexte de plus en plus favorab
   </div>
 </div>
 
-<div className="mt-32" />
+<Separateur niveau="32" />
 
 ## Le déclencheur pour réaliser des travaux : le remplacement du système de chauffage
 
@@ -178,7 +178,8 @@ Heureusement, plusieurs facteurs démontrent un contexte de plus en plus favorab
   </div>
   
 </div>
-<div className="mt-10" />
+
+<Separateur niveau="16" />
 
 <Card
     fullWidth
@@ -186,13 +187,17 @@ Heureusement, plusieurs facteurs démontrent un contexte de plus en plus favorab
     content={
       <>
         <p>
-        Envie d’en savoir pour votre copropriété ? Vous pouvez, après avoir répondu en 3 min à 10 questions, avoir une estimation des gains et coûts énergétiques et financiers pour votre copropriété.
+        Envie d’en savoir pour votre copropriété ? 
+        </p>
+        
+        <p>
+        Vous pouvez, après avoir répondu en 3 min à 10 questions, avoir une estimation des gains et coûts énergétiques et financiers pour votre copropriété.
         </p>
 
 
-      <div className="mt-8">
-        <CTA eventName="Landing page" />
-      </div>
+      <Separateur niveau="8" />
+
+      <CTA eventName="Landing page" />
 
     </>
     }
