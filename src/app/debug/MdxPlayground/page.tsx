@@ -72,9 +72,21 @@ Un système de chauffage écologique fonctionne en effet mieux lorsque le bâtim
 `;
 
 export default function MDXEditorPage() {
-  const [mdxContent, setMdxContent] = useState<string>(localStorage.getItem("mdxContent") || placeholder);
+  const [firstInit, setFirstInit] = useState(false);
+  const [mdxContent, setMdxContent] = useState<string>("");
   const [renderedContent, setRenderedContent] = useState<React.ReactNode | null>(null);
   const [frontmatter, setFrontmatter] = useState<Record<string, unknown> | null>(null);
+
+  useEffect(() => {
+    const storedContent = localStorage.getItem("mdxContent");
+
+    if (storedContent) {
+      setMdxContent(storedContent);
+    } else {
+      setMdxContent(placeholder);
+    }
+    setFirstInit(true);
+  }, []);
 
   useEffect(() => {
     const task = async () => {
@@ -103,8 +115,10 @@ export default function MDXEditorPage() {
       }
     };
 
-    task().catch(console.error);
-  }, [mdxContent]);
+    if (firstInit) {
+      task().catch(console.error);
+    }
+  }, [mdxContent, firstInit]);
 
   const handleRender = (event: ChangeEvent<HTMLTextAreaElement>) => {
     const mdxContent = event.target.value;
@@ -117,12 +131,25 @@ export default function MDXEditorPage() {
 
   console.log("fronmatter", frontmatter);
 
+  const copy = async () => {
+    await navigator.clipboard.writeText(mdxContent);
+  };
+
   return (
     <div className="flex h-screen col-span-3">
       <div className="w-1/2 p-4 h-full flex flex-col">
         <div className="flex gap-4 flex-shrink-0">
           <Button priority="primary" className="mb-4" onClick={loadSample}>
             Exemple complet
+          </Button>
+          <Button
+            priority="secondary"
+            className="mb-4"
+            onClick={() => {
+              copy().catch(console.error);
+            }}
+          >
+            Copier
           </Button>
         </div>
         <textarea
