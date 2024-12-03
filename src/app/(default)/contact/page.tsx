@@ -8,7 +8,7 @@ import { DetailContact } from "./DetailContact";
 
 const ContactPage = () => {
   return (
-    <div className="col-start-2 mt-10 md:mt-20 relative ">
+    <div className="relative ">
       <H1 className="relative md:before:content-[''] before:block before:absolute before:top-[-35px] before:left-[-55px] before:w-full before:h-[91px] before:max-w-[650px] before:bg-[url('/img/dot.png')] before:bg-no-repeat">
         {config.tally.contact.label}
       </H1>
