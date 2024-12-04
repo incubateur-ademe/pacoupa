@@ -26,14 +26,6 @@ export default function Error({ error, reset: _reset }: { error: Error & { diges
       <div className="mt-8">
         <a href={`/mdx/playground?reset=true`}>Recharger le playground</a>
       </div>
-      {/* <button
-        onClick={ 
-          // Attempt to recover by trying to re-render the segment
-          () => reset()
-          }
-          >
-          Try again
-          </button> */}
     </div>
   );
 }
