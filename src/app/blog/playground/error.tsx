@@ -24,7 +24,7 @@ export default function Error({ error, reset: _reset }: { error: Error & { diges
       </details>
 
       <div className="mt-8">
-        <a href={`/mdx/playground?reset=true`}>Recharger le playground</a>
+        <a href={`/blog/playground?reset=true`}>Recharger le playground</a>
       </div>
     </div>
   );
