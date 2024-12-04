@@ -2,7 +2,7 @@ import { type MetadataRoute } from "next";
 
 import { config } from "@/config";
 
-import { getBlogPosts } from "./(default)/blog/utils";
+import { getBlogPosts } from "./(decorated)/(center)/blog/utils";
 
 export const baseUrl = config.host || "https://pacoupa.ademe.fr/";
 

@@ -2,9 +2,9 @@
 titre: Méthodologie détaillée du simulateur
 ---
 
-# Méthodologie détaillée du simulateur
+## Méthodologie détaillée du simulateur
 
-<Separateur niveau="4" />
+<Spacer size="16" />
 
 ## 1. La philosophie générale de Pacoupa 
 
@@ -17,25 +17,25 @@ Pacoupa est un service numérique en ligne qui se positionne en amont de cet acc
 
 L’objectif est de donner des ordres de grandeurs des coûts, des aides et des gains énergétiques engendrés pour que l’utilisateur puisse se projeter dans les travaux à mettre en œuvre (isolation, changement de système). Il permet également d’informer sur les systèmes en énergies renouvelables compatibles avec chaque immeuble.
 
-<Separateur niveau="8" />
+<Spacer size="32" />
 
 ## 2. Les principaux messages
 
 Pacoupa est un service numérique de l’ADEME qui vise à promouvoir :
 
-<Separateur niveau="2" />
+<Spacer size="8" />
 
 -	la rénovation globale et performante : traiter les 6 postes de travaux (isolation des murs, des planchers bas, de la toiture, menuiseries extérieurs, ventilation, production de chauffage et d’eau chaude sanitaire) + Planifier les travaux en 3 étapes maximum, sur une durée limitée, selon un ordonnancement précis  (priorité à l’enveloppe et la ventilation)
 -	les travaux au niveau de la copropriété et pas à l’appartement : les travaux au niveau de la copropriété permettent de traiter l’ensemble des postes et permettent d’atteindre une meilleure performance.
 -	le changement de système après la rénovation de l’enveloppe évitant ainsi le surdimensionnement de l’appareil et permettant un fonctionnement à basse température.
 
-<Separateur niveau="4" />
+<Spacer size="8" />
 
 Le service donne des ordres de grandeurs des coûts, des économies et du gain d’étiquette DPE possible avec les travaux proposés (isolation et changement de système).
 
 Il donne également des éléments techniques sur les différents systèmes de chauffage proposés.
 
-<Separateur niveau="8" />
+<Spacer size="8" />
 
 ## 3. La méthodologie du simulateur
 
@@ -44,12 +44,12 @@ Pour chaque solution, des informations techniques sur la solution sont données 
 
 L’utilisateur a ensuite la possibilité de modifier le scénario de rénovation en choisissant « rénovation partielle » ou « aucune rénovation ».
 
-<Separateur niveau="4" />
+<Spacer size="8" />
 
 <Details>
-  <Question>**3.1 Les questions**</Question>
+  <Details.Question>**3.1 Les questions**</Details.Question>
 
-  <Reponse>
+  <Details.Answer>
     Les 11 questions proposées à l’utilisateur sont les suivantes :
 
     - **Son adresse**: permet de faire un appel à la BAN (base d’adresse nationale), au site FCU (https://france-chaleur-urbaine.beta.gouv.fr/) pour vérifier l’éligibilité à un réseau de chaleur et permet aussi de préciser les données climatiques de la région à laquelle le bâtiment appartient.
@@ -61,15 +61,15 @@ L’utilisateur a ensuite la possibilité de modifier le scénario de rénovatio
     - L’**énergie de chauffage**: permet de réaliser les calculs sur les consommations et émissions initiales liées à la production de chauffage du bâtiment.
     - Le **type de production d’eau chaude sanitaire** (individuelle ou collective) : permet de préconiser des technologies du même type.
     - L’**énergie utilisée pour la production d’ECS**: permet de réaliser les calculs sur les consommations et émissions initiales liées à la production d’eau chaude sanitaire du bâtiment.
-  </Reponse>
+  </Details.Answer>
 </Details>
 
-<Separateur niveau="4" />
+<Spacer size="8" />
 
 <Details>
-  <Question>**3.2 Le classement des solutions**</Question>
+  <Details.Question>**3.2 Le classement des solutions**</Details.Question>
 
-  <Reponse>
+  <Details.Answer>
     Il y a généralement plusieurs solutions de production d’eau chaude et de chauffage qui sont proposées.
 
     Les questions posées sont simples et peu nombreuses, l’objectif est d’alerter les utilisateurs sur le fait que des solutions ENR sont compatibles avec la configuration de leur immeuble. La faisabilité réelle, à la fois technique et économique seront à étudier plus finement dans la suite du projet de rénovation. Il est possible que des solutions préconisées ne soit finalement pas possibles pour des contraintes d’intégration (visuelle, encombrement, accès, règlementation …).
@@ -84,30 +84,30 @@ L’utilisateur a ensuite la possibilité de modifier le scénario de rénovatio
     - lorsque l’immeuble est en chauffage et ECS collective et que l’utilisateur déclare des espaces extérieurs disponibles (jardin, cours ou parking), la PAC géothermique apparait en premier.
     - Des solutions ENR pour l’ECS seule (collective) peuvent être préconisées même si le chauffage est également collectif.
     - Les solutions sont ensuite classées par pertinence.
-  </Reponse>  
+  </Details.Answer>  
 </Details>
 
-<Separateur niveau="4" />
+<Spacer size="8" />
 
 <Details>
-  <Question>**3.3 Les calculs effectués : estimations**</Question>
+  <Details.Question>**3.3 Les calculs effectués : estimations**</Details.Question>
 
-  <Reponse>
+  <Details.Answer>
     L’ensemble des calculs proposés sont basés sur la méthode 3CL utilisée pour réaliser les DPE.
     L’ADEME a confié à Pouget Consultants l’élaboration des simulations qui couvrent toutes les configurations qui peuvent être obtenues à la suite du questionnaire. Au total, ce sont plus de 120 000 simulations qui ont été réalisées. 
     L’ensemble de ces hypothèses permettent d’aboutir à une estimation de la lettre DPE à l’état initial et des consommations de chauffage et d’eau chaude sanitaire de l’immeuble.
 
     La comparaison entre l’état initial et l’état final se fait en comparant 2 lignes de l’Excel contenant toutes les simulations.
     Les coûts proposés dans l’outil comprennent à la fois les coûts des travaux proposés pour atteindre le scénario de travaux visé (global / partiel / aucun) et le coût du changement de système de chauffage.
-  </Reponse>
+  </Details.Answer>
 </Details>
 
-<Separateur niveau="4" />
+<Spacer size="8" />
 
 <Details>
-  <Question>3.3.1 Évaluation énérgétique</Question>
+  <Details.Question>3.3.1 Évaluation énérgétique</Details.Question>
 
-  <Reponse>
+  <Details.Answer>
     Les immeubles sont classés par typologies, en fonction de leur année de construction et de leur nombre de logement. Au total, ce sont 21 typologies qui sont étudiées. Pour chacune des typologies, des hypothèses géométriques et énergétiques sont établies, à savoir :
 
     - La surface habitable totale du logement (m²shab) ;
@@ -137,15 +137,15 @@ L’utilisateur a ensuite la possibilité de modifier le scénario de rénovatio
     Attention, si certaines parois ont déjà été isolées il y a moins de 15 ans, elles ne sont pas prises en compte dans les scénarios d’isolations. Aussi les typologies récentes (année de construction « après 2000 ») ne font pas l’objet de scénario d’isolation puisque leurs parois sont déjà performantes.
 
     L’ensemble de ces hypothèses permettent d’aboutir à une estimation de l’étiquette DPE de l’immeuble avant et après travaux, ainsi que les consommations en énergie primaire et les émissions de gaz à effet de serre associés.
-  </Reponse>
+  </Details.Answer>
 </Details>
 
-<Separateur niveau="4" />
+<Spacer size="8" />
 
 <Details>
-  <Question>3.3.2 Évaluation économique</Question>
+  <Details.Question>3.3.2 Évaluation économique</Details.Question>
   
-  <Reponse>
+  <Details.Answer>
     A chaque simulation est associée un coût d’investissement, qui se divise en deux parties ;
 
     - Coût d’investissement lié à la rénovation de l’enveloppe : Les coûts sont obtenus en multipliant le coût de réhabilitation d’une paroi (en € HT/m²) par la surface de la paroi (m²)
@@ -155,38 +155,33 @@ L’utilisateur a ensuite la possibilité de modifier le scénario de rénovatio
         - Les coûts liés à l’émission : Il dépend du type d’émetteur avant travaux
 
     Les coûts liés à la maintenance, à la l’abonnement et à la facture énergétique sont aussi calculés.
-  </Reponse>
+  </Details.Answer>
 </Details>
 
-<Separateur niveau="4" />
+<Spacer size="8" />
 
 <Details>
-  <Question>3.3.3 Aides financières</Question>
+  <Details.Question>3.3.3 Aides financières</Details.Question>
   
-  <Reponse>
+  <Details.Answer>
     Les aides financières liées au dispositif MaPrimeRénov’ Copropriété sont calculées. Pour simplifier la prise en compte des travaux réalisés « à l’échelle du logement » dans MPR Copro, ils sont considérés comme des « travaux privatifs d’intérêt collectifs. ».
 
     Le Coup de pouce « Rénovation performante de bâtiment résidentiel collectif » n’est pas étudié. Idem pour le « Fonds Chaleur ».
-  </Reponse>
+  </Details.Answer>
 </Details>
 
-<Separateur niveau="12" />
+<Spacer size="32" />
 
-<Card
-    fullWidth
-    header={<h4>Passez à l'action grâce à Pacoupa</h4>}
-    content={
-      <>
-        <p>
-        Pour les copropriétés intéressées par un passage aux systèmes de chauffage à énergie renouvelable, il est important de se renseigner en amont sur les solutions adaptées à son bâtiment.
-        </p>
-        <p>
-        Pacoupa, notre simulateur en ligne, permet d'estimer les coûts et les bénéfices d'un projet de rénovation énergétique pour votre copropriété. <b>En moins de 5 minutes</b>, vous pouvez obtenir une <b>évaluation des économies d'énergie</b>, des réductions <b>d'émissions</b> de CO2, et du retour sur <b>investissement</b>.
-        </p>
+<Card fullWidth>
+  <Card.Title>Passez à l'action grâce à Pacoupa</Card.Title>
+  <Card.Body>
+    Pour les copropriétés intéressées par un passage aux systèmes de chauffage à énergie renouvelable, il est important de se renseigner en amont sur les solutions adaptées à son bâtiment.
+    Pacoupa, notre simulateur en ligne, permet d'estimer les coûts et les bénéfices d'un projet de rénovation énergétique pour votre copropriété. 
+    
+    **En moins de 5 minutes**, vous pouvez obtenir une **évaluation des économies d'énergie**, des réductions **d'émissions** de CO2, et du retour sur **investissement**.
+    
+    <Spacer size="16" />
+    <CTA eventName="Landing page" />
 
-      <div class="mt-8">
-      </div>
-        <CTA eventName="Landing page" />
-    </>
-    }
- />
+  </Card.Body>
+</Card>

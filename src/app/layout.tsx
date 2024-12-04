@@ -5,7 +5,6 @@ import MuiDsfrThemeProvider from "@codegouvfr/react-dsfr/mui";
 import { DsfrHead } from "@codegouvfr/react-dsfr/next-appdir/DsfrHead";
 import { DsfrProvider } from "@codegouvfr/react-dsfr/next-appdir/DsfrProvider";
 import { getHtmlAttributes } from "@codegouvfr/react-dsfr/next-appdir/getHtmlAttributes";
-import { SkipLinks } from "@codegouvfr/react-dsfr/SkipLinks";
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
@@ -14,17 +13,12 @@ import Script from "next/script";
 import { type PropsWithChildren, Suspense } from "react";
 import { NextAppDirEmotionCacheProvider } from "tss-react/next";
 
-import { footerId, PacoupaFooter } from "@/components/PacoupaFooter";
-import { PacoupaHeader } from "@/components/PacoupaHeader";
 import { Matomo } from "@/components/utils/Matomo";
 import { config } from "@/config";
-import { ConsentBannerAndConsentManagement } from "@/consentManagement";
 
 import { defaultColorScheme } from "../defaultColorScheme";
 import { StartDsfr } from "../StartDsfr";
 import { sharedMetadata } from "./shared-metadata";
-
-const contentId = "content";
 
 export const metadata: Metadata = {
   metadataBase: new URL(config.host),
@@ -75,59 +69,7 @@ const RootLayout = ({ children }: PropsWithChildren) => {
       <body className="h-full">
         <DsfrProvider lang="fr">
           <NextAppDirEmotionCacheProvider options={{ key: "css" }}>
-            <MuiDsfrThemeProvider>
-              <ConsentBannerAndConsentManagement />
-              <SkipLinks
-                links={[
-                  {
-                    anchor: `#${contentId}`,
-                    label: "Contenu",
-                  },
-                  {
-                    anchor: `#${footerId}`,
-                    label: "Pied de page",
-                  },
-                ]}
-              />
-              {/* <Notice
-            isClosable={false}
-            title="Le simulateur est en phase de construction. Inscrivez-vous et nous vous préviendrons lors de sa sortie."
-          /> */}
-
-              {/* <Banner
-            title={<>Le simulateur est en construction. Inscrivez-vous et nous vous préviendrons lors de sa sortie.</>}
-          /> */}
-              <div className="min-h-full flex flex-col">
-                {/* <Header
-              brandTop={<Brand />}
-              homeLinkProps={{
-                href: "/",
-                title: `Accueil - ${config.name}`,
-              }}
-              serviceTitle={
-                <>
-                  {config.name}{" "}
-                  <Badge as="span" noIcon severity="success">
-                    Beta
-                  </Badge>
-                </>
-              }
-              // serviceTagline={config.tagline}
-              operatorLogo={operatorLogo}
-            /> */}
-                <PacoupaHeader />
-
-                <main
-                  role="main"
-                  id={contentId}
-                  className="flex-grow grid grid-cols-[16px_1fr_16px] md:grid-cols-[minmax(90px,_1fr)_minmax(320px,_1200px)_minmax(90px,_1fr)] lg:grid-cols-[minmax(120px,_1fr)_minmax(320px,_1200px)_minmax(120px,_1fr)] xl:grid-cols-[minmax(180px,_1fr)_minmax(900px,_1200px)_minmax(180px,_1fr)] gap-y-12 md:gap-y-24"
-                >
-                  {children}
-                </main>
-                {/* <Follow /> */}
-                <PacoupaFooter />
-              </div>
-            </MuiDsfrThemeProvider>
+            <MuiDsfrThemeProvider>{children} </MuiDsfrThemeProvider>
           </NextAppDirEmotionCacheProvider>
         </DsfrProvider>
       </body>

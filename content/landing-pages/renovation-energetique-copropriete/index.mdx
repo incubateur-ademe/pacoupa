@@ -5,73 +5,66 @@ titre: La rénovation énergétique en copropriété
 import { PacoupixImage } from "./PacoupixImage.tsx"
 import { BuildingImage } from "./BuildingImage.tsx"
 
-<div className="mt-4" />
-
-# La rénovation énergétique en copropriété
+## La rénovation énergétique en copropriété
 
 <div className="grid grid-cols-[1fr_minmax(100px,_272px)] gap-8">
   <div>
     La rénovation énergétique des bâtiments est un enjeu majeur pour réduire notre impact environnemental et améliorer notre qualité de vie. 
-En France, les copropriétés représentent une part significative du parc immobilier (28%), et leur rénovation énergétique est essentielle pour atteindre les objectifs de réduction des émissions de gaz à effet de serre. 
+    En France, les copropriétés représentent une part significative du parc immobilier (28%), et leur rénovation énergétique est essentielle pour atteindre les objectifs de réduction des émissions de gaz à effet de serre. 
   </div>
 
   <img src="/landing/house-diagram.svg" className="max-w-[272px]" alt=""/>
 
 </div>
 
-<div className="mt-8" />
+<Spacer size="32" />
 
 ## Pourquoi rénover énergétiquement une copropriété ?
 
-La rénovation énergétique présente de nombreux avantages pour les copropriétés :
+La rénovation énergétique présente de nombreux avantages pour les copropriétés&nbsp;:
 
 <div className="grid grid-col-1 md:grid-cols-3 mt-2 gap-8 place-content-center">
-    <Card
-    header={<h4><img src="/landing/environment.svg" className="w-[80px] h-[80px]" alt=""/><br/>Réduction des coûts énergétiques</h4>}
-    content={
-      <>
+  <Card>
+    <Card.Title><img src="/landing/environment.svg" className="w-[80px] h-[80px]" alt=""/><br/>Réduction des coûts énergétiques</Card.Title>
+    <Card.Body>
       Une meilleure isolation et des systèmes de chauffage plus efficaces réduisent considérablement les factures de chauffage et d’électricité.
-      </>
-    }
-    />
-    <Card
-    header={<h4><img src="/landing/confort.svg" className="w-[80px] h-[80px]" alt=""/><br/>Confort amélioré</h4>}
-    content={
-      <>
+    </Card.Body>
+  </Card>
+
+  <Card>
+    <Card.Title><img src="/landing/confort.svg" className="w-[80px] h-[80px]" alt=""/><br/>Confort amélioré</Card.Title>
+    <Card.Body>
       Une rénovation énergétique permet de maintenir une température agréable tout au long de l’année, réduisant les variations thermiques et améliorant le confort des résidents.
-      </>
-    }
-    />
-    <Card
-    header={<h4><img src="/landing/house.svg" className="w-[80px] h-[80px]" alt=""/><br/>Valorisation du patrimoine immobilier</h4>}
-    content={
-      <>
+    </Card.Body>
+  </Card>
+    
+  <Card>
+    <Card.Title><img src="/landing/house.svg" className="w-[80px] h-[80px]" alt=""/><br/>Valorisation du patrimoine immobilier</Card.Title>
+    <Card.Body>
       Un bâtiment rénové énergétiquement voit sa valeur augmenter sur le marché immobilier.
-      </>
-    }
-    />
-    <Card
-    header={<h4><img src="/landing/leaf.svg" className="w-[80px] h-[80px]"/><br/>Réduction des émissions de gaz à effet de serre</h4>}
-    content={
-      <>
+    </Card.Body>
+  </Card>
+
+  <Card>
+    <Card.Title><img src="/landing/leaf.svg" className="w-[80px] h-[80px]"/><br/>Réduction des émissions de gaz à effet de serre</Card.Title>
+    <Card.Body>
       En consommant moins d’énergie, les copropriétés contribuent à la lutte contre le changement climatique.
-      </>
-    }
-    />
-    <Card
-    header={<h4><img src="/landing/money.svg" className="w-[80px] h-[80px]" alt=""/><br/>Accès aux aides financières</h4>}
-    content={
-      <>
+    </Card.Body>
+  </Card>
+
+  <Card>
+    <Card.Title><img src="/landing/money.svg" className="w-[80px] h-[80px]" alt=""/><br/>Accès aux aides financières</Card.Title>
+    <Card.Body>
       L’État et les collectivités locales offrent diverses subventions et aides pour soutenir les projets de rénovation énergétique.
-      </>
-    }
-    />
-    <div className="hidden max-w-[100px] md:flex items-center">
-      <PacoupixImage />
-    </div>
+    </Card.Body>
+  </Card>
+
+  <div className="hidden max-w-[100px] md:flex items-center">
+    <PacoupixImage />
+  </div>
 </div>
 
-<div className="mt-8" />
+<Spacer size="32" />
 
 ## Les étapes clés de la rénovation énergétique
 
@@ -79,42 +72,45 @@ Voici les principales étapes pour une copropriété :
 
 <div className="grid grid-col-1 md:grid-cols-[1fr_minmax(100px,_200px)] gap-8">
   <div className="space-y-8">
-    <details className="space-y-4">
-      <summary className="text-xl font-bold">1. Réalisation d'un audit énergétique</summary>
+    <Details>
+      <Details.Question>1. Réalisation d'un audit énergétique</Details.Question>
+      <Details.Answer>
+        Un audit énergétique est une analyse approfondie de la performance énergétique du bâtiment. Il identifie les sources de déperdition de chaleur et propose des solutions pour améliorer l’efficacité énergétique.
+      </Details.Answer> 
+    </Details>
 
-      Un audit énergétique est une analyse approfondie de la performance énergétique du bâtiment. Il identifie les sources de déperdition de chaleur et propose des solutions pour améliorer l’efficacité énergétique.
-      
-    </details>
+    <Details>
+      <Details.Question>2. Vote en assemblée générale</Details.Question>
+      <Details.Answer>Pour lancer un projet de rénovation énergétique, il est (souvent) nécessaire d’obtenir l’accord des copropriétaires lors d’une assemblée générale. Une présentation claire des bénéfices et des coûts est cruciale pour convaincre les copropriétaires.</Details.Answer>
+    </Details>
 
-    <details className="space-y-4">
-      <summary className="text-xl font-bold">2. Vote en assemblée générale</summary>
+    <Details>
+      <Details.Question>3. Planification et choix des travaux</Details.Question>
+      <Details.Answer>
+        En fonction des résultats de l’audit énergétique, il faut planifier les travaux nécessaires. Cela peut inclure plusieurs types de travaux, comme l’isolation des murs, du toit, le remplacement des fenêtres, ou encore la modernisation du système de chauffage.
+      </Details.Answer>
+    </Details>
 
-      Pour lancer un projet de rénovation énergétique, il est (souvent) nécessaire d’obtenir l’accord des copropriétaires lors d’une assemblée générale. Une présentation claire des bénéfices et des coûts est cruciale pour convaincre les copropriétaires.
-    </details>
+    <Details>
+      <Details.Question>4. Recherche de financement</Details.Question>
+      <Details.Answer>
+        Il existe plusieurs aides financières et subventions pour la rénovation énergétique, telles que MaPrimeRénov’, les Certificats d’Économies d’Énergie (CEE), ou encore les aides de l’Agence Nationale de l'Habitat (ANAH).
+      </Details.Answer>
+    </Details>
 
-    <details className="space-y-4">
-      <summary className="text-xl font-bold">3. Planification et choix des travaux</summary>
+    <Details>
+      <Details.Question>5. Sélection des entreprises et réalisation des travaux</Details.Question>
+      <Details.Answer>
+        Faire appel à des entreprises qualifiées et certifiées RGE (Reconnu Garant de l’Environnement) est essentiel pour garantir la qualité des travaux et bénéficier des aides financières.
+      </Details.Answer>
+    </Details>
 
-      En fonction des résultats de l’audit énergétique, il faut planifier les travaux nécessaires. Cela peut inclure plusieurs types de travaux, comme l’isolation des murs, du toit, le remplacement des fenêtres, ou encore la modernisation du système de chauffage.
-    </details>
-
-    <details className="space-y-4">
-      <summary className="text-xl font-bold">4. Recherche de financement</summary>
-
-      Il existe plusieurs aides financières et subventions pour la rénovation énergétique, telles que MaPrimeRénov’, les Certificats d’Économies d’Énergie (CEE), ou encore les aides de l’Agence Nationale de l'Habitat (ANAH).
-    </details>
-
-    <details className="space-y-4">
-      <summary className="text-xl font-bold">5. Sélection des entreprises et réalisation des travaux</summary>
-
-      Faire appel à des entreprises qualifiées et certifiées RGE (Reconnu Garant de l’Environnement) est essentiel pour garantir la qualité des travaux et bénéficier des aides financières.
-    </details>
-
-    <details className="space-y-4">
-      <summary className="text-xl font-bold">6. Suivi et maintenance</summary>
-
-      Une fois les travaux réalisés, il est important de suivre la performance énergétique du bâtiment et d’effectuer une maintenance régulière pour préserver les gains énergétiques obtenus.
-    </details>
+    <Details>
+      <Details.Question>6. Suivi et maintenance</Details.Question>
+      <Details.Answer>
+        Une fois les travaux réalisés, il est important de suivre la performance énergétique du bâtiment et d’effectuer une maintenance régulière pour préserver les gains énergétiques obtenus.
+      </Details.Answer>
+    </Details>
   </div>
 
   <div className="hidden md:flex items-center">
@@ -123,88 +119,53 @@ Voici les principales étapes pour une copropriété :
   
 </div>
 
-<div className="mt-8"/>
+<Spacer size="32"/>
 
 ## Les principaux travaux de rénovation énergétique
 
 Voici les six postes de travaux les plus couramment réalisés dans le cadre d’une rénovation énergétique en copropriété :
 
 <div className="grid grid-cols-2 mt-2 gap-8">
-    <Card
-    
-    content={
-      <div className="grid grid-cols-[60px_1fr] gap-4">
-        <img src="/landing/thermometer.svg" className="w-[50px]" alt="" />
-        <p>
-          <h4>Isolation Thermique (x3)</h4>
-          Isolation des murs, des toitures et des planchers pour réduire les pertes de chaleur.
-        </p>
-      </div>
-    }
-    />
-    <Card
-    
-    content={
-      <div className="grid grid-cols-[60px_1fr] gap-4">
-        <img src="/landing/window.svg" className="w-[50px]" alt="" />
-        <p>
-          <h4>Remplacement des fenêtres</h4>
-          Installation de fenêtres à double ou triple vitrage pour améliorer l’isolation.
-        </p>
-      </div>
-    }
-    />
-    <Card
-    
-    content={
-      <div className="grid grid-cols-[60px_1fr] gap-4">
-        <img src="/landing/heat.svg" className="w-[50px]" alt="" />
-        <p>
-          <h4>Modernisation du système de chauffage</h4>
-          Remplacement des chaudières vétustes par des systèmes plus performants et écologiques, comme les pompes à chaleur.
-        </p>
-      </div>
-    }
-    />
-    <Card
-    
-    content={
-      <div className="grid grid-cols-[60px_1fr] gap-4">
-        <img src="/landing/ventilation.svg" className="w-[50px]" alt="" />
+    <Card>
+      <Card.Title><img src="/landing/thermometer.svg" className="w-[50px]" alt="" />Isolation Thermique (x3)</Card.Title>
+      <Card.Body>Isolation des murs, des toitures et des planchers pour réduire les pertes de chaleur.</Card.Body>
+    </Card>
 
-        <p>
-          <h4>Ventilation</h4>
-          Installation de systèmes de ventilation mécanique contrôlée (VMC) pour assurer une bonne qualité de l’air tout en limitant les pertes énergétiques.
-        </p>
-      </div>
-    }
-    />
+    <Card>
+      <Card.Title><img src="/landing/window.svg" className="w-[50px]" alt="" />Remplacement des fenêtres</Card.Title>
+      <Card.Body>Installation de fenêtres à double ou triple vitrage pour améliorer l’isolation.</Card.Body>
+    </Card>
+
+    <Card>
+      <Card.Title><img src="/landing/heat.svg" className="w-[50px]" alt="" />Modernisation du système de chauffage</Card.Title>
+      <Card.Body>
+          Remplacement des chaudières vétustes par des systèmes plus performants et écologiques, comme les pompes à chaleur.
+      </Card.Body>
+    </Card>
+
+    <Card>
+      <Card.Title><img src="/landing/ventilation.svg" className="w-[50px]" alt="" />Ventilation</Card.Title>
+      <Card.Body>
+        Installation de systèmes de ventilation mécanique contrôlée (VMC) pour assurer une bonne qualité de l’air tout en limitant les pertes énergétiques.
+      </Card.Body>
+    </Card>
   </div>
 
-<p className="mt-8">
-  Lorsqu’ils sont réalisés en une seule fois, il s’agit d’une rénovation globale. Bien plus performante qu’une rénovation monogeste (ou encore geste par geste), elle permet de traiter les ponts thermiques ainsi qu’un meilleur dimensionnement du système de chauffage. 
-</p>
+<Spacer size="32" />
 
-<div className="mt-12" />
+Lorsqu’ils sont réalisés en une seule fois, il s’agit d’une rénovation globale. Bien plus performante qu’une rénovation monogeste (ou encore geste par geste), elle permet de traiter les ponts thermiques ainsi qu’un meilleur dimensionnement du système de chauffage. 
 
-<Card
-    fullWidth
-    header={<h4>Pour résumer</h4>}
-    content={
-      <>
-        <p>
-        La rénovation énergétique en copropriété est un investissement rentable à long terme, tant sur le plan économique qu’environnemental, tout en offrant un cadre de vie plus agréable et plus sain aux résidents. Elle nécessite une planification minutieuse, une implication active des copropriétaires, et un recours à des professionnels qualifiés. 
-        </p>
+<Spacer size="32" />
 
+<Card>
+  <Card.Title>Pour résumer</Card.Title>
+  <Card.Body>
+    La rénovation énergétique en copropriété est un investissement rentable à long terme, tant sur le plan économique qu’environnemental, tout en offrant un cadre de vie plus agréable et plus sain aux résidents. Elle nécessite une planification minutieuse, une implication active des copropriétaires, et un recours à des professionnels qualifiés. 
 
-        <p className="font-bold">
-          Prêt à franchir le pas ?
-        </p>
+    **Prêt à franchir le pas ?**
 
-      <div className="mt-8">
-      </div>
-        <CTA eventName="Landing page" />
-
-    </>
-    }
- />
+    <Spacer size="32" />
+      
+    <CTA eventName="Landing page" />
+  </Card.Body>
+</Card>
