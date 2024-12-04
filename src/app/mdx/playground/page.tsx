@@ -5,6 +5,7 @@ import { type ChangeEvent, useEffect, useState } from "react";
 
 import { Button } from "@/components/Button";
 import { defaultMdxComponents } from "@/mdx-components";
+import { useSearchParams } from "next/navigation";
 
 const placeholder = `---
 title: "Ajouter le titre"
@@ -72,20 +73,23 @@ Un système de chauffage écologique fonctionne en effet mieux lorsque le bâtim
 `;
 
 export default function MDXEditorPage() {
-  const [firstInit, setFirstInit] = useState(false);
+  const [afterFirstInit, setAfterFirstInit] = useState(false);
   const [mdxContent, setMdxContent] = useState<string>("");
   const [renderedContent, setRenderedContent] = useState<React.ReactNode | null>(null);
   const [frontmatter, setFrontmatter] = useState<Record<string, unknown> | null>(null);
+  const searchParams = useSearchParams()
+
+  const reset = searchParams.get("reset") === "";
 
   useEffect(() => {
     const storedContent = localStorage.getItem("mdxContent");
 
-    if (storedContent) {
+    if (storedContent && !reset) {
       setMdxContent(storedContent);
     } else {
       setMdxContent(placeholder);
     }
-    setFirstInit(true);
+    setAfterFirstInit(true);
   }, []);
 
   useEffect(() => {
@@ -115,10 +119,10 @@ export default function MDXEditorPage() {
       }
     };
 
-    if (firstInit) {
+    if (afterFirstInit) {
       task().catch(console.error);
     }
-  }, [mdxContent, firstInit]);
+  }, [mdxContent, afterFirstInit]);
 
   const handleRender = (event: ChangeEvent<HTMLTextAreaElement>) => {
     const mdxContent = event.target.value;
