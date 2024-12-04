@@ -1,6 +1,11 @@
-"use client"; // Error components must be Client Components
+"use client";
+import { Button } from "@/components/Button";
+
+// Error components must be Client Components
 
 export default function Error({ error, reset: _reset }: { error: Error & { digest?: string }; reset: () => void }) {
+  const mdxContent = localStorage.getItem("mdxContent");
+
   return (
     <div className="col-start-2 mt-4 p-8">
       <p>Erreur du playground</p>
@@ -18,8 +23,21 @@ export default function Error({ error, reset: _reset }: { error: Error & { diges
       <details>
         <summary>Détails</summary>
 
+        <div className="py-4">
+          <Button
+            size="small"
+            priority="secondary"
+            onClick={() => {
+              if (mdxContent) {
+                navigator.clipboard.writeText(mdxContent).catch(console.error);
+              }
+            }}
+          >
+            Copier le code
+          </Button>
+        </div>
         <p>
-          <pre>{localStorage.getItem("mdxContent")}</pre>
+          <pre>{mdxContent}</pre>
         </p>
       </details>
 

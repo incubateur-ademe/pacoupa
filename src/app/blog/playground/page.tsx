@@ -167,8 +167,6 @@ export default function MDXEditorPage() {
     setMdxContent(completeSample);
   };
 
-  console.log("fronmatter", frontmatter);
-
   const copy = async () => {
     await navigator.clipboard.writeText(mdxContent);
   };
