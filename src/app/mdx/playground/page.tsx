@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { compileMDX } from "next-mdx-remote/rsc";
 import { type ChangeEvent, useEffect, useState } from "react";
@@ -7,32 +8,64 @@ import { type ChangeEvent, useEffect, useState } from "react";
 import { Button } from "@/components/Button";
 import { defaultMdxComponents } from "@/mdx-components";
 
+const today = new Date().toISOString().split("T")[0];
+
 const placeholder = `---
-title: "Ajouter le titre"
-publishedAt: ${new Date().toISOString()}
+title: "Mon titre"
+publishedAt: ${today}
 summary: "Ajouter la description ici."
 image: thought-catalog-505eectW54k-unsplash.jpg
 ---
 
-### Qu’est-ce qu’une énergie renouvelable&nbsp;?
+### Éditeur MDX
 
-- item 1
-- item 2
+- dans votre branche sous GitHub, ajouter les images dans public/img/blog
+- quand Vercel a fini de créer une nouvelle URL pour cette branche, vous pouvez utiliser ces images
+- modifier le frontmatter (titre, date, description et image)
+- écrire le contenu de l'article
+- quand vous êtes satisfaits de votre article, cliquez sur Copier et collez le contenu dans le fichier MDX dans GitHub, dans le dossier /content/blog.
 
-<Spacer size="32" />
+### Composants Markdown
 
+Les composants markdown classiques sont présents (titres, listes, liens, etc.)
+
+### Composants additionnels
+
+Ces composants sont disponibles pour enrichir le contenu de l'article.
+Attention à bien fermer les balises.
+
+- Spacer : ajoute un espace
+- CTA : ajoute un bouton CTA
+- Card  : ajoute une carte, avec un titre, un corps
+- Image : ajoute une image (qui doit se trouver dans /public/img/blog)
+
+<Spacer size="64" />
+
+Ex de Card : 
 <Card fullWidth>
-  <Card.Title>Titre de la carte</Card.Title>
-  <Card.Body>
-    Contenu de la carte
-  </Card.Body>
+<Card.Title>Titre de la carte</Card.Title>
+<Card.Body>
+Contenu de la carte
+</Card.Body>
 </Card>
+
+<Spacer size="64" />
+
+Ex d'image : 
+<Image src="thought-catalog-505eectW54k-unsplash.jpg" />
+
+### Pour aller plus loin
+
+Vous pouvez cliquer sur le bouton Exemple complet pour voir un exemple plus complet d'article.
+
+Vous pouvez regarder comment sont écrits les autres articles du blog, la page faq, les landings pages, etc. pour vous inspirer.
+
 
 `;
 
 const completeSample = `---
 title: "Les systèmes de chauffage à énergie renouvelable pour les copropriétés"
-publishedAt: 2024-11-20
+publishedAt: ${today}
 summary: "Dans une période où la transition énergétique est devenue une priorité, les copropriétés ont un rôle clé à jouer pour réduire les émissions de gaz à effet de serre. Les systèmes de chauffage à énergie renouvelable offrent une solution efficace et durable pour chauffer les bâtiments tout en réduisant leur empreinte carbone."
 image: thought-catalog-505eectW54k-unsplash.jpg
 ---
@@ -77,6 +110,7 @@ export default function MDXEditorPage() {
   const [mdxContent, setMdxContent] = useState<string>("");
   const [renderedContent, setRenderedContent] = useState<React.ReactNode | null>(null);
   const [frontmatter, setFrontmatter] = useState<Record<string, unknown> | null>(null);
+  const [image, setImage] = useState<string | undefined>(undefined);
   const searchParams = useSearchParams();
 
   const reset = searchParams.get("reset") === "true";
@@ -100,6 +134,10 @@ export default function MDXEditorPage() {
             parseFrontmatter: true,
           },
         });
+
+        if (frontmatter.image) {
+          setImage(frontmatter.image as string);
+        }
 
         setRenderedContent(content);
         setFrontmatter(frontmatter);
@@ -159,7 +197,17 @@ export default function MDXEditorPage() {
           placeholder="Write your MDX here. "
         />
       </div>
-      <div className="w-1/2 p-4 bg-white h-full overflow-x-hidden overflow-y-auto">
+      <div className="w-1/2 p-4 bg-white h-full overflow-x-hidden overflow-y-auto pt-16">
+        {image && (
+          <div className="mb-8 relative w-full h-[400px]">
+            <Image
+              src={"/img/blog/" + image}
+              alt="Image de décoration de l'article"
+              fill
+              className="rounded-lg object-cover"
+            />
+          </div>
+        )}
         <div className="border p-4">{renderedContent}</div>
       </div>
     </div>
