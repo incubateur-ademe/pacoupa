@@ -40,11 +40,10 @@ const MdxCardBody = ({ children }: PropsWithChildren) => {
 };
 
 type MarkerProps = {
-  marker: string;
   markerPosition: "left" | "right";
 };
 
-const MdxCardMarker = ({ markerPosition, marker }: MarkerProps) => {
+const MdxCardMarker = ({ markerPosition, children }: PropsWithChildren<MarkerProps>) => {
   return (
     <div
       className={cx(
@@ -52,7 +51,7 @@ const MdxCardMarker = ({ markerPosition, marker }: MarkerProps) => {
         { "self-start": markerPosition === "left", "self-end": markerPosition === "right" },
       )}
     >
-      {marker}
+      {children}
     </div>
   );
 };
@@ -62,7 +61,7 @@ export const MdxCard = ({ children, fullWidth }: PropsWithChildren<Props>) => {
     <>
       <div
         className={cx(
-          "flex flex-col justify-start items-stretch p-4 gap-1 bg-white border border-solid border-body-700 shadow rounded-lg w-full h-full relative ",
+          "flex flex-col justify-start items-stretch p-4 gap-1 bg-white border border-solid border-body-700 shadow rounded-lg w-full relative ",
           {
             "max-w-lg": !fullWidth,
           },

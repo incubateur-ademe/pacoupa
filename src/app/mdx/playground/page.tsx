@@ -1,11 +1,11 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
 import { compileMDX } from "next-mdx-remote/rsc";
 import { type ChangeEvent, useEffect, useState } from "react";
 
 import { Button } from "@/components/Button";
 import { defaultMdxComponents } from "@/mdx-components";
-import { useSearchParams } from "next/navigation";
 
 const placeholder = `---
 title: "Ajouter le titre"
@@ -77,20 +77,16 @@ export default function MDXEditorPage() {
   const [mdxContent, setMdxContent] = useState<string>("");
   const [renderedContent, setRenderedContent] = useState<React.ReactNode | null>(null);
   const [frontmatter, setFrontmatter] = useState<Record<string, unknown> | null>(null);
-  const searchParams = useSearchParams()
+  const searchParams = useSearchParams();
 
-  const reset = searchParams.get("reset") === "";
+  const reset = searchParams.get("reset") === "true";
 
   useEffect(() => {
     const storedContent = localStorage.getItem("mdxContent");
 
-    if (storedContent && !reset) {
-      setMdxContent(storedContent);
-    } else {
-      setMdxContent(placeholder);
-    }
+    setMdxContent(storedContent && !reset ? storedContent : placeholder);
     setAfterFirstInit(true);
-  }, []);
+  }, [reset]);
 
   useEffect(() => {
     const task = async () => {
@@ -113,7 +109,7 @@ export default function MDXEditorPage() {
         setRenderedContent(
           <div className="text-red-500">
             <p>Error rendering MDX</p>
-            {error instanceof Error && <p>{error.toString()}</p>}
+            {/* {error instanceof Error && <p>{error.toString()}</p>} */}
           </div>,
         );
       }
