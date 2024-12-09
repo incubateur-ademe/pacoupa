@@ -1,14 +1,13 @@
-import { fr, type FrCxArg } from "@codegouvfr/react-dsfr";
+import { fr } from "@codegouvfr/react-dsfr";
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 
-import { H3 } from "@/dsfr/base/typography";
+import { H6 } from "@/dsfr/base/typography";
+import { cn } from "@/utils/cn";
 
 import { Logo } from "./img/Logo";
 
 type Props = {
   content?: React.ReactNode;
-  icon?: React.ReactNode;
-  iconId?: FrCxArg;
   title?: string;
   type: "error" | "info" | "neutral" | "pacoupa" | "success" | "warning";
 };
@@ -46,20 +45,25 @@ const config: Record<Props["type"], { bgColor: string; contentColor: string; tit
   },
 };
 
-export const Callout = ({ content, iconId, icon, title, type }: Props) => {
+export const Callout = ({ content, title, type }: Props) => {
   type = type ?? "info";
 
-  icon =
-    type === "pacoupa" ? <Logo /> : icon ?? <i className={fr.cx(iconId ?? "ri-information-fill", "fr-icon--sm")} />;
+  const icon = type === "pacoupa" ? <Logo /> : <i className={fr.cx("ri-information-fill", "fr-icon--sm")} />;
 
   const { bgColor, titleColor, contentColor } = config[type];
 
   return (
     <div className={`rounded-[4px] p-2 ${bgColor} w-full`}>
-      <div className="flex">
-        <div className="flex-shrink-0 -mt-0.5">{icon}</div>
-        <div className="ml-2">
-          {title && <H3 className={`text-sm font-medium ${titleColor} mb-0`}>{title}</H3>}
+      <div className="flex gap-2">
+        <div
+          className={cn("flex-shrink-0 -mt-0.5", {
+            "mt-1": !!title,
+          })}
+        >
+          {icon}
+        </div>
+        <div>
+          {title && <H6 className={`text-sm font-medium ${titleColor} mb-0`}>{title}</H6>}
           <div className={cx("text-sm", { "mt-2": !!title }, `${contentColor}`)}>{content}</div>
         </div>
       </div>

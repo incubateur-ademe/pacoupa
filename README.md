@@ -67,9 +67,9 @@ Ces fichiers CSV sont constitués à partir de fichier Excel/Google sheet stock�
     - exporter l'onglet "Solutions par critères" en csv en le nommant `solutions_par_criteres.csv`.
     - exporter l'onglet "Catalogue de solutions" en le nommant `solutions.csv`.
     
-3. Télécharger les fichier du Simulateur 2 les plus récents. 
-    - renommer les fichier csv bdd_energie en `bdd_energie_h1.csv`, `bdd_energie_h2.csv`, `bdd_energie_h3.csv`.
-    - renommer les fichiers csv bdd_eco en `bdd_eco_h1.csv`, `bdd_eco_h2.csv`, `bdd_eco_h3.csv`.
+3. Télécharger les fichier du Simulateur 2 les plus récents. Il y 3 fichiers bdd éco et bdd énergie (1 pour chaque zone géographique).
+    - renommer les fichier csv bdd_energie (de la forme YYYYMMDD - Simulateur 2 - BDD Energie - Zone HX - PACOUPA.xlsx) en `bdd_energie_h1.csv`, `bdd_energie_h2.csv`, `bdd_energie_h3.csv`.
+    - renommer les fichiers csv bdd_eco (de la forme YYYYMMDD - Simulateur 2 - BDD ECO - Zone HX - PACOUPA.xlsx) en `bdd_eco_h1.csv`, `bdd_eco_h2.csv`, `bdd_eco_h3.csv`.
 
 
 Quand tous les fichiers requis sont présents dans `assets`, lancer le script de génération de la base SQLite.
@@ -85,7 +85,7 @@ yarn db:build
 
     datasette assets/pacoupa.db
 
-    Une technique pour s'assurer que le script de génératin de la base s'est bien lancé, est de regarder la volumétrie attendue (ex: 120 000 lignes pour bdd_eco et bdd_energie).
+    Une technique pour s'assurer que le script de génération de la base s'est bien lancé, est de regarder la volumétrie attendue (ex: 120 000 lignes pour bdd_eco et bdd_energie).
 </details>
 
 <details>
@@ -93,9 +93,9 @@ yarn db:build
 
     Pour ne pas surcharger inutilement le repo GitHub Pacoupa, les fichiers CSV ne sont pas stockés (cf. .gitignore).
 
-    Donc, à chaque fois qu'un fichier pacoupa.db est créé, et à minima, quand il est utilisé en production (cf. plus loin sur l'hébergement Turso), il est fortement conseillé de stocker l'ensemble des fichiers CSV dans le répertoire `PACOUPA/Backup csv/[YYYYMMDD]`. 
+    Donc, à chaque fois qu'un fichier pacoupa.db est créé, et à minima, quand il est utilisé en production (cf. plus loin sur l'hébergement Turso), il est fortement conseillé de stocker l'ensemble des fichiers CSV dans un répertoire de backup sur le Drive de l'équipe. 
     
-    Comme cela, à tout moment l'historique des fichiers sources qui ont permis de constituer une certaine version de la base SQLite est disponible.
+    Comme cela, à tout moment l'historique des fichiers sources qui ont permis de constituer une certaine version de la base SQLite est récupérable.
     
 </details>
 
