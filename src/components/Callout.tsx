@@ -1,7 +1,8 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { cx } from "@codegouvfr/react-dsfr/tools/cx";
 
-import { H3 } from "@/dsfr/base/typography";
+import { H6 } from "@/dsfr/base/typography";
+import { cn } from "@/utils/cn";
 
 import { Logo } from "./img/Logo";
 
@@ -54,9 +55,15 @@ export const Callout = ({ content, title, type }: Props) => {
   return (
     <div className={`rounded-[4px] p-2 ${bgColor} w-full`}>
       <div className="flex gap-2">
-        <div className="flex-shrink-0 -mt-0.5">{icon}</div>
+        <div
+          className={cn("flex-shrink-0 -mt-0.5", {
+            "mt-1": !!title,
+          })}
+        >
+          {icon}
+        </div>
         <div>
-          {title && <H3 className={`text-sm font-medium ${titleColor} mb-0`}>{title}</H3>}
+          {title && <H6 className={`text-sm font-medium ${titleColor} mb-0`}>{title}</H6>}
           <div className={cx("text-sm", { "mt-2": !!title }, `${contentColor}`)}>{content}</div>
         </div>
       </div>

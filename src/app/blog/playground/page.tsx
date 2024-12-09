@@ -38,8 +38,10 @@ Attention à bien fermer les balises.
 - CTA : ajoute un bouton CTA
 - Card  : ajoute une carte, avec un titre, un corps
 - Image : ajoute une image (qui doit se trouver dans /public/img/blog)
+- Callout : ajoute une zone de texte colorée
 
 <Spacer size="64" />
+
 
 Ex de Card : 
 <Card fullWidth>
@@ -53,6 +55,16 @@ Contenu de la carte
 
 Ex d'image : 
 <Image src="thought-catalog-505eectW54k-unsplash.jpg" />
+
+Ex de Callout : 
+
+<Callout type="pacoupa" title="Un callout avec titre">Quand on ne précise pas le type, on affiche un callout vert avec la flamme verte.</Callout>
+
+<Spacer size="64" />
+
+<Callout type="warning">Un autre callout en warning (jaune). Les autres types possibles sont "info", "neutral", "success", "warning"</Callout>
+
+<Spacer size="64" />
 
 ### Pour aller plus loin
 
@@ -112,6 +124,8 @@ export default function MDXEditorPage() {
   const [frontmatter, setFrontmatter] = useState<Record<string, unknown> | null>(null);
   const [image, setImage] = useState<string | undefined>(undefined);
   const searchParams = useSearchParams();
+
+  console.debug("frontmatter", frontmatter);
 
   const reset = searchParams.get("reset") === "true";
 
