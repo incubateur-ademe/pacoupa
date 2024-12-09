@@ -6,6 +6,7 @@ import { getLabelFromChildren } from "@/utils/react";
 import { slugify } from "@/utils/string";
 
 import { CTA } from "./components/CTA";
+import { MdxCallout } from "./components/mdx/MdxCallout";
 import { MdxCard } from "./components/mdx/MdxCard";
 import { MdxDetails } from "./components/mdx/MdxDetails";
 import { MdxImage } from "./components/mdx/MdxImage";
@@ -31,6 +32,7 @@ export const defaultMdxComponents: MDXComponents = {
   Card: MdxCard,
   Details: MdxDetails,
   Spacer: MdxSpacer,
+  Callout: MdxCallout,
 
   Image: props => <MdxImage {...props} />,
   ...anchorHeadingMDXComponents,

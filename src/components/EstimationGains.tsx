@@ -11,7 +11,6 @@ import { BadgeEuros } from "./BadgeEuros";
 import { Callout } from "./Callout";
 import { DPEImage } from "./img/DPEImage";
 import { FlecheImage } from "./img/FlecheImage";
-import { Logo } from "./img/Logo";
 import { Herb } from "./img/twemoji/Herb";
 import { MoneyBag } from "./img/twemoji/MoneyBag";
 
@@ -80,7 +79,6 @@ export const EstimationGains = ({ solution, avecMessage, withTitle }: PropsWithC
             <div className="mt-8 mb-4">
               <Callout
                 type="pacoupa"
-                icon={<Logo />}
                 content={
                   <Text variant="sm" className="mb-0">
                     Un logement mieux isolé :
