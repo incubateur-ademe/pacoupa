@@ -1,5 +1,5 @@
 export const config = {
-  host: process.env.NEXT_PUBLIC_SITE_URL!,
+  host: process.env.NEXT_PUBLIC_SITE_URL! || "https://pacoupa.ademe.fr/",
   name: "Pacoupa",
   tagline:
     "Conseiller les copropriétaires dans l'installation de systèmes de chauffage décarbonés adaptés à leur logement",
