@@ -2,13 +2,14 @@ import { type Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
-import { baseUrl } from "@/app/sitemap";
 import { Button } from "@/components/Button";
 import { config } from "@/config";
 import { H2 } from "@/dsfr/base/typography";
 import { cn } from "@/utils/cn";
 
 import { formatDate, getBlogPost, getBlogPosts } from "../utils";
+
+const baseUrl = config.host;
 
 export async function generateStaticParams() {
   const posts = await getBlogPosts();
