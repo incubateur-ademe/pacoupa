@@ -16,7 +16,12 @@ type Props = {
 export const MdxImage = ({ src, alt }: Props) => {
   return (
     <div className="mb-8 relative w-full h-[400px]">
-      <Image src={"/img/blog/" + src} alt={alt ?? "Image de décoration de l'article"} fill className="rounded-lg" />
+      <Image
+        src={"/img/blog/" + src}
+        alt={alt ?? "Image de décoration de l'article"}
+        fill
+        className="rounded-lg object-cover"
+      />
     </div>
   );
 };
