@@ -152,6 +152,18 @@ export const PacoupaFooter = () => {
                 },
                 text: "Blog",
               },
+              {
+                linkProps: {
+                  href: "/stats",
+                },
+                text: "Statistiques",
+              },
+              {
+                linkProps: {
+                  href: "/budget",
+                },
+                text: "Budget",
+              },
             ],
           },
         ]}
