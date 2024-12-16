@@ -7,7 +7,7 @@ import { H2, H3, Text } from "@/dsfr/base/typography";
 export const DecarbonnonsZone = () => {
   return (
     <>
-      <H2>Décarbonons le bâtiment !</H2>
+      <H2>Décarbonons le bâtiment&nbsp;!</H2>
       <Text variant="xl">
         Nous devons décarboner les <strong>deux tiers</strong> de notre consommation d’énergie d’origine fossile et
         importée de l’autre bout du monde.
