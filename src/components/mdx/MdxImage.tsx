@@ -20,7 +20,7 @@ export const MdxImage = ({ src, alt }: Props) => {
         src={"/img/blog/" + src}
         alt={alt ?? "Image de décoration de l'article"}
         fill
-        className="rounded-lg object-cover"
+        className="rounded-lg object-contain"
       />
     </div>
   );
