@@ -5,16 +5,16 @@
   "private": true,
   "license": "Apache-2.0",
   "engines": {
-    "node": "18.x"
+    "node": "22.x"
   },
   "scripts": {
     "postinstall": "copy-dsfr-to-public",
     "predev": "only-include-used-icons && yarn build-catalogue && yarn build-fiches",
     "dev": "next dev",
     "prebuild": "only-include-used-icons && yarn build-catalogue && yarn build-fiches",
-    "build": "next build",
+    "build": "next build && cp -r public .next/standalone/ && cp -r .next/static .next/standalone/.next/",
     "postbuild": "next-sitemap",
-    "start": "next start",
+    "start": "node .next/standalone/server.js",
     "lint": "next lint",
     "export": "next export",
     "build:export": "npm run build && npm run export",

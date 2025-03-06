@@ -131,7 +131,7 @@ turso db tokens create pacoupa-20241022 -r
 
 En développement, il faut recopier le token dans `.env` et `.env.local` (`TURSO_DATABASE_URL` et `TURSO_AUTH_TOKEN`).
 
-En production sous Vercel, il faudra ajouter/modifier ces variables d'environnement dans les settings.
+En production sous Scalingo, il faudra ajouter/modifier ces variables d'environnement dans les settings.
 
 <details>
     <summary>Comment supprimer une base Turso ?</summary>
@@ -202,10 +202,10 @@ yarn tsc
 
 ### FAQ
 
-*J'ai modifié la DB sur Turso et j'ai une erreur de déploiement sur Vercel?*
+*J'ai modifié la DB sur Turso et j'ai une erreur de déploiement sur Scalingo?*
 
 Cela peut être dû au token d'accès qui a changé. 
-Regénérer le token et le mettre à jour sur Vercel.
+Regénérer le token et le mettre à jour sur Scalingo.
 
 *Comment ajouter une variable d'environnement ?*
 
@@ -215,19 +215,16 @@ Lancer le script `yarn generatedEnvDeclaration` pour modifier le scope global de
 
 ## Déploiement
 
-Le produit est déployé sur Vercel dans l'organisation [ADEME](https://vercel.com/ademe).
+Le produit est déployé sur Scalingo dans l'organisation `incubateur-ademe`.
 
 Pour modifier les variables d'environnement, aller sur le dashboard de Pacoupa.
 
-Dans Settings > Environment variable, modifier les variables pour l'environnement voulu. 
+Dans "Environnement", modifier les variables voulues. 
 
-NB: Vercel considère la review et les environnements des branches de PR comme la Preview 
-(l'environnement Development de Vercel représente les environnements locaux, que l'on n'utilise pas pour Pacoupa).
-
-
-| PACOUPA_ENV | Terminologie Vercel | Branche Git | Fonction | URL |
+| APP_ENV | Branche Git | Fonction | URL |
 | --- | --- | --- | --- | --- |
-| prod | Production | main | Site de production | https://pacoupa.ademe.fr/ |
-| preprod | Preview | dev | Site de préproduction | https://pacoupa.ademe.vercel.app/ |
-| dev (défaut) | Development | (feature branch) | Recette par PR |  |
+| prod | main | Site de production | https://pacoupa.ademe.fr/ |
+| staging | dev | Site de préproduction | https://pacoupa.incubateur.ademe.dev/ |
+| preview (défaut) | (feature branch) | Recette par PR | généré par Scalingo |
+| dev | local | Développement | http://localhost:3000 |
 

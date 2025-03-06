@@ -1,0 +1,25 @@
+{
+  "$schema": "https://gist.githubusercontent.com/revolunet/3fe424cd20b9f51b31bcbb0f530619a8/raw/1cce48b775f6b7f91b4b730d4184f0fab427350e/scalingo.schema.json",
+  "name": "pacoupa",
+  "repository": "https://github.com/incubateur-ademe/pacoupa",
+  "formation": {
+    "web": {
+      "amount": 1,
+      "size": "S"
+    }
+  },
+  "env": {
+    "APP_ENV": {
+      "value": "review"
+    },
+    "NODE_ENV": {
+      "value": "production"
+    },
+    "NEXT_PUBLIC_SITE_URL": {
+      "generator": "url"
+    },
+    "NEXT_PUBLIC_SENTRY_ENV": {
+      "value": "review"
+    }
+  }
+}

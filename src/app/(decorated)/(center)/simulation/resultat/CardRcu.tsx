@@ -24,7 +24,6 @@ export const CardRcu = () => {
         onClick={() => {
           push(["trackEvent", matomoCategory.resultats, "Clic FCU", "Lien FCU"]);
         }}
-        scroll={true}
       >
         <Card
           marker="Meilleure solution"

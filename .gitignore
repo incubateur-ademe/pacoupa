@@ -74,3 +74,4 @@ credentials.json
 # All assets should be rebuild from csv files in Google Drive and are stored in Turso when used in deployments.
 assets/*
 !assets/.gitkeep
+.env*.local

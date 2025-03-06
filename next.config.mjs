@@ -4,11 +4,16 @@ import remarkFrontmatter from "remark-frontmatter";
 import remarkGfm from "remark-gfm";
 import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 
-import packageJson from "./package.json" assert { type: "json" };
+import packageJson from "./package.json" with { type: "json" };
 
 const { version } = packageJson;
 
-const isDeployment = !!process.env.VERCEL_URL;
+const isDeployment = !!process.env.SOURCE_VERSION;
+
+const env = {
+  NEXT_PUBLIC_APP_VERSION: version,
+  NEXT_PUBLIC_APP_VERSION_COMMIT: isDeployment ? process.env.SOURCE_VERSION : "dev",
+};
 
 const csp = {
   "default-src": ["https://tally.so"],
@@ -18,7 +23,6 @@ const csp = {
     "https://api-adresse.data.gouv.fr",
     "https://data.ademe.fr",
     "https://sentry.incubateur.net",
-    process.env.PACOUPA_ENV === "preprod" && "https://vercel.live",
     process.env.NODE_ENV === "development" && "http://localhost",
   ],
   "font-src": ["'self'"],
@@ -27,10 +31,10 @@ const csp = {
   "script-src": [
     "'self'",
     "'unsafe-inline'",
-    "https://stats.beta.gouv.fr",
+    process.env.NEXT_PUBLIC_MATOMO_URL,
     "https://tally.so",
-    process.env.PACOUPA_ENV === "preprod" && "https://vercel.live",
     process.env.NODE_ENV !== "prod" && "'unsafe-eval'",
+    process.env.NODE_ENV === "development" && "http://localhost",
   ],
   "style-src": ["'self'", "'unsafe-inline'"],
   "object-src": ["'self'", "data:"],
@@ -49,10 +53,11 @@ const ContentSecurityPolicy = Object.entries(csp)
 /** @type {import('next').NextConfig} */
 const config = {
   poweredByHeader: false,
+  output: "standalone",
   swcMinify: true,
   webpack: config => {
     config.module.rules.push({
-      test: /\.(woff2|webmanifest)$/,
+      test: /\.(woff2|webmanifest|ttf)$/,
       type: "asset/resource",
     });
 
@@ -64,17 +69,7 @@ const config = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  env: {
-    NEXT_TELEMETRY_DISABLED: "1",
-    NEXT_PUBLIC_APP_VERSION: version,
-    NEXT_PUBLIC_APP_VERSION_COMMIT: isDeployment ? process.env.VERCEL_GIT_COMMIT_SHA : "dev",
-    NEXT_PUBLIC_REPOSITORY_URL: isDeployment
-      ? `https://github.com/${process.env.VERCEL_GIT_REPO_OWNER}/${process.env.VERCEL_GIT_REPO_SLUG}`
-      : process.env.NEXT_PUBLIC_REPOSITORY_URL ?? "no repository",
-    NEXT_PUBLIC_SITE_URL: isDeployment
-      ? process.env.NEXT_PUBLIC_SITE_URL ?? `https://${process.env.VERCEL_URL}`
-      : "http://localhost:3000",
-  },
+  env,
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   async headers() {
     return [
@@ -131,9 +126,8 @@ const sentryConfig = {
   // For all available options, see:
   // https://github.com/getsentry/sentry-webpack-plugin#options
 
-  org: "incubateur-ademe",
-  project: "pacoupa",
-  sentryUrl: "https://sentry.incubateur.net/",
+  dryRun: isDeployment && process.env.NODE_ENV !== "production",
+  sentryUrl: process.env.SENTRY_URL,
   // for sourcemaps
   authToken: process.env.SENTRY_AUTH_TOKEN,
 
@@ -181,4 +175,3 @@ export default withSentryConfig(withMDX(config), sentryConfig);
 
 console.log("dans Next.config ------------------------");
 console.log("TURSO_DATABASE_URL", process.env.TURSO_DATABASE_URL);
-// console.log("TURSO_AUTH_TOKEN", process.env.TURSO_AUTH_TOKEN);

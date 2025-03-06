@@ -6,7 +6,7 @@ declare namespace NodeJS {
          * Dist: `dev`  
          * {@link [Local Env Dist](.env.development)}
          */
-        PACOUPA_ENV?: string;
+        APP_ENV?: string;
         /**
          * Dist: `108`  
          * {@link [Local Env Dist](.env.development)}
@@ -48,7 +48,7 @@ declare namespace NodeJS {
          */
         NEXT_PUBLIC_SITE_URL?: string;
         /**
-         * Dist: `https://c89ee6669e89ebdad02c4a05002cf1f0@sentry.incubateur.net/174`  
+         * No dist value.  
          * {@link [Local Env Dist](.env.development)}
          */
         NEXT_PUBLIC_SENTRY_DSN?: string;
@@ -62,10 +62,25 @@ declare namespace NodeJS {
          * {@link [Local Env Dist](.env.development)}
          */
         SENTRY_AUTH_TOKEN?: string;
+        /**
+         * No dist value.  
+         * {@link [Local Env Dist](.env.development)}
+         */
+        SENTRY_ORG?: string;
+        /**
+         * No dist value.  
+         * {@link [Local Env Dist](.env.development)}
+         */
+        SENTRY_PROJECT?: string;
+        /**
+         * No dist value.  
+         * {@link [Local Env Dist](.env.development)}
+         */
+        SENTRY_URL?: string;
     }
 }
 declare type ProcessEnvCustomKeys = 
-    | 'PACOUPA_ENV'
+    | 'APP_ENV'
     | 'NEXT_PUBLIC_MATOMO_SITE_ID'
     | 'NEXT_PUBLIC_MATOMO_URL'
     | 'TURSO_DATABASE_URL'
@@ -76,4 +91,7 @@ declare type ProcessEnvCustomKeys =
     | 'NEXT_PUBLIC_SITE_URL'
     | 'NEXT_PUBLIC_SENTRY_DSN'
     | 'NEXT_PUBLIC_SENTRY_ENV'
-    | 'SENTRY_AUTH_TOKEN';
+    | 'SENTRY_AUTH_TOKEN'
+    | 'SENTRY_ORG'
+    | 'SENTRY_PROJECT'
+    | 'SENTRY_URL';

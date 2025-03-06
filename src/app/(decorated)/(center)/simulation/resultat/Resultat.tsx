@@ -164,7 +164,6 @@ export const Resultat = ({
                 onClick={() => {
                   push(["trackEvent", matomoCategory.resultats, "Clic Découvrir", "Découvrir"]);
                 }}
-                scroll={true}
               >
                 <SolutionCard
                   solution={solution}

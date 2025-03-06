@@ -1,17 +1,20 @@
-const isDeployment = !!process.env.VERCEL_URL;
+const isDeployment = !!process.env.SOURCE_VERSION;
 
 const priorities = {
   "/": 1.0,
   "/simulation": 1.0,
   "/stats": 0.5,
+  "/healthz": 0,
 };
+
+const exclude = ["/debug", "/debug/*", "/healthz", "/blog/playground"];
 
 /** @type {import('next-sitemap').IConfig} */
 const config = {
   generateRobotsTxt: true,
-  siteUrl: isDeployment ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000",
+  siteUrl: isDeployment ? `https://${process.env.NEXT_PUBLIC_SITE_URL}` : "http://localhost:3000",
   changefreq: "weekly",
-  exclude: ["/debug", "/debug/*", "/healthz", "/blog/playground"],
+  exclude,
   transform: async (config, path) => {
     return {
       loc: path,
@@ -26,7 +29,7 @@ const config = {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/debug", "/debug/*", "/healthz", "/blog/playground"],
+        disallow: exclude,
       },
     ],
   },
