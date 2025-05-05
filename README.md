@@ -60,19 +60,20 @@ Les fichiers requis sont les suivants :
 
 Ces fichiers CSV sont constitués à partir de fichier Excel/Google sheet stockés sur Google Drive dans le répertoire Pacoupa (demander l'accès).
 
-1. Ouvrir le fichier `typologies PACOUPA`.
+1. Assurez-vous de bien avoir installé l'outil [sqlite-utils](https://sqlite-utils.datasette.io/en/stable/installation.html#using-homebrew)
+
+2. Ouvrir le fichier `typologies PACOUPA`.
     - exporter l'onglet principal en le nommant `typologies.csv`.
 
-2. Ouvrir le fichier `Simulateur 1 - PACOUPA`.
+3. Ouvrir le fichier `Simulateur 1 - PACOUPA`.
     - exporter l'onglet "Solutions par critères" en csv en le nommant `solutions_par_criteres.csv`.
     - exporter l'onglet "Catalogue de solutions" en le nommant `solutions.csv`.
     
-3. Télécharger les fichier du Simulateur 2 les plus récents. Il y 3 fichiers bdd éco et bdd énergie (1 pour chaque zone géographique).
+4. Télécharger les fichier du Simulateur 2 les plus récents. Il y 3 fichiers bdd éco et bdd énergie (1 pour chaque zone géographique).
     - renommer les fichier csv bdd_energie (de la forme YYYYMMDD - Simulateur 2 - BDD Energie - Zone HX - PACOUPA.xlsx) en `bdd_energie_h1.csv`, `bdd_energie_h2.csv`, `bdd_energie_h3.csv`.
     - renommer les fichiers csv bdd_eco (de la forme YYYYMMDD - Simulateur 2 - BDD ECO - Zone HX - PACOUPA.xlsx) en `bdd_eco_h1.csv`, `bdd_eco_h2.csv`, `bdd_eco_h3.csv`.
 
-
-Quand tous les fichiers requis sont présents dans `assets`, lancer le script de génération de la base SQLite.
+5. Quand tous les fichiers requis sont présents dans `assets`, lancer le script de génération de la base SQLite.
 
 ```shell
 yarn db:build
@@ -86,6 +87,7 @@ yarn db:build
     datasette assets/pacoupa.db
 
     Une technique pour s'assurer que le script de génération de la base s'est bien lancé, est de regarder la volumétrie attendue (ex: 120 000 lignes pour bdd_eco et bdd_energie).
+
 </details>
 
 <details>
