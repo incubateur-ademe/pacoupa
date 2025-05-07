@@ -97,7 +97,7 @@ const config = {
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
     "import/order": "off",
-    "import/no-default-export": "error",
+    // "import/no-default-export": "error",
     "import/no-extraneous-dependencies": "off",
     "import/no-internal-modules": "off",
     "import/newline-after-import": "error",

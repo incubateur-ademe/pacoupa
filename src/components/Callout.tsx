@@ -53,7 +53,7 @@ export const Callout = ({ content, title, type }: Props) => {
   const { bgColor, titleColor, contentColor } = config[type];
 
   return (
-    <div className={`rounded-[4px] p-2 ${bgColor} w-full`}>
+    <div className={`rounded-1 p-2 ${bgColor} w-full`}>
       <div className="flex gap-2">
         <div
           className={cn("flex-shrink-0 -mt-0.5", {

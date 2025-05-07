@@ -46,7 +46,7 @@ export const EstimationCouts = ({ solution, withTitle, withTooltip }: PropsWithC
 
         <div className="px-2">
           <Text variant="sm" className="flex gap-1 mt-4 mb-2 items-center font-medium">
-            <span className="inline-block w-[20px] leading-[0rem]" aria-hidden>
+            <span className="inline-block w-5 leading-[0rem]" aria-hidden>
               <Banknote />
             </span>
             <span className="text-balance">Coût total du projet (sans aides)</span>
@@ -73,7 +73,7 @@ export const EstimationCouts = ({ solution, withTitle, withTooltip }: PropsWithC
           </div>
 
           <Text variant="sm" className="flex gap-1 mt-4 mb-2 items-center font-medium">
-            <span className="inline-block w-[20px] leading-[0rem]" aria-hidden>
+            <span className="inline-block w-5 leading-[0rem]" aria-hidden>
               <Bank />
             </span>
             Aides nationales minimum

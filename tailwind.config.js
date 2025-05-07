@@ -7,15 +7,20 @@ module.exports = {
   theme: {
     extend: {
       boxShadow: {
+        custom: "4px 4px 28px 0px rgba(18, 18, 18, 0.07)",
         md: "2px 2px 0 0 var(--color-text-primary)",
         DEFAULT: "4px 4px 0 0 var(--color-green-900)",
       },
       scale: {
         103: "1.03",
       },
+      borderWidth: {
+        3: "3px",
+      },
     },
     fontFamily: {
       "geist-sans": ["var(--font-geist-sans)", "sans-serif"],
+      inter: ["var(--font-inter)", "sans-serif"],
     },
     // align with dsfr
     screens: {

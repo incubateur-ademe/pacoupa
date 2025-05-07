@@ -95,10 +95,10 @@ export const Evaluation = ({ categorie, solution, withDetails }: EvaluationProps
   return (
     <div>
       <div className="flex items-center">
-        <span className="inline-block w-[20px] leading-[0rem]" aria-hidden>
+        <span className="inline-block w-5 leading-[0rem]" aria-hidden>
           {emoji ?? ""}
         </span>
-        <span className="pl-[8px]">{titre}</span>
+        <span className="pl-2">{titre}</span>
       </div>
 
       <div className="flex">
@@ -122,11 +122,11 @@ export const Evaluation = ({ categorie, solution, withDetails }: EvaluationProps
               <DialogTitle id="alert-dialog-title" className="!mt-6">
                 <div className="flex mt-2 mb-1 items-center">
                   {emoji && (
-                    <span className="inline-block w-[20px] leading-[0rem]" aria-hidden>
+                    <span className="inline-block w-5 leading-[0rem]" aria-hidden>
                       {emoji ?? ""}
                     </span>
                   )}
-                  <span className="pl-[8px]">{titre}</span>
+                  <span className="pl-2">{titre}</span>
                 </div>
               </DialogTitle>
 

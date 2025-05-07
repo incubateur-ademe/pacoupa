@@ -46,7 +46,7 @@ export const EstimationGains = ({ solution, avecMessage, withTitle }: PropsWithC
         )}
         <div className="px-2">
           <Text variant="sm" className="flex gap-1 mt-0 mb-2 items-center font-medium">
-            <span className="inline-block w-[20px] leading-[0rem]" aria-hidden>
+            <span className="inline-block w-5 leading-[0rem]" aria-hidden>
               <Herb />
             </span>
             Gains énergétiques estimés
@@ -93,7 +93,7 @@ export const EstimationGains = ({ solution, avecMessage, withTitle }: PropsWithC
             </div>
           )}
           <Text variant="sm" className="flex gap-1 mt-8 mb-2 items-center font-medium">
-            <span className="inline-block w-[20px] leading-[0rem]" aria-hidden>
+            <span className="inline-block w-5 leading-[0rem]" aria-hidden>
               <MoneyBag />
             </span>
             Gains économiques estimés

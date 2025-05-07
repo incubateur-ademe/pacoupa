@@ -107,7 +107,7 @@ export const Resultat = ({
                 <strong>Super nouvelle !</strong>
                 <br /> Vous habitez dans un immeuble qui est énergiquement déjà très performant ! Il n’y a plus qu’à
                 changer le chauffage.&nbsp;
-                <span className="inline-block w-[20px] align-middle">
+                <span className="inline-block w-5 align-middle">
                   <RaisingHands />
                 </span>
               </Text>
