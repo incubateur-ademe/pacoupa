@@ -85,7 +85,7 @@ const config = {
     return [
       // Specific headers for coachcopro route to allow iframe embedding
       {
-        source: "/coachcopro",
+        source: "/__coachcopro",
         headers: [
           {
             key: "Content-Security-Policy",
@@ -123,7 +123,7 @@ const config = {
       },
       // Default headers for all other routes
       {
-        source: "/((?!coachcopro).*)",
+        source: "/((?!__coachcopro).*)",
         headers: [
           {
             key: "Content-Security-Policy",
