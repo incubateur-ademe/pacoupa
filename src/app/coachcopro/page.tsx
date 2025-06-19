@@ -2,7 +2,7 @@
 import { Inter } from "next/font/google";
 import { useEffect, useState } from "react";
 
-import CoachCopro from "./coach-copro";
+import CoachCopro from "./coachcopro";
 import coachcoproStyles from "./coachcopro.module.css";
 import ModalStep1 from "./modal-step-1";
 import ModalStep2 from "./modal-step-2";

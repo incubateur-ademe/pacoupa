@@ -46,7 +46,17 @@ const csp = {
   "frame-src": ["https://tally.so"],
 };
 
+// CSP for coachcopro route to allow iframe embedding
+const cspCoachCopro = {
+  ...csp,
+  "frame-ancestors": ["'self'", "https://tally.so", "https://www.coachcopro.com"],
+};
+
 const ContentSecurityPolicy = Object.entries(csp)
+  .map(([key, value]) => `${key} ${value.filter(Boolean).join(" ")};`)
+  .join(" ");
+
+const ContentSecurityPolicyCoachCopro = Object.entries(cspCoachCopro)
   .map(([key, value]) => `${key} ${value.filter(Boolean).join(" ")};`)
   .join(" ");
 
@@ -73,8 +83,47 @@ const config = {
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   async headers() {
     return [
+      // Specific headers for coachcopro route to allow iframe embedding
       {
-        source: "/(.*)",
+        source: "/coachcopro",
+        headers: [
+          {
+            key: "Content-Security-Policy",
+            value: ContentSecurityPolicyCoachCopro,
+          },
+          // Remove X-Frame-Options for this route to allow iframe embedding
+          {
+            key: "X-Content-Type-Options",
+            value: "nosniff",
+          },
+          {
+            key: "X-XSS-Protection",
+            value: "1; mode=block",
+          },
+          {
+            key: "Referrer-Policy",
+            value: "no-referrer, strict-origin-when-cross-origin",
+          },
+          {
+            key: "Permissions-Policy",
+            value: "fullscreen=(), display-capture=(), camera=(), microphone=(), geolocation=()",
+          },
+          {
+            key: "Cross-Origin-Opener-Policy",
+            value: "same-origin",
+          },
+          {
+            key: "Cross-Origin-Resource-Policy",
+            value: "cross-origin",
+          },
+          { key: "Access-Control-Allow-Origin", value: "*" },
+          { key: "Access-Control-Allow-Methods", value: "GET, POST, PUT, DELETE, OPTIONS" },
+          { key: "Access-Control-Allow-Headers", value: "Content-Type, Authorization" },
+        ],
+      },
+      // Default headers for all other routes
+      {
+        source: "/((?!coachcopro).*)",
         headers: [
           {
             key: "Content-Security-Policy",
