@@ -39,7 +39,12 @@ const csp = {
   "style-src": ["'self'", "'unsafe-inline'"],
   "object-src": ["'self'", "data:"],
   // "frame-ancestors": ["'self'", "https://tally.so"],
-  "frame-ancestors": ["'self'", "https://tally.so", "https://www.coachcopro.com"],
+  "frame-ancestors": [
+    "'self'",
+    "https://tally.so",
+    "https://coachcopro.preprod.centralweb.fr/",
+    "https://www.coachcopro.com",
+  ],
   "base-uri": ["'self'", "https://*.gouv.fr"],
   "form-action": ["'self'", "https://*.gouv.fr"],
   "block-all-mixed-content": [],
@@ -50,7 +55,12 @@ const csp = {
 // CSP for coachcopro route to allow iframe embedding
 const cspCoachCopro = {
   ...csp,
-  "frame-ancestors": ["'self'", "https://tally.so", "https://www.coachcopro.com"],
+  "frame-ancestors": [
+    "'self'",
+    "https://tally.so",
+    "https://coachcopro.preprod.centralweb.fr/",
+    "https://www.coachcopro.com",
+  ],
 };
 
 const ContentSecurityPolicy = Object.entries(csp)
