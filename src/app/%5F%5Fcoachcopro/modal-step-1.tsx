@@ -12,7 +12,7 @@ export default function ModalStep1({ onNext }: { onNext: () => void }) {
           <Image src="/img/ademe.svg" alt="" width={52} height={63} />
         </div>
 
-        <h2 className="mb-2 text-2xl font-extrabold !text-[#4B5563]">
+        <h2 className="mb-2 text-2xl font-extrabold text-[#4B5563]">
           Calculez le potentiel rénovation de votre copro.
         </h2>
         <p className="font-medium mb-8 text-base leading-5 text-[#4b5563]">
