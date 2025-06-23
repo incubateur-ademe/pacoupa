@@ -24,6 +24,7 @@ module.exports = {
     },
     // align with dsfr
     screens: {
+      xs: "24em", // 384 px
       sm: "36em", // 576 px
       md: "48em", // 768 px
       lg: "62em", // 992 px

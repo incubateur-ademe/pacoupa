@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 type ContextCardProps = {
   active?: boolean;
   description: string;
@@ -10,15 +8,19 @@ type ContextCardProps = {
 export function ContextCard({ title, description, imageSrc, active = false }: ContextCardProps) {
   return (
     <div
-      className={`flex items-center px-5 py-[16px] rounded-lg mb-4 ${
-        active ? "border-2 border-solid border-[#E41571]" : "shadow-custom"
-      }`}
+      className={[
+        "items-center px-3 py-4 rounded-lg mb-4 grid gap-4 xs:px-5 grid-cols-[3.5rem_1fr]",
+        active ? "border-2 border-solid border-[#E41571]" : "shadow-custom",
+      ].join(" ")}
     >
-      <Image src={imageSrc} alt="" width={56} height={56} className="mr-[16px]" />
-      <div>
-        <h3 className="text-[18px] font-bold !text-[#111827] mb-1">{title}</h3>
-        <p className="whitespace-pre-line text-base font-normal text-[#111827] m-0">{description}</p>
+      <div className="col-span-1 flex items-center justify-start sm:row-span-2">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={imageSrc} alt={`icône pour illustrer le contexte ${title}`} className="w-full max-w-14 min-w-12" />
       </div>
+      <h3 className="text-lg font-bold !text-[#111827] m-0 hyphens-auto">{title}</h3>
+      <p className="col-span-2 sm:col-span-1 whitespace-pre-line max-w-96 hyphens-auto text-base font-normal text-[#111827] m-0">
+        {description}
+      </p>
     </div>
   );
 }

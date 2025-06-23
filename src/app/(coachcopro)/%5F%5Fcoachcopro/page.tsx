@@ -1,7 +1,7 @@
 "use client";
 import { cx } from "@codegouvfr/react-dsfr/fr/cx";
 import { Inter } from "next/font/google";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import CoachCopro from "./coachcopro";
 import ModalStep1 from "./modal-step-1";
@@ -14,14 +14,14 @@ const inter = Inter({
 });
 
 export default function Page() {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(4);
 
-  useEffect(() => {
-    document.getElementById("coachcopro")?.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  }, [step]);
+  // useEffect(() => {
+  //   document.getElementById("coachcopro")?.scrollTo({
+  //     top: 0,
+  //     behavior: "smooth",
+  //   });
+  // }, [step]);
 
   return (
     <div
