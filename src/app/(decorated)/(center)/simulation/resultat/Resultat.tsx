@@ -191,7 +191,8 @@ export const Resultat = ({
                   name: "complet",
                   value: "oui",
                 })}`,
-                { scroll: false },
+                // @ts-expect-error scroll is not a boolean
+                { scroll: "false" },
               );
             }}
           >

@@ -52,7 +52,8 @@ export const TravauxNiveauIsolationSegmentedControl = ({ travauxNiveauIsolation 
                     name: "travauxNiveauIsolation",
                     value: label,
                   })}`,
-                  { scroll: false },
+                  // @ts-expect-error scroll is not a boolean
+                  { scroll: "false" },
                 );
               },
             },

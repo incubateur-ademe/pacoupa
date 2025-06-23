@@ -14,7 +14,7 @@ export default function ModalStep2({ onNext, onBack }: { onBack: () => void; onN
           <div className="flex items-center justify-center w-4 h-4 rounded-full border border-solid border-[#E41571]"></div>
         </div>
         <h2 className="text-2xl font-extrabold !text-[#4b5563] mb-2">Vérifiez les informations de votre bâtiment</h2>
-        <div className="text-lg font-medium !text-[#4b5563] mb-8">
+        <div className="text-lg font-medium text-[#4b5563] mb-8">
           Ces informations vont nous permettre de calculer le potentiel rénovation de votre bâtiment
         </div>
 

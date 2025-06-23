@@ -7,12 +7,12 @@ export default function ModalStep1({ onNext }: { onNext: () => void }) {
     <>
       <div className="basis-[700px] p-8 pt-16 border-3 border-solid border-[#6B7280] rounded-lg bg-white">
         <div className="flex items-center gap-2 mb-8">
-          <Image src="/img/coachcopro.png" alt="" width={68} height={68} />
+          <Image src="/img/coach-copro.png" alt="" width={68} height={68} />
           <Image src="/img/cross.svg" alt="" width={12} height={12} />
           <Image src="/img/ademe.svg" alt="" width={52} height={63} />
         </div>
 
-        <h2 className="mb-2 text-2xl font-extrabold text-[#4b5563]">
+        <h2 className="mb-2 text-2xl font-extrabold text-[#4B5563]">
           Calculez le potentiel rénovation de votre copro.
         </h2>
         <p className="font-medium mb-8 text-base leading-5 text-[#4b5563]">
