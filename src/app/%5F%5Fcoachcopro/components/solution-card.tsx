@@ -1,5 +1,8 @@
 import Image from "next/image";
 
+import { DetailsButton } from "./details-button";
+import { Tag } from "./tag";
+
 type SolutionCardProps = {
   active?: boolean;
   description: string;
@@ -14,13 +17,21 @@ export function SolutionCard({ title, description, imageSrc, active = false, eli
       <Image src={imageSrc} alt="" width={40} height={40} className="mr-[16px]" />
       <div className="flex flex-col">
         <div className="flex items-center mb-1">
-          <h3 className="text-[18px] leading-[1.6] font-bold m-0 mr-2">{title}</h3>
-          <div className="leading-[1.2] p-1 text-[12px] font-bold uppercase bg-[#f3f4f6] !rounded-1">Collectif</div>
+          <h3 className="text-[18px] font-bold !text-[#111827] m-0 mr-2">{title}</h3>
+          <Tag variant="primary" />
         </div>
-        <p className="text-base font-normal mb-2">{description}</p>
-        <button className="p-0 h-[38px] self-end text-base font-bold text-[#111827] border-0 border-b-2 border-solid border-[#111827] hover:!bg-transparent">
-          {eligible ? "Voir la carte" : "En savoir plus"}
-        </button>
+        <p className="text-base font-normal text-black mb-2">{description}</p>
+        {eligible ? (
+          <div className="flex justify-between">
+            <div>
+              <span className="block text-xs font-normal text-[#111827] mb-1">Éligibilité au réseau de chaleur</span>
+              <span className="block text-sm font-bold text-[#E41571]">Éligible</span>
+            </div>
+            <DetailsButton text="Voir la carte" className="self-end" />
+          </div>
+        ) : (
+          <DetailsButton text="En savoir plus" className="self-end" />
+        )}
       </div>
     </div>
   );

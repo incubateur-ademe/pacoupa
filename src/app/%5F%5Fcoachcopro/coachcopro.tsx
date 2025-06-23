@@ -1,14 +1,16 @@
 import Image from "next/image";
 
 import { ContextCard } from "./components/context-card";
+import { DetailsButton } from "./components/details-button";
 import { SolutionCard } from "./components/solution-card";
+import { Tag } from "./components/tag";
 
 export default function CoachCopro() {
   return (
     <div className="size-full border-4 justify-center">
       <div className="flex flex-col items-start max-w-6xl">
-        <h1 className="text-2xl font-black mb-2">Mon potentiel réno</h1>
-        <span className="flex w-full h-[1px] bg-[#E5E7EB] mb-2" />
+        <h1 className="text-2xl font-black !text-[#111827] mb-2">Mon potentiel réno</h1>
+        <div className="flex w-full h-[1px] bg-[#E5E7EB] mb-2" />
         <p className="text-lg font-medium text-[#4B556A] mb-14">
           Retrouvez ici différents scénarios de rénovation énergétique pour votre copro
         </p>
@@ -72,22 +74,154 @@ export default function CoachCopro() {
 
           <div className="basis-1/3">
             <div className="w-full border border-solid border-[#f3f4f6] rounded-lg mb-2 p-4">
-              <h2 className="text-lg font-bold color-[#111827]">Estimation des gains de mon scénario</h2>
-              <p className="text-base font-medium m-0">🌿 Gain d’énergie</p>
-              <Image src="/img/vignette_6.svg" alt="" height={44} width={256} />
-
-              <p className="text-base font-medium m-0">🧾 Économie sur les factures</p>
-              <p className="text-sm font-medium text-[#e41571] mb-4">De 1 100€ à 1 500€/an</p>
-              <p className="text-base font-medium m-0">💰 Coût total du projet</p>
-              <p className="text-sm font-medium text-[#e41571] mb-4">De 50 000€ à 70 000€</p>
-              <p className="text-base font-medium m-0">🏦 Aides nationales minimum</p>
-              <p className="text-sm font-medium text-[#e41571] mb-4">De 20 000€ à 30 000€</p>
-              <button className="p-0 h-[38px] self-end text-base font-bold text-[#111827] border-0 border-b-2 border-solid border-[#111827] hover:!bg-transparent">
-                Voir le détail
-              </button>
+              <h2 className="text-lg font-bold !text-[#111827] mb-4">Estimation des gains de mon scénario</h2>
+              <div className="space-y-4 mb-4">
+                <div>
+                  <div className="text-base font-medium text-[#111827]">🌿 Gain d'énergie</div>
+                  <Image src="/img/coach-copro/vignette_6.svg" alt="" height={44} width={256} className="mt-2" />
+                </div>
+                <div>
+                  <div className="text-base font-medium mb-2 text-[#111827]">🧾 Économie sur les factures</div>
+                  <div className="text-sm font-medium text-[#e41571]">De 1 100€ à 1 500€/an</div>
+                </div>
+                <div>
+                  <div className="text-base font-medium mb-2 text-[#111827]">💰 Coût total du projet</div>
+                  <div className="text-sm font-medium text-[#e41571]">De 50 000€ à 70 000€</div>
+                </div>
+                <div>
+                  <div className="text-base font-medium mb-2 text-[#111827]">🏦 Aides nationales minimum</div>
+                  <div className="text-sm font-medium text-[#e41571]">De 20 000€ à 30 000€</div>
+                </div>
+              </div>
+              <DetailsButton text="Voir le détail" />
             </div>
-            <div className="w-full h-[432px] border border-solid border-[#f3f4f6] rounded-lg p-4">
-              <h2 className="text-lg font-bold color-[#111827]">Exemple d’application</h2>
+
+            <div className="w-full border border-solid border-[#f3f4f6] rounded-lg p-4">
+              <h2 className="text-lg font-bold !text-[#111827] mb-4">Exemple d'application</h2>
+              <div className="relative w-full h-44 mb-2">
+                <Image
+                  src="/img/coach-copro/coach-copro-application-placeholder.png"
+                  alt=""
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-between">
+                  <div className="flex items-center justify-center gap-2 h-4" />
+                  <div className="flex-1 flex items-center justify-between px-2">
+                    <button className="flex items-center hover:!bg-transparent">
+                      <Image src="/img/coach-copro/arrow-left.svg" alt="" height={15} width={10} className="h-5" />
+                    </button>
+                    <button className="flex items-center hover:!bg-transparent">
+                      <Image src="/img/coach-copro/arrow-right.svg" alt="" height={15} width={10} className="h-5" />
+                    </button>
+                  </div>
+                  <div className="flex items-center justify-center gap-2 h-4">
+                    <span className="flex w-4 h-2 bg-white rounded-lg border border-solid border-[#111827]" />
+                    <span className="flex w-2 h-2 rounded-full border border-solid border-white" />
+                    <span className="flex w-2 h-2 rounded-full border border-solid border-white" />
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-center mb-2">
+                <span className="text-sm font-bold text-[#111827] mr-2">Résidence Hermann Sabran</span>
+                <span className="text-sm font-normal text-[#535F57]">— Lyon (Rhône)</span>
+              </div>
+              <div className="flex gap-4 mb-4">
+                <div className="flex flex-col items-center justify-between flex-1">
+                  <Image
+                    src="/img/coach-copro/copro-application-vignette-1.svg"
+                    alt=""
+                    height={24}
+                    width={24}
+                    className="mb-1"
+                  />
+                  <div className="flex items-center text-center h-8 text-xs font-medium text-[#111827]">
+                    70 logements
+                  </div>
+                </div>
+                <div className="flex flex-col items-center justify-between flex-1">
+                  <Image
+                    src="/img/coach-copro/copro-application-vignette-2.svg"
+                    alt=""
+                    height={24}
+                    width={24}
+                    className="mb-1"
+                  />
+                  <div className="flex items-center text-center h-8 text-xs font-medium text-[#111827]">3 154 m2</div>
+                </div>
+                <div className="flex flex-col items-center justify-between flex-1">
+                  <Image
+                    src="/img/coach-copro/copro-application-vignette-3.svg"
+                    alt=""
+                    height={24}
+                    width={24}
+                    className="mb-1"
+                  />
+                  <div className="flex items-center text-center h-8 text-xs font-medium text-[#111827]">Année 1978</div>
+                </div>
+                <div className="flex flex-col items-center justify-between flex-1">
+                  <Image
+                    src="/img/coach-copro/copro-application-vignette-4.svg"
+                    alt=""
+                    height={24}
+                    width={24}
+                    className="mb-1"
+                  />
+                  <div className="flex items-center text-center h-8 text-xs font-medium text-[#111827]">
+                    Chauffage collectif
+                  </div>
+                </div>
+              </div>
+
+              <div className="pl-2 mb-2">
+                <p className="text-sm font-medium text-[#111827] mb-2">Remplacement du chauffage</p>
+                <div className="flex justify-between border-0 border-l-2 border-solid border-[#E0E0E0] pl-2 mb-2">
+                  <div className="py-2">
+                    <div className="text-sm font-normal mb-1 text-[#535F57]">Chauffage</div>
+                    <div className="flex items-center">
+                      <Image
+                        src="/img/coach-copro/copro-application-vignette-5.svg"
+                        alt=""
+                        height={16}
+                        width={16}
+                        className="mr-1"
+                      />
+                      <span className="text-sm font-bold text-[#111827] mr-2">Fioul</span>
+                      <Tag variant="primary" />
+                    </div>
+                  </div>
+                  <div className="py-2">
+                    <div className="text-sm font-normal mb-1 text-[#535F57]">Eau chaude</div>
+                    <div className="flex items-center">
+                      <Image
+                        src="/img/coach-copro/copro-application-vignette-6.svg"
+                        alt=""
+                        height={16}
+                        width={16}
+                        className="mr-1"
+                      />
+                      <span className="text-sm font-bold text-[#111827] mr-2">Électrique</span>
+                      <Tag variant="primary" />
+                    </div>
+                  </div>
+                </div>
+                <p className="text-sm font-medium text-[#111827] mb-2">par</p>
+                <div className="border-0 border-l-2 border-solid border-[#E0E0E0] p-2 mb-2">
+                  <div className="text-sm font-normal mb-1 text-[#535F57]">Chauffage et eau chaude</div>
+                  <div className="flex items-center">
+                    <Image
+                      src="/img/coach-copro/copro-application-vignette-7.svg"
+                      alt=""
+                      height={16}
+                      width={16}
+                      className="mr-1"
+                    />
+                    <span className="text-sm font-bold text-[#E41571] mr-2">Pompe à chaleur air/eau</span>
+                    <Tag variant="secondary" />
+                  </div>
+                </div>
+              </div>
+              <DetailsButton text="Voir le détail" className="ml-2" />
             </div>
           </div>
         </div>
