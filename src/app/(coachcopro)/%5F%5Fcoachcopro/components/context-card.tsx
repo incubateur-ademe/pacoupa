@@ -2,16 +2,19 @@ type ContextCardProps = {
   active?: boolean;
   description: string;
   imageSrc: string;
+  onClick: () => void;
   title: string;
 };
 
-export function ContextCard({ title, description, imageSrc, active = false }: ContextCardProps) {
+export function ContextCard({ title, description, imageSrc, active = false, onClick }: ContextCardProps) {
   return (
-    <div
+    <button
+      type="button"
       className={[
         "items-center px-3 py-4 rounded-lg mb-4 grid gap-4 xs:px-5 grid-cols-[3.5rem_1fr]",
         active ? "border-2 border-solid border-[#E41571]" : "shadow-custom",
       ].join(" ")}
+      onClick={onClick}
     >
       <div className="col-span-1 flex items-center justify-start sm:row-span-2">
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -21,6 +24,6 @@ export function ContextCard({ title, description, imageSrc, active = false }: Co
       <p className="col-span-2 sm:col-span-1 whitespace-pre-line max-w-96 hyphens-auto text-base font-normal text-[#111827] m-0">
         {description}
       </p>
-    </div>
+    </button>
   );
 }

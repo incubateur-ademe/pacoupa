@@ -1,7 +1,17 @@
 "use client";
+
 import { cx } from "@codegouvfr/react-dsfr/fr/cx";
 import { Inter } from "next/font/google";
-import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+
+import {
+  checkAndLoadResultatParams,
+  type CheckAndLoadResultatParamsReturnType,
+  type ResultatSearchParams,
+} from "@/app/(decorated)/(center)/simulation/resultat/helper";
+import Loader from "@/components/Loader";
+import { createSearchParams } from "@/utils/searchParams";
 
 import CoachCopro from "./coachcopro";
 import ModalStep1 from "./modal-step-1";
@@ -13,15 +23,35 @@ const inter = Inter({
   weight: ["400", "500", "600", "700", "800", "900"], // You can customize this
 });
 
-export default function Page() {
-  const [step, setStep] = useState(4);
+interface CoachCoproSearchParams extends ResultatSearchParams {
+  step: string;
+}
 
-  // useEffect(() => {
-  //   document.getElementById("coachcopro")?.scrollTo({
-  //     top: 0,
-  //     behavior: "smooth",
-  //   });
-  // }, [step]);
+export default function Page({ searchParams }: { searchParams: CoachCoproSearchParams }) {
+  const searchParamsApi = useSearchParams();
+  const step = Number(searchParams.step ?? 1);
+  const router = useRouter();
+  const [state, setState] = useState<CheckAndLoadResultatParamsReturnType | undefined>(undefined);
+
+  const onChangeStep = (step: number) => {
+    router.push(
+      `/__coachcopro?${createSearchParams({
+        searchParams: searchParamsApi,
+        name: "step",
+        value: step.toString(),
+      })}`,
+    );
+  };
+
+  useEffect(() => {
+    checkAndLoadResultatParams(searchParams).then(setState).catch(console.error);
+  }, [searchParams]);
+
+  console.log(state);
+
+  if (!state) {
+    return <Loader />;
+  }
 
   return (
     <div
@@ -38,10 +68,10 @@ export default function Page() {
       )}
     >
       <div className="absolute inset-0 bg-white/90 justify-center items-center flex p-6">
-        {step === 1 && <ModalStep1 onNext={() => setStep(2)} />}
-        {step === 2 && <ModalStep2 onNext={() => setStep(3)} onBack={() => setStep(1)} />}
-        {step === 3 && <ModalStep3 onNext={() => setStep(4)} onBack={() => setStep(2)} />}
-        {step === 4 && <CoachCopro />}
+        {step === 1 && <ModalStep1 state={state} onNext={() => onChangeStep(2)} />}
+        {step === 2 && <ModalStep2 state={state} onNext={() => onChangeStep(3)} onBack={() => onChangeStep(1)} />}
+        {step === 3 && <ModalStep3 state={state} onNext={() => onChangeStep(4)} onBack={() => onChangeStep(2)} />}
+        {step === 4 && <CoachCopro state={state} />}
       </div>
     </div>
   );

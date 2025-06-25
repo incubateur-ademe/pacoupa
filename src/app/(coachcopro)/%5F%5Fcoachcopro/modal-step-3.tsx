@@ -1,9 +1,19 @@
 import Image from "next/image";
 
+import { type CheckAndLoadResultatParamsReturnType } from "@/app/(decorated)/(center)/simulation/resultat/helper";
+
 import { CoachCoproButtonPrimary, CoachCoproButtonSecondary } from "./components/button";
 import { RadioButtonsWrapper } from "./components/radiobuttons-wrapper";
 
-export default function ModalStep3({ onNext, onBack }: { onBack: () => void; onNext: () => void }) {
+export default function ModalStep3({
+  onNext,
+  onBack,
+  state,
+}: {
+  onBack: () => void;
+  onNext: () => void;
+  state: CheckAndLoadResultatParamsReturnType;
+}) {
   return (
     <>
       <div className="w-[592px] p-8 border-3 border-solid border-[#6B7280] rounded-lg bg-white self-start">

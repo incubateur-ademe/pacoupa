@@ -5,11 +5,15 @@ export function CheckboxesWrapper({
   checkboxes,
   name,
   className = "[&_.fr-fieldset\\_\\_content]:grid-cols-3",
+  values,
+  onChange,
 }: {
   checkboxes: string[];
   className?: string;
   label: React.ReactNode | string;
   name: string;
+  onChange: (value: string[]) => void;
+  values: string[];
 }) {
   return (
     <Checkbox
@@ -25,6 +29,14 @@ export function CheckboxesWrapper({
         label: checkbox,
         nativeInputProps: {
           name,
+          checked: values.includes(checkbox),
+          onChange: e => {
+            if (e.target.checked) {
+              onChange([...values, checkbox]);
+            } else {
+              onChange(values.filter(v => v !== checkbox));
+            }
+          },
         },
       }))}
       orientation="horizontal"

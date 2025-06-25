@@ -1,11 +1,34 @@
+"use client";
 import Image from "next/image";
+import { useRouter, useSearchParams } from "next/navigation";
+
+import { type CheckAndLoadResultatParamsReturnType } from "@/app/(decorated)/(center)/simulation/resultat/helper";
+import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
+import { createSearchParams } from "@/utils/searchParams";
 
 import { ContextCard } from "./components/context-card";
 import { DetailsButton } from "./components/details-button";
 import { SolutionCard } from "./components/solution-card";
 import { Tag } from "./components/tag";
 
-export default function CoachCopro() {
+export default function CoachCopro({ state }: { state: CheckAndLoadResultatParamsReturnType }) {
+  const router = useRouter();
+  const searchParamsApi = useSearchParams();
+
+  const { informationBatiment, complet, travauxNiveauIsolation, solutions, nbSolutions, isRcuEligible } = state;
+
+  function onChangeTravauxNiveauIsolation(travauxNiveauIsolation: TravauxNiveauIsolation) {
+    router.push(
+      `/__coachcopro?${createSearchParams({
+        searchParams: searchParamsApi,
+        name: "travauxNiveauIsolation",
+        value: travauxNiveauIsolation,
+      })}`,
+      // @ts-expect-error scroll is not a boolean
+      { scroll: "false" },
+    );
+  }
+
   return (
     <div className="size-full justify-center">
       <div className="flex flex-col items-start max-w-6xl">
@@ -26,12 +49,15 @@ export default function CoachCopro() {
               title="Atteindre la rénovation énergétique globale"
               description={`Rénovation des postes qui ne l’ont pas été depuis ces 15 dernières années`}
               imageSrc="/img/vignette_1.svg"
-              active
+              onClick={() => {
+                onChangeTravauxNiveauIsolation("Global");
+              }}
             />
             <ContextCard
               title="Changement du système de chauffage uniquement"
               description="Conserver l’état actuel des autres postes de travaux"
               imageSrc="/img/vignette_2.svg"
+              onClick={() => onChangeTravauxNiveauIsolation("Partiel")}
             />
 
             <div className="mb-8 mt-12 text-[#4b5563]">

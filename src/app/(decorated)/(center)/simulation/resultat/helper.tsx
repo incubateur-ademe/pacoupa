@@ -56,7 +56,17 @@ export const parseParams = (searchParams: ResultatSearchParams) => {
   return { informationBatiment, complet };
 };
 
-export const checkAndLoadResultatParams = async (searchParams: ResultatSearchParams) => {
+export interface CheckAndLoadResultatParamsReturnType {
+  complet: boolean;
+  informationBatiment: InformationBatiment;
+  isRcuEligible: boolean;
+  nbSolutions: number;
+  solutions: SolutionAvecEnergieCoutAide[];
+  travauxNiveauIsolation: TravauxNiveauIsolation;
+}
+export const checkAndLoadResultatParams = async (
+  searchParams: ResultatSearchParams,
+): Promise<CheckAndLoadResultatParamsReturnType> => {
   const { informationBatiment, complet } = parseParams(searchParams);
 
   // Pour les bâtiments après 2000 ou déjà entièrement rénové, on ne propose plus de rénovation globale.

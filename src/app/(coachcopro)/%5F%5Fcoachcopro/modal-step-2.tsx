@@ -1,8 +1,53 @@
+import { useState } from "react";
+
+import { type CheckAndLoadResultatParamsReturnType } from "@/app/(decorated)/(center)/simulation/resultat/helper";
+
 import { CoachCoproButtonPrimary, CoachCoproButtonSecondary } from "./components/button";
 import { CheckboxesWrapper } from "./components/checkboxes-wrapper";
 import { InputWrapper } from "./components/input-wrapper";
 
-export default function ModalStep2({ onNext, onBack }: { onBack: () => void; onNext: () => void }) {
+export default function ModalStep2({
+  onNext,
+  onBack,
+  state,
+}: {
+  onBack: () => void;
+  onNext: () => void;
+  state: CheckAndLoadResultatParamsReturnType;
+}) {
+  const [adresse, setAdresse] = useState(state.informationBatiment.adresse);
+  const [anneeConstruction, setAnneeConstruction] = useState(state.informationBatiment.annee);
+  const [nombreLogement, setNombreLogement] = useState(state.informationBatiment.nbLogements);
+  const [espacesExtComuns, setEspacesExtComuns] = useState<
+    CheckAndLoadResultatParamsReturnType["informationBatiment"]["espacesExterieursCommuns"]
+  >(state.informationBatiment.espacesExterieursCommuns);
+  const [espacesExtPrives, setEspacesExtPrives] = useState<
+    CheckAndLoadResultatParamsReturnType["informationBatiment"]["espacesExterieursPersonnels"]
+  >(state.informationBatiment.espacesExterieursPersonnels);
+  const [travauxIsolation, setTravauxIsolation] = useState<
+    CheckAndLoadResultatParamsReturnType["informationBatiment"]["travauxIsolation"]
+  >(state.informationBatiment.travauxIsolation);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!adresse || !anneeConstruction || !nombreLogement) {
+      let error = "";
+      if (!adresse) {
+        error += "L'adresse est obligatoire. ";
+      }
+      if (!anneeConstruction) {
+        error += "L'année de construction est obligatoire. ";
+      }
+      if (!nombreLogement) {
+        error += "Le nombre de logement est obligatoire. ";
+      }
+      alert(error);
+      return;
+    } else {
+      onNext();
+    }
+  };
+
   return (
     <>
       <div className="w-[592px] p-8 border-3 border-solid border-[#6B7280] rounded-lg bg-white self-start">
@@ -19,14 +64,28 @@ export default function ModalStep2({ onNext, onBack }: { onBack: () => void; onN
         </div>
 
         <div>
-          <form>
+          <form onSubmit={handleSubmit}>
             <InputWrapper
               label="Adresse"
               placeholder="8 boulevard de la libération, 93200 Saint-denis"
               name="adresse"
+              value={adresse}
+              onChange={setAdresse}
             />
-            <InputWrapper label="Année de construction" placeholder="1975" name="annee-construction" />
-            <InputWrapper label="Nombre de logement" placeholder="10" name="nombre-logement" />
+            <InputWrapper
+              label="Année de construction"
+              placeholder="1975"
+              name="annee-construction"
+              value={anneeConstruction}
+              onChange={setAnneeConstruction}
+            />
+            <InputWrapper
+              label="Nombre de logement"
+              placeholder="10"
+              name="nombre-logement"
+              value={nombreLogement}
+              onChange={setNombreLogement}
+            />
             <CheckboxesWrapper
               label={
                 <>
@@ -35,6 +94,8 @@ export default function ModalStep2({ onNext, onBack }: { onBack: () => void; onN
               }
               checkboxes={["Jardin", "Parking extérieur", "Toit terrasse"]}
               name="espaces-ext-communs"
+              values={espacesExtComuns}
+              onChange={setEspacesExtComuns}
             />
             <CheckboxesWrapper
               label={
@@ -44,18 +105,20 @@ export default function ModalStep2({ onNext, onBack }: { onBack: () => void; onN
               }
               checkboxes={["Balcon", "Toit terrasse"]}
               name="espaces-ext-prives"
+              values={espacesExtPrives}
+              onChange={setEspacesExtPrives}
             />
             <CheckboxesWrapper
               label="Travaux d’isolation réalisés il y a moins de 15 ans"
               checkboxes={["Toiture", "Murs", "Sol", "Fenêtres"]}
               name="travaux-isolation"
               className="[&_.fr-fieldset\\_\_content]:grid-cols-4"
+              values={travauxIsolation}
+              onChange={setTravauxIsolation}
             />
 
             <div className="flex items-center gap-4">
-              <CoachCoproButtonPrimary type="button" onClick={onNext}>
-                ➜ Suivant
-              </CoachCoproButtonPrimary>
+              <CoachCoproButtonPrimary type="submit">➜ Suivant</CoachCoproButtonPrimary>
               <CoachCoproButtonSecondary type="button" onClick={onBack}>
                 Retour
               </CoachCoproButtonSecondary>
