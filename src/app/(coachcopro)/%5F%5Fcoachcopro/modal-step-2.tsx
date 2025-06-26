@@ -16,17 +16,21 @@ export default function ModalStep2({
   state: CheckAndLoadResultatParamsReturnType;
 }) {
   const [adresse, setAdresse] = useState(state.informationBatiment.adresse);
-  const [anneeConstruction, setAnneeConstruction] = useState(state.informationBatiment.annee);
-  const [nombreLogement, setNombreLogement] = useState(state.informationBatiment.nbLogements);
+  const [anneeConstruction, setAnneeConstruction] = useState(
+    state.informationBatiment.annee ? String(state.informationBatiment.annee) : "",
+  );
+  const [nombreLogement, setNombreLogement] = useState(
+    state.informationBatiment.nbLogements ? String(state.informationBatiment.nbLogements) : "",
+  );
   const [espacesExtComuns, setEspacesExtComuns] = useState<
     CheckAndLoadResultatParamsReturnType["informationBatiment"]["espacesExterieursCommuns"]
   >(state.informationBatiment.espacesExterieursCommuns);
   const [espacesExtPrives, setEspacesExtPrives] = useState<
     CheckAndLoadResultatParamsReturnType["informationBatiment"]["espacesExterieursPersonnels"]
   >(state.informationBatiment.espacesExterieursPersonnels);
-  const [travauxIsolation, setTravauxIsolation] = useState<
-    CheckAndLoadResultatParamsReturnType["informationBatiment"]["travauxIsolation"]
-  >(state.informationBatiment.travauxIsolation);
+  const [renovation, setRenovation] = useState<
+    CheckAndLoadResultatParamsReturnType["informationBatiment"]["renovation"]
+  >(state.informationBatiment.renovation);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -92,9 +96,13 @@ export default function ModalStep2({
                   Espaces extérieurs <b>communs</b>
                 </>
               }
-              checkboxes={["Jardin", "Parking extérieur", "Toit terrasse"]}
+              checkboxes={[
+                { value: "jardin", label: "Jardin" },
+                { value: "parking exterieur", label: "Parking extérieur" },
+                { value: "toit terrasse", label: "Toit terrasse" },
+              ]}
               name="espaces-ext-communs"
-              values={espacesExtComuns}
+              values={espacesExtComuns || []}
               onChange={setEspacesExtComuns}
             />
             <CheckboxesWrapper
@@ -103,18 +111,26 @@ export default function ModalStep2({
                   Espaces extérieurs <b>privés</b>
                 </>
               }
-              checkboxes={["Balcon", "Toit terrasse"]}
+              checkboxes={[
+                { value: "balcon", label: "Balcon" },
+                { value: "toit terrasse", label: "Toit terrasse" },
+              ]}
               name="espaces-ext-prives"
-              values={espacesExtPrives}
+              values={espacesExtPrives || []}
               onChange={setEspacesExtPrives}
             />
             <CheckboxesWrapper
               label="Travaux d’isolation réalisés il y a moins de 15 ans"
-              checkboxes={["Toiture", "Murs", "Sol", "Fenêtres"]}
+              checkboxes={[
+                { value: "toiture", label: "Toiture" },
+                { value: "murs", label: "Murs" },
+                { value: "sol", label: "Sol" },
+                { value: "fenetres", label: "Fenetres" },
+              ]}
               name="travaux-isolation"
               className="[&_.fr-fieldset\\_\_content]:grid-cols-4"
-              values={travauxIsolation}
-              onChange={setTravauxIsolation}
+              values={renovation || []}
+              onChange={setRenovation}
             />
 
             <div className="flex items-center gap-4">

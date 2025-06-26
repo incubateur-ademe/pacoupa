@@ -1,6 +1,6 @@
 import Checkbox from "@codegouvfr/react-dsfr/Checkbox";
 
-export function CheckboxesWrapper({
+export function CheckboxesWrapper<T extends string>({
   label,
   checkboxes,
   name,
@@ -8,12 +8,12 @@ export function CheckboxesWrapper({
   values,
   onChange,
 }: {
-  checkboxes: string[];
+  checkboxes: Array<{ label: string; value: T }>;
   className?: string;
   label: React.ReactNode | string;
   name: string;
-  onChange: (value: string[]) => void;
-  values: string[];
+  onChange: (value: T[]) => void;
+  values: T[];
 }) {
   return (
     <Checkbox
@@ -26,15 +26,16 @@ export function CheckboxesWrapper({
       ].join(" ")}
       small
       options={checkboxes.map(checkbox => ({
-        label: checkbox,
+        value: checkbox.value,
+        label: checkbox.label,
         nativeInputProps: {
           name,
-          checked: values.includes(checkbox),
+          checked: values.includes(checkbox.value),
           onChange: e => {
             if (e.target.checked) {
-              onChange([...values, checkbox]);
+              onChange([...values, checkbox.value]);
             } else {
-              onChange(values.filter(v => v !== checkbox));
+              onChange(values.filter(v => v !== checkbox.value));
             }
           },
         },

@@ -10,7 +10,6 @@ import {
   type CheckAndLoadResultatParamsReturnType,
   type ResultatSearchParams,
 } from "@/app/(decorated)/(center)/simulation/resultat/helper";
-import Loader from "@/components/Loader";
 import { createSearchParams } from "@/utils/searchParams";
 
 import CoachCopro from "./coachcopro";
@@ -27,11 +26,32 @@ interface CoachCoproSearchParams extends ResultatSearchParams {
   step: string;
 }
 
+const initialState: CheckAndLoadResultatParamsReturnType = {
+  informationBatiment: {
+    adresse: "",
+    annee: 0,
+    nbLogements: 0,
+    typeCH: "individuel",
+    energieCH: "fioul",
+    emetteur: "radiateurs",
+    typeECS: "individuel",
+    energieECS: "fioul",
+    espacesExterieursCommuns: [],
+    espacesExterieursPersonnels: [],
+    renovation: [],
+  },
+  complet: false,
+  isRcuEligible: false,
+  nbSolutions: 0,
+  solutions: [],
+  travauxNiveauIsolation: "Global",
+};
+
 export default function Page({ searchParams }: { searchParams: CoachCoproSearchParams }) {
   const searchParamsApi = useSearchParams();
   const step = Number(searchParams.step ?? 1);
   const router = useRouter();
-  const [state, setState] = useState<CheckAndLoadResultatParamsReturnType | undefined>(undefined);
+  const [state, setState] = useState<CheckAndLoadResultatParamsReturnType>(initialState);
 
   const onChangeStep = (step: number) => {
     router.push(
@@ -44,14 +64,16 @@ export default function Page({ searchParams }: { searchParams: CoachCoproSearchP
   };
 
   useEffect(() => {
-    checkAndLoadResultatParams(searchParams).then(setState).catch(console.error);
+    if (searchParams.hash) {
+      checkAndLoadResultatParams(searchParams).then(setState).catch(console.error);
+    }
   }, [searchParams]);
 
   console.log(state);
 
-  if (!state) {
-    return <Loader />;
-  }
+  // if (!state) {
+  //   return <Loader />;
+  // }
 
   return (
     <div
