@@ -66,19 +66,8 @@ export const parseParams = (
   return { informationBatiment, complet };
 };
 
-export const parseParamsCoachCopro = (
-  searchParams: CoachCoproSearchParams,
-): {
-  informationBatiment: InformationBatiment | undefined;
-  step: number;
-} => {
-  const step = searchParams.step ? Number(searchParams.step) : 1;
-  if (!searchParams.hash) {
-    return {
-      informationBatiment: undefined,
-      step,
-    };
-  }
+export function parseParamsCoachCopro(searchParams: CoachCoproSearchParams): InformationBatiment | undefined {
+  if (!searchParams.hash) return undefined;
 
   const unparsedFormData: unknown = JSON.parse(Base64.decode(searchParams.hash));
   const formData = informationBatimentSchema.safeParse(unparsedFormData);
@@ -88,8 +77,8 @@ export const parseParamsCoachCopro = (
     throw new Error(`Erreur de formatage du hash ${JSON.stringify(errors)}`);
   }
 
-  return { informationBatiment: formData.data, step };
-};
+  return formData.data;
+}
 
 export interface CheckAndLoadResultatParamsReturnType {
   complet: boolean;
@@ -129,7 +118,7 @@ export interface CheckAndLoadResultatParamsCoachCoproReturnType {
 export const checkAndLoadResultatParamsCoachCopro = async (
   searchParams: CoachCoproSearchParams,
 ): Promise<CheckAndLoadResultatParamsCoachCoproReturnType | null> => {
-  const { informationBatiment } = parseParamsCoachCopro(searchParams);
+  const informationBatiment = parseParamsCoachCopro(searchParams);
 
   if (!informationBatiment) return null;
 
