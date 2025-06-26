@@ -1,15 +1,19 @@
 import RadioButtons from "@codegouvfr/react-dsfr/RadioButtons";
 
-export function RadioButtonsWrapper({
+export function RadioButtonsWrapper<T extends string>({
   label,
-  checkboxes,
+  options,
   name,
   className = "[&_.fr-fieldset\\_\\_content]:grid-cols-3",
+  onChange,
+  value,
 }: {
-  checkboxes: string[];
   className?: string;
   label: React.ReactNode | string;
   name: string;
+  onChange: (value: T) => void;
+  options: Array<{ label: string; value: T }>;
+  value: T;
 }) {
   return (
     <RadioButtons
@@ -20,10 +24,14 @@ export function RadioButtonsWrapper({
         className,
       ].join(" ")}
       small
-      options={checkboxes.map(checkbox => ({
-        label: checkbox,
+      options={options.map(option => ({
+        label: option.label,
+        value: option.value,
         nativeInputProps: {
           name,
+          value: option.value,
+          checked: value === option.value,
+          onChange: () => onChange(option.value),
         },
       }))}
       orientation="horizontal"

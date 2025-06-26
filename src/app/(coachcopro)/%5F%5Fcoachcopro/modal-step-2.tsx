@@ -1,6 +1,4 @@
-import { useState } from "react";
-
-import { type CheckAndLoadResultatParamsReturnType } from "@/app/(decorated)/(center)/simulation/resultat/helper";
+import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 
 import { CoachCoproButtonPrimary, CoachCoproButtonSecondary } from "./components/button";
 import { CheckboxesWrapper } from "./components/checkboxes-wrapper";
@@ -9,40 +7,25 @@ import { InputWrapper } from "./components/input-wrapper";
 export default function ModalStep2({
   onNext,
   onBack,
-  state,
+  informationBatiment,
+  setInformationBatiment,
 }: {
+  informationBatiment?: InformationBatiment;
   onBack: () => void;
   onNext: () => void;
-  state: CheckAndLoadResultatParamsReturnType;
+  setInformationBatiment: (informationBatiment: Partial<InformationBatiment>) => void;
 }) {
-  const [adresse, setAdresse] = useState(state.informationBatiment.adresse);
-  const [anneeConstruction, setAnneeConstruction] = useState(
-    state.informationBatiment.annee ? String(state.informationBatiment.annee) : "",
-  );
-  const [nombreLogement, setNombreLogement] = useState(
-    state.informationBatiment.nbLogements ? String(state.informationBatiment.nbLogements) : "",
-  );
-  const [espacesExtComuns, setEspacesExtComuns] = useState<
-    CheckAndLoadResultatParamsReturnType["informationBatiment"]["espacesExterieursCommuns"]
-  >(state.informationBatiment.espacesExterieursCommuns);
-  const [espacesExtPrives, setEspacesExtPrives] = useState<
-    CheckAndLoadResultatParamsReturnType["informationBatiment"]["espacesExterieursPersonnels"]
-  >(state.informationBatiment.espacesExterieursPersonnels);
-  const [renovation, setRenovation] = useState<
-    CheckAndLoadResultatParamsReturnType["informationBatiment"]["renovation"]
-  >(state.informationBatiment.renovation);
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!adresse || !anneeConstruction || !nombreLogement) {
+    if (!informationBatiment?.adresse || !informationBatiment?.annee || !informationBatiment?.nbLogements) {
       let error = "";
-      if (!adresse) {
+      if (!informationBatiment?.adresse) {
         error += "L'adresse est obligatoire. ";
       }
-      if (!anneeConstruction) {
+      if (!informationBatiment?.annee) {
         error += "L'année de construction est obligatoire. ";
       }
-      if (!nombreLogement) {
+      if (!informationBatiment?.nbLogements) {
         error += "Le nombre de logement est obligatoire. ";
       }
       alert(error);
@@ -73,22 +56,22 @@ export default function ModalStep2({
               label="Adresse"
               placeholder="8 boulevard de la libération, 93200 Saint-denis"
               name="adresse"
-              value={adresse}
-              onChange={setAdresse}
+              value={informationBatiment?.adresse ?? ""}
+              onChange={adresse => setInformationBatiment({ adresse })}
             />
             <InputWrapper
               label="Année de construction"
               placeholder="1975"
               name="annee-construction"
-              value={anneeConstruction}
-              onChange={setAnneeConstruction}
+              value={informationBatiment?.annee ? String(informationBatiment.annee) : ""}
+              onChange={value => setInformationBatiment({ annee: Number(value) })}
             />
             <InputWrapper
               label="Nombre de logement"
               placeholder="10"
               name="nombre-logement"
-              value={nombreLogement}
-              onChange={setNombreLogement}
+              value={informationBatiment?.nbLogements ? String(informationBatiment.nbLogements) : ""}
+              onChange={value => setInformationBatiment({ nbLogements: Number(value) })}
             />
             <CheckboxesWrapper
               label={
@@ -102,8 +85,8 @@ export default function ModalStep2({
                 { value: "toit terrasse", label: "Toit terrasse" },
               ]}
               name="espaces-ext-communs"
-              values={espacesExtComuns || []}
-              onChange={setEspacesExtComuns}
+              values={informationBatiment?.espacesExterieursCommuns || []}
+              onChange={espacesExterieursCommuns => setInformationBatiment({ espacesExterieursCommuns })}
             />
             <CheckboxesWrapper
               label={
@@ -116,8 +99,8 @@ export default function ModalStep2({
                 { value: "toit terrasse", label: "Toit terrasse" },
               ]}
               name="espaces-ext-prives"
-              values={espacesExtPrives || []}
-              onChange={setEspacesExtPrives}
+              values={informationBatiment?.espacesExterieursPersonnels || []}
+              onChange={espacesExterieursPersonnels => setInformationBatiment({ espacesExterieursPersonnels })}
             />
             <CheckboxesWrapper
               label="Travaux d’isolation réalisés il y a moins de 15 ans"
@@ -129,8 +112,8 @@ export default function ModalStep2({
               ]}
               name="travaux-isolation"
               className="[&_.fr-fieldset\\_\_content]:grid-cols-4"
-              values={renovation || []}
-              onChange={setRenovation}
+              values={informationBatiment?.renovation || []}
+              onChange={renovation => setInformationBatiment({ renovation })}
             />
 
             <div className="flex items-center gap-4">

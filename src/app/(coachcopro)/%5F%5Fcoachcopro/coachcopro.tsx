@@ -1,8 +1,13 @@
 "use client";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
-import { type CheckAndLoadResultatParamsReturnType } from "@/app/(decorated)/(center)/simulation/resultat/helper";
+import {
+  checkAndLoadResultatParamsCoachCopro,
+  type CheckAndLoadResultatParamsCoachCoproReturnType,
+  type CoachCoproSearchParams,
+} from "@/app/(decorated)/(center)/simulation/resultat/helper";
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
 import { createSearchParams } from "@/utils/searchParams";
 
@@ -11,11 +16,37 @@ import { DetailsButton } from "./components/details-button";
 import { SolutionCard } from "./components/solution-card";
 import { Tag } from "./components/tag";
 
-export default function CoachCopro({ state }: { state: CheckAndLoadResultatParamsReturnType }) {
+const initialState: CheckAndLoadResultatParamsCoachCoproReturnType = {
+  informationBatiment: {
+    adresse: "",
+    annee: 0,
+    nbLogements: 0,
+    typeCH: "individuel",
+    energieCH: "fioul",
+    emetteur: "radiateurs",
+    typeECS: "individuel",
+    energieECS: "fioul",
+    espacesExterieursCommuns: [],
+    espacesExterieursPersonnels: [],
+    renovation: [],
+  },
+  isRcuEligible: false,
+  nbSolutions: 0,
+  solutions: [],
+  travauxNiveauIsolation: "Global",
+};
+
+export default function CoachCopro({ searchParams }: { searchParams: CoachCoproSearchParams }) {
   const router = useRouter();
   const searchParamsApi = useSearchParams();
 
-  const { informationBatiment, complet, travauxNiveauIsolation, solutions, nbSolutions, isRcuEligible } = state;
+  const [state, setState] = useState<CheckAndLoadResultatParamsCoachCoproReturnType | null>(initialState);
+
+  useEffect(() => {
+    if (searchParams.hash) {
+      checkAndLoadResultatParamsCoachCopro(searchParams).then(setState).catch(console.error);
+    }
+  }, [searchParams]);
 
   function onChangeTravauxNiveauIsolation(travauxNiveauIsolation: TravauxNiveauIsolation) {
     router.push(

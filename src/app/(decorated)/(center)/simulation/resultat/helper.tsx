@@ -38,7 +38,17 @@ export type ResultatSearchParams = {
   travauxNiveauIsolation?: TravauxNiveauIsolation;
 };
 
-export const parseParams = (searchParams: ResultatSearchParams) => {
+export type CoachCoproSearchParams = {
+  hash: string;
+  step: string;
+};
+
+export const parseParams = (
+  searchParams: ResultatSearchParams,
+): {
+  complet: boolean;
+  informationBatiment: InformationBatiment;
+} => {
   if (!searchParams.hash) throw new Error("Le hash est manquant");
 
   const complet = searchParams.complet === "oui";
@@ -54,6 +64,31 @@ export const parseParams = (searchParams: ResultatSearchParams) => {
   const informationBatiment = formData.data;
 
   return { informationBatiment, complet };
+};
+
+export const parseParamsCoachCopro = (
+  searchParams: CoachCoproSearchParams,
+): {
+  informationBatiment: InformationBatiment | undefined;
+  step: number;
+} => {
+  const step = searchParams.step ? Number(searchParams.step) : 1;
+  if (!searchParams.hash) {
+    return {
+      informationBatiment: undefined,
+      step,
+    };
+  }
+
+  const unparsedFormData: unknown = JSON.parse(Base64.decode(searchParams.hash));
+  const formData = informationBatimentSchema.safeParse(unparsedFormData);
+
+  if (!formData.success) {
+    const errors = formData.error.format();
+    throw new Error(`Erreur de formatage du hash ${JSON.stringify(errors)}`);
+  }
+
+  return { informationBatiment: formData.data, step };
 };
 
 export interface CheckAndLoadResultatParamsReturnType {
@@ -82,6 +117,33 @@ export const checkAndLoadResultatParams = async (
   });
 
   return { informationBatiment, complet, travauxNiveauIsolation, solutions, nbSolutions, isRcuEligible };
+};
+
+export interface CheckAndLoadResultatParamsCoachCoproReturnType {
+  informationBatiment: InformationBatiment;
+  isRcuEligible: boolean;
+  nbSolutions: number;
+  solutions: SolutionAvecEnergieCoutAide[];
+  travauxNiveauIsolation: TravauxNiveauIsolation;
+}
+export const checkAndLoadResultatParamsCoachCopro = async (
+  searchParams: CoachCoproSearchParams,
+): Promise<CheckAndLoadResultatParamsCoachCoproReturnType | null> => {
+  const { informationBatiment } = parseParamsCoachCopro(searchParams);
+
+  if (!informationBatiment) return null;
+
+  // Pour les bâtiments après 2000 ou déjà entièrement rénové, on ne propose plus de rénovation globale.
+  // Pour info, pour les bâtiments > 2000, la db ne contient que des données pour un scénario d'enveloppe INIT.
+  const travauxNiveauIsolation = estGlobalementRenove(informationBatiment) ? "Aucun" : "Global";
+
+  const { solutions, nbSolutions, isRcuEligible } = await fetchSolutions({
+    informationBatiment,
+    travauxNiveauIsolation,
+    complet: true,
+  });
+
+  return { informationBatiment, travauxNiveauIsolation, solutions, nbSolutions, isRcuEligible };
 };
 
 type FetchSolutionsReturnType = {

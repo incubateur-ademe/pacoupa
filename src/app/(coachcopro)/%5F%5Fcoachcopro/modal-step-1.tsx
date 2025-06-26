@@ -1,16 +1,8 @@
 import Image from "next/image";
 
-import { type CheckAndLoadResultatParamsReturnType } from "@/app/(decorated)/(center)/simulation/resultat/helper";
-
 import { CoachCoproButtonPrimary } from "./components/button";
 
-export default function ModalStep1({
-  onNext,
-  state,
-}: {
-  onNext: () => void;
-  state: CheckAndLoadResultatParamsReturnType;
-}) {
+export default function ModalStep1({ onNext }: { onNext: () => void }) {
   return (
     <>
       <div className="basis-[700px] p-8 pt-16 border-3 border-solid border-[#6B7280] rounded-lg bg-white">

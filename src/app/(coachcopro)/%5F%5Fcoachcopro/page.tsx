@@ -2,13 +2,13 @@
 
 import { Inter } from "next/font/google";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
 
 import {
-  checkAndLoadResultatParams,
-  type CheckAndLoadResultatParamsReturnType,
-  type ResultatSearchParams,
+  type CoachCoproSearchParams,
+  parseParamsCoachCopro,
 } from "@/app/(decorated)/(center)/simulation/resultat/helper";
+import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 import { createSearchParams } from "@/utils/searchParams";
 
 import CoachCopro from "./coachcopro";
@@ -22,38 +22,14 @@ const inter = Inter({
   weight: ["400", "500", "600", "700", "800", "900"], // You can customize this
 });
 
-interface CoachCoproSearchParams extends ResultatSearchParams {
-  step: string;
-}
-
-const initialState: CheckAndLoadResultatParamsReturnType = {
-  informationBatiment: {
-    adresse: "",
-    annee: 0,
-    nbLogements: 0,
-    typeCH: "individuel",
-    energieCH: "fioul",
-    emetteur: "radiateurs",
-    typeECS: "individuel",
-    energieECS: "fioul",
-    espacesExterieursCommuns: [],
-    espacesExterieursPersonnels: [],
-    renovation: [],
-  },
-  complet: false,
-  isRcuEligible: false,
-  nbSolutions: 0,
-  solutions: [],
-  travauxNiveauIsolation: "Global",
-};
-
 export default function Page({ searchParams }: { searchParams: CoachCoproSearchParams }) {
   const searchParamsApi = useSearchParams();
-  const [step, setStep] = useState(Number(searchParams.step ?? 1));
+  const initialParams = useRef(parseParamsCoachCopro(searchParams));
+  const [step, setStep] = useState(initialParams.current.step);
+  const [informationBatiment, setInformationBatimentState] = useState(initialParams.current.informationBatiment);
   const router = useRouter();
-  const [state, setState] = useState<CheckAndLoadResultatParamsReturnType | undefined>(undefined);
 
-  const onChangeStep = (step: number) => {
+  function onChangeStep(step: number) {
     setStep(step);
     router.push(
       `/__coachcopro?${createSearchParams({
@@ -62,15 +38,18 @@ export default function Page({ searchParams }: { searchParams: CoachCoproSearchP
         value: step.toString(),
       })}`,
     );
-  };
+  }
 
-  useEffect(() => {
-    if (searchParams.hash && !state) {
-      checkAndLoadResultatParams(searchParams).then(setState).catch(console.error);
+  function setInformationBatiment(newInfo: Partial<InformationBatiment>) {
+    if (!informationBatiment) {
+      return;
     }
-  }, [searchParams, state]);
+    setInformationBatimentState({
+      ...informationBatiment,
+      ...newInfo,
+    });
+  }
 
-  console.log(state);
   console.log({ step });
 
   // if (!state) {
@@ -91,14 +70,24 @@ export default function Page({ searchParams }: { searchParams: CoachCoproSearchP
       ].join(" ")}
     >
       <div className="absolute inset-0 bg-white/90 justify-center items-center flex p-6">
-        {step === 1 && <ModalStep1 state={state || initialState} onNext={() => onChangeStep(2)} />}
+        {step === 1 && <ModalStep1 onNext={() => onChangeStep(2)} />}
         {step === 2 && (
-          <ModalStep2 state={state || initialState} onNext={() => onChangeStep(3)} onBack={() => onChangeStep(1)} />
+          <ModalStep2
+            informationBatiment={informationBatiment}
+            setInformationBatiment={setInformationBatiment}
+            onNext={() => onChangeStep(3)}
+            onBack={() => onChangeStep(1)}
+          />
         )}
         {step === 3 && (
-          <ModalStep3 state={state || initialState} onNext={() => onChangeStep(4)} onBack={() => onChangeStep(2)} />
+          <ModalStep3
+            informationBatiment={informationBatiment}
+            setInformationBatiment={setInformationBatiment}
+            onNext={() => onChangeStep(4)}
+            onBack={() => onChangeStep(2)}
+          />
         )}
-        {step === 4 && <CoachCopro state={state || initialState} />}
+        {step === 4 && <CoachCopro searchParams={searchParams} />}
       </div>
     </div>
   );

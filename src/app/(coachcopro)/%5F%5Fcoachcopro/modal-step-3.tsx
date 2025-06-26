@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { type CheckAndLoadResultatParamsReturnType } from "@/app/(decorated)/(center)/simulation/resultat/helper";
+import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 
 import { CoachCoproButtonPrimary, CoachCoproButtonSecondary } from "./components/button";
 import { RadioButtonsWrapper } from "./components/radiobuttons-wrapper";
@@ -8,11 +8,13 @@ import { RadioButtonsWrapper } from "./components/radiobuttons-wrapper";
 export default function ModalStep3({
   onNext,
   onBack,
-  state,
+  informationBatiment,
+  setInformationBatiment,
 }: {
+  informationBatiment?: InformationBatiment;
   onBack: () => void;
   onNext: () => void;
-  state: CheckAndLoadResultatParamsReturnType;
+  setInformationBatiment: (informationBatiment: Partial<InformationBatiment>) => void;
 }) {
   return (
     <>
@@ -34,27 +36,56 @@ export default function ModalStep3({
         <RadioButtonsWrapper
           name="type-de-chauffage"
           label="Type de chauffage"
-          checkboxes={["Individuel", "Collectif"]}
+          options={[
+            { label: "Individuel", value: "individuel" },
+            { label: "Collectif", value: "collectif" },
+          ]}
+          // we don't care if default is 'collectif' or 'individuel' because
+          // url is with search param `hash` which will prefill the form
+          value={informationBatiment?.typeCH ?? "collectif"}
+          onChange={typeCH => setInformationBatiment({ typeCH })}
         />
         <RadioButtonsWrapper
           name="energie-principale-de-chauffage"
           label="Énergie principale de chauffage"
-          checkboxes={["Fioul", "Gaz", "Électricité"]}
+          options={[
+            { label: "Fioul", value: "fioul" },
+            { label: "Gaz", value: "gaz" },
+            { label: "Électricité", value: "electricite" },
+          ]}
+          value={informationBatiment?.energieCH ?? "fioul"}
+          onChange={energieCH => setInformationBatiment({ energieCH })}
         />
         <RadioButtonsWrapper
           name="emetteurs-de-chauffage"
           label="Émetteurs de chauffage"
-          checkboxes={["Radiateurs", "Plancher chauffant"]}
+          options={[
+            { label: "Radiateurs", value: "radiateurs" },
+            { label: "Plancher chauffant", value: "plancher chauffant" },
+          ]}
+          value={informationBatiment?.emetteur ?? "radiateurs"}
+          onChange={emetteursCH => setInformationBatiment({ emetteur: emetteursCH })}
         />
         <RadioButtonsWrapper
           name="type-de-production-d-eau-chaude"
           label="Type de production d’eau chaude"
-          checkboxes={["Individuel", "Collectif"]}
+          options={[
+            { label: "Individuel", value: "individuel" },
+            { label: "Collectif", value: "collectif" },
+          ]}
+          value={informationBatiment?.typeECS ?? "individuel"}
+          onChange={typeECS => setInformationBatiment({ typeECS })}
         />
         <RadioButtonsWrapper
           name="energie-principale-du-chauffage-de-l-eau"
           label="Énergie principale du chauffage de l’eau"
-          checkboxes={["Fioul", "Gaz", "Électricité"]}
+          options={[
+            { label: "Fioul", value: "fioul" },
+            { label: "Gaz", value: "gaz" },
+            { label: "Ballon électrique", value: "ballon electrique" },
+          ]}
+          value={informationBatiment?.energieECS ?? "fioul"}
+          onChange={energieECS => setInformationBatiment({ energieECS })}
         />
 
         <div className="flex items-center gap-4">
