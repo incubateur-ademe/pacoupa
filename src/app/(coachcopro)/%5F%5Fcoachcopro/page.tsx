@@ -9,7 +9,6 @@ import {
   parseParamsCoachCopro,
 } from "@/app/(decorated)/(center)/simulation/resultat/helper";
 import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
-import { createSearchParams } from "@/utils/searchParams";
 
 import CoachCopro from "./coachcopro";
 // import coachcoproStyles from "./coachcopro.module.css";
@@ -25,19 +24,20 @@ const inter = Inter({
 export default function Page({ searchParams }: { searchParams: CoachCoproSearchParams }) {
   const searchParamsApi = useSearchParams();
   const initialParams = useRef(parseParamsCoachCopro(searchParams));
-  const [step, setStep] = useState(initialParams.current.step);
+  // const [step, setStep] = useState(initialParams.current.step);
+  const [step, setStep] = useState(1);
   const [informationBatiment, setInformationBatimentState] = useState(initialParams.current.informationBatiment);
   const router = useRouter();
 
   function onChangeStep(step: number) {
     setStep(step);
-    router.push(
-      `/__coachcopro?${createSearchParams({
-        searchParams: searchParamsApi,
-        name: "step",
-        value: step.toString(),
-      })}`,
-    );
+    // router.push(
+    //   `/__coachcopro?${createSearchParams({
+    //     searchParams: searchParamsApi,
+    //     name: "step",
+    //     value: step.toString(),
+    //   })}`,
+    // );
   }
 
   function setInformationBatiment(newInfo: Partial<InformationBatiment>) {
