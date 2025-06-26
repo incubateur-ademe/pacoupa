@@ -1,4 +1,4 @@
-sqlite-utils insert $ASSETS_DIR/pacoupa.db solutions $ASSETS_DIR/solutions_clean.csv --csv -d
+sqlite-utils insert $ASSETS_DIR/pacoupa.db solutions $ASSETS_DIR/solutions_clean.csv --csv -d  --delimiter=";"
 
 sqlite-utils convert $ASSETS_DIR/pacoupa.db solutions num_solution \
 'bits = value.split("-")

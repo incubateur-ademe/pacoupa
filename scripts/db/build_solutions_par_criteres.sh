@@ -1,4 +1,4 @@
-sqlite-utils insert $ASSETS_DIR/pacoupa.db solutions_par_criteres $ASSETS_DIR/solutions_par_criteres_clean.csv --csv -d
+sqlite-utils insert $ASSETS_DIR/pacoupa.db solutions_par_criteres $ASSETS_DIR/solutions_par_criteres_clean.csv --csv -d --delimiter=";"
 
 # extract some columns to make a joined table criteres
 sqlite-utils extract $ASSETS_DIR/pacoupa.db solutions_par_criteres CH ECS emetteur espace_exterieur_personnel env_contraint toiture_terrasse temperature nb_lgts niveau_renovation --table criteres

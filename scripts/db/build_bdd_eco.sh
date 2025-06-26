@@ -1,6 +1,6 @@
-sqlite-utils insert $ASSETS_DIR/pacoupa.db bdd_eco $ASSETS_DIR/bdd_eco_h1_clean.csv --csv -d --delimiter ';'
-sqlite-utils insert $ASSETS_DIR/pacoupa.db bdd_eco $ASSETS_DIR/bdd_eco_h2_clean.csv --csv -d --delimiter ';'
-sqlite-utils insert $ASSETS_DIR/pacoupa.db bdd_eco $ASSETS_DIR/bdd_eco_h3_clean.csv --csv -d --delimiter ';'
+sqlite-utils insert $ASSETS_DIR/pacoupa.db bdd_eco $ASSETS_DIR/bdd_eco_h1_clean.csv --csv --delimiter=";"
+sqlite-utils insert $ASSETS_DIR/pacoupa.db bdd_eco $ASSETS_DIR/bdd_eco_h2_clean.csv --csv --delimiter=";"
+sqlite-utils insert $ASSETS_DIR/pacoupa.db bdd_eco $ASSETS_DIR/bdd_eco_h3_clean.csv --csv --delimiter=";"
 
 sqlite-utils transform $ASSETS_DIR/pacoupa.db bdd_eco \
 --pk id \

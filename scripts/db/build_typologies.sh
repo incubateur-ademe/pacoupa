@@ -1,4 +1,4 @@
-sqlite-utils insert --empty-null $ASSETS_DIR/pacoupa.db typologies $ASSETS_DIR/typologies_clean.csv --csv -d
+sqlite-utils insert --empty-null $ASSETS_DIR/pacoupa.db typologies $ASSETS_DIR/typologies_clean.csv --csv -d --delimiter=";"
 
 # réordonne les colonnes importantes en premier
 sqlite-utils transform $ASSETS_DIR/pacoupa.db typologies \

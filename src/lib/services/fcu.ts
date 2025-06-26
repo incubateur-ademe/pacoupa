@@ -37,6 +37,19 @@ export const fetchFcuEligibility = async ({ lon, lat }: FetchFcuEligibilityProps
     const eligibility = (await response.json()) as Promise<FcuEligibility>;
     return eligibility;
   } catch (err) {
+    if (process.env.NODE_ENV === "development") {
+      return {
+        distance: 0,
+        futurNetwork: false,
+        gestionnaire: "",
+        id: "",
+        inPDP: false,
+        isBasedOnIris: false,
+        isEligible: false,
+        rateCO2: 0,
+        rateENRR: 0,
+      };
+    }
     console.error(ERREUR_RESEAU, err);
     throw new Error(ERREUR_RESEAU);
   }

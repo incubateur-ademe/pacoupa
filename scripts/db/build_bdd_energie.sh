@@ -1,6 +1,6 @@
-sqlite-utils insert $ASSETS_DIR/pacoupa.db bdd_energie $ASSETS_DIR/bdd_energie_h1_clean.csv --csv -d --delimiter ';'
-sqlite-utils insert $ASSETS_DIR/pacoupa.db bdd_energie $ASSETS_DIR/bdd_energie_h2_clean.csv --csv -d --delimiter ';'
-sqlite-utils insert $ASSETS_DIR/pacoupa.db bdd_energie $ASSETS_DIR/bdd_energie_h3_clean.csv --csv -d --delimiter ';'
+sqlite-utils insert $ASSETS_DIR/pacoupa.db bdd_energie $ASSETS_DIR/bdd_energie_h1_clean.csv --csv --delimiter=";"
+sqlite-utils insert $ASSETS_DIR/pacoupa.db bdd_energie $ASSETS_DIR/bdd_energie_h2_clean.csv --csv --delimiter=";"
+sqlite-utils insert $ASSETS_DIR/pacoupa.db bdd_energie $ASSETS_DIR/bdd_energie_h3_clean.csv --csv --delimiter=";"
 
 sqlite-utils transform $ASSETS_DIR/pacoupa.db bdd_energie \
 --pk id \
