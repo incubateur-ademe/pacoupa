@@ -115,7 +115,7 @@ Voir la [documentation officielle](https://docs.turso.tech/quickstart).
 Avant d'interagir avec Turso, il faut d'abord s'authentifier avec le compte *pacoupa.ademe* sur Turso.
 
 ```shell
- turso auth login
+turso auth login
 ```
 
 Créer une db, suffixée avec la date du jour au format ISO.

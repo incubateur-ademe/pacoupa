@@ -21,7 +21,7 @@ const inter = Inter({
 });
 
 export default function Page({ searchParams }: { searchParams: CoachCoproSearchParams }) {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(4);
   const [informationBatiment, setInformationBatimentState] = useState(parseParamsCoachCopro(searchParams));
 
   function setInformationBatiment(newInfo: Partial<InformationBatiment>) {

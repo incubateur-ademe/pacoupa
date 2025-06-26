@@ -165,12 +165,7 @@ export const Resultat = ({
                   push(["trackEvent", matomoCategory.resultats, "Clic Découvrir", "Découvrir"]);
                 }}
               >
-                <SolutionCard
-                  solution={solution}
-                  gestes={gestes}
-                  marker={marker}
-                  informationBatiment={informationBatiment}
-                />
+                <SolutionCard solution={solution} gestes={gestes} marker={marker} />
               </Link>
             </div>
           );

@@ -117,6 +117,7 @@ export interface CheckAndLoadResultatParamsCoachCoproReturnType {
 }
 export const checkAndLoadResultatParamsCoachCopro = async (
   searchParams: CoachCoproSearchParams,
+  travaux?: TravauxNiveauIsolation,
 ): Promise<CheckAndLoadResultatParamsCoachCoproReturnType | null> => {
   const informationBatiment = parseParamsCoachCopro(searchParams);
 
@@ -124,7 +125,7 @@ export const checkAndLoadResultatParamsCoachCopro = async (
 
   // Pour les bâtiments après 2000 ou déjà entièrement rénové, on ne propose plus de rénovation globale.
   // Pour info, pour les bâtiments > 2000, la db ne contient que des données pour un scénario d'enveloppe INIT.
-  const travauxNiveauIsolation = estGlobalementRenove(informationBatiment) ? "Aucun" : "Global";
+  const travauxNiveauIsolation = estGlobalementRenove(informationBatiment) ? "Aucun" : travaux ?? "Global";
 
   const { solutions, nbSolutions, isRcuEligible } = await fetchSolutions({
     informationBatiment,

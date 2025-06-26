@@ -2,7 +2,6 @@ import assert from "assert";
 import { type PropsWithChildren } from "react";
 
 import { Text } from "@/dsfr/base/typography";
-import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
 import { approximation } from "@/utils/number";
 
@@ -16,14 +15,14 @@ import { MoneyBag } from "./img/twemoji/MoneyBag";
 
 type Props = {
   avecMessage?: boolean;
-  informationBatiment: InformationBatiment;
+  justeGains?: boolean;
   solution: SolutionAvecEnergieCoutAide;
   withTitle?: boolean;
 };
 
 const approximation10 = approximation(1);
 
-export const EstimationGains = ({ solution, avecMessage, withTitle }: PropsWithChildren<Props>) => {
+export const EstimationGains = ({ solution, avecMessage, withTitle, justeGains }: PropsWithChildren<Props>) => {
   assert(solution.cepAvant && solution.cepApres, "cepAvant and cepApres should be defined");
 
   const pourcentageGain = Math.round(((solution.cepAvant - solution.cepApres) / solution.cepAvant) * 100);
@@ -32,6 +31,15 @@ export const EstimationGains = ({ solution, avecMessage, withTitle }: PropsWithC
   const coutApres = solution.coutAbonnementApres + solution.coutMaintenanceApres + solution.factureEnergetiqueApres;
 
   const gainEconomique = coutApres - coutAvant;
+
+  if (justeGains) {
+    return (
+      <>
+        {Math.sign(gainEconomique) === -1 ? "-" : undefined}
+        {Math.abs(approximation10(gainEconomique))} /an par logement
+      </>
+    );
+  }
 
   return (
     <>

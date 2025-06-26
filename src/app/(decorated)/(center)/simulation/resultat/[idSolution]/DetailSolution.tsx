@@ -16,7 +16,6 @@ import { EstimationCouts } from "@/components/EstimationCouts";
 import { EstimationGains } from "@/components/EstimationGains";
 import { H2, Text } from "@/dsfr/base/typography";
 import { useScrollTop } from "@/lib/client/useScrollTop";
-import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
 import { matomoCategory } from "@/lib/matomo-events";
 
@@ -26,11 +25,10 @@ import { Usage } from "../Usage";
 import { FicheReferenceList } from "./FicheReferenceList";
 
 type Props = {
-  informationBatiment: InformationBatiment;
   solution: SolutionAvecEnergieCoutAide;
 };
 
-export const DetailSolution = ({ solution, informationBatiment }: Props) => {
+export const DetailSolution = ({ solution }: Props) => {
   useScrollTop();
   const [showToast, setShowToast] = useState(false);
   const [showAllEvaluations, setShowAllEvaluations] = useState(false);
@@ -113,9 +111,9 @@ export const DetailSolution = ({ solution, informationBatiment }: Props) => {
 
       <hr className="mt-8" />
 
-      <EstimationGains withTitle solution={solution} informationBatiment={informationBatiment} avecMessage />
+      <EstimationGains withTitle solution={solution} avecMessage />
 
-      <EstimationCouts withTitle withTooltip solution={solution} informationBatiment={informationBatiment} />
+      <EstimationCouts withTitle withTooltip solution={solution} />
 
       <Text className="font-medium mt-10 mb-0">Autres estimations</Text>
 

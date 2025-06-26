@@ -5,7 +5,6 @@ import assert from "assert";
 import { type PropsWithChildren } from "react";
 
 import { Text } from "@/dsfr/base/typography";
-import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
 import { formatEuroNoDecimal } from "@/utils/currency";
 import { approximation } from "@/utils/number";
@@ -15,7 +14,8 @@ import { Bank } from "./img/twemoji/Bank";
 import { Banknote } from "./img/twemoji/Banknote";
 
 type Props = {
-  informationBatiment: InformationBatiment;
+  justeAides?: boolean;
+  justeCouts?: boolean;
   solution: SolutionAvecEnergieCoutAide;
   withTitle?: boolean;
   withTooltip?: boolean;
@@ -24,13 +24,27 @@ type Props = {
 const approximation1k = approximation(3);
 const approximation100 = approximation(2);
 
-export const EstimationCouts = ({ solution, withTitle, withTooltip }: PropsWithChildren<Props>) => {
+export const EstimationCouts = ({
+  solution,
+  withTitle,
+  withTooltip,
+  justeCouts,
+  justeAides,
+}: PropsWithChildren<Props>) => {
   assert(solution.cepAvant && solution.cepApres, "cepAvant and cepApres should be defined");
 
   const approximationEnveloppe = approximation1k(solution.coutIsolationEnveloppe ?? 0);
   const approximationSysteme = approximation1k(solution.coutInstallationSysteme ?? 0);
 
   const aidesLogement = approximation100(solution.aidesInstallationSysteme);
+
+  if (justeCouts) {
+    return <>≈ {approximationEnveloppe + approximationSysteme} par logement</>;
+  }
+
+  if (justeAides) {
+    return <>⩾ {aidesLogement} par logement</>;
+  }
 
   return (
     <>

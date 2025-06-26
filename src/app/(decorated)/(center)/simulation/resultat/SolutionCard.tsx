@@ -6,7 +6,6 @@ import { Card } from "@/components/Card";
 import { EstimationCouts } from "@/components/EstimationCouts";
 import { EstimationGains } from "@/components/EstimationGains";
 import { PlusIcon } from "@/components/img/PlusIcon";
-import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 import { type GesteIsolation } from "@/lib/common/domain/values/GesteIsolation";
 import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
 
@@ -15,12 +14,11 @@ import { Isolation } from "./Isolation";
 
 type Props = {
   gestes: GesteIsolation[];
-  informationBatiment: InformationBatiment;
   marker?: string;
   solution: SolutionAvecEnergieCoutAide;
 };
 
-export const SolutionCard = ({ solution, informationBatiment, gestes, marker }: PropsWithChildren<Props>) => {
+export const SolutionCard = ({ solution, gestes, marker }: PropsWithChildren<Props>) => {
   return (
     <Card
       removeShadowOnClick
@@ -33,12 +31,12 @@ export const SolutionCard = ({ solution, informationBatiment, gestes, marker }: 
 
           <hr className="mt-8 pb-4" />
 
-          <EstimationGains solution={solution} informationBatiment={informationBatiment} />
+          <EstimationGains solution={solution} />
 
           <hr className="my-0" />
 
           <div className="-mt-10">
-            <EstimationCouts solution={solution} informationBatiment={informationBatiment} />
+            <EstimationCouts solution={solution} />
           </div>
         </>
       }

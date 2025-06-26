@@ -11,7 +11,7 @@ export function ContextCard({ title, description, imageSrc, active = false, onCl
     <button
       type="button"
       className={[
-        "items-center px-3 py-4 rounded-lg mb-4 grid gap-4 xs:px-5 grid-cols-[3.5rem_1fr]",
+        "items-center px-3 py-4 rounded-lg mb-4 grid gap-4 xs:px-5 grid-cols-[3.5rem_1fr] self-stretch w-full",
         active ? "border-2 border-solid border-[#E41571]" : "shadow-custom",
       ].join(" ")}
       onClick={onClick}
@@ -20,8 +20,8 @@ export function ContextCard({ title, description, imageSrc, active = false, onCl
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={imageSrc} alt={`icône pour illustrer le contexte ${title}`} className="w-full max-w-14 min-w-12" />
       </div>
-      <h3 className="text-lg font-bold !text-[#111827] m-0 hyphens-auto">{title}</h3>
-      <p className="col-span-2 sm:col-span-1 whitespace-pre-line max-w-96 hyphens-auto text-base font-normal text-[#111827] m-0">
+      <h3 className="text-lg text-left font-bold !text-[#111827] m-0 hyphens-auto">{title}</h3>
+      <p className="col-span-2 text-left sm:col-span-1 whitespace-pre-line max-w-96 hyphens-auto text-base font-normal text-[#111827] m-0">
         {description}
       </p>
     </button>

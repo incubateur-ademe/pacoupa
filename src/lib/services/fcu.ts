@@ -45,7 +45,7 @@ export const fetchFcuEligibility = async ({ lon, lat }: FetchFcuEligibilityProps
         id: "",
         inPDP: false,
         isBasedOnIris: false,
-        isEligible: false,
+        isEligible: true,
         rateCO2: 0,
         rateENRR: 0,
       };
