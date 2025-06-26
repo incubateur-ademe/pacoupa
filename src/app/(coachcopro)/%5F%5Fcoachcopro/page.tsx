@@ -1,6 +1,5 @@
 "use client";
 
-import { cx } from "@codegouvfr/react-dsfr/fr/cx";
 import { Inter } from "next/font/google";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -13,6 +12,7 @@ import {
 import { createSearchParams } from "@/utils/searchParams";
 
 import CoachCopro from "./coachcopro";
+// import coachcoproStyles from "./coachcopro.module.css";
 import ModalStep1 from "./modal-step-1";
 import ModalStep2 from "./modal-step-2";
 import ModalStep3 from "./modal-step-3";
@@ -49,11 +49,12 @@ const initialState: CheckAndLoadResultatParamsReturnType = {
 
 export default function Page({ searchParams }: { searchParams: CoachCoproSearchParams }) {
   const searchParamsApi = useSearchParams();
-  const step = Number(searchParams.step ?? 1);
+  const [step, setStep] = useState(Number(searchParams.step ?? 1));
   const router = useRouter();
-  const [state, setState] = useState<CheckAndLoadResultatParamsReturnType>(initialState);
+  const [state, setState] = useState<CheckAndLoadResultatParamsReturnType | undefined>(undefined);
 
   const onChangeStep = (step: number) => {
+    setStep(step);
     router.push(
       `/__coachcopro?${createSearchParams({
         searchParams: searchParamsApi,
@@ -64,12 +65,13 @@ export default function Page({ searchParams }: { searchParams: CoachCoproSearchP
   };
 
   useEffect(() => {
-    if (searchParams.hash) {
+    if (searchParams.hash && !state) {
       checkAndLoadResultatParams(searchParams).then(setState).catch(console.error);
     }
-  }, [searchParams]);
+  }, [searchParams, state]);
 
   console.log(state);
+  console.log({ step });
 
   // if (!state) {
   //   return <Loader />;
@@ -78,22 +80,25 @@ export default function Page({ searchParams }: { searchParams: CoachCoproSearchP
   return (
     <div
       id="coachcopro"
-      className={cx(
+      className={[
         // coachcoproStyles.coachcopro,
-        // @ts-expect-error inter.className is not typed
         inter.className,
         "relative p-6 size-full inter overflow-auto justify-center items-center flex",
         // bg image coachcopro-placeholder.png
         step < 4
           ? "bg-contain bg-center bg-no-repeat bg-[url('/img/coachcopro-placeholder.png')] bg-opacity-10"
           : "bg-white",
-      )}
+      ].join(" ")}
     >
       <div className="absolute inset-0 bg-white/90 justify-center items-center flex p-6">
-        {step === 1 && <ModalStep1 state={state} onNext={() => onChangeStep(2)} />}
-        {step === 2 && <ModalStep2 state={state} onNext={() => onChangeStep(3)} onBack={() => onChangeStep(1)} />}
-        {step === 3 && <ModalStep3 state={state} onNext={() => onChangeStep(4)} onBack={() => onChangeStep(2)} />}
-        {step === 4 && <CoachCopro state={state} />}
+        {step === 1 && <ModalStep1 state={state || initialState} onNext={() => onChangeStep(2)} />}
+        {step === 2 && (
+          <ModalStep2 state={state || initialState} onNext={() => onChangeStep(3)} onBack={() => onChangeStep(1)} />
+        )}
+        {step === 3 && (
+          <ModalStep3 state={state || initialState} onNext={() => onChangeStep(4)} onBack={() => onChangeStep(2)} />
+        )}
+        {step === 4 && <CoachCopro state={state || initialState} />}
       </div>
     </div>
   );
