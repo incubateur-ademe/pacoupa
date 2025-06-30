@@ -6,6 +6,20 @@ A partir de quelques questions simples sur l’immeuble, l'outil permet de dirig
 
 ## Installation
 
+### Récupérer la DB
+
+Deux options : la construire, ou télécharger un dump de la production.
+
+Pour la constuire, rendez-vous [plus bas](## Construction de la db).
+
+Pour faire un dump :
+1. connectez-vous à [Turso](https://app.turso.tech/login)
+2. récupérez le nom de la base de données qui vous intéresse
+3. de retour dans votre terminal, authentifiez vous avec `turso auth login`
+4. [faites un dump](https://docs.turso.tech/cli/db/shell#database-dump) en lançant `turso db shell <database-name> .dump > dump.sql`
+5. reconstruisez la db en lançant dans le dossier `assets` : `sqlite3 pacoupa.db < dump.sql`
+
+
 ### Lancer la db localement
 
 Mettre à jour le fichier .env avec la variable TURSO_DATABASE_URL="http://127.0.0.1:8080".

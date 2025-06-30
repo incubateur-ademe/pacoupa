@@ -21,7 +21,7 @@ const inter = Inter({
 });
 
 export default function Page({ searchParams }: { searchParams: CoachCoproSearchParams }) {
-  const [step, setStep] = useState(4);
+  const [step, setStep] = useState(1);
   const [informationBatiment, setInformationBatimentState] = useState(parseParamsCoachCopro(searchParams));
 
   function setInformationBatiment(newInfo: Partial<InformationBatiment>) {
@@ -44,33 +44,36 @@ export default function Page({ searchParams }: { searchParams: CoachCoproSearchP
       className={[
         // coachcoproStyles.coachcopro,
         inter.className,
-        "relative p-6 size-full inter overflow-auto justify-center items-center flex",
-        // bg image coachcopro-placeholder.png
-        step < 4
-          ? "bg-contain bg-center bg-no-repeat bg-[url('/img/coachcopro-placeholder.png')] bg-opacity-10"
-          : "bg-white",
+        "relative bg-white/90 size-full inter justify-start items-start flex",
       ].join(" ")}
     >
-      <div className="absolute inset-0 bg-white/90 justify-center items-center flex p-6">
-        {step === 1 && <ModalStep1 onNext={() => setStep(2)} />}
-        {step === 2 && (
-          <ModalStep2
-            informationBatiment={informationBatiment}
-            setInformationBatiment={setInformationBatiment}
-            onNext={() => setStep(3)}
-            onBack={() => setStep(1)}
-          />
-        )}
-        {step === 3 && (
-          <ModalStep3
-            informationBatiment={informationBatiment}
-            setInformationBatiment={setInformationBatiment}
-            onNext={() => setStep(4)}
-            onBack={() => setStep(2)}
-          />
-        )}
-        {step === 4 && <CoachCopro searchParams={searchParams} />}
-      </div>
+      {step < 4 && (
+        <>
+          <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none overflow-hidden">
+            <CoachCopro searchParams={searchParams} skeleton />
+          </div>
+          <div className="w-full h-full flex justify-center items-center bg-transparent z-10 max-h-full overflow-auto p-6">
+            {step === 1 && <ModalStep1 onNext={() => setStep(2)} />}
+            {step === 2 && (
+              <ModalStep2
+                informationBatiment={informationBatiment}
+                setInformationBatiment={setInformationBatiment}
+                onNext={() => setStep(3)}
+                onBack={() => setStep(1)}
+              />
+            )}
+            {step === 3 && (
+              <ModalStep3
+                informationBatiment={informationBatiment}
+                setInformationBatiment={setInformationBatiment}
+                onNext={() => setStep(4)}
+                onBack={() => setStep(2)}
+              />
+            )}
+          </div>
+        </>
+      )}
+      {step === 4 && <CoachCopro searchParams={searchParams} />}
     </div>
   );
 }

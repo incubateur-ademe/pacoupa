@@ -37,7 +37,7 @@ export default function ModalStep2({
 
   return (
     <>
-      <div className="w-[592px] p-8 border-3 border-solid border-[#6B7280] rounded-lg bg-white self-start">
+      <div className="w-full max-w-xl overflow-auto p-8 border-3 border-solid border-[#6B7280] rounded-lg bg-white self-start">
         <div className="flex items-center gap-1 mb-4">
           <div className="flex items-center justify-center w-4 h-4 rounded-full border border-solid border-[#E41571]">
             <div className="w-2 h-2 rounded bg-[#E41571]" />

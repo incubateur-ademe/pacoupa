@@ -5,7 +5,7 @@ import { CoachCoproButtonPrimary } from "./components/button";
 export default function ModalStep1({ onNext }: { onNext: () => void }) {
   return (
     <>
-      <div className="basis-[700px] p-8 pt-16 border-3 border-solid border-[#6B7280] rounded-lg bg-white">
+      <div className="w-full max-w-xl overflow-auto p-8 pt-16 border-3 border-solid border-[#6B7280] rounded-lg bg-white">
         <div className="flex items-center gap-2 mb-8">
           <Image src="/img/coach-copro.png" alt="" width={68} height={68} />
           <Image src="/img/cross.svg" alt="" width={12} height={12} />
