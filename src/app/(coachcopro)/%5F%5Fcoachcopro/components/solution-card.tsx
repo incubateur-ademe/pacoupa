@@ -1,16 +1,16 @@
-import { familleImageMap } from "@/app/(decorated)/(center)/simulation/resultat/helper";
+import { familleImageMap, typeMapCoachCopro } from "@/app/(decorated)/(center)/simulation/resultat/helper";
 import { type Solution } from "@/lib/common/domain/values/Solution";
 
 import { DetailsButton } from "./details-button";
-import { Tag } from "./tag";
 
 type SolutionCardProps = {
   active?: boolean;
-  description: string;
+  description: Solution["description"];
   eligible?: boolean;
   familleSolution: Solution["familleSolution"];
   onClick: () => void;
-  title: string;
+  title: Solution["nom"];
+  type: Solution["type"];
 };
 
 export function SolutionCard({
@@ -20,6 +20,7 @@ export function SolutionCard({
   active = false,
   eligible = false,
   onClick,
+  type,
 }: SolutionCardProps) {
   return (
     <button
@@ -35,9 +36,7 @@ export function SolutionCard({
       </div>
       <div className="col-span-2 flex flex-col sm:flex-row gap-x-2 sm:items-center items-start">
         <h3 className="text-lg font-bold !text-[#111827] m-0 hyphens-auto text-left">{title}</h3>
-        <div className="flex items-center grow">
-          <Tag variant="primary" />
-        </div>
+        <div className="flex items-center grow">{typeMapCoachCopro[type]}</div>
       </div>
       <p className="col-span-3 sm:col-span-2 my-2 text-base font-normal text-black mb-2">{description}</p>
       {eligible ? (

@@ -264,6 +264,12 @@ export const typeMap: Record<SolutionType, React.ReactNode> = {
   MIX: <Badge label="Solution mixte" icon="fr-icon-group-fill" />,
 };
 
+export const typeMapCoachCopro: Record<SolutionType, React.ReactNode> = {
+  IND: <Badge label="Individuel" icon="fr-icon-user-fill" />,
+  COL: <Badge label="Collectif" icon="fr-icon-team-fill" />,
+  MIX: <Badge label="Mixte" icon="fr-icon-group-fill" />,
+};
+
 export const familleImageMap: Record<SolutionFamille, JSX.Element> = {
   RCU: <FamilleRcuImage />,
   Geothermie: <FamilleGeothermieImage />,

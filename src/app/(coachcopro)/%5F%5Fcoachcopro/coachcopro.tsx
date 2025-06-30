@@ -1,14 +1,17 @@
 "use client";
+import { fichesReference } from "@__content/fiches-reference";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import {
   checkAndLoadResultatParamsCoachCopro,
   type CheckAndLoadResultatParamsCoachCoproReturnType,
   type CoachCoproSearchParams,
+  typeMapCoachCopro,
 } from "@/app/(decorated)/(center)/simulation/resultat/helper";
 import { Badge } from "@/components/Badge";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/Carousel";
 import { EstimationCouts } from "@/components/EstimationCouts";
 import { EstimationGains } from "@/components/EstimationGains";
 import { DPEImage } from "@/components/img/DPEImage";
@@ -20,7 +23,8 @@ import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxN
 import { ContextCard } from "./components/context-card";
 import { DetailsButton } from "./components/details-button";
 import { SolutionCard, SolutionCardSkeleton } from "./components/solution-card";
-import { Tag } from "./components/tag";
+
+const fiches = Object.values(fichesReference);
 
 const initialState: CheckAndLoadResultatParamsCoachCoproReturnType = {
   informationBatiment: {
@@ -115,6 +119,11 @@ export default function CoachCopro({
   const [travauxNiveauIsolation, setTravauxNiveauIsolation] = useState<TravauxNiveauIsolation>("Global");
   const [activeSolution, setActiveSolution] = useState<SolutionAvecEnergieCoutAide | null>(null);
 
+  const example = useMemo(() => {
+    if (!activeSolution?.id) return null;
+    return fiches.find(fiche => fiche.solutionId.startsWith(activeSolution.id));
+  }, [activeSolution]);
+
   const cepAvant = activeSolution?.cepAvant ?? 0;
   const cepApres = activeSolution?.cepApres ?? 0;
   const pourcentageGain = Math.round(((cepAvant - cepApres) / cepAvant) * 100) || 12;
@@ -132,6 +141,8 @@ export default function CoachCopro({
         .catch(console.error);
     }
   }, [searchParams, travauxNiveauIsolation, skeleton]);
+
+  console.log({ example });
 
   return (
     <>
@@ -204,6 +215,7 @@ export default function CoachCopro({
                     familleSolution={RCUSolution.familleSolution}
                     eligible
                     onClick={() => setActiveSolution(RCUSolution)}
+                    type={RCUSolution.type}
                     active={activeSolution?.id === RCUSolution.id}
                   />
                 )}
@@ -214,6 +226,7 @@ export default function CoachCopro({
                       title={solution.nom}
                       description={solution.description ?? ""}
                       familleSolution={solution.familleSolution}
+                      type={solution.type}
                       onClick={() => setActiveSolution(solution)}
                       active={activeSolution?.id === solution.id}
                     />
@@ -265,21 +278,21 @@ export default function CoachCopro({
                     )}
                   </div>
                   <div>
-                    <div className="text-base font-medium mb-2 text-[#111827]">🧾 Économie sur les factures</div>
+                    <div className="text-base font-medium mb-1 text-[#111827]">🧾 Économie sur les factures</div>
 
-                    <div className="text-lg font-medium text-[#e41571]">
+                    <div className="text-sm font-semibold text-[#e41571]">
                       <EstimationGains solution={activeSolution} justeGains />
                     </div>
                   </div>
                   <div>
-                    <div className="text-base font-medium mb-2 text-[#111827]">💰 Coût total du projet</div>
-                    <div className="text-lg font-medium text-[#e41571]">
+                    <div className="text-base font-medium mb-1 text-[#111827]">💰 Coût total du projet</div>
+                    <div className="text-sm font-semibold text-[#e41571]">
                       <EstimationCouts solution={activeSolution} justeCouts />
                     </div>
                   </div>
                   <div>
-                    <div className="text-base font-medium mb-2 text-[#111827]">🏦 Aides nationales minimum</div>
-                    <div className="text-lg font-medium text-[#e41571]">
+                    <div className="text-base font-medium mb-1 text-[#111827]">🏦 Aides nationales minimum</div>
+                    <div className="text-sm font-semibold text-[#e41571]">
                       <EstimationCouts solution={activeSolution} justeAides />
                     </div>
                   </div>
@@ -293,76 +306,83 @@ export default function CoachCopro({
               )}
             </div>
 
-            <div className="w-full border border-solid border-[#f3f4f6] rounded-lg p-4">
+            <div className="w-full border border-solid border-[#f3f4f6] rounded-lg p-4" key={example?.solutionId}>
               <h2 className="text-lg font-bold !text-[#111827] mb-4">Exemple d'application</h2>
-              {activeSolution ? (
+              {example && activeSolution ? (
                 <div className="space-y-4 mb-4">
-                  {/* <div className="relative w-full h-44 mb-2">
-                    <Image
-                      src="/img/coach-copro/coach-copro-application-placeholder.png"
-                      alt=""
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-between">
-                      <div className="flex items-center justify-center gap-2 h-4" />
-                      <div className="flex-1 flex items-center justify-between px-2">
-                        <button className="flex items-center hover:!bg-transparent">
-                          <Image src="/img/coach-copro/arrow-left.svg" alt="" height={15} width={10} className="h-5" />
-                        </button>
-                        <button className="flex items-center hover:!bg-transparent">
-                          <Image src="/img/coach-copro/arrow-right.svg" alt="" height={15} width={10} className="h-5" />
-                        </button>
-                      </div>
-                      <div className="flex items-center justify-center gap-2 h-4">
-                        <span className="flex w-4 h-2 bg-white rounded-lg border border-solid border-[#111827]" />
-                        <span className="flex w-2 h-2 rounded-full border border-solid border-white" />
-                        <span className="flex w-2 h-2 rounded-full border border-solid border-white" />
-                      </div>
-                    </div>
-                  </div> */}
-                  <div className="flex items-center mb-2">
-                    <span className="text-lg font-bold text-[#111827] mr-2">Résidence Hermann Sabran</span>
-                    <span className="text-lg font-normal text-[#535F57]">— Lyon (Rhône)</span>
+                  {example.images && example.images.length >= 1 && (
+                    <>
+                      <h3 className="text-base font-medium mt-8">Galerie</h3>
+
+                      <Carousel className="max-w-[calc(100vw-8rem)] mx-auto">
+                        <CarouselContent>
+                          {example.images.map((image, index) => (
+                            <CarouselItem key={index}>
+                              <div className="relative w-full h-44 mx-auto">
+                                <Image
+                                  src={image}
+                                  alt={example.titrePrincipal}
+                                  sizes="176px"
+                                  fill
+                                  className="object-contain"
+                                />
+                              </div>
+                            </CarouselItem>
+                          ))}
+                        </CarouselContent>
+                        <CarouselPrevious className="-left-14 sm:-left-8 stroke-gray-600 fill-white md:-left-4" />
+                        <CarouselNext className="-right-14 sm:-right-8 md:-right-4 stroke-gray-600 fill-white" />
+                      </Carousel>
+                    </>
+                  )}
+                  <div className="mb-2">
+                    <span className="text-lg font-bold text-[#111827] mr-2">{example.titrePrincipal}</span>
+                    <span className="text-lg font-normal text-[#535F57]">— Lyon {example.lieu}</span>
                   </div>
-                  <div className="grid grid-cols-2 gap-4 mb-4 w-full md:grid-cols-4">
-                    <div className="flex flex-col items-center justify-between flex-1">
-                      <Image
-                        src="/img/coach-copro/copro-application-vignette-1.svg"
-                        alt=""
-                        height={24}
-                        width={24}
-                        className="mb-1"
-                      />
-                      <div className="flex items-center text-center h-8 text-xs font-medium text-[#111827]">
-                        70 logements
+                  <div className="grid gap-4 mb-4 w-full grid-cols-3">
+                    {example.nbLogements ? (
+                      <div className="flex flex-col items-center justify-between flex-1">
+                        <Image
+                          src="/img/coach-copro/copro-application-vignette-1.svg"
+                          alt=""
+                          height={24}
+                          width={24}
+                          className="mb-1"
+                        />
+                        <div className="flex items-center text-center h-8 text-xs font-medium text-[#111827]">
+                          {example.nbLogements} logements
+                        </div>
                       </div>
-                    </div>
-                    <div className="flex flex-col items-center justify-between flex-1">
-                      <Image
-                        src="/img/coach-copro/copro-application-vignette-2.svg"
-                        alt=""
-                        height={24}
-                        width={24}
-                        className="mb-1"
-                      />
-                      <div className="flex items-center text-center h-8 text-xs font-medium text-[#111827]">
-                        3 154 m2
+                    ) : null}
+                    {example.nbm2 ? (
+                      <div className="flex flex-col items-center justify-between flex-1">
+                        <Image
+                          src="/img/coach-copro/copro-application-vignette-2.svg"
+                          alt=""
+                          height={24}
+                          width={24}
+                          className="mb-1"
+                        />
+                        <div className="flex items-center text-center h-8 text-xs font-medium text-[#111827]">
+                          {new Intl.NumberFormat("fr-FR").format(example.nbm2)} m2
+                        </div>
                       </div>
-                    </div>
-                    <div className="flex flex-col items-center justify-between flex-1">
-                      <Image
-                        src="/img/coach-copro/copro-application-vignette-3.svg"
-                        alt=""
-                        height={24}
-                        width={24}
-                        className="mb-1"
-                      />
-                      <div className="flex items-center text-center h-8 text-xs font-medium text-[#111827]">
-                        Année 1978
+                    ) : null}
+                    {example.anneeConstruction ? (
+                      <div className="flex flex-col items-center justify-between flex-1">
+                        <Image
+                          src="/img/coach-copro/copro-application-vignette-3.svg"
+                          alt=""
+                          height={24}
+                          width={24}
+                          className="mb-1"
+                        />
+                        <div className="flex items-center text-center h-8 text-xs font-medium text-[#111827]">
+                          Année {example.anneeConstruction}
+                        </div>
                       </div>
-                    </div>
-                    <div className="flex flex-col items-center justify-between flex-1">
+                    ) : null}
+                    {/* <div className="flex flex-col items-center justify-between flex-1">
                       <Image
                         src="/img/coach-copro/copro-application-vignette-4.svg"
                         alt=""
@@ -371,50 +391,60 @@ export default function CoachCopro({
                         className="mb-1"
                       />
                       <div className="flex items-center text-center h-8 text-xs font-medium text-[#111827]">
-                        Chauffage collectif
+                        
                       </div>
-                    </div>
+                    </div> */}
                   </div>
 
                   <div className="pl-2 mb-2">
-                    <p className="text-lg font-medium text-[#111827] mb-2">Remplacement du chauffage</p>
-                    <div className="flex flex-col justify-between border-0 border-l-2 border-solid border-[#E0E0E0] pl-2 mb-2">
-                      <div className="py-2 flex flex-col basis-full md:basis-1/2">
-                        <div className="text-lg font-normal mb-1 text-[#535F57]">Chauffage</div>
-                        <div className="flex md:items-center flex-col md:flex-row items-start">
-                          <div className="flex items-center">
-                            <Image
-                              src="/img/coach-copro/copro-application-vignette-5.svg"
-                              alt=""
-                              height={16}
-                              width={16}
-                              className="mr-1"
-                            />
-                            <span className="text-lg font-bold text-[#111827] mr-2">Fioul</span>
+                    {example.estNeuf ? (
+                      <div className="mt-4">Construction neuve</div>
+                    ) : (
+                      <>
+                        <p className="text-sm font-medium text-[#111827] mb-2">Remplacement du chauffage</p>
+                        <div className="flex flex-col justify-between border-0 border-l-2 border-solid border-[#E0E0E0] pl-2 mb-2">
+                          <div className="py-2 flex flex-col basis-full md:basis-1/2">
+                            <div className="text-sm font-normal mb-1 text-[#535F57]">Chauffage</div>
+                            <div className="flex md:items-center flex-col md:flex-row items-start">
+                              <div className="flex items-center">
+                                <Image
+                                  src="/img/coach-copro/copro-application-vignette-5.svg"
+                                  alt=""
+                                  height={16}
+                                  width={16}
+                                  className="mr-1"
+                                />
+                                <span className="text-sm font-bold text-[#111827] mr-2">
+                                  {example.avantChauffage ?? "inconnu"}
+                                </span>
+                              </div>
+                              {/* {typeMapCoachCopro[example.avantChauffage as Solution["type"]]} */}
+                            </div>
                           </div>
-                          <Tag variant="primary" />
-                        </div>
-                      </div>
-                      <div className="py-2 flex flex-col basis-full md:basis-1/2">
-                        <div className="text-lg font-normal mb-1 text-[#535F57]">Eau chaude</div>
-                        <div className="flex md:items-center flex-col md:flex-row items-start">
-                          <div className="flex items-center">
-                            <Image
-                              src="/img/coach-copro/copro-application-vignette-6.svg"
-                              alt=""
-                              height={16}
-                              width={16}
-                              className="mr-1"
-                            />
-                            <span className="text-lg font-bold text-[#111827] mr-2">Électrique</span>
+                          <div className="py-2 flex flex-col basis-full md:basis-1/2">
+                            <div className="text-sm font-normal mb-1 text-[#535F57]">Eau chaude</div>
+                            <div className="flex md:items-center flex-col md:flex-row items-start">
+                              <div className="flex items-center">
+                                <Image
+                                  src="/img/coach-copro/copro-application-vignette-6.svg"
+                                  alt=""
+                                  height={16}
+                                  width={16}
+                                  className="mr-1"
+                                />
+                                <span className="text-sm font-bold text-[#111827] mr-2">
+                                  {example.avantECS ?? "Inconnu"}
+                                </span>
+                              </div>
+                              {/* {typeMapCoachCopro[example.avantECS as Solution["type"]]} */}
+                            </div>
                           </div>
-                          <Tag variant="primary" />
                         </div>
-                      </div>
-                    </div>
-                    <p className="text-lg font-medium text-[#111827] mb-2">par</p>
+                        <p className="text-sm font-medium text-[#111827] mb-2">par</p>
+                      </>
+                    )}
                     <div className="border-0 border-l-2 border-solid border-[#E0E0E0] p-2 mb-2">
-                      <div className="text-lg font-normal mb-1 text-[#535F57]">Chauffage et eau chaude</div>
+                      <div className="text-sm font-normal mb-1 text-[#535F57]">Chauffage et eau chaude</div>
                       <div className="flex items-center">
                         <Image
                           src="/img/coach-copro/copro-application-vignette-7.svg"
@@ -423,8 +453,8 @@ export default function CoachCopro({
                           width={16}
                           className="mr-1"
                         />
-                        <span className="text-lg font-bold text-[#E41571] mr-2">Pompe à chaleur air/eau</span>
-                        <Tag variant="secondary" />
+                        <span className="text-sm font-bold text-[#E41571] mr-2">{example.apresChauffage}</span>
+                        {typeMapCoachCopro[activeSolution.type]}
                       </div>
                     </div>
                   </div>

@@ -23,7 +23,7 @@ const creerClauseWhere = (filters: CriteresBddEnergie) => {
 export async function getInformationEnergie(dto: GetInformationEnergieDTO) {
   const criteresBddEnergie = await creerCriteresBddEnergie(dto);
 
-  if (config.env !== "prod") console.debug("criteresBddEnergie", JSON.stringify(criteresBddEnergie, null, 2));
+  // if (config.env !== "prod") console.debug("criteresBddEnergie", JSON.stringify(criteresBddEnergie, null, 2));
 
   const [row] = await db
     .select({

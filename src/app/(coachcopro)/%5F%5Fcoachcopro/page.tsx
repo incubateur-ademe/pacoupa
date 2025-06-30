@@ -10,7 +10,6 @@ import {
 import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 
 import CoachCopro from "./coachcopro";
-// import coachcoproStyles from "./coachcopro.module.css";
 import ModalStep1 from "./modal-step-1";
 import ModalStep2 from "./modal-step-2";
 import ModalStep3 from "./modal-step-3";
@@ -21,7 +20,7 @@ const inter = Inter({
 });
 
 export default function Page({ searchParams }: { searchParams: CoachCoproSearchParams }) {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(process.env.NODE_ENV === "development" ? 4 : 1);
   const [informationBatiment, setInformationBatimentState] = useState(parseParamsCoachCopro(searchParams));
 
   function setInformationBatiment(newInfo: Partial<InformationBatiment>) {
@@ -34,18 +33,10 @@ export default function Page({ searchParams }: { searchParams: CoachCoproSearchP
     });
   }
 
-  // if (!state) {
-  //   return <Loader />;
-  // }
-
   return (
     <div
       id="coachcopro"
-      className={[
-        // coachcoproStyles.coachcopro,
-        inter.className,
-        "relative bg-white/90 size-full inter justify-start items-start flex",
-      ].join(" ")}
+      className={[inter.className, "relative bg-white/90 size-full inter justify-start items-start flex"].join(" ")}
     >
       {step < 4 && (
         <>

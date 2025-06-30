@@ -30,8 +30,9 @@ const creerClauseWhere = (filters: CriteresBddEco) => {
 export async function getCoutRecurrent(dto: Omit<GetInformationCoutDTO, "solution">) {
   const criteresBddEco = await creerCriteresBddEco(dto);
 
-  if (config.env !== "prod")
-    console.debug("criteresBddEco getInformationCoutRecurrent", JSON.stringify(criteresBddEco, null, 2));
+  // if (config.env !== "prod") {
+  //   console.debug("criteresBddEco getInformationCoutRecurrent", JSON.stringify(criteresBddEco, null, 2));
+  // }
 
   const [row] = await db
     .select({
@@ -70,11 +71,12 @@ export async function getCoutAideAvecChangementSysteme(
 ): Promise<GetCoutAideAvecChangementSystemeReturnType> {
   const criteresBddEco = await creerCriteresBddEco(dto);
 
-  if (config.env !== "prod")
-    console.debug(
-      "criteresBddEco getInformationCoutEtAideAvecChangementSysteme",
-      JSON.stringify(criteresBddEco, null, 2),
-    );
+  // if (config.env !== "prod") {
+  //   console.debug(
+  //     "criteresBddEco getInformationCoutEtAideAvecChangementSysteme",
+  //     JSON.stringify(criteresBddEco, null, 2),
+  //   );
+  // }
 
   const solutionColumn: Record<keyof typeof catalogueSolutions, { aides: SQLiteColumn; cout: SQLiteColumn }> = {
     "01": { cout: bddEco.coutSolution01, aides: bddEco.aidesSolution01 },

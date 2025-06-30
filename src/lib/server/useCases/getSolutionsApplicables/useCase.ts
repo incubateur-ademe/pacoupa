@@ -35,8 +35,9 @@ const creerClauseWhere = (filters: CriteresBatimentWithoutId) => {
 export async function getSolutionsApplicables(dto: GetSolutionsApplicablesDTO) {
   const criteresSolutionsApplicables = creerCriteresSolutionsApplicables(dto);
 
-  if (config.env !== "prod")
-    console.debug("criteresSolutionsApplicables", JSON.stringify(criteresSolutionsApplicables, null, 2));
+  // if (config.env !== "prod") {
+  //   console.debug("criteresSolutionsApplicables", JSON.stringify(criteresSolutionsApplicables, null, 2));
+  // }
 
   const rows = await db
     .select({
