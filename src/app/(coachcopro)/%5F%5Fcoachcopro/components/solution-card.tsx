@@ -10,6 +10,7 @@ type SolutionCardProps = {
   familleSolution: Solution["familleSolution"];
   link?: string;
   onClick: () => void;
+  onVoirPlusClick?: () => void;
   title: Solution["nom"];
   type: Solution["type"];
 };
@@ -21,6 +22,7 @@ export function SolutionCard({
   active = false,
   eligible = false,
   onClick,
+  onVoirPlusClick,
   type,
   link,
 }: SolutionCardProps) {
@@ -53,7 +55,7 @@ export function SolutionCard({
         </>
       ) : (
         <div className="col-span-3 sm:col-span-2 flex justify-end">
-          <DetailsButton text="En savoir plus" className="self-end" />
+          <DetailsButton text="En savoir plus" className="self-end" onClick={onVoirPlusClick} />
         </div>
       )}
     </button>

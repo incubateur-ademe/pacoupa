@@ -25,6 +25,7 @@ import { DetailsButton } from "./components/details-button";
 import { SolutionCard, SolutionCardSkeleton } from "./components/solution-card";
 import DetailsExample from "./details-example";
 import DetailsGain from "./details-gain";
+import DetailsSolution from "./details-solution";
 
 const fiches = Object.values(fichesReference);
 
@@ -122,6 +123,7 @@ export default function CoachCopro({
   const [activeSolution, setActiveSolution] = useState<SolutionAvecEnergieCoutAide | null>(null);
   const [showDetailsGain, setShowDetailsGain] = useState(false);
   const [showDetailsExample, setShowDetailsExample] = useState(false);
+  const [showDetailsSolution, setShowDetailsSolution] = useState(false);
 
   const example = useMemo(() => {
     if (!activeSolution?.id) return null;
@@ -140,10 +142,10 @@ export default function CoachCopro({
             setState(newState);
             if (process.env.NODE_ENV === "development") {
               setActiveSolution(newState.solutions[1]);
-              setShowDetailsExample(true);
+              setShowDetailsSolution(true);
             } else if (newState.isRcuEligible) {
               setActiveSolution(RCUSolution);
-            } else {
+            } else if (!activeSolution && newState.solutions.length > 0) {
               setActiveSolution(newState.solutions[0]);
             }
           }
@@ -151,7 +153,7 @@ export default function CoachCopro({
         })
         .catch(console.error);
     }
-  }, [searchParams, travauxNiveauIsolation, skeleton]);
+  }, [searchParams, travauxNiveauIsolation, skeleton, activeSolution]);
 
   return (
     <>
@@ -239,6 +241,7 @@ export default function CoachCopro({
                       type={solution.type}
                       onClick={() => setActiveSolution(solution)}
                       active={activeSolution?.id === solution.id}
+                      onVoirPlusClick={() => setShowDetailsSolution(true)}
                     />
                   );
                 })}
@@ -480,7 +483,7 @@ export default function CoachCopro({
       </div>
       {showDetailsGain && activeSolution && (
         <div className="absolute inset-0 flex items-center justify-center bg-white/90">
-          <div className="w-full h-full flex justify-center items-start bg-transparent z-10 max-h-full overflow-auto p-6">
+          <div className="w-full h-full flex justify-center items-center bg-transparent z-10 max-h-full overflow-auto p-6">
             <DetailsGain onClose={() => setShowDetailsGain(false)} solution={activeSolution} />
           </div>
         </div>
@@ -489,6 +492,13 @@ export default function CoachCopro({
         <div className="absolute inset-0 flex items-center justify-center bg-white/90">
           <div className="w-full h-full flex justify-center items-start bg-transparent z-10 max-h-full overflow-auto p-6">
             <DetailsExample onClose={() => setShowDetailsExample(false)} example={example} solution={activeSolution} />
+          </div>
+        </div>
+      )}
+      {showDetailsSolution && activeSolution && (
+        <div className="absolute inset-0 flex items-center justify-center bg-white/90">
+          <div className="w-full h-full flex justify-center items-start bg-transparent z-10 max-h-full overflow-auto p-6">
+            <DetailsSolution onClose={() => setShowDetailsSolution(false)} solution={activeSolution} />
           </div>
         </div>
       )}

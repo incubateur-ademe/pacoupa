@@ -169,14 +169,14 @@ export default function DetailsExample({
           {example.avantages && example.avantages.length >= 1 && (
             <>
               <h3 className="text-base font-medium mt-8">Les + du projet</h3>
-              <div className="text-sm bg-[#FFE8F2] rounded-lg p-2 gap-4 flex flex-row items-start justify-start">
+              <div className="text-sm bg-[#FFE8F2] rounded-lg p-2 gap-2 flex flex-row items-start justify-start">
                 <svg
                   width="16"
                   height="16"
                   viewBox="0 0 16 16"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="shrink-0"
+                  className="shrink-0 mt-2"
                 >
                   <g clipPath="url(#clip0_18230_4905)">
                     <circle cx="8" cy="8" r="8" fill="#E41571" />
@@ -206,7 +206,7 @@ export default function DetailsExample({
               </div>
             </>
           )}
-          <h3 className="text-base font-medium mt-8">Réalisation</h3>
+          <h3 className="text-base font-medium mt-12">Réalisation</h3>
 
           {example.maitreOuvrage && (
             <div>

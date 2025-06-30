@@ -20,7 +20,6 @@ export default function DetailsGain({
   const approximationSysteme = approximation1k(solution.coutInstallationSysteme ?? 0);
 
   const aidesLogement = approximation100(solution.aidesInstallationSysteme);
-  console.log(solution);
 
   return (
     <>
