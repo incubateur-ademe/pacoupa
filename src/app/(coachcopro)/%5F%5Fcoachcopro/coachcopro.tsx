@@ -140,10 +140,7 @@ export default function CoachCopro({
         .then(newState => {
           if (newState) {
             setState(newState);
-            if (process.env.NODE_ENV === "development") {
-              setActiveSolution(newState.solutions[1]);
-              setShowDetailsSolution(true);
-            } else if (newState.isRcuEligible) {
+            if (newState.isRcuEligible) {
               setActiveSolution(RCUSolution);
             } else if (!activeSolution && newState.solutions.length > 0) {
               setActiveSolution(newState.solutions[0]);
@@ -153,7 +150,7 @@ export default function CoachCopro({
         })
         .catch(console.error);
     }
-  }, [searchParams, travauxNiveauIsolation, skeleton, activeSolution]);
+  }, [searchParams, travauxNiveauIsolation, skeleton]);
 
   return (
     <>

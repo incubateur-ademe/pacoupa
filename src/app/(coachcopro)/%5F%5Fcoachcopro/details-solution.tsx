@@ -19,7 +19,7 @@ export default function DetailsSolution({
   return (
     <>
       <div className="w-full max-w-xl p-8 border-3 border-solid border-[#6B7280] rounded-lg bg-white">
-        <div className="flex flex-row justify-between mb-4">
+        <div className="flex flex-row justify-between items-start mb-4">
           <div className="flex items-start gap-4">
             <div>{familleImageMap[solution.familleSolution]}</div>
             <div>
