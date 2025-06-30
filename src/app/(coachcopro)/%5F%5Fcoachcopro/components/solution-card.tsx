@@ -8,6 +8,7 @@ type SolutionCardProps = {
   description: Solution["description"];
   eligible?: boolean;
   familleSolution: Solution["familleSolution"];
+  link?: string;
   onClick: () => void;
   title: Solution["nom"];
   type: Solution["type"];
@@ -21,6 +22,7 @@ export function SolutionCard({
   eligible = false,
   onClick,
   type,
+  link,
 }: SolutionCardProps) {
   return (
     <button
@@ -46,7 +48,7 @@ export function SolutionCard({
             <span className="block text-sm font-bold text-[#E41571]">Éligible</span>
           </div>
           <div className="col-span-3 sm:col-span-2 flex justify-end">
-            <DetailsButton text="Voir la carte" className="self-end" />
+            <DetailsButton text="Voir la carte" className="self-end" as="a" link={link} />
           </div>
         </>
       ) : (

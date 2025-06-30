@@ -5,7 +5,7 @@ import { type InformationBatiment } from "@/lib/common/domain/InformationBatimen
 import { CoachCoproButtonPrimary, CoachCoproButtonSecondary } from "./components/button";
 import { RadioButtonsWrapper } from "./components/radiobuttons-wrapper";
 
-export default function ModalStep3({
+export default function FormStep2({
   onNext,
   onBack,
   informationBatiment,

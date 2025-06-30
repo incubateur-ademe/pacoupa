@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import { CoachCoproButtonPrimary } from "./components/button";
 
-export default function ModalStep1({ onNext }: { onNext: () => void }) {
+export default function Onboarding({ onNext }: { onNext: () => void }) {
   return (
     <>
       <div className="w-full max-w-xl overflow-auto p-8 pt-16 border-3 border-solid border-[#6B7280] rounded-lg bg-white">

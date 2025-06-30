@@ -4,7 +4,7 @@ import { CoachCoproButtonPrimary, CoachCoproButtonSecondary } from "./components
 import { CheckboxesWrapper } from "./components/checkboxes-wrapper";
 import { InputWrapper } from "./components/input-wrapper";
 
-export default function ModalStep2({
+export default function FormStep1({
   onNext,
   onBack,
   informationBatiment,

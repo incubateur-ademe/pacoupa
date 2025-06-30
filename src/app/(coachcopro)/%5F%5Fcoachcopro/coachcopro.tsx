@@ -23,6 +23,8 @@ import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxN
 import { ContextCard } from "./components/context-card";
 import { DetailsButton } from "./components/details-button";
 import { SolutionCard, SolutionCardSkeleton } from "./components/solution-card";
+import DetailsExample from "./details-example";
+import DetailsGain from "./details-gain";
 
 const fiches = Object.values(fichesReference);
 
@@ -114,10 +116,12 @@ export default function CoachCopro({
   skeleton?: boolean;
 }) {
   const [isLoading, setIsLoading] = useState(true);
-  const [{ solutions, nbSolutions, isRcuEligible }, setState] =
+  const [{ informationBatiment, solutions, nbSolutions, isRcuEligible }, setState] =
     useState<CheckAndLoadResultatParamsCoachCoproReturnType>(initialState);
   const [travauxNiveauIsolation, setTravauxNiveauIsolation] = useState<TravauxNiveauIsolation>("Global");
   const [activeSolution, setActiveSolution] = useState<SolutionAvecEnergieCoutAide | null>(null);
+  const [showDetailsGain, setShowDetailsGain] = useState(false);
+  const [showDetailsExample, setShowDetailsExample] = useState(false);
 
   const example = useMemo(() => {
     if (!activeSolution?.id) return null;
@@ -126,7 +130,7 @@ export default function CoachCopro({
 
   const cepAvant = activeSolution?.cepAvant ?? 0;
   const cepApres = activeSolution?.cepApres ?? 0;
-  const pourcentageGain = Math.round(((cepAvant - cepApres) / cepAvant) * 100) || 12;
+  const pourcentageGain = cepAvant ? Math.round(((cepAvant - cepApres) / cepAvant) * 100) : null;
 
   useEffect(() => {
     if (searchParams.hash && !skeleton) {
@@ -134,15 +138,20 @@ export default function CoachCopro({
         .then(newState => {
           if (newState) {
             setState(newState);
-            setActiveSolution(newState.solutions[0]);
+            if (process.env.NODE_ENV === "development") {
+              setActiveSolution(newState.solutions[1]);
+              setShowDetailsExample(true);
+            } else if (newState.isRcuEligible) {
+              setActiveSolution(RCUSolution);
+            } else {
+              setActiveSolution(newState.solutions[0]);
+            }
           }
           setIsLoading(false);
         })
         .catch(console.error);
     }
   }, [searchParams, travauxNiveauIsolation, skeleton]);
-
-  console.log({ example });
 
   return (
     <>
@@ -217,6 +226,7 @@ export default function CoachCopro({
                     onClick={() => setActiveSolution(RCUSolution)}
                     type={RCUSolution.type}
                     active={activeSolution?.id === RCUSolution.id}
+                    link={`https://france-chaleur-urbaine.beta.gouv.fr/?heating=collectif&address=${informationBatiment.adresse}`}
                   />
                 )}
                 {solutions.map(solution => {
@@ -249,14 +259,14 @@ export default function CoachCopro({
               <h2 className="text-lg font-bold !text-[#111827] mb-4">Estimation des gains de mon scénario</h2>
               {activeSolution ? (
                 <div className="space-y-4 mb-4">
-                  <div>
-                    <h4 className="text-base font-medium text-[#111827] mb-2">🌿 Gain d'énergie</h4>
-                    {activeSolution?.id === RCUSolution.id ? (
-                      <>
-                        Les gains et les coûts du réseau de chaleur ne sont pas estimés car ils dépendent fortement de
-                        la faisabilité et du gestionnaire de réseau.
-                      </>
-                    ) : (
+                  <h4 className="text-base font-medium text-[#111827] mb-2">🌿 Gain d'énergie</h4>
+                  {activeSolution?.id === RCUSolution.id ? (
+                    <>
+                      Les gains et les coûts du réseau de chaleur ne sont pas estimés car ils dépendent fortement de la
+                      faisabilité et du gestionnaire de réseau.
+                    </>
+                  ) : (
+                    <>
                       <div className="grid grid-cols-[64px_1fr_64px] gap-1 justify-items-center">
                         <DPEImage lettre={activeSolution?.dpeAvant ?? "A"} />
                         <div className="relative w-full">
@@ -275,28 +285,28 @@ export default function CoachCopro({
                         </div>
                         <DPEImage lettre={activeSolution?.dpeApres ?? "A"} />
                       </div>
-                    )}
-                  </div>
-                  <div>
-                    <div className="text-base font-medium mb-1 text-[#111827]">🧾 Économie sur les factures</div>
+                      <div>
+                        <div className="text-base font-medium mb-1 text-[#111827]">🧾 Économie sur les factures</div>
 
-                    <div className="text-sm font-semibold text-[#e41571]">
-                      <EstimationGains solution={activeSolution} justeGains />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="text-base font-medium mb-1 text-[#111827]">💰 Coût total du projet</div>
-                    <div className="text-sm font-semibold text-[#e41571]">
-                      <EstimationCouts solution={activeSolution} justeCouts />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="text-base font-medium mb-1 text-[#111827]">🏦 Aides nationales minimum</div>
-                    <div className="text-sm font-semibold text-[#e41571]">
-                      <EstimationCouts solution={activeSolution} justeAides />
-                    </div>
-                  </div>
-                  <DetailsButton text="Voir le détail" />
+                        <div className="text-sm font-semibold text-[#e41571]">
+                          <EstimationGains solution={activeSolution} justeGains />
+                        </div>
+                      </div>
+                      <div>
+                        <div className="text-base font-medium mb-1 text-[#111827]">💰 Coût total du projet</div>
+                        <div className="text-sm font-semibold text-[#e41571]">
+                          <EstimationCouts solution={activeSolution} justeCouts />
+                        </div>
+                      </div>
+                      <div>
+                        <div className="text-base font-medium mb-1 text-[#111827]">🏦 Aides nationales minimum</div>
+                        <div className="text-sm font-semibold text-[#e41571]">
+                          <EstimationCouts solution={activeSolution} justeAides />
+                        </div>
+                      </div>
+                      <DetailsButton as="button" text="Voir le détail" onClick={() => setShowDetailsGain(true)} />
+                    </>
+                  )}
                 </div>
               ) : (
                 <>
@@ -312,8 +322,6 @@ export default function CoachCopro({
                 <div className="space-y-4 mb-4">
                   {example.images && example.images.length >= 1 && (
                     <>
-                      <h3 className="text-base font-medium mt-8">Galerie</h3>
-
                       <Carousel className="max-w-[calc(100vw-8rem)] mx-auto">
                         <CarouselContent>
                           {example.images.map((image, index) => (
@@ -458,7 +466,7 @@ export default function CoachCopro({
                       </div>
                     </div>
                   </div>
-                  <DetailsButton text="Voir le détail" className="ml-2" />
+                  <DetailsButton text="Voir le détail" className="ml-2" onClick={() => setShowDetailsExample(true)} />
                 </div>
               ) : (
                 <>
@@ -470,6 +478,20 @@ export default function CoachCopro({
           </>
         </div>
       </div>
+      {showDetailsGain && activeSolution && (
+        <div className="absolute inset-0 flex items-center justify-center bg-white/90">
+          <div className="w-full h-full flex justify-center items-start bg-transparent z-10 max-h-full overflow-auto p-6">
+            <DetailsGain onClose={() => setShowDetailsGain(false)} solution={activeSolution} />
+          </div>
+        </div>
+      )}
+      {showDetailsExample && example && activeSolution && (
+        <div className="absolute inset-0 flex items-center justify-center bg-white/90">
+          <div className="w-full h-full flex justify-center items-start bg-transparent z-10 max-h-full overflow-auto p-6">
+            <DetailsExample onClose={() => setShowDetailsExample(false)} example={example} solution={activeSolution} />
+          </div>
+        </div>
+      )}
     </>
   );
 }

@@ -10,9 +10,9 @@ import {
 import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 
 import CoachCopro from "./coachcopro";
-import ModalStep1 from "./modal-step-1";
-import ModalStep2 from "./modal-step-2";
-import ModalStep3 from "./modal-step-3";
+import FormStep1 from "./form-step-1";
+import FormStep2 from "./form-step-2";
+import Onboarding from "./onboarding";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -44,9 +44,9 @@ export default function Page({ searchParams }: { searchParams: CoachCoproSearchP
             <CoachCopro searchParams={searchParams} skeleton />
           </div>
           <div className="w-full h-full flex justify-center items-center bg-transparent z-10 max-h-full overflow-auto p-6">
-            {step === 1 && <ModalStep1 onNext={() => setStep(2)} />}
+            {step === 1 && <Onboarding onNext={() => setStep(2)} />}
             {step === 2 && (
-              <ModalStep2
+              <FormStep1
                 informationBatiment={informationBatiment}
                 setInformationBatiment={setInformationBatiment}
                 onNext={() => setStep(3)}
@@ -54,7 +54,7 @@ export default function Page({ searchParams }: { searchParams: CoachCoproSearchP
               />
             )}
             {step === 3 && (
-              <ModalStep3
+              <FormStep2
                 informationBatiment={informationBatiment}
                 setInformationBatiment={setInformationBatiment}
                 onNext={() => setStep(4)}
