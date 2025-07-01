@@ -116,11 +116,9 @@ export interface CheckAndLoadResultatParamsCoachCoproReturnType {
   travauxNiveauIsolation: TravauxNiveauIsolation;
 }
 export const checkAndLoadResultatParamsCoachCopro = async (
-  searchParams: CoachCoproSearchParams,
+  informationBatiment: InformationBatiment,
   travaux?: TravauxNiveauIsolation,
 ): Promise<CheckAndLoadResultatParamsCoachCoproReturnType | null> => {
-  const informationBatiment = parseParamsCoachCopro(searchParams);
-
   if (!informationBatiment) return null;
 
   // Pour les bâtiments après 2000 ou déjà entièrement rénové, on ne propose plus de rénovation globale.

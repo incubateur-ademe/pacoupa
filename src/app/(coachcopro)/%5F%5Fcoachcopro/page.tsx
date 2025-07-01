@@ -64,7 +64,7 @@ export default function Page({ searchParams }: { searchParams: CoachCoproSearchP
           </div>
         </>
       )}
-      {step === 4 && <CoachCopro searchParams={searchParams} />}
+      {step === 4 && <CoachCopro informationBatiment={informationBatiment} />}
     </div>
   );
 }

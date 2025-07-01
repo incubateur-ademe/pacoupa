@@ -7,7 +7,6 @@ import { useEffect, useMemo, useState } from "react";
 import {
   checkAndLoadResultatParamsCoachCopro,
   type CheckAndLoadResultatParamsCoachCoproReturnType,
-  type CoachCoproSearchParams,
   typeMapCoachCopro,
 } from "@/app/(decorated)/(center)/simulation/resultat/helper";
 import { Badge } from "@/components/Badge";
@@ -17,6 +16,7 @@ import { EstimationGains } from "@/components/EstimationGains";
 import { DPEImage } from "@/components/img/DPEImage";
 import { FlecheImage } from "@/components/img/FlecheImage";
 import { NoDataImage } from "@/components/img/NoDataImage";
+import { type InformationBatiment } from "@/lib/common/domain/InformationBatiment";
 import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
 
@@ -110,14 +110,14 @@ const RCUSolution: SolutionAvecEnergieCoutAide = {
 };
 
 export default function CoachCopro({
-  searchParams,
+  informationBatiment,
   skeleton = false,
 }: {
-  searchParams: CoachCoproSearchParams;
+  informationBatiment: InformationBatiment;
   skeleton?: boolean;
 }) {
   const [isLoading, setIsLoading] = useState(true);
-  const [{ informationBatiment, solutions, nbSolutions, isRcuEligible }, setState] =
+  const [{ solutions, nbSolutions, isRcuEligible }, setState] =
     useState<CheckAndLoadResultatParamsCoachCoproReturnType>(initialState);
   const [travauxNiveauIsolation, setTravauxNiveauIsolation] = useState<TravauxNiveauIsolation>("Global");
   const [activeSolution, setActiveSolution] = useState<SolutionAvecEnergieCoutAide | null>(null);
@@ -135,8 +135,8 @@ export default function CoachCopro({
   const pourcentageGain = cepAvant ? Math.round(((cepAvant - cepApres) / cepAvant) * 100) : null;
 
   useEffect(() => {
-    if (searchParams.hash && !skeleton) {
-      checkAndLoadResultatParamsCoachCopro(searchParams, travauxNiveauIsolation)
+    if (informationBatiment && !skeleton) {
+      checkAndLoadResultatParamsCoachCopro(informationBatiment, travauxNiveauIsolation)
         .then(newState => {
           if (newState) {
             setState(newState);
@@ -150,7 +150,8 @@ export default function CoachCopro({
         })
         .catch(console.error);
     }
-  }, [searchParams, travauxNiveauIsolation, skeleton]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [informationBatiment, travauxNiveauIsolation, skeleton]);
 
   return (
     <>
