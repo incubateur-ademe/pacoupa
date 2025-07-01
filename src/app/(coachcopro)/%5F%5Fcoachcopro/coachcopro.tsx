@@ -113,7 +113,7 @@ export default function CoachCopro({
   informationBatiment,
   skeleton = false,
 }: {
-  informationBatiment: InformationBatiment;
+  informationBatiment: InformationBatiment | undefined;
   skeleton?: boolean;
 }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -226,7 +226,7 @@ export default function CoachCopro({
                     onClick={() => setActiveSolution(RCUSolution)}
                     type={RCUSolution.type}
                     active={activeSolution?.id === RCUSolution.id}
-                    link={`https://france-chaleur-urbaine.beta.gouv.fr/?heating=collectif&address=${informationBatiment.adresse}`}
+                    link={`https://france-chaleur-urbaine.beta.gouv.fr/?heating=collectif&address=${informationBatiment?.adresse}`}
                   />
                 )}
                 {solutions.map(solution => {
