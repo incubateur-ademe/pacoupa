@@ -155,8 +155,8 @@ export default function CoachCopro({
 
   return (
     <>
-      <div className="flex justify-start flex-col lg:flex-row size-full overflow-auto lg:overflow-hidden">
-        <div className="basis-full lg:basis-2/3 p-6 lg:overflow-auto [scrollbar-width:none]">
+      <div className="flex justify-start flex-col md:flex-row size-full overflow-auto md:overflow-hidden">
+        <div className="basis-full md:basis-2/3 p-6 md:overflow-auto [scrollbar-width:none]">
           <h1 className="text-2xl font-black !text-[#111827] mb-2">Mon potentiel réno</h1>
           <hr className="flex w-full h-[1px] mb-2" />
           <p className="text-lg font-medium text-[#4B556A] mb-14">
@@ -254,7 +254,7 @@ export default function CoachCopro({
             )}
           </div>
         </div>
-        <div className="basis-full lg:basis-1/3 mt-12 lg:mt-0 p-6 lg:sticky lg:top-4 lg:overflow-auto [scrollbar-width:none]">
+        <div className="basis-full md:basis-1/3 mt-12 md:mt-0 p-6 md:sticky md:top-4 md:overflow-auto [scrollbar-width:none]">
           <>
             <div className="w-full border border-solid border-[#f3f4f6] rounded-lg mb-2 p-4">
               <h2 className="text-lg font-bold !text-[#111827] mb-4">Estimation des gains de mon scénario</h2>
