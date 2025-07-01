@@ -1,12 +1,10 @@
 import CloseIcon from "@mui/icons-material/Close";
 import MuiButton from "@mui/material/Button";
 
+import { EvaluationCoachCopro } from "@/app/(decorated)/(center)/simulation/resultat/EvaluationCoachcopro";
 import { familleImageMap } from "@/app/(decorated)/(center)/simulation/resultat/helper";
-import { Isolation } from "@/app/(decorated)/(center)/simulation/resultat/Isolation";
-import { calculeIsolationsManquantes } from "@/app/(decorated)/(center)/simulation/resultat/ShowIsolationImages";
 import { Usage } from "@/app/(decorated)/(center)/simulation/resultat/Usage";
 import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
-import { Evaluation } from "@/app/(decorated)/(center)/simulation/resultat/Evaluation";
 
 export default function DetailsSolution({
   onClose,
@@ -15,7 +13,6 @@ export default function DetailsSolution({
   onClose: () => void;
   solution: SolutionAvecEnergieCoutAide;
 }) {
-  const gestes = calculeIsolationsManquantes(solution);
   return (
     <>
       <div className="w-full max-w-xl p-8 border-3 border-solid border-[#6B7280] rounded-lg bg-white">
@@ -32,23 +29,22 @@ export default function DetailsSolution({
           </MuiButton>
         </div>
         <div className="space-y-4 mb-4 flex-col flex">
-        <h3 className="text-base font-semibold mb-3">Usage</h3>
+          <h3 className="text-base font-semibold mb-3">Usage</h3>
           <Usage solution={solution} />
           {/* <Isolation gestes={gestes} /> */}
 
-        <h3 className="text-base font-semibold mb-3">Caractéristique de la solution</h3>
-        <Evaluation categorie="difficulte" solution={solution} withDetails />
+          <h3 className="text-base font-semibold mb-3">Caractéristique de la solution</h3>
+          <EvaluationCoachCopro categorie="difficulte" solution={solution} withDetails />
 
-        <Evaluation categorie="travauxCollectif" solution={solution} withDetails />
+          <EvaluationCoachCopro categorie="travauxCollectif" solution={solution} withDetails />
 
-        <Evaluation categorie="travauxIndividuel" solution={solution} withDetails />
-        <Evaluation categorie="acoustique" solution={solution} withDetails />
+          <EvaluationCoachCopro categorie="travauxIndividuel" solution={solution} withDetails />
+          <EvaluationCoachCopro categorie="acoustique" solution={solution} withDetails />
 
-<Evaluation categorie="espaceExterieur" solution={solution} withDetails />
+          <EvaluationCoachCopro categorie="espaceExterieur" solution={solution} withDetails />
 
-<Evaluation categorie="maturite" solution={solution} withDetails />
+          <EvaluationCoachCopro categorie="maturite" solution={solution} withDetails />
         </div>
-
       </div>
     </>
   );

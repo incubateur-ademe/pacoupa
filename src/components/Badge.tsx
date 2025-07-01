@@ -6,7 +6,7 @@ export type BadgeProps = {
   label: string;
   size?: "medium" | "small";
   title?: string;
-  type?: "error" | "neutral" | "success" | "warning";
+  type?: "coachcopro" | "error" | "neutral" | "success" | "warning";
 };
 
 export const Badge = ({ label, type = "neutral", icon, size = "small", title }: PropsWithChildren<BadgeProps>) => {
@@ -19,6 +19,7 @@ export const Badge = ({ label, type = "neutral", icon, size = "small", title }: 
         "bg-neutral-300 text-neutral-700": type === "neutral",
         "leading-6 text-sm": size === "medium",
         "uppercase leading-5 text-xs": size === "small",
+        "text-[#600B31] bg-[#FFE8F2] px-1 uppercase text-xs": type === "coachcopro",
       })}
       title={title}
     >
