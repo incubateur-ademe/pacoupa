@@ -1,16 +1,22 @@
 type Props = {
   children: React.ReactNode;
   className?: string;
+  disabled?: boolean;
   onClick?: () => void;
   type?: "button" | "reset" | "submit";
 };
 
-export function CoachCoproButtonPrimary({ children, className, type = "button", onClick }: Props) {
+export function CoachCoproButtonPrimary({ children, className, type = "button", onClick, disabled }: Props) {
   return (
     <button
       type={type}
       onClick={onClick}
-      className={["p-2 rounded-lg font-bold text-white bg-[#E41571] hover:!bg-[#E41571]/70", className].join(" ")}
+      disabled={disabled}
+      className={[
+        "p-2 rounded-lg font-bold text-white bg-[#E41571] hover:!bg-[#E41571]/70",
+        className,
+        disabled && "!opacity-50 !text-white cursor-not-allowed",
+      ].join(" ")}
     >
       {children}
     </button>

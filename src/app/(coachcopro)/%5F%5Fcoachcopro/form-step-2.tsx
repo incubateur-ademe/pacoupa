@@ -30,6 +30,7 @@ export default function FormStep2({
     }
     return "";
   }, [informationBatiment]);
+
   const errorEnergieECS = useMemo(() => {
     if (informationBatiment?.energieCH === "gaz") {
       if (informationBatiment?.typeCH === "individuel") {
@@ -155,7 +156,11 @@ export default function FormStep2({
         />
 
         <div className="flex items-center gap-4">
-          <CoachCoproButtonPrimary type="button" onClick={onNext}>
+          <CoachCoproButtonPrimary
+            type="button"
+            onClick={onNext}
+            disabled={!!(errorTypeCH || errorTypeECS || errorEnergieECS || errorTypeCH || errorTypeECS)}
+          >
             ➜ Terminer
           </CoachCoproButtonPrimary>
           <CoachCoproButtonSecondary type="button" onClick={onBack}>
