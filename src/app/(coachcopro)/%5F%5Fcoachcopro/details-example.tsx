@@ -43,7 +43,7 @@ export default function DetailsExample({
             </Carousel>
           )}
           <div className="grid grid-cols-[80px_1fr]">
-            <FranceImage />
+            <FranceImage fill="#E41571" />
             <div className="flex flex-col">
               <h2 className="text-base font-bold mb-0 text-balance">{example.titrePrincipal}</h2>
               <p className="text-sm text-gray-600 text-balance m-0">{example.lieu}</p>

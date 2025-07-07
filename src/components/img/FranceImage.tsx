@@ -2,9 +2,10 @@ import { twMerge } from "tailwind-merge";
 
 type Props = {
   className?: string;
+  fill?: string;
 };
 
-export function FranceImage({ className }: Props) {
+export function FranceImage({ className, fill = "#92E3A9" }: Props) {
   return (
     <svg
       className={twMerge("size-16 -mt-2", className)}
@@ -21,63 +22,63 @@ export function FranceImage({ className }: Props) {
         clipRule="evenodd"
       ></path>
       <path
-        fill="#92E3A9"
+        fill={fill}
         fillRule="evenodd"
         d="M12.8 26.4a2.4 2.4 0 114.8 0 2.4 2.4 0 01-4.8 0zm3.2 0a.8.8 0 10-1.6 0 .8.8 0 001.6 0z"
         clipRule="evenodd"
       ></path>
       <path
-        fill="#92E3A9"
+        fill={fill}
         d="M15.2 27.2a.8.8 0 01.795.707L16 28v3.2a.8.8 0 01-1.595.093L14.4 31.2V28a.8.8 0 01.8-.8z"
       ></path>
       <path
-        fill="#92E3A9"
+        fill={fill}
         fillRule="evenodd"
         d="M30.4 23.2a2.4 2.4 0 114.8 0 2.4 2.4 0 01-4.8 0zm3.2 0a.8.8 0 10-1.6 0 .8.8 0 001.6 0z"
         clipRule="evenodd"
       ></path>
       <path
-        fill="#92E3A9"
+        fill={fill}
         d="M32.8 24a.8.8 0 01.795.707l.005.093V28a.8.8 0 01-1.595.093L32 28v-3.2a.8.8 0 01.8-.8z"
       ></path>
       <path
-        fill="#92E3A9"
+        fill={fill}
         fillRule="evenodd"
         d="M44.8 13.6a2.4 2.4 0 114.8 0 2.4 2.4 0 01-4.8 0zm3.2 0a.8.8 0 10-1.6 0 .8.8 0 001.6 0z"
         clipRule="evenodd"
       ></path>
       <path
-        fill="#92E3A9"
+        fill={fill}
         d="M47.2 14.4a.8.8 0 01.795.707L48 15.2v3.2a.8.8 0 01-1.595.093L46.4 18.4v-3.2a.8.8 0 01.8-.8z"
       ></path>
       <path
-        fill="#92E3A9"
+        fill={fill}
         fillRule="evenodd"
         d="M38.4 31.2a2.4 2.4 0 114.8 0 2.4 2.4 0 01-4.8 0zm3.2 0a.8.8 0 10-1.6 0 .8.8 0 001.6 0z"
         clipRule="evenodd"
       ></path>
       <path
-        fill="#92E3A9"
+        fill={fill}
         d="M40.8 32a.8.8 0 01.795.707l.005.093V36a.8.8 0 01-1.595.093L40 36v-3.2a.8.8 0 01.8-.8z"
       ></path>
       <path
-        fill="#92E3A9"
+        fill={fill}
         fillRule="evenodd"
         d="M27.2 39.2a2.4 2.4 0 114.8 0 2.4 2.4 0 01-4.8 0zm3.2 0a.8.8 0 10-1.6 0 .8.8 0 001.6 0z"
         clipRule="evenodd"
       ></path>
       <path
-        fill="#92E3A9"
+        fill={fill}
         d="M29.6 40a.8.8 0 01.795.707l.005.093V44a.8.8 0 01-1.595.093L28.8 44v-3.2a.8.8 0 01.8-.8z"
       ></path>
       <path
-        fill="#92E3A9"
+        fill={fill}
         fillRule="evenodd"
         d="M40 47.2a2.4 2.4 0 114.8 0 2.4 2.4 0 01-4.8 0zm3.2 0a.8.8 0 10-1.6 0 .8.8 0 001.6 0z"
         clipRule="evenodd"
       ></path>
       <path
-        fill="#92E3A9"
+        fill={fill}
         d="M42.4 48a.8.8 0 01.795.707l.005.093V52a.8.8 0 01-1.595.093L41.6 52v-3.2a.8.8 0 01.8-.8z"
       ></path>
       <path
