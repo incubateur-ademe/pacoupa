@@ -20,7 +20,7 @@ const inter = Inter({
 });
 
 export default function Page({ searchParams }: { searchParams: CoachCoproSearchParams }) {
-  const [step, setStep] = useState(process.env.NODE_ENV === "development" ? 4 : 1);
+  const [step, setStep] = useState(process.env.NODE_ENV === "development" ? 3 : 1);
   const [informationBatiment, setInformationBatimentState] = useState(parseParamsCoachCopro(searchParams));
 
   function setInformationBatiment(newInfo: Partial<InformationBatiment>) {
@@ -37,7 +37,6 @@ export default function Page({ searchParams }: { searchParams: CoachCoproSearchP
     <div
       id="coachcopro"
       className={[inter.className, "relative bg-white/90 size-full inter justify-start items-start flex"].join(" ")}
-      // eslint-disable-next-line
     >
       {step < 4 && (
         <>
