@@ -157,7 +157,13 @@ export default function CoachCopro({
     <>
       <div className="flex justify-start flex-col md:flex-row size-full overflow-auto md:overflow-hidden">
         <div className="basis-full md:basis-2/3 p-6 md:overflow-auto [scrollbar-width:none]">
-          <h1 className="text-2xl font-black !text-[#111827] mb-2">Mon potentiel réno</h1>
+          <h1
+            className="text-2xl font-black !text-[#111827] mb-2 font-biko"
+            // eslint-disable-next-line
+            style={{ fontFamily: "Biko, Inter, sans-serif" }}
+          >
+            Mon potentiel réno
+          </h1>
           <hr className="flex w-full h-[1px] mb-2" />
           <p className="text-lg font-medium text-[#4B556A] mb-14">
             Retrouvez ici différents scénarios de rénovation énergétique pour votre copro

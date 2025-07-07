@@ -38,7 +38,6 @@ export default function Page({ searchParams }: { searchParams: CoachCoproSearchP
       id="coachcopro"
       className={[inter.className, "relative bg-white/90 size-full inter justify-start items-start flex"].join(" ")}
       // eslint-disable-next-line
-      style={{ fontFamily: "Biko, Inter, sans-serif" }}
     >
       {step < 4 && (
         <>
