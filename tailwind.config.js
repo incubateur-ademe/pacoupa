@@ -21,6 +21,7 @@ module.exports = {
     fontFamily: {
       "geist-sans": ["var(--font-geist-sans)", "sans-serif"],
       inter: ["var(--font-inter)", "sans-serif"],
+      biko: ["Biko", "sans-serif"],
     },
     // align with dsfr
     screens: {

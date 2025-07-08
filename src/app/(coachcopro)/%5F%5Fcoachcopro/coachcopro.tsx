@@ -157,18 +157,14 @@ export default function CoachCopro({
     <>
       <div className="flex justify-start flex-col md:flex-row size-full overflow-auto md:overflow-hidden">
         <div className="basis-full md:basis-2/3 p-6 md:overflow-auto [scrollbar-width:none]">
-          <h1
-            className="text-2xl font-black !text-[#111827] mb-2 font-biko"
-            // eslint-disable-next-line
-            style={{ fontFamily: "Biko, Inter, sans-serif" }}
-          >
+          <h1 className="text-2xl font-black !text-[#111827] mb-2 font-biko">
             Mon potentiel réno
           </h1>
           <hr className="flex w-full h-[1px] mb-2" />
           <p className="text-lg font-medium text-[#4B556A] mb-14">
             Retrouvez ici différents scénarios de rénovation énergétique pour votre copro
           </p>
-          <h2 className="text-lg font-bold color-[#111827] mb-4">Définissez votre scénario de rénovation</h2>
+          <h2 className="text-xl font-bold color-[#111827] font-biko mb-4">Définissez votre scénario de rénovation</h2>
           <div className="mb-4 text-[#4b5563]">
             <span className="text-lg font-normal mr-2">1 —</span>
             <span className="text-base font-normal">Choisissez un contexte de rénovation</span>
@@ -263,7 +259,7 @@ export default function CoachCopro({
         <div className="basis-full md:basis-1/3 mt-12 md:mt-0 p-6 md:sticky md:top-4 md:overflow-auto [scrollbar-width:none]">
           <>
             <div className="w-full border border-solid border-[#f3f4f6] rounded-lg mb-2 p-4">
-              <h2 className="text-lg font-bold !text-[#111827] mb-4">Estimation des gains de mon scénario</h2>
+              <h2 className="text-xl font-bold !text-[#111827] mb-4 font-biko">Estimation des gains de mon scénario</h2>
               {activeSolution ? (
                 <div className="space-y-4 mb-4">
                   <h4 className="text-base font-medium text-[#111827] mb-2">🌿 Gain d'énergie</h4>
@@ -324,7 +320,7 @@ export default function CoachCopro({
             </div>
 
             <div className="w-full border border-solid border-[#f3f4f6] rounded-lg p-4" key={example?.solutionId}>
-              <h2 className="text-lg font-bold !text-[#111827] mb-4">Exemple d'application</h2>
+              <h2 className="text-xl font-biko font-bold !text-[#111827] mb-4">Exemple d'application</h2>
               {example && activeSolution ? (
                 <div className="space-y-4 mb-4">
                   {example.images && example.images.length >= 1 && (

@@ -4,6 +4,14 @@
 
 /* Custom color for stepper's - needs to be outside Tailwind's @layer  */
 
+@font-face {
+    font-family: 'Biko';
+    src: url('/Biko/Biko_Black.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
 .fr-stepper__title {
     color: var(--color-text-primary);
 }

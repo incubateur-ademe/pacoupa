@@ -92,7 +92,8 @@ export default function FormStep2({
             <div className="w-2 h-2 rounded bg-[#E41571]" />
           </div>
         </div>
-        <h2 className="text-2xl font-extrabold !text-[#4b5563] mb-2">Vérifiez les informations de votre chauffage</h2>
+        {/* <h2 className="text-2xl font-extrabold !text-[#4b5563] mb-2">Vérifiez les informations de votre chauffage</h2> */}
+        <h2 className="text-2xl font-extrabold mb-2 font-biko">Vérifiez les informations de votre chauffage</h2>
         <p className="text-lg font-medium !text-[#4b5563] mb-8">
           Ces informations vont nous permettre de calculer le potentiel rénovation de votre bâtiment
         </p>
