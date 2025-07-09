@@ -13,9 +13,7 @@ export default function Onboarding({ onNext }: { onNext: () => void }) {
         </div>
 
         {/* <h2 className="mb-2 text-2xl font-extrabold text-[#4B5563] font-biko"> */}
-        <h2 className="mb-2 text-2xl font-extrabold font-biko">
-          Calculez le potentiel rénovation de votre copro.
-        </h2>
+        <h2 className="mb-2 text-2xl font-extrabold font-biko">Calculez le potentiel rénovation de votre copro.</h2>
         <p className="font-medium mb-8 text-base leading-5 text-[#4b5563]">
           Vérifiez et complétez les informations de votre bâtiment afin de pouvoir calculer le potentiel de rénovation
           énergétique de votre copropriété. Cette simulation de rénovation est <strong>gratuite</strong> et{" "}
