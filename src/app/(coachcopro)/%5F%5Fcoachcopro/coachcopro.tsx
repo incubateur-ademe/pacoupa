@@ -258,7 +258,7 @@ export default function CoachCopro({
                 >
                   Pourquoi ces solutions ?
                 </Link>
-                <CoachCoproButtonSecondary type="button" onClick={onBack}>
+                <CoachCoproButtonSecondary className="!p-0 block" type="button" onClick={onBack}>
                   Retour
                 </CoachCoproButtonSecondary>
               </>
