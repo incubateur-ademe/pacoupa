@@ -81,6 +81,10 @@ export function parseParamsCoachCopro(searchParams: CoachCoproSearchParams): Inf
     formData.data.renovation = ["toiture", "murs", "sol", "fenetres"];
   }
 
+  if (formData.data.energieECS === "electricite") {
+    formData.data.energieECS = "ballon electrique";
+  }
+
   return formData.data;
 }
 

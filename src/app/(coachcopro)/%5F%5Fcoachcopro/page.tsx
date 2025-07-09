@@ -55,7 +55,7 @@ export default function Page({ searchParams }: { searchParams: CoachCoproSearchP
       {step < 4 && (
         <>
           <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none overflow-hidden">
-            <CoachCopro informationBatiment={informationBatiment} skeleton />
+            <CoachCopro informationBatiment={informationBatiment} skeleton onBack={() => {}} />
           </div>
           <div className="w-full h-full flex justify-center items-center bg-transparent z-10 max-h-full overflow-auto p-6">
             {step === 1 && <Onboarding onNext={() => setStep(2)} />}

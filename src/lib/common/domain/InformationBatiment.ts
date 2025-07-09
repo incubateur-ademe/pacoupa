@@ -24,7 +24,14 @@ export const informationBatimentSchema = z
     energieCH: z.enum(["fioul", "gaz", "electricite"]),
     emetteur: z.enum(["radiateurs", "plancher chauffant"]),
     typeECS: z.enum(["individuel", "collectif"]),
-    energieECS: z.enum(["fioul", "gaz", "ballon electrique"]),
+    energieECS: z.enum([
+      "fioul",
+      "gaz",
+      "ballon electrique",
+      // on accepte "electricite" parce que y'a une difficulté côté coach copro, qui ne distingue pas dans sa DB les champs energieECS et energieCH
+      // à vrai dire, l'erreur est plutôt côté pacoupa d'avoir mis dans cette enum "ballon electrique" au lieu de "electricite"
+      "electricite",
+    ]),
     possedeEspacesExterieursCommuns: OuiNonSchema.optional(),
     possedeEspacesExterieursPersonnels: OuiNonSchema.optional(),
     espacesExterieursCommuns: z.array(z.enum(["jardin", "parking exterieur", "toit terrasse"])).optional(),
