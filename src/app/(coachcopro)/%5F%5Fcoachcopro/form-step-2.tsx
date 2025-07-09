@@ -73,7 +73,7 @@ export default function FormStep2({
       }
     }
     if (informationBatiment?.energieCH === "fioul") {
-      if (informationBatiment?.typeECS !== "individuel") {
+      if (informationBatiment?.typeECS !== "collectif") {
         return "Pour un chauffage fioul, le type de production d'eau chaude doit être individuel pour que le simulateur fonctionne";
       }
     }

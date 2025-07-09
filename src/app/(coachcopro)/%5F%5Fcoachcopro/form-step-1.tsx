@@ -65,7 +65,14 @@ export default function FormStep1({
               placeholder="1975"
               name="annee-construction"
               value={informationBatiment?.annee ? String(informationBatiment.annee) : ""}
-              onChange={value => setInformationBatiment({ annee: Number(value) })}
+              onChange={value => {
+                const annee = Number(value);
+                if (annee > 2000) {
+                  setInformationBatiment({ annee, renovation: ["toiture", "murs", "sol", "fenetres"] });
+                } else {
+                  setInformationBatiment({ annee });
+                }
+              }}
             />
             <InputWrapper
               label="Nombre de logement"
@@ -105,6 +112,12 @@ export default function FormStep1({
             />
             <CheckboxesWrapper
               label="Travaux d’isolation réalisés il y a moins de 15 ans"
+              hintText={
+                informationBatiment?.annee && informationBatiment.annee > 2000
+                  ? "Tous les bâtiments construits après les années 2000 sont correctement isolés."
+                  : ""
+              }
+              disabled={!!informationBatiment?.annee && informationBatiment.annee > 2000}
               checkboxes={[
                 { value: "toiture", label: "Toiture" },
                 { value: "murs", label: "Murs" },

@@ -7,9 +7,13 @@ export function CheckboxesWrapper<T extends string>({
   className = "[&_.fr-fieldset\\_\\_content]:grid-cols-3",
   values,
   onChange,
+  hintText,
+  disabled = false,
 }: {
   checkboxes: Array<{ label: string; value: T }>;
   className?: string;
+  disabled?: boolean;
+  hintText?: string;
   label: React.ReactNode | string;
   name: string;
   onChange: (value: T[]) => void;
@@ -25,11 +29,14 @@ export function CheckboxesWrapper<T extends string>({
         className,
       ].join(" ")}
       small
+      hintText={hintText}
+      disabled={disabled}
       options={checkboxes.map(checkbox => ({
         value: checkbox.value,
         label: checkbox.label,
         nativeInputProps: {
           name,
+          disabled,
           checked: values.includes(checkbox.value),
           onChange: e => {
             if (e.target.checked) {

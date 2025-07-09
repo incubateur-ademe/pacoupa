@@ -19,14 +19,28 @@ const inter = Inter({
   weight: ["400", "500", "600", "700", "800", "900"], // You can customize this
 });
 
+const defaultInformationBatiment: InformationBatiment = {
+  adresse: "",
+  anneeConstruction: "",
+  // @ts-expect-error should be number
+  nbLogements: undefined,
+  espacesExterieursCommuns: [],
+  espacesExterieursPersonnels: [],
+  renovation: [],
+  typeCH: "collectif",
+  energieCH: "gaz",
+  emetteur: "radiateurs",
+  typeECS: "collectif",
+  energieECS: "gaz",
+};
+
 export default function Page({ searchParams }: { searchParams: CoachCoproSearchParams }) {
   const [step, setStep] = useState(process.env.NODE_ENV === "development" ? 1 : 1);
-  const [informationBatiment, setInformationBatimentState] = useState(parseParamsCoachCopro(searchParams));
+  const [informationBatiment, setInformationBatimentState] = useState(
+    parseParamsCoachCopro(searchParams) || defaultInformationBatiment,
+  );
 
   function setInformationBatiment(newInfo: Partial<InformationBatiment>) {
-    if (!informationBatiment) {
-      return;
-    }
     setInformationBatimentState({
       ...informationBatiment,
       ...newInfo,
@@ -64,7 +78,7 @@ export default function Page({ searchParams }: { searchParams: CoachCoproSearchP
           </div>
         </>
       )}
-      {step === 4 && <CoachCopro informationBatiment={informationBatiment} />}
+      {step === 4 && <CoachCopro informationBatiment={informationBatiment} onBack={() => setStep(3)} />}
     </div>
   );
 }

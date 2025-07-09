@@ -1,4 +1,3 @@
-"use client";
 import { fichesReference } from "@__content/fiches-reference";
 import Image from "next/image";
 import Link from "next/link";
@@ -20,6 +19,7 @@ import { type InformationBatiment } from "@/lib/common/domain/InformationBatimen
 import { type SolutionAvecEnergieCoutAide } from "@/lib/common/domain/values/SolutionAvecEnergieCoutAide";
 import { type TravauxNiveauIsolation } from "@/lib/common/domain/values/TravauxNiveauIsolation";
 
+import { CoachCoproButtonSecondary } from "./components/button";
 import { ContextCard } from "./components/context-card";
 import { DetailsButton } from "./components/details-button";
 import { SolutionCard, SolutionCardSkeleton } from "./components/solution-card";
@@ -112,8 +112,10 @@ const RCUSolution: SolutionAvecEnergieCoutAide = {
 export default function CoachCopro({
   informationBatiment,
   skeleton = false,
+  onBack,
 }: {
   informationBatiment: InformationBatiment | undefined;
+  onBack: () => void;
   skeleton?: boolean;
 }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -157,9 +159,7 @@ export default function CoachCopro({
     <>
       <div className="flex justify-start flex-col md:flex-row size-full overflow-auto md:overflow-hidden">
         <div className="basis-full md:basis-2/3 p-6 md:overflow-auto [scrollbar-width:none]">
-          <h1 className="text-2xl font-black !text-[#111827] mb-2 font-biko">
-            Mon potentiel réno
-          </h1>
+          <h1 className="text-2xl font-black !text-[#111827] mb-2 font-biko">Mon potentiel réno</h1>
           <hr className="flex w-full h-[1px] mb-2" />
           <p className="text-lg font-medium text-[#4B556A] mb-14">
             Retrouvez ici différents scénarios de rénovation énergétique pour votre copro
@@ -200,6 +200,9 @@ export default function CoachCopro({
                 <SolutionCardSkeleton />
                 <SolutionCardSkeleton />
                 <SolutionCardSkeleton />
+                <CoachCoproButtonSecondary type="button" onClick={onBack}>
+                  Retour
+                </CoachCoproButtonSecondary>
               </>
             ) : nbSolutions === 0 ? (
               <>
@@ -209,6 +212,9 @@ export default function CoachCopro({
                 <p>
                   Nous n’avons trouvé <strong>aucune solution</strong> ENR compatible pour votre bâtiment.
                 </p>
+                <CoachCoproButtonSecondary type="button" onClick={onBack}>
+                  Retour
+                </CoachCoproButtonSecondary>
               </>
             ) : (
               <>
@@ -252,6 +258,9 @@ export default function CoachCopro({
                 >
                   Pourquoi ces solutions ?
                 </Link>
+                <CoachCoproButtonSecondary type="button" onClick={onBack}>
+                  Retour
+                </CoachCoproButtonSecondary>
               </>
             )}
           </div>

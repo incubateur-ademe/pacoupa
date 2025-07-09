@@ -77,6 +77,10 @@ export function parseParamsCoachCopro(searchParams: CoachCoproSearchParams): Inf
     throw new Error(`Erreur de formatage du hash ${JSON.stringify(errors)}`);
   }
 
+  if (formData.data.annee && formData.data.annee > 2000) {
+    formData.data.renovation = ["toiture", "murs", "sol", "fenetres"];
+  }
+
   return formData.data;
 }
 
