@@ -32,10 +32,7 @@ type StatOutput = {
 
 // Matomo API response types
 
-type MatomoTimeSeriesResponse = {
-  nb_pageviews?: number;
-  nb_uniq_pageviews?: number;
-};
+type MatomomResponse = Record<string, number[] | number>;
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
@@ -48,7 +45,7 @@ export async function GET(request: NextRequest) {
   let dateRange: string;
 
   if (since === Infinity) {
-    dateRange = "today";
+    dateRange = "2024-01-01,today";
   } else {
     const today = new Date();
     const startDate = new Date(today);
@@ -78,12 +75,20 @@ export async function GET(request: NextRequest) {
     dateRange = `${formatDate(startDate)},today`;
   }
 
-  // Build Matomo API URL for unique page views
-  const matomoUrl = `${config.matomo.url}/?module=API&method=Actions.get&idSite=${
-    config.matomo.siteId
-  }&format=JSON&period=${periodicity}&date=${dateRange}&segment=${encodeURIComponent(
-    `pageUrl=^${config.host}`,
-  )}&showColumns=nb_uniq_pageviews`;
+  const matomoSearchParams = new URLSearchParams();
+  matomoSearchParams.set("module", "API");
+  matomoSearchParams.set("method", "Actions.get");
+  matomoSearchParams.set("idSite", config.matomo.siteId);
+  matomoSearchParams.set("format", "JSON");
+  matomoSearchParams.set("period", periodicity);
+  matomoSearchParams.set("date", dateRange);
+  matomoSearchParams.set(
+    "segment",
+    encodeURIComponent(`pageUrl=^https://pacoupa.ademe.fr/$,pageUrl=^https://pacoupa.ademe.fr/__coachcopro`),
+  );
+  matomoSearchParams.set("showColumns", "nb_uniq_pageviews");
+
+  const matomoUrl = `${config.matomo.url}/?${matomoSearchParams.toString()}`;
 
   try {
     const response = await fetch(matomoUrl, {
@@ -96,15 +101,17 @@ export async function GET(request: NextRequest) {
       throw new Error(`Matomo API error: ${response.status}`);
     }
 
-    const data = (await response.json()) as MatomoTimeSeriesResponse;
+    const data = (await response.json()) as MatomomResponse;
 
     // Transform Matomo response to our format
-    const stats: Stat[] = [];
+    const stats: StatOutput["stats"] = [];
 
-    stats.push({
-      value: data.nb_uniq_pageviews || 0,
-      date: new Date(),
-    });
+    for (const [date, value] of Object.entries(data)) {
+      stats.push({
+        value: Array.isArray(value) ? value[0] || 0 : value,
+        date: new Date(date),
+      });
+    }
 
     // Sort stats by date
     stats.sort((a, b) => a.date.getTime() - b.date.getTime());
