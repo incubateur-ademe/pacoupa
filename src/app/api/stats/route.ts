@@ -82,10 +82,7 @@ export async function GET(request: NextRequest) {
   matomoSearchParams.set("format", "JSON");
   matomoSearchParams.set("period", periodicity);
   matomoSearchParams.set("date", dateRange);
-  matomoSearchParams.set(
-    "segment",
-    encodeURIComponent(`pageUrl=^https://pacoupa.ademe.fr/$,pageUrl=^https://pacoupa.ademe.fr/__coachcopro`),
-  );
+  matomoSearchParams.set("segment", encodeURIComponent(`pageUrl=^https://pacoupa.ademe.fr/`));
   matomoSearchParams.set("showColumns", "nb_uniq_pageviews");
 
   const matomoUrl = `${config.matomo.url}/?${matomoSearchParams.toString()}`;
