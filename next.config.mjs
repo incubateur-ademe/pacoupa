@@ -96,7 +96,7 @@ const config = {
     return [
       {
         source:
-          "/((?!__coachcopro(?:/|$)|_next(?:/|$)|api(?:/|$)|favicon.ico$|robots.txt$|sitemap.xml$|manifest.webmanifest$|site.webmanifest$|apple-touch-icon(?:.*)?$).*)",
+          "/((?!__coachcopro(?:/|$)|_next(?:/|$)|api(?:/|$)|favicon.ico$|robots.txt$|sitemap.xml$|manifest.webmanifest$|site.webmanifest$|apple-touch-icon(?:.*)?$|.*\\.(?:avif|bmp|gif|ico|jpe?g|png|svg|webp)$).*)",
         destination: "https://france-chaleur-urbaine.beta.gouv.fr/chaleur-renouvelable?src=pacoupa",
         permanent: true,
       },
