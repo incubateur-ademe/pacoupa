@@ -251,6 +251,16 @@ export default function CoachCopro({
                     />
                   );
                 })}
+                <Link
+                  href="/methodologie"
+                  target="_blank"
+                  className="p-0 h-[38px] self-end text-base font-bold text-[#111827] hover:!bg-transparent"
+                >
+                  Pourquoi ces solutions ?
+                </Link>
+                <CoachCoproButtonSecondary className="!p-0 block" type="button" onClick={onBack}>
+                  Retour
+                </CoachCoproButtonSecondary>
               </>
             )}
           </div>
