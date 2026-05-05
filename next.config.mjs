@@ -92,6 +92,16 @@ const config = {
   },
   env,
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+  async redirects() {
+    return [
+      {
+        source:
+          "/((?!__coachcopro(?:/|$)|_next(?:/|$)|api(?:/|$)|favicon.ico$|robots.txt$|sitemap.xml$|manifest.webmanifest$|site.webmanifest$|apple-touch-icon(?:.*)?$).*)",
+        destination: "https://france-chaleur-urbaine.beta.gouv.fr/chaleur-renouvelable?src=pacoupa",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       // Specific headers for coachcopro route to allow iframe embedding
